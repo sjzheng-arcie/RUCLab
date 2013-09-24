@@ -1,6 +1,6 @@
 package edu.ruc.labmgr.web.controller;
 
-import edu.ruc.labmgr.domain.ClassIf;
+import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.service.ClassIfService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -20,7 +20,7 @@ public class ClassIfController {
 
     @RequestMapping("/list")
     public ModelAndView listall(HttpServletRequest request, HttpServletResponse response) {
-        List<ClassIf> items = service.getAllItems();
+        List<Classif> items = service.getAllItems();
         //制定视图，也就是list.jsp
         ModelAndView mav = new ModelAndView("list");
         mav.addObject("items", items);

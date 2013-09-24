@@ -1,59 +1,77 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.ruc.labmgr.mapper.ClassIfMapper">
-
-    <resultMap id="ClassIfResultMap" type="edu.ruc.labmgr.domain.ClassIf">
-        <id column="id" jdbcType="INTEGER" property="id"/>
-        <result column="parent_id" jdbcType="INTEGER" property="parentId"/>
-        <result column="value" jdbcType="VARCHAR" property="value"/>
-    </resultMap>
-
-    <sql id="Base_Column_List">
-      id, parent_id, value
-    </sql>
-
-    <select id="getList" resultType="list" resultMap="ClassIfResultMap">
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.ClassifMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Classif" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="value" property="value" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, parent_id, value
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from classif
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+    <select id="selectByParentKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from classif
+        where parent_id = #{parentid,jdbcType=INTEGER}
     </select>
-    <select id="selectByID" parameterType="int" resultMap="ClassIfResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from classif
-        where id = #{id}
-    </select>
-    <select id="selectByParentID" parameterType="int" resultMap="ClassIfResultMap">
-        select
-        <include refid="Base_Column_List"/>
-        from classif
-        where parentId = #{parentId,jdbcType=INTEGER}
-    </select>
-
-
-    <delete id="deleteByID" parameterType="int">
-      delete from classif
-      where id = #{id,jdbcType=INTEGER}
-    </delete>
-
-    <delete id="deleteByParentID" parameterType="int">
-      delete from classif
-      where parentid = #{parentId,jdbcType=INTEGER}
-    </delete>
-
-
-    <insert id="insert" parameterType="ClassIf">
-      insert into classif (id, parent_id, value
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from classif
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.Classif" >
+    insert into classif (id, parent_id, value
       )
-      values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}
+    values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{value,jdbcType=VARCHAR}
       )
-    </insert>
-
-    <update id="updateByID" parameterType="ClassIf">
-      update classif
-      set parent_id = #{parentId,jdbcType=INTEGER},
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Classif" >
+    insert into classif
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="parentId != null" >
+        parent_id,
+      </if>
+      <if test="value != null" >
+        value,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        #{value,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Classif" >
+    update classif
+    <set >
+      <if test="parentId != null" >
+        parent_id = #{parentId,jdbcType=INTEGER},
+      </if>
+      <if test="value != null" >
+        value = #{value,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Classif" >
+    update classif
+    set parent_id = #{parentId,jdbcType=INTEGER},
       value = #{value,jdbcType=VARCHAR}
-      where id = #{id,jdbcType=INTEGER}
-    </update>
-
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

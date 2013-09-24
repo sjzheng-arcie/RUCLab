@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.ExperimentMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Experiment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="SMALLINT" />
+    <result column="experiment_instructions_id" property="experimentInstructionsId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, content, experiment_instructions_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from experiment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from experiment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.Experiment" >
+    insert into experiment (id, content, experiment_instructions_id
+      )
+    values (#{id,jdbcType=INTEGER}, #{content,jdbcType=SMALLINT}, #{experimentInstructionsId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Experiment" >
+    insert into experiment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="experimentInstructionsId != null" >
+        experiment_instructions_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=SMALLINT},
+      </if>
+      <if test="experimentInstructionsId != null" >
+        #{experimentInstructionsId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Experiment" >
+    update experiment
+    <set >
+      <if test="content != null" >
+        content = #{content,jdbcType=SMALLINT},
+      </if>
+      <if test="experimentInstructionsId != null" >
+        experiment_instructions_id = #{experimentInstructionsId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Experiment" >
+    update experiment
+    set content = #{content,jdbcType=SMALLINT},
+      experiment_instructions_id = #{experimentInstructionsId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

@@ -1,8 +1,6 @@
 package edu.ruc.labmgr.domain;
 
-import java.io.Serializable;
-
-public class ClassIf implements Serializable {
+public class Classif {
     private Integer id;
 
     private Integer parentId;

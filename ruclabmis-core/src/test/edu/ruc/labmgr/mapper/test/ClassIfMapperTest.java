@@ -1,6 +1,6 @@
 package edu.ruc.labmgr.mapper.test;
 
-import edu.ruc.labmgr.mapper.ClassIfMapper;
+import edu.ruc.labmgr.mapper.ClassifMapper;
 import junit.framework.TestCase;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -11,8 +11,8 @@ public class ClassIfMapperTest extends TestCase {
     @Test
     public void testGetItem() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
-        ClassIfMapper mapper = aContext.getBean(ClassIfMapper.class);
+        ClassifMapper mapper = aContext.getBean(ClassifMapper.class);
 
-        System.out.print(mapper.getList().get(0).getValue());
+        System.out.print(mapper.selectByParentKey(0).get(0).getValue());
     }
 }

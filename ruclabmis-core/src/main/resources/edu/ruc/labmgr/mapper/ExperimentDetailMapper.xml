@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.ExperimentDetailMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ExperimentDetail" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="experiment_id" property="experimentId" jdbcType="INTEGER" />
+    <result column="curriculum_class_id" property="curriculumClassId" jdbcType="INTEGER" />
+    <result column="score" property="score" jdbcType="SMALLINT" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="edu.ruc.labmgr.domain.ExperimentDetail" extends="BaseResultMap" >
+    <result column="report" property="report" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, experiment_id, curriculum_class_id, score
+  </sql>
+  <sql id="Blob_Column_List" >
+    report
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from experiment_detail
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from experiment_detail
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.ExperimentDetail" >
+    insert into experiment_detail (id, experiment_id, curriculum_class_id, 
+      score, report)
+    values (#{id,jdbcType=INTEGER}, #{experimentId,jdbcType=INTEGER}, #{curriculumClassId,jdbcType=INTEGER}, 
+      #{score,jdbcType=SMALLINT}, #{report,jdbcType=LONGVARBINARY})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ExperimentDetail" >
+    insert into experiment_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="experimentId != null" >
+        experiment_id,
+      </if>
+      <if test="curriculumClassId != null" >
+        curriculum_class_id,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="report != null" >
+        report,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="experimentId != null" >
+        #{experimentId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumClassId != null" >
+        #{curriculumClassId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=SMALLINT},
+      </if>
+      <if test="report != null" >
+        #{report,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ExperimentDetail" >
+    update experiment_detail
+    <set >
+      <if test="experimentId != null" >
+        experiment_id = #{experimentId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumClassId != null" >
+        curriculum_class_id = #{curriculumClassId,jdbcType=INTEGER},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=SMALLINT},
+      </if>
+      <if test="report != null" >
+        report = #{report,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.ruc.labmgr.domain.ExperimentDetail" >
+    update experiment_detail
+    set experiment_id = #{experimentId,jdbcType=INTEGER},
+      curriculum_class_id = #{curriculumClassId,jdbcType=INTEGER},
+      score = #{score,jdbcType=SMALLINT},
+      report = #{report,jdbcType=LONGVARBINARY}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ExperimentDetail" >
+    update experiment_detail
+    set experiment_id = #{experimentId,jdbcType=INTEGER},
+      curriculum_class_id = #{curriculumClassId,jdbcType=INTEGER},
+      score = #{score,jdbcType=SMALLINT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

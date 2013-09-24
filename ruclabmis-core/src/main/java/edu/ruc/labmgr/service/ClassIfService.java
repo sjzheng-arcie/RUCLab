@@ -1,7 +1,7 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.ClassIf;
-import edu.ruc.labmgr.mapper.ClassIfMapper;
+import edu.ruc.labmgr.domain.Classif;
+import edu.ruc.labmgr.mapper.ClassifMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,14 +12,14 @@ import java.util.List;
 public class ClassIfService {
 
     @Autowired
-    private ClassIfMapper mapper;
+    private ClassifMapper mapper;
 
-    public List<ClassIf> getAllItems() {
-        return mapper.getList();
+    public List<Classif> getAllItems() {
+                return mapper.selectByParentKey(0);
     }
 
-    public ClassIf getClassIfItem(Integer id) {
-        return mapper.selectByID(id);
+    public Classif getClassifItem(Integer id) {
+        return null;
     }
 
 

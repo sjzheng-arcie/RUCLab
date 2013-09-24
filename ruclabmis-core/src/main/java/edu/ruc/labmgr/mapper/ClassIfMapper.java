@@ -1,26 +1,21 @@
 package edu.ruc.labmgr.mapper;
 
-import edu.ruc.labmgr.domain.ClassIf;
-import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
+import edu.ruc.labmgr.domain.Classif;
 
 import java.util.List;
 
-@Repository
-@Transactional
-public interface ClassIfMapper {
+public interface ClassifMapper {
+    int deleteByPrimaryKey(Integer id);
 
-    List<ClassIf> getList();
+    int insert(Classif record);
 
-    ClassIf selectByID(Integer id);
+    int insertSelective(Classif record);
 
-    List<ClassIf> selectByParentID(Integer id);
+    Classif selectByPrimaryKey(Integer id);
 
-    int deleteByID(Integer id);
+    List<Classif> selectByParentKey(Integer parentid);
 
-    int deleteByParentID(Integer parentId);
+    int updateByPrimaryKeySelective(Classif record);
 
-    int insert(ClassIf record);
-
-    int updateValueByID(Integer id, String value);
+    int updateByPrimaryKey(Classif record);
 }

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.LaboratoryRoomMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.LaboratoryRoomKey" >
+    <id column="laboratory_room_id" property="laboratoryRoomId" jdbcType="INTEGER" />
+    <id column="laboratory_id" property="laboratoryId" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="edu.ruc.labmgr.domain.LaboratoryRoomKey" >
+    delete from laboratory_room
+    where laboratory_room_id = #{laboratoryRoomId,jdbcType=INTEGER}
+      and laboratory_id = #{laboratoryId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.LaboratoryRoomKey" >
+    insert into laboratory_room (laboratory_room_id, laboratory_id)
+    values (#{laboratoryRoomId,jdbcType=INTEGER}, #{laboratoryId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.LaboratoryRoomKey" >
+    insert into laboratory_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="laboratoryRoomId != null" >
+        laboratory_room_id,
+      </if>
+      <if test="laboratoryId != null" >
+        laboratory_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="laboratoryRoomId != null" >
+        #{laboratoryRoomId,jdbcType=INTEGER},
+      </if>
+      <if test="laboratoryId != null" >
+        #{laboratoryId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

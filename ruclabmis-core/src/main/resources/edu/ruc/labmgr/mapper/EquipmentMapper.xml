@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.EquipmentMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Equipment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="category_id" property="categoryId" jdbcType="SMALLINT" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="model_number" property="modelNumber" jdbcType="VARCHAR" />
+    <result column="specifications" property="specifications" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+    <result column="vender" property="vender" jdbcType="VARCHAR" />
+    <result column="factory_number" property="factoryNumber" jdbcType="VARCHAR" />
+    <result column="manufacture_date" property="manufactureDate" jdbcType="DATE" />
+    <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE" />
+    <result column="country" property="country" jdbcType="VARCHAR" />
+    <result column="funding_subject_id" property="fundingSubjectId" jdbcType="INTEGER" />
+    <result column="state_id" property="stateId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, category_id, sn, name, model_number, specifications, unit_price, vender, factory_number, 
+    manufacture_date, acquisition_date, country, funding_subject_id, state_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from equipment
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from equipment
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    insert into equipment (id, category_id, sn, 
+      name, model_number, specifications, 
+      unit_price, vender, factory_number, 
+      manufacture_date, acquisition_date, country, 
+      funding_subject_id, state_id)
+    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=SMALLINT}, #{sn,jdbcType=VARCHAR}, 
+      #{name,jdbcType=VARCHAR}, #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, 
+      #{unitPrice,jdbcType=REAL}, #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, 
+      #{manufactureDate,jdbcType=DATE}, #{acquisitionDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, 
+      #{fundingSubjectId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    insert into equipment
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="categoryId != null" >
+        category_id,
+      </if>
+      <if test="sn != null" >
+        sn,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="modelNumber != null" >
+        model_number,
+      </if>
+      <if test="specifications != null" >
+        specifications,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="vender != null" >
+        vender,
+      </if>
+      <if test="factoryNumber != null" >
+        factory_number,
+      </if>
+      <if test="manufactureDate != null" >
+        manufacture_date,
+      </if>
+      <if test="acquisitionDate != null" >
+        acquisition_date,
+      </if>
+      <if test="country != null" >
+        country,
+      </if>
+      <if test="fundingSubjectId != null" >
+        funding_subject_id,
+      </if>
+      <if test="stateId != null" >
+        state_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="categoryId != null" >
+        #{categoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNumber != null" >
+        #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null" >
+        #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="vender != null" >
+        #{vender,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNumber != null" >
+        #{factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="manufactureDate != null" >
+        #{manufactureDate,jdbcType=DATE},
+      </if>
+      <if test="acquisitionDate != null" >
+        #{acquisitionDate,jdbcType=DATE},
+      </if>
+      <if test="country != null" >
+        #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="fundingSubjectId != null" >
+        #{fundingSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="stateId != null" >
+        #{stateId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    update equipment
+    <set >
+      <if test="categoryId != null" >
+        category_id = #{categoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNumber != null" >
+        model_number = #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null" >
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="vender != null" >
+        vender = #{vender,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNumber != null" >
+        factory_number = #{factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="manufactureDate != null" >
+        manufacture_date = #{manufactureDate,jdbcType=DATE},
+      </if>
+      <if test="acquisitionDate != null" >
+        acquisition_date = #{acquisitionDate,jdbcType=DATE},
+      </if>
+      <if test="country != null" >
+        country = #{country,jdbcType=VARCHAR},
+      </if>
+      <if test="fundingSubjectId != null" >
+        funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
+      </if>
+      <if test="stateId != null" >
+        state_id = #{stateId,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    update equipment
+    set category_id = #{categoryId,jdbcType=SMALLINT},
+      sn = #{sn,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      model_number = #{modelNumber,jdbcType=VARCHAR},
+      specifications = #{specifications,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=REAL},
+      vender = #{vender,jdbcType=VARCHAR},
+      factory_number = #{factoryNumber,jdbcType=VARCHAR},
+      manufacture_date = #{manufactureDate,jdbcType=DATE},
+      acquisition_date = #{acquisitionDate,jdbcType=DATE},
+      country = #{country,jdbcType=VARCHAR},
+      funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
+      state_id = #{stateId,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>
