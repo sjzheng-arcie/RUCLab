@@ -8,15 +8,18 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
-    <context:component-scan base-package="edu.ruc.labmgr.web"/>
+    <!-- 自动扫描controller包下的所有类，使其认为spring mvc的控制器 -->
+    <context:component-scan base-package="edu.ruc.labmgr.web.controller"/>
 
+    <!--添加注解支持-->
     <mvc:annotation-driven/>
-    <!--<mvc:view-controller path="/" view-name="jqui"/>-->
+
     <!--将无法Mapping的请求交给默认的Servlet进行处理-->
     <mvc:default-servlet-handler/>
 
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerMapping"/>
     <bean class="org.springframework.web.servlet.mvc.method.annotation.RequestMappingHandlerAdapter"/>
+
 
     <bean id="defaultViewResolver" class="org.springframework.web.servlet.view.InternalResourceViewResolver">
         <property name="viewClass" value="org.springframework.web.servlet.view.JstlView"/>
@@ -24,22 +27,14 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <!--&lt;!&ndash;支持 Shiro对Controller的方法级AOP安全控制&ndash;&gt;-->
-    <!--<bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"-->
-    <!--depends-on="lifecycleBeanPostProcessor">-->
-    <!--<property name="proxyTargetClass" value="true"/>-->
-    <!--</bean>-->
 
-    <!--<bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">-->
-    <!--<property name="securityManager" ref="securityManager"/>-->
-    <!--</bean>-->
-
-    <!--<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">-->
-    <!--<property name="exceptionMappings">-->
-    <!--<props>-->
-    <!--<prop key="org.springframework.validation.BindException">error/400</prop>-->
-    <!--<prop key="org.apache.shiro.authz.UnauthorizedException">error/403</prop>-->
-    <!--</props>-->
-    <!--</property>-->
-    <!--</bean>-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">error/403</prop>
+                <prop key="org.apache.shiro.authz.UnauthorizedException">error/403</prop>
+                <!--<prop key="java.lang.Throwable">error/500</prop>-->
+            </props>
+        </property>
+    </bean>
 </beans>

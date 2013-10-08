@@ -6,13 +6,13 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-public class ClassIfMapperTest extends TestCase {
+public class ClassifMapperTest extends TestCase {
 
     @Test
     public void testGetItem() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
         ClassifMapper mapper = aContext.getBean(ClassifMapper.class);
 
-        System.out.print(mapper.selectByParentKey(0).get(0).getValue());
+        System.out.println(mapper.selectByPrimaryKey(0).getValue());
     }
 }

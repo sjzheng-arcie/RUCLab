@@ -16,39 +16,39 @@
     <properties>
     </properties>
 
-    <build>
-        <finalName>mybatis-generator</finalName>
-        <plugins>
-            <plugin>
-                <groupId>org.mybatis.generator</groupId>
-                <artifactId>mybatis-generator-maven-plugin</artifactId>
-                <version>${version.mybatis.generator}</version>
-                <dependencies>
-                    <!-- 数据库驱动  -->
-                    <dependency>
-                        <groupId>mysql</groupId>
-                        <artifactId>mysql-connector-java</artifactId>
-                        <version>${version.mysql.connectorj}</version>
-                    </dependency>
+    <!--<build>-->
+    <!--<finalName>mybatis-generator</finalName>-->
+    <!--<plugins>-->
+    <!--<plugin>-->
+    <!--<groupId>org.mybatis.generator</groupId>-->
+    <!--<artifactId>mybatis-generator-maven-plugin</artifactId>-->
+    <!--<version>${version.mybatis.generator}</version>-->
+    <!--<dependencies>-->
+    <!--&lt;!&ndash; 数据库驱动  &ndash;&gt;-->
+    <!--<dependency>-->
+    <!--<groupId>mysql</groupId>-->
+    <!--<artifactId>mysql-connector-java</artifactId>-->
+    <!--<version>${version.mysql.connectorj}</version>-->
+    <!--</dependency>-->
 
-                </dependencies>
-                <!-- 自动生成 -->
-                <executions>
-                    <execution>
-                        <id>Generate MyBatis Artifacts</id>
-                        <goals>
-                            <goal>generate</goal>
-                        </goals>
-                        <configuration>
-                            <configurationFile>./src/main/resources/mybatis.generator.xml</configurationFile>
-                            <overwrite>true</overwrite>
-                        </configuration>
-                    </execution>
-                </executions>
-            </plugin>
+    <!--</dependencies>-->
+    <!--&lt;!&ndash; 自动生成 &ndash;&gt;-->
+    <!--<executions>-->
+    <!--<execution>-->
+    <!--<id>Generate MyBatis Artifacts</id>-->
+    <!--<goals>-->
+    <!--<goal>generate</goal>-->
+    <!--</goals>-->
+    <!--<configuration>-->
+    <!--<configurationFile>./src/main/resources/mybatis.generator.xml</configurationFile>-->
+    <!--<overwrite>true</overwrite>-->
+    <!--</configuration>-->
+    <!--</execution>-->
+    <!--</executions>-->
+    <!--</plugin>-->
 
-        </plugins>
-    </build>
+    <!--</plugins>-->
+    <!--</build>-->
 
     <dependencies>
         <dependency>

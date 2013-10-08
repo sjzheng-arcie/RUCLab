@@ -11,6 +11,8 @@ public interface PrivilegeMapper {
 
     Privilege selectByPrimaryKey(Integer id);
 
+    Privilege selectPrivilegeWithRoles(Integer id);
+
     int updateByPrimaryKeySelective(Privilege record);
 
     int updateByPrimaryKey(Privilege record);

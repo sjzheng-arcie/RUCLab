@@ -1,7 +1,7 @@
 package edu.ruc.labmgr.web.controller;
 
 import edu.ruc.labmgr.domain.Classif;
-import edu.ruc.labmgr.service.ClassIfService;
+import edu.ruc.labmgr.service.ClassifService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,14 +13,14 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/classif")
-public class ClassIfController {
+public class ClassifController {
 
     @Autowired
-    ClassIfService service;
+    ClassifService service;
 
     @RequestMapping("/list")
-    public ModelAndView listall(HttpServletRequest request, HttpServletResponse response) {
-        List<Classif> items = service.getAllItems();
+    public ModelAndView listAllCategories(HttpServletRequest request, HttpServletResponse response) {
+        List<Classif> items = service.getItemsByParentID(0);
         //制定视图，也就是list.jsp
         ModelAndView mav = new ModelAndView("list");
         mav.addObject("items", items);

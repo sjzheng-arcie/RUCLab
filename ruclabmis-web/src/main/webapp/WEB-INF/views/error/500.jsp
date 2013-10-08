@@ -23,7 +23,7 @@
 
 <body>
 <h2>500 - 系统发生内部错误.</h2>
-
+ex.getMessage()
 <p><a href="<c:url value="/"/>">返回首页</a></p>
 </body>
 </html>

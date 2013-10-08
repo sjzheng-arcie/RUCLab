@@ -2,25 +2,27 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.mapper.ClassifMapper;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+
 @SuppressWarnings("ALL")
 @Service
-public class ClassIfService {
+public class ClassifService {
 
     @Autowired
     private ClassifMapper mapper;
 
-    public List<Classif> getAllItems() {
-                return mapper.selectByParentKey(0);
+    @RequiresRoles("administrators")
+    public Classif getClassifItem(int id) {
+        return mapper.selectByPrimaryKey(id);
     }
 
-    public Classif getClassifItem(Integer id) {
-        return null;
+    @RequiresRoles("administrators")
+    public List<Classif> getItemsByParentID(int parent_id) {
+        return mapper.selectByParentKey(parent_id);
     }
-
-
 }

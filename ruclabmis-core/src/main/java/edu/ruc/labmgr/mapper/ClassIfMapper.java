@@ -13,7 +13,7 @@ public interface ClassifMapper {
 
     Classif selectByPrimaryKey(Integer id);
 
-    List<Classif> selectByParentKey(Integer parentid);
+    List<Classif> selectByParentKey(Integer id);
 
     int updateByPrimaryKeySelective(Classif record);
 

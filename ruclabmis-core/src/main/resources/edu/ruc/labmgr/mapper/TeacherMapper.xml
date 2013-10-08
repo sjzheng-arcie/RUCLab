@@ -3,20 +3,13 @@
 <mapper namespace="edu.ruc.labmgr.mapper.TeacherMapper" >
   <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Teacher" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="teacher_num" property="teacherNum" jdbcType="VARCHAR" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="sex" property="sex" jdbcType="BIT" />
-    <result column="phone_number" property="phoneNumber" jdbcType="VARCHAR" />
-    <result column="email" property="email" jdbcType="VARCHAR" />
-    <result column="comments" property="comments" jdbcType="VARCHAR" />
     <result column="title_id" property="titleId" jdbcType="INTEGER" />
     <result column="position_id" property="positionId" jdbcType="INTEGER" />
-    <result column="major_id" property="majorId" jdbcType="INTEGER" />
     <result column="organization_id" property="organizationId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Base_Column_List" >
-    id, teacher_num, name, sex, phone_number, email, comments, title_id, position_id, 
-    major_id, organization_id
+    id, title_id, position_id, organization_id, user_id
   </sql>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
@@ -29,14 +22,10 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Teacher" >
-    insert into teacher (id, teacher_num, name, 
-      sex, phone_number, email, 
-      comments, title_id, position_id, 
-      major_id, organization_id)
-    values (#{id,jdbcType=INTEGER}, #{teacherNum,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{sex,jdbcType=BIT}, #{phoneNumber,jdbcType=VARCHAR}, #{email,jdbcType=VARCHAR}, 
-      #{comments,jdbcType=VARCHAR}, #{titleId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, 
-      #{majorId,jdbcType=INTEGER}, #{organizationId,jdbcType=INTEGER})
+    insert into teacher (id, title_id, position_id, 
+      organization_id, user_id)
+    values (#{id,jdbcType=INTEGER}, #{titleId,jdbcType=INTEGER}, #{positionId,jdbcType=INTEGER}, 
+      #{organizationId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Teacher" >
     insert into teacher
@@ -44,58 +33,22 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="teacherNum != null" >
-        teacher_num,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="sex != null" >
-        sex,
-      </if>
-      <if test="phoneNumber != null" >
-        phone_number,
-      </if>
-      <if test="email != null" >
-        email,
-      </if>
-      <if test="comments != null" >
-        comments,
-      </if>
       <if test="titleId != null" >
         title_id,
       </if>
       <if test="positionId != null" >
         position_id,
       </if>
-      <if test="majorId != null" >
-        major_id,
-      </if>
       <if test="organizationId != null" >
         organization_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
-      </if>
-      <if test="teacherNum != null" >
-        #{teacherNum,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        #{sex,jdbcType=BIT},
-      </if>
-      <if test="phoneNumber != null" >
-        #{phoneNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="comments != null" >
-        #{comments,jdbcType=VARCHAR},
       </if>
       <if test="titleId != null" >
         #{titleId,jdbcType=INTEGER},
@@ -103,62 +56,38 @@
       <if test="positionId != null" >
         #{positionId,jdbcType=INTEGER},
       </if>
-      <if test="majorId != null" >
-        #{majorId,jdbcType=INTEGER},
-      </if>
       <if test="organizationId != null" >
         #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Teacher" >
     update teacher
     <set >
-      <if test="teacherNum != null" >
-        teacher_num = #{teacherNum,jdbcType=VARCHAR},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="sex != null" >
-        sex = #{sex,jdbcType=BIT},
-      </if>
-      <if test="phoneNumber != null" >
-        phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      </if>
-      <if test="email != null" >
-        email = #{email,jdbcType=VARCHAR},
-      </if>
-      <if test="comments != null" >
-        comments = #{comments,jdbcType=VARCHAR},
-      </if>
       <if test="titleId != null" >
         title_id = #{titleId,jdbcType=INTEGER},
       </if>
       <if test="positionId != null" >
         position_id = #{positionId,jdbcType=INTEGER},
       </if>
-      <if test="majorId != null" >
-        major_id = #{majorId,jdbcType=INTEGER},
-      </if>
       <if test="organizationId != null" >
         organization_id = #{organizationId,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Teacher" >
     update teacher
-    set teacher_num = #{teacherNum,jdbcType=VARCHAR},
-      name = #{name,jdbcType=VARCHAR},
-      sex = #{sex,jdbcType=BIT},
-      phone_number = #{phoneNumber,jdbcType=VARCHAR},
-      email = #{email,jdbcType=VARCHAR},
-      comments = #{comments,jdbcType=VARCHAR},
-      title_id = #{titleId,jdbcType=INTEGER},
+    set title_id = #{titleId,jdbcType=INTEGER},
       position_id = #{positionId,jdbcType=INTEGER},
-      major_id = #{majorId,jdbcType=INTEGER},
-      organization_id = #{organizationId,jdbcType=INTEGER}
+      organization_id = #{organizationId,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>
