@@ -4,8 +4,8 @@
 *.jar
 *.war
 *.ear
-.idea/
-log/
+.idea/*
+log/*
 *.log
 *.iml
-target/
+*/target/*
