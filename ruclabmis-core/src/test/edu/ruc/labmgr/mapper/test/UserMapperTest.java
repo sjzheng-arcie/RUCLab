@@ -5,42 +5,59 @@ import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import junit.framework.TestCase;
+import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import java.util.Arrays;
+import java.util.Collection;
 import java.util.List;
 
-public class UserMapperTest extends TestCase {
-    UserMapper mapper;
+@RunWith(Parameterized.class)
+public class UserMapperTest {
+    private static UserMapper mapper;
 
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
-        ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
-        mapper = aContext.getBean(UserMapper.class);
+    int offset;
+    int limit;
 
+    public  UserMapperTest(int current, int limit)
+    {
+        this.offset = offset;
+        this.limit = limit;
     }
 
-    @Test
-    public void testListPage() throws Exception {
-        RowBounds bounds = new RowBounds(0, 10);
-        List<User> users = mapper.selectByCriteriaWithRowbounds(null, bounds);
-        for (User each : users) {
-            System.out.println(each.getName());
-        }
+    @Parameterized.Parameters
+    public static Collection dateFeed() {
+        return Arrays.asList(new Object[][]{
+                {1,2},
+                {100, 3},
+                {-10, 2}
+        });
+    }
+
+    @BeforeClass
+    public static void init() throws Exception {
+        ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
+        mapper = aContext.getBean(UserMapper.class);
     }
 
     @Test
     public void testSearchPage() throws Exception {
-        RowBounds bounds = new RowBounds(0, 10);
+        RowBounds bounds = new RowBounds(offset, limit);
         UserCriteria criteria = new UserCriteria();
         criteria.createCriteria().andSnLike("%1%");
 
         List<User> users = mapper.selectByCriteriaWithRowbounds(criteria, bounds);
+        System.out.println("=====" + offset + "-" + limit + "===========");
         for (User each : users) {
             System.out.println(each.getName());
         }
+        System.out.println("============================================");
     }
 }

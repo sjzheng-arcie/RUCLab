@@ -3,6 +3,7 @@ package edu.ruc.labmgr.mapper.test;
 import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import junit.framework.TestCase;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -11,14 +12,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-public class RoleMapperTest extends TestCase {
-    RoleMapper mapper;
-    @Override
-    public void setUp() throws Exception {
-        super.setUp();
+public class RoleMapperTest {
+    private static RoleMapper mapper;
+
+    @BeforeClass
+    public static void getBean() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
         mapper = aContext.getBean(RoleMapper.class);
-
+        System.out.println("getBean");
     }
 
     @Test
@@ -55,11 +56,12 @@ public class RoleMapperTest extends TestCase {
     @Test
     public void testQueryList() throws Exception {
 
+        System.out.println("testQueryList");
     }
 
 
     @Test
     public void testListAll() throws Exception {
-
+        System.out.println("testListAll");
     }
 }
