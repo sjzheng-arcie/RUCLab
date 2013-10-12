@@ -7,7 +7,9 @@
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="10a5a67f-09b4-4542-8af1-12408fe5bd45" name="Default" comment="修改DAO访问方式&#10;完成用户分页列表显示、条件过滤" />
+    <list default="true" id="10a5a67f-09b4-4542-8af1-12408fe5bd45" name="Default" comment="修改DAO访问方式&#10;完成用户分页列表显示、条件过滤">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+    </list>
     <list id="6a8a683b-1e89-4573-9f61-7a5ae62ecff1" name="Rejected commit: Default" comment="修改DAO访问方式&#10;完成用户分页列表显示、条件过滤" />
     <list id="e00214e2-5999-4a75-a1a0-7a1f18bc50e8" name="Rejected commit: Rejected commit: Default" comment="修改DAO访问方式&#10;完成用户分页列表显示、条件过滤" />
     <list id="071a4b6b-122b-4ee4-82a5-a7b9e4a74194" name="Rejected commit: Rejected commit: Rejected commit: Default" comment="修改DAO访问方式&#10;完成用户分页列表显示、条件过滤" />
@@ -24,7 +26,7 @@
     <file path="/applicationContext-shiro.xml" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1380275589760" ignored="false" />
     <file path="/ShiroDbRealm.java" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381218131678" ignored="false" />
     <file path="/fragment.java" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381485475847" ignored="false" />
-    <file path="/Dummy.txt" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381546578594" ignored="false" />
+    <file path="/Dummy.txt" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381547434795" ignored="false" />
     <file path="/a.dummy" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381397855275" ignored="false" />
     <file path="/ClassIfService.java" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1380187597416" ignored="false" />
     <file path="/ClassifMapper.xml" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381219244531" ignored="false" />
@@ -92,7 +94,6 @@
     <file path="/RoleMapperTest.java" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381394307079" ignored="false" />
     <file path="/PrivilegeMapper.java" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381217009728" ignored="false" />
     <file path="/Privilege.java" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381217085319" ignored="false" />
-    <file path="$PROJECT_DIR$/.idea/workspace.xml" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381225571139" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/jsp/lib/jsp-impl.jar!/standardSchemas/jspdirectives2_1.xsd" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381221050065" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/jsp/lib/jsp-impl.jar!/standardSchemas/jspxml2_1.xsd" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381221050065" ignored="false" />
     <file path="$APPLICATION_HOME_DIR$/plugins/jsp/lib/jsp-impl.jar!/standardSchemas/jspxml2.xsd" changelist="10a5a67f-09b4-4542-8af1-12408fe5bd45" time="1381221050065" ignored="false" />
@@ -198,10 +199,19 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="right.html" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="right.html" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/right.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="109" column="60" selection-start="4453" selection-end="4453" vertical-scroll-proportion="0.456">
+            <state line="109" column="60" selection-start="4453" selection-end="4453" vertical-scroll-proportion="-0.6785714">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ClassifMapper.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/ruclabmis-core/src/main/java/edu/ruc/labmgr/mapper/ClassifMapper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="8" column="22" selection-start="250" selection-end="250" vertical-scroll-proportion="0.13693693">
               <folding />
             </state>
           </provider>
@@ -756,23 +766,57 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RenminLabMis" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="RUCLab" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ruclabmis-core" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="labmgr" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="mapper" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
       <pane id="PackagesPane" />
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="project.structure.last.edited" value="Artifacts" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth0" value="81" />
-    <property name="project.structure.proportion" value="0.15" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth1" value="110" />
+    <property name="OverrideImplement.combined" value="true" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="98" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
-    <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="MemberChooser.sorted" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder1" value="1" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeWidth0" value="98" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatOrder0" value="0" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/ruclabmis-core/target/classes" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_flatWidth2" value="110" />
@@ -788,9 +832,9 @@
     <property name="FullScreen" value="false" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
-    <property name="GoToFile.includeJavaFiles" value="false" />
     <property name="last_directory_selection" value="$PROJECT_DIR$/ruclabmis-core/src/test/edu/ruc/labmgr" />
+    <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder0" value="0" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder3" value="3" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder1" value="1" />
     <property name="FileHistory.git4idea.history.GitHistoryProvider_treeOrder2" value="2" />
@@ -798,8 +842,8 @@
     <property name="project.structure.side.proportion" value="0.2723059" />
     <property name="MemberChooser.copyJavadoc" value="false" />
     <property name="restartRequiresConfirmation" value="true" />
-    <property name="options.searchVisible" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
@@ -912,21 +956,6 @@
       <option name="ALTERNATIVE_JRE_PATH" />
       <method />
     </configuration>
-    <configuration default="true" type="Application" factoryName="Application">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
-      <option name="MAIN_CLASS_NAME" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="" />
-      <envs />
-      <method />
-    </configuration>
     <configuration default="true" type="JettyConfiguration" factoryName="Local">
       <deployment />
       <server-settings>
@@ -945,18 +974,26 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <method />
     </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+      <method />
+    </configuration>
     <configuration default="true" type="JavascriptDebugSession" factoryName="Remote" singleton="true">
       <JSRemoteDebuggerConfigurationSettings>
         <option name="engineId" value="embedded" />
         <option name="fileUrl" />
       </JSRemoteDebuggerConfigurationSettings>
-      <method />
-    </configuration>
-    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
-      <JSDebuggerConfigurationSettings>
-        <option name="engineId" value="embedded" />
-        <option name="fileUrl" />
-      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="JUnit" factoryName="JUnit">
@@ -980,10 +1017,11 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
-      <option name="VM_PARAMETERS" value="" />
-      <option name="USER_CFG_CLASS" />
-      <option name="CONTEXT_PROVIDER" />
+    <configuration default="true" type="JavascriptDebugSession" factoryName="Local" singleton="true">
+      <JSDebuggerConfigurationSettings>
+        <option name="engineId" value="embedded" />
+        <option name="fileUrl" />
+      </JSDebuggerConfigurationSettings>
       <method />
     </configuration>
     <configuration default="true" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local">
@@ -1049,6 +1087,12 @@
           <option name="PROGRAM_PARAMETERS" value="" />
         </SHUTDOWN>
       </ConfigurationWrapper>
+      <method />
+    </configuration>
+    <configuration default="true" type="com.intellij.persistence.run.ConsoleRunConfigurationType" factoryName="Query Language Console">
+      <option name="VM_PARAMETERS" value="" />
+      <option name="USER_CFG_CLASS" />
+      <option name="CONTEXT_PROVIDER" />
       <method />
     </configuration>
     <configuration default="false" name="mybatis-generat" type="MavenRunConfiguration" factoryName="Maven">
@@ -1247,7 +1291,6 @@
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.49602723" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="JetGradle" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.68031853" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3298217" sideWeight="0.6734926" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.6734926" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46302617" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
@@ -1255,20 +1298,21 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32536975" sideWeight="0.5" order="12" side_tool="true" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3151515" sideWeight="0.3927959" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="IDEtalk" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3246311" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32536975" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.3246311" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="CDI" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.2917342" sideWeight="0.27303755" order="3" side_tool="true" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3287827" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3280363" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24959481" sideWeight="0.6746303" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.1659091" sideWeight="0.68031853" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" weight="0.4" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3246311" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.30470017" sideWeight="0.6746303" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32576984" sideWeight="0.6753689" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.31968147" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="3" side_tool="false" content_ui="combo" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32690126" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32536975" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3993174" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -1348,11 +1392,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ruclabmis-core/src/main/resources/appConfig.properties">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="13" selection-start="24" selection-end="24" vertical-scroll-proportion="0.04269663" />
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-core/src/main/java/edu/ruc/labmgr/service/UserService.java">
       <provider selected="true" editor-type-id="text-editor">
         <state line="41" column="60" selection-start="1345" selection-end="1345" vertical-scroll-proportion="0.0">
@@ -1369,23 +1408,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/jsp/sys/user/list.jsp">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="142" column="46" selection-start="4868" selection-end="4868" vertical-scroll-proportion="-0.6785714">
-          <folding />
-        </state>
+        <state line="142" column="46" selection-start="4868" selection-end="4868" vertical-scroll-proportion="-0.6785714" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-core/src/test/edu/ruc/labmgr/mapper/test/UserMapperTest.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="41" column="0" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.6313933">
-          <folding />
-        </state>
+        <state line="41" column="0" selection-start="1360" selection-end="1360" vertical-scroll-proportion="0.6313933" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/css/mian.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="14" column="48" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="14" column="48" selection-start="214" selection-end="214" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/welcome.html">
@@ -1397,51 +1430,42 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/jsp/sys/permission/userlist.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="314" column="72" selection-start="15550" selection-end="15550" vertical-scroll-proportion="-10.071428">
-          <folding />
-        </state>
+        <state line="314" column="72" selection-start="15550" selection-end="15550" vertical-scroll-proportion="-10.071428" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/css/public.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0">
-          <folding>
-            <marker date="1381224424104" expanded="true" signature="-1:-1" placeholder="{...}" />
-          </folding>
-        </state>
+        <state line="22" column="13" selection-start="222" selection-end="222" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/images/skin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="44" column="23" selection-start="989" selection-end="997" vertical-scroll-proportion="0.31914893">
-          <folding />
-        </state>
+        <state line="44" column="23" selection-start="989" selection-end="997" vertical-scroll-proportion="0.31914893" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/css/index.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="42" column="23" selection-start="679" selection-end="687" vertical-scroll-proportion="0.8800738">
-          <folding />
-        </state>
+        <state line="42" column="23" selection-start="679" selection-end="687" vertical-scroll-proportion="0.8800738" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/images/fox.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="22" column="45" selection-start="473" selection-end="481" vertical-scroll-proportion="-3.2">
-          <folding />
-        </state>
+        <state line="22" column="45" selection-start="473" selection-end="481" vertical-scroll-proportion="-3.2" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/jsp/sys/user/add.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="76" column="70" selection-start="4423" selection-end="4423" vertical-scroll-proportion="-3.0943396">
-          <folding />
-        </state>
+        <state line="76" column="70" selection-start="4423" selection-end="4423" vertical-scroll-proportion="-3.0943396" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/css/skin.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="104" column="37" selection-start="2340" selection-end="2340" vertical-scroll-proportion="0.50369006">
+        <state line="104" column="37" selection-start="2340" selection-end="2340" vertical-scroll-proportion="0.50369006" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/right.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="109" column="60" selection-start="4453" selection-end="4453" vertical-scroll-proportion="-0.6785714">
           <folding />
         </state>
       </provider>
@@ -1453,9 +1477,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/ruclabmis-web/src/main/webapp/equipment/right.html">
+    <entry file="file://$PROJECT_DIR$/ruclabmis-core/src/main/java/edu/ruc/labmgr/mapper/ClassifMapper.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="109" column="60" selection-start="4453" selection-end="4453" vertical-scroll-proportion="0.456">
+        <state line="8" column="22" selection-start="250" selection-end="250" vertical-scroll-proportion="0.13693693">
           <folding />
         </state>
       </provider>
