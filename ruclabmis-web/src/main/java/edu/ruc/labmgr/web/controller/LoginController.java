@@ -2,7 +2,7 @@ package edu.ruc.labmgr.web.controller;
 
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.service.UserService;
-import edu.ruc.labmgr.utils.CipherUtil;
+import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -50,7 +50,7 @@ public class LoginController {
     @RequestMapping("/tologin")
     public String tologin(HttpServletRequest request, HttpServletResponse response, Model model) {
         logger.debug("来自IP[" + request.getRemoteHost() + "]的访问");
-        return "login";
+        return "views/login";
     }
 
     /**
@@ -80,7 +80,7 @@ public class LoginController {
             result = "redirect:/";
         } catch (Exception e) {
             logger.error(e.getMessage());
-            result = "login";
+            result = "views/login";
         }
         return result;
     }

@@ -9,9 +9,81 @@
     <result column="substance" property="substance" jdbcType="VARCHAR" />
     <result column="answer" property="answer" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Criteria_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Criteria_Where_Clause" >
+    <where >
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List" >
     id, experiment_instructions_id, name, report_form, substance, answer
   </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentQuestionCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from experiment_question
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -21,6 +93,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from experiment_question
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentQuestionCriteria" >
+    delete from experiment_question
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.ExperimentQuestion" >
     insert into experiment_question (id, experiment_instructions_id, name, 
@@ -73,6 +151,50 @@
       </if>
     </trim>
   </insert>
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentQuestionCriteria" resultType="java.lang.Integer" >
+    select count(*) from experiment_question
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByCriteriaSelective" parameterType="map" >
+    update experiment_question
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.experimentInstructionsId != null" >
+        experiment_instructions_id = #{record.experimentInstructionsId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.reportForm != null" >
+        report_form = #{record.reportForm,jdbcType=SMALLINT},
+      </if>
+      <if test="record.substance != null" >
+        substance = #{record.substance,jdbcType=VARCHAR},
+      </if>
+      <if test="record.answer != null" >
+        answer = #{record.answer,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByCriteria" parameterType="map" >
+    update experiment_question
+    set id = #{record.id,jdbcType=INTEGER},
+      experiment_instructions_id = #{record.experimentInstructionsId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      report_form = #{record.reportForm,jdbcType=SMALLINT},
+      substance = #{record.substance,jdbcType=VARCHAR},
+      answer = #{record.answer,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ExperimentQuestion" >
     update experiment_question
     <set >
@@ -103,4 +225,18 @@
       answer = #{answer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentQuestionCriteria" id="selectByCriteriaWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from experiment_question
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>

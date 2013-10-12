@@ -22,7 +22,7 @@ public class ClassifController {
     public ModelAndView listAllCategories(HttpServletRequest request, HttpServletResponse response) {
         List<Classif> items = service.getItemsByParentID(0);
         //制定视图，也就是list.jsp
-        ModelAndView mav = new ModelAndView("list");
+        ModelAndView mav = new ModelAndView("views/list");
         mav.addObject("items", items);
         return mav;
     }

@@ -12,8 +12,6 @@
 
     <bean id="shiroDbrealm" class="edu.ruc.labmgr.rbac.ShiroDbRealm"/>
 
-
-
     <!--Shiro Filter -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>

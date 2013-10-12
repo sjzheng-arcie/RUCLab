@@ -1,13 +1,20 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.Teacher;
 import edu.ruc.labmgr.domain.User;
+import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.StudentMapper;
 import edu.ruc.labmgr.mapper.TeacherMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
+import edu.ruc.labmgr.utils.SysUtil;
+import edu.ruc.labmgr.utils.page.ObjectListPage;
+import edu.ruc.labmgr.utils.page.PageInfo;
+import org.apache.ibatis.annotations.Param;
+import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @SuppressWarnings("ALL")
 @Service
@@ -15,22 +22,68 @@ public class UserService {
 
     @Autowired
     private UserMapper mapperUser;
-    @Autowired
-    private TeacherMapper mapperTeacher;
-    @Autowired
-    private StudentMapper mapperStudent;
-    @Autowired
-    private RoleMapper mapperRole;
 
-    //type 用户类型：0 教师， 1 学生
     public User getUserByLoginSn(String loginSn) {
         User user = null;
         try {
-            user = mapperUser.getUserByLoginSn(loginSn);
+            UserCriteria criteria;
+            user = mapperUser.selectByPrimaryKey(0);
         } catch (Exception e) {
             e.printStackTrace();
         }
         return user;
+    }
+
+    public ObjectListPage<User> selectUserListPage(int currentPage, UserCriteria criteria) {
+        String count = SysUtil.getConfigValue("showCount", "10");
+
+        int limit = Integer.valueOf(count);
+        int currentResult = (currentPage-1) * limit;
+        int totleCount = mapperUser.countByCriteria(criteria);
+        int pageCount = (totleCount % limit == 0)?(totleCount%limit):(1+totleCount/limit);
+
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalResult(totleCount);
+        pageInfo.setTotalPage(pageCount);
+        pageInfo.setCurrentPage(currentPage);
+
+        RowBounds bounds = new RowBounds(currentResult, limit);
+        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria,bounds);
+
+        ObjectListPage<User> retVal = new ObjectListPage<User>(pageInfo, users);
+
+        return retVal;
+    }
+
+//
+//    public ObjectListPage<User> serachUserListPage(int currentPage) {
+//        String count = SysUtil.getConfigValue("showCount", "10");
+//
+//        int limit = Integer.valueOf(count);
+//        int currentResult = (currentPage-1) * limit;
+//        int totleCount = mapperUser.countByCriteria(null);
+//        int pageCount = (totleCount % limit == 0)?(totleCount%limit):(1+totleCount/limit);
+//
+//        PageInfo pageInfo = new PageInfo();
+//        pageInfo.setTotalResult(totleCount);
+//        pageInfo.setTotalPage(pageCount);
+//        pageInfo.setCurrentPage(currentPage);
+//
+//        RowBounds bounds = new RowBounds(currentResult, limit);
+//
+//        UserCriteria criteria = new UserCriteria();
+//        criteria.createCriteria().andSnLike("%1%");
+//
+//        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
+//
+//        ObjectListPage<User> retVal = new ObjectListPage<User>(pageInfo, users);
+//
+//        return retVal;
+//    }
+
+    public int countAllUsers()
+    {
+        return mapperUser.countByCriteria(null);
     }
 
     public boolean registeUser(User user) {

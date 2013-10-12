@@ -16,10 +16,82 @@
     <result column="bibliography" property="bibliography" jdbcType="VARCHAR" />
     <result column="comments" property="comments" jdbcType="VARCHAR" />
   </resultMap>
+  <sql id="Criteria_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Criteria_Where_Clause" >
+    <where >
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
   <sql id="Base_Column_List" >
     id, major_id, teacher_id, name, profile, grade, category, type, period, score, exam_type, 
     bibliography, comments
   </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from curriculum
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
@@ -29,6 +101,12 @@
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from curriculum
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumCriteria" >
+    delete from curriculum
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Curriculum" >
     insert into curriculum (id, major_id, teacher_id, 
@@ -127,6 +205,78 @@
       </if>
     </trim>
   </insert>
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumCriteria" resultType="java.lang.Integer" >
+    select count(*) from curriculum
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByCriteriaSelective" parameterType="map" >
+    update curriculum
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.majorId != null" >
+        major_id = #{record.majorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.teacherId != null" >
+        teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.profile != null" >
+        profile = #{record.profile,jdbcType=VARCHAR},
+      </if>
+      <if test="record.grade != null" >
+        grade = #{record.grade,jdbcType=SMALLINT},
+      </if>
+      <if test="record.category != null" >
+        category = #{record.category,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.period != null" >
+        period = #{record.period,jdbcType=SMALLINT},
+      </if>
+      <if test="record.score != null" >
+        score = #{record.score,jdbcType=SMALLINT},
+      </if>
+      <if test="record.examType != null" >
+        exam_type = #{record.examType,jdbcType=INTEGER},
+      </if>
+      <if test="record.bibliography != null" >
+        bibliography = #{record.bibliography,jdbcType=VARCHAR},
+      </if>
+      <if test="record.comments != null" >
+        comments = #{record.comments,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByCriteria" parameterType="map" >
+    update curriculum
+    set id = #{record.id,jdbcType=INTEGER},
+      major_id = #{record.majorId,jdbcType=INTEGER},
+      teacher_id = #{record.teacherId,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
+      profile = #{record.profile,jdbcType=VARCHAR},
+      grade = #{record.grade,jdbcType=SMALLINT},
+      category = #{record.category,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      period = #{record.period,jdbcType=SMALLINT},
+      score = #{record.score,jdbcType=SMALLINT},
+      exam_type = #{record.examType,jdbcType=INTEGER},
+      bibliography = #{record.bibliography,jdbcType=VARCHAR},
+      comments = #{record.comments,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Curriculum" >
     update curriculum
     <set >
@@ -185,4 +335,18 @@
       comments = #{comments,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumCriteria" id="selectByCriteriaWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from curriculum
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
 </mapper>

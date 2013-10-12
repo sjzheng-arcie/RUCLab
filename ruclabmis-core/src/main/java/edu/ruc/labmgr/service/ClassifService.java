@@ -23,6 +23,6 @@ public class ClassifService {
 
     @RequiresRoles("administrators")
     public List<Classif> getItemsByParentID(int parent_id) {
-        return mapper.selectByParentKey(parent_id);
+        return mapper.selectByCriteria(null);
     }
 }
