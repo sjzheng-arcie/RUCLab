@@ -42,7 +42,5 @@ public class PageInfo implements Serializable {
 	public void setCurrentResult(int currentResult) {
 		this.currentResult = currentResult;
 	}
-	/**
-	 * testn
-	 */
+
 }
