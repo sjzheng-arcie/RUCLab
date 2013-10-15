@@ -8,7 +8,7 @@
 
 </script>
 <body>
-<form name="mainForm" method="post" action = "update">
+<form name="mainForm" method="post" action="update">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -70,17 +70,19 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <input  name="id" id="id" type="hidden" value="${user.id}">
+                                            <input name="id" id="id" type="hidden" value="${user.id}">
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="${user.sn}"/>
+                                                           maxlength="20" valid="required|isAccount"
+                                                           value="${user.sn}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
-                                                    <input  name="name" id="name" class="text" style="width:154px" maxlength="20"
+                                                    <input name="name" id="name" class="text" style="width:154px"
+                                                           maxlength="20"
                                                            valid="required|isAccount" value="${user.name}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
@@ -99,8 +101,10 @@
                                                 </td>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
-                                                    <input name="password" id="password" class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" value="${user.password}" type="password"/>
+                                                    <input name="password" id="password" class="text"
+                                                           style="width:154px" maxlength="20"
+                                                           valid="required|isAccount" value="${user.password}"
+                                                           type="password"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 
@@ -108,24 +112,27 @@
                                             <tr>
                                                 <td nowrap align="right">性别：</td>
                                                 <td nowrap align="left">
-                                                    <select  name="sex" id="sex" type="text">
+                                                    <select name="sex" id="sex" type="text">
                                                         <option value="0" selected>男</option>
                                                         <option value="1">女</option>
                                                     </select>
                                                 </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input  name="phoneNum" id="phoneNum" type="text" value="${user.phoneNum}">
+                                                    <input name="phoneNum" id="phoneNum" type="text"
+                                                           value="${user.phoneNum}">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input  name="email" id="email" type="text" value="${user.email}">
+                                                    <input name="email" id="email" type="text" value="${user.email}">
                                                 </td>
 
                                                 <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left"><textarea name="comment" id=comment>${user.comment}</textarea></td>
+                                                <td nowrap align="left"><textarea name="comment"
+                                                                                  id=comment>${user.comment}</textarea>
+                                                </td>
                                             </tr>
                                         </table>
                                     </td>

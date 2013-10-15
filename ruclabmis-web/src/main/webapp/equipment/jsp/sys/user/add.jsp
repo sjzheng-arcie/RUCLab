@@ -3,7 +3,8 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script src="../../../js/valid.js" type=text/javascript></script>
     <script>
@@ -117,20 +118,20 @@
                                             <tr>
                                                 <td nowrap align="right">性别：</td>
                                                 <td nowrap align="left">
-                                                    <select  name="sex" id="sex" type="text">
+                                                    <select name="sex" id="sex" type="text">
                                                         <option value="0" selected>男</option>
                                                         <option value="1">女</option>
                                                     </select>
                                                 </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input  name="phoneNum" id="phoneNum" type="text">
+                                                    <input name="phoneNum" id="phoneNum" type="text">
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input  name="email" id="email" type="text">
+                                                    <input name="email" id="email" type="text">
                                                 </td>
 
                                                 <td nowrap align="right">备注：</td>

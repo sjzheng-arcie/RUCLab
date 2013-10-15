@@ -2,7 +2,10 @@ package edu.ruc.labmgr.rbac;
 
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
-import org.apache.shiro.authc.*;
+import org.apache.shiro.authc.AuthenticationException;
+import org.apache.shiro.authc.AuthenticationInfo;
+import org.apache.shiro.authc.AuthenticationToken;
+import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
@@ -61,6 +64,6 @@ public class ShiroDbRealm extends AuthorizingRealm {
 //            return new SimpleAuthenticationInfo(user.getSn(), user
 //                    .getPassword(), user.getName());
 //        }
-            return null;
+        return null;
     }
 }

@@ -24,6 +24,7 @@ public class SysUtil implements ApplicationContextAware {
 
     /**
      * 获得系统的某一个Bean
+     *
      * @param name
      * @param clazz
      * @param <T>
@@ -35,6 +36,7 @@ public class SysUtil implements ApplicationContextAware {
 
     /**
      * 获得应用系统配置信息
+     *
      * @return
      */
     public static Properties getAppConfigProp() {
@@ -46,30 +48,33 @@ public class SysUtil implements ApplicationContextAware {
 
     /**
      * 获得具体的配置值
+     *
      * @param propName
      * @return
      */
-    public static String getConfigValue(String propName){
-       return SysUtil.getAppConfigProp().getProperty(propName);
+    public static String getConfigValue(String propName) {
+        return SysUtil.getAppConfigProp().getProperty(propName);
     }
 
     /**
      * 获得具体的配置值，当配置项不存在的时候返回指定的默认值
+     *
      * @param propName
      * @param defaultValue
      * @return
      */
-    public static String getConfigValue(String propName,String defaultValue){
-       return SysUtil.getAppConfigProp().getProperty(propName,defaultValue);
+    public static String getConfigValue(String propName, String defaultValue) {
+        return SysUtil.getAppConfigProp().getProperty(propName, defaultValue);
     }
 
     /**
      * 获得定义的消息
+     *
      * @param key
      * @param params
      * @return
      */
-    public static String getMessage(String key,String... params){
-        return SysUtil.context.getMessage(key,params,null);
+    public static String getMessage(String key, String... params) {
+        return SysUtil.context.getMessage(key, params, null);
     }
 }

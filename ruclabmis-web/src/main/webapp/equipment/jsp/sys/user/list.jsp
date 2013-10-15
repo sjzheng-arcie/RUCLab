@@ -1,15 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../js/util.js"></script>
     <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
         function checkAll(box) {  //全选或全不选
             document.listForm.checkbox.checked = box.checked;
@@ -63,7 +62,7 @@
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedID =  document.listForm.idcheckbox[i].value;
+                        selectedID = document.listForm.idcheckbox[i].value;
                         flag++;
                     }
                 }
@@ -80,7 +79,7 @@
                 alert("请只选择一条记录！");
                 return;
             }
-            document.listForm.action = "detail?id="+selectedID;
+            document.listForm.action = "detail?id=" + selectedID;
             document.listForm.submit();
 
 
@@ -94,7 +93,7 @@
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedID =  document.listForm.idcheckbox[i].value;
+                        selectedID = document.listForm.idcheckbox[i].value;
                         flag++;
                     }
                 }
@@ -109,7 +108,7 @@
                 return;
             }
             if (confirm("是否删除所选记录？")) {
-                document.listForm.action = "delete?id="+selectedID;
+                document.listForm.action = "delete?id=" + selectedID;
                 document.listForm.submit();
             }
 
@@ -129,7 +128,7 @@
 
         function toFind() {
             var href = '/equipment/jsp/sys/user/list?';
-            href += 'snLike=' + document.getElementById('searchSN').value +'&';
+            href += 'snLike=' + document.getElementById('searchSN').value + '&';
             href += 'nameLike=' + document.getElementById('searchName').value;
 
             document.listForm.action = href;
@@ -145,10 +144,11 @@
                 alert("已到达尾页！");
                 return;
             }
-            var href = '/equipment/jsp/sys/user/list?page=' + page + '&';;
-            href += 'snLike=' + document.getElementById('searchSN').value +'&';
+            var href = '/equipment/jsp/sys/user/list?page=' + page + '&';
+            ;
+            href += 'snLike=' + document.getElementById('searchSN').value + '&';
             href += 'nameLike=' + document.getElementById('searchName').value;
-            document.listForm.action =  href;
+            document.listForm.action = href;
             document.listForm.submit();
         }
     </script>
@@ -193,7 +193,7 @@
                                                            style="width:100px;"/>
                     </span>
                      <span style="white-space:nowrap">&nbsp;&nbsp;
-                         <a  href="javascript:void(0)" onclick="toFind();">
+                         <a href="javascript:void(0)" onclick="toFind();">
                              <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
                      </span>
 
@@ -289,15 +289,16 @@
                                         <c:forEach items="${users}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="${item.id}" onclick="checkOne(this)"/></td>
+                                                                       value="${item.id}" onclick="checkOne(this)"/>
+                                                </td>
                                                 <td>${item.id}</td>
                                                 <td>${item.sn}</td>
                                                 <td>${item.name}</td>
-                                                <td>${item.sex}</td>
+                                                <td><${item.sex}</td>
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.email}</td>
-                                                <td>${item.majorId}</td>
-                                                <td>角色</td>
+                                                <td>${item.major.name}</td>
+                                                <td>temp</td>
                                                 <td>${item.comment}</td>
                                             </tr>
                                         </c:forEach>

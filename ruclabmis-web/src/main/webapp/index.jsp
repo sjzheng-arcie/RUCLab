@@ -24,9 +24,9 @@
 
 <shiro:user>
     <p> 已登录为 <shiro:principal/></p>
+
     <h1></h1><a href="/views/logout">退出</a>
 </shiro:user>
-
 
 
 <shiro:authenticated>
@@ -35,7 +35,7 @@
 
 
 <shiro:notAuthenticated>
-<p>未认证通过用户： <shiro:principal/> 与authenticated标签相对应。与guest标签的区别是，该标签包含已记住用户。</p>
+    <p>未认证通过用户： <shiro:principal/> 与authenticated标签相对应。与guest标签的区别是，该标签包含已记住用户。</p>
 
 
 </shiro:notAuthenticated>

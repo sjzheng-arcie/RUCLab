@@ -17,7 +17,7 @@ public class User {
 
     private String comment;
 
-    private Integer majorId;
+    private Major major;
 
     public Integer getId() {
         return id;
@@ -83,11 +83,11 @@ public class User {
         this.comment = comment == null ? null : comment.trim();
     }
 
-    public Integer getMajorId() {
-        return majorId;
+    public Major getMajor() {
+        return major;
     }
 
-    public void setMajorId(Integer majorId) {
-        this.majorId = majorId;
+    public void setMajor(Major major) {
+        this.major = major;
     }
 }

@@ -2,9 +2,10 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Arrangement;
 import edu.ruc.labmgr.domain.ArrangementCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface ArrangementMapper {
     int countByCriteria(ArrangementCriteria criteria);

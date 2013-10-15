@@ -1,110 +1,113 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.ruc.labmgr.mapper.RelatedResourcesMapper" >
-  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.RelatedResources" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
-    <result column="resource_type" property="resourceType" jdbcType="INTEGER" />
-    <result column="name" property="name" jdbcType="VARCHAR" />
-    <result column="path" property="path" jdbcType="VARCHAR" />
-    <result column="upload_date" property="uploadDate" jdbcType="DATE" />
-    <result column="upload_person" property="uploadPerson" jdbcType="VARCHAR" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="download_limit" property="downloadLimit" jdbcType="BIT" />
-  </resultMap>
-  <sql id="Criteria_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="edu.ruc.labmgr.mapper.RelatedResourcesMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.RelatedResources">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER"/>
+        <result column="resource_type" property="resourceType" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="path" property="path" jdbcType="VARCHAR"/>
+        <result column="upload_date" property="uploadDate" jdbcType="DATE"/>
+        <result column="upload_person" property="uploadPerson" jdbcType="VARCHAR"/>
+        <result column="content" property="content" jdbcType="VARCHAR"/>
+        <result column="download_limit" property="downloadLimit" jdbcType="BIT"/>
+    </resultMap>
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Criteria_Where_Clause" >
-    <where >
-      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
     id, curriculum_id, resource_type, name, path, upload_date, upload_person, content, 
     download_limit
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from related_resources
-    <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from related_resources
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByCriteria" resultMap="BaseResultMap"
+            parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from related_resources
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from related_resources
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from related_resources
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria" >
-    delete from related_resources
-    <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="edu.ruc.labmgr.domain.RelatedResources" >
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria">
+        delete from related_resources
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.RelatedResources">
     insert into related_resources (id, curriculum_id, resource_type, 
       name, path, upload_date, 
       upload_person, content, download_limit
@@ -114,154 +117,155 @@
       #{uploadPerson,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{downloadLimit,jdbcType=BIT}
       )
   </insert>
-  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.RelatedResources" >
-    insert into related_resources
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="curriculumId != null" >
-        curriculum_id,
-      </if>
-      <if test="resourceType != null" >
-        resource_type,
-      </if>
-      <if test="name != null" >
-        name,
-      </if>
-      <if test="path != null" >
-        path,
-      </if>
-      <if test="uploadDate != null" >
-        upload_date,
-      </if>
-      <if test="uploadPerson != null" >
-        upload_person,
-      </if>
-      <if test="content != null" >
-        content,
-      </if>
-      <if test="downloadLimit != null" >
-        download_limit,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="curriculumId != null" >
-        #{curriculumId,jdbcType=INTEGER},
-      </if>
-      <if test="resourceType != null" >
-        #{resourceType,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="path != null" >
-        #{path,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadDate != null" >
-        #{uploadDate,jdbcType=DATE},
-      </if>
-      <if test="uploadPerson != null" >
-        #{uploadPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadLimit != null" >
-        #{downloadLimit,jdbcType=BIT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria" resultType="java.lang.Integer" >
-    select count(*) from related_resources
-    <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByCriteriaSelective" parameterType="map" >
-    update related_resources
-    <set >
-      <if test="record.id != null" >
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.curriculumId != null" >
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.RelatedResources">
+        insert into related_resources
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="curriculumId != null">
+                curriculum_id,
+            </if>
+            <if test="resourceType != null">
+                resource_type,
+            </if>
+            <if test="name != null">
+                name,
+            </if>
+            <if test="path != null">
+                path,
+            </if>
+            <if test="uploadDate != null">
+                upload_date,
+            </if>
+            <if test="uploadPerson != null">
+                upload_person,
+            </if>
+            <if test="content != null">
+                content,
+            </if>
+            <if test="downloadLimit != null">
+                download_limit,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="curriculumId != null">
+                #{curriculumId,jdbcType=INTEGER},
+            </if>
+            <if test="resourceType != null">
+                #{resourceType,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="uploadDate != null">
+                #{uploadDate,jdbcType=DATE},
+            </if>
+            <if test="uploadPerson != null">
+                #{uploadPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadLimit != null">
+                #{downloadLimit,jdbcType=BIT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from related_resources
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByCriteriaSelective" parameterType="map">
+        update related_resources
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.curriculumId != null">
+                curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
+            </if>
+            <if test="record.resourceType != null">
+                resource_type = #{record.resourceType,jdbcType=INTEGER},
+            </if>
+            <if test="record.name != null">
+                name = #{record.name,jdbcType=VARCHAR},
+            </if>
+            <if test="record.path != null">
+                path = #{record.path,jdbcType=VARCHAR},
+            </if>
+            <if test="record.uploadDate != null">
+                upload_date = #{record.uploadDate,jdbcType=DATE},
+            </if>
+            <if test="record.uploadPerson != null">
+                upload_person = #{record.uploadPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="record.content != null">
+                content = #{record.content,jdbcType=VARCHAR},
+            </if>
+            <if test="record.downloadLimit != null">
+                download_limit = #{record.downloadLimit,jdbcType=BIT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByCriteria" parameterType="map">
+        update related_resources
+        set id = #{record.id,jdbcType=INTEGER},
         curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-      </if>
-      <if test="record.resourceType != null" >
         resource_type = #{record.resourceType,jdbcType=INTEGER},
-      </if>
-      <if test="record.name != null" >
         name = #{record.name,jdbcType=VARCHAR},
-      </if>
-      <if test="record.path != null" >
         path = #{record.path,jdbcType=VARCHAR},
-      </if>
-      <if test="record.uploadDate != null" >
         upload_date = #{record.uploadDate,jdbcType=DATE},
-      </if>
-      <if test="record.uploadPerson != null" >
         upload_person = #{record.uploadPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
-      </if>
-      <if test="record.downloadLimit != null" >
-        download_limit = #{record.downloadLimit,jdbcType=BIT},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByCriteria" parameterType="map" >
-    update related_resources
-    set id = #{record.id,jdbcType=INTEGER},
-      curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-      resource_type = #{record.resourceType,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      path = #{record.path,jdbcType=VARCHAR},
-      upload_date = #{record.uploadDate,jdbcType=DATE},
-      upload_person = #{record.uploadPerson,jdbcType=VARCHAR},
-      content = #{record.content,jdbcType=VARCHAR},
-      download_limit = #{record.downloadLimit,jdbcType=BIT}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.RelatedResources" >
-    update related_resources
-    <set >
-      <if test="curriculumId != null" >
-        curriculum_id = #{curriculumId,jdbcType=INTEGER},
-      </if>
-      <if test="resourceType != null" >
-        resource_type = #{resourceType,jdbcType=INTEGER},
-      </if>
-      <if test="name != null" >
-        name = #{name,jdbcType=VARCHAR},
-      </if>
-      <if test="path != null" >
-        path = #{path,jdbcType=VARCHAR},
-      </if>
-      <if test="uploadDate != null" >
-        upload_date = #{uploadDate,jdbcType=DATE},
-      </if>
-      <if test="uploadPerson != null" >
-        upload_person = #{uploadPerson,jdbcType=VARCHAR},
-      </if>
-      <if test="content != null" >
-        content = #{content,jdbcType=VARCHAR},
-      </if>
-      <if test="downloadLimit != null" >
-        download_limit = #{downloadLimit,jdbcType=BIT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.RelatedResources" >
+        download_limit = #{record.downloadLimit,jdbcType=BIT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.RelatedResources">
+        update related_resources
+        <set>
+            <if test="curriculumId != null">
+                curriculum_id = #{curriculumId,jdbcType=INTEGER},
+            </if>
+            <if test="resourceType != null">
+                resource_type = #{resourceType,jdbcType=INTEGER},
+            </if>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="path != null">
+                path = #{path,jdbcType=VARCHAR},
+            </if>
+            <if test="uploadDate != null">
+                upload_date = #{uploadDate,jdbcType=DATE},
+            </if>
+            <if test="uploadPerson != null">
+                upload_person = #{uploadPerson,jdbcType=VARCHAR},
+            </if>
+            <if test="content != null">
+                content = #{content,jdbcType=VARCHAR},
+            </if>
+            <if test="downloadLimit != null">
+                download_limit = #{downloadLimit,jdbcType=BIT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.RelatedResources">
     update related_resources
     set curriculum_id = #{curriculumId,jdbcType=INTEGER},
       resource_type = #{resourceType,jdbcType=INTEGER},
@@ -273,18 +277,19 @@
       download_limit = #{downloadLimit,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria" id="selectByCriteriaWithRowbounds" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from related_resources
-    <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria"
+            id="selectByCriteriaWithRowbounds">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from related_resources
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
 </mapper>

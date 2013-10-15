@@ -5,12 +5,12 @@
 
 <generatorConfiguration>
 
-    <classPathEntry location="./lib/mysql-connector-java-5.1.26.jar" />
+    <classPathEntry location="./lib/mysql-connector-java-5.1.26.jar"/>
 
     <context id="RucLabMis" targetRuntime="MyBatis3">
 
-        <plugin type ="org.mybatis.generator.plugins.RowBoundsPlugin" />
-        <plugin type = "org.mybatis.generator.plugins.RenameExampleClassPlugin">
+        <plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"/>
+        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
             <property name="searchString" value="Example$"/>
             <property name="replaceString" value="Criteria"/>
         </plugin>
@@ -69,7 +69,7 @@
         <table tableName="role"/>
         <table tableName="role_privilege"/>
         <table tableName="room"/>
-        <table tableName="user" />
+        <table tableName="user"/>
         <table tableName="user_role"/>
         <table tableName="student"/>
         <table tableName="teacher"/>

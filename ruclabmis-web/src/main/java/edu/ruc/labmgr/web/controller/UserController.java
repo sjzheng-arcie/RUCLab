@@ -22,83 +22,72 @@ public class UserController {
     RoleService serviceRole;
 
     @RequestMapping("/list")
-    public ModelAndView pageList(HttpServletRequest request){
-        int currentPage = request.getParameter("page")==null?1:Integer.parseInt(request.getParameter("page"));
+    public ModelAndView pageList(HttpServletRequest request) {
+        int currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
         UserCriteria criteria = new UserCriteria();
-        if(!StringUtils.isNullOrEmpty(request.getParameter("snLike")))
-        {
-            criteria.createCriteria().andSnLike("%"+request.getParameter("snLike")+"%");
+        if (!StringUtils.isNullOrEmpty(request.getParameter("snLike"))) {
+            criteria.createCriteria().andSnLike("%" + request.getParameter("snLike") + "%");
         }
-        if(!StringUtils.isNullOrEmpty(request.getParameter("nameLike")))
-        {
-            criteria.createCriteria().andNameLike("%"+request.getParameter("nameLike")+"%");
+        if (!StringUtils.isNullOrEmpty(request.getParameter("nameLike"))) {
+            criteria.createCriteria().andNameLike("%" + request.getParameter("nameLike") + "%");
         }
 
         ObjectListPage<User> pageInfo = serviceUser.selectListPage(currentPage, criteria);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/list");
-        mav.addObject("users",pageInfo.getListObject());
-        mav.addObject("page",pageInfo.getPageInfo());
+        mav.addObject("users", pageInfo.getListObject());
+        mav.addObject("page", pageInfo.getPageInfo());
         return mav;
     }
 
     @RequestMapping("/add")
-    public ModelAndView add(HttpServletRequest request){
+    public ModelAndView add(HttpServletRequest request) {
         User user = initFromRequest(request);
         int result = serviceUser.insert(user);
-        if( result > 0 )
-        {
+        if (result > 0) {
             return pageList(request);
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
     @RequestMapping("/detail")
-    public ModelAndView detail(HttpServletRequest request){
+    public ModelAndView detail(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
 
-        User user =  serviceUser.selectByPrimaryKey(id);
+        User user = serviceUser.selectByPrimaryKey(id);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/update");
-        mav.addObject("user",user);
+        mav.addObject("user", user);
         return mav;
     }
 
     @RequestMapping("/update")
-    public ModelAndView update(HttpServletRequest request){
-        User user =  initFromRequest(request);
+    public ModelAndView update(HttpServletRequest request) {
+        User user = initFromRequest(request);
         int result = serviceUser.update(user);
-        if( result > 0 )
-        {
+        if (result > 0) {
             return pageList(request);
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
     @RequestMapping("/delete")
-    public ModelAndView delete(HttpServletRequest request){
+    public ModelAndView delete(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
         int result = serviceUser.delete(id);
 
-        if( result > 0 )
-        {
+        if (result > 0) {
             return pageList(request);
-        }
-        else
-        {
+        } else {
             return null;
         }
     }
 
-    private User initFromRequest(HttpServletRequest req){
+    private User initFromRequest(HttpServletRequest req) {
         User user = new User();
-        if(!StringUtils.isNullOrEmpty(req.getParameter("id")))
+        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
             user.setId(Integer.parseInt(req.getParameter("id")));
         user.setSn(req.getParameter("sn"));
         user.setPassword(req.getParameter("password"));

@@ -2,9 +2,10 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.ExperimentDetail;
 import edu.ruc.labmgr.domain.ExperimentDetailCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface ExperimentDetailMapper {
     int countByCriteria(ExperimentDetailCriteria criteria);

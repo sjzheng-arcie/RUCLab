@@ -22,8 +22,7 @@ public class UserMapperTest {
     int offset;
     int limit;
 
-    public  UserMapperTest(int current, int limit)
-    {
+    public UserMapperTest(int current, int limit) {
         this.offset = offset;
         this.limit = limit;
     }
@@ -31,7 +30,7 @@ public class UserMapperTest {
     @Parameterized.Parameters
     public static Collection dateFeed() {
         return Arrays.asList(new Object[][]{
-                {1,2},
+                {1, 2},
                 {100, 3},
                 {-10, 2}
         });
@@ -53,6 +52,7 @@ public class UserMapperTest {
         System.out.println("=====" + offset + "-" + limit + "===========");
         for (User each : users) {
             System.out.println(each.getName());
+            System.out.println(each.getMajor().getName());
         }
         System.out.println("============================================");
     }

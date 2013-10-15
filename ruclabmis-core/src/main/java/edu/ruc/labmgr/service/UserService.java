@@ -42,14 +42,14 @@ public class UserService {
 
     public ObjectListPage<User> selectListPage(int currentPage, UserCriteria criteria) {
         ObjectListPage<User> retList = null;
-        try{
+        try {
             String count = SysUtil.getConfigValue("showCount", "10");
 
 
             int limit = Integer.valueOf(count);
-            int currentResult = (currentPage-1) * limit;
+            int currentResult = (currentPage - 1) * limit;
             int totleCount = mapperUser.countByCriteria(criteria);
-            int pageCount = (totleCount % limit == 0)?(totleCount/limit):(1+totleCount/limit);
+            int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
 
             PageInfo pageInfo = new PageInfo();
             pageInfo.setTotalResult(totleCount);
@@ -57,7 +57,7 @@ public class UserService {
             pageInfo.setCurrentPage(currentPage);
 
             RowBounds bounds = new RowBounds(currentResult, limit);
-            List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria,bounds);
+            List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
 
             retList = new ObjectListPage<User>(pageInfo, users);
         } catch (Exception e) {
@@ -70,9 +70,9 @@ public class UserService {
 
     public int insert(User user) {
         int result = 0;
-        try{
+        try {
             result = mapperUser.insert(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -80,9 +80,9 @@ public class UserService {
 
     public int update(User user) {
         int result = 0;
-        try{
+        try {
             result = mapperUser.updateByPrimaryKey(user);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
@@ -90,16 +90,15 @@ public class UserService {
 
     public int delete(int id) {
         int result = 0;
-        try{
+        try {
             result = mapperUser.deleteByPrimaryKey(id);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         return result;
     }
 
-    public int countAllUsers()
-    {
+    public int countAllUsers() {
         return mapperUser.countByCriteria(null);
     }
 
