@@ -1,16 +1,10 @@
 package edu.ruc.labmgr.mapper.test;
 
-import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.mapper.RoleMapper;
-import junit.framework.TestCase;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
-
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 public class RoleMapperTest {
     private static RoleMapper mapper;

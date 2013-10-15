@@ -11,8 +11,6 @@
     <script type="text/javascript" src="../../../js/util.js"></script>
     <title></title>
     <script>
-        var snLike = "${param.searchSN}";
-        var snName = "${param.snName}";
         function checkAll(box) {  //全选或全不选
             document.listForm.checkbox.checked = box.checked;
             if (document.listForm.idcheckbox == null)
@@ -45,6 +43,7 @@
             for (var i = 0; i < numRow; i++) {
                 if (document.listForm.idcheckbox[i].checked) {
                     numBox++;
+                    break;
                 }
             }
             if (numBox == numRow) {
@@ -60,9 +59,11 @@
             }
             var len = document.listForm.idcheckbox.length;
             var flag = 0;
+            var selectedID;
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
+                        selectedID =  document.listForm.idcheckbox[i].value;
                         flag++;
                     }
                 }
@@ -76,13 +77,12 @@
                 alert("请选择一条记录！");
                 return;
             } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
+                alert("请只选择一条记录！");
                 return;
             }
-            if (confirm("是否修改？")) {
-                document.listForm.action = "update.html";
-                document.listForm.submit();
-            }
+            document.listForm.action = "detail?id="+selectedID;
+            document.listForm.submit();
+
 
         }
         function toDelete() {
@@ -94,6 +94,7 @@
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
+                        selectedID =  document.listForm.idcheckbox[i].value;
                         flag++;
                     }
                 }
@@ -108,7 +109,7 @@
                 return;
             }
             if (confirm("是否删除所选记录？")) {
-                document.listForm.action = "";
+                document.listForm.action = "delete?id="+selectedID;
                 document.listForm.submit();
             }
 
@@ -223,14 +224,18 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+						<a href="add.jsp">
+                            <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span>
+                        </a>&nbsp;
+                        <a href="#" onclick="toUpdate(); return false">
+                            <img src="../../../images/edit_min.gif" width="10" height="10"
+                                 border="0"/> <span class="STYLE1">修改</span>
+                        </a>&nbsp;
+      					<a href="#" onclick="toDelete(); return false">
+                            <img src="../../../images/del_min.gif" width="10" height="10"
+                                 border="0"/> <span class="STYLE1">删除</span>
+                        </a>&nbsp;&nbsp;
 	                </span>
                                                         </div>
                                                     </td>
@@ -254,7 +259,7 @@
                                                 </div>
                                             </td>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">序号</span></div>
+                                                <div align="center"><span class="STYLE10">编号号</span></div>
                                             </td>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">用户账号</span></div>
@@ -284,16 +289,16 @@
                                         <c:forEach items="${users}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="admin" onclick="checkOne(this)"/></td>
-                                                <td>${item.id }</td>
-                                                <td>${item.sn }</td>
-                                                <td>${item.name }</td>
-                                                <td>${item.sex }</td>
-                                                <td>${item.phoneNum }</td>
-                                                <td>${item.email }</td>
-                                                <td>${item.majorId }</td>
+                                                                       value="${item.id}" onclick="checkOne(this)"/></td>
+                                                <td>${item.id}</td>
+                                                <td>${item.sn}</td>
+                                                <td>${item.name}</td>
+                                                <td>${item.sex}</td>
+                                                <td>${item.phoneNum}</td>
+                                                <td>${item.email}</td>
+                                                <td>${item.majorId}</td>
                                                 <td>角色</td>
-                                                <td>${item.comment }</td>
+                                                <td>${item.comment}</td>
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>

@@ -1,13 +1,19 @@
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
-    }
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
 
-</script>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function save() {
+            document.form1.action = "add";
+            document.form1.submit();
+        }
+
+    </script>
+</head>
 <body>
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -74,19 +80,17 @@
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
-                                                    <input name="us_sn" id="us_sn" value="" onblur="" class="text"
+                                                    <input name="sn" id="sn" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sn"></span>
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
-                                                    <input name="us_name" id="us_name" value="" onblur="" class="text"
+                                                    <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -103,21 +107,34 @@
                                                 </td>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
+                                                    <input name="password" id="password" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                           valid="required|isAccount" type="password"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
                                                 </td>
 
                                             </tr>
                                             <tr>
+                                                <td nowrap align="right">性别：</td>
+                                                <td nowrap align="left">
+                                                    <select  name="sex" id="sex" type="text">
+                                                        <option value="0" selected>男</option>
+                                                        <option value="1">女</option>
+                                                    </select>
+                                                </td>
+                                                <td nowrap align="right">电话：</td>
+                                                <td nowrap align="left">
+                                                    <input  name="phoneNum" id="phoneNum" type="text">
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">邮箱：</td>
-                                                <td nowrap align="left"><input type="text"></td>
-
+                                                <td nowrap align="left">
+                                                    <input  name="email" id="email" type="text">
+                                                </td>
 
                                                 <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left"><textarea></textarea></td>
+                                                <td nowrap align="left"><textarea name="comment"></textarea></td>
                                             </tr>
 
 
@@ -154,3 +171,4 @@
     <input type="hidden" name="us_sreplyby" value=""/>
 </form>
 </body>
+</html>

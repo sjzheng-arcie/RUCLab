@@ -2,14 +2,10 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.domain.UserCriteria;
-import edu.ruc.labmgr.mapper.RoleMapper;
-import edu.ruc.labmgr.mapper.StudentMapper;
-import edu.ruc.labmgr.mapper.TeacherMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +19,16 @@ public class UserService {
     @Autowired
     private UserMapper mapperUser;
 
+    public User selectByPrimaryKey(int id) {
+        User user = null;
+        try {
+            user = mapperUser.selectByPrimaryKey(id);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return user;
+    }
+
     public User getUserByLoginSn(String loginSn) {
         User user = null;
         try {
@@ -34,52 +40,63 @@ public class UserService {
         return user;
     }
 
-    public ObjectListPage<User> selectUserListPage(int currentPage, UserCriteria criteria) {
-        String count = SysUtil.getConfigValue("showCount", "10");
+    public ObjectListPage<User> selectListPage(int currentPage, UserCriteria criteria) {
+        ObjectListPage<User> retList = null;
+        try{
+            String count = SysUtil.getConfigValue("showCount", "10");
 
-        int limit = Integer.valueOf(count);
-        int currentResult = (currentPage-1) * limit;
-        int totleCount = mapperUser.countByCriteria(criteria);
-        int pageCount = (totleCount % limit == 0)?(totleCount%limit):(1+totleCount/limit);
 
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setTotalResult(totleCount);
-        pageInfo.setTotalPage(pageCount);
-        pageInfo.setCurrentPage(currentPage);
+            int limit = Integer.valueOf(count);
+            int currentResult = (currentPage-1) * limit;
+            int totleCount = mapperUser.countByCriteria(criteria);
+            int pageCount = (totleCount % limit == 0)?(totleCount/limit):(1+totleCount/limit);
 
-        RowBounds bounds = new RowBounds(currentResult, limit);
-        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria,bounds);
+            PageInfo pageInfo = new PageInfo();
+            pageInfo.setTotalResult(totleCount);
+            pageInfo.setTotalPage(pageCount);
+            pageInfo.setCurrentPage(currentPage);
 
-        ObjectListPage<User> retVal = new ObjectListPage<User>(pageInfo, users);
+            RowBounds bounds = new RowBounds(currentResult, limit);
+            List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria,bounds);
 
-        return retVal;
+            retList = new ObjectListPage<User>(pageInfo, users);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return retList;
     }
 
-//
-//    public ObjectListPage<User> serachUserListPage(int currentPage) {
-//        String count = SysUtil.getConfigValue("showCount", "10");
-//
-//        int limit = Integer.valueOf(count);
-//        int currentResult = (currentPage-1) * limit;
-//        int totleCount = mapperUser.countByCriteria(null);
-//        int pageCount = (totleCount % limit == 0)?(totleCount%limit):(1+totleCount/limit);
-//
-//        PageInfo pageInfo = new PageInfo();
-//        pageInfo.setTotalResult(totleCount);
-//        pageInfo.setTotalPage(pageCount);
-//        pageInfo.setCurrentPage(currentPage);
-//
-//        RowBounds bounds = new RowBounds(currentResult, limit);
-//
-//        UserCriteria criteria = new UserCriteria();
-//        criteria.createCriteria().andSnLike("%1%");
-//
-//        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
-//
-//        ObjectListPage<User> retVal = new ObjectListPage<User>(pageInfo, users);
-//
-//        return retVal;
-//    }
+
+    public int insert(User user) {
+        int result = 0;
+        try{
+            result = mapperUser.insert(user);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public int update(User user) {
+        int result = 0;
+        try{
+            result = mapperUser.updateByPrimaryKey(user);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public int delete(int id) {
+        int result = 0;
+        try{
+            result = mapperUser.deleteByPrimaryKey(id);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+        return result;
+    }
 
     public int countAllUsers()
     {
