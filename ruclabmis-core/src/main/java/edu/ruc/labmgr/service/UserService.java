@@ -45,7 +45,6 @@ public class UserService {
         try {
             String count = SysUtil.getConfigValue("showCount", "10");
 
-
             int limit = Integer.valueOf(count);
             int currentResult = (currentPage - 1) * limit;
             int totleCount = mapperUser.countByCriteria(criteria);

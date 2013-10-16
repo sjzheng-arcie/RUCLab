@@ -1,10 +1,14 @@
 package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
+import edu.ruc.labmgr.domain.Major;
+import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.domain.UserCriteria;
+import edu.ruc.labmgr.service.MajorService;
 import edu.ruc.labmgr.service.RoleService;
 import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -12,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/equipment/jsp/sys/user")
@@ -20,23 +25,41 @@ public class UserController {
     UserService serviceUser;
     @Autowired
     RoleService serviceRole;
+    @Autowired
+    MajorService serviceMajor;
+
+    private int currPage = 0;
 
     @RequestMapping("/list")
     public ModelAndView pageList(HttpServletRequest request) {
-        int currentPage = request.getParameter("page") == null ? 1 : Integer.parseInt(request.getParameter("page"));
-        UserCriteria criteria = new UserCriteria();
-        if (!StringUtils.isNullOrEmpty(request.getParameter("snLike"))) {
-            criteria.createCriteria().andSnLike("%" + request.getParameter("snLike") + "%");
+        currPage = request.getParameter("page") == null   ?
+             (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+        UserCriteria userCriteria =  new UserCriteria();
+        UserCriteria.Criteria criteria = userCriteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
+            criteria.andSnLike("%" + request.getParameter("searchSN") + "%");
         }
-        if (!StringUtils.isNullOrEmpty(request.getParameter("nameLike"))) {
-            criteria.createCriteria().andNameLike("%" + request.getParameter("nameLike") + "%");
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
+            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
         }
 
-        ObjectListPage<User> pageInfo = serviceUser.selectListPage(currentPage, criteria);
+        ObjectListPage<User> pageInfo = serviceUser.selectListPage(currPage, userCriteria);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/list");
         mav.addObject("users", pageInfo.getListObject());
         mav.addObject("page", pageInfo.getPageInfo());
+        return mav;
+    }
+
+    @RequestMapping("/toAdd")
+    public ModelAndView toAdd(HttpServletRequest request) {
+        List<Role> roles = serviceRole.listAll();
+        List<Major> majors = serviceMajor.listAll();
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/add");
+        mav.addObject("roles", roles);
+        mav.addObject("majors", majors);
         return mav;
     }
 
@@ -51,14 +74,18 @@ public class UserController {
         }
     }
 
-    @RequestMapping("/detail")
-    public ModelAndView detail(HttpServletRequest request) {
+    @RequestMapping("/toUpdate")
+    public ModelAndView toUpdate(HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("id"));
 
         User user = serviceUser.selectByPrimaryKey(id);
+        List<Role> roles = serviceRole.listAll();
+        List<Major> majors = serviceMajor.listAll();
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/update");
         mav.addObject("user", user);
+        mav.addObject("roles", roles);
+        mav.addObject("majors", majors);
         return mav;
     }
 
@@ -90,14 +117,18 @@ public class UserController {
         if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
             user.setId(Integer.parseInt(req.getParameter("id")));
         user.setSn(req.getParameter("sn"));
-        user.setPassword(req.getParameter("password"));
+
+
+        String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
+
+        user.setPassword(passwordMD5);
         user.setName(req.getParameter("name"));
         user.setSex(Boolean.parseBoolean(req.getParameter("sex")));
         user.setPhoneNum(req.getParameter("phoneNum"));
         user.setEmail(req.getParameter("email"));
-        //userreq.getParameter("roleID");
         user.setComment(req.getParameter("comment"));
-
+        user.setRoleId(Integer.parseInt(req.getParameter("role")));
+        user.setMajorId(Integer.parseInt(req.getParameter("major")));
         return user;
     }
 }

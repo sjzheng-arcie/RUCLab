@@ -2,10 +2,9 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Title;
 import edu.ruc.labmgr.domain.TitleCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
-
-import java.util.List;
 
 public interface TitleMapper {
     int countByCriteria(TitleCriteria criteria);

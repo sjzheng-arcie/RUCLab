@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
@@ -88,17 +89,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">用户角色:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option>设备管理员</option>
-                                                        <option>领导</option>
-                                                        <option>领用人</option>
-                                                        <option>使用人</option>
-                                                        <option>资产人员</option>
-                                                        <option>系统管理员</option>
-                                                    </select>
-                                                </td>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
                                                     <input name="password" id="password" class="text"
@@ -107,26 +97,38 @@
                                                            type="password"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-
+                                                <td nowrap align="right">邮箱：</td>
+                                                <td nowrap align="left">
+                                                    <input name="email" id="email" type="text" value="${user.email}">
+                                                </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">性别：</td>
-                                                <td nowrap align="left">
-                                                    <select name="sex" id="sex" type="text">
-                                                        <option value="0" selected>男</option>
-                                                        <option value="1">女</option>
+                                                <td nowrap align="right">用户角色:</td>
+                                                <td nowrap>
+                                                    <select name="role" id="role">
+                                                        <c:forEach items="${roles}" var="item">
+                                                            <option value="${item.id}"
+                                                                    <c:if test="${item.id == user.roleId}"> selected</c:if>>${item.name}
+                                                            </option>
+                                                        </c:forEach>
                                                     </select>
                                                 </td>
+                                                <td nowrap align="right">所属专业：</td>
+                                                <td nowrap align="left">
+                                                    <select name="major" id="major">
+                                                        <c:forEach items="${majors}" var="item">
+                                                            <option value="${item.id}"
+                                                                    <c:if test="${item.id == user.majorId}"> selected</c:if>>${item.name}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
                                                     <input name="phoneNum" id="phoneNum" type="text"
                                                            value="${user.phoneNum}">
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">邮箱：</td>
-                                                <td nowrap align="left">
-                                                    <input name="email" id="email" type="text" value="${user.email}">
                                                 </td>
 
                                                 <td nowrap align="right">备注：</td>

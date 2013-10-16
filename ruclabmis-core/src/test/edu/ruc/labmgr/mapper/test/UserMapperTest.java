@@ -43,17 +43,23 @@ public class UserMapperTest {
     }
 
     @Test
-    public void testSearchPage() throws Exception {
+     public void testSearchPage() throws Exception {
         RowBounds bounds = new RowBounds(offset, limit);
         UserCriteria criteria = new UserCriteria();
-        criteria.createCriteria().andSnLike("%1%");
+        criteria.createCriteria().andSnLike("%a%");
+        criteria.createCriteria().andNameLike("%c%");
 
         List<User> users = mapper.selectByCriteriaWithRowbounds(criteria, bounds);
         System.out.println("=====" + offset + "-" + limit + "===========");
         for (User each : users) {
             System.out.println(each.getName());
+            System.out.println(each.getMajorId());
             System.out.println(each.getMajor().getName());
+            System.out.println(each.getRole().getId());
+            System.out.println(each.getRole().getName());
         }
         System.out.println("============================================");
     }
+
+
 }

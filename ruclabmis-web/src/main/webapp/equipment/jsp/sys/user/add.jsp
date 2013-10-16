@@ -9,6 +9,7 @@
     <script src="../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
+            validator(document.form1);
             document.form1.action = "add";
             document.form1.submit();
         }
@@ -83,7 +84,7 @@
                                                 <td nowrap>
                                                     <input name="sn" id="sn" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                           valid="required|isAccount" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
@@ -95,17 +96,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">用户角色:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option>设备管理员</option>
-                                                        <option>领导</option>
-                                                        <option>领用人</option>
-                                                        <option>使用人</option>
-                                                        <option>资产人员</option>
-                                                        <option>系统管理员</option>
-                                                    </select>
-                                                </td>
+
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
                                                     <input name="password" id="password" value="" onblur="" class="text"
@@ -113,32 +104,39 @@
                                                            valid="required|isAccount" type="password"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">性别：</td>
-                                                <td nowrap align="left">
-                                                    <select name="sex" id="sex" type="text">
-                                                        <option value="0" selected>男</option>
-                                                        <option value="1">女</option>
-                                                    </select>
-                                                </td>
-                                                <td nowrap align="right">电话：</td>
-                                                <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text">
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
                                                     <input name="email" id="email" type="text">
                                                 </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">用户角色:</td>
+                                                <td nowrap>
+                                                    <select name="role" id="role">
+                                                        <c:forEach items="${roles}" var="item">
+                                                            <option value="${item.id}">${item.name}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                                <td nowrap align="right">所属专业：</td>
+                                                <td nowrap align="left">
+                                                    <select name="major" id="major">
+                                                        <c:forEach items="${majors}" var="item">
+                                                            <option value="${item.id}"\>${item.name}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
 
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">电话：</td>
+                                                <td nowrap align="left">
+                                                    <input name="phoneNum" id="phoneNum" type="text">
+                                                </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left"><textarea name="comment"></textarea></td>
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>

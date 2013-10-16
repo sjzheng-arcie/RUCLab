@@ -5,8 +5,6 @@ public class Major {
 
     private String name;
 
-    private String majorcol;
-
     public Integer getId() {
         return id;
     }
@@ -21,13 +19,5 @@ public class Major {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
-    }
-
-    public String getMajorcol() {
-        return majorcol;
-    }
-
-    public void setMajorcol(String majorcol) {
-        this.majorcol = majorcol == null ? null : majorcol.trim();
     }
 }

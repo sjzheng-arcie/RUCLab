@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.rbac;
 
+import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
 import org.apache.shiro.authc.AuthenticationException;

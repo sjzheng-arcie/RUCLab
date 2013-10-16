@@ -79,7 +79,7 @@
                 alert("请只选择一条记录！");
                 return;
             }
-            document.listForm.action = "detail?id=" + selectedID;
+            document.listForm.action = "toUpdate?id=" + selectedID;
             document.listForm.submit();
 
 
@@ -127,9 +127,7 @@
         }
 
         function toFind() {
-            var href = '/equipment/jsp/sys/user/list?';
-            href += 'snLike=' + document.getElementById('searchSN').value + '&';
-            href += 'nameLike=' + document.getElementById('searchName').value;
+            var href = '/equipment/jsp/sys/user/list';
 
             document.listForm.action = href;
             document.listForm.submit();
@@ -144,10 +142,7 @@
                 alert("已到达尾页！");
                 return;
             }
-            var href = '/equipment/jsp/sys/user/list?page=' + page + '&';
-            ;
-            href += 'snLike=' + document.getElementById('searchSN').value + '&';
-            href += 'nameLike=' + document.getElementById('searchName').value;
+            var href = '/equipment/jsp/sys/user/list?page=' + page;
             document.listForm.action = href;
             document.listForm.submit();
         }
@@ -224,7 +219,7 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.jsp">
+						<a href="/equipment/jsp/sys/user/toAdd">
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>&nbsp;
@@ -298,7 +293,7 @@
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.email}</td>
                                                 <td>${item.major.name}</td>
-                                                <td>temp</td>
+                                                <td>${item.role.name}</td>
                                                 <td>${item.comment}</td>
                                             </tr>
                                         </c:forEach>
