@@ -9,7 +9,13 @@
     <script src="../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-            validator(document.form1);
+            if(validator(document.form1)){
+                alert("true");
+            }else {
+                alert("false");
+                return;
+            }
+            alert("true");
             document.form1.action = "add";
             document.form1.submit();
         }
@@ -82,16 +88,18 @@
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
-                                                    <input name="sn" id="sn" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" />
+                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
+                                                           style="width:154px" maxlength="20" valid="required"
+                                                           errmsg="账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                           valid="required|isEnglishChinese"
+                                                           errmsg="用户名不能为空!|用户名只能为中英文字符"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
@@ -100,13 +108,16 @@
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
                                                     <input name="password" id="password" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" type="password"/>
+                                                           style="width:154px" maxlength="16"
+                                                           valid="required|isPassword" type="password"
+                                                           errmsg="账号不能为空!|密码只能以字母数字下划线组成6至16位!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input name="email" id="email" type="text">
+                                                    <input name="email" id="email" type="text"
+                                                           valid="required|isEmail" type="password"
+                                                           errmsg="账号不能为空!|邮箱格式不正确!"/>>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -122,7 +133,7 @@
                                                 <td nowrap align="left">
                                                     <select name="major" id="major">
                                                         <c:forEach items="${majors}" var="item">
-                                                            <option value="${item.id}"\>${item.name}
+                                                            <option value="${item.id}">${item.name}
                                                             </option>
                                                         </c:forEach>
                                                     </select>
