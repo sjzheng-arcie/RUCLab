@@ -112,6 +112,35 @@ public class UserController {
         }
     }
 
+    @RequestMapping("/toUpdatePassword")
+    public ModelAndView toUpdatePassword(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
+        mav.addObject("id",id);
+
+        return mav;
+    }
+
+    @RequestMapping("/updatePassword")
+    public ModelAndView updatePassword(HttpServletRequest request) {
+        String oriPassword = request.getParameter("oriPassword");
+        String newPassword = request.getParameter("newPassword");
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        int result = serviceUser.updatePassword(id, oriPassword, newPassword);
+        if (result > 0) {
+            return pageList(request);
+        } else if (result == -1) {
+            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
+            mav.addObject("id",id);
+            mav.addObject("errMsg","原密码输入不一致，请重新输入!");
+            return mav;
+        } else {
+            return null;
+        }
+    }
+
     private User initFromRequest(HttpServletRequest req) {
         User user = new User();
         if (!StringUtils.isNullOrEmpty(req.getParameter("id")))

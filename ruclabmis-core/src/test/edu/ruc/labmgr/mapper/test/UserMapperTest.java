@@ -40,10 +40,15 @@ public class UserMapperTest {
     public static void init() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
         mapper = aContext.getBean(UserMapper.class);
+
+        User user = new User();
+        user.setId(30);
+        user.setPassword("1");
+        mapper.updateByPrimaryKeySelective(user);
     }
 
     @Test
-     public void testSearchPage() throws Exception {
+    public void testSearchPage() throws Exception {
         RowBounds bounds = new RowBounds(offset, limit);
         UserCriteria criteria = new UserCriteria();
         criteria.createCriteria().andSnLike("%a%");

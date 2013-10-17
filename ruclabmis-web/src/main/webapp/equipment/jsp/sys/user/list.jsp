@@ -53,21 +53,22 @@
         }
 
         function toUpdate() {
+            var selectedItem;
             if (document.listForm.idcheckbox == null) {
                 return;
             }
             var len = document.listForm.idcheckbox.length;
             var flag = 0;
-            var selectedID;
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedID = document.listForm.idcheckbox[i].value;
+                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
                         flag++;
                     }
                 }
             } else {
                 if (document.listForm.idcheckbox.checked) {
+                    selectedItem = document.listForm.idcheckbox.value;
                     flag++;
                 }
             }
@@ -76,13 +77,16 @@
                 alert("请选择一条记录！");
                 return;
             } else if (flag != 1) {
-                alert("请只选择一条记录！");
+                alert("请只选择一条记录，不要多选！");
                 return;
             }
-            document.listForm.action = "toUpdate?id=" + selectedID;
+
+            document.listForm.action = "toUpdate?id=" + selectedItem;
             document.listForm.submit();
         }
-        function toDelete() {
+
+        function toUpdatePassword() {
+            var selectedItem;
             if (document.listForm.idcheckbox == null) {
                 return;
             }
@@ -91,25 +95,62 @@
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedID = document.listForm.idcheckbox[i].value;
+                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
                         flag++;
                     }
                 }
             } else {
                 if (document.listForm.idcheckbox.checked) {
+                    selectedItem = document.listForm.idcheckbox.value;
                     flag++;
                 }
             }
 
             if (flag == 0) {
-                alert("请至少选择一条记录！");
+                alert("请选择一条记录！");
+                return;
+            } else if (flag != 1) {
+                alert("请只选择一条记录，不要多选！");
                 return;
             }
-            if (confirm("是否删除所选记录？")) {
-                document.listForm.action = "delete?id=" + selectedID;
-                document.listForm.submit();
+
+            document.listForm.action = "toUpdatePassword?id=" + selectedItem;
+            document.listForm.submit();
+        }
+
+        function toDelete() {
+            var selectedItem;
+            if (document.listForm.idcheckbox == null) {
+                return;
+            }
+            var len = document.listForm.idcheckbox.length;
+            var flag = 0;
+            if (len != undefined) {
+                for (var i = 0; i < len; i++) {
+                    if (eval(document.listForm.idcheckbox[i].checked)) {
+                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
+                        flag++;
+                    }
+                }
+            } else {
+                if (document.listForm.idcheckbox.checked) {
+                    selectedItem = document.listForm.idcheckbox.value;
+                    flag++;
+                }
             }
 
+            if (flag == 0) {
+                alert("请选择一条记录！");
+                return;
+            } else if (flag != 1) {
+                alert("请只选择一条记录，不要多选！");
+                return;
+            }
+
+            if (confirm("是否删除所选记录？")) {
+                document.listForm.action = "delete?id=" + selectedItem;
+                document.listForm.submit();
+            }
         }
 
         function onInit() {
@@ -217,7 +258,7 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="#" onclick="toUpdate(); return false">
+						<a href="#" onclick="toUpdatePassword(); return false">
                             <img src="../../../images/set2.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">修改密码</span>
                         </a>&nbsp;
