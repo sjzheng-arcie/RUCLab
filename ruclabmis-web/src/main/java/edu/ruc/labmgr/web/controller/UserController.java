@@ -33,7 +33,7 @@ public class UserController {
     @RequestMapping("/list")
     public ModelAndView pageList(HttpServletRequest request) {
         currPage = request.getParameter("page") == null   ?
-             (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+                (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 
         UserCriteria userCriteria =  new UserCriteria();
         UserCriteria.Criteria criteria = userCriteria.createCriteria();
@@ -116,14 +116,14 @@ public class UserController {
         User user = new User();
         if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
             user.setId(Integer.parseInt(req.getParameter("id")));
+
         user.setSn(req.getParameter("sn"));
 
-
-        String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-
-        user.setPassword(passwordMD5);
+        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
+            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
+            user.setPassword(passwordMD5);
+        }
         user.setName(req.getParameter("name"));
-        user.setSex(Boolean.parseBoolean(req.getParameter("sex")));
         user.setPhoneNum(req.getParameter("phoneNum"));
         user.setEmail(req.getParameter("email"));
         user.setComment(req.getParameter("comment"));

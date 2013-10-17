@@ -1,4 +1,3 @@
-//�?��֤
 var FormValid = function (frm) {
     this.frm = frm;
     this.errMsg = new Array();
@@ -198,12 +197,12 @@ function validator(frm) {
 }
 
 //FormValid.showError = function(errMsg,errName) {
-//	for (key in FormValid.allName) {
-//		document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
-//	}
-//	for (key in errMsg) {
-//		document.getElementById('errMsg_'+errName[key]).innerHTML = errMsg[key];
-//	}
+//        for (key in FormValid.allName) {
+//                document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
+//        }
+//        for (key in errMsg) {
+//                document.getElementById('errMsg_'+errName[key]).innerHTML = errMsg[key];
+//        }
 //}
 
 String.prototype.trim = function () {
@@ -227,11 +226,8 @@ RegExps.isUrl = /^http:\/\/[A-Za-z0-9]+\.[A-Za-z0-9]+[\/=\?%\-&_~`@[\]\':+!]*([^
 RegExps.isDate = /^\d{4}-\d{1,2}-\d{1,2}$/;
 RegExps.isTime = /^\d{4}-\d{1,2}-\d{1,2}\s\d{1,2}:\d{1,2}:\d{1,2}$/;
 RegExps.isAccount = /^[a-z]\w{3,}$/i;
-//账号只能以字母开头，以字母数字下划线组成，最小4位,
 RegExps.isPassword = /^\w{6,16}$/i;
-//密码只能以字母数字下划线组成6至16位!
 RegExps.isEnglishChinese = /^[A-Za-z\u0391-\uFFE5]+$/i;
-//用户名只能为中英文字符
 RegExps.isTableName = /^[a-z]\w*$/i;
 RegExps.isSymbols = /^[\w\u0391-\uFFE5]+$/i;
 RegExps.isNum = /^\d+$/i;

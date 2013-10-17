@@ -80,7 +80,7 @@ public class UserService {
     public int update(User user) {
         int result = 0;
         try {
-            result = mapperUser.updateByPrimaryKey(user);
+            result = mapperUser.updateByPrimaryKeySelective(user);
         } catch (Exception e) {
             e.printStackTrace();
         }

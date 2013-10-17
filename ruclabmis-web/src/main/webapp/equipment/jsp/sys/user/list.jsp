@@ -81,8 +81,6 @@
             }
             document.listForm.action = "toUpdate?id=" + selectedID;
             document.listForm.submit();
-
-
         }
         function toDelete() {
             if (document.listForm.idcheckbox == null) {
@@ -219,7 +217,11 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/equipment/jsp/sys/user/toAdd">
+						<a href="#" onclick="toUpdate(); return false">
+                            <img src="../../../images/set2.gif" width="10" height="10"
+                                 border="0"/> <span class="STYLE1">修改密码</span>
+                        </a>&nbsp;
+                        <a href="/equipment/jsp/sys/user/toAdd">
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>&nbsp;
@@ -262,9 +264,6 @@
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">用户名</span></div>
                                             </td>
-                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">性别</span></div>
-                                            </td>
                                             <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">联系电话</span></div>
                                             </td>
@@ -289,7 +288,6 @@
                                                 <td>${item.id}</td>
                                                 <td>${item.sn}</td>
                                                 <td>${item.name}</td>
-                                                <td><${item.sex}</td>
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.email}</td>
                                                 <td>${item.major.name}</td>

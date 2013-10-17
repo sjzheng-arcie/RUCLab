@@ -4,12 +4,19 @@
 
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="../../../js/valid.js" type=text/javascript></script>
+<script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
+    function update() {
+        if(!validator(document.mainForm)){
+            return;
+        }
 
+        document.mainForm.action = "update";
+        document.mainForm.submit();
+    }
 </script>
 <body>
-<form name="mainForm" method="post" action="update">
+<form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -76,7 +83,9 @@
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"
+                                                           maxlength="20"
+                                                           valid="required|isAccount"
+                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"
                                                            value="${user.sn}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
@@ -84,22 +93,24 @@
                                                 <td nowrap>
                                                     <input name="name" id="name" class="text" style="width:154px"
                                                            maxlength="20"
-                                                           valid="required|isAccount" value="${user.name}"/>
+                                                           valid="required|isEnglishChinese"
+                                                           errmsg="用户名不能为空!|用户名只能为中英文字符"
+                                                           value="${user.name}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">账号密码:</td>
-                                                <td nowrap>
-                                                    <input name="password" id="password" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" value="${user.password}"
-                                                           type="password"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                </td>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input name="email" id="email" type="text" value="${user.email}">
+                                                    <input name="email" id="email" type="text"
+                                                           valid="isEmail"
+                                                           errmsg="邮箱格式不正确!"
+                                                           value="${user.email}">
+                                                </td>
+                                                <td nowrap align="right">电话：</td>
+                                                <td nowrap align="left">
+                                                    <input name="phoneNum" id="phoneNum" type="text"
+                                                           value="${user.phoneNum}">
                                                 </td>
                                             </tr>
                                             <tr>
@@ -125,12 +136,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">电话：</td>
-                                                <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text"
-                                                           value="${user.phoneNum}">
-                                                </td>
-
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left"><textarea name="comment"
                                                                                   id=comment>${user.comment}</textarea>
@@ -143,7 +148,7 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="submit" name="save" value="保存" class="button"/>
+                                        <input type="button" name="save" value="保存" class="button" onclick="update();"/>
                                         <input type="reset" name="reset" value="重置" class="button"/>
                                         <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
