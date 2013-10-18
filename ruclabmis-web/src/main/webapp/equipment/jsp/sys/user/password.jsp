@@ -1,15 +1,35 @@
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
-    }
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-</script>
-<body>
-<form name="form1" method="post">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function commit() {
+            if(!validator(document.mainForm)){
+                return;
+            }
+
+            document.mainForm.action = "updatePassword";
+            document.mainForm.submit();
+        }
+
+        function checkErrMag() {
+            var errMsg = "${errMsg}";
+            if(errMsg.length <= 0 || errMsg.length == ""){
+                return;
+            }
+            alert(errMsg);
+        }
+
+    </script>
+</head>
+
+<body onload="checkErrMag()">
+<form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -72,10 +92,12 @@
                                         <table align="center" border="0" cellpadding="2" cellspacing="1"
                                                style="width:50%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
+                                            <input name="id" id="id" type="hidden"
+                                                   value="${id}"/>
                                             <tr>
                                                 <td nowrap align="right">原密码:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text"/>
+                                                    <input name="oriPassword" id="oriPassword" class="text" type="password"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 
@@ -84,7 +106,9 @@
                                             <tr>
                                                 <td nowrap align="right">新密码:</td>
                                                 <td nowrap>
-                                                    <input type="password"/>
+                                                    <input type="password" name="newPassword" id="newPassword" class="text"
+                                                           valid="required|isPassword"
+                                                           errmsg="密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 
@@ -92,7 +116,9 @@
                                             <tr>
                                                 <td nowrap align="right">确认新密码:</td>
                                                 <td nowrap>
-                                                    <input type="password"/>
+                                                    <input type="password"  name="checkPassword" id="checkPassword" class="text"
+                                                           valid="required|equal"
+                                                           equalName="newPassword" errmsg="确认密码不能为空!|两次密码不同!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 
@@ -105,10 +131,9 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
-                                               onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="save" value="保存" class="button" onclick="commit();"/>
+                                        <input type="reset" name="reset" value="重置" class="button"/>
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
@@ -128,6 +153,5 @@
                     src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
 </form>
 </body>

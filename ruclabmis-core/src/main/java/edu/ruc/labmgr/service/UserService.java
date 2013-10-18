@@ -3,7 +3,9 @@ package edu.ruc.labmgr.service;
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.UserMapper;
+import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.SysUtil;
+import edu.ruc.labmgr.utils.ValidateCode;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -45,7 +47,6 @@ public class UserService {
         try {
             String count = SysUtil.getConfigValue("showCount", "10");
 
-
             int limit = Integer.valueOf(count);
             int currentResult = (currentPage - 1) * limit;
             int totleCount = mapperUser.countByCriteria(criteria);
@@ -81,7 +82,25 @@ public class UserService {
     public int update(User user) {
         int result = 0;
         try {
-            result = mapperUser.updateByPrimaryKey(user);
+            result = mapperUser.updateByPrimaryKeySelective(user);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return result;
+    }
+
+    public int updatePassword(int id, String oriPassword, String newPassword) {
+        int result = 0;
+        try {
+            User user = mapperUser.selectByPrimaryKey(id);
+            if(!CipherUtil.validatePassword(user.getPassword(), oriPassword)){
+                return -1;
+            };
+
+            User updateUser = new User();
+            updateUser.setId(id);
+            updateUser.setPassword(CipherUtil.generatePassword(newPassword));
+            result = mapperUser.updateByPrimaryKeySelective(updateUser);
         } catch (Exception e) {
             e.printStackTrace();
         }

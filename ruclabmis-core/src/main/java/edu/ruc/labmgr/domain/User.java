@@ -17,7 +17,13 @@ public class User {
 
     private String comment;
 
+    private Integer majorId;
+
+    private Integer roleId;
+
     private Major major;
+
+    private Role role;
 
     public Integer getId() {
         return id;
@@ -83,11 +89,35 @@ public class User {
         this.comment = comment == null ? null : comment.trim();
     }
 
+    public Integer getMajorId() {
+        return majorId;
+    }
+
+    public void setMajorId(Integer majorId) {
+        this.majorId = majorId;
+    }
+
+    public Integer getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(Integer roleId) {
+        this.roleId = roleId;
+    }
+
     public Major getMajor() {
         return major;
     }
 
     public void setMajor(Major major) {
         this.major = major;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
     }
 }

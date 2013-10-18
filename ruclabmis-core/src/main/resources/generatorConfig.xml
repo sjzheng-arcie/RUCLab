@@ -45,35 +45,36 @@
 
 
         <!-- 表映射的配置示例-->
-        <table tableName="arrangement"/>
-        <table tableName="arrangement_desk"/>
-        <table tableName="arrangement_equipment"/>
-        <table tableName="calendar"/>
-        <table tableName="classif"/>
-        <table tableName="curriculum"/>
-        <table tableName="curriculum_class"/>
-        <table tableName="desk"/>
-        <table tableName="equipment"/>
-        <table tableName="exam_item_pool"/>
-        <table tableName="experiment"/>
-        <table tableName="experiment_detail"/>
-        <table tableName="experiment_instructions'"/>
-        <table tableName="experiment_question"/>
-        <table tableName="laboratory"/>
-        <table tableName="laboratory_room"/>
-        <table tableName="major"/>
-        <table tableName="organization"/>
-        <table tableName="position"/>
-        <table tableName="privilege"/>
-        <table tableName="related_resources"/>
-        <table tableName="role"/>
-        <table tableName="role_privilege"/>
-        <table tableName="room"/>
-        <table tableName="user"/>
-        <table tableName="user_role"/>
-        <table tableName="student"/>
-        <table tableName="teacher"/>
-        <table tableName="title"/>
-
+        <!--<table tableName="arrangement"/>-->
+        <!--<table tableName="arrangement_desk"/>-->
+        <!--<table tableName="arrangement_equipment"/>-->
+        <!--<table tableName="calendar"/>-->
+        <!--<table tableName="classif"/>-->
+        <!--<table tableName="curriculum"/>-->
+        <!--<table tableName="curriculum_class"/>-->
+        <!--<table tableName="desk"/>-->
+        <!--<table tableName="equipment"/>-->
+        <!--<table tableName="exam_item_pool"/>-->
+        <!--<table tableName="experiment"/>-->
+        <!--<table tableName="experiment_detail"/>-->
+        <!--<table tableName="experiment_instructions'"/>-->
+        <!--<table tableName="experiment_question"/>-->
+        <!--<table tableName="laboratory"/>-->
+        <!--<table tableName="laboratory_room"/>-->
+        <!--<table tableName="major"/>-->
+        <!--<table tableName="organization"/>-->
+        <!--<table tableName="position"/>-->
+        <!--<table tableName="privilege"/>-->
+        <!--<table tableName="related_resources"/>-->
+        <!--<table tableName="role"/>-->
+        <!--<table tableName="role_privilege"/>-->
+        <!--<table tableName="room"/>-->
+        <!--<table tableName="user"/>-->
+        <!--<table tableName="user_role"/>-->
+        <!--<table tableName="student"/>-->
+        <!--<table tableName="teacher"/>-->
+        <!--<table tableName="title"/>-->
+        <!--<table tableName="announcement"/>-->
+        <!--<table tableName="message"/>-->
     </context>
 </generatorConfiguration>

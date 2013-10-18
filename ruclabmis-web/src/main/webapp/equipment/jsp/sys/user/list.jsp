@@ -53,21 +53,22 @@
         }
 
         function toUpdate() {
+            var selectedItem;
             if (document.listForm.idcheckbox == null) {
                 return;
             }
             var len = document.listForm.idcheckbox.length;
             var flag = 0;
-            var selectedID;
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedID = document.listForm.idcheckbox[i].value;
+                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
                         flag++;
                     }
                 }
             } else {
                 if (document.listForm.idcheckbox.checked) {
+                    selectedItem = document.listForm.idcheckbox.value;
                     flag++;
                 }
             }
@@ -76,15 +77,16 @@
                 alert("请选择一条记录！");
                 return;
             } else if (flag != 1) {
-                alert("请只选择一条记录！");
+                alert("请只选择一条记录，不要多选！");
                 return;
             }
-            document.listForm.action = "detail?id=" + selectedID;
+
+            document.listForm.action = "toUpdate?id=" + selectedItem;
             document.listForm.submit();
-
-
         }
-        function toDelete() {
+
+        function toUpdatePassword() {
+            var selectedItem;
             if (document.listForm.idcheckbox == null) {
                 return;
             }
@@ -93,25 +95,62 @@
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
                     if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedID = document.listForm.idcheckbox[i].value;
+                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
                         flag++;
                     }
                 }
             } else {
                 if (document.listForm.idcheckbox.checked) {
+                    selectedItem = document.listForm.idcheckbox.value;
                     flag++;
                 }
             }
 
             if (flag == 0) {
-                alert("请至少选择一条记录！");
+                alert("请选择一条记录！");
+                return;
+            } else if (flag != 1) {
+                alert("请只选择一条记录，不要多选！");
                 return;
             }
-            if (confirm("是否删除所选记录？")) {
-                document.listForm.action = "delete?id=" + selectedID;
-                document.listForm.submit();
+
+            document.listForm.action = "toUpdatePassword?id=" + selectedItem;
+            document.listForm.submit();
+        }
+
+        function toDelete() {
+            var selectedItem;
+            if (document.listForm.idcheckbox == null) {
+                return;
+            }
+            var len = document.listForm.idcheckbox.length;
+            var flag = 0;
+            if (len != undefined) {
+                for (var i = 0; i < len; i++) {
+                    if (eval(document.listForm.idcheckbox[i].checked)) {
+                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
+                        flag++;
+                    }
+                }
+            } else {
+                if (document.listForm.idcheckbox.checked) {
+                    selectedItem = document.listForm.idcheckbox.value;
+                    flag++;
+                }
             }
 
+            if (flag == 0) {
+                alert("请选择一条记录！");
+                return;
+            } else if (flag != 1) {
+                alert("请只选择一条记录，不要多选！");
+                return;
+            }
+
+            if (confirm("是否删除所选记录？")) {
+                document.listForm.action = "delete?id=" + selectedItem;
+                document.listForm.submit();
+            }
         }
 
         function onInit() {
@@ -127,9 +166,7 @@
         }
 
         function toFind() {
-            var href = '/equipment/jsp/sys/user/list?';
-            href += 'snLike=' + document.getElementById('searchSN').value + '&';
-            href += 'nameLike=' + document.getElementById('searchName').value;
+            var href = '/equipment/jsp/sys/user/list';
 
             document.listForm.action = href;
             document.listForm.submit();
@@ -144,10 +181,7 @@
                 alert("已到达尾页！");
                 return;
             }
-            var href = '/equipment/jsp/sys/user/list?page=' + page + '&';
-            ;
-            href += 'snLike=' + document.getElementById('searchSN').value + '&';
-            href += 'nameLike=' + document.getElementById('searchName').value;
+            var href = '/equipment/jsp/sys/user/list?page=' + page;
             document.listForm.action = href;
             document.listForm.submit();
         }
@@ -224,7 +258,11 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.jsp">
+						<a href="#" onclick="toUpdatePassword(); return false">
+                            <img src="../../../images/set2.gif" width="10" height="10"
+                                 border="0"/> <span class="STYLE1">修改密码</span>
+                        </a>&nbsp;
+                        <a href="/equipment/jsp/sys/user/toAdd">
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>&nbsp;
@@ -267,9 +305,6 @@
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">用户名</span></div>
                                             </td>
-                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">性别</span></div>
-                                            </td>
                                             <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">联系电话</span></div>
                                             </td>
@@ -294,11 +329,10 @@
                                                 <td>${item.id}</td>
                                                 <td>${item.sn}</td>
                                                 <td>${item.name}</td>
-                                                <td><${item.sex}</td>
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.email}</td>
                                                 <td>${item.major.name}</td>
-                                                <td>temp</td>
+                                                <td>${item.role.name}</td>
                                                 <td>${item.comment}</td>
                                             </tr>
                                         </c:forEach>

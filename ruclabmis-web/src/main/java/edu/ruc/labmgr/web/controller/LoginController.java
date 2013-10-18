@@ -65,7 +65,7 @@ public class LoginController {
         // 此处默认有值
         String userSn = request.getParameter("userSn");
         //MD5加密
-        String password = CipherUtil.generatePassword(request.getParameter("password")).toLowerCase();
+        String password = CipherUtil.generatePassword(request.getParameter("password"));
         //String password = request.getParameter("password");
         UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
 

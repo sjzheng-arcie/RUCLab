@@ -47,7 +47,7 @@ public class CipherUtil {
                 MessageDigest md = MessageDigest.getInstance("MD5");
                 byte[] results = md.digest(originString.getBytes());
                 String resultString = byteArrayToHexString(results);
-                return resultString.toUpperCase();
+                return resultString.toLowerCase();
             } catch (Exception ex) {
                 ex.printStackTrace();
             }
@@ -85,7 +85,7 @@ public class CipherUtil {
     }
 
     public static void main(String[] args) {
-        String pwd1 = "123456";
+        String pwd1 = "admin";
         String pwd2 = "";
         CipherUtil cipher = new CipherUtil();
         System.out.println("加密前:" + pwd1);

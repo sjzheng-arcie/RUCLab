@@ -1,22 +1,26 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script src="../../../js/valid.js" type=text/javascript></script>
+    <script src="../../../../../js/valid.js" type=text/javascript></script>
     <script>
-        function save() {
-            document.form1.action = "add";
-            document.form1.submit();
+        function commit() {
+            if(!validator(document.mainForm)){
+                return;
+            }
+
+            document.mainForm.action = "add";
+            document.mainForm.submit();
         }
 
     </script>
 </head>
 <body>
-<form name="form1" method="post">
+<form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -83,62 +87,63 @@
                                                 <td nowrap>
                                                     <input name="sn" id="sn" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                           valid="required|isAccount"
+                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                           valid="required|isEnglishChinese"
+                                                           errmsg="用户名不能为空!|用户名只能为中英文字符"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">账号密码:</td>
+                                                <td nowrap>
+                                                    <input name="password" id="password" value="" onblur="" class="text"
+                                                           style="width:154px" maxlength="16"
+                                                           valid="required|isPassword" type="password"
+                                                           errmsg="账号密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
+                                                <td nowrap align="right">邮箱：</td>
+                                                <td nowrap align="left">
+                                                    <input name="email" id="email"
+                                                           valid="isEmail"
+                                                           errmsg="邮箱格式不正确!"/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">用户角色:</td>
                                                 <td nowrap>
-                                                    <select>
-                                                        <option>设备管理员</option>
-                                                        <option>领导</option>
-                                                        <option>领用人</option>
-                                                        <option>使用人</option>
-                                                        <option>资产人员</option>
-                                                        <option>系统管理员</option>
+                                                    <select name="role" id="role">
+                                                        <c:forEach items="${roles}" var="item">
+                                                            <option value="${item.id}">${item.name}</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </td>
-                                                <td nowrap align="right">账号密码:</td>
-                                                <td nowrap>
-                                                    <input name="password" id="password" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" type="password"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                <td nowrap align="right">所属专业：</td>
+                                                <td nowrap align="left">
+                                                    <select name="major" id="major">
+                                                        <c:forEach items="${majors}" var="item">
+                                                            <option value="${item.id}">${item.name}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
                                                 </td>
 
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">性别：</td>
-                                                <td nowrap align="left">
-                                                    <select name="sex" id="sex" type="text">
-                                                        <option value="0" selected>男</option>
-                                                        <option value="1">女</option>
-                                                    </select>
-                                                </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
                                                     <input name="phoneNum" id="phoneNum" type="text">
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">邮箱：</td>
-                                                <td nowrap align="left">
-                                                    <input name="email" id="email" type="text">
-                                                </td>
-
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left"><textarea name="comment"></textarea></td>
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -146,10 +151,9 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
-                                               onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="save" value="保存" class="button" onclick="commit();"/>
+                                        <input type="reset" name="reset" value="重置" class="button"/>
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>

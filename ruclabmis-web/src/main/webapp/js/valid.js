@@ -1,4 +1,3 @@
-//�?��֤
 var FormValid = function (frm) {
     this.frm = frm;
     this.errMsg = new Array();
@@ -198,12 +197,12 @@ function validator(frm) {
 }
 
 //FormValid.showError = function(errMsg,errName) {
-//	for (key in FormValid.allName) {
-//		document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
-//	}
-//	for (key in errMsg) {
-//		document.getElementById('errMsg_'+errName[key]).innerHTML = errMsg[key];
-//	}
+//        for (key in FormValid.allName) {
+//                document.getElementById('errMsg_'+FormValid.allName[key]).innerHTML = '';
+//        }
+//        for (key in errMsg) {
+//                document.getElementById('errMsg_'+errName[key]).innerHTML = errMsg[key];
+//        }
 //}
 
 String.prototype.trim = function () {
