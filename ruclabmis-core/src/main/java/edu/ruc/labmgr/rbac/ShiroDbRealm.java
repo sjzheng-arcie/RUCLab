@@ -1,13 +1,13 @@
 package edu.ruc.labmgr.rbac;
 
+import edu.ruc.labmgr.domain.Privilege;
+import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
-import org.apache.shiro.authc.AuthenticationException;
-import org.apache.shiro.authc.AuthenticationInfo;
-import org.apache.shiro.authc.AuthenticationToken;
-import org.apache.shiro.authc.UsernamePasswordToken;
+import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
+import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,25 +30,22 @@ public class ShiroDbRealm extends AuthorizingRealm {
         String name = principals.getRealmNames().iterator().next();
         String userSn = (String) principals.fromRealm(name).iterator().next();
 
-//        if (userSn != null) {
-//            User user = userMapper.getUserByLoginSn(userSn);
-//            if (user != null) {
-//                User roleUser = userMapper.selectUserWithRoles(user.getId());
-//                SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
-//
-//                for (Role eachRole : roleUser.getRoles()) {
-//                    info.addRole(eachRole.getName());
-//
-//                    Role role = roleMapper.selectRoleWithPrivileges(eachRole.getId());
-//                    if (role != null && role.getPrivileges() != null) {
-//                        for (Privilege eachPrivilege : role.getPrivileges()) {
-//                            info.addStringPermission(eachPrivilege.getName());
-//                        }
-//                    }
-//                }
-//                return info;
-//            }
-//        }
+        if (userSn != null) {
+            SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
+            User user = userMapper.selectUserByLoginSn(userSn);
+            if (user != null && user.getRole() != null) {
+                Role role = user.getRole();
+                if (role != null && role.getPrivileges() != null) {
+                    info.addRole(role.getName());
+
+                    for (Privilege eachPrivilege : role.getPrivileges()) {
+                        info.addStringPermission(eachPrivilege.getName());
+                    }
+                }
+            }
+            return info;
+        }
+
         return null;
     }
 
@@ -59,12 +56,12 @@ public class ShiroDbRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authcToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
-//        User user = userMapper.getUserByLoginSn(token.getUsername());
-//
-//        if (user != null) {
-//            return new SimpleAuthenticationInfo(user.getSn(), user
-//                    .getPassword(), user.getName());
-//        }
+        User user = userMapper.selectUserByLoginSn(token.getUsername());
+
+        if (user != null) {
+            return new SimpleAuthenticationInfo(user.getSn(), user
+                    .getPassword(), user.getName());
+        }
         return null;
     }
 }

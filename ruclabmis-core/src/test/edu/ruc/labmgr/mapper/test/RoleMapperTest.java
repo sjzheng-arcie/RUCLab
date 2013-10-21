@@ -1,5 +1,7 @@
 package edu.ruc.labmgr.mapper.test;
 
+import edu.ruc.labmgr.domain.Privilege;
+import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -17,39 +19,22 @@ public class RoleMapperTest {
     }
 
     @Test
-    public void testSelectRoleWithUsers() throws Exception {
-//        Role role = mapper.selectRoleWithUsers(1);
-//        System.out.println(role.getName());
-
-//        if (role != null && role.getUsers() != null) {
-//            for (User each : role.getUsers()) {
-//                System.out.println(each.getName());
-//            }
-//        }
-//        else{
-//            assert(false);
-//        }
-    }
-
-    @Test
     public void testSelectRoleWithPrivileges() throws Exception {
+        Role role = mapper.selectByPrimaryKey(2);
+        System.out.println(role.getName());
 
-//        Role role = mapper.selectRoleWithPrivileges(1);
-//        System.out.println(role.getName());
-//
-//        if (role != null && role.getPrivileges() != null) {
-//            for (Privilege each : role.getPrivileges()) {
-//                System.out.println(each.getName());
-//            }
-//        }
-//        else{
-//            assert(false);
-//        }
+        if (role != null && role.getPrivileges() != null) {
+            for (Privilege each : role.getPrivileges()) {
+                System.out.println(each.getName());
+            }
+        }
+        else{
+            assert(false);
+        }
     }
 
     @Test
     public void testQueryList() throws Exception {
-
         System.out.println("testQueryList");
     }
 
