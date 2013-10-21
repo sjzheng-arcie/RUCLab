@@ -23,6 +23,8 @@ public interface UserMapper {
 
     User selectByPrimaryKey(Integer id);
 
+    User selectUserByLoginSn(String sn);
+
     int updateByCriteriaSelective(@Param("record") User record, @Param("criteria") UserCriteria criteria);
 
     int updateByCriteria(@Param("record") User record, @Param("criteria") UserCriteria criteria);

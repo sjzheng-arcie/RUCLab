@@ -3,9 +3,10 @@
         PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
         "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
 
+
 <generatorConfiguration>
 
-    <classPathEntry location="D:/temp/RUCLab/ruclabmis-web/target/ruclabmis-web/WEB-INF/lib/mysql-connector-java-5.1.26.jar"/>
+    <classPathEntry location="./lib/mysql-connector-java-5.1.26.jar"/>
 
     <context id="RucLabMis" targetRuntime="MyBatis3">
 
@@ -76,7 +77,7 @@
         <!--<table tableName="title"/>-->
         <!--<table tableName="announcement"/>-->
         <!--<table tableName="message"/>-->
-        <table tableName="application_form"/>
+        <!--<table tableName="application_form"/>-->
 
     </context>
 </generatorConfiguration>

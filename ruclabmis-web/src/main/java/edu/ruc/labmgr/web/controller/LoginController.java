@@ -77,10 +77,10 @@ public class LoginController {
                 currentUser.login(token);
             }
             System.out.println("result: " + result);
-            result = "redirect:/";
+            result = "redirect:/index.jsp";
         } catch (Exception e) {
             logger.error(e.getMessage());
-            result = "views/login";
+            result = "/views/tologin";
         }
         return result;
     }
@@ -95,7 +95,7 @@ public class LoginController {
 
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
-        String result = "redirect:/";
+        String result = "redirect:/index.jsp";
         return result;
     }
 

@@ -99,6 +99,12 @@
         from user
         where id = #{id,jdbcType=INTEGER}
     </select>
+    <select id="selectUserByLoginSn" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from user
+        where sn = #{sn,jdbcType=VARCHAR}
+    </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from user
     where id = #{id,jdbcType=INTEGER}
