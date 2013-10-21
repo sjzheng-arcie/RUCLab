@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.ApplicationFormMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplicationForm" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="equipment_id" property="equipmentId" jdbcType="INTEGER" />
+    <result column="applicant" property="applicant" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+    <result column="application_number" property="applicationNumber" jdbcType="SMALLINT" />
+    <result column="approval_number" property="approvalNumber" jdbcType="SMALLINT" />
+    <result column="use_direction_id" property="useDirectionId" jdbcType="INTEGER" />
+    <result column="state_id" property="stateId" jdbcType="INTEGER" />
+    <result column="approver_id" property="approverId" jdbcType="INTEGER" />
+    <result column="application_formcol" property="applicationFormcol" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, equipment_id, applicant, user_id, operator_id, application_number, approval_number, 
+    use_direction_id, state_id, approver_id, application_formcol
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from application_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from application_form
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from application_form
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
+    delete from application_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    insert into application_form (id, equipment_id, applicant, 
+      user_id, operator_id, application_number, 
+      approval_number, use_direction_id, state_id, 
+      approver_id, application_formcol)
+    values (#{id,jdbcType=INTEGER}, #{equipmentId,jdbcType=INTEGER}, #{applicant,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=INTEGER}, #{operatorId,jdbcType=INTEGER}, #{applicationNumber,jdbcType=SMALLINT}, 
+      #{approvalNumber,jdbcType=SMALLINT}, #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER}, 
+      #{approverId,jdbcType=INTEGER}, #{applicationFormcol,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    insert into application_form
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="equipmentId != null" >
+        equipment_id,
+      </if>
+      <if test="applicant != null" >
+        applicant,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="operatorId != null" >
+        operator_id,
+      </if>
+      <if test="applicationNumber != null" >
+        application_number,
+      </if>
+      <if test="approvalNumber != null" >
+        approval_number,
+      </if>
+      <if test="useDirectionId != null" >
+        use_direction_id,
+      </if>
+      <if test="stateId != null" >
+        state_id,
+      </if>
+      <if test="approverId != null" >
+        approver_id,
+      </if>
+      <if test="applicationFormcol != null" >
+        application_formcol,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="equipmentId != null" >
+        #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="applicant != null" >
+        #{applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationNumber != null" >
+        #{applicationNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="approvalNumber != null" >
+        #{approvalNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="useDirectionId != null" >
+        #{useDirectionId,jdbcType=INTEGER},
+      </if>
+      <if test="stateId != null" >
+        #{stateId,jdbcType=INTEGER},
+      </if>
+      <if test="approverId != null" >
+        #{approverId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationFormcol != null" >
+        #{applicationFormcol,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" resultType="java.lang.Integer" >
+    select count(*) from application_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update application_form
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.equipmentId != null" >
+        equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applicant != null" >
+        applicant = #{record.applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=INTEGER},
+      </if>
+      <if test="record.operatorId != null" >
+        operator_id = #{record.operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applicationNumber != null" >
+        application_number = #{record.applicationNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="record.approvalNumber != null" >
+        approval_number = #{record.approvalNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="record.useDirectionId != null" >
+        use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
+      </if>
+      <if test="record.stateId != null" >
+        state_id = #{record.stateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.approverId != null" >
+        approver_id = #{record.approverId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applicationFormcol != null" >
+        application_formcol = #{record.applicationFormcol,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update application_form
+    set id = #{record.id,jdbcType=INTEGER},
+      equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      applicant = #{record.applicant,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=INTEGER},
+      operator_id = #{record.operatorId,jdbcType=INTEGER},
+      application_number = #{record.applicationNumber,jdbcType=SMALLINT},
+      approval_number = #{record.approvalNumber,jdbcType=SMALLINT},
+      use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
+      state_id = #{record.stateId,jdbcType=INTEGER},
+      approver_id = #{record.approverId,jdbcType=INTEGER},
+      application_formcol = #{record.applicationFormcol,jdbcType=VARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    update application_form
+    <set >
+      <if test="equipmentId != null" >
+        equipment_id = #{equipmentId,jdbcType=INTEGER},
+      </if>
+      <if test="applicant != null" >
+        applicant = #{applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorId != null" >
+        operator_id = #{operatorId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationNumber != null" >
+        application_number = #{applicationNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="approvalNumber != null" >
+        approval_number = #{approvalNumber,jdbcType=SMALLINT},
+      </if>
+      <if test="useDirectionId != null" >
+        use_direction_id = #{useDirectionId,jdbcType=INTEGER},
+      </if>
+      <if test="stateId != null" >
+        state_id = #{stateId,jdbcType=INTEGER},
+      </if>
+      <if test="approverId != null" >
+        approver_id = #{approverId,jdbcType=INTEGER},
+      </if>
+      <if test="applicationFormcol != null" >
+        application_formcol = #{applicationFormcol,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    update application_form
+    set equipment_id = #{equipmentId,jdbcType=INTEGER},
+      applicant = #{applicant,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      operator_id = #{operatorId,jdbcType=INTEGER},
+      application_number = #{applicationNumber,jdbcType=SMALLINT},
+      approval_number = #{approvalNumber,jdbcType=SMALLINT},
+      use_direction_id = #{useDirectionId,jdbcType=INTEGER},
+      state_id = #{stateId,jdbcType=INTEGER},
+      approver_id = #{approverId,jdbcType=INTEGER},
+      application_formcol = #{applicationFormcol,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from application_form
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
