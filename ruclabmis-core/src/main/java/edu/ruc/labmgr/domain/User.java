@@ -17,9 +17,9 @@ public class User {
 
     private String comment;
 
-    private int majorId;
+    private Integer majorId;
 
-    private int roleId;
+    private Integer roleId;
 
     private Major major;
 
@@ -89,19 +89,19 @@ public class User {
         this.comment = comment == null ? null : comment.trim();
     }
 
-    public int getMajorId() {
+    public Integer getMajorId() {
         return majorId;
     }
 
-    public void setMajorId(int majorId) {
+    public void setMajorId(Integer majorId) {
         this.majorId = majorId;
     }
 
-    public int getRoleId() {
+    public Integer getRoleId() {
         return roleId;
     }
 
-    public void setRoleId(int roleId) {
+    public void setRoleId(Integer roleId) {
         this.roleId = roleId;
     }
 

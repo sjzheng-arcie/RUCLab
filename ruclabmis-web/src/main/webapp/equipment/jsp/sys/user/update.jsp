@@ -1,20 +1,23 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function update() {
-        if(!validator(document.mainForm)){
-            return;
+<head>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function update() {
+            if(!validator(document.mainForm)){
+                return;
+            }
+
+            document.mainForm.action = "update";
+            document.mainForm.submit();
         }
-
-        document.mainForm.action = "update";
-        document.mainForm.submit();
-    }
-</script>
+    </script>
+</head>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">

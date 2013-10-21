@@ -75,6 +75,6 @@
         <!--<table tableName="teacher"/>-->
         <!--<table tableName="title"/>-->
         <!--<table tableName="announcement"/>-->
-        <table tableName="message"/>
+        <!--<table tableName="message"/>-->
     </context>
 </generatorConfiguration>

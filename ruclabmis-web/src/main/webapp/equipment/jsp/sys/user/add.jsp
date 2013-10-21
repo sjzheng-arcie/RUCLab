@@ -5,11 +5,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script src="../../../../../js/valid.js" type=text/javascript></script>
     <script>
-        function save() {
+        function commit() {
             if(!validator(document.mainForm)){
                 return;
             }
@@ -152,7 +151,7 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="save" value="保存" class="button" onclick="save();"/>
+                                        <input type="button" name="save" value="保存" class="button" onclick="commit();"/>
                                         <input type="reset" name="reset" value="重置" class="button"/>
                                         <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
