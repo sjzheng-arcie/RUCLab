@@ -120,20 +120,4 @@ public class UserService {
     public int countAllUsers() {
         return mapperUser.countByCriteria(null);
     }
-
-    public boolean registeUser(User user) {
-        boolean flag = false;
-//        try {
-//            if (user.getClass() == Teacher.class)
-//                mapperTeacher.registeUser((Teacher) user);
-//            else if (user.getClass() == Student.class)
-//                mapperStudent.registeUser((Student) user);
-//            flag = true;
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//        }
-        return flag;
-    }
-
-
 }

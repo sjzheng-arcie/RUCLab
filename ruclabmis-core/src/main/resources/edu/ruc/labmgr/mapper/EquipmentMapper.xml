@@ -17,7 +17,7 @@
     <result column="funding_subject_id" property="fundingSubjectId" jdbcType="INTEGER" />
     <result column="state_id" property="stateId" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Criteria_Where_Clause" >
+  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -46,9 +46,9 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Criteria_Where_Clause" >
+  <sql id="Update_By_Example_Where_Clause" >
     <where >
-      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -79,7 +79,7 @@
     id, category_id, sn, name, model_number, specifications, unit_price, vender, factory_number, 
     manufacture_date, acquisition_date, country, funding_subject_id, state_id
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -87,7 +87,7 @@
     <include refid="Base_Column_List" />
     from equipment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -103,10 +103,10 @@
     delete from equipment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
     delete from equipment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Equipment" >
@@ -212,13 +212,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer" >
     select count(*) from equipment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByCriteriaSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map" >
     update equipment
     <set >
       <if test="record.id != null" >
@@ -265,10 +265,10 @@
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByCriteria" parameterType="map" >
+  <update id="updateByExample" parameterType="map" >
     update equipment
     set id = #{record.id,jdbcType=INTEGER},
       category_id = #{record.categoryId,jdbcType=SMALLINT},
@@ -285,7 +285,7 @@
       funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
       state_id = #{record.stateId,jdbcType=INTEGER}
     <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
@@ -350,7 +350,7 @@
       state_id = #{stateId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" id="selectByCriteriaWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -358,7 +358,7 @@
     <include refid="Base_Column_List" />
     from equipment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}

@@ -3,16 +3,12 @@
 <mapper namespace="edu.ruc.labmgr.mapper.ApplicationFormMapper" >
   <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplicationForm" >
     <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="equipment_id" property="equipmentId" jdbcType="INTEGER" />
-    <result column="applicant" property="applicant" jdbcType="VARCHAR" />
-    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="approver_id" property="approverId" jdbcType="INTEGER" />
     <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
     <result column="application_number" property="applicationNumber" jdbcType="SMALLINT" />
-    <result column="approval_number" property="approvalNumber" jdbcType="SMALLINT" />
     <result column="use_direction_id" property="useDirectionId" jdbcType="INTEGER" />
     <result column="state_id" property="stateId" jdbcType="INTEGER" />
-    <result column="approver_id" property="approverId" jdbcType="INTEGER" />
-    <result column="application_formcol" property="applicationFormcol" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
     <where >
@@ -73,8 +69,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, equipment_id, applicant, user_id, operator_id, application_number, approval_number, 
-    use_direction_id, state_id, approver_id, application_formcol
+    id, sn, approver_id, operator_id, application_number, use_direction_id, state_id
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
     select
@@ -107,14 +102,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
-    insert into application_form (id, equipment_id, applicant, 
-      user_id, operator_id, application_number, 
-      approval_number, use_direction_id, state_id, 
-      approver_id, application_formcol)
-    values (#{id,jdbcType=INTEGER}, #{equipmentId,jdbcType=INTEGER}, #{applicant,jdbcType=VARCHAR}, 
-      #{userId,jdbcType=INTEGER}, #{operatorId,jdbcType=INTEGER}, #{applicationNumber,jdbcType=SMALLINT}, 
-      #{approvalNumber,jdbcType=SMALLINT}, #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER}, 
-      #{approverId,jdbcType=INTEGER}, #{applicationFormcol,jdbcType=VARCHAR})
+    insert into application_form (id, sn, approver_id, 
+      operator_id, application_number, use_direction_id, 
+      state_id)
+    values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{approverId,jdbcType=INTEGER}, 
+      #{operatorId,jdbcType=INTEGER}, #{applicationNumber,jdbcType=SMALLINT}, #{useDirectionId,jdbcType=INTEGER}, 
+      #{stateId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
     insert into application_form
@@ -122,14 +115,11 @@
       <if test="id != null" >
         id,
       </if>
-      <if test="equipmentId != null" >
-        equipment_id,
+      <if test="sn != null" >
+        sn,
       </if>
-      <if test="applicant != null" >
-        applicant,
-      </if>
-      <if test="userId != null" >
-        user_id,
+      <if test="approverId != null" >
+        approver_id,
       </if>
       <if test="operatorId != null" >
         operator_id,
@@ -137,34 +127,22 @@
       <if test="applicationNumber != null" >
         application_number,
       </if>
-      <if test="approvalNumber != null" >
-        approval_number,
-      </if>
       <if test="useDirectionId != null" >
         use_direction_id,
       </if>
       <if test="stateId != null" >
         state_id,
       </if>
-      <if test="approverId != null" >
-        approver_id,
-      </if>
-      <if test="applicationFormcol != null" >
-        application_formcol,
-      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="id != null" >
         #{id,jdbcType=INTEGER},
       </if>
-      <if test="equipmentId != null" >
-        #{equipmentId,jdbcType=INTEGER},
+      <if test="sn != null" >
+        #{sn,jdbcType=VARCHAR},
       </if>
-      <if test="applicant != null" >
-        #{applicant,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null" >
-        #{userId,jdbcType=INTEGER},
+      <if test="approverId != null" >
+        #{approverId,jdbcType=INTEGER},
       </if>
       <if test="operatorId != null" >
         #{operatorId,jdbcType=INTEGER},
@@ -172,20 +150,11 @@
       <if test="applicationNumber != null" >
         #{applicationNumber,jdbcType=SMALLINT},
       </if>
-      <if test="approvalNumber != null" >
-        #{approvalNumber,jdbcType=SMALLINT},
-      </if>
       <if test="useDirectionId != null" >
         #{useDirectionId,jdbcType=INTEGER},
       </if>
       <if test="stateId != null" >
         #{stateId,jdbcType=INTEGER},
-      </if>
-      <if test="approverId != null" >
-        #{approverId,jdbcType=INTEGER},
-      </if>
-      <if test="applicationFormcol != null" >
-        #{applicationFormcol,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
@@ -201,14 +170,11 @@
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
-      <if test="record.equipmentId != null" >
-        equipment_id = #{record.equipmentId,jdbcType=INTEGER},
+      <if test="record.sn != null" >
+        sn = #{record.sn,jdbcType=VARCHAR},
       </if>
-      <if test="record.applicant != null" >
-        applicant = #{record.applicant,jdbcType=VARCHAR},
-      </if>
-      <if test="record.userId != null" >
-        user_id = #{record.userId,jdbcType=INTEGER},
+      <if test="record.approverId != null" >
+        approver_id = #{record.approverId,jdbcType=INTEGER},
       </if>
       <if test="record.operatorId != null" >
         operator_id = #{record.operatorId,jdbcType=INTEGER},
@@ -216,20 +182,11 @@
       <if test="record.applicationNumber != null" >
         application_number = #{record.applicationNumber,jdbcType=SMALLINT},
       </if>
-      <if test="record.approvalNumber != null" >
-        approval_number = #{record.approvalNumber,jdbcType=SMALLINT},
-      </if>
       <if test="record.useDirectionId != null" >
         use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
       </if>
       <if test="record.stateId != null" >
         state_id = #{record.stateId,jdbcType=INTEGER},
-      </if>
-      <if test="record.approverId != null" >
-        approver_id = #{record.approverId,jdbcType=INTEGER},
-      </if>
-      <if test="record.applicationFormcol != null" >
-        application_formcol = #{record.applicationFormcol,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -239,16 +196,12 @@
   <update id="updateByExample" parameterType="map" >
     update application_form
     set id = #{record.id,jdbcType=INTEGER},
-      equipment_id = #{record.equipmentId,jdbcType=INTEGER},
-      applicant = #{record.applicant,jdbcType=VARCHAR},
-      user_id = #{record.userId,jdbcType=INTEGER},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      approver_id = #{record.approverId,jdbcType=INTEGER},
       operator_id = #{record.operatorId,jdbcType=INTEGER},
       application_number = #{record.applicationNumber,jdbcType=SMALLINT},
-      approval_number = #{record.approvalNumber,jdbcType=SMALLINT},
       use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
-      state_id = #{record.stateId,jdbcType=INTEGER},
-      approver_id = #{record.approverId,jdbcType=INTEGER},
-      application_formcol = #{record.applicationFormcol,jdbcType=VARCHAR}
+      state_id = #{record.stateId,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -256,14 +209,11 @@
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
     update application_form
     <set >
-      <if test="equipmentId != null" >
-        equipment_id = #{equipmentId,jdbcType=INTEGER},
+      <if test="sn != null" >
+        sn = #{sn,jdbcType=VARCHAR},
       </if>
-      <if test="applicant != null" >
-        applicant = #{applicant,jdbcType=VARCHAR},
-      </if>
-      <if test="userId != null" >
-        user_id = #{userId,jdbcType=INTEGER},
+      <if test="approverId != null" >
+        approver_id = #{approverId,jdbcType=INTEGER},
       </if>
       <if test="operatorId != null" >
         operator_id = #{operatorId,jdbcType=INTEGER},
@@ -271,36 +221,23 @@
       <if test="applicationNumber != null" >
         application_number = #{applicationNumber,jdbcType=SMALLINT},
       </if>
-      <if test="approvalNumber != null" >
-        approval_number = #{approvalNumber,jdbcType=SMALLINT},
-      </if>
       <if test="useDirectionId != null" >
         use_direction_id = #{useDirectionId,jdbcType=INTEGER},
       </if>
       <if test="stateId != null" >
         state_id = #{stateId,jdbcType=INTEGER},
       </if>
-      <if test="approverId != null" >
-        approver_id = #{approverId,jdbcType=INTEGER},
-      </if>
-      <if test="applicationFormcol != null" >
-        application_formcol = #{applicationFormcol,jdbcType=VARCHAR},
-      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
     update application_form
-    set equipment_id = #{equipmentId,jdbcType=INTEGER},
-      applicant = #{applicant,jdbcType=VARCHAR},
-      user_id = #{userId,jdbcType=INTEGER},
+    set sn = #{sn,jdbcType=VARCHAR},
+      approver_id = #{approverId,jdbcType=INTEGER},
       operator_id = #{operatorId,jdbcType=INTEGER},
       application_number = #{applicationNumber,jdbcType=SMALLINT},
-      approval_number = #{approvalNumber,jdbcType=SMALLINT},
       use_direction_id = #{useDirectionId,jdbcType=INTEGER},
-      state_id = #{stateId,jdbcType=INTEGER},
-      approver_id = #{approverId,jdbcType=INTEGER},
-      application_formcol = #{applicationFormcol,jdbcType=VARCHAR}
+      state_id = #{stateId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" id="selectByExampleWithRowbounds" >
