@@ -24,6 +24,7 @@
                 /views/tologin = anon
                 /views/login = anon
                 /views/** = anon
+                /equipment/**=anon
                 /** = anon
             </value>
         </property>
