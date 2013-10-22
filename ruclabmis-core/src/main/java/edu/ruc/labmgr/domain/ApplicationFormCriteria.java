@@ -714,73 +714,63 @@ public class ApplicationFormCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolIsNull() {
-            addCriterion("application_formcol is null");
+        public Criteria andClassifIdIsNull() {
+            addCriterion("classif_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolIsNotNull() {
-            addCriterion("application_formcol is not null");
+        public Criteria andClassifIdIsNotNull() {
+            addCriterion("classif_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolEqualTo(String value) {
-            addCriterion("application_formcol =", value, "applicationFormcol");
+        public Criteria andClassifIdEqualTo(Integer value) {
+            addCriterion("classif_id =", value, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolNotEqualTo(String value) {
-            addCriterion("application_formcol <>", value, "applicationFormcol");
+        public Criteria andClassifIdNotEqualTo(Integer value) {
+            addCriterion("classif_id <>", value, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolGreaterThan(String value) {
-            addCriterion("application_formcol >", value, "applicationFormcol");
+        public Criteria andClassifIdGreaterThan(Integer value) {
+            addCriterion("classif_id >", value, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolGreaterThanOrEqualTo(String value) {
-            addCriterion("application_formcol >=", value, "applicationFormcol");
+        public Criteria andClassifIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("classif_id >=", value, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolLessThan(String value) {
-            addCriterion("application_formcol <", value, "applicationFormcol");
+        public Criteria andClassifIdLessThan(Integer value) {
+            addCriterion("classif_id <", value, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolLessThanOrEqualTo(String value) {
-            addCriterion("application_formcol <=", value, "applicationFormcol");
+        public Criteria andClassifIdLessThanOrEqualTo(Integer value) {
+            addCriterion("classif_id <=", value, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolLike(String value) {
-            addCriterion("application_formcol like", value, "applicationFormcol");
+        public Criteria andClassifIdIn(List<Integer> values) {
+            addCriterion("classif_id in", values, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolNotLike(String value) {
-            addCriterion("application_formcol not like", value, "applicationFormcol");
+        public Criteria andClassifIdNotIn(List<Integer> values) {
+            addCriterion("classif_id not in", values, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolIn(List<String> values) {
-            addCriterion("application_formcol in", values, "applicationFormcol");
+        public Criteria andClassifIdBetween(Integer value1, Integer value2) {
+            addCriterion("classif_id between", value1, value2, "classifId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicationFormcolNotIn(List<String> values) {
-            addCriterion("application_formcol not in", values, "applicationFormcol");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationFormcolBetween(String value1, String value2) {
-            addCriterion("application_formcol between", value1, value2, "applicationFormcol");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationFormcolNotBetween(String value1, String value2) {
-            addCriterion("application_formcol not between", value1, value2, "applicationFormcol");
+        public Criteria andClassifIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("classif_id not between", value1, value2, "classifId");
             return (Criteria) this;
         }
     }

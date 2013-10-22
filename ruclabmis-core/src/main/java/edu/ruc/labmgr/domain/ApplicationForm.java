@@ -21,7 +21,7 @@ public class ApplicationForm {
 
     private Integer approverId;
 
-    private String applicationFormcol;
+    private Integer classifId;
 
     public Integer getId() {
         return id;
@@ -103,11 +103,11 @@ public class ApplicationForm {
         this.approverId = approverId;
     }
 
-    public String getApplicationFormcol() {
-        return applicationFormcol;
+    public Integer getClassifId() {
+        return classifId;
     }
 
-    public void setApplicationFormcol(String applicationFormcol) {
-        this.applicationFormcol = applicationFormcol == null ? null : applicationFormcol.trim();
+    public void setClassifId(Integer classifId) {
+        this.classifId = classifId;
     }
 }

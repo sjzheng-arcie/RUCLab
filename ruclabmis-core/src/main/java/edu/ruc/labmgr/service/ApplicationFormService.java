@@ -23,6 +23,7 @@ import java.util.List;
 @SuppressWarnings("ALL")
 @Service
 public class ApplicationFormService {
+
 	@Autowired
 	private ApplicationFormMapper applicationFormMapper ;
 
@@ -52,5 +53,10 @@ public class ApplicationFormService {
 		}
 
 		return retList;
+	}
+	public List<ApplicationForm> selectListByState(ApplicationFormCriteria criteria){
+
+		List<ApplicationForm> applicationFormLists= applicationFormMapper.selectByExample(criteria);
+		return applicationFormLists;
 	}
 }

@@ -8,8 +8,10 @@
     <result column="publisher_id" property="publisherId" jdbcType="INTEGER" />
     <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP" />
     <result column="publish_limit" property="publishLimit" jdbcType="INTEGER" />
+      <association property="user" column="publisher_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
   </resultMap>
-  <sql id="criteria_Where_Clause" >
+  <sql id="Criteria_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -38,7 +40,7 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_criteria_Where_Clause" >
+  <sql id="Update_By_Criteria_Where_Clause" >
     <where >
       <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -70,7 +72,7 @@
   <sql id="Base_Column_List" >
     id, title, content, publisher_id, publish_time, publish_limit
   </sql>
-  <select id="selectBycriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -78,7 +80,7 @@
     <include refid="Base_Column_List" />
     from announcement
     <if test="_parameter != null" >
-      <include refid="criteria_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -94,10 +96,10 @@
     delete from announcement
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteBycriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" >
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" >
     delete from announcement
     <if test="_parameter != null" >
-      <include refid="criteria_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Announcement" >
@@ -151,13 +153,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countBycriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultType="java.lang.Integer" >
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultType="java.lang.Integer" >
     select count(*) from announcement
     <if test="_parameter != null" >
-      <include refid="criteria_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </select>
-  <update id="updateBycriteriaSelective" parameterType="map" >
+  <update id="updateByCriteriaSelective" parameterType="map" >
     update announcement
     <set >
       <if test="record.id != null" >
@@ -180,10 +182,10 @@
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_criteria_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
-  <update id="updateBycriteria" parameterType="map" >
+  <update id="updateByCriteria" parameterType="map" >
     update announcement
     set id = #{record.id,jdbcType=INTEGER},
       title = #{record.title,jdbcType=VARCHAR},
@@ -192,7 +194,7 @@
       publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
       publish_limit = #{record.publishLimit,jdbcType=INTEGER}
     <if test="_parameter != null" >
-      <include refid="Update_By_criteria_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Announcement" >
@@ -225,7 +227,7 @@
       publish_limit = #{publishLimit,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" id="selectBycriteriaWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" id="selectByCriteriaWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -233,7 +235,7 @@
     <include refid="Base_Column_List" />
     from announcement
     <if test="_parameter != null" >
-      <include refid="criteria_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
