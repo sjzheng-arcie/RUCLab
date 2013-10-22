@@ -13,7 +13,7 @@ import java.util.List;
 
 @Controller
 @RequestMapping("/classif")
-public class ClassifController {
+public class ClassIfController {
 
     @Autowired
     ClassifService service;
