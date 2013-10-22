@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <META http-equiv=Content-Type content="text/html; charset=UTF-8">
 <title>设备管理系统登录</title>
 <style type="text/css">
@@ -92,7 +94,8 @@
                         <td>&nbsp;</td>
                         <td height="21"><table cellSpacing="0" cellPadding="0" width="100%" border="0" id="table211" height="328">
                             <tr>
-                                <td height="164" colspan="2" align="middle"><form name="myform" action="index.html" method="post">
+                                <td height="164" colspan="2" align="middle">
+                                    <form name="myform" action="login" method="post">
                                     <table cellSpacing="0" cellPadding="0" width="100%" border="0" height="143" id="table212">
                                         <tr>
                                             <td width="13%" height="38" class="top_hui_text"><span class="login_txt">管理员：&nbsp;&nbsp; </span></td>
@@ -103,29 +106,16 @@
                                             <td height="35" colspan="2" class="top_hui_text"><input class="editbox4" type="password" size="20" name="password">
                                                 <img src="images/luck.gif" width="19" height="18"> </td>
                                         </tr>
-                                        <tr>
-                                            <td width="13%" height="35" ><span class="login_txt">角色：</span></td>
-                                            <td height="35" colspan="2" class="top_hui_text">
-                                                <form style="margin:0">
-                                                    <select  id="select0">
-                                                        <option value='' selected>------请选择-----</option>
-                                                        <option value='2'>设备管理员</option>
-                                                        <option value='3'>教师</option>
-                                                        <option value='4'>领导</option>
-                                                        <option value='4'>超级管理员</option>
-                                                    </select>
-                                                </form>
-                                            </td>
-                                        </tr>
 
                                         <tr>
                                             <td height="35" >&nbsp;</td>
-                                            <td width="20%" height="35" ><input name="Submit" type="submit" class="button" id="Submit" value="登 陆"> </td>
+                                            <td width="20%" height="35" ><input name="Submit" type="submit" class="button" id="Submit" value="登 录"> </td>
                                             <td width="67%" class="top_hui_text"><input name="cs" type="button" class="button" id="cs" value="取 消" onClick="showConfirmMsg1()"></td>
                                         </tr>
                                     </table>
                                     <br>
-                                </form></td>
+                                </form>
+                                </td>
                             </tr>
                             <tr>
                                 <td width="433" height="164" align="right" valign="bottom"><img src="images/login-wel.gif" width="242" height="138"></td>
