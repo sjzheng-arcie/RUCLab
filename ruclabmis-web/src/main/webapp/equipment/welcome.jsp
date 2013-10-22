@@ -1,4 +1,7 @@
-﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -65,43 +68,44 @@
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
-                <td width="32%" align="center">单据名称</td>
-                <td width="20%" align="center">单据类型</td>
+                <td width="32%" align="center">单据类型</td>
                 <td width="20%" align="center">提交日期</td>
                 <td align="center">状态</td>
                 <td align="center">详细</td>
             </tr>
+            <c:forEach items="${myApplyList}" var="item">
             <tr>
                 <td height="24" align="center">1</td>
-                <td align="center">名称</td>
-                <td align="center">类型</td>
-                <td align="center">2013年5月6日</td>
-                <td align="center">已批准</td>
-                <td align="center"><a href="jsp/dev/store/applyinfo.html"></> 详细</td>
+                <td align="center">${item.id}</td>
+
+                <td align="center">${item.id}</td>
+                <td align="center">${item.id}</td>
+                <td align="center">${item.id}</td>
             </tr>
+            </c:forEach>
             <tr>
                 <td height="24" align="center">2</td>
                 <td align="center">单据名称</td>
-                <td align="center">类型</td>
+
                 <td align="center">2013年4月25日</td>
                 <td align="center">未批准</td>
-                <td align="center"><a href="jsp/dev/store/applyinfo.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/applyinfo.html"></a> 详细</td>
             </tr>
             <tr>
                 <td height="24" align="center">3</td>
-                <td align="center">名称</td>
+
                 <td align="center">类型</td>
                 <td align="center">2013年4月23日</td>
                 <td align="center">未审批</td>
-                <td align="center"><a href="jsp/dev/store/applyinfo.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/applyinfo.html"></a> 详细</td>
             </tr>
             <tr>
                 <td height="24" align="center">4</td>
-                <td align="center">单据名称</td>
+
                 <td align="center">类型</td>
                 <td align="center">2013年4月16日</td>
                 <td align="center">已批准</td>
-                <td align="center"><a href="jsp/dev/store/applyinfo.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/applyinfo.html"></a> 详细</td>
             </tr>
         </table>
 
@@ -113,37 +117,51 @@
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
                 <td width="32%" align="center">单据名称</td>
-                <td width="20%" align="center">单据类型</td>
+                <td width="20%" align="center">状态</td>
                 <td width="20%" align="center">提交日期</td>
                 <td align="center">详细</td>
             </tr>
+            <c:forEach items="${pendingApplyList}" var="item">
+                <tr>
+                    <td height="24" align="center">1</td>
+                    <td align="center">${item.user.name}</td>
+                    <td align="center">${item.id}</td>
+                    <td align="center">${item.id}</td>
+                    <td align="center">${item.id}</td>
+
+                </tr>
+            </c:forEach>
+
+
+
+
             <tr>
                 <td height="24" align="center">1</td>
                 <td align="center">设备报增单</td>
-                <td align="center">设备管理</td>
+                <td align="center">状态</td>
                 <td align="center">2013年5月7日</td>
-                <td align="center"><a href="jsp/dev/store/examapply.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/examapply.html"></a> 详细</td>
             </tr>
             <tr>
                 <td height="24" align="center">2</td>
                 <td align="center">单据名称</td>
-                <td align="center">类型</td>
+                <td align="center">状态</td>
                 <td align="center">2013年4月26日</td>
-                <td align="center"><a href="jsp/dev/store/examapply.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/examapply.html"></a> 详细</td>
             </tr>
             <tr>
                 <td height="24" align="center">3</td>
                 <td align="center">名称</td>
-                <td align="center">类型</td>
+                <td align="center">状态</td>
                 <td align="center">2013年4月24日</td>
-                <td align="center"><a href="jsp/dev/store/examapply.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/examapply.html"></a> 详细</td>
             </tr>
             <tr>
                 <td height="24" align="center">4</td>
                 <td align="center">单据名称</td>
-                <td align="center">类型</td>
+                <td align="center">状态</td>
                 <td align="center">2013年4月17日</td>
-                <td align="center"><a href="jsp/dev/store/examapply.html"></> 详细</td>
+                <td align="center"><a href="jsp/dev/store/examapply.html"></a> 详细</td>
             </tr>
         </table>
 
