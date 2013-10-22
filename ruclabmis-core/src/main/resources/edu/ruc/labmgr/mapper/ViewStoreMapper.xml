@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.ViewStoreMapper" >
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ViewStore" >
+        <result column="application_id" property="applicationId" jdbcType="INTEGER" />
+        <result column="application_sn" property="applicationSn" jdbcType="VARCHAR" />
+        <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
+        <result column="operator_name" property="operatorName" jdbcType="VARCHAR" />
+        <result column="approver_id" property="approverId" jdbcType="INTEGER" />
+        <result column="approver_name" property="approverName" jdbcType="VARCHAR" />
+        <result column="application_number" property="applicationNumber" jdbcType="SMALLINT" />
+        <result column="use_direction_id" property="useDirectionId" jdbcType="INTEGER" />
+        <result column="application_state_id" property="applicationStateId" jdbcType="INTEGER" />
+        <result column="application_state_name" property="applicationStateName" jdbcType="VARCHAR" />
+        <collection property="equipments" ofType="edu.ruc.labmgr.domain.Equipment">
+            <id column="equipment_id" property="id" jdbcType="INTEGER" />
+            <result column="equipment_sn" property="sn" jdbcType="VARCHAR" />
+            <result column="name" property="name" jdbcType="VARCHAR" />
+            <result column="category_id" property="categoryId" jdbcType="SMALLINT" />
+            <result column="model_number" property="modelNumber" jdbcType="VARCHAR" />
+            <result column="specifications" property="specifications" jdbcType="VARCHAR" />
+            <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+            <result column="vender" property="vender" jdbcType="VARCHAR" />
+            <result column="factory_number" property="factoryNumber" jdbcType="VARCHAR" />
+            <result column="manufacture_date" property="manufactureDate" jdbcType="DATE" />
+            <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE" />
+            <result column="country" property="country" jdbcType="VARCHAR" />
+            <result column="funding_subject_id" property="fundingSubjectId" jdbcType="INTEGER" />
+            <result column="equipment_state_id" property="stateId" jdbcType="INTEGER" />
+        </collection>
+    </resultMap>
+
+    <sql id="Criteria_Where_Clause" >
+        <where >
+            <foreach collection="oredCriteria" item="criteria" separator="or" >
+                <if test="criteria.valid" >
+                    <trim prefix="(" suffix=")" prefixOverrides="and" >
+                        <foreach collection="criteria.criteria" item="criterion" >
+                            <choose >
+                                <when test="criterion.noValue" >
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue" >
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue" >
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue" >
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
+            </foreach>
+        </where>
+    </sql>
+
+    <sql id="Base_Column_List" >
+    application_id, application_sn, operator_id, operator_name, approver_id, approver_name, 
+    application_number, use_direction_id, application_state_id, application_state_name, 
+    equipment_id, equipment_sn, name, category_id, model_number, specifications, unit_price, 
+    vender, factory_number, manufacture_date, acquisition_date, country, funding_subject_id, 
+    funding_subject, equipment_state_id, equipment_state_name
+  </sql>
+
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ViewStoreCriteria" id="selectByCriteriaWithRowbounds" >
+        select
+        <if test="distinct" >
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from view_store
+        <if test="_parameter != null" >
+            <include refid="Criteria_Where_Clause" />
+        </if>
+        <if test="orderByClause != null" >
+            order by ${orderByClause}
+        </if>
+    </select>
+</mapper>
