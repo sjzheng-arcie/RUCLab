@@ -15,6 +15,11 @@ public class Message {
 
     private Boolean read;
 
+
+
+	private User Sender;
+
+	private User Receiver;
     public Integer getId() {
         return id;
     }
@@ -62,4 +67,19 @@ public class Message {
     public void setRead(Boolean read) {
         this.read = read;
     }
+	public User getSender() {
+		return Sender;
+	}
+
+	public void setSender(User sender) {
+		Sender = sender;
+	}
+
+	public User getReceiver() {
+		return Receiver;
+	}
+
+	public void setReceiver(User receiver) {
+		Receiver = receiver;
+	}
 }
