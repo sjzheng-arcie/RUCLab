@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface EquipmentApplicationFormMapper {
-    int countByExample(EquipmentApplicationFormCriteria example);
+    int countByCriteria(EquipmentApplicationFormCriteria criteria);
 
-    int deleteByExample(EquipmentApplicationFormCriteria example);
+    int deleteByCriteria(EquipmentApplicationFormCriteria criteria);
 
     int deleteByPrimaryKey(EquipmentApplicationFormKey key);
 
@@ -17,11 +17,11 @@ public interface EquipmentApplicationFormMapper {
 
     int insertSelective(EquipmentApplicationFormKey record);
 
-    List<EquipmentApplicationFormKey> selectByExampleWithRowbounds(EquipmentApplicationFormCriteria example, RowBounds rowBounds);
+    List<EquipmentApplicationFormKey> selectByCriteriaWithRowbounds(EquipmentApplicationFormCriteria criteria, RowBounds rowBounds);
 
-    List<EquipmentApplicationFormKey> selectByExample(EquipmentApplicationFormCriteria example);
+    List<EquipmentApplicationFormKey> selectByCriteria(EquipmentApplicationFormCriteria criteria);
 
-    int updateByExampleSelective(@Param("record") EquipmentApplicationFormKey record, @Param("example") EquipmentApplicationFormCriteria example);
+    int updateByCriteriaSelective(@Param("record") EquipmentApplicationFormKey record, @Param("criteria") EquipmentApplicationFormCriteria criteria);
 
-    int updateByExample(@Param("record") EquipmentApplicationFormKey record, @Param("example") EquipmentApplicationFormCriteria example);
+    int updateByCriteria(@Param("record") EquipmentApplicationFormKey record, @Param("criteria") EquipmentApplicationFormCriteria criteria);
 }

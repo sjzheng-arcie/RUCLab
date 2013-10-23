@@ -1,44 +1,48 @@
 package edu.ruc.labmgr.web.controller;
 
+import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ApplicationForm;
+import edu.ruc.labmgr.domain.ViewStore;
+import edu.ruc.labmgr.domain.ViewStoreCriteria;
 import edu.ruc.labmgr.service.StoreService;
+import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.servlet.http.HttpServletRequest;
 
 @Controller
 @RequestMapping("/equipment/jsp/dev/store")
 public class StoreController {
     @Autowired
     StoreService serviceStore;
-//    @Autowired
-//    RoleService serviceRole;
-//    @Autowired
-//    MajorService serviceMajor;
-//
-//    private int currPage = 0;
-//
-//    @RequestMapping("/list")
-//    public ModelAndView pageList(HttpServletRequest request) {
-//        currPage = request.getParameter("page") == null   ?
-//                (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-//
-//        UserCriteria userCriteria =  new UserCriteria();
-//        UserCriteria.Criteria criteria = userCriteria.createCriteria();
-//        if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
-//            criteria.andSnLike("%" + request.getParameter("searchSN") + "%");
-//        }
-//        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
-//            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
-//        }
-//
-//        ObjectListPage<User> pageInfo = serviceUser.selectListPage(currPage, userCriteria);
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/list");
-//        mav.addObject("users", pageInfo.getListObject());
-//        mav.addObject("page", pageInfo.getPageInfo());
-//        return mav;
-//    }
+
+
+    private int currPage = 0;
+
+    @RequestMapping("/applylist")
+    public ModelAndView pageList(HttpServletRequest request) {
+        currPage = request.getParameter("page") == null   ?
+                (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+        ViewStoreCriteria viewStoreCriteria =  new ViewStoreCriteria();
+        ViewStoreCriteria.Criteria criteria = viewStoreCriteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
+            criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
+        }
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
+            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
+        }
+
+        ObjectListPage<ViewStore> pageInfo = serviceStore.selectListPage(currPage, viewStoreCriteria);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/applylist");
+        mav.addObject("stores", pageInfo.getListObject());
+        mav.addObject("page", pageInfo.getPageInfo());
+        return mav;
+    }
 //
 //    @RequestMapping("/toAdd")
 //    public ModelAndView toAdd(HttpServletRequest request) {

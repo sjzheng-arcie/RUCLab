@@ -262,6 +262,136 @@ public class ViewStoreCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andApplicantIdIsNull() {
+            addCriterion("applicant_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdIsNotNull() {
+            addCriterion("applicant_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdEqualTo(Integer value) {
+            addCriterion("applicant_id =", value, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdNotEqualTo(Integer value) {
+            addCriterion("applicant_id <>", value, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdGreaterThan(Integer value) {
+            addCriterion("applicant_id >", value, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("applicant_id >=", value, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdLessThan(Integer value) {
+            addCriterion("applicant_id <", value, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdLessThanOrEqualTo(Integer value) {
+            addCriterion("applicant_id <=", value, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdIn(List<Integer> values) {
+            addCriterion("applicant_id in", values, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdNotIn(List<Integer> values) {
+            addCriterion("applicant_id not in", values, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdBetween(Integer value1, Integer value2) {
+            addCriterion("applicant_id between", value1, value2, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("applicant_id not between", value1, value2, "applicantId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameIsNull() {
+            addCriterion("applicant_name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameIsNotNull() {
+            addCriterion("applicant_name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameEqualTo(String value) {
+            addCriterion("applicant_name =", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameNotEqualTo(String value) {
+            addCriterion("applicant_name <>", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameGreaterThan(String value) {
+            addCriterion("applicant_name >", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameGreaterThanOrEqualTo(String value) {
+            addCriterion("applicant_name >=", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameLessThan(String value) {
+            addCriterion("applicant_name <", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameLessThanOrEqualTo(String value) {
+            addCriterion("applicant_name <=", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameLike(String value) {
+            addCriterion("applicant_name like", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameNotLike(String value) {
+            addCriterion("applicant_name not like", value, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameIn(List<String> values) {
+            addCriterion("applicant_name in", values, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameNotIn(List<String> values) {
+            addCriterion("applicant_name not in", values, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameBetween(String value1, String value2) {
+            addCriterion("applicant_name between", value1, value2, "applicantName");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplicantNameNotBetween(String value1, String value2) {
+            addCriterion("applicant_name not between", value1, value2, "applicantName");
+            return (Criteria) this;
+        }
+
         public Criteria andOperatorIdIsNull() {
             addCriterion("operator_id is null");
             return (Criteria) this;
@@ -582,66 +712,6 @@ public class ViewStoreCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andUseDirectionIdIsNull() {
-            addCriterion("use_direction_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdIsNotNull() {
-            addCriterion("use_direction_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdEqualTo(Integer value) {
-            addCriterion("use_direction_id =", value, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdNotEqualTo(Integer value) {
-            addCriterion("use_direction_id <>", value, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdGreaterThan(Integer value) {
-            addCriterion("use_direction_id >", value, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("use_direction_id >=", value, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdLessThan(Integer value) {
-            addCriterion("use_direction_id <", value, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdLessThanOrEqualTo(Integer value) {
-            addCriterion("use_direction_id <=", value, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdIn(List<Integer> values) {
-            addCriterion("use_direction_id in", values, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdNotIn(List<Integer> values) {
-            addCriterion("use_direction_id not in", values, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdBetween(Integer value1, Integer value2) {
-            addCriterion("use_direction_id between", value1, value2, "useDirectionId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUseDirectionIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("use_direction_id not between", value1, value2, "useDirectionId");
-            return (Criteria) this;
-        }
-
         public Criteria andApplicationStateIdIsNull() {
             addCriterion("application_state_id is null");
             return (Criteria) this;
@@ -772,62 +842,62 @@ public class ViewStoreCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdIsNull() {
+        public Criteria andEquipmentIdIsNull() {
             addCriterion("equipment_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdIsNotNull() {
+        public Criteria andEquipmentIdIsNotNull() {
             addCriterion("equipment_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdEqualTo(Integer value) {
+        public Criteria andEquipmentIdEqualTo(Integer value) {
             addCriterion("equipment_id =", value, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdNotEqualTo(Integer value) {
+        public Criteria andEquipmentIdNotEqualTo(Integer value) {
             addCriterion("equipment_id <>", value, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdGreaterThan(Integer value) {
+        public Criteria andEquipmentIdGreaterThan(Integer value) {
             addCriterion("equipment_id >", value, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdGreaterThanOrEqualTo(Integer value) {
+        public Criteria andEquipmentIdGreaterThanOrEqualTo(Integer value) {
             addCriterion("equipment_id >=", value, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdLessThan(Integer value) {
+        public Criteria andEquipmentIdLessThan(Integer value) {
             addCriterion("equipment_id <", value, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdLessThanOrEqualTo(Integer value) {
+        public Criteria andEquipmentIdLessThanOrEqualTo(Integer value) {
             addCriterion("equipment_id <=", value, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdIn(List<Integer> values) {
+        public Criteria andEquipmentIdIn(List<Integer> values) {
             addCriterion("equipment_id in", values, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdNotIn(List<Integer> values) {
+        public Criteria andEquipmentIdNotIn(List<Integer> values) {
             addCriterion("equipment_id not in", values, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdBetween(Integer value1, Integer value2) {
+        public Criteria andEquipmentIdBetween(Integer value1, Integer value2) {
             addCriterion("equipment_id between", value1, value2, "equipmentId");
             return (Criteria) this;
         }
 
-        public Criteria andEqumentIdNotBetween(Integer value1, Integer value2) {
+        public Criteria andEquipmentIdNotBetween(Integer value1, Integer value2) {
             addCriterion("equipment_id not between", value1, value2, "equipmentId");
             return (Criteria) this;
         }
@@ -1689,6 +1759,136 @@ public class ViewStoreCriteria {
 
         public Criteria andFundingSubjectNotBetween(String value1, String value2) {
             addCriterion("funding_subject not between", value1, value2, "fundingSubject");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdIsNull() {
+            addCriterion("use_direction_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdIsNotNull() {
+            addCriterion("use_direction_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdEqualTo(Integer value) {
+            addCriterion("use_direction_id =", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdNotEqualTo(Integer value) {
+            addCriterion("use_direction_id <>", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdGreaterThan(Integer value) {
+            addCriterion("use_direction_id >", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("use_direction_id >=", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdLessThan(Integer value) {
+            addCriterion("use_direction_id <", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("use_direction_id <=", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdIn(List<Integer> values) {
+            addCriterion("use_direction_id in", values, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdNotIn(List<Integer> values) {
+            addCriterion("use_direction_id not in", values, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdBetween(Integer value1, Integer value2) {
+            addCriterion("use_direction_id between", value1, value2, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("use_direction_id not between", value1, value2, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIsNull() {
+            addCriterion("use_direction is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIsNotNull() {
+            addCriterion("use_direction is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionEqualTo(String value) {
+            addCriterion("use_direction =", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionNotEqualTo(String value) {
+            addCriterion("use_direction <>", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionGreaterThan(String value) {
+            addCriterion("use_direction >", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionGreaterThanOrEqualTo(String value) {
+            addCriterion("use_direction >=", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionLessThan(String value) {
+            addCriterion("use_direction <", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionLessThanOrEqualTo(String value) {
+            addCriterion("use_direction <=", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionLike(String value) {
+            addCriterion("use_direction like", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionNotLike(String value) {
+            addCriterion("use_direction not like", value, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIn(List<String> values) {
+            addCriterion("use_direction in", values, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionNotIn(List<String> values) {
+            addCriterion("use_direction not in", values, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionBetween(String value1, String value2) {
+            addCriterion("use_direction between", value1, value2, "useDirection");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionNotBetween(String value1, String value2) {
+            addCriterion("use_direction not between", value1, value2, "useDirection");
             return (Criteria) this;
         }
 

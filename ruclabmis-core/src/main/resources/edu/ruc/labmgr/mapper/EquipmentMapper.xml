@@ -15,9 +15,10 @@
     <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE" />
     <result column="country" property="country" jdbcType="VARCHAR" />
     <result column="funding_subject_id" property="fundingSubjectId" jdbcType="INTEGER" />
+    <result column="use_direction_id" property="useDirectionId" jdbcType="INTEGER" />
     <result column="state_id" property="stateId" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
+  <sql id="Criteria_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -46,9 +47,9 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
+  <sql id="Update_By_Criteria_Where_Clause" >
     <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -77,9 +78,10 @@
   </sql>
   <sql id="Base_Column_List" >
     id, category_id, sn, name, model_number, specifications, unit_price, vender, factory_number, 
-    manufacture_date, acquisition_date, country, funding_subject_id, state_id
+    manufacture_date, acquisition_date, country, funding_subject_id, use_direction_id, 
+    state_id
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -87,7 +89,7 @@
     <include refid="Base_Column_List" />
     from equipment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -103,10 +105,10 @@
     delete from equipment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
     delete from equipment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Equipment" >
@@ -114,12 +116,14 @@
       name, model_number, specifications, 
       unit_price, vender, factory_number, 
       manufacture_date, acquisition_date, country, 
-      funding_subject_id, state_id)
+      funding_subject_id, use_direction_id, state_id
+      )
     values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=SMALLINT}, #{sn,jdbcType=VARCHAR}, 
       #{name,jdbcType=VARCHAR}, #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, 
       #{unitPrice,jdbcType=REAL}, #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, 
       #{manufactureDate,jdbcType=DATE}, #{acquisitionDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, 
-      #{fundingSubjectId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER})
+      #{fundingSubjectId,jdbcType=INTEGER}, #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
     insert into equipment
@@ -162,6 +166,9 @@
       </if>
       <if test="fundingSubjectId != null" >
         funding_subject_id,
+      </if>
+      <if test="useDirectionId != null" >
+        use_direction_id,
       </if>
       <if test="stateId != null" >
         state_id,
@@ -207,18 +214,21 @@
       <if test="fundingSubjectId != null" >
         #{fundingSubjectId,jdbcType=INTEGER},
       </if>
+      <if test="useDirectionId != null" >
+        #{useDirectionId,jdbcType=INTEGER},
+      </if>
       <if test="stateId != null" >
         #{stateId,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer" >
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer" >
     select count(*) from equipment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByCriteriaSelective" parameterType="map" >
     update equipment
     <set >
       <if test="record.id != null" >
@@ -260,15 +270,18 @@
       <if test="record.fundingSubjectId != null" >
         funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
       </if>
+      <if test="record.useDirectionId != null" >
+        use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
+      </if>
       <if test="record.stateId != null" >
         state_id = #{record.stateId,jdbcType=INTEGER},
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByCriteria" parameterType="map" >
     update equipment
     set id = #{record.id,jdbcType=INTEGER},
       category_id = #{record.categoryId,jdbcType=SMALLINT},
@@ -283,9 +296,10 @@
       acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
       country = #{record.country,jdbcType=VARCHAR},
       funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
+      use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
       state_id = #{record.stateId,jdbcType=INTEGER}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
@@ -327,6 +341,9 @@
       <if test="fundingSubjectId != null" >
         funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
       </if>
+      <if test="useDirectionId != null" >
+        use_direction_id = #{useDirectionId,jdbcType=INTEGER},
+      </if>
       <if test="stateId != null" >
         state_id = #{stateId,jdbcType=INTEGER},
       </if>
@@ -347,10 +364,11 @@
       acquisition_date = #{acquisitionDate,jdbcType=DATE},
       country = #{country,jdbcType=VARCHAR},
       funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
+      use_direction_id = #{useDirectionId,jdbcType=INTEGER},
       state_id = #{stateId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" id="selectByExampleWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" id="selectByCriteriaWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -358,7 +376,7 @@
     <include refid="Base_Column_List" />
     from equipment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}

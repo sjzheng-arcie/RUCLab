@@ -982,6 +982,66 @@ public class EquipmentCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andUseDirectionIdIsNull() {
+            addCriterion("use_direction_id is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdIsNotNull() {
+            addCriterion("use_direction_id is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdEqualTo(Integer value) {
+            addCriterion("use_direction_id =", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdNotEqualTo(Integer value) {
+            addCriterion("use_direction_id <>", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdGreaterThan(Integer value) {
+            addCriterion("use_direction_id >", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("use_direction_id >=", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdLessThan(Integer value) {
+            addCriterion("use_direction_id <", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdLessThanOrEqualTo(Integer value) {
+            addCriterion("use_direction_id <=", value, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdIn(List<Integer> values) {
+            addCriterion("use_direction_id in", values, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdNotIn(List<Integer> values) {
+            addCriterion("use_direction_id not in", values, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdBetween(Integer value1, Integer value2) {
+            addCriterion("use_direction_id between", value1, value2, "useDirectionId");
+            return (Criteria) this;
+        }
+
+        public Criteria andUseDirectionIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("use_direction_id not between", value1, value2, "useDirectionId");
+            return (Criteria) this;
+        }
+
         public Criteria andStateIdIsNull() {
             addCriterion("state_id is null");
             return (Criteria) this;

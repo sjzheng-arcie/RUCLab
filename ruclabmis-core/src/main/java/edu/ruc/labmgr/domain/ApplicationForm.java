@@ -5,13 +5,13 @@ public class ApplicationForm {
 
     private String sn;
 
-    private Integer approverId;
+    private Integer applicantId;
 
     private Integer operatorId;
 
-    private Short applicationNumber;
+    private Integer approverId;
 
-    private Integer useDirectionId;
+    private Short applicationNumber;
 
     private Integer stateId;
 
@@ -31,12 +31,12 @@ public class ApplicationForm {
         this.sn = sn == null ? null : sn.trim();
     }
 
-    public Integer getApproverId() {
-        return approverId;
+    public Integer getApplicantId() {
+        return applicantId;
     }
 
-    public void setApproverId(Integer approverId) {
-        this.approverId = approverId;
+    public void setApplicantId(Integer applicantId) {
+        this.applicantId = applicantId;
     }
 
     public Integer getOperatorId() {
@@ -47,20 +47,20 @@ public class ApplicationForm {
         this.operatorId = operatorId;
     }
 
+    public Integer getApproverId() {
+        return approverId;
+    }
+
+    public void setApproverId(Integer approverId) {
+        this.approverId = approverId;
+    }
+
     public Short getApplicationNumber() {
         return applicationNumber;
     }
 
     public void setApplicationNumber(Short applicationNumber) {
         this.applicationNumber = applicationNumber;
-    }
-
-    public Integer getUseDirectionId() {
-        return useDirectionId;
-    }
-
-    public void setUseDirectionId(Integer useDirectionId) {
-        this.useDirectionId = useDirectionId;
     }
 
     public Integer getStateId() {
