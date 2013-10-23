@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface EquipmentMapper {
-    int countByCriteria(EquipmentCriteria criteria);
+    int countByExample(EquipmentCriteria example);
 
-    int deleteByCriteria(EquipmentCriteria criteria);
+    int deleteByExample(EquipmentCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface EquipmentMapper {
 
     int insertSelective(Equipment record);
 
-    List<Equipment> selectByCriteriaWithRowbounds(EquipmentCriteria criteria, RowBounds rowBounds);
+    List<Equipment> selectByExampleWithRowbounds(EquipmentCriteria example, RowBounds rowBounds);
 
-    List<Equipment> selectByCriteria(EquipmentCriteria criteria);
+    List<Equipment> selectByExample(EquipmentCriteria example);
 
     Equipment selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Equipment record, @Param("criteria") EquipmentCriteria criteria);
+    int updateByExampleSelective(@Param("record") Equipment record, @Param("example") EquipmentCriteria example);
 
-    int updateByCriteria(@Param("record") Equipment record, @Param("criteria") EquipmentCriteria criteria);
+    int updateByExample(@Param("record") Equipment record, @Param("example") EquipmentCriteria example);
 
     int updateByPrimaryKeySelective(Equipment record);
 

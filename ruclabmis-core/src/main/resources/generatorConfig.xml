@@ -46,6 +46,7 @@
 
 
         <!-- 表映射的配置示例-->
+        <!--<table tableName="application_form"/>-->
         <!--<table tableName="arrangement"/>-->
         <!--<table tableName="arrangement_desk"/>-->
         <!--<table tableName="arrangement_equipment"/>-->
@@ -57,6 +58,7 @@
         <!--<table tableName="equipment"/>-->
         <!--<table tableName="exam_item_pool"/>-->
         <!--<table tableName="experiment"/>-->
+        <!--<table tableName="equipment_application_form" />-->
         <!--<table tableName="experiment_detail"/>-->
         <!--<table tableName="experiment_instructions'"/>-->
         <!--<table tableName="experiment_question"/>-->
@@ -77,7 +79,8 @@
         <!--<table tableName="title"/>-->
         <!--<table tableName="announcement"/>-->
         <!--<table tableName="message"/>-->
-        <!--<table tableName="application_form"/>-->
+
+        <!--<table tableName="view_store" />-->
 
     </context>
 </generatorConfiguration>

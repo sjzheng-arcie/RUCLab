@@ -164,193 +164,133 @@ public class ApplicationFormCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdIsNull() {
-            addCriterion("equipment_id is null");
+        public Criteria andSnIsNull() {
+            addCriterion("sn is null");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdIsNotNull() {
-            addCriterion("equipment_id is not null");
+        public Criteria andSnIsNotNull() {
+            addCriterion("sn is not null");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdEqualTo(Integer value) {
-            addCriterion("equipment_id =", value, "equipmentId");
+        public Criteria andSnEqualTo(String value) {
+            addCriterion("sn =", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdNotEqualTo(Integer value) {
-            addCriterion("equipment_id <>", value, "equipmentId");
+        public Criteria andSnNotEqualTo(String value) {
+            addCriterion("sn <>", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdGreaterThan(Integer value) {
-            addCriterion("equipment_id >", value, "equipmentId");
+        public Criteria andSnGreaterThan(String value) {
+            addCriterion("sn >", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("equipment_id >=", value, "equipmentId");
+        public Criteria andSnGreaterThanOrEqualTo(String value) {
+            addCriterion("sn >=", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdLessThan(Integer value) {
-            addCriterion("equipment_id <", value, "equipmentId");
+        public Criteria andSnLessThan(String value) {
+            addCriterion("sn <", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdLessThanOrEqualTo(Integer value) {
-            addCriterion("equipment_id <=", value, "equipmentId");
+        public Criteria andSnLessThanOrEqualTo(String value) {
+            addCriterion("sn <=", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdIn(List<Integer> values) {
-            addCriterion("equipment_id in", values, "equipmentId");
+        public Criteria andSnLike(String value) {
+            addCriterion("sn like", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdNotIn(List<Integer> values) {
-            addCriterion("equipment_id not in", values, "equipmentId");
+        public Criteria andSnNotLike(String value) {
+            addCriterion("sn not like", value, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdBetween(Integer value1, Integer value2) {
-            addCriterion("equipment_id between", value1, value2, "equipmentId");
+        public Criteria andSnIn(List<String> values) {
+            addCriterion("sn in", values, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andEquipmentIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("equipment_id not between", value1, value2, "equipmentId");
+        public Criteria andSnNotIn(List<String> values) {
+            addCriterion("sn not in", values, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantIsNull() {
-            addCriterion("applicant is null");
+        public Criteria andSnBetween(String value1, String value2) {
+            addCriterion("sn between", value1, value2, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantIsNotNull() {
-            addCriterion("applicant is not null");
+        public Criteria andSnNotBetween(String value1, String value2) {
+            addCriterion("sn not between", value1, value2, "sn");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantEqualTo(String value) {
-            addCriterion("applicant =", value, "applicant");
+        public Criteria andApproverIdIsNull() {
+            addCriterion("approver_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantNotEqualTo(String value) {
-            addCriterion("applicant <>", value, "applicant");
+        public Criteria andApproverIdIsNotNull() {
+            addCriterion("approver_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantGreaterThan(String value) {
-            addCriterion("applicant >", value, "applicant");
+        public Criteria andApproverIdEqualTo(Integer value) {
+            addCriterion("approver_id =", value, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantGreaterThanOrEqualTo(String value) {
-            addCriterion("applicant >=", value, "applicant");
+        public Criteria andApproverIdNotEqualTo(Integer value) {
+            addCriterion("approver_id <>", value, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantLessThan(String value) {
-            addCriterion("applicant <", value, "applicant");
+        public Criteria andApproverIdGreaterThan(Integer value) {
+            addCriterion("approver_id >", value, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantLessThanOrEqualTo(String value) {
-            addCriterion("applicant <=", value, "applicant");
+        public Criteria andApproverIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("approver_id >=", value, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantLike(String value) {
-            addCriterion("applicant like", value, "applicant");
+        public Criteria andApproverIdLessThan(Integer value) {
+            addCriterion("approver_id <", value, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantNotLike(String value) {
-            addCriterion("applicant not like", value, "applicant");
+        public Criteria andApproverIdLessThanOrEqualTo(Integer value) {
+            addCriterion("approver_id <=", value, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantIn(List<String> values) {
-            addCriterion("applicant in", values, "applicant");
+        public Criteria andApproverIdIn(List<Integer> values) {
+            addCriterion("approver_id in", values, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantNotIn(List<String> values) {
-            addCriterion("applicant not in", values, "applicant");
+        public Criteria andApproverIdNotIn(List<Integer> values) {
+            addCriterion("approver_id not in", values, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantBetween(String value1, String value2) {
-            addCriterion("applicant between", value1, value2, "applicant");
+        public Criteria andApproverIdBetween(Integer value1, Integer value2) {
+            addCriterion("approver_id between", value1, value2, "approverId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantNotBetween(String value1, String value2) {
-            addCriterion("applicant not between", value1, value2, "applicant");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_id =", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotEqualTo(Integer value) {
-            addCriterion("user_id <>", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThan(Integer value) {
-            addCriterion("user_id >", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_id >=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThan(Integer value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<Integer> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<Integer> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
+        public Criteria andApproverIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("approver_id not between", value1, value2, "approverId");
             return (Criteria) this;
         }
 
@@ -474,66 +414,6 @@ public class ApplicationFormCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andApprovalNumberIsNull() {
-            addCriterion("approval_number is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberIsNotNull() {
-            addCriterion("approval_number is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberEqualTo(Short value) {
-            addCriterion("approval_number =", value, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberNotEqualTo(Short value) {
-            addCriterion("approval_number <>", value, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberGreaterThan(Short value) {
-            addCriterion("approval_number >", value, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberGreaterThanOrEqualTo(Short value) {
-            addCriterion("approval_number >=", value, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberLessThan(Short value) {
-            addCriterion("approval_number <", value, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberLessThanOrEqualTo(Short value) {
-            addCriterion("approval_number <=", value, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberIn(List<Short> values) {
-            addCriterion("approval_number in", values, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberNotIn(List<Short> values) {
-            addCriterion("approval_number not in", values, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberBetween(Short value1, Short value2) {
-            addCriterion("approval_number between", value1, value2, "approvalNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApprovalNumberNotBetween(Short value1, Short value2) {
-            addCriterion("approval_number not between", value1, value2, "approvalNumber");
-            return (Criteria) this;
-        }
-
         public Criteria andUseDirectionIdIsNull() {
             addCriterion("use_direction_id is null");
             return (Criteria) this;
@@ -651,126 +531,6 @@ public class ApplicationFormCriteria {
 
         public Criteria andStateIdNotBetween(Integer value1, Integer value2) {
             addCriterion("state_id not between", value1, value2, "stateId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdIsNull() {
-            addCriterion("approver_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdIsNotNull() {
-            addCriterion("approver_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdEqualTo(Integer value) {
-            addCriterion("approver_id =", value, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdNotEqualTo(Integer value) {
-            addCriterion("approver_id <>", value, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdGreaterThan(Integer value) {
-            addCriterion("approver_id >", value, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("approver_id >=", value, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdLessThan(Integer value) {
-            addCriterion("approver_id <", value, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdLessThanOrEqualTo(Integer value) {
-            addCriterion("approver_id <=", value, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdIn(List<Integer> values) {
-            addCriterion("approver_id in", values, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdNotIn(List<Integer> values) {
-            addCriterion("approver_id not in", values, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdBetween(Integer value1, Integer value2) {
-            addCriterion("approver_id between", value1, value2, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andApproverIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("approver_id not between", value1, value2, "approverId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdIsNull() {
-            addCriterion("classif_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdIsNotNull() {
-            addCriterion("classif_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdEqualTo(Integer value) {
-            addCriterion("classif_id =", value, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdNotEqualTo(Integer value) {
-            addCriterion("classif_id <>", value, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdGreaterThan(Integer value) {
-            addCriterion("classif_id >", value, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("classif_id >=", value, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdLessThan(Integer value) {
-            addCriterion("classif_id <", value, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdLessThanOrEqualTo(Integer value) {
-            addCriterion("classif_id <=", value, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdIn(List<Integer> values) {
-            addCriterion("classif_id in", values, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdNotIn(List<Integer> values) {
-            addCriterion("classif_id not in", values, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdBetween(Integer value1, Integer value2) {
-            addCriterion("classif_id between", value1, value2, "classifId");
-            return (Criteria) this;
-        }
-
-        public Criteria andClassifIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("classif_id not between", value1, value2, "classifId");
             return (Criteria) this;
         }
     }
