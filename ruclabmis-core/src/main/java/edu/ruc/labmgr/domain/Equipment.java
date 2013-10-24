@@ -29,6 +29,8 @@ public class Equipment {
 
     private Integer fundingSubjectId;
 
+    private Integer useDirectionId;
+
     private Integer stateId;
 
     public Integer getId() {
@@ -133,6 +135,14 @@ public class Equipment {
 
     public void setFundingSubjectId(Integer fundingSubjectId) {
         this.fundingSubjectId = fundingSubjectId;
+    }
+
+    public Integer getUseDirectionId() {
+        return useDirectionId;
+    }
+
+    public void setUseDirectionId(Integer useDirectionId) {
+        this.useDirectionId = useDirectionId;
     }
 
     public Integer getStateId() {

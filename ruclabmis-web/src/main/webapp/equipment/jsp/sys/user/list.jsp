@@ -6,190 +6,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        function checkAll(box) {  //全选或全不选
-            document.listForm.checkbox.checked = box.checked;
-            if (document.listForm.idcheckbox == null)
-                return;
-            var numRow = document.listForm.idcheckbox.length;
-            if (numRow == null) {
-                document.listForm.idcheckbox.checked = box.checked;
-                return;
-            }
-            if (box.checked) {
-                for (var i = 0; i < numRow; i++) {
-                    document.listForm.idcheckbox[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < numRow; i++) {
-                    document.listForm.idcheckbox[i].checked = false;
-                }
-            }
-        }
-
-        function checkOne() {  //选一个时全选或全不选
-            if (document.listForm.idcheckbox == null)
-                return;
-            var numRow = document.listForm.idcheckbox.length;
-            if (numRow == null) {
-                document.listForm.checkbox.checked = listForm.idcheckbox.checked;
-                return;
-            }
-            var numBox = 0;
-            for (var i = 0; i < numRow; i++) {
-                if (document.listForm.idcheckbox[i].checked) {
-                    numBox++;
-                    break;
-                }
-            }
-            if (numBox == numRow) {
-                document.listForm.checkbox.checked = true;
-            } else {
-                document.listForm.checkbox.checked = false;
-            }
-        }
-
-        function toUpdate() {
-            var selectedItem;
-            if (document.listForm.idcheckbox == null) {
-                return;
-            }
-            var len = document.listForm.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.listForm.idcheckbox.checked) {
-                    selectedItem = document.listForm.idcheckbox.value;
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-
-            document.listForm.action = "toUpdate?id=" + selectedItem;
-            document.listForm.submit();
-        }
-
-        function toUpdatePassword() {
-            var selectedItem;
-            if (document.listForm.idcheckbox == null) {
-                return;
-            }
-            var len = document.listForm.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.listForm.idcheckbox.checked) {
-                    selectedItem = document.listForm.idcheckbox.value;
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-
-            document.listForm.action = "toUpdatePassword?id=" + selectedItem;
-            document.listForm.submit();
-        }
-
-        function toDelete() {
-            var selectedItem;
-            if (document.listForm.idcheckbox == null) {
-                return;
-            }
-            var len = document.listForm.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.listForm.idcheckbox.checked) {
-                    selectedItem = document.listForm.idcheckbox.value;
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-
-            if (confirm("是否删除所选记录？")) {
-                document.listForm.action = "delete?id=" + selectedItem;
-                document.listForm.submit();
-            }
-        }
-
-        function onInit() {
-            getWidth();
-        }
-
-        //获得divwidth的宽度
-        function getWidth() {
-            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-            if (document.body.scrollWidth > document.body.offsetWidth) {
-                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
-            }
-        }
-
-        function toFind() {
-            var href = '/equipment/jsp/sys/user/list';
-
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
-        function goPage(page) {
-            if (page <= 0) {
-                alert("已到达首页！");
-                return;
-            }
-            if (page > ${page.totalPage}) {
-                alert("已到达尾页！");
-                return;
-            }
-            var href = '/equipment/jsp/sys/user/list?page=' + page;
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
+        var baseHref = '/equipment/jsp/sys/user/list';
     </script>
 
 </head>
 
-<body onload="onInit()" onresize="getWidth()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
@@ -341,59 +168,7 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td height="30">
-                                <table width='100%' border='0' cellspacing='0' cellpadding='0'
-                                       style='font-size:13px;'>
-                                    <tr>
-                                        <td><span align='left' class='STYLE22' style="white-space:nowrap">
-                                            &nbsp;&nbsp;共有<strong>${page.totalResult}</strong> 条记录，当前第<strong>${page.currentPage}</strong> 页，共 <strong>${page.totalPage}</strong> 页</span>
-
-				<span class='STYLE22' style="white-space:nowrap">
-				<table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                    <tr>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(1)" style="cursor:hand"
-                                                     src='../../../images/main_54.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:hand"
-                                                     src='../../../images/main_56.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:hand"
-                                                     src='../../../images/main_58.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:hand"
-                                                     src='../../../images/main_60.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='37' class='STYLE22'>
-                            <div align='center' style="white-space:nowrap">转到</div>
-                        </td>
-                        <td>
-                            <div align='left'>
-                                <select onchange="goPage(this.options[this.selectedIndex].value)">
-                                    <c:forEach var="i" begin="1" end="${page.totalPage}" step="1">
-                                        <option class='STYLE22' value='${i}'
-                                                <c:if test="${page.currentPage == i}">selected</c:if> > 第${i}页
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-					</span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                        <%@ include file="../../common/pagetable.jsp"%>
                     </table>
                 </td>
             </tr>

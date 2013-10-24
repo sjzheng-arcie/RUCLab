@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface ApplicationFormMapper {
-    int countByExample(ApplicationFormCriteria example);
+    int countByCriteria(ApplicationFormCriteria criteria);
 
-    int deleteByExample(ApplicationFormCriteria example);
+    int deleteByCriteria(ApplicationFormCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface ApplicationFormMapper {
 
     int insertSelective(ApplicationForm record);
 
-    List<ApplicationForm> selectByExampleWithRowbounds(ApplicationFormCriteria example, RowBounds rowBounds);
+    List<ApplicationForm> selectByCriteriaWithRowbounds(ApplicationFormCriteria criteria, RowBounds rowBounds);
 
-    List<ApplicationForm> selectByExample(ApplicationFormCriteria example);
+    List<ApplicationForm> selectByCriteria(ApplicationFormCriteria criteria);
 
     ApplicationForm selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") ApplicationForm record, @Param("example") ApplicationFormCriteria example);
+    int updateByCriteriaSelective(@Param("record") ApplicationForm record, @Param("criteria") ApplicationFormCriteria criteria);
 
-    int updateByExample(@Param("record") ApplicationForm record, @Param("example") ApplicationFormCriteria example);
+    int updateByCriteria(@Param("record") ApplicationForm record, @Param("criteria") ApplicationFormCriteria criteria);
 
     int updateByPrimaryKeySelective(ApplicationForm record);
 

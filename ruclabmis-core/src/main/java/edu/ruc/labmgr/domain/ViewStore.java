@@ -8,6 +8,10 @@ public class ViewStore {
 
     private String applicationSn;
 
+    private Integer applicantId;
+
+    private String applicantName;
+
     private Integer operatorId;
 
     private String operatorName;
@@ -17,8 +21,6 @@ public class ViewStore {
     private String approverName;
 
     private Short applicationNumber;
-
-    private Integer useDirectionId;
 
     private Integer applicationStateId;
 
@@ -40,6 +42,22 @@ public class ViewStore {
 
     public void setApplicationSn(String applicationSn) {
         this.applicationSn = applicationSn == null ? null : applicationSn.trim();
+    }
+
+    public Integer getApplicantId() {
+        return applicantId;
+    }
+
+    public void setApplicantId(Integer applicantId) {
+        this.applicantId = applicantId;
+    }
+
+    public String getApplicantName() {
+        return applicantName;
+    }
+
+    public void setApplicantName(String applicantName) {
+        this.applicantName = applicantName == null ? null : applicantName.trim();
     }
 
     public Integer getOperatorId() {
@@ -80,14 +98,6 @@ public class ViewStore {
 
     public void setApplicationNumber(Short applicationNumber) {
         this.applicationNumber = applicationNumber;
-    }
-
-    public Integer getUseDirectionId() {
-        return useDirectionId;
-    }
-
-    public void setUseDirectionId(Integer useDirectionId) {
-        this.useDirectionId = useDirectionId;
     }
 
     public Integer getApplicationStateId() {
