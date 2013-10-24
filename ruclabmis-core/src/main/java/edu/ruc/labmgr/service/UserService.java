@@ -35,7 +35,7 @@ public class UserService {
         User user = null;
         try {
             UserCriteria criteria;
-            user = mapperUser.selectByPrimaryKey(0);
+            user = mapperUser.selectUserByLoginSn(loginSn);
         } catch (Exception e) {
             e.printStackTrace();
         }

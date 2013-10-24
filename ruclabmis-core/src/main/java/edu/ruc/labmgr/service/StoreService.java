@@ -3,7 +3,6 @@ package edu.ruc.labmgr.service;
 import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ViewStore;
 import edu.ruc.labmgr.domain.ViewStoreCriteria;
-import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.ViewStoreMapper;

@@ -355,123 +355,123 @@ public class MessageCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNull() {
-            addCriterion("time is null");
+        public Criteria andSendtimeIsNull() {
+            addCriterion("sendtime is null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIsNotNull() {
-            addCriterion("time is not null");
+        public Criteria andSendtimeIsNotNull() {
+            addCriterion("sendtime is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTimeEqualTo(Date value) {
-            addCriterion("time =", value, "time");
+        public Criteria andSendtimeEqualTo(Date value) {
+            addCriterion("sendtime =", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotEqualTo(Date value) {
-            addCriterion("time <>", value, "time");
+        public Criteria andSendtimeNotEqualTo(Date value) {
+            addCriterion("sendtime <>", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThan(Date value) {
-            addCriterion("time >", value, "time");
+        public Criteria andSendtimeGreaterThan(Date value) {
+            addCriterion("sendtime >", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeGreaterThanOrEqualTo(Date value) {
-            addCriterion("time >=", value, "time");
+        public Criteria andSendtimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("sendtime >=", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThan(Date value) {
-            addCriterion("time <", value, "time");
+        public Criteria andSendtimeLessThan(Date value) {
+            addCriterion("sendtime <", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeLessThanOrEqualTo(Date value) {
-            addCriterion("time <=", value, "time");
+        public Criteria andSendtimeLessThanOrEqualTo(Date value) {
+            addCriterion("sendtime <=", value, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeIn(List<Date> values) {
-            addCriterion("time in", values, "time");
+        public Criteria andSendtimeIn(List<Date> values) {
+            addCriterion("sendtime in", values, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotIn(List<Date> values) {
-            addCriterion("time not in", values, "time");
+        public Criteria andSendtimeNotIn(List<Date> values) {
+            addCriterion("sendtime not in", values, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeBetween(Date value1, Date value2) {
-            addCriterion("time between", value1, value2, "time");
+        public Criteria andSendtimeBetween(Date value1, Date value2) {
+            addCriterion("sendtime between", value1, value2, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andTimeNotBetween(Date value1, Date value2) {
-            addCriterion("time not between", value1, value2, "time");
+        public Criteria andSendtimeNotBetween(Date value1, Date value2) {
+            addCriterion("sendtime not between", value1, value2, "sendtime");
             return (Criteria) this;
         }
 
-        public Criteria andReadIsNull() {
-            addCriterion("read is null");
+        public Criteria andIfreadIsNull() {
+            addCriterion("ifread is null");
             return (Criteria) this;
         }
 
-        public Criteria andReadIsNotNull() {
-            addCriterion("read is not null");
+        public Criteria andIfreadIsNotNull() {
+            addCriterion("ifread is not null");
             return (Criteria) this;
         }
 
-        public Criteria andReadEqualTo(Boolean value) {
-            addCriterion("read =", value, "read");
+        public Criteria andIfreadEqualTo(Boolean value) {
+            addCriterion("ifread =", value, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadNotEqualTo(Boolean value) {
-            addCriterion("read <>", value, "read");
+        public Criteria andIfreadNotEqualTo(Boolean value) {
+            addCriterion("ifread <>", value, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadGreaterThan(Boolean value) {
-            addCriterion("read >", value, "read");
+        public Criteria andIfreadGreaterThan(Boolean value) {
+            addCriterion("ifread >", value, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("read >=", value, "read");
+        public Criteria andIfreadGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("ifread >=", value, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadLessThan(Boolean value) {
-            addCriterion("read <", value, "read");
+        public Criteria andIfreadLessThan(Boolean value) {
+            addCriterion("ifread <", value, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadLessThanOrEqualTo(Boolean value) {
-            addCriterion("read <=", value, "read");
+        public Criteria andIfreadLessThanOrEqualTo(Boolean value) {
+            addCriterion("ifread <=", value, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadIn(List<Boolean> values) {
-            addCriterion("read in", values, "read");
+        public Criteria andIfreadIn(List<Boolean> values) {
+            addCriterion("ifread in", values, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadNotIn(List<Boolean> values) {
-            addCriterion("read not in", values, "read");
+        public Criteria andIfreadNotIn(List<Boolean> values) {
+            addCriterion("ifread not in", values, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadBetween(Boolean value1, Boolean value2) {
-            addCriterion("read between", value1, value2, "read");
+        public Criteria andIfreadBetween(Boolean value1, Boolean value2) {
+            addCriterion("ifread between", value1, value2, "ifread");
             return (Criteria) this;
         }
 
-        public Criteria andReadNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("read not between", value1, value2, "read");
+        public Criteria andIfreadNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("ifread not between", value1, value2, "ifread");
             return (Criteria) this;
         }
     }

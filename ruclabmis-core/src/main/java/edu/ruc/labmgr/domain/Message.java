@@ -11,15 +11,14 @@ public class Message {
 
     private String content;
 
-    private Date time;
+    private Date sendtime;
 
-    private Boolean read;
+    private Boolean ifread;
 
+	private User sender;
 
+	private User receiver;
 
-	private User Sender;
-
-	private User Receiver;
     public Integer getId() {
         return id;
     }
@@ -52,34 +51,35 @@ public class Message {
         this.content = content == null ? null : content.trim();
     }
 
-    public Date getTime() {
-        return time;
+    public Date getSendtime() {
+        return sendtime;
     }
 
-    public void setTime(Date time) {
-        this.time = time;
+    public void setSendtime(Date sendtime) {
+        this.sendtime = sendtime;
     }
 
-    public Boolean getRead() {
-        return read;
+    public Boolean getIfread() {
+        return ifread;
     }
 
-    public void setRead(Boolean read) {
-        this.read = read;
+    public void setIfread(Boolean ifread) {
+        this.ifread = ifread;
     }
 	public User getSender() {
-		return Sender;
+		return sender;
 	}
 
 	public void setSender(User sender) {
-		Sender = sender;
+		this.sender = sender;
 	}
 
 	public User getReceiver() {
-		return Receiver;
+		return receiver;
 	}
 
 	public void setReceiver(User receiver) {
-		Receiver = receiver;
+		this.receiver = receiver;
 	}
+
 }

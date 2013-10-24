@@ -6,10 +6,14 @@
     <result column="sender_id" property="senderId" jdbcType="INTEGER" />
     <result column="receiver_id" property="receiverId" jdbcType="INTEGER" />
     <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="time" property="time" jdbcType="TIMESTAMP" />
-    <result column="read" property="read" jdbcType="BIT" />
+    <result column="sendtime" property="sendtime" jdbcType="TIMESTAMP" />
+    <result column="ifread" property="ifread" jdbcType="BIT" />
+      <association property="sender" column="sender_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
+      <association property="receiver" column="receiver_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
   </resultMap>
-  <sql id="Criteria_Where_Clause" >
+  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -38,9 +42,9 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Criteria_Where_Clause" >
+  <sql id="Update_By_Example_Where_Clause" >
     <where >
-      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -68,9 +72,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, sender_id, receiver_id, content, time, read
+    id, sender_id, receiver_id, content, sendtime, ifread
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.MessageCriteria" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.MessageCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -78,7 +82,7 @@
     <include refid="Base_Column_List" />
     from message
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -94,17 +98,19 @@
     delete from message
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.MessageCriteria" >
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.MessageCriteria" >
     delete from message
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Message" >
     insert into message (id, sender_id, receiver_id, 
-      content, time, read)
+      content, sendtime, ifread
+      )
     values (#{id,jdbcType=INTEGER}, #{senderId,jdbcType=INTEGER}, #{receiverId,jdbcType=INTEGER}, 
-      #{content,jdbcType=VARCHAR}, #{time,jdbcType=TIMESTAMP}, #{read,jdbcType=BIT})
+      #{content,jdbcType=VARCHAR}, #{sendtime,jdbcType=TIMESTAMP}, #{ifread,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Message" >
     insert into message
@@ -121,11 +127,11 @@
       <if test="content != null" >
         content,
       </if>
-      <if test="time != null" >
-        time,
+      <if test="sendtime != null" >
+        sendtime,
       </if>
-      <if test="read != null" >
-        read,
+      <if test="ifread != null" >
+        ifread,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -141,21 +147,21 @@
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="time != null" >
-        #{time,jdbcType=TIMESTAMP},
+      <if test="sendtime != null" >
+        #{sendtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="read != null" >
-        #{read,jdbcType=BIT},
+      <if test="ifread != null" >
+        #{ifread,jdbcType=BIT},
       </if>
     </trim>
   </insert>
-  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.MessageCriteria" resultType="java.lang.Integer" >
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.MessageCriteria" resultType="java.lang.Integer" >
     select count(*) from message
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByCriteriaSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map" >
     update message
     <set >
       <if test="record.id != null" >
@@ -170,27 +176,27 @@
       <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.time != null" >
-        time = #{record.time,jdbcType=TIMESTAMP},
+      <if test="record.sendtime != null" >
+        sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.read != null" >
-        read = #{record.read,jdbcType=BIT},
+      <if test="record.ifread != null" >
+        ifread = #{record.ifread,jdbcType=BIT},
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByCriteria" parameterType="map" >
+  <update id="updateByExample" parameterType="map" >
     update message
     set id = #{record.id,jdbcType=INTEGER},
       sender_id = #{record.senderId,jdbcType=INTEGER},
       receiver_id = #{record.receiverId,jdbcType=INTEGER},
       content = #{record.content,jdbcType=VARCHAR},
-      time = #{record.time,jdbcType=TIMESTAMP},
-      read = #{record.read,jdbcType=BIT}
+      sendtime = #{record.sendtime,jdbcType=TIMESTAMP},
+      ifread = #{record.ifread,jdbcType=BIT}
     <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Message" >
@@ -205,11 +211,11 @@
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="time != null" >
-        time = #{time,jdbcType=TIMESTAMP},
+      <if test="sendtime != null" >
+        sendtime = #{sendtime,jdbcType=TIMESTAMP},
       </if>
-      <if test="read != null" >
-        read = #{read,jdbcType=BIT},
+      <if test="ifread != null" >
+        ifread = #{ifread,jdbcType=BIT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -219,11 +225,11 @@
     set sender_id = #{senderId,jdbcType=INTEGER},
       receiver_id = #{receiverId,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
-      time = #{time,jdbcType=TIMESTAMP},
-      read = #{read,jdbcType=BIT}
+      sendtime = #{sendtime,jdbcType=TIMESTAMP},
+      ifread = #{ifread,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.MessageCriteria" id="selectByCriteriaWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.MessageCriteria" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -231,7 +237,7 @@
     <include refid="Base_Column_List" />
     from message
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
