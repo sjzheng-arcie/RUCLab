@@ -58,8 +58,32 @@ public class AnnouncementController {
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 
 		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause(" sendtime desc");
 		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
 		criteria.andReceiverIdEqualTo(user.getId());
+
+
+		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
+		mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+
+		return mav;
+	}
+	@RequestMapping("/unreadmessage")
+	public ModelAndView showUnreadMessage(HttpServletRequest request) {
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause("order by sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(user.getId());
+
 
 		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
@@ -115,6 +139,7 @@ public class AnnouncementController {
 		Message message= insertMessageIntoDB(request);
 		int result = messageService.insert(message);
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		mav.addObject("tabId",1);
 		return mav;
 	}
 	private Announcement initFromRequest(HttpServletRequest request) {
@@ -141,7 +166,8 @@ public class AnnouncementController {
 		if (!StringUtils.isNullOrEmpty(request.getParameter("id")))
 			message.setId(Integer.parseInt(request.getParameter("id")));
 		message.setContent(request.getParameter("content"));
-		message.setIfread(Boolean.parseBoolean(request.getParameter("ifRead")));
+		//message.setIfread(Boolean.parseBoolean(request.getParameter("ifRead")));
+		message.setIfread(false);
 		message.setReceiverId(receiverUser.getId());
 		message.setSenderId(user.getId());
 		message.setSendtime(new Date());
