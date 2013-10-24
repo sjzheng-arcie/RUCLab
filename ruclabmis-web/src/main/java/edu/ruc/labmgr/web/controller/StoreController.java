@@ -22,7 +22,7 @@ public class StoreController {
 
     private int currPage = 0;
 
-    @RequestMapping("/applylist")
+    @RequestMapping("/applyList")
     public ModelAndView pageList(HttpServletRequest request) {
         currPage = request.getParameter("page") == null   ?
                 (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
@@ -43,17 +43,14 @@ public class StoreController {
         mav.addObject("page", pageInfo.getPageInfo());
         return mav;
     }
-//
-//    @RequestMapping("/toAdd")
-//    public ModelAndView toAdd(HttpServletRequest request) {
-//        List<Role> roles = serviceRole.listAll();
-//        List<Major> majors = serviceMajor.listAll();
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/add");
-//        mav.addObject("roles", roles);
-//        mav.addObject("majors", majors);
-//        return mav;
-//    }
+
+    @RequestMapping("/toAddApply")
+    public ModelAndView toAdd(HttpServletRequest request) {
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
+
+        return mav;
+    }
 //
 //    @RequestMapping("/add")
 //    public ModelAndView add(HttpServletRequest request) {

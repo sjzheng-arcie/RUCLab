@@ -84,17 +84,16 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="examapply.html"><img src="../../../images/add_min.gif" width="10" height="10"
-                                                      border="0"/> <span class="STYLE1">批准申请</span></a>&nbsp;
+                        <a href="/equipment/jsp/dev/store/toAddApply"><img src="../../../images/add_min.gif" width="10" height="10"
+                                                border="0"/> <span class="STYLE1">新增申请</span></a>&nbsp;
+						<a href="examapply"><img src="../../../images/add_min.gif" width="10" height="10"
+                                                 border="0"/> <span class="STYLE1">批准申请</span></a>&nbsp;
       					<a href="" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
                                                               border="0"/> <span class="STYLE1">驳回申请</span></a>&nbsp;
       					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                border="0"/> <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
-      											<a href="apply.html"><img src="../../../images/add_min.gif" width="10"
-                                                                          height="10" border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
-                       
-                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+      					<a href="apply"><img src="../../../images/add_min.gif" width="10"
+                                                  height="10" border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
 	                </span>
                                                                 </div>
                                                             </td>
