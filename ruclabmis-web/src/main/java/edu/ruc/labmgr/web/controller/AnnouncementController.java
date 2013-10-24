@@ -1,10 +1,13 @@
 package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.Announcement;
-import edu.ruc.labmgr.domain.AnnouncementCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.AnnouncementService;
+import edu.ruc.labmgr.service.MessageService;
+import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -25,6 +28,12 @@ import java.util.Date;
 public class AnnouncementController {
 	@Autowired
 	AnnouncementService serviceAnnouncement;
+	@Autowired
+	MessageService messageService;
+	@Autowired
+	private UserService userService;
+
+
 
 
 	private int currPage = 0;
@@ -33,36 +42,55 @@ public class AnnouncementController {
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 		String tabId=request.getParameter("id");
-		AnnouncementCriteria announcementCriteria =  new AnnouncementCriteria();
-		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
-		ObjectListPage<Announcement> pageInfo = serviceAnnouncement.selectListPage(currPage, announcementCriteria);
-        System.out.print(pageInfo .getListObject().size());
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
-		mav.addObject("announcementLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+
 		mav.addObject("tabId", tabId);
 		return mav;
 	}
 	@RequestMapping("/message")
 	public ModelAndView showMessage(HttpServletRequest request) {
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
 
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(user.getId());
+
+		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
+		mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+
+		return mav;
+	}
+	@RequestMapping("/announcement")
+	public ModelAndView showAnnouncement(HttpServletRequest request) {
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		User user = new User();
+		user=userService.getUserByLoginSn(loginName);
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 
 		AnnouncementCriteria announcementCriteria =  new AnnouncementCriteria();
 		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
+		criteria.andPublishLimitEqualTo(0);
+		announcementCriteria.or(criteria);
 		ObjectListPage<Announcement> pageInfo = serviceAnnouncement.selectListPage(currPage, announcementCriteria);
 		System.out.print(pageInfo .getListObject().size());
-		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcement");
 		mav.addObject("announcementLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
 
 		return mav;
 	}
-	@RequestMapping("/addannouncement")
-	public ModelAndView addAnnouncement(HttpServletRequest request) {
+	@RequestMapping("/toaddannouncement")
+	public ModelAndView toaddAnnouncement(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/addannouncement");
 		return mav;
@@ -75,11 +103,18 @@ public class AnnouncementController {
 	}
 
 
-	@RequestMapping("/add")
-	public ModelAndView add(HttpServletRequest request) {
+	@RequestMapping("/addAnnouncement")
+	public ModelAndView addAnnouncement(HttpServletRequest request) {
 		Announcement announcement = initFromRequest(request);
 		int result = serviceAnnouncement.insert(announcement);
-		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/addannouncement");
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		return mav;
+	}
+	@RequestMapping("/addMessage")
+	public ModelAndView addMessage(HttpServletRequest request) {
+		Message message= insertMessageIntoDB(request);
+		int result = messageService.insert(message);
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
 		return mav;
 	}
 	private Announcement initFromRequest(HttpServletRequest request) {
@@ -93,5 +128,23 @@ public class AnnouncementController {
 		announcement.setTitle(request.getParameter("title"));
 		announcement.setPublishTime(new Date());
 		return announcement;
+	}
+	private Message insertMessageIntoDB(HttpServletRequest request) {
+
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+		User receiverUser = new User();
+		receiverUser=userService.getUserByLoginSn(request.getParameter("receiver"));
+
+		Message message= new Message();
+		if (!StringUtils.isNullOrEmpty(request.getParameter("id")))
+			message.setId(Integer.parseInt(request.getParameter("id")));
+		message.setContent(request.getParameter("content"));
+		message.setIfread(Boolean.parseBoolean(request.getParameter("ifRead")));
+		message.setReceiverId(receiverUser.getId());
+		message.setSenderId(user.getId());
+		message.setSendtime(new Date());
+		return message;
 	}
 }
