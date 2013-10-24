@@ -52,6 +52,12 @@ public class MessageService {
 		return retList;
 	}
 
+	public  int getCount(MessageCriteria criteria){
+
+		int count = messageMapper.countByExample(criteria);
+
+		return count;
+	}
 	public int insert(Message message) {
 		int result = 0;
 		try {

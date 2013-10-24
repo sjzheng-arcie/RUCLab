@@ -15,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -53,7 +54,6 @@ public class AnnouncementController {
 		User user = new User();
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
-
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 
@@ -70,28 +70,7 @@ public class AnnouncementController {
 
 		return mav;
 	}
-	@RequestMapping("/unreadmessage")
-	public ModelAndView showUnreadMessage(HttpServletRequest request) {
-		User user = new User();
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
 
-		currPage = request.getParameter("page") == null   ?
-				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
-		MessageCriteria messageCriteria=  new MessageCriteria();
-		messageCriteria.setOrderByClause("order by sendtime desc");
-		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-		criteria.andReceiverIdEqualTo(user.getId());
-
-
-		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
-		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
-		mav.addObject("messageLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
-
-		return mav;
-	}
 	@RequestMapping("/announcement")
 	public ModelAndView showAnnouncement(HttpServletRequest request) {
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();

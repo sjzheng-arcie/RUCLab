@@ -48,7 +48,7 @@
     <div class="top_left"><img src="images/logo.gif" width="305" height="103"></div>
     <div class="top_right">
         <div class="top_right_top"><span style="float:right">您好！<a>张超</a>[设备管理员] <a href="sp/announcement/remind/remind?id=1"
-                                                                                    target="main">短消息(5)</a> |
+                                                                                    target="main">短消息(${unreadCount})</a> |
             |[<a href="">退出</a>]|<a>登陆 </a> | <a
                 href="jsp/sys/user/password.jsp" target="main">修改密码</a> | <a>帮助？</a> </span></div>
         <ul class="top_right_menu">
