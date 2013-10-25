@@ -8,7 +8,7 @@
     <title>welcome</title>
     <link rel="stylesheet" href="css/mian.css" type="text/css"/>
 </head>
-<script type="text/javascript" src="js/jquery-1.4.2.min.js"></script>
+<script type="text/javascript" src="../js/jquery-1.4.2.min.js"></script>
 <script type="text/javascript">
     $(function () {
         var indexMainCon_height = pageHeight();
