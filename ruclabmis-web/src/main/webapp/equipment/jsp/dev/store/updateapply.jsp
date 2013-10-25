@@ -12,6 +12,23 @@
         document.form1.submit();
     }
 
+    function toAddEquipment(){
+        var str = window.showModalDialog("adddevice.jsp", null,
+                "dialogWidth=800px;dialogHeight=400px");
+//        var option = document.createElement('option');
+//        option.deviceNo = str[0];
+//        option.factoryNo = str[1];
+//        option.accessoryNum= str[2];
+    }
+
+    function toEditEquipment(){
+        var str = window.showModalDialog("editdevice.jsp", null,
+                "dialogWidth=800px;dialogHeight=400px");
+//        var option = document.createElement('option');
+//        option.deviceNo = str[0];
+//        option.factoryNo = str[1];
+//        option.accessoryNum= str[2];
+    }
 </script>
 <body>
 <form name="form1" method="post">
@@ -79,9 +96,14 @@
 
 
                                     <tr>
-                                        <td align="center">单据号</td>
-                                        <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span></td>
+                                        <td align="center">单据号</td> &nbsp;
+                                        <td>
+                                            <input name="name" id="name" value="${store.applicationId}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required|isNumber"
+                                                   errmsg="单据号不能为空!|单据号只能为数字"/>
+                                            <span style="color:red;">*</span>&nbsp;&nbsp;
+                                        </td>
                                         <td align="center">数量</td>
                                         <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span></td>
@@ -93,8 +115,7 @@
                                         <td align="center">经办人</td>
                                         <td>&nbsp;<input type="text" style="color:#aaa"  readonly="readonly" value="<shiro:principal/>"> <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span></td>
-                                    </tr>
-                                    <tr>
+
                                         <td align="center">负责人</td>
                                         <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span></td>
@@ -147,11 +168,13 @@
                                         <td>
                                             <div align="right">
                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                        <a onclick="addDevice()"><img src="../../../images/add_min.gif" width="10" height="10"
-                                                                                      border="0"/> <span class="STYLE1">添加设备</span></a>&nbsp;
-                                                      <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                      <a href="#" onclick="toAddEquipment(); return false">
+                                                          <img src="../../../images/add_min.gif" width="10" height="10"border="0"/>
+                                                          <span class="STYLE1">添加设备</span></a>&nbsp;
+                                                      <a href="#" onclick="toEditEquipment(); return false">
+                                                          <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                           <span class="STYLE1">修改设备</span></a>&nbsp;
-                                                     <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                     <a href="add.html"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                          <span class="STYLE1">移除设备</span></a>&nbsp;
                                               </span>
                                             </div>
@@ -168,44 +191,35 @@
                     <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
                         <table width="100%" class="table" id="table1" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                             <tr>
-                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                    <div align="center">
-                                        <input type="checkbox" name="checkbox" id="checkbox" onclick="checkAll(this);"/>
-                                    </div>
-                                </td>
                                 <td width="40" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">序号</span></div>
                                 </td>
-
                                 <td width="100" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">仪器编号</span></div>
                                 </td>
                                 <td width="100" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">分类号</span></div>
+                                    <div align="center"><span class="STYLE10">名称</span></div>
+                                </td>
                                 <td width="100" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">出厂号</span></div>
                                 </td>
                                 <td width="100" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">备注</span></div>
+                                    <div align="center"><span class="STYLE10">详细信息</span></div>
+                                </td>
+                                <td width="100" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">删除设备</span></div>
                                 </td>
                             </tr>
-                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/></td>
-                                <td>1</td>
-
-                                <td title="">SQ0001</td>
-
-
-
-                                <td title="">79017700</td>
-
-                                <td title="">04410101</td>
-
-
-                                <td title="">备注</td>
-
-                            </tr>
-
+                            <c:forEach items="${store.equipments}" var="item">
+                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                    <td>${item.id}</td>
+                                    <td>${item.sn}</td>
+                                    <td>${item.name}</td>
+                                    <td>${item.factoryNumber}</td>
+                                    <td><a href="/equipment/jsp/dev/store/toEditEquipment?id=${item.id}"> <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a></td>
+                                    <td><a href="/equipment/jsp/dev/store/toDeleteEquipment?id=1"> <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a></td>
+                                </tr>
+                            </c:forEach>
                             <tr height="16px"></tr>
                         </table>
                     </div>

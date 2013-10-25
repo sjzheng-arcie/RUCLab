@@ -2,6 +2,7 @@ package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ApplicationForm;
+import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.ViewStore;
 import edu.ruc.labmgr.domain.ViewStoreCriteria;
 import edu.ruc.labmgr.service.StoreService;
@@ -18,7 +19,8 @@ import javax.servlet.http.HttpServletRequest;
 public class StoreController {
     @Autowired
     StoreService serviceStore;
-
+    @Autowired
+    StoreService serviceEquipment;
 
     private int currPage = 0;
 
@@ -51,6 +53,16 @@ public class StoreController {
 
         return mav;
     }
+
+    @RequestMapping("/toAddEquipmentToApply")
+    public ModelAndView toAddEquipmentToApply(HttpServletRequest request) {
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
+
+        return mav;
+    }
+
+
 //
 //    @RequestMapping("/add")
 //    public ModelAndView add(HttpServletRequest request) {
@@ -63,20 +75,39 @@ public class StoreController {
 //        }
 //    }
 //
-//    @RequestMapping("/toUpdate")
-//    public ModelAndView toUpdate(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        User user = serviceUser.selectByPrimaryKey(id);
-//        List<Role> roles = serviceRole.listAll();
-//        List<Major> majors = serviceMajor.listAll();
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/update");
-//        mav.addObject("user", user);
-//        mav.addObject("roles", roles);
-//        mav.addObject("majors", majors);
-//        return mav;
-//    }
+    @RequestMapping("/toAddEquipment")
+    public ModelAndView toAddEquipment(HttpServletRequest request) {
+//        Equipment equipment = initEquipmentFromRequest(request);
+//        int applyId = request.getParameter("name");
+//        int result = serviceStore.insertEquipmentIntoApply(equipment);
+//        if (result > 0) {
+//            return pageList(request);
+//        } else {
+            return null;
+//        }
+    }
+
+    @RequestMapping("/toEditEquipment")
+    public ModelAndView toEditEquipment(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(id);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
+        mav.addObject("equipment", equipment);
+        return mav;
+    }
+
+    @RequestMapping("/toUpdate")
+    public ModelAndView toUpdate(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+
+        ViewStore store = serviceStore.selectByPrimaryKey(id);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/updateapply");
+        mav.addObject("store", store);
+        return mav;
+    }
 //
 //    @RequestMapping("/update")
 //    public ModelAndView update(HttpServletRequest request) {
@@ -131,6 +162,25 @@ public class StoreController {
 //    }
 //
 //    private User initFromRequest(HttpServletRequest req) {
+//        User user = new User();
+//        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
+//            user.setId(Integer.parseInt(req.getParameter("id")));
+//
+//        user.setSn(req.getParameter("sn"));
+//
+//        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
+//            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
+//            user.setPassword(passwordMD5);
+//        }
+//        user.setName(req.getParameter("name"));
+//        user.setPhoneNum(req.getParameter("phoneNum"));
+//        user.setEmail(req.getParameter("email"));
+//        user.setComment(req.getParameter("comment"));
+//        user.setRoleId(Integer.parseInt(req.getParameter("role")));
+//        user.setMajorId(Integer.parseInt(req.getParameter("major")));
+//        return user;
+//    }
+//private Equipment initEquipmentFromRequest(HttpServletRequest req) {
 //        User user = new User();
 //        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
 //            user.setId(Integer.parseInt(req.getParameter("id")));
