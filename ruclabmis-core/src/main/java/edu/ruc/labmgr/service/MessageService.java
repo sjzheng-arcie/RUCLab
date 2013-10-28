@@ -33,7 +33,7 @@ public class MessageService {
 
 			int limit = Integer.valueOf(count);
 			int currentResult = (currentPage - 1) * limit;
-			int totalCount = messageMapper.countByExample(criteria);
+			int totalCount = messageMapper.countByCriteria(criteria);
 			int pageCount = (totalCount % limit == 0) ? (totalCount / limit) : (1 + totalCount / limit);
 
 			PageInfo pageInfo = new PageInfo();
@@ -42,7 +42,7 @@ public class MessageService {
 			pageInfo.setCurrentPage(currentPage);
 
 			RowBounds bounds = new RowBounds(currentResult, limit);
-			List<Message> messageList= messageMapper.selectByExampleWithRowbounds(criteria, bounds);
+			List<Message> messageList= messageMapper.selectByCriteriaWithRowbounds(criteria, bounds);
 
 			retList = new ObjectListPage(pageInfo, messageList);
 		} catch (Exception e) {

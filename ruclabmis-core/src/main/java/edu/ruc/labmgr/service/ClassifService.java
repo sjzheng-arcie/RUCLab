@@ -17,12 +17,10 @@ public class ClassifService {
     @Autowired
     private ClassifMapper mapper;
 
-    @RequiresRoles("administrators")
     public Classif getClassifItem(int id) {
         return mapper.selectByPrimaryKey(id);
     }
 
-    @RequiresRoles("administrators")
     public List<Classif> getItemsByParentID(int parent_id) {
         ClassifCriteria classifCriteria = new ClassifCriteria();
         ClassifCriteria.Criteria criteria = classifCriteria.createCriteria();

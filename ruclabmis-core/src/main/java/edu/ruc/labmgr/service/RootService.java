@@ -28,7 +28,7 @@ public class RootService {
 
 			int limit = Integer.valueOf(count);
 			int currentResult = (currentPage - 1) * limit;
-			int totalCount = applicationFormMapper.countByExample(criteria);
+			int totalCount = applicationFormMapper.countByCriteria(criteria);
 			int pageCount = (totalCount % limit == 0) ? (totalCount / limit) : (1 + totalCount / limit);
 
 			PageInfo pageInfo = new PageInfo();
@@ -37,7 +37,7 @@ public class RootService {
 			pageInfo.setCurrentPage(currentPage);
 
 			RowBounds bounds = new RowBounds(currentResult, limit);
-			List<ApplicationForm> announcementList= applicationFormMapper.selectByExampleWithRowbounds(criteria, bounds);
+			List<ApplicationForm> announcementList= applicationFormMapper.selectByCriteriaWithRowbounds(criteria, bounds);
 
 			retList = new ObjectListPage(pageInfo, announcementList);
 		} catch (Exception e) {

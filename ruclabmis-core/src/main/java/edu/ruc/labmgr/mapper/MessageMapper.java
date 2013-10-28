@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface MessageMapper {
-    int countByExample(MessageCriteria example);
+    int countByCriteria(MessageCriteria criteria);
 
-    int deleteByExample(MessageCriteria example);
+    int deleteByCriteria(MessageCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface MessageMapper {
 
     int insertSelective(Message record);
 
-    List<Message> selectByExampleWithRowbounds(MessageCriteria example, RowBounds rowBounds);
+    List<Message> selectByCriteriaWithRowbounds(MessageCriteria criteria, RowBounds rowBounds);
 
-    List<Message> selectByExample(MessageCriteria example);
+    List<Message> selectByCriteria(MessageCriteria criteria);
 
     Message selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Message record, @Param("example") MessageCriteria example);
+    int updateByCriteriaSelective(@Param("record") Message record, @Param("criteria") MessageCriteria criteria);
 
-    int updateByExample(@Param("record") Message record, @Param("example") MessageCriteria example);
+    int updateByCriteria(@Param("record") Message record, @Param("criteria") MessageCriteria criteria);
 
     int updateByPrimaryKeySelective(Message record);
 
