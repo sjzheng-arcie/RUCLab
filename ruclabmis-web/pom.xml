@@ -12,8 +12,24 @@
     <name>ruclabmis-web Maven Webapp</name>
     <url>http://maven.apache.org</url>
 
+    <properties>
+        <version.jetty>7.6.5.v20120716</version.jetty>
+    </properties>
+
     <build>
         <finalName>ruclabmis-web</finalName>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.tomcat.maven</groupId>
+                <artifactId>tomcat7-maven-plugin</artifactId>
+                <version>2.1</version>
+                <configuration>
+                    <port>8090</port>
+                    <path>/</path>
+                </configuration>
+            </plugin>
+
+        </plugins>
     </build>
 
     <dependencies>
@@ -61,6 +77,7 @@
             <artifactId>standard</artifactId>
             <version>1.1.2</version>
         </dependency>
+
         <dependency>
             <groupId>org.codehaus.jackson</groupId>
             <artifactId>jackson-core-asl</artifactId>

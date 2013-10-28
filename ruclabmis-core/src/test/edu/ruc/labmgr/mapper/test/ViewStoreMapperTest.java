@@ -14,6 +14,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
+import java.text.DateFormat;
 import java.util.List;
 
 public class ViewStoreMapperTest {
@@ -48,6 +49,13 @@ public class ViewStoreMapperTest {
         System.out.println("testQueryList");
     }
 
+
+    @Test
+    public void testSelectByPrimaryKey() throws Exception {
+        ViewStore store = mapper.selectByPrimaryKey(0);
+
+        System.out.println(DateFormat.getDateInstance().format(store.getEquipments().get(0).getAcquisitionDate()));
+    }
 
     @Ignore
     public void testListAll() throws Exception {

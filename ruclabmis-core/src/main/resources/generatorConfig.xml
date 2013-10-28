@@ -46,7 +46,7 @@
 
 
         <!-- 表映射的配置示例-->
-        <table tableName="application_form"/>
+        <!--<table tableName="application_form"/>-->
         <!--<table tableName="arrangement"/>-->
         <!--<table tableName="arrangement_desk"/>-->
         <!--<table tableName="arrangement_equipment"/>-->
@@ -79,7 +79,7 @@
         <!--<table tableName="title"/>-->
         <!--<table tableName="announcement"/>-->
         <!--<table tableName="message"/>-->
-        <table tableName="view_store" />
+        <!--<table tableName="view_store" />-->
 
     </context>
 </generatorConfiguration>
