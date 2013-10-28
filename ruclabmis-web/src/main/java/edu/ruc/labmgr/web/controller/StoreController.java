@@ -1,11 +1,10 @@
 package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.ApplicationForm;
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.ViewStore;
-import edu.ruc.labmgr.domain.ViewStoreCriteria;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.ClassifService;
 import edu.ruc.labmgr.service.StoreService;
+import edu.ruc.labmgr.utils.Consts;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/equipment/jsp/dev/store")
@@ -20,7 +21,7 @@ public class StoreController {
     @Autowired
     StoreService serviceStore;
     @Autowired
-    StoreService serviceEquipment;
+    ClassifService serviceClassif;
 
     private int currPage = 0;
 
@@ -63,11 +64,11 @@ public class StoreController {
     }
 
 
-//
+    //
 //    @RequestMapping("/add")
 //    public ModelAndView add(HttpServletRequest request) {
-//        User user = initFromRequest(request);
-//        int result = serviceUser.insert(user);
+//        equipment equipment = initFromRequest(request);
+//        int result = serviceequipment.insert(equipment);
 //        if (result > 0) {
 //            return pageList(request);
 //        } else {
@@ -83,7 +84,7 @@ public class StoreController {
 //        if (result > 0) {
 //            return pageList(request);
 //        } else {
-            return null;
+        return null;
 //        }
     }
 
@@ -92,9 +93,13 @@ public class StoreController {
         int id = Integer.parseInt(request.getParameter("id"));
 
         Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(id);
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
         mav.addObject("equipment", equipment);
+        mav.addObject("useDirections", useDirections);
+        mav.addObject("fundingSubjects", fundingSubjects);
         return mav;
     }
 
@@ -108,11 +113,22 @@ public class StoreController {
         mav.addObject("store", store);
         return mav;
     }
-//
+
+    @RequestMapping("/editEquipment")
+    public ModelAndView update(HttpServletRequest request) {
+        Equipment equipment = initEquipmentFromRequest(request);
+        int result = serviceStore.updateEquipmentByPrimaryKey(equipment);
+        if (result > 0) {
+            return pageList(request);
+        } else {
+            return null;
+        }
+    }
+    //
 //    @RequestMapping("/update")
 //    public ModelAndView update(HttpServletRequest request) {
-//        User user = initFromRequest(request);
-//        int result = serviceUser.update(user);
+//        equipment equipment = initFromRequest(request);
+//        int result = serviceequipment.update(equipment);
 //        if (result > 0) {
 //            return pageList(request);
 //        } else {
@@ -123,7 +139,7 @@ public class StoreController {
 //    @RequestMapping("/delete")
 //    public ModelAndView delete(HttpServletRequest request) {
 //        int id = Integer.parseInt(request.getParameter("id"));
-//        int result = serviceUser.delete(id);
+//        int result = serviceequipment.delete(id);
 //
 //        if (result > 0) {
 //            return pageList(request);
@@ -136,7 +152,7 @@ public class StoreController {
 //    public ModelAndView toUpdatePassword(HttpServletRequest request) {
 //        int id = Integer.parseInt(request.getParameter("id"));
 //
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
+//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/equipment/password");
 //        mav.addObject("id",id);
 //
 //        return mav;
@@ -148,11 +164,11 @@ public class StoreController {
 //        String newPassword = request.getParameter("newPassword");
 //        int id = Integer.parseInt(request.getParameter("id"));
 //
-//        int result = serviceUser.updatePassword(id, oriPassword, newPassword);
+//        int result = serviceequipment.updatePassword(id, oriPassword, newPassword);
 //        if (result > 0) {
 //            return pageList(request);
 //        } else if (result == -1) {
-//            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
+//            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/equipment/password");
 //            mav.addObject("id",id);
 //            mav.addObject("errMsg","原密码输入不一致，请重新输入!");
 //            return mav;
@@ -161,42 +177,45 @@ public class StoreController {
 //        }
 //    }
 //
-//    private User initFromRequest(HttpServletRequest req) {
-//        User user = new User();
+//    private equipment initFromRequest(HttpServletRequest req) {
+//        equipment equipment = new equipment();
 //        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-//            user.setId(Integer.parseInt(req.getParameter("id")));
+//            equipment.setId(Integer.parseInt(req.getParameter("id")));
 //
-//        user.setSn(req.getParameter("sn"));
+//        equipment.setSn(req.getParameter("sn"));
 //
 //        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
 //            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-//            user.setPassword(passwordMD5);
+//            equipment.setPassword(passwordMD5);
 //        }
-//        user.setName(req.getParameter("name"));
-//        user.setPhoneNum(req.getParameter("phoneNum"));
-//        user.setEmail(req.getParameter("email"));
-//        user.setComment(req.getParameter("comment"));
-//        user.setRoleId(Integer.parseInt(req.getParameter("role")));
-//        user.setMajorId(Integer.parseInt(req.getParameter("major")));
-//        return user;
+//        equipment.setName(req.getParameter("name"));
+//        equipment.setPhoneNum(req.getParameter("phoneNum"));
+//        equipment.setEmail(req.getParameter("email"));
+//        equipment.setComment(req.getParameter("comment"));
+//        equipment.setRoleId(Integer.parseInt(req.getParameter("role")));
+//        equipment.setMajorId(Integer.parseInt(req.getParameter("major")));
+//        return equipment;
 //    }
-//private Equipment initEquipmentFromRequest(HttpServletRequest req) {
-//        User user = new User();
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-//            user.setId(Integer.parseInt(req.getParameter("id")));
-//
-//        user.setSn(req.getParameter("sn"));
-//
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
-//            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-//            user.setPassword(passwordMD5);
-//        }
-//        user.setName(req.getParameter("name"));
-//        user.setPhoneNum(req.getParameter("phoneNum"));
-//        user.setEmail(req.getParameter("email"));
-//        user.setComment(req.getParameter("comment"));
-//        user.setRoleId(Integer.parseInt(req.getParameter("role")));
-//        user.setMajorId(Integer.parseInt(req.getParameter("major")));
-//        return user;
-//    }
+    private Equipment initEquipmentFromRequest(HttpServletRequest req) {
+        Equipment equipment = new Equipment();
+        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
+            equipment.setId(Integer.parseInt(req.getParameter("id")));
+
+        equipment.setSn(req.getParameter("sn"));
+        equipment.setName(req.getParameter("name"));
+        equipment.setCategoryId(Short.parseShort(req.getParameter("category_id")));
+        equipment.setName(req.getParameter("name"));
+        equipment.setModelNumber(req.getParameter("model_number"));
+        equipment.setSpecifications(req.getParameter("specifications"));
+        equipment.setUnitPrice(Float.parseFloat(req.getParameter("unit_price")));
+        equipment.setFactoryNumber(req.getParameter("factory_number"));
+        equipment.setManufactureDate(Date.valueOf(req.getParameter("manufacture_date")));
+        equipment.setAcquisitionDate(Date.valueOf(req.getParameter("acquisition_date")));
+        equipment.setCountry(req.getParameter("country"));
+        equipment.setFundingSubjectId(Integer.parseInt(req.getParameter("funding_subject")));
+        equipment.setUseDirectionId(Integer.parseInt(req.getParameter("use_direction")));
+        equipment.setStateId(Integer.parseInt(req.getParameter("state")));
+
+        return equipment;
+    }
 }

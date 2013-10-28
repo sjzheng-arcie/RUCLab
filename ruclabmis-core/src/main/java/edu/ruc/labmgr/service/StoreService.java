@@ -74,4 +74,15 @@ public class StoreService {
         }
         return equipment;
     }
+
+
+    public int updateEquipmentByPrimaryKey(Equipment equipment) {
+        int retVal = 0;
+        try {
+            retVal = mapperEquipment.updateByPrimaryKey(equipment);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return retVal;
+    }
 }

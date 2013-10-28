@@ -50,7 +50,7 @@ function toUpdate() {
     if (len != undefined) {
         for (var i = 0; i < len; i++) {
             if (eval(document.listForm.idcheckbox[i].checked)) {
-                selectedItem = document.listForm.idcheckbox[selectedItem].value;
+                selectedItem = document.listForm.idcheckbox[i].value;
                 flag++;
             }
         }

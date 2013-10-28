@@ -5,6 +5,8 @@ public class ApplicationForm {
 
     private String sn;
 
+    private Integer type;
+
     private Integer applicantId;
 
     private Integer operatorId;
@@ -29,6 +31,14 @@ public class ApplicationForm {
 
     public void setSn(String sn) {
         this.sn = sn == null ? null : sn.trim();
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Integer getApplicantId() {

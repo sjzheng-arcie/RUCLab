@@ -4,6 +4,7 @@
   <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplicationForm" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="applicant_id" property="applicantId" jdbcType="INTEGER" />
     <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
     <result column="approver_id" property="approverId" jdbcType="INTEGER" />
@@ -69,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, sn, applicant_id, operator_id, approver_id, application_number, state_id
+    id, sn, type, applicant_id, operator_id, approver_id, application_number, state_id
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
     select
@@ -102,12 +103,12 @@
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
-    insert into application_form (id, sn, applicant_id, 
-      operator_id, approver_id, application_number, 
-      state_id)
-    values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{applicantId,jdbcType=INTEGER}, 
-      #{operatorId,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER}, #{applicationNumber,jdbcType=SMALLINT}, 
-      #{stateId,jdbcType=INTEGER})
+    insert into application_form (id, sn, type, 
+      applicant_id, operator_id, approver_id, 
+      application_number, state_id)
+    values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, 
+      #{applicantId,jdbcType=INTEGER}, #{operatorId,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER}, 
+      #{applicationNumber,jdbcType=SMALLINT}, #{stateId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
     insert into application_form
@@ -117,6 +118,9 @@
       </if>
       <if test="sn != null" >
         sn,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="applicantId != null" >
         applicant_id,
@@ -140,6 +144,9 @@
       </if>
       <if test="sn != null" >
         #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="applicantId != null" >
         #{applicantId,jdbcType=INTEGER},
@@ -173,6 +180,9 @@
       <if test="record.sn != null" >
         sn = #{record.sn,jdbcType=VARCHAR},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
       <if test="record.applicantId != null" >
         applicant_id = #{record.applicantId,jdbcType=INTEGER},
       </if>
@@ -197,6 +207,7 @@
     update application_form
     set id = #{record.id,jdbcType=INTEGER},
       sn = #{record.sn,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
       applicant_id = #{record.applicantId,jdbcType=INTEGER},
       operator_id = #{record.operatorId,jdbcType=INTEGER},
       approver_id = #{record.approverId,jdbcType=INTEGER},
@@ -211,6 +222,9 @@
     <set >
       <if test="sn != null" >
         sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
       </if>
       <if test="applicantId != null" >
         applicant_id = #{applicantId,jdbcType=INTEGER},
@@ -233,6 +247,7 @@
   <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
     update application_form
     set sn = #{sn,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       applicant_id = #{applicantId,jdbcType=INTEGER},
       operator_id = #{operatorId,jdbcType=INTEGER},
       approver_id = #{approverId,jdbcType=INTEGER},
