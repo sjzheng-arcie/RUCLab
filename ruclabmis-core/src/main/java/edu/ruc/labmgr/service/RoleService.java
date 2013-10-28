@@ -15,11 +15,8 @@ public class RoleService {
 
     public Role selectByPrimaryKey(int id) {
         Role Role = null;
-        try {
-            Role = (Role) mapperRole.selectByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        Role = (Role) mapperRole.selectByPrimaryKey(id);
+
         return Role;
     }
 

@@ -23,47 +23,39 @@ public class UserService {
 
     public User selectByPrimaryKey(int id) {
         User user = null;
-        try {
-            user = mapperUser.selectByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        user = mapperUser.selectByPrimaryKey(id);
+
         return user;
     }
 
     public User getUserByLoginSn(String loginSn) {
         User user = null;
-        try {
-            UserCriteria criteria;
-            user = mapperUser.selectUserByLoginSn(loginSn);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        UserCriteria criteria;
+        user = mapperUser.selectUserByLoginSn(loginSn);
+
         return user;
     }
 
     public ObjectListPage<User> selectListPage(int currentPage, UserCriteria criteria) {
         ObjectListPage<User> retList = null;
-        try {
-            String count = SysUtil.getConfigValue("showCount", "10");
 
-            int limit = Integer.valueOf(count);
-            int currentResult = (currentPage - 1) * limit;
-            int totleCount = mapperUser.countByCriteria(criteria);
-            int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
+        String count = SysUtil.getConfigValue("showCount", "10");
 
-            PageInfo pageInfo = new PageInfo();
-            pageInfo.setTotalResult(totleCount);
-            pageInfo.setTotalPage(pageCount);
-            pageInfo.setCurrentPage(currentPage);
+        int limit = Integer.valueOf(count);
+        int currentResult = (currentPage - 1) * limit;
+        int totleCount = mapperUser.countByCriteria(criteria);
+        int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
 
-            RowBounds bounds = new RowBounds(currentResult, limit);
-            List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalResult(totleCount);
+        pageInfo.setTotalPage(pageCount);
+        pageInfo.setCurrentPage(currentPage);
 
-            retList = new ObjectListPage<User>(pageInfo, users);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        RowBounds bounds = new RowBounds(currentResult, limit);
+        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
+
+        retList = new ObjectListPage<User>(pageInfo, users);
+
 
         return retList;
     }
@@ -71,49 +63,37 @@ public class UserService {
 
     public int insert(User user) {
         int result = 0;
-        try {
-            result = mapperUser.insert(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = mapperUser.insert(user);
+
         return result;
     }
 
     public int update(User user) {
         int result = 0;
-        try {
-            result = mapperUser.updateByPrimaryKeySelective(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = mapperUser.updateByPrimaryKeySelective(user);
+
         return result;
     }
 
     public int updatePassword(int id, String oriPassword, String newPassword) {
         int result = 0;
-        try {
-            User user = mapperUser.selectByPrimaryKey(id);
-            if(!CipherUtil.validatePassword(user.getPassword(), oriPassword)){
-                return -1;
-            };
+        User user = mapperUser.selectByPrimaryKey(id);
+        if(!CipherUtil.validatePassword(user.getPassword(), oriPassword)){
+            return -1;
+        };
 
-            User updateUser = new User();
-            updateUser.setId(id);
-            updateUser.setPassword(CipherUtil.generatePassword(newPassword));
-            result = mapperUser.updateByPrimaryKeySelective(updateUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        User updateUser = new User();
+        updateUser.setId(id);
+        updateUser.setPassword(CipherUtil.generatePassword(newPassword));
+        result = mapperUser.updateByPrimaryKeySelective(updateUser);
+
         return result;
     }
 
     public int delete(int id) {
         int result = 0;
-        try {
-            result = mapperUser.deleteByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = mapperUser.deleteByPrimaryKey(id);
+
         return result;
     }
 

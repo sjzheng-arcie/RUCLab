@@ -112,25 +112,26 @@
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Equipment" >
-    insert into equipment (id, category_id, sn, 
-      name, model_number, specifications, 
-      unit_price, vender, factory_number, 
-      manufacture_date, acquisition_date, country, 
-      funding_subject_id, use_direction_id, state_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{categoryId,jdbcType=SMALLINT}, #{sn,jdbcType=VARCHAR}, 
-      #{name,jdbcType=VARCHAR}, #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, 
-      #{unitPrice,jdbcType=REAL}, #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, 
-      #{manufactureDate,jdbcType=DATE}, #{acquisitionDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, 
-      #{fundingSubjectId,jdbcType=INTEGER}, #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER}
-      )
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into equipment (category_id, sn, name, 
+      model_number, specifications, unit_price, 
+      vender, factory_number, manufacture_date, 
+      acquisition_date, country, funding_subject_id, 
+      use_direction_id, state_id)
+    values (#{categoryId,jdbcType=SMALLINT}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, 
+      #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, #{manufactureDate,jdbcType=DATE}, 
+      #{acquisitionDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, #{fundingSubjectId,jdbcType=INTEGER}, 
+      #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into equipment
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="categoryId != null" >
         category_id,
       </if>
@@ -175,9 +176,6 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="categoryId != null" >
         #{categoryId,jdbcType=SMALLINT},
       </if>

@@ -1,31 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
+<script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
-    function save() {
-        document.form1.action = "list.html";
-        document.form1.submit();
-    }
-
-    function addDevice(){
-        var deviceNo=document.getElementById('deviceNo').value;
-        var factoryNo=document.getElementById('factoryNo').value;
-        var accessoryNum=document.getElementById('accessoryNum').value;
-        var device= new Array(deviceNo,factoryNo,accessoryNum)
-        if(deviceNo!=""&&factoryNo!=""&&accessoryNum!=""){
-            window.returnValue=device;
-            window.close();
-        }else{
-            alert("请输入完整信息");
+    function saveEquipment() {
+        if(!validator(document.mainForm)){
+            return;
         }
-        window.close();
+        document.mainForm.action = "addEquipment";
+        document.mainForm.submit();
     }
 </script>
 <body>
-<form name="form1" method="post">
+<form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -35,7 +27,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备信息管理 > 设备资产报增</div>
+                    <div class="titlebt">设备信息管理 > 设备资产报增 > 添加设备 </div>
                 </td>
             </tr>
         </table>
@@ -62,13 +54,13 @@
                                                         <div align="center"><img src="../../../images/tb.gif" width="14"
                                                                                  height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产报增单</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产报增单 > 添加设备</span>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </td>
                                         <td>
-                                            <div align="right"><span class="STYLE1">&nbsp;</span><span class="STYLE1"> &nbsp;</span>
+                                            <div align="right"><span class="STYLE1">&nbsp;</span><span class="STYLE1"></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -87,144 +79,130 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr style="height: 30px;">
-                                        <td nowrap align="right">报增单位:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <input name="application_id" id="application_id" type="hidden" value="${applicationId}">
+
+                                        <td align="center">设备编号</td>
+                                        <td>
+                                            <input name="sn" id="sn" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required|isNumber"
+                                                   errmsg="设备编号不能为空!|设备编号只能为数字"/>
+                                            <span style="color:red;">*</span>
                                         </td>
-                                        <td nowrap align="right">时间:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">分类号</td>
+                                        <td>
+                                            <input name="category_id" id="category_id" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required|isNumber|range"  min="1" max="32767"
+                                                   errmsg="分类号不能为空!|分类号只能为数字|分类号范围在1~32767"/>
+                                            <span style="color:red;">*</span>
                                         </td>
-                                        <td nowrap align="right">报增单编号:</td>
-                                        <td nowrap>
-                                           11111111111111111111
+                                        <td align="center">设备名称</td>
+                                        <td>
+                                            <input name="name" id="name" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required"
+                                                   errmsg="设备名称不能为空!"/>
+                                            <span style="color:red;">*</span>
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
-                                        <td nowrap align="right">品名:</td>
-                                        <td nowrap>
-                                           11111111
+                                        <td align="center">设备型号</td>
+                                        <td>
+                                            <input name="model_number" id="model_number" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="isNumber"
+                                                   errmsg="设备型号只能为数字"/>
                                         </td>
-                                        <td nowrap align="right">单价:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">设备规格</td>
+                                        <td>
+                                            <input name="specifications" id="specifications" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="isNumber"
+                                                   errmsg="设备规格只能为数字"/>
                                         </td>
-                                        <td nowrap align="right">经费科目:</td>
-                                        <td nowrap>
-
-                                                985项目
-
+                                        <td align="center">单价</td>
+                                        <td>
+                                            <input name="unit_price" id="unit_price" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="isNumber"
+                                                   errmsg="单价只能为数字"/>
+                                            <span style="color:red;">*</span>
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
-
-                                        <td nowrap align="right">型号:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">厂家</td>
+                                        <td>
+                                            <input name="vender" id="vender" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
                                         </td>
-
-
-                                        <td nowrap align="right">出厂日期:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">出厂号</td>
+                                        <td>
+                                            <input name="factory_number" id="factory_number" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
                                         </td>
-                                        <td nowrap align="right">使用方向:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">出厂日期</td>
+                                        <td>
+                                            <input name="manufacture_date" id="manufacture_date"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                         </td>
-
                                     </tr>
                                     <tr style="height: 30px;">
-                                        <td nowrap align="right">规格:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">购置日期</td>
+                                        <td>
+                                            <input name="acquisition_date" id="acquisition_date"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                         </td>
-                                        <td nowrap align="right">购置日期:</td>
-                                        <td nowrap>
-                                            11111111
+                                        <td align="center">国别</td>
+                                        <td>
+                                            <input name="country" id="country" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
+                                            <span style="color:red;">*</span>
                                         </td>
-                                        <td nowrap align="right">厂家:</td>
-                                        <td nowrap>
-                                            11111111
-                                        </td>
-
                                     </tr>
                                     <tr style="height: 30px;">
-
-                                        <td nowrap align="right">国别:</td>
+                                        <td nowrap align="center">经费科目:</td>
                                         <td nowrap>
-                                            11111111
+                                            <select name="funding_subject" id="funding_subject">
+                                                <c:forEach items="${fundingSubjects}" var="fundingSubject">
+                                                    <option value="${fundingSubject.id}"
+                                                            <c:if test="${fundingSubject.id == equipment.fundingSubjectId}"> selected</c:if>>${fundingSubject.value}
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
+                                            <span style="color:red;">*</span>
                                         </td>
-
-                                        <td nowrap align="right">批量数:</td>
+                                        <td nowrap align="center">使用方向:</td>
                                         <td nowrap>
-                                            11111111
+                                            <select name="use_direction" id="use_direction">
+                                                <c:forEach items="${useDirections}" var="direction">
+                                                    <option value="${direction.id}"
+                                                            <c:if test="${direction.id == equipment.useDirectionId}"> selected</c:if>>${direction.value}
+                                                    </option>
+                                                </c:forEach>
+                                                <span style="color:red;">*</span>
+                                            </select>
                                         </td>
-                                        <td nowrap align="right">金额合计:</td>
-                                        <td nowrap>
-                                            11111111
-                                        </td>
-
-                                    </tr>
-                                    <tr style="height: 30px;">
-
-                                        <td nowrap align="right">设备管理部门:</td>
-                                        <td nowrap>
-                                            11111111
-                                        </td>
-
-                                        <td nowrap align="right">单位负责人:</td>
-                                        <td nowrap>
-                                            11111111
-                                        </td>
-                                        <td nowrap align="right">经办人:</td>
-                                        <td nowrap>
-                                            11111111
-                                        </td>
-
-                                    </tr>
-                                    <tr style="height: 30px;">
-
-                                        <td nowrap align="right">保管人:</td>
-                                        <td nowrap>
-                                            11111111
-                                        </td>
-
-
-                                    </tr>
-                                    <tr height="16px"></tr>
-                                    <tr>
-                                        <td nowrap align="right">设备编号:</td>
-                                        <td nowrap>
-                                            <input id="deviceNo" class="text" style="width:154px" maxlength="20"/>
-                                            <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id=""></span>
-                                        </td>
-                                        <td nowrap align="right">出厂号:</td>
-                                        <td nowrap>
-                                            <input id="factoryNo" class="text" style="width:154px" maxlength="20"/>
-                                            <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id=""></span>
-                                        </td>
-                                        <td nowrap align="right">附件数量:</td>
-                                        <td nowrap>
-                                            <input id="accessoryNum"  class="text" style="width:154px" maxlength="20"/>
-                                            <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id=""></span>
+                                        <td align="center">设备状态</td>
+                                        <td>
+                                            <input name="state" id="state" value="16" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   style="color:#aaaaaa" readonly />
                                         </td>
                                     </tr>
                                 </table>
-                                </div>
 
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="center">
-                                            <input type="button" name="Submit" value="保存" class="button" onclick="addDevice();"/>
-                                            <input type="reset" name="Submit3" value="重置" class="button"
-                                                   onclick="reset();"/>
-                                            <input type="button" name="Submit" value="提交" class="button" onclick="save();"/>
-                                            <input type="button" name="Submit2" value="返回" class="button"
-                                                   onclick="window.history.go(-1);"/>
+                                            <input type="button" name="save" value="保存" class="button" onclick="saveEquipment();"/>
+                                            <input type="reset" name="reset" value="重置" class="button"/>
+                                            <input type="button" name="return" value="关闭" class="button"
+                                                   onclick="window.close();"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -247,6 +225,5 @@
             src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>
 </table>
-<input type="hidden" name="us_sreplyby" value=""/>
 </form>
 </body>

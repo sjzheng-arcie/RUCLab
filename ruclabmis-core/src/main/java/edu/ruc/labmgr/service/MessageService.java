@@ -22,43 +22,36 @@ import java.util.List;
 @SuppressWarnings("ALL")
 @Service
 public class MessageService {
-	@Autowired
-	private MessageMapper messageMapper;
-	public ObjectListPage<Message> selectListPage(int currentPage, MessageCriteria criteria){
+    @Autowired
+    private MessageMapper messageMapper;
+    public ObjectListPage<Message> selectListPage(int currentPage, MessageCriteria criteria){
+        ObjectListPage<Message> retList = null;
+
+        String count = SysUtil.getConfigValue("showCount", "10");
+
+        int limit = Integer.valueOf(count);
+        int currentResult = (currentPage - 1) * limit;
+        int totalCount = messageMapper.countByCriteria(criteria);
+        int pageCount = (totalCount % limit == 0) ? (totalCount / limit) : (1 + totalCount / limit);
+
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalResult(totalCount);
+        pageInfo.setTotalPage(pageCount);
+        pageInfo.setCurrentPage(currentPage);
+
+        RowBounds bounds = new RowBounds(currentResult, limit);
+        List<Message> messageList= messageMapper.selectByCriteriaWithRowbounds(criteria, bounds);
+
+        retList = new ObjectListPage(pageInfo, messageList);
 
 
-		ObjectListPage<Message> retList = null;
-		try {
-			String count = SysUtil.getConfigValue("showCount", "10");
+        return retList;
+    }
 
-			int limit = Integer.valueOf(count);
-			int currentResult = (currentPage - 1) * limit;
-			int totalCount = messageMapper.countByCriteria(criteria);
-			int pageCount = (totalCount % limit == 0) ? (totalCount / limit) : (1 + totalCount / limit);
+    public int insert(Message message) {
+        int result = 0;
+        result = messageMapper.insert(message);
 
-			PageInfo pageInfo = new PageInfo();
-			pageInfo.setTotalResult(totalCount);
-			pageInfo.setTotalPage(pageCount);
-			pageInfo.setCurrentPage(currentPage);
-
-			RowBounds bounds = new RowBounds(currentResult, limit);
-			List<Message> messageList= messageMapper.selectByCriteriaWithRowbounds(criteria, bounds);
-
-			retList = new ObjectListPage(pageInfo, messageList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return retList;
-	}
-
-	public int insert(Message message) {
-		int result = 0;
-		try {
-			result = messageMapper.insert(message);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return result;
-	}
+        return result;
+    }
 }
