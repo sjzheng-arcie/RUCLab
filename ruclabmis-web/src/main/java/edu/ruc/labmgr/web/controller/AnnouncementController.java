@@ -10,10 +10,15 @@ import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
@@ -121,6 +126,14 @@ public class AnnouncementController {
 		mav.addObject("tabId",1);
 		return mav;
 	}
+	@RequestMapping("/deleteMessage")
+	public ModelAndView deleteMessage(HttpServletRequest request) {
+		int messageId = Integer.parseInt(request.getParameter("messageId"));
+		messageService.deleteById(messageId);
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		mav.addObject("tabId",1);
+		return mav;
+	}
 	private Announcement initFromRequest(HttpServletRequest request) {
 
 		Announcement announcement = new Announcement();
@@ -152,4 +165,30 @@ public class AnnouncementController {
 		message.setSendtime(new Date());
 		return message;
 	}
+
+
+
+	@RequestMapping(value="/getUserSno",produces = "application/json")
+	public @ResponseBody List<User> doRegister(
+			HttpServletRequest request,HttpServletResponse response)
+			throws Exception{
+
+
+
+		String param=request.getParameter("param");
+		List<User> userList = null;
+		UserCriteria userCriteria= new UserCriteria();
+		UserCriteria.Criteria criteria= userCriteria.createCriteria();
+		criteria.andSnLike(param);
+		userList= userService.getUserList(userCriteria);
+		int a=0;
+		return userList;
+
+
+	}
+
+
+
+
+
 }

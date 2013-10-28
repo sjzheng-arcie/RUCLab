@@ -5,16 +5,25 @@
 <head>
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script src="../../../js/valid.js" type=text/javascript></script> 
+<script src="../../../../js/valid.js" type=text/javascript></script>
 <script> 
 function save(){
 
     document.form1.action="addAnnouncement";
     document.form1.submit();
 }
+function displayClass(value){
 
+    if(value=="2"){
+        document.getElementById('scopeDiv').style.display='';
+    }else{
+        document.getElementById('scopeDiv').style.display= 'none';
+    }
+
+}
 
 </script>
+
 </head>
 <body>
 <form name="form1" method="post" target="_parent">
@@ -65,8 +74,8 @@ function save(){
  			<tr valign="top">
     			<td>
     				<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
-      					<tr bgcolor="#FFFFFF">
-        					<td   bgcolor="#FFFFFF">
+      					<tr bgcolor="#FFFFFF" >
+        					<td  align="center"  bgcolor="#FFFFFF" >
 					  			<table border="0" cellpadding="2" cellspacing="1" style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
 					 				<tr>
 					    				<td nowrap align="right"  >通知标题:</td>
@@ -77,23 +86,40 @@ function save(){
 					     				</td>
 
 
-					    				<td nowrap align="right">浏览人范围:</td>
-					    				<td nowrap  >  
 
-
-					    				<input type="radio" id="radio1" name="scope" value="1" onclick="display(this.value);" checked>全网可见</input>
-      								<input type="radio" id="radio2" name="scope" value="2" onclick="display(this.value);" >班级可见</input>
-      								<div id="scopeDiv" style="display:none">
-      										<select><option>虚拟班级一</option><option>虚拟班级二</option></select>
-      									</div>
-      									
-											</td>
 					    				
 					  				</tr>
+                                    <tr>
+                                        <td nowrap align="right">浏览人范围:</td>
+                                        <td nowrap  >
+
+
+                                            <input type="radio" id="radio1" name="scope" value="1" onclick="displayClass(this.value);" checked>全网可见</input>
+                                            <input type="radio" id="radio2" name="scope" value="2" onclick="displayClass(this.value);" >班级可见</input>
+                                            <div id="scopeDiv" style="display:none">
+                                                <select><option>虚拟班级一</option><option>虚拟班级二</option></select>
+                                            </div>
+
+                                        </td>
+
+                                    </tr>
 					    			<tr>
 					    				<td nowrap align="right">通知内容:</td>
 					    				<td colspan="3"nowrap>
-					    				<textarea id="content" name="content" style="width:80%;height:100px"></textarea>
+                                            <div id="innerId">
+                                                <span><textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"
+                                                tabIndex="2"></textarea></span>
+                                                <script type="text/javascript" src="../../../../js/ueditor/ueditor.config.js"></script>
+
+                                                <script type="text/javascript" src="../../../../js/ueditor/ueditor.all.min.js"></script>
+
+                                                <link type="text/css" href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
+
+                                                <script type="text/javascript" charset="utf-8">
+                                                    var editor = new baidu.editor.ui.Editor();
+                                                    editor.render('content');
+                                                </script>
+                                            </div>
 					    			
 					    				</td>
                                         <input id="publisher_id" name="publisher_id" style="display:none" value="1" />
