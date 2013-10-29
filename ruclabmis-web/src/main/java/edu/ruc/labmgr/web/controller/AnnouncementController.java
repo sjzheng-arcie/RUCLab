@@ -162,13 +162,12 @@ public class AnnouncementController {
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		User receiverUser = new User();
-		receiverUser=userService.getUserByLoginSn(request.getParameter("receiver"));
+		receiverUser=userService.getUserByLoginSn(request.getParameter("param"));
 
 		Message message= new Message();
 		if (!StringUtils.isNullOrEmpty(request.getParameter("id")))
 			message.setId(Integer.parseInt(request.getParameter("id")));
 		message.setContent(request.getParameter("content"));
-		//message.setIfread(Boolean.parseBoolean(request.getParameter("ifRead")));
 		message.setIfread(false);
 		message.setReceiverId(receiverUser.getId());
 		message.setSenderId(user.getId());
@@ -189,9 +188,8 @@ public class AnnouncementController {
 		List<User> userList = null;
 		UserCriteria userCriteria= new UserCriteria();
 		UserCriteria.Criteria criteria= userCriteria.createCriteria();
-		criteria.andSnLike(param);
+		criteria.andSnLike("%"+param+"%");
 		userList= userService.getUserList(userCriteria);
-		int a=0;
 		return userList;
 
 

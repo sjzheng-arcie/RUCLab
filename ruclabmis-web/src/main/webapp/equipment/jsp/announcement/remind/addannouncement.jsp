@@ -125,7 +125,6 @@ function displayClass(value){
                                         <input id="publisher_id" name="publisher_id" style="display:none" value="1" />
                                         <input id="limit" name="limit" style="display:none" value="1" />
 					  				</tr>
-					  				<tr>
 					    				
 					 
 

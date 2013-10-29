@@ -104,8 +104,6 @@ function displayClass(value){
 
       				<tr>
         				<td align="center">
-							<input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-							<input type="reset" name="Submit3" value="重置" class="button" onclick="reset();"/>
 							<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
 						</td>
       				</tr>

@@ -6,4 +6,4 @@
 .autocomplete-selected { background: #F0F0F0; }
 .autocomplete-suggestions strong { font-weight: normal; color: #3399FF; }
 
-input { font-size: 28px; padding: 10px; border: 1px solid #CCC; display: block; margin: 20px 0; }
+input { font-size: 18px; padding: 10px; border: 1px solid #CCC; display: block; margin: 10px 0; }
