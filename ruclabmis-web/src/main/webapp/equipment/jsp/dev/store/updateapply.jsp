@@ -7,18 +7,22 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 
 <script>
-    function save() {
-        document.form1.action = "applylist.html";
-        document.form1.submit();
+    function update() {
+        if(!validator(document.mainForm)){
+            return;
+        }
+
+        document.mainForm.action = "updateApply?application_id=" + ${store.applicationId};
+        document.mainForm.submit();
     }
 
     function toAddEquipment(){
-        document.form1.action = "toAddEquipment?application_id=" + ${store.applicationId};
-        document.form1.submit();
+        document.mainForm.action = "toAddEquipment?application_id=" + ${store.applicationId};
+        document.mainForm.submit();
     }
 </script>
 <body>
-<form name="form1" method="post">
+<form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -92,12 +96,12 @@
 
                                         <td align="center">申请人</td>
                                         <td>
-                                            <input style="color:#aaaaaa" readonly value="<shiro:principal/>"
+                                            <input name="applicant" id="applicant"
+                                                   style="color:#aaaaaa" readonly value="<shiro:principal/>"
                                                    valid="required"
-                                                   errmsg="单据号不能为空!"/>
+                                                   errmsg="申请人不能为空!"/>
                                             <span style="color:red;">*</span>
                                          </td>
-
                                     </tr>
                                 </table>
                             </td>
@@ -107,11 +111,10 @@
                         <tr>
                             <td align="center">
                                 <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
-                                <input type="button" name="save" value="保存" class="button" onclick="save();"/>
-                                <input type="reset" name="reset" value="重置" class="button"
-                                       onclick="reset();"/>
-                                <input type="button" name="Submit2" value="返回" class="button"
-                                       onclick="window.history.go(-1);"/>
+                                <input type="button" name="save" value="保存" class="button" onclick="update();"/>
+                                <input type="reset" name="reset" value="重置" class="button"/>
+                                <input type="button" name="return" value="返回" class="button"
+                                       onclick="window.location.href='./listApply';"/>
                             </td>
                         </tr>
                     </table>
@@ -206,8 +209,12 @@
                                     <td><fmt:formatDate value="${item.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
-                                    <td><a href="/equipment/jsp/dev/store/toEditEquipment?application_id=${store.applicationId}&equipment_id=${item.id}"> <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a></td>
-                                    <td><a href="/equipment/jsp/dev/store/toDeleteEquipment?id=1"> <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a></td>
+                                    <td><a href="/equipment/jsp/dev/store/toEditEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
+                                        <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a>
+                                    </td>
+                                    <td><a href="/equipment/jsp/dev/store/deleteEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
+                                        <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
+                                    </td>
                                 </tr>
                             </c:forEach>
                             <tr height="16px"></tr>
@@ -229,6 +236,5 @@
             src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>
 </table>
-<input type="hidden" name="us_sreplyby" value=""/>
 </form>
 </body>

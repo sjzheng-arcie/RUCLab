@@ -7,4 +7,13 @@ public class Consts {
     public  static int CLASSIF_APPLICAT_STATE = 3;
     public  static int CLASSIF_FUNDING_SUBJECT = 4;
     public  static int CLASSIF_USE_DIRECTION = 5;
+
+    public  static int APPLY_TYPE_ADD = 21;
+    public  static int APPLY_TYPE_REMOVE = 22;
+    public  static int APPLY_TYPE_BORROW = 23;
+    public  static int APPLY_TYPE_RETURN = 24;
+
+    public  static int APPLY_STATE_PASS = 31;
+    public  static int APPLY_STATE_WAITING = 32;
+    public  static int APPLY_STATE_REJECT = 33;
 }
