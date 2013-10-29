@@ -79,7 +79,9 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr style="height: 30px;">
-                                        <input name="id" id="id" type="hidden" value="${equipment.id}">
+                                        <input name="equipment_id" id="equipment_id" type="hidden" value="${equipment.id}">
+                                        <input name="application_id" id="application_id" type="hidden" value="${applicationId}">
+
                                         <td align="center">设备编号</td>
                                         <td>
                                             <input name="sn" id="sn" value="${equipment.sn}" onblur="" class="text"
@@ -191,7 +193,7 @@
                                         <td align="center">设备状态</td>
                                         <td>
                                             <input name="state" id="state" value="${equipment.stateId}" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" style="color:#aaa" readonly="readonly" />
+                                                   style="width:154px" maxlength="20" style="color:#aaaaaa" readonly="readonly" />
                                         </td>
                                     </tr>
                                 </table>
@@ -200,8 +202,7 @@
                                     <tr>
                                         <td align="center">
                                             <input type="button" name="save" value="保存" class="button" onclick="update();"/>
-                                            <input type="reset" name="reset" value="重置" class="button"
-                                                   onclick="reset();"/>
+                                            <input type="reset" name="reset" value="重置" class="button"/>
                                             <input type="button" name="return" value="返回" class="button"
                                                    onclick="window.history.go(-1);"/>
                                         </td>

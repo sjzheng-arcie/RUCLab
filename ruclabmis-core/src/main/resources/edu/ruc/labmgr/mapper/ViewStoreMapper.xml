@@ -27,8 +27,11 @@
             <result column="acquisition_date" jdbcType="DATE" property="acquisitionDate" />
             <result column="country" jdbcType="VARCHAR" property="country" />
             <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId" />
+            <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
             <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId" />
+            <result column="funding_subject" jdbcType="VARCHAR" property="useDirection" />
             <result column="equipment_state_id" jdbcType="INTEGER" property="stateId" />
+            <result column="funding_subject" jdbcType="VARCHAR" property="state" />
         </collection>
     </resultMap>
 

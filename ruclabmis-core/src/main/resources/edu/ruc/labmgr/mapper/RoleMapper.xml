@@ -107,10 +107,16 @@
         </if>
     </delete>
     <insert id="insert" parameterType="edu.ruc.labmgr.domain.Role" >
-    insert into role (id, name)
-    values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
-  </insert>
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into role (id, name)
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR})
+    </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Role" >
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into role
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >

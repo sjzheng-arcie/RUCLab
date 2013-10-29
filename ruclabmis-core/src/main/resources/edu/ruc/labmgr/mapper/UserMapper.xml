@@ -116,16 +116,22 @@
         </if>
     </delete>
     <insert id="insert" parameterType="edu.ruc.labmgr.domain.User" >
-    insert into user (id, sn, name, 
-      password, sex, email, phone_num, 
-      comment, major_id, role_id
-      )
-    values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
-      #{password,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{email,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR}, 
-      #{comment,jdbcType=VARCHAR}, #{majorId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
-      )
-  </insert>
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into user (id, sn, name,
+        password, sex, email, phone_num,
+        comment, major_id, role_id
+        )
+        values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        #{password,jdbcType=VARCHAR}, #{sex,jdbcType=BIT}, #{email,jdbcType=VARCHAR}, #{phoneNum,jdbcType=VARCHAR},
+        #{comment,jdbcType=VARCHAR}, #{majorId,jdbcType=INTEGER}, #{roleId,jdbcType=INTEGER}
+        )
+    </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.User" >
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+            SELECT LAST_INSERT_ID()
+        </selectKey>
         insert into user
         <trim prefix="(" suffix=")" suffixOverrides="," >
             <if test="id != null" >

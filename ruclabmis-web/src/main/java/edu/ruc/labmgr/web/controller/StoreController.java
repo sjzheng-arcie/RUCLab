@@ -55,15 +55,6 @@ public class StoreController {
         return mav;
     }
 
-    @RequestMapping("/toAddEquipmentToApply")
-    public ModelAndView toAddEquipmentToApply(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
-
-        return mav;
-    }
-
-
     //
 //    @RequestMapping("/add")
 //    public ModelAndView add(HttpServletRequest request) {
@@ -78,25 +69,40 @@ public class StoreController {
 //
     @RequestMapping("/toAddEquipment")
     public ModelAndView toAddEquipment(HttpServletRequest request) {
-//        Equipment equipment = initEquipmentFromRequest(request);
-//        int applyId = request.getParameter("name");
-//        int result = serviceStore.insertEquipmentIntoApply(equipment);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-        return null;
-//        }
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/adddevice");
+        mav.addObject("applicationId", applicationId);
+        mav.addObject("useDirections", useDirections);
+        mav.addObject("fundingSubjects", fundingSubjects);
+        return mav;
+    }
+
+    @RequestMapping("/addEquipment")
+    public ModelAndView addEquipment(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        Equipment equipment = initEquipmentFromRequest(request);
+        int result = serviceStore.insertEquipmentWithApplication(equipment, applicationId);
+        if (result > 0) {
+            return toUpdate(request);
+        } else {
+            return null;
+        }
     }
 
     @RequestMapping("/toEditEquipment")
     public ModelAndView toEditEquipment(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        int equipmentId = Integer.parseInt(request.getParameter("equipment_id"));
 
-        Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(id);
+        Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(equipmentId);
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
+        mav.addObject("applicationId", applicationId);
         mav.addObject("equipment", equipment);
         mav.addObject("useDirections", useDirections);
         mav.addObject("fundingSubjects", fundingSubjects);
@@ -105,7 +111,7 @@ public class StoreController {
 
     @RequestMapping("/toUpdate")
     public ModelAndView toUpdate(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
+        int id = Integer.parseInt(request.getParameter("application_id"));
 
         ViewStore store = serviceStore.selectByPrimaryKey(id);
 
@@ -119,7 +125,7 @@ public class StoreController {
         Equipment equipment = initEquipmentFromRequest(request);
         int result = serviceStore.updateEquipmentByPrimaryKey(equipment);
         if (result > 0) {
-            return pageList(request);
+            return toUpdate(request);
         } else {
             return null;
         }
@@ -198,23 +204,30 @@ public class StoreController {
 //    }
     private Equipment initEquipmentFromRequest(HttpServletRequest req) {
         Equipment equipment = new Equipment();
-        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-            equipment.setId(Integer.parseInt(req.getParameter("id")));
-
+        if (!StringUtils.isNullOrEmpty(req.getParameter("equipment_id")))
+            equipment.setId(Integer.parseInt(req.getParameter("equipment_id")));
         equipment.setSn(req.getParameter("sn"));
         equipment.setName(req.getParameter("name"));
-        equipment.setCategoryId(Short.parseShort(req.getParameter("category_id")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("category_id")))
+            equipment.setCategoryId(Short.parseShort(req.getParameter("category_id")));
         equipment.setName(req.getParameter("name"));
         equipment.setModelNumber(req.getParameter("model_number"));
         equipment.setSpecifications(req.getParameter("specifications"));
-        equipment.setUnitPrice(Float.parseFloat(req.getParameter("unit_price")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("unit_price")))
+            equipment.setUnitPrice(Float.parseFloat(req.getParameter("unit_price")));
+        equipment.setVender(req.getParameter("vender"));
         equipment.setFactoryNumber(req.getParameter("factory_number"));
-        equipment.setManufactureDate(Date.valueOf(req.getParameter("manufacture_date")));
-        equipment.setAcquisitionDate(Date.valueOf(req.getParameter("acquisition_date")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("manufacture_date")))
+            equipment.setManufactureDate(Date.valueOf(req.getParameter("manufacture_date")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("acquisition_date")))
+            equipment.setAcquisitionDate(Date.valueOf(req.getParameter("acquisition_date")));
         equipment.setCountry(req.getParameter("country"));
-        equipment.setFundingSubjectId(Integer.parseInt(req.getParameter("funding_subject")));
-        equipment.setUseDirectionId(Integer.parseInt(req.getParameter("use_direction")));
-        equipment.setStateId(Integer.parseInt(req.getParameter("state")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("funding_subject")))
+            equipment.setFundingSubjectId(Integer.parseInt(req.getParameter("funding_subject")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("use_direction")))
+            equipment.setUseDirectionId(Integer.parseInt(req.getParameter("use_direction")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("state")))
+            equipment.setStateId(Integer.parseInt(req.getParameter("state")));
 
         return equipment;
     }
