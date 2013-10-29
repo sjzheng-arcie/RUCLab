@@ -10,20 +10,13 @@
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 
 <title>发送信息</title>
-    <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
-    <link rel="stylesheet" type="text/css" href="../../../../js/autocomplete/autocomplete.styles.css" />
-    <script type="text/javascript" src="../../../../js/autocomplete/jquery.autocomplete.min.js"></script>
-
-    <script src="http://code.jquery.com/ui/1.10.2/jquery-ui.js"></script>
 
 
-    <style type="text/css">
+    <link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css" />
+    <link rel="stylesheet" href="../../../../js/autocomplete/autocomplete.styles.css" />
 
-
-
-
-
-</style>
+    <script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
+    <script src="../../../../js/autocomplete/jquery-ui.js"></script>
 
 <script>
     $().ready(function() {
@@ -39,8 +32,8 @@
                 success: function( userList ) {
                     response( $.map( userList, function( item ) {
                         return {
-                            param:item.sn
-
+                            label:item.sn,
+                            value:item.sn
                         }
                     }));
                 }
@@ -75,10 +68,12 @@
      <form action="/equipment/jsp/announcement/remind/addMessage" method="post" target="_parent" >
 	<table style=" border:1px red solid; width:80%;margin:auto;">
 		<tr>
-		<td align="right">接收对象</td><td align="left"><input name="receiver"type="text"></td>
+		<td align="right">接收对象</td>
+            <td align="left">
+                <input id="param" name="param" type="text" autocomplete="off" class="autocomplete-suggestion"  />
+            </td>
 
         </tr>
-        <tr><td></td><td> <input id="param" name="param" type="text" autocomplete="off" class="param"  /></td></tr>
 		<tr>
 		<td align="right">消息内容</td><td align="left">
 
@@ -87,7 +82,7 @@
            </td>
 		</tr>
 		<tr>
-		<td></td><td><input type="submit" value="发送"></td>
+		<td></td><td><input type="submit" class="autocomplete-suggestion" value="发送"></td>
 		</tr>
 	</table>
      </form>
