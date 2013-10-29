@@ -128,6 +128,15 @@ public class AnnouncementController {
 		mav.addObject("announcementDetailFlag",announcement);
 		return mav;
 	}
+	@RequestMapping("/messageDetail")
+	public ModelAndView getMessage(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("messageDetailId"));
+		Message message= messageService.selectById(id);
+
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
+		mav.addObject("messageDetailFlag",message);
+		return mav;
+	}
 	@RequestMapping("/addMessage")
 	public ModelAndView addMessage(HttpServletRequest request) {
 		Message message= insertMessageIntoDB(request);
