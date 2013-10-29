@@ -88,7 +88,8 @@ public class AnnouncementController {
 		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
 		criteria.andPublishLimitEqualTo(0);
-		announcementCriteria.or(criteria);
+
+		announcementCriteria.setOrderByClause(" publish_time desc");
 		ObjectListPage<Announcement> pageInfo = serviceAnnouncement.selectListPage(currPage, announcementCriteria);
 		System.out.print(pageInfo .getListObject().size());
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcement");
@@ -116,6 +117,24 @@ public class AnnouncementController {
 		Announcement announcement = initFromRequest(request);
 		int result = serviceAnnouncement.insert(announcement);
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		return mav;
+	}
+	@RequestMapping("/announcementDetail")
+	public ModelAndView getAnnouncement(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("announcementDetailId"));
+		Announcement announcement = serviceAnnouncement.getAnnouncementById(id);
+
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcementdetail");
+		mav.addObject("announcementDetailFlag",announcement);
+		return mav;
+	}
+	@RequestMapping("/messageDetail")
+	public ModelAndView getMessage(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("messageDetailId"));
+		Message message= messageService.selectById(id);
+
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
+		mav.addObject("messageDetailFlag",message);
 		return mav;
 	}
 	@RequestMapping("/addMessage")
@@ -152,13 +171,12 @@ public class AnnouncementController {
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		User receiverUser = new User();
-		receiverUser=userService.getUserByLoginSn(request.getParameter("receiver"));
+		receiverUser=userService.getUserByLoginSn(request.getParameter("param"));
 
 		Message message= new Message();
 		if (!StringUtils.isNullOrEmpty(request.getParameter("id")))
 			message.setId(Integer.parseInt(request.getParameter("id")));
 		message.setContent(request.getParameter("content"));
-		//message.setIfread(Boolean.parseBoolean(request.getParameter("ifRead")));
 		message.setIfread(false);
 		message.setReceiverId(receiverUser.getId());
 		message.setSenderId(user.getId());
@@ -179,9 +197,8 @@ public class AnnouncementController {
 		List<User> userList = null;
 		UserCriteria userCriteria= new UserCriteria();
 		UserCriteria.Criteria criteria= userCriteria.createCriteria();
-		criteria.andSnLike(param);
+		criteria.andSnLike("%"+param+"%");
 		userList= userService.getUserList(userCriteria);
-		int a=0;
 		return userList;
 
 

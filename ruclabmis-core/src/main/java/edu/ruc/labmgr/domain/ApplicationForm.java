@@ -1,5 +1,7 @@
 package edu.ruc.labmgr.domain;
 
+import java.util.Date;
+
 public class ApplicationForm {
     private Integer id;
 
@@ -13,9 +15,11 @@ public class ApplicationForm {
 
     private Integer approverId;
 
-    private Short applicationNumber;
-
     private Integer stateId;
+
+    private Date applyTime;
+
+    private Date processTime;
 
     public Integer getId() {
         return id;
@@ -65,19 +69,27 @@ public class ApplicationForm {
         this.approverId = approverId;
     }
 
-    public Short getApplicationNumber() {
-        return applicationNumber;
-    }
-
-    public void setApplicationNumber(Short applicationNumber) {
-        this.applicationNumber = applicationNumber;
-    }
-
     public Integer getStateId() {
         return stateId;
     }
 
     public void setStateId(Integer stateId) {
         this.stateId = stateId;
+    }
+
+    public Date getApplyTime() {
+        return applyTime;
+    }
+
+    public void setApplyTime(Date applyTime) {
+        this.applyTime = applyTime;
+    }
+
+    public Date getProcessTime() {
+        return processTime;
+    }
+
+    public void setProcessTime(Date processTime) {
+        this.processTime = processTime;
     }
 }

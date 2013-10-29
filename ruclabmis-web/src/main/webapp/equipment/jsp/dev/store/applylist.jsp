@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -84,16 +85,18 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-                        <a href="/equipment/jsp/dev/store/toAddApply"><img src="../../../images/add_min.gif" width="10" height="10"
-                                                border="0"/> <span class="STYLE1">新增申请</span></a>&nbsp;
-						<a href="examapply"><img src="../../../images/add_min.gif" width="10" height="10"
-                                                 border="0"/> <span class="STYLE1">批准申请</span></a>&nbsp;
-      					<a href="" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                              border="0"/> <span class="STYLE1">驳回申请</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
-      					<a href="apply"><img src="../../../images/add_min.gif" width="10"
-                                                  height="10" border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
+                        <a href="/equipment/jsp/dev/store/toAddApply">
+                            <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增申请</span></a>&nbsp;
+						<a href="#" onclick="toApprove();return false;">&nbsp;
+                            <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">批准申请</span></a>&nbsp;
+      					<a href="#" onclick="toReject();return false;">
+                            <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">驳回申请</span></a>&nbsp;
+      					<a href="#" onclick="toDelete();return false;">
+                            <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
 	                </span>
                                                                 </div>
                                                             </td>
@@ -123,10 +126,16 @@
                                                         <div align="center"><span class="STYLE10">申请人</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请时间</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">经手人</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">审批人</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">处理时间</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">单据状态</span></div>
@@ -142,10 +151,12 @@
                                                         </td>
                                                         <td>${item.applicationSn}</td>
                                                         <td>${item.applicantName}</td>
+                                                        <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
                                                         <td>${item.operatorName}</td>
                                                         <td>${item.approverName}</td>
+                                                        <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                         <td>${item.applicationStateName}</td>
-                                                        <td><a href="toUpdate?application_id=${item.applicationId}">详细信息</a></td>
+                                                        <td><a href="toUpdateApply?application_id=${item.applicationId}">详细信息</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

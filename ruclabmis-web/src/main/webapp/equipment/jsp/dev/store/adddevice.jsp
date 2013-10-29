@@ -201,8 +201,8 @@
                                         <td align="center">
                                             <input type="button" name="save" value="保存" class="button" onclick="saveEquipment();"/>
                                             <input type="reset" name="reset" value="重置" class="button"/>
-                                            <input type="button" name="return" value="关闭" class="button"
-                                                   onclick="window.close();"/>
+                                            <input type="button" name="return" value="返回" class="button"
+                                                   onclick="window.history.go(-1);"/>
                                         </td>
                                     </tr>
                                 </table>
