@@ -56,6 +56,7 @@ public class ShiroDbRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(
             AuthenticationToken authcToken) throws AuthenticationException {
         UsernamePasswordToken token = (UsernamePasswordToken) authcToken;
+        token.setRememberMe(true);
         User user = userMapper.selectUserByLoginSn(token.getUsername());
 
         if (user != null) {

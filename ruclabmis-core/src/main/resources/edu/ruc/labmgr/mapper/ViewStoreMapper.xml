@@ -10,7 +10,8 @@
         <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
         <result column="approver_id" jdbcType="INTEGER" property="approverId" />
         <result column="approver_name" jdbcType="VARCHAR" property="approverName" />
-        <result column="application_number" jdbcType="SMALLINT" property="applicationNumber" />
+        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+        <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
         <result column="application_state_id" jdbcType="INTEGER" property="applicationStateId" />
         <result column="application_state_name" jdbcType="VARCHAR" property="applicationStateName" />
         <collection ofType="edu.ruc.labmgr.domain.Equipment" property="equipments">
@@ -67,7 +68,7 @@
 
     <sql id="Base_Column_List">
     application_id, application_sn, applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
-    application_number, use_direction_id, application_state_id, application_state_name,
+    apply_time, process_time,  use_direction_id, application_state_id, application_state_name,
     equipment_id, equipment_sn, name, category_id, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, country, funding_subject_id,
     funding_subject, equipment_state_id, equipment_state_name
@@ -80,8 +81,8 @@
         </if>
     </select>
 
-    <select id="selectByPrimaryKey"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select * from view_store
+    <select id="selectByApplyId"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select * from view_store  where application_id = #{id,jdbcType=INTEGER}
     </select>
 
     <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.ViewStoreCriteria" resultMap="BaseResultMap">

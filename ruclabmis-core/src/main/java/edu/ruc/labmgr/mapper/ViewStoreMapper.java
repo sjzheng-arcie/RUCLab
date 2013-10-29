@@ -7,9 +7,6 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface ViewStoreMapper {
-
-    ViewStore selectByPrimaryKey(Integer id);
-
     int countByCriteria(ViewStoreCriteria criteria);
 
     int deleteByCriteria(ViewStoreCriteria criteria);
@@ -21,6 +18,8 @@ public interface ViewStoreMapper {
     List<ViewStore> selectByCriteriaWithRowbounds(ViewStoreCriteria criteria, RowBounds rowBounds);
 
     List<ViewStore> selectByCriteria(ViewStoreCriteria criteria);
+
+    ViewStore selectByApplyId(int id);
 
     int updateByCriteriaSelective(@Param("record") ViewStore record, @Param("criteria") ViewStoreCriteria criteria);
 

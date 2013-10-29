@@ -12,6 +12,10 @@ public class ViewStore {
 
     private String applicantName;
 
+    private Integer applicantTypeId;
+
+    private String applicantType;
+
     private Integer operatorId;
 
     private String operatorName;
@@ -20,7 +24,9 @@ public class ViewStore {
 
     private String approverName;
 
-    private Short applicationNumber;
+    private Date applyTime;
+
+    private Date processTime;
 
     private Integer applicationStateId;
 
@@ -60,6 +66,22 @@ public class ViewStore {
         this.applicantName = applicantName == null ? null : applicantName.trim();
     }
 
+    public Integer getApplicantTypeId() {
+        return applicantTypeId;
+    }
+
+    public void setApplicantTypeId(Integer applicantTypeId) {
+        this.applicantTypeId = applicantTypeId;
+    }
+
+    public String getApplicantType() {
+        return applicantType;
+    }
+
+    public void setApplicantType(String applicantType) {
+        this.applicantType = applicantType == null ? null : applicantType.trim();
+    }
+
     public Integer getOperatorId() {
         return operatorId;
     }
@@ -92,12 +114,20 @@ public class ViewStore {
         this.approverName = approverName == null ? null : approverName.trim();
     }
 
-    public Short getApplicationNumber() {
-        return applicationNumber;
+    public Date getApplyTime() {
+        return applyTime;
     }
 
-    public void setApplicationNumber(Short applicationNumber) {
-        this.applicationNumber = applicationNumber;
+    public void setApplyTime(Date applyTime) {
+        this.applyTime = applyTime;
+    }
+
+    public Date getProcessTime() {
+        return processTime;
+    }
+
+    public void setProcessTime(Date processTime) {
+        this.processTime = processTime;
     }
 
     public Integer getApplicationStateId() {

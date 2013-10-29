@@ -57,9 +57,9 @@ public class StoreService {
     }
 
 
-    public ViewStore selectByPrimaryKey(int id) {
+    public ViewStore selectByApplyId(int id) {
         ViewStore store = null;
-        store = mapperViewStore.selectByPrimaryKey(id);
+        store = mapperViewStore.selectByApplyId(id);
 
         return store;
     }
@@ -81,16 +81,22 @@ public class StoreService {
     }
 
 
-    public int insertEquipmentWithApplication(Equipment equipment, int applicationId) {
-        int retVal = 0;
-
-        retVal = mapperEquipment.insert(equipment);
+    public void insertEquipmentWithApply(Equipment equipment, int applicationId) {
+        mapperEquipment.insert(equipment);
 
         EquipmentApplicationFormKey record = new EquipmentApplicationFormKey();
         record.setEquipmentId(equipment.getId());
         record.setApplicationFormId(applicationId);
-        retVal = mapperEA.insert(record);
+        mapperEA.insert(record);
+    }
 
-        return retVal;
+
+    public void deleteEquipmentWithApply(int equipmentId, int applicationId) {
+        EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
+        key.setEquipmentId(equipmentId);
+        key.setApplicationFormId(applicationId);
+        mapperEA.deleteByPrimaryKey(key);
+
+        mapperEquipment.deleteByPrimaryKey(equipmentId);
     }
 }

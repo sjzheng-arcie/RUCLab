@@ -145,7 +145,7 @@
                                                         <td>${item.operatorName}</td>
                                                         <td>${item.approverName}</td>
                                                         <td>${item.applicationStateName}</td>
-                                                        <td><a href="toUpdate?application_id=${item.applicationId}">详细信息</a></td>
+                                                        <td><a href="toUpdateApply?application_id=${item.applicationId}">详细信息</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

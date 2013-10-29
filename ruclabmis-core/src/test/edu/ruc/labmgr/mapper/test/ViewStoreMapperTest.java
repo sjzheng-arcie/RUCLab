@@ -49,14 +49,6 @@ public class ViewStoreMapperTest {
         System.out.println("testQueryList");
     }
 
-
-    @Test
-    public void testSelectByPrimaryKey() throws Exception {
-        ViewStore store = mapper.selectByPrimaryKey(0);
-
-        System.out.println(DateFormat.getDateInstance().format(store.getEquipments().get(0).getAcquisitionDate()));
-    }
-
     @Ignore
     public void testListAll() throws Exception {
         System.out.println("testListAll");
