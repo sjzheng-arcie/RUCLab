@@ -25,9 +25,7 @@ public class MessageService {
     @Autowired
     private MessageMapper messageMapper;
     public ObjectListPage<Message> selectListPage(int currentPage, MessageCriteria criteria){
-        ObjectListPage<Message> retList = null;
 
-        String count = SysUtil.getConfigValue("showCount", "10");
 
 		ObjectListPage<Message> retList = null;
 		try {
@@ -54,10 +52,25 @@ public class MessageService {
         return retList;
     }
 
+	public  int getCount(MessageCriteria criteria){
+
+		int count = messageMapper.countByCriteria(criteria);
+
+		return count;
+	}
 	public int insert(Message message) {
 		int result = 0;
 		try {
 			result = messageMapper.insert(message);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public int deleteById(int id) {
+		int result = 0;
+		try {
+			result = messageMapper.deleteByPrimaryKey(id);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
