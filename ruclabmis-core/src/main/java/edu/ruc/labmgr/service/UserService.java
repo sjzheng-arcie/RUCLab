@@ -59,6 +59,18 @@ public class UserService {
 
         return retList;
     }
+	public List<User> getUserList( UserCriteria criteria) {
+		List<User> retList = null;
+		try {
+
+			retList = mapperUser.selectByCriteria(criteria);
+
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+		return retList;
+	}
 
 
     public int insert(User user) {

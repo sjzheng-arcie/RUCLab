@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -79,12 +79,12 @@
                     <div class="message" style="border: 1px;">
                         <hr class="hr1">
 
-                        <p align="left"><span>发布者 :  </span><span>${item.user.name}</span> <span style="float:right">${item.publishTime}</span>
-                            <span style="float:right">发布时间 :  </span></p>
+                        <p align="left" style="margin: 10px"><span>发布者 :  </span><span>${item.user.name}</span> <span style="float:right"><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
+                            <span style="float:right" >发布时间 :  </span></p>
                         <hr class="hr1">
-                        <h6 align="left">${item.content}</h6>
+                        <h6 align="left" style="margin: 10px">${item.title}</h6>
                         <hr class="hr1">
-                        <p align="left">查看详细</p>
+                        <p align="left" style="margin: 10px"><a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}" >查看详细</a></p>
                         <hr class="hr1">
                     </div>
 

@@ -1,9 +1,12 @@
 package edu.ruc.labmgr.web.controller;
 
-import edu.ruc.labmgr.domain.User;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.AnnouncementService;
+import edu.ruc.labmgr.service.MessageService;
 import edu.ruc.labmgr.service.UserService;
 
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
+import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
@@ -19,10 +22,15 @@ import java.util.List;
 @RequestMapping("/equipment")
 public class RootController {
 
-	//@Autowired
+//	@Autowired
 //	private ApplicationFormService applicationFormService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private MessageService messageService;
+	@Autowired
+	private AnnouncementService announcementService;
+
 
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request) {
@@ -30,7 +38,7 @@ public class RootController {
 		ModelAndView mav = new ModelAndView("/equipment/index");
 		return mav;
 	}
-	@RequestMapping("/top")
+	@RequestMapping("/tops")
 	public ModelAndView top(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/equipment/top");
@@ -71,8 +79,17 @@ public class RootController {
 	}
 	@RequestMapping("/admin_top")
 	public ModelAndView adminTop(HttpServletRequest request) {
-
+		User currentUser = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		currentUser=userService.getUserByLoginSn(loginName);
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(currentUser.getId());
+		criteria.andIfreadEqualTo(false);
+		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/admin_top");
+		mav.addObject("unreadCount", count);
 		return mav;
 	}
 //	@RequestMapping("/admin_welcome")
@@ -108,7 +125,17 @@ public class RootController {
 	@RequestMapping("/teacher_top")
 	public ModelAndView teacher_top(HttpServletRequest request) {
 
+		User currentUser = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		currentUser=userService.getUserByLoginSn(loginName);
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(currentUser.getId());
+		criteria.andIfreadEqualTo(false);
+		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/teacher_top");
+		mav.addObject("unreadCount", count);
 		return mav;
 	}
 //	@RequestMapping("/teacher_welcome")
@@ -134,7 +161,17 @@ public class RootController {
 	@RequestMapping("/leader_top")
 	public ModelAndView leader_Top(HttpServletRequest request) {
 
+		User currentUser = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		currentUser=userService.getUserByLoginSn(loginName);
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(currentUser.getId());
+		criteria.andIfreadEqualTo(false);
+		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/leader_top");
+		mav.addObject("unreadCount", count);
 		return mav;
 	}
 
@@ -208,5 +245,66 @@ public class RootController {
 		return result;
 	}
 
+	@RequestMapping("/top")
+	public ModelAndView showUnreadMessage(HttpServletRequest request) {
+		User currentUser = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		currentUser=userService.getUserByLoginSn(loginName);
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(currentUser.getId());
+		criteria.andIfreadEqualTo(false);
+		int count=messageService.getCount(messageCriteria);
+		ModelAndView mav = new ModelAndView("/equipment/top");
+		mav.addObject("unreadCount", count);
+		return mav;
+	}
 
+	int currPage=0;
+
+	@RequestMapping("/welcome_message")
+	public ModelAndView showMessage(HttpServletRequest request) {
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause(" sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(user.getId());
+
+
+		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		ModelAndView mav = new ModelAndView("/equipment/welcome");
+		mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+
+		return mav;
+	}
+
+	@RequestMapping("/welcome_announcement")
+	public ModelAndView showAnnouncement(HttpServletRequest request) {
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		User user = new User();
+		user=userService.getUserByLoginSn(loginName);
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		AnnouncementCriteria announcementCriteria =  new AnnouncementCriteria();
+		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
+
+		criteria.andPublishLimitEqualTo(0);
+		announcementCriteria.or(criteria);
+		ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria);
+		System.out.print(pageInfo .getListObject().size());
+		ModelAndView mav = new ModelAndView("/equipment/welcome");
+		mav.addObject("announcementLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+
+		return mav;
+	}
 }
