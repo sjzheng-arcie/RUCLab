@@ -88,7 +88,8 @@ public class AnnouncementController {
 		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
 		criteria.andPublishLimitEqualTo(0);
-		announcementCriteria.or(criteria);
+
+		announcementCriteria.setOrderByClause(" publish_time desc");
 		ObjectListPage<Announcement> pageInfo = serviceAnnouncement.selectListPage(currPage, announcementCriteria);
 		System.out.print(pageInfo .getListObject().size());
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcement");
@@ -116,6 +117,15 @@ public class AnnouncementController {
 		Announcement announcement = initFromRequest(request);
 		int result = serviceAnnouncement.insert(announcement);
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		return mav;
+	}
+	@RequestMapping("/announcementDetail")
+	public ModelAndView getAnnouncement(HttpServletRequest request) {
+		int id = Integer.parseInt(request.getParameter("announcementDetailId"));
+		Announcement announcement = serviceAnnouncement.getAnnouncementById(id);
+
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcementdetail");
+		mav.addObject("announcementDetailFlag",announcement);
 		return mav;
 	}
 	@RequestMapping("/addMessage")

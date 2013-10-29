@@ -79,7 +79,7 @@
                     <div class="message" style="border: 1px;">
                         <hr class="hr1">
 
-                        <p align="left" style="margin: 10px"><span>发布者 :  </span><span>${item.user.name}</span> <span style="float:right"><fmt:formatDate value="${equipment.acquisitionDate}</span>
+                        <p align="left" style="margin: 10px"><span>发布者 :  </span><span>${item.user.name}</span> <span style="float:right"><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
                             <span style="float:right" >发布时间 :  </span></p>
                         <hr class="hr1">
                         <h6 align="left" style="margin: 10px">${item.title}</h6>

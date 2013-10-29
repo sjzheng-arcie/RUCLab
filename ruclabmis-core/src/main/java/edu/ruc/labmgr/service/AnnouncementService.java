@@ -62,4 +62,13 @@ public class AnnouncementService {
 		}
 		return result;
 	}
+	public Announcement getAnnouncementById(int announcementId) {
+		Announcement announcement= new Announcement();
+		try {
+			announcement=mapperAnnouncement.selectByPrimaryKey(announcementId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return announcement;
+	}
 }
