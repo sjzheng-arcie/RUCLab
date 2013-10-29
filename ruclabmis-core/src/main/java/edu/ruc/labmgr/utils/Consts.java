@@ -12,4 +12,8 @@ public class Consts {
     public  static int APPLY_TYPE_REMOVE = 22;
     public  static int APPLY_TYPE_BORROW = 23;
     public  static int APPLY_TYPE_RETURN = 24;
+
+    public  static int APPLY_STATE_PASS = 31;
+    public  static int APPLY_STATE_WAITING = 32;
+    public  static int APPLY_STATE_REJECT = 33;
 }

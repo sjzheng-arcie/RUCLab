@@ -114,7 +114,7 @@
                                 <input type="button" name="save" value="保存" class="button" onclick="update();"/>
                                 <input type="reset" name="reset" value="重置" class="button"/>
                                 <input type="button" name="return" value="返回" class="button"
-                                       onclick="window.history.go(-1);"/>
+                                       onclick="window.location.href='./listApply';"/>
                             </td>
                         </tr>
                     </table>
@@ -236,6 +236,5 @@
             src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>
 </table>
-<input type="hidden" name="us_sreplyby" value=""/>
 </form>
 </body>

@@ -33,7 +33,7 @@ public class StoreController {
 
     private int currPage = 0;
 
-    @RequestMapping("/applyList")
+    @RequestMapping("/listApply")
     public ModelAndView pageList(HttpServletRequest request) {
         currPage = request.getParameter("page") == null   ?
                 (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
@@ -59,10 +59,18 @@ public class StoreController {
     public ModelAndView toAddApply(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
-
+        ViewStore store = new ViewStore();
+        mav.addObject("store", store);
         return mav;
     }
 
+    @RequestMapping("/addApply")
+    public ModelAndView addApply(HttpServletRequest request) {
+        ApplicationForm apply = initApplyFromRequest(request);
+        serviceStore.insertApply(apply);
+
+        return pageList(request);
+    }
 
     @RequestMapping("/toUpdateApply")
     public ModelAndView toUpdateApply(HttpServletRequest request) {
@@ -80,26 +88,27 @@ public class StoreController {
     public ModelAndView updateApply(HttpServletRequest request) {
         int applicationId = Integer.parseInt(request.getParameter("application_id"));
         ApplicationForm apply = initApplyFromRequest(request);
-
+        serviceStore.updateApply(apply);
         return pageList(request);
 
     }
 
-    //
-//    @RequestMapping("/add")
-//    public ModelAndView add(HttpServletRequest request) {
-//        equipment equipment = initFromRequest(request);
-//        int result = serviceequipment.insert(equipment);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
+    @RequestMapping("/delete")
+    public ModelAndView delete(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        serviceStore.deleteApply(id);
+
+        return pageList(request);
+    }
+
     @RequestMapping("/toAddEquipment")
     public ModelAndView toAddEquipment(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        ApplicationForm apply = initApplyFromRequest(request);
+        if (apply.getId() == null)
+        {
+            serviceStore.insertApply(apply);
+        }
+        int applicationId = apply.getId();;
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
 
@@ -213,11 +222,18 @@ public class StoreController {
 //
     private ApplicationForm initApplyFromRequest(HttpServletRequest req) {
         ApplicationForm apply = new ApplicationForm();
-        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-            apply.setId(Integer.parseInt(req.getParameter("id")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("application_id")))
+            apply.setId(Integer.parseInt(req.getParameter("application_id")));
 
         apply.setSn(req.getParameter("sn"));
         apply.setType(Consts.APPLY_TYPE_ADD);
+
+        if (!StringUtils.isNullOrEmpty(req.getParameter("state_id")))
+            apply.setStateId(Integer.parseInt(req.getParameter("state_id")));
+        else
+            apply.setStateId(Consts.APPLY_STATE_WAITING);
+
+        apply.setApplyTime(new java.util.Date());
 
         Subject currentUser = SecurityUtils.getSubject();
         String userSn = (String) currentUser.getPrincipal();

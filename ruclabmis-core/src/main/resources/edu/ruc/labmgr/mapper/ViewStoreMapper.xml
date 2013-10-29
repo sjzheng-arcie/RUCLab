@@ -30,9 +30,9 @@
             <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId" />
             <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
             <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId" />
-            <result column="funding_subject" jdbcType="VARCHAR" property="useDirection" />
+            <result column="use_direction" jdbcType="VARCHAR" property="useDirection" />
             <result column="equipment_state_id" jdbcType="INTEGER" property="stateId" />
-            <result column="funding_subject" jdbcType="VARCHAR" property="state" />
+            <result column="equipment_state_name" jdbcType="VARCHAR" property="state" />
         </collection>
     </resultMap>
 
@@ -68,7 +68,7 @@
 
     <sql id="Base_Column_List">
     application_id, application_sn, applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
-    apply_time, process_time,  use_direction_id, application_state_id, application_state_name,
+    apply_time, process_time,  use_direction_id, use_direction, application_state_id, application_state_name,
     equipment_id, equipment_sn, name, category_id, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, country, funding_subject_id,
     funding_subject, equipment_state_id, equipment_state_name

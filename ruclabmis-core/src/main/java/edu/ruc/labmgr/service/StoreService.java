@@ -1,10 +1,7 @@
 package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.*;
-import edu.ruc.labmgr.mapper.EquipmentApplicationFormMapper;
-import edu.ruc.labmgr.mapper.EquipmentMapper;
-import edu.ruc.labmgr.mapper.RoleMapper;
-import edu.ruc.labmgr.mapper.ViewStoreMapper;
+import edu.ruc.labmgr.mapper.*;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -26,12 +23,12 @@ import java.util.List;
 public class StoreService {
     @Autowired
     private ViewStoreMapper mapperViewStore;
-
     @Autowired
     private EquipmentMapper mapperEquipment;
-
     @Autowired
-    EquipmentApplicationFormMapper mapperEA;
+    private ApplicationFormMapper mapperApply;
+    @Autowired
+    private EquipmentApplicationFormMapper mapperEA;
 
     public ObjectListPage<ViewStore> selectListPage(int currentPage, ViewStoreCriteria criteria) {
         ObjectListPage<ViewStore> retList = null;
@@ -64,6 +61,29 @@ public class StoreService {
         return store;
     }
 
+    public void insertApply(ApplicationForm apply) {
+        mapperApply.insert(apply);
+    }
+
+    public void updateApply(ApplicationForm apply) {
+        mapperApply.updateByPrimaryKey(apply);
+    }
+
+    public void deleteApply(int id) {
+        ViewStore store = new ViewStore();
+        store = mapperViewStore.selectByApplyId(id);
+        for(Equipment equipment : store.getEquipments())
+        {
+            EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
+            key.setApplicationFormId(id);
+            key.setEquipmentId(equipment.getId());
+            mapperEA.deleteByPrimaryKey(key);
+
+            mapperEquipment.deleteByPrimaryKey(equipment.getId());
+        }
+
+        mapperApply.deleteByPrimaryKey(id);
+    }
 
     public Equipment selectEquipmentByPrimaryKey(int id) {
         Equipment equipment = null;
