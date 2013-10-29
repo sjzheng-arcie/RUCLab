@@ -71,4 +71,15 @@ public class AnnouncementService {
 		}
 		return announcement;
 	}
+	public List<Announcement> getAnnouncementListByCriteria(AnnouncementCriteria announcementCriteria){
+		List<Announcement> announcementList=null;
+		try{
+			RowBounds bounds = new RowBounds(1, 8);
+			announcementList= mapperAnnouncement.selectByCriteriaWithRowbounds(announcementCriteria, bounds);
+			//announcementList=mapperAnnouncement.selectByCriteria(announcementCriteria);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return announcementList;
+	}
 }

@@ -76,4 +76,24 @@ public class MessageService {
 		}
 		return result;
 	}
+	public Message selectById(int id) {
+		Message message = null;
+		try {
+			message = messageMapper.selectByPrimaryKey(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return message;
+	}
+	public List<Message> getMessageListByCriteia(MessageCriteria messageCriteria){
+		List<Message> messageList= null;
+		try{
+			RowBounds bounds = new RowBounds(1, 8);
+			messageList= messageMapper.selectByCriteriaWithRowbounds(messageCriteria,bounds);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
+		return  messageList;
+	}
 }
