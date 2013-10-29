@@ -1,46 +1,51 @@
-function checkAll(box) {  //全选或全不选
-    document.listForm.checkbox.checked = box.checked;
-    if (document.listForm.idcheckbox == null)
+function checkAll(box,formName,checkBoxName) {  //全选或全不选
+    document.forms[formName].checkbox.checked = box.checked;
+    var temp = document.forms[formName].elements[checkBoxName];
+    if(temp==null)
         return;
-    var numRow = document.listForm.idcheckbox.length;
+    var numRow = temp.length;
     if (numRow == null) {
-        document.listForm.idcheckbox.checked = box.checked;
+        temp.checked = box.checked;
         return;
     }
     if (box.checked) {
+
         for (var i = 0; i < numRow; i++) {
-            document.listForm.idcheckbox[i].checked = true;
+            temp[i].checked = true;
         }
     } else {
         for (var i = 0; i < numRow; i++) {
-            document.listForm.idcheckbox[i].checked = false;
+            temp[i].checked = false;
         }
     }
 }
 
-function checkOne() {  //选一个时全选或全不选
-    if (document.listForm.idcheckbox == null)
+function checkOne(formName,checkBoxName) {  //选一个时全选或全不选
+    var form_temp = document.forms[formName];
+    if(form_temp==null)
         return;
-    var numRow = document.listForm.idcheckbox.length;
+    var temp = document.forms[formName].elements[checkBoxName];
+     if (temp == null)
+        return;
+    var numRow = temp.length;
     if (numRow == null) {
-        document.listForm.checkbox.checked = listForm.idcheckbox.checked;
+        document.forms[formName].checkbox.checked = temp.checked;
         return;
     }
     var numBox = 0;
     for (var i = 0; i < numRow; i++) {
-        if (document.listForm.idcheckbox[i].checked) {
+        if (temp[i].checked) {
             numBox++;
             break;
         }
     }
     if (numBox == numRow) {
-        document.listForm.checkbox.checked = true;
+        document.forms[formName].checkbox.checked = true;
     } else {
-        document.listForm.checkbox.checked = false;
+        document.forms[formName].checkbox.checked = false;
     }
 }
-
-function toUpdate() {
+/*function toUpdate() {
     var selectedItem;
     if (document.listForm.idcheckbox == null) {
         return;
@@ -71,9 +76,45 @@ function toUpdate() {
 
     document.listForm.action = "toUpdate?id=" + selectedItem;
     document.listForm.submit();
+}*/
+function toUpdate(formName,checkBoxName) {
+    var form_temp = document.forms[formName];
+    if(form_temp==null)
+        return;
+    var selectedItem;
+    var temp = document.forms[formName].elements[checkBoxName];
+    if (temp == null) {
+        return;
+    }
+    var len = temp.length;
+    var flag = 0;
+    if (len != undefined) {
+        for (var i = 0; i < len; i++) {
+            if (eval(temp[i].checked)) {
+                selectedItem = temp[i].value;
+                flag++;
+            }
+        }
+    } else {
+        if (temp.checked) {
+            selectedItem = temp.value;
+            flag++;
+        }
+    }
+
+    if (flag == 0) {
+        alert("请选择一条记录！");
+        return;
+    } else if (flag != 1) {
+        alert("请只选择一条记录，不要多选！");
+        return;
+    }
+
+    document.forms[formName].action = "toUpdate?id=" + selectedItem;
+    document.forms[formName].submit();
 }
 
-function toUpdatePassword() {
+/*function toUpdatePassword() {
     var selectedItem;
     if (document.listForm.idcheckbox == null) {
         return;
@@ -104,9 +145,44 @@ function toUpdatePassword() {
 
     document.listForm.action = "toUpdatePassword?id=" + selectedItem;
     document.listForm.submit();
-}
+}*/
+function toUpdatePassword(formName,checkBoxName) {
+    var form_temp = document.forms[formName];
+    if(form_temp==null)
+        return;
+    var selectedItem;
+    var temp = document.forms[formName].elements[checkBoxName];
+    if (temp == null) {
+        return;
+    }
+    var len = temp.length;
+    var flag = 0;
+    if (len != undefined) {
+        for (var i = 0; i < len; i++) {
+            if (eval(temp[i].checked)) {
+                selectedItem = temp[i].value;
+                flag++;
+            }
+        }
+    } else {
+        if (temp.checked) {
+            selectedItem = temp.value;
+            flag++;
+        }
+    }
 
-function toDelete() {
+    if (flag == 0) {
+        alert("请选择一条记录！");
+        return;
+    } else if (flag != 1) {
+        alert("请只选择一条记录，不要多选！");
+        return;
+    }
+
+    document.forms[formName].action = "toUpdatePassword?id=" + selectedItem;
+    document.forms[formName].submit();
+}
+/*function toDelete() {
     var selectedItem;
     if (document.listForm.idcheckbox == null) {
         return;
@@ -139,12 +215,53 @@ function toDelete() {
         document.listForm.action = "delete?id=" + selectedItem;
         document.listForm.submit();
     }
-}
+}*/
+function toDelete(formName,checkBoxName) {
+    var form_temp = document.forms[formName];
+    if(form_temp==null)
+        return;
+    var selectedItem;
+    var temp = document.forms[formName].elements[checkBoxName];
+    if (temp == null) {
+        return;
+    }
+    var len = temp.length;
+    var flag = 0;
+    if (len != undefined) {
+        for (var i = 0; i < len; i++) {
+            if (eval(temp[i].checked)) {
+                selectedItem = temp[i].value;
+                flag++;
+            }
+        }
+    } else {
+        if (temp.checked) {
+            selectedItem = temp.value;
+            flag++;
+        }
+    }
 
-function toFind() {
-    document.listForm.action = baseHref;
-    document.listForm.submit();
+    if (flag == 0) {
+        alert("请选择一条记录！");
+        return;
+    } else if (flag != 1) {
+        alert("请只选择一条记录，不要多选！");
+        return;
+    }
+
+    if (confirm("是否删除所选记录？")) {
+        document.forms[formName].action = "delete?id=" + selectedItem;
+        document.forms[formName].submit();
+    }
 }
+//function toFind() {
+//    document.listForm.action = baseHref;
+//    document.listForm.submit();
+//}
+ function toFind(formName){
+     document.forms[formName].action = baseHref;
+     document.forms[formName].submit();
+ }
 
 function goPage(pageIndex, maxPage) {
     if (pageIndex <= 0) {
