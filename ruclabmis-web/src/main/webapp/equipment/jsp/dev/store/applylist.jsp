@@ -54,7 +54,7 @@
         </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
-                                                                            onclick="findInfo()"><img
+                                                                            onclick="findInfo('listForm')"><img
                                     src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
@@ -94,7 +94,7 @@
       					<a href="#" onclick="toReject();return false;">
                             <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">驳回申请</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();return false;">
+      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');return false;">
                             <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
 	                </span>
@@ -116,7 +116,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="40" bgcolor="d3eaef">
@@ -147,7 +147,7 @@
                                                 <c:forEach items="${stores}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.applicationId}" onclick="checkOne(this)"/>
+                                                                               value="${item.applicationId}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.applicationSn}</td>
                                                         <td>${item.applicantName}</td>
