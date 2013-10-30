@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -12,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <script>
-        var baseHref = '/equipment/jsp/dev/store/list';
+        var baseHref = '/equipment/jsp/dev/store/listApply';
     </script>
 </head>
 
@@ -44,19 +45,25 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;申请编号:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
-                                                                                     style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;申请设备类型:<select id="searchD1" name="searchD1">
-            <option value=""></option>
-            <option value="0">1</option>
-            <option value="1">2</option>
-        </select></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo('listForm')"><img
-                                    src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
+                            <span style="white-space:nowrap">&nbsp;&nbsp;单据号:
+                                <input type="text" name="searchSN"
+                                       id="searchSN" value="${param.searchSN}"
+                                       style="width:100px;"/>
+                            </span>
+		                    <span style="white-space:nowrap">&nbsp;&nbsp;单据状态:
+                                <select id="searchState" name="searchState">
+                                    <option value="">全部</option>
+                                    <c:forEach items="${applyStates}" var="item">
+                                        <option value="${item.id}"
+                                                <c:if test="${item.id == param.searchState}"> selected</c:if>>${item.value}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;
+                                <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                    <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                            </span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -85,18 +92,23 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-                        <a href="/equipment/jsp/dev/store/toAddApply">
-                            <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增申请</span></a>&nbsp;
-						<a href="#" onclick="toApprove();return false;">&nbsp;
-                            <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">批准申请</span></a>&nbsp;
-      					<a href="#" onclick="toReject();return false;">
-                            <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">驳回申请</span></a>&nbsp;
-      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');return false;">
-                            <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
+                        <shiro:hasAnyRoles name="administrators,leader,equipment_admin">
+                            <a href="#" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                <span class="STYLE1">批准申请</span></a>&nbsp;
+                            <a href="#" onclick="toReject('listForm', 'idcheckbox');return false;">
+                                <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                <span class="STYLE1">驳回申请</span></a>&nbsp;
+                        </shiro:hasAnyRoles>
+
+                        <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                            <a href="/equipment/jsp/dev/store/toAddApply">
+                                <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                <span class="STYLE1">新增申请</span></a>&nbsp;
+                            <a href="#" onclick="toDelete('listForm', 'idcheckbox');return false;">
+                                <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
+                        </shiro:hasAnyRoles>
 	                </span>
                                                                 </div>
                                                             </td>

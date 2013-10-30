@@ -25,6 +25,8 @@ public class Equipment {
 
     private Date acquisitionDate;
 
+    private Date scrapDate;
+
     private String country;
 
     private Integer fundingSubjectId;
@@ -125,6 +127,14 @@ public class Equipment {
 
     public void setAcquisitionDate(Date acquisitionDate) {
         this.acquisitionDate = acquisitionDate;
+    }
+
+    public Date getScrapDate() {
+        return scrapDate;
+    }
+
+    public void setScrapDate(Date scrapDate) {
+        this.scrapDate = scrapDate;
     }
 
     public String getCountry() {

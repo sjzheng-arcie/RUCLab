@@ -852,6 +852,66 @@ public class EquipmentCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andScrapDateIsNull() {
+            addCriterion("scrap_date is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateIsNotNull() {
+            addCriterion("scrap_date is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateEqualTo(Date value) {
+            addCriterionForJDBCDate("scrap_date =", value, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateNotEqualTo(Date value) {
+            addCriterionForJDBCDate("scrap_date <>", value, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateGreaterThan(Date value) {
+            addCriterionForJDBCDate("scrap_date >", value, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("scrap_date >=", value, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateLessThan(Date value) {
+            addCriterionForJDBCDate("scrap_date <", value, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("scrap_date <=", value, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateIn(List<Date> values) {
+            addCriterionForJDBCDate("scrap_date in", values, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateNotIn(List<Date> values) {
+            addCriterionForJDBCDate("scrap_date not in", values, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("scrap_date between", value1, value2, "scrapDate");
+            return (Criteria) this;
+        }
+
+        public Criteria andScrapDateNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("scrap_date not between", value1, value2, "scrapDate");
+            return (Criteria) this;
+        }
+
         public Criteria andCountryIsNull() {
             addCriterion("country is null");
             return (Criteria) this;

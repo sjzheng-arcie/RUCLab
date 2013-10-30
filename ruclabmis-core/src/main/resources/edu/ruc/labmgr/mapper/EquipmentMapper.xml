@@ -13,6 +13,7 @@
     <result column="factory_number" property="factoryNumber" jdbcType="VARCHAR" />
     <result column="manufacture_date" property="manufactureDate" jdbcType="DATE" />
     <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE" />
+    <result column="scrap_date" property="scrapDate" jdbcType="DATE" />
     <result column="country" property="country" jdbcType="VARCHAR" />
     <result column="funding_subject_id" property="fundingSubjectId" jdbcType="INTEGER" />
     <result column="use_direction_id" property="useDirectionId" jdbcType="INTEGER" />
@@ -78,7 +79,7 @@
   </sql>
   <sql id="Base_Column_List" >
     id, category_id, sn, name, model_number, specifications, unit_price, vender, factory_number, 
-    manufacture_date, acquisition_date, country, funding_subject_id, use_direction_id, 
+    manufacture_date, acquisition_date, scrap_date, country, funding_subject_id, use_direction_id, 
     state_id
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
@@ -118,13 +119,15 @@
     insert into equipment (category_id, sn, name, 
       model_number, specifications, unit_price, 
       vender, factory_number, manufacture_date, 
-      acquisition_date, country, funding_subject_id, 
-      use_direction_id, state_id)
+      acquisition_date, scrap_date, country, 
+      funding_subject_id, use_direction_id, state_id
+      )
     values (#{categoryId,jdbcType=SMALLINT}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, 
       #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, #{manufactureDate,jdbcType=DATE}, 
-      #{acquisitionDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, #{fundingSubjectId,jdbcType=INTEGER}, 
-      #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER})
+      #{acquisitionDate,jdbcType=DATE}, #{scrapDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, 
+      #{fundingSubjectId,jdbcType=INTEGER}, #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -161,6 +164,9 @@
       </if>
       <if test="acquisitionDate != null" >
         acquisition_date,
+      </if>
+      <if test="scrapDate != null" >
+        scrap_date,
       </if>
       <if test="country != null" >
         country,
@@ -205,6 +211,9 @@
       </if>
       <if test="acquisitionDate != null" >
         #{acquisitionDate,jdbcType=DATE},
+      </if>
+      <if test="scrapDate != null" >
+        #{scrapDate,jdbcType=DATE},
       </if>
       <if test="country != null" >
         #{country,jdbcType=VARCHAR},
@@ -262,6 +271,9 @@
       <if test="record.acquisitionDate != null" >
         acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
       </if>
+      <if test="record.scrapDate != null" >
+        scrap_date = #{record.scrapDate,jdbcType=DATE},
+      </if>
       <if test="record.country != null" >
         country = #{record.country,jdbcType=VARCHAR},
       </if>
@@ -292,6 +304,7 @@
       factory_number = #{record.factoryNumber,jdbcType=VARCHAR},
       manufacture_date = #{record.manufactureDate,jdbcType=DATE},
       acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
+      scrap_date = #{record.scrapDate,jdbcType=DATE},
       country = #{record.country,jdbcType=VARCHAR},
       funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
       use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
@@ -333,6 +346,9 @@
       <if test="acquisitionDate != null" >
         acquisition_date = #{acquisitionDate,jdbcType=DATE},
       </if>
+      <if test="scrapDate != null" >
+        scrap_date = #{scrapDate,jdbcType=DATE},
+      </if>
       <if test="country != null" >
         country = #{country,jdbcType=VARCHAR},
       </if>
@@ -360,6 +376,7 @@
       factory_number = #{factoryNumber,jdbcType=VARCHAR},
       manufacture_date = #{manufactureDate,jdbcType=DATE},
       acquisition_date = #{acquisitionDate,jdbcType=DATE},
+      scrap_date = #{scrapDate,jdbcType=DATE},
       country = #{country,jdbcType=VARCHAR},
       funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
       use_direction_id = #{useDirectionId,jdbcType=INTEGER},

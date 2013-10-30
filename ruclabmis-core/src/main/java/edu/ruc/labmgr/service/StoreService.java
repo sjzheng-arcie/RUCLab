@@ -2,6 +2,7 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.*;
+import edu.ruc.labmgr.utils.Consts;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -9,6 +10,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.transaction.TransactionFactory;
 import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.PlatformTransactionManager;
@@ -16,6 +19,7 @@ import org.springframework.transaction.TransactionDefinition;
 import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -29,6 +33,8 @@ public class StoreService {
     private ApplicationFormMapper mapperApply;
     @Autowired
     private EquipmentApplicationFormMapper mapperEA;
+    @Autowired
+    private UserService userService;
 
     public ObjectListPage<ViewStore> selectListPage(int currentPage, ViewStoreCriteria criteria) {
         ObjectListPage<ViewStore> retList = null;
@@ -62,11 +68,12 @@ public class StoreService {
     }
 
     public void insertApply(ApplicationForm apply) {
+        apply.setApplicantId(userService.getCurrentUserId());
         mapperApply.insert(apply);
     }
 
     public void updateApply(ApplicationForm apply) {
-        mapperApply.updateByPrimaryKey(apply);
+        mapperApply.updateByPrimaryKeySelective(apply);
     }
 
     public void deleteApply(int id) {
@@ -95,7 +102,7 @@ public class StoreService {
 
     public int updateEquipmentByPrimaryKey(Equipment equipment) {
         int retVal = 0;
-        retVal = mapperEquipment.updateByPrimaryKey(equipment);
+        retVal = mapperEquipment.updateByPrimaryKeySelective(equipment);
 
         return retVal;
     }
@@ -118,5 +125,29 @@ public class StoreService {
         mapperEA.deleteByPrimaryKey(key);
 
         mapperEquipment.deleteByPrimaryKey(equipmentId);
+    }
+
+
+    public void approveApply(int applicationId) {
+        ApplicationForm form = new ApplicationForm();
+        form.setId(applicationId);
+        form.setProcessTime(new Date());
+        form.setStateId(Consts.APPLY_STATE_PASS);
+
+        form.setApproverId(userService.getCurrentUserId());
+
+        mapperApply.updateByPrimaryKeySelective(form);
+    }
+
+
+    public void rejectApply(int applicationId) {
+        ApplicationForm form = new ApplicationForm();
+        form.setId(applicationId);
+        form.setProcessTime(new Date());
+        form.setStateId(Consts.APPLY_STATE_REJECT);
+
+        form.setApproverId(userService.getCurrentUserId());
+
+        mapperApply.updateByPrimaryKeySelective(form);
     }
 }
