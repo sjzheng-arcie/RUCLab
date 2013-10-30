@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -86,12 +87,16 @@
                         <a href="/equipment/jsp/dev/store/toAddApply">
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增申请</span></a>&nbsp;
-						<a href="#" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
-                            <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">批准申请</span></a>&nbsp;
-      					<a href="#" onclick="toReject('listForm', 'idcheckbox');return false;">
-                            <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">驳回申请</span></a>&nbsp;
+
+                        <shiro:hasAnyRoles name="administrators,leader">
+                            <a href="#" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                <span class="STYLE1">批准申请</span></a>&nbsp;
+                            <a href="#" onclick="toReject('listForm', 'idcheckbox');return false;">
+                                <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                <span class="STYLE1">驳回申请</span></a>&nbsp;
+                        </shiro:hasAnyRoles>
+
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox');return false;">
                             <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;

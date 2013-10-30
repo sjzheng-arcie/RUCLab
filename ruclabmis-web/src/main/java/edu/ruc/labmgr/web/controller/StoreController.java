@@ -28,6 +28,8 @@ public class StoreController {
     StoreService serviceStore;
     @Autowired
     ClassifService serviceClassif;
+    @Autowired
+    UserService serviceUser;
 
     private int currPage = 0;
 
@@ -38,6 +40,15 @@ public class StoreController {
 
         ViewStoreCriteria viewStoreCriteria =  new ViewStoreCriteria();
         ViewStoreCriteria.Criteria criteria = viewStoreCriteria.createCriteria();
+
+        //教师账户登录只能看到自己的申请
+        Subject currentUser = SecurityUtils.getSubject();
+        if(currentUser.hasRole(Consts.ROLE_TEACHER))
+        {
+            criteria.andApplicantIdEqualTo(serviceUser.getCurrentUserId());
+        }
+
+
         if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
             criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
         }
