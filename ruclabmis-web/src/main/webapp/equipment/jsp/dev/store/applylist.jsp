@@ -48,9 +48,7 @@
                                                                                      id="searchB1" value=""
                                                                                      style="width:100px;"/></span>
 		<span style="white-space:nowrap">&nbsp;&nbsp;申请设备类型:<select id="searchD1" name="searchD1">
-            <option value=""></option>
-            <option value="0">1</option>
-            <option value="1">2</option>
+
         </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
@@ -88,10 +86,10 @@
                         <a href="/equipment/jsp/dev/store/toAddApply">
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增申请</span></a>&nbsp;
-						<a href="#" onclick="toApprove();return false;">&nbsp;
+						<a href="#" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">批准申请</span></a>&nbsp;
-      					<a href="#" onclick="toReject();return false;">
+      					<a href="#" onclick="toReject('listForm', 'idcheckbox');return false;">
                             <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">驳回申请</span></a>&nbsp;
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox');return false;">

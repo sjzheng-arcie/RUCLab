@@ -126,8 +126,8 @@
                                         <td>
                                             <input name="unit_price" id="unit_price" value="${equipment.unitPrice}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
-                                                   valid="isNumber"
-                                                   errmsg="单价只能为数字"/>
+                                                   valid="required|isNumber"
+                                                   errmsg="单价不能为空|单价只能为数字"/>
                                             <span style="color:red;">*</span>
                                         </td>
                                     </tr>
@@ -142,13 +142,10 @@
                                             <input name="factory_number" id="factory_number" value="${equipment.factoryNumber}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
-                                        <td align="center">出厂日期</td>
+                                        <td align="center">国别</td>
                                         <td>
-                                            <input name="manufacture_date" id="manufacture_date"
-                                                   value="<fmt:formatDate value="${equipment.manufactureDate}" pattern="yyyy-MM-dd"/>"
-                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
-                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                            <input name="country" id="country" value="${equipment.country}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
@@ -160,10 +157,21 @@
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                                    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                         </td>
-                                        <td align="center">国别</td>
+                                        <td align="center">出厂日期</td>
                                         <td>
-                                            <input name="country" id="country" value="${equipment.country}" onblur="" class="text"
-                                                   style="width:154px" maxlength="20"/>
+                                            <input name="manufacture_date" id="manufacture_date"
+                                                   value="<fmt:formatDate value="${equipment.manufactureDate}" pattern="yyyy-MM-dd"/>"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                        </td>
+                                        <td align="center">报废日期</td>
+                                        <td>
+                                            <input name="scrap_date" id="scrap_date"
+                                                   value="<fmt:formatDate value="${equipment.scrapDate}" pattern="yyyy-MM-dd"/>"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                             <span style="color:red;">*</span>
                                         </td>
                                     </tr>

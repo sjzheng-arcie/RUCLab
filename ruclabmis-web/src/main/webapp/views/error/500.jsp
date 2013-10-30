@@ -14,6 +14,7 @@
     Logger logger = LoggerFactory.getLogger("500.jsp");
     logger.error(ex.getMessage(), ex);
     out.println(ex.getMessage());
+    ex.printStackTrace();
 %>
 
 <!DOCTYPE html>

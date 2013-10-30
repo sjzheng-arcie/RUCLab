@@ -183,6 +183,9 @@
                                     <div align="center"><span class="STYLE10">购置日期</span></div>
                                 </td>
                                 <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">报废日期</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">经费科目</span></div>
                                 </td>
                                 <td width="80" bgcolor="d3eaef">
@@ -207,6 +210,7 @@
                                     <td>${item.factoryNumber}</td>
                                     <td><fmt:formatDate value="${item.manufactureDate}" pattern="yyyy-MM-dd"/></td>
                                     <td><fmt:formatDate value="${item.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
+                                    <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
                                     <td><a href="/equipment/jsp/dev/store/toEditEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
