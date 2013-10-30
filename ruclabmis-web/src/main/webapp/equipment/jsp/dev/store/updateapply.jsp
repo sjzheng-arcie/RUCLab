@@ -101,7 +101,7 @@
                                                    valid="required"
                                                    errmsg="申请人不能为空!"/>
                                             <span style="color:red;">*</span>
-                                         </td>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -110,9 +110,11 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
-                                <input type="button" name="save" value="保存" class="button" onclick="update();"/>
-                                <input type="reset" name="reset" value="重置" class="button"/>
+                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                    <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
+                                    <input type="button" name="save" value="保存" class="button" onclick="update();"/>
+                                    <input type="reset" name="reset" value="重置" class="button"/>
+                                </shiro:hasAnyRoles>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.location.href='./listApply';"/>
                             </td>
@@ -191,12 +193,14 @@
                                 <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">使用方向</span></div>
                                 </td>
-                                <td width="80" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">详细信息</span></div>
-                                </td>
-                                <td width="80" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">删除设备</span></div>
-                                </td>
+                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                    <td width="80" bgcolor="d3eaef">
+                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                    </td>
+                                    <td width="80" bgcolor="d3eaef">
+                                        <div align="center"><span class="STYLE10">删除设备</span></div>
+                                    </td>
+                                </shiro:hasAnyRoles>
                             </tr>
                             <c:forEach items="${store.equipments}" var="item">
                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -213,12 +217,14 @@
                                     <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
-                                    <td><a href="/equipment/jsp/dev/store/toEditEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
-                                        <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a>
-                                    </td>
-                                    <td><a href="/equipment/jsp/dev/store/deleteEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
-                                        <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
-                                    </td>
+                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                        <td><a href="/equipment/jsp/dev/store/toEditEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
+                                            <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a>
+                                        </td>
+                                        <td><a href="/equipment/jsp/dev/store/deleteEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
+                                            <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
+                                        </td>
+                                    </shiro:hasAnyRoles>
                                 </tr>
                             </c:forEach>
                             <tr height="16px"></tr>

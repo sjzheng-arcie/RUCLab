@@ -48,18 +48,20 @@ public class StoreController {
             criteria.andApplicantIdEqualTo(serviceUser.getCurrentUserId());
         }
 
-
         if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
             criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
         }
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
-            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchState"))) {
+            criteria.andApplicationStateIdEqualTo(Integer.parseInt(request.getParameter("searchState")));
         }
 
         ObjectListPage<ViewStore> pageInfo = serviceStore.selectListPage(currPage, viewStoreCriteria);
 
+        List<Classif> applyStates = serviceClassif.getItemsByParentID(Consts.CLASSIF_APPLICAT_STATE);
+
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/applylist");
         mav.addObject("stores", pageInfo.getListObject());
+        mav.addObject("applyStates", applyStates);
         mav.addObject("page", pageInfo.getPageInfo());
         return mav;
     }
