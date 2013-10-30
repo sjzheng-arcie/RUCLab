@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -25,7 +26,7 @@
 
     }
     .hr1 {
-        color: #efeeea;
+        color: #aaaaaa;
         height: 1px;
         border: 0px;
         border-top: 1px solid #efeeea;
@@ -35,6 +36,10 @@
         padding: 0px;
         overflow: hidden;
     }
+    a.A_See:link{text-decoration:none; color:#376189;}
+    a.A_See:visited{text-decoration:none;color:#376189; }
+    a.A_See:hover{text-decoration:none;color:#376189; }
+    a.A_See:active{text-decoration:none;color:#376189;}
 </style>
 <script>
 
@@ -71,27 +76,38 @@
 <body >
 
 
-<div style="border: 1px;">
-
+<div style="border: 1px ;">
+    <p align="left" style="font-size: 12px">
+        <a class="A_See" href="/equipment/jsp/announcement/remind/message?page=0">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+        <a class="A_See" href="/equipment/jsp/announcement/remind/unreadmessage?page=0">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+        <a class="A_See" href="/equipment/jsp/announcement/remind/readmessage?page=0">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+        <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessage?page=0">我发送的消息</a>
+    </p>
+<c:choose>
+<c:when test="${mode==null}">
                 <c:forEach items="${messageLists}" var="item">
-                    <p></p>
-
                     <div class="message" style="border: 1px;">
-                        <hr class="hr1">
+                        <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
+                        <p align="left"><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.sender.name}</span> <span style="color: #A3A3A1"><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span></p>
+                        <p align="left">${item.content}</p>
+                        <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage">删除该条信息</a></p>
 
-                        <p align="left"><span>发送人 :  </span><span>${item.sender.name}</span> <span style="float:right">${item.sendtime}</span>
-                            <span style="float:right">发布时间 :  </span></p>
-                        <hr class="hr1">
-                        <h6 align="left">${item.content}</h6>
-                        <hr class="hr1">
-                        <p align="left"><a href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/equipment/jsp/announcement/remind/deleteMessage">删除该条信息</a></p>
-                        <hr class="hr1">
                     </div>
-
                 </c:forEach>
+</c:when>
+    <c:otherwise>
+        <c:forEach items="${messageLists}" var="item">
+            <div class="message" style="border: 1px;">
+                <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
+                <p align="left"><span style="font-size: 16px;color: #ccc;;">收信人：</span><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.receiver.name}</span> <span style="color: #A3A3A1"><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span></p>
+                <p align="left">${item.content}</p>
+                <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage">删除该条信息</a></p>
 
-
-
+            </div>
+        </c:forEach>
+    </c:otherwise>
+    </c:choose>
+    <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
 
 
     <form name="listForm">

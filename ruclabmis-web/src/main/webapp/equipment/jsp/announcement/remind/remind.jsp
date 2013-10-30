@@ -15,7 +15,6 @@
 
 <style type="text/css">
 
-    <!--
 
     body, div, ul, li {
 
@@ -80,13 +79,12 @@
 
     #tabs0 {
 
-        height: 2000px;
+
 
         width: 100%;
 
-        border: 1px solid #cbcbcb;
 
-        background-color: #ddeeff;
+        background-color: #ffffff;
 
     }
 
@@ -107,6 +105,8 @@
 
         width: 100px;
 
+        height: 20px;
+
         text-align: center;
 
         cursor: pointer;
@@ -117,7 +117,7 @@
 
     .menu0 li.hover {
 
-        background: #f2f6fb;
+        background: #53B6E6;
 
     }
 
@@ -133,40 +133,19 @@
 
     }
 
-    .message {
 
-        width: 100%;
 
-        border: 1px solid #cbcbcb;
-
-        background-color: #ffffff;
-
-    }
-
-    .hr1 {
-        color: #efeeea;
-        height: 1px;
-        border: 0px;
-        border-top: 1px solid #efeeea;
-        margin: 0px;
-        margin-top: 8px;
-        margin-bottom: 8px;
-        padding: 0px;
-        overflow: hidden;
-    }
-
-    -->
 
 </style>
 
 <script>
 
 
-            function setTab(m, n) {
+            function setTab( n) {
 
-                var tli = document.getElementById("menu" + m).getElementsByTagName("li");
+                var tli = document.getElementById("menu0").getElementsByTagName("li");
 
-                var mli = document.getElementById("main" + m).getElementsByTagName("ul");
+                var mli = document.getElementById("main0").getElementsByTagName("ul");
 
                 for (i = 0; i < tli.length; i++) {
 
@@ -178,22 +157,11 @@
 
             }
 
-
-    String.prototype.getQueryString = function (name) {
-        var reg = new RegExp("(^|&|\\?)" + name + "=([^&]*)(&|$)"), r;
-        if (r = this.match(reg)) return unescape(r[2]);
-        return null;
-    };
         var newId="${tabId}";
         if(newId==null||newId==""){
           newId=0;
         }
-    function changeTab(name) {
 
-
-        setTab(0, name);
-
-    }
 
 
 </script>
@@ -201,22 +169,18 @@
 
 </head>
 
-<body onload="changeTab(newId)">
-
-<br/>
-
-<br/>
+<body onload="setTab(newId)">
 
 
 
 <div id="tabs0">
     <ul class="menu0" id="menu0">
 
-        <li onclick="setTab(0,0)" class="hover">公告</li>
+        <li  onclick="setTab(0)" >公告</li>
 
-        <li onclick="setTab(0,1)" class="hover">短消息</li>
-        <li onclick="setTab(0,2)">发布公告</li>
-        <li onclick="setTab(0,3)">发送消息</li>
+        <li onclick="setTab(1)" >短消息</li>
+        <li onclick="setTab(2)">发布公告</li>
+        <li onclick="setTab(3)">发送消息</li>
 
 
     </ul>
@@ -229,48 +193,50 @@
 
                 <p></p>
 
-                <div id=rr0></div>
-                <iframe id="contentFrm" onLoad="document.getElementById('rr0').innerHTML=this.body.innerHTML;this.style.display='none';"
-                        name="contentFrm" src="announcement" width="900px" height="2000px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
-
+                <div id=rr0 style="border: 1px solid #B7B7B7">
+                <iframe id="contentFrm"
+                        name="contentFrm" src="announcement" width="95%" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                </div>
 
             </li>
         </ul>
 
-        <ul>
+        <ul class="bloack">
             <li>
                 <p></p>
 
-                <div id=rr1></div>
-                <iframe id="contentFrm0" onLoad="document.getElementById('rr1').innerHTML=this.document.innerHTML;this.style.display='none';"
-                        name="contentFrm0" src="message" width="900px" height="2000px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                <div id="rr1" style="border: 1px solid #B7B7B7">
+                    <iframe id="contentFrm0"
+                            name="contentFrm0" src="message" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                </div>
             </li>
         </ul>
 
 
-        <ul>
+        <ul class="bloack">
             <li>
                 <p></p>
 
-                <div id=rr2></div>
-                <iframe id="contentFrm1" onLoad="document.getElementById('rr2').innerHTML=this.body.innerHTML;this.style.display='none';"
-                        name="contentFrm1" src="toaddannouncement" width="900px" height="600px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                <div id=rr2>
+                <iframe id="contentFrm1"
+                        name="contentFrm1" src="toaddannouncement"  width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                </div>
             </li>
         </ul>
-        <ul>
+        <ul class="bloack">
             <li>
                 <p></p>
 
-                <div id=rr3></div>
-                <iframe id="contentFrm2" onLoad="document.getElementById('rr3').innerHTML=this.body.innerHTML;this.style.display='none';"
-                        name="contentFrm2" src="sendmessage" width="900px" height="600px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                <div id=rr3>
+                <iframe id="contentFrm2"
+                        name="contentFrm2" src="sendmessage" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                </div>
             </li>
         </ul>
 
     </div>
 
 </div>
-
 <br/>
 
 <br/>
