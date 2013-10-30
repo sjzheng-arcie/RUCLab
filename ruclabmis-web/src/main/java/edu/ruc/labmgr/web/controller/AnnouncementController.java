@@ -75,6 +75,71 @@ public class AnnouncementController {
 
 		return mav;
 	}
+	@RequestMapping("/unreadmessage")
+	public ModelAndView showUnreadMessage(HttpServletRequest request) {
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause(" sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(user.getId());
+		criteria.andIfreadEqualTo(false);
+
+		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
+		mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+
+		return mav;
+	}
+
+	@RequestMapping("/readmessage")
+	public ModelAndView showReadMessage(HttpServletRequest request) {
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause(" sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(user.getId());
+		criteria.andIfreadEqualTo(true);
+
+		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
+		mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+
+		return mav;
+	}
+	@RequestMapping("/mysendmessage")
+	public ModelAndView showMySendMessage(HttpServletRequest request) {
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause(" sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andSenderIdEqualTo(user.getId());
+		criteria.andIfreadEqualTo(true);
+
+		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
+		mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("page", pageInfo.getPageInfo());
+		mav.addObject("mode", "mode");
+
+		return mav;
+	}
 
 	@RequestMapping("/announcement")
 	public ModelAndView showAnnouncement(HttpServletRequest request) {
@@ -117,6 +182,7 @@ public class AnnouncementController {
 		Announcement announcement = initFromRequest(request);
 		int result = serviceAnnouncement.insert(announcement);
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		mav.addObject("tabId",0);
 		return mav;
 	}
 	@RequestMapping("/announcementDetail")
@@ -132,6 +198,8 @@ public class AnnouncementController {
 	public ModelAndView getMessage(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("messageDetailId"));
 		Message message= messageService.selectById(id);
+		message.setIfread(true);
+		messageService.updateByMessage(message);
 
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
 		mav.addObject("messageDetailFlag",message);

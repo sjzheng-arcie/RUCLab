@@ -74,20 +74,18 @@
 <div style="border: 1px;">
 
                 <c:forEach items="${announcementLists}" var="item">
-                    <p></p>
-
                     <div class="message" style="border: 1px;">
-                        <hr class="hr1">
-
-                        <p align="left" style="margin: 10px"><span>发布者 :  </span><span>${item.user.name}</span> <span style="float:right"><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
-                            <span style="float:right" >发布时间 :  </span></p>
-                        <hr class="hr1">
-                        <h6 align="left" style="margin: 10px">${item.title}</h6>
-                        <hr class="hr1">
-                        <p align="left" style="margin: 10px"><a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}" >查看详细</a></p>
-                        <hr class="hr1">
+                        <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
+                        <p align="left" style="margin: 10px">
+                            <span>
+                                <a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}" >
+                                ${item.title}
+                                </a>
+                            </span>
+                            <span style="float:right">
+                                <fmt:formatDate value="${item.publishTime}"></fmt:formatDate>
+                            </span>
                     </div>
-
                 </c:forEach>
 
 
