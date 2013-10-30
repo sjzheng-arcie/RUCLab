@@ -9,6 +9,8 @@ import edu.ruc.labmgr.utils.ValidateCode;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,44 +25,55 @@ public class UserService {
 
     public User selectByPrimaryKey(int id) {
         User user = null;
-        try {
-            user = mapperUser.selectByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        user = mapperUser.selectByPrimaryKey(id);
+
         return user;
     }
 
     public User getUserByLoginSn(String loginSn) {
         User user = null;
-        try {
-            UserCriteria criteria;
-            user = mapperUser.selectUserByLoginSn(loginSn);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        UserCriteria criteria;
+        user = mapperUser.selectUserByLoginSn(loginSn);
+
         return user;
+    }
+
+    public int getCurrentUserId() {
+        Subject currentUser = SecurityUtils.getSubject();
+        String userSn = (String) currentUser.getPrincipal();
+        User userInfo = mapperUser.selectUserByLoginSn(userSn);
+        return userInfo.getId();
     }
 
     public ObjectListPage<User> selectListPage(int currentPage, UserCriteria criteria) {
         ObjectListPage<User> retList = null;
+
+        String count = SysUtil.getConfigValue("showCount", "10");
+
+        int limit = Integer.valueOf(count);
+        int currentResult = (currentPage - 1) * limit;
+        int totleCount = mapperUser.countByCriteria(criteria);
+        int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
+
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalResult(totleCount);
+        pageInfo.setTotalPage(pageCount);
+        pageInfo.setCurrentPage(currentPage);
+
+        RowBounds bounds = new RowBounds(currentResult, limit);
+        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
+
+        retList = new ObjectListPage<User>(pageInfo, users);
+
+
+        return retList;
+    }
+    public List<User> getUserList( UserCriteria criteria) {
+        List<User> retList = null;
         try {
-            String count = SysUtil.getConfigValue("showCount", "10");
 
-            int limit = Integer.valueOf(count);
-            int currentResult = (currentPage - 1) * limit;
-            int totleCount = mapperUser.countByCriteria(criteria);
-            int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
+            retList = mapperUser.selectByCriteria(criteria);
 
-            PageInfo pageInfo = new PageInfo();
-            pageInfo.setTotalResult(totleCount);
-            pageInfo.setTotalPage(pageCount);
-            pageInfo.setCurrentPage(currentPage);
-
-            RowBounds bounds = new RowBounds(currentResult, limit);
-            List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
-
-            retList = new ObjectListPage<User>(pageInfo, users);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -71,49 +84,37 @@ public class UserService {
 
     public int insert(User user) {
         int result = 0;
-        try {
-            result = mapperUser.insert(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = mapperUser.insert(user);
+
         return result;
     }
 
     public int update(User user) {
         int result = 0;
-        try {
-            result = mapperUser.updateByPrimaryKeySelective(user);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = mapperUser.updateByPrimaryKeySelective(user);
+
         return result;
     }
 
     public int updatePassword(int id, String oriPassword, String newPassword) {
         int result = 0;
-        try {
-            User user = mapperUser.selectByPrimaryKey(id);
-            if(!CipherUtil.validatePassword(user.getPassword(), oriPassword)){
-                return -1;
-            };
+        User user = mapperUser.selectByPrimaryKey(id);
+        if(!CipherUtil.validatePassword(user.getPassword(), oriPassword)){
+            return -1;
+        };
 
-            User updateUser = new User();
-            updateUser.setId(id);
-            updateUser.setPassword(CipherUtil.generatePassword(newPassword));
-            result = mapperUser.updateByPrimaryKeySelective(updateUser);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        User updateUser = new User();
+        updateUser.setId(id);
+        updateUser.setPassword(CipherUtil.generatePassword(newPassword));
+        result = mapperUser.updateByPrimaryKeySelective(updateUser);
+
         return result;
     }
 
     public int delete(int id) {
         int result = 0;
-        try {
-            result = mapperUser.deleteByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        result = mapperUser.deleteByPrimaryKey(id);
+
         return result;
     }
 

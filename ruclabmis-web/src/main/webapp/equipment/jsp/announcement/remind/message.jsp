@@ -84,7 +84,7 @@
                         <hr class="hr1">
                         <h6 align="left">${item.content}</h6>
                         <hr class="hr1">
-                        <p align="left">查看详细</p>
+                        <p align="left"><a href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细</a>&nbsp&nbsp&nbsp&nbsp&nbsp<a href="/equipment/jsp/announcement/remind/deleteMessage">删除该条信息</a></p>
                         <hr class="hr1">
                     </div>
 

@@ -1,18 +1,25 @@
 package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.ApplicationForm;
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.ViewStore;
-import edu.ruc.labmgr.domain.ViewStoreCriteria;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.ClassifService;
 import edu.ruc.labmgr.service.StoreService;
+import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.utils.Consts;
+import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.SimpleAuthenticationInfo;
+import org.apache.shiro.authz.annotation.RequiresUser;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.sql.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/equipment/jsp/dev/store")
@@ -20,183 +27,220 @@ public class StoreController {
     @Autowired
     StoreService serviceStore;
     @Autowired
-    StoreService serviceEquipment;
+    ClassifService serviceClassif;
+    @Autowired
+    UserService serviceUser;
 
     private int currPage = 0;
 
-    @RequestMapping("/applyList")
+    @RequestMapping("/listApply")
     public ModelAndView pageList(HttpServletRequest request) {
         currPage = request.getParameter("page") == null   ?
                 (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 
         ViewStoreCriteria viewStoreCriteria =  new ViewStoreCriteria();
         ViewStoreCriteria.Criteria criteria = viewStoreCriteria.createCriteria();
+
+        //教师账户登录只能看到自己的申请
+        Subject currentUser = SecurityUtils.getSubject();
+        if(currentUser.hasRole(Consts.ROLE_TEACHER))
+        {
+            criteria.andApplicantIdEqualTo(serviceUser.getCurrentUserId());
+        }
+
         if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
             criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
         }
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
-            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchState"))) {
+            criteria.andApplicationStateIdEqualTo(Integer.parseInt(request.getParameter("searchState")));
         }
 
         ObjectListPage<ViewStore> pageInfo = serviceStore.selectListPage(currPage, viewStoreCriteria);
 
+        List<Classif> applyStates = serviceClassif.getItemsByParentID(Consts.CLASSIF_APPLICAT_STATE);
+
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/applylist");
         mav.addObject("stores", pageInfo.getListObject());
+        mav.addObject("applyStates", applyStates);
         mav.addObject("page", pageInfo.getPageInfo());
         return mav;
     }
 
     @RequestMapping("/toAddApply")
-    public ModelAndView toAdd(HttpServletRequest request) {
+    public ModelAndView toAddApply(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
-
+        ViewStore store = new ViewStore();
+        mav.addObject("store", store);
         return mav;
     }
 
-    @RequestMapping("/toAddEquipmentToApply")
-    public ModelAndView toAddEquipmentToApply(HttpServletRequest request) {
+    @RequestMapping("/addApply")
+    public ModelAndView addApply(HttpServletRequest request) {
+        ApplicationForm apply = initApplyFromRequest(request);
 
-        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
+        serviceStore.insertApply(apply);
 
-        return mav;
+        return pageList(request);
     }
 
+    @RequestMapping("/toUpdateApply")
+    public ModelAndView toUpdateApply(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("application_id"));
 
-//
-//    @RequestMapping("/add")
-//    public ModelAndView add(HttpServletRequest request) {
-//        User user = initFromRequest(request);
-//        int result = serviceUser.insert(user);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-    @RequestMapping("/toAddEquipment")
-    public ModelAndView toAddEquipment(HttpServletRequest request) {
-//        Equipment equipment = initEquipmentFromRequest(request);
-//        int applyId = request.getParameter("name");
-//        int result = serviceStore.insertEquipmentIntoApply(equipment);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-            return null;
-//        }
-    }
-
-    @RequestMapping("/toEditEquipment")
-    public ModelAndView toEditEquipment(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(id);
-
-        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
-        mav.addObject("equipment", equipment);
-        return mav;
-    }
-
-    @RequestMapping("/toUpdate")
-    public ModelAndView toUpdate(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        ViewStore store = serviceStore.selectByPrimaryKey(id);
+        ViewStore store = serviceStore.selectByApplyId(id);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/updateapply");
         mav.addObject("store", store);
         return mav;
     }
-//
-//    @RequestMapping("/update")
-//    public ModelAndView update(HttpServletRequest request) {
-//        User user = initFromRequest(request);
-//        int result = serviceUser.update(user);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/delete")
-//    public ModelAndView delete(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        int result = serviceUser.delete(id);
-//
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/toUpdatePassword")
-//    public ModelAndView toUpdatePassword(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
-//        mav.addObject("id",id);
-//
-//        return mav;
-//    }
-//
-//    @RequestMapping("/updatePassword")
-//    public ModelAndView updatePassword(HttpServletRequest request) {
-//        String oriPassword = request.getParameter("oriPassword");
-//        String newPassword = request.getParameter("newPassword");
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        int result = serviceUser.updatePassword(id, oriPassword, newPassword);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else if (result == -1) {
-//            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
-//            mav.addObject("id",id);
-//            mav.addObject("errMsg","原密码输入不一致，请重新输入!");
-//            return mav;
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    private User initFromRequest(HttpServletRequest req) {
-//        User user = new User();
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-//            user.setId(Integer.parseInt(req.getParameter("id")));
-//
-//        user.setSn(req.getParameter("sn"));
-//
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
-//            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-//            user.setPassword(passwordMD5);
-//        }
-//        user.setName(req.getParameter("name"));
-//        user.setPhoneNum(req.getParameter("phoneNum"));
-//        user.setEmail(req.getParameter("email"));
-//        user.setComment(req.getParameter("comment"));
-//        user.setRoleId(Integer.parseInt(req.getParameter("role")));
-//        user.setMajorId(Integer.parseInt(req.getParameter("major")));
-//        return user;
-//    }
-//private Equipment initEquipmentFromRequest(HttpServletRequest req) {
-//        User user = new User();
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-//            user.setId(Integer.parseInt(req.getParameter("id")));
-//
-//        user.setSn(req.getParameter("sn"));
-//
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
-//            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-//            user.setPassword(passwordMD5);
-//        }
-//        user.setName(req.getParameter("name"));
-//        user.setPhoneNum(req.getParameter("phoneNum"));
-//        user.setEmail(req.getParameter("email"));
-//        user.setComment(req.getParameter("comment"));
-//        user.setRoleId(Integer.parseInt(req.getParameter("role")));
-//        user.setMajorId(Integer.parseInt(req.getParameter("major")));
-//        return user;
-//    }
+
+    @RequiresUser
+    @RequestMapping("/updateApply")
+    public ModelAndView updateApply(HttpServletRequest request) {
+        ApplicationForm apply = initApplyFromRequest(request);
+        serviceStore.updateApply(apply);
+        return pageList(request);
+    }
+
+    @RequestMapping("/delete")
+    public ModelAndView delete(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("id"));
+        serviceStore.deleteApply(id);
+
+        return pageList(request);
+    }
+
+    @RequestMapping("/toAddEquipment")
+    public ModelAndView toAddEquipment(HttpServletRequest request) {
+        ApplicationForm apply = initApplyFromRequest(request);
+        if (apply.getId() == null)
+        {
+            serviceStore.insertApply(apply);
+        }
+        int applicationId = apply.getId();;
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/adddevice");
+        mav.addObject("applicationId", applicationId);
+        mav.addObject("useDirections", useDirections);
+        mav.addObject("fundingSubjects", fundingSubjects);
+        return mav;
+    }
+
+    @RequestMapping("/addEquipment")
+    public ModelAndView addEquipment(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        Equipment equipment = initEquipmentFromRequest(request);
+
+        serviceStore.insertEquipmentWithApply(equipment, applicationId);
+
+        return toUpdateApply(request);
+    }
+
+    @RequestMapping("/toEditEquipment")
+    public ModelAndView toEditEquipment(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        int equipmentId = Integer.parseInt(request.getParameter("equipment_id"));
+
+        Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(equipmentId);
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
+        mav.addObject("applicationId", applicationId);
+        mav.addObject("equipment", equipment);
+        mav.addObject("useDirections", useDirections);
+        mav.addObject("fundingSubjects", fundingSubjects);
+        return mav;
+    }
+
+    @RequestMapping("/editEquipment")
+    public ModelAndView editEquipment(HttpServletRequest request) {
+        Equipment equipment = initEquipmentFromRequest(request);
+        serviceStore.updateEquipmentByPrimaryKey(equipment);
+
+        return toUpdateApply(request);
+    }
+
+    @RequestMapping("/deleteEquipment")
+    public ModelAndView deleteEquipment(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+        int equipmentId = Integer.parseInt(request.getParameter("equipment_id"));
+
+        serviceStore.deleteEquipmentWithApply(equipmentId, applicationId);
+
+        return toUpdateApply(request);
+    }
+
+    @RequestMapping("/approve")
+    public ModelAndView approve(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+
+        serviceStore.approveApply(applicationId);
+
+        return pageList(request);
+    }
+
+
+    @RequestMapping("/reject")
+    public ModelAndView reject(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+
+        serviceStore.rejectApply(applicationId);
+
+        return pageList(request);
+    }
+
+
+    private ApplicationForm initApplyFromRequest(HttpServletRequest req) {
+        ApplicationForm apply = new ApplicationForm();
+        if (!StringUtils.isNullOrEmpty(req.getParameter("application_id")))
+            apply.setId(Integer.parseInt(req.getParameter("application_id")));
+
+        apply.setSn(req.getParameter("sn"));
+        apply.setType(Consts.APPLY_TYPE_ADD);
+
+        if (!StringUtils.isNullOrEmpty(req.getParameter("state_id")))
+            apply.setStateId(Integer.parseInt(req.getParameter("state_id")));
+        else
+            apply.setStateId(Consts.APPLY_STATE_WAITING);
+
+        apply.setApplyTime(new java.util.Date());
+
+        return apply;
+    }
+
+    private Equipment initEquipmentFromRequest(HttpServletRequest req) {
+        Equipment equipment = new Equipment();
+        if (!StringUtils.isNullOrEmpty(req.getParameter("equipment_id")))
+            equipment.setId(Integer.parseInt(req.getParameter("equipment_id")));
+        equipment.setSn(req.getParameter("sn"));
+        equipment.setName(req.getParameter("name"));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("category_id")))
+            equipment.setCategoryId(Short.parseShort(req.getParameter("category_id")));
+        equipment.setName(req.getParameter("name"));
+        equipment.setModelNumber(req.getParameter("model_number"));
+        equipment.setSpecifications(req.getParameter("specifications"));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("unit_price")))
+            equipment.setUnitPrice(Float.parseFloat(req.getParameter("unit_price")));
+        equipment.setVender(req.getParameter("vender"));
+        equipment.setFactoryNumber(req.getParameter("factory_number"));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("manufacture_date")))
+            equipment.setManufactureDate(Date.valueOf(req.getParameter("manufacture_date")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("acquisition_date")))
+            equipment.setAcquisitionDate(Date.valueOf(req.getParameter("acquisition_date")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("scrap_date")))
+            equipment.setScrapDate(Date.valueOf(req.getParameter("scrap_date")));
+        equipment.setCountry(req.getParameter("country"));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("funding_subject")))
+            equipment.setFundingSubjectId(Integer.parseInt(req.getParameter("funding_subject")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("use_direction")))
+            equipment.setUseDirectionId(Integer.parseInt(req.getParameter("use_direction")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("state")))
+            equipment.setStateId(Integer.parseInt(req.getParameter("state")));
+
+        return equipment;
+    }
 }

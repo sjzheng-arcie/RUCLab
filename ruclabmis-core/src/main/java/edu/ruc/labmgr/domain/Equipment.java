@@ -25,13 +25,21 @@ public class Equipment {
 
     private Date acquisitionDate;
 
+    private Date scrapDate;
+
     private String country;
 
     private Integer fundingSubjectId;
 
+    private String fundingSubject;
+
     private Integer useDirectionId;
 
+    private String useDirection;
+
     private Integer stateId;
+
+    private String state;
 
     public Integer getId() {
         return id;
@@ -121,6 +129,14 @@ public class Equipment {
         this.acquisitionDate = acquisitionDate;
     }
 
+    public Date getScrapDate() {
+        return scrapDate;
+    }
+
+    public void setScrapDate(Date scrapDate) {
+        this.scrapDate = scrapDate;
+    }
+
     public String getCountry() {
         return country;
     }
@@ -151,5 +167,29 @@ public class Equipment {
 
     public void setStateId(Integer stateId) {
         this.stateId = stateId;
+    }
+
+    public String getFundingSubject() {
+        return fundingSubject;
+    }
+
+    public void setFundingSubject(String fundingSubject) {
+        this.fundingSubject = fundingSubject;
+    }
+
+    public String getUseDirection() {
+        return useDirection;
+    }
+
+    public void setUseDirection(String useDirection) {
+        this.useDirection = useDirection;
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public void setState(String state) {
+        this.state = state;
     }
 }

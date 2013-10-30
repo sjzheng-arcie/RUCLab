@@ -54,7 +54,7 @@
                                                            style="width:100px;"/>
                     </span>
                      <span style="white-space:nowrap">&nbsp;&nbsp;
-                         <a href="javascript:void(0)" onclick="toFind();">
+                         <a href="javascript:void(0)" onclick="toFind('listForm');">
                              <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
                      </span>
 
@@ -85,7 +85,7 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="#" onclick="toUpdatePassword(); return false">
+						<a href="#" onclick="toUpdatePassword('listForm', 'idcheckbox'); return false">
                             <img src="../../../images/set2.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">修改密码</span>
                         </a>&nbsp;
@@ -93,11 +93,11 @@
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>&nbsp;
-                        <a href="#" onclick="toUpdate(); return false">
+                        <a href="#" onclick="toUpdate('listForm', 'idcheckbox'); return false">
                             <img src="../../../images/edit_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">修改</span>
                         </a>&nbsp;
-      					<a href="#" onclick="toDelete(); return false">
+      					<a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
                             <img src="../../../images/del_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">删除</span>
                         </a>&nbsp;&nbsp;
@@ -120,7 +120,7 @@
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                 <div align="center">
                                                     <input type="checkbox" name="checkbox" id="checkbox"
-                                                           onclick="checkAll(this);"/>
+                                                           onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                 </div>
                                             </td>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -151,7 +151,7 @@
                                         <c:forEach items="${users}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="${item.id}" onclick="checkOne(this)"/>
+                                                                       value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
                                                 <td>${item.id}</td>
                                                 <td>${item.sn}</td>

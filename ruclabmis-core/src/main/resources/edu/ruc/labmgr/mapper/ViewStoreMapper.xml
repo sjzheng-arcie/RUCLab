@@ -10,13 +10,14 @@
         <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
         <result column="approver_id" jdbcType="INTEGER" property="approverId" />
         <result column="approver_name" jdbcType="VARCHAR" property="approverName" />
-        <result column="application_number" jdbcType="SMALLINT" property="applicationNumber" />
+        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+        <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
         <result column="application_state_id" jdbcType="INTEGER" property="applicationStateId" />
         <result column="application_state_name" jdbcType="VARCHAR" property="applicationStateName" />
         <collection ofType="edu.ruc.labmgr.domain.Equipment" property="equipments">
             <id column="equipment_id" jdbcType="INTEGER" property="id" />
             <result column="equipment_sn" jdbcType="VARCHAR" property="sn" />
-            <result column="name" jdbcType="VARCHAR" property="name" />
+            <result column="equipment_name" jdbcType="VARCHAR" property="name" />
             <result column="category_id" jdbcType="SMALLINT" property="categoryId" />
             <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
             <result column="specifications" jdbcType="VARCHAR" property="specifications" />
@@ -25,10 +26,14 @@
             <result column="factory_number" jdbcType="VARCHAR" property="factoryNumber" />
             <result column="manufacture_date" jdbcType="DATE" property="manufactureDate" />
             <result column="acquisition_date" jdbcType="DATE" property="acquisitionDate" />
+            <result column="scrap_date" jdbcType="DATE" property="scrapDate" />
             <result column="country" jdbcType="VARCHAR" property="country" />
             <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId" />
+            <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
             <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId" />
+            <result column="use_direction" jdbcType="VARCHAR" property="useDirection" />
             <result column="equipment_state_id" jdbcType="INTEGER" property="stateId" />
+            <result column="equipment_state_name" jdbcType="VARCHAR" property="state" />
         </collection>
     </resultMap>
 
@@ -64,21 +69,24 @@
 
     <sql id="Base_Column_List">
     application_id, application_sn, applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
-    application_number, use_direction_id, application_state_id, application_state_name,
-    equipment_id, equipment_sn, name, category_id, model_number, specifications, unit_price,
-    vender, factory_number, manufacture_date, acquisition_date, country, funding_subject_id,
-    funding_subject, equipment_state_id, equipment_state_name
+    apply_time, process_time, application_state_id, application_state_name,
+    equipment_id, equipment_sn, equipment_name, category_id, model_number, specifications, unit_price,
+    vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, funding_subject_id,
+    funding_subject, use_direction_id, use_direction, equipment_state_id, equipment_state_name
   </sql>
 
     <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ViewStoreCriteria" resultType="java.lang.Integer">
-        select count(*) from view_store
+        select count(distinct application_id)  id from view_store
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause" />
         </if>
     </select>
 
-    <select id="selectByPrimaryKey"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-        select * from view_store
+    <select id="selectByApplyId"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+        select
+        <include refid="Base_Column_List" />
+        from view_store
+        where application_id = #{id,jdbcType=INTEGER}
     </select>
 
     <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.ViewStoreCriteria" resultMap="BaseResultMap">

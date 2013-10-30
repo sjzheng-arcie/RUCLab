@@ -1,6 +1,7 @@
 package edu.ruc.labmgr.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class ApplicationFormCriteria {
@@ -234,6 +235,66 @@ public class ApplicationFormCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeEqualTo(Integer value) {
+            addCriterion("type =", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotEqualTo(Integer value) {
+            addCriterion("type <>", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThan(Integer value) {
+            addCriterion("type >", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("type >=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThan(Integer value) {
+            addCriterion("type <", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("type <=", value, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeIn(List<Integer> values) {
+            addCriterion("type in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotIn(List<Integer> values) {
+            addCriterion("type not in", values, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeBetween(Integer value1, Integer value2) {
+            addCriterion("type between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
+        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("type not between", value1, value2, "type");
+            return (Criteria) this;
+        }
+
         public Criteria andApplicantIdIsNull() {
             addCriterion("applicant_id is null");
             return (Criteria) this;
@@ -414,66 +475,6 @@ public class ApplicationFormCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andApplicationNumberIsNull() {
-            addCriterion("application_number is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberIsNotNull() {
-            addCriterion("application_number is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberEqualTo(Short value) {
-            addCriterion("application_number =", value, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberNotEqualTo(Short value) {
-            addCriterion("application_number <>", value, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberGreaterThan(Short value) {
-            addCriterion("application_number >", value, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberGreaterThanOrEqualTo(Short value) {
-            addCriterion("application_number >=", value, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberLessThan(Short value) {
-            addCriterion("application_number <", value, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberLessThanOrEqualTo(Short value) {
-            addCriterion("application_number <=", value, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberIn(List<Short> values) {
-            addCriterion("application_number in", values, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberNotIn(List<Short> values) {
-            addCriterion("application_number not in", values, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberBetween(Short value1, Short value2) {
-            addCriterion("application_number between", value1, value2, "applicationNumber");
-            return (Criteria) this;
-        }
-
-        public Criteria andApplicationNumberNotBetween(Short value1, Short value2) {
-            addCriterion("application_number not between", value1, value2, "applicationNumber");
-            return (Criteria) this;
-        }
-
         public Criteria andStateIdIsNull() {
             addCriterion("state_id is null");
             return (Criteria) this;
@@ -531,6 +532,126 @@ public class ApplicationFormCriteria {
 
         public Criteria andStateIdNotBetween(Integer value1, Integer value2) {
             addCriterion("state_id not between", value1, value2, "stateId");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeIsNull() {
+            addCriterion("apply_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeIsNotNull() {
+            addCriterion("apply_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeEqualTo(Date value) {
+            addCriterion("apply_time =", value, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeNotEqualTo(Date value) {
+            addCriterion("apply_time <>", value, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeGreaterThan(Date value) {
+            addCriterion("apply_time >", value, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("apply_time >=", value, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeLessThan(Date value) {
+            addCriterion("apply_time <", value, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeLessThanOrEqualTo(Date value) {
+            addCriterion("apply_time <=", value, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeIn(List<Date> values) {
+            addCriterion("apply_time in", values, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeNotIn(List<Date> values) {
+            addCriterion("apply_time not in", values, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeBetween(Date value1, Date value2) {
+            addCriterion("apply_time between", value1, value2, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApplyTimeNotBetween(Date value1, Date value2) {
+            addCriterion("apply_time not between", value1, value2, "applyTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeIsNull() {
+            addCriterion("process_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeIsNotNull() {
+            addCriterion("process_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeEqualTo(Date value) {
+            addCriterion("process_time =", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeNotEqualTo(Date value) {
+            addCriterion("process_time <>", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeGreaterThan(Date value) {
+            addCriterion("process_time >", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("process_time >=", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeLessThan(Date value) {
+            addCriterion("process_time <", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeLessThanOrEqualTo(Date value) {
+            addCriterion("process_time <=", value, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeIn(List<Date> values) {
+            addCriterion("process_time in", values, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeNotIn(List<Date> values) {
+            addCriterion("process_time not in", values, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeBetween(Date value1, Date value2) {
+            addCriterion("process_time between", value1, value2, "processTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andProcessTimeNotBetween(Date value1, Date value2) {
+            addCriterion("process_time not between", value1, value2, "processTime");
             return (Criteria) this;
         }
     }

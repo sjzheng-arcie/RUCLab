@@ -1,37 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 
 <script>
-    function save() {
-        document.form1.action = "applylist.html";
-        document.form1.submit();
+    function update() {
+        if(!validator(document.mainForm)){
+            return;
+        }
+
+        document.mainForm.action = "updateApply?application_id=" + ${store.applicationId};
+        document.mainForm.submit();
     }
 
     function toAddEquipment(){
-        var str = window.showModalDialog("adddevice.jsp", null,
-                "dialogWidth=800px;dialogHeight=400px");
-//        var option = document.createElement('option');
-//        option.deviceNo = str[0];
-//        option.factoryNo = str[1];
-//        option.accessoryNum= str[2];
-    }
-
-    function toEditEquipment(){
-        var str = window.showModalDialog("editdevice.jsp", null,
-                "dialogWidth=800px;dialogHeight=400px");
-//        var option = document.createElement('option');
-//        option.deviceNo = str[0];
-//        option.factoryNo = str[1];
-//        option.accessoryNum= str[2];
+        document.mainForm.action = "toAddEquipment?application_id=" + ${store.applicationId};
+        document.mainForm.submit();
     }
 </script>
 <body>
-<form name="form1" method="post">
+<form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -93,39 +84,25 @@
                                 <table border="0" cellpadding="2" cellspacing="1"
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
-
-
                                     <tr>
-                                        <td align="center">单据号</td> &nbsp;
+                                        <td align="center">单据号</td>
                                         <td>
-                                            <input name="name" id="name" value="${store.applicationId}" onblur="" class="text"
+                                            <input name="sn" id="sn" value="${store.applicationSn}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required|isNumber"
                                                    errmsg="单据号不能为空!|单据号只能为数字"/>
-                                            <span style="color:red;">*</span>&nbsp;&nbsp;
+                                            <span style="color:red;">*</span>
                                         </td>
-                                        <td align="center">数量</td>
-                                        <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span></td>
-                                        <td align="center">经费来源</td>
-                                        <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span></td>
+
+                                        <td align="center">申请人</td>
+                                        <td>
+                                            <input name="applicant" id="applicant"
+                                                   style="color:#aaaaaa" readonly value="<shiro:principal/>"
+                                                   valid="required"
+                                                   errmsg="申请人不能为空!"/>
+                                            <span style="color:red;">*</span>
+                                        </td>
                                     </tr>
-                                    <tr>
-                                        <td align="center">经办人</td>
-                                        <td>&nbsp;<input type="text" style="color:#aaa"  readonly="readonly" value="<shiro:principal/>"> <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span></td>
-
-                                        <td align="center">负责人</td>
-                                        <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span></td>
-
-                                        <td align="center">保管人</td>
-                                        <td>&nbsp;<input type="text"> <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span></td>
-                                    </tr>
-
-
                                 </table>
                             </td>
                         </tr>
@@ -133,16 +110,16 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <input type="button" name="save" value="保存" class="button" onclick="save();"/>
-                                <input type="reset" name="reset" value="重置" class="button"
-                                       onclick="reset();"/>
-                                <input type="button" name="Submit2" value="返回" class="button"
-                                       onclick="window.history.go(-1);"/>
+                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                    <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
+                                    <input type="button" name="save" value="保存" class="button" onclick="update();"/>
+                                    <input type="reset" name="reset" value="重置" class="button"/>
+                                </shiro:hasAnyRoles>
+                                <input type="button" name="return" value="返回" class="button"
+                                       onclick="window.location.href='./listApply';"/>
                             </td>
                         </tr>
                     </table>
-
-
                 </td>
             </tr>
 
@@ -165,20 +142,6 @@
                                                 </tr>
                                             </table>
                                         </td>
-                                        <td>
-                                            <div align="right">
-                                                <span class="STYLE1" style="white-space:nowrap">
-                                                      <a href="#" onclick="toAddEquipment(); return false">
-                                                          <img src="../../../images/add_min.gif" width="10" height="10"border="0"/>
-                                                          <span class="STYLE1">添加设备</span></a>&nbsp;
-                                                      <a href="#" onclick="toEditEquipment(); return false">
-                                                          <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
-                                                          <span class="STYLE1">修改设备</span></a>&nbsp;
-                                                     <a href="add.html"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
-                                                         <span class="STYLE1">移除设备</span></a>&nbsp;
-                                              </span>
-                                            </div>
-                                        </td>
                                     </tr>
                                 </table>
                             </td>
@@ -191,33 +154,77 @@
                     <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
                         <table width="100%" class="table" id="table1" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                             <tr>
-                                <td width="40" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">序号</span></div>
-                                </td>
-                                <td width="100" bgcolor="d3eaef">
+                                <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">仪器编号</span></div>
                                 </td>
-                                <td width="100" bgcolor="d3eaef">
+                                <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">名称</span></div>
                                 </td>
-                                <td width="100" bgcolor="d3eaef">
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">分类号</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">型号</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">规格</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">单价</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">厂家</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">出厂号</span></div>
                                 </td>
-                                <td width="100" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">详细信息</span></div>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">出厂日期</span></div>
                                 </td>
-                                <td width="100" bgcolor="d3eaef">
-                                    <div align="center"><span class="STYLE10">删除设备</span></div>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">购置日期</span></div>
                                 </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">报废日期</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">经费科目</span></div>
+                                </td>
+                                <td width="80" bgcolor="d3eaef">
+                                    <div align="center"><span class="STYLE10">使用方向</span></div>
+                                </td>
+                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                    <td width="80" bgcolor="d3eaef">
+                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                    </td>
+                                    <td width="80" bgcolor="d3eaef">
+                                        <div align="center"><span class="STYLE10">删除设备</span></div>
+                                    </td>
+                                </shiro:hasAnyRoles>
                             </tr>
                             <c:forEach items="${store.equipments}" var="item">
                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                    <td>${item.id}</td>
                                     <td>${item.sn}</td>
                                     <td>${item.name}</td>
+                                    <td>${item.categoryId}</td>
+                                    <td>${item.modelNumber}</td>
+                                    <td>${item.specifications}</td>
+                                    <td>${item.unitPrice}</td>
+                                    <td>${item.vender}</td>
                                     <td>${item.factoryNumber}</td>
-                                    <td><a href="/equipment/jsp/dev/store/toEditEquipment?id=${item.id}"> <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a></td>
-                                    <td><a href="/equipment/jsp/dev/store/toDeleteEquipment?id=1"> <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a></td>
+                                    <td><fmt:formatDate value="${item.manufactureDate}" pattern="yyyy-MM-dd"/></td>
+                                    <td><fmt:formatDate value="${item.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
+                                    <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
+                                    <td>${item.fundingSubject}</td>
+                                    <td>${item.useDirection}</td>
+                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                        <td><a href="/equipment/jsp/dev/store/toEditEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
+                                            <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/></a>
+                                        </td>
+                                        <td><a href="/equipment/jsp/dev/store/deleteEquipment?application_id=${store.applicationId}&equipment_id=${item.id}">
+                                            <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
+                                        </td>
+                                    </shiro:hasAnyRoles>
                                 </tr>
                             </c:forEach>
                             <tr height="16px"></tr>
@@ -239,6 +246,5 @@
             src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>
 </table>
-<input type="hidden" name="us_sreplyby" value=""/>
 </form>
 </body>

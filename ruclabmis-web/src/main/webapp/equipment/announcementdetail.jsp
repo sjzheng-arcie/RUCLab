@@ -1,23 +1,33 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script src="../../../js/valid.js" type=text/javascript></script> 
+<script src="../../../../js/valid.js" type=text/javascript></script>
 <script> 
 function save(){
 
-    document.form1.action="add";
+    document.form1.action="addAnnouncement";
     document.form1.submit();
 }
+function displayClass(value){
 
+    if(value=="2"){
+        document.getElementById('scopeDiv').style.display='';
+    }else{
+        document.getElementById('scopeDiv').style.display= 'none';
+    }
+
+}
 
 </script>
+
 </head>
 <body>
-<form name="form1" method="post">
+<form name="form1" method="post" target="_parent">
 <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
   <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -26,7 +36,7 @@ function save(){
     <td valign="top" background="../../../images/content-bg.gif">
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
         <tr>
-            <td height="31"><div class="titlebt">教学实验管理 > 通知公告管理</div></td>
+            <td height="31"><div class="titlebt">通知公告管理</div></td>
         </tr>
         </table>
     </td>
@@ -49,7 +59,7 @@ function save(){
             								<table width="100%" border="0" cellspacing="0" cellpadding="0">
               									<tr>
                 									<td width="6%" height="19" valign="bottom"><div align="center"><img src="../../../images/tb.gif" width="14" height="14" /></div></td>
-                									<td width="94%" valign="bottom"><span class="STYLE1">添加通知公告</span></td>
+                									<td width="94%" valign="bottom"><span class="STYLE1">通知公告</span></td>
               									</tr>
             								</table>
             							</td>
@@ -64,47 +74,25 @@ function save(){
   			</tr>
  			<tr valign="top">
     			<td>
-    				<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
-      					<tr bgcolor="#FFFFFF">
-        					<td   bgcolor="#FFFFFF">
+    				<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" style="margin: 10px" >
+      					<tr bgcolor="#FFFFFF" >
+        					<td  align="center"  bgcolor="#FFFFFF" >
 					  			<table border="0" cellpadding="2" cellspacing="1" style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
 					 				<tr>
-					    				<td nowrap align="right"  >通知标题:</td>
-					    				<td nowrap >
-					    					<input id="title" name="title" class="text" style="width:154px" maxlength="20" />
-					    					<span style="color:red;">*</span>&nbsp;&nbsp; 
-					    					<span style="color:red;"  id="errMsg_us_sno"></span>
-					     				</td>
+                                        <td align="center">
+                                            <div class="message" style="border: 1px;background: #FFFFFF ;height: 1004px ;width: 95%">
+                                                <p style="height:30px"><p>
+                                                <h1 style="text-align: center;margin: 20px">${announcementDetailFlag.title}</h1>
+                                                <hr style="margin: 30px">
+                                                <p style="margin: 30px" align="left"><span>发送人 :  </span><span>${announcementDetailFlag.user.name}</span> <span style="float:right"><fmt:formatDate value="${announcementDetailFlag.publishTime}"></fmt:formatDate></span>
+                                                    <span style="float:right;">发布时间 :  </span></p>
+                                                <hr style="margin: 30px">
+                                                <div style="margin: 30px;text-align: left">${announcementDetailFlag.content}</div>
+                                                <hr style="margin:30px">
 
-
-					    				<td nowrap align="right">浏览人范围:</td>
-					    				<td nowrap  >  
-
-
-					    				<input type="radio" id="radio1" name="scope" value="1" onclick="display(this.value);" checked>全网可见</input>
-      								<input type="radio" id="radio2" name="scope" value="2" onclick="display(this.value);" >班级可见</input>
-      								<div id="scopeDiv" style="display:none">
-      										<select><option>虚拟班级一</option><option>虚拟班级二</option></select>
-      									</div>
-      									
-											</td>
-					    				
-					  				</tr>
-                                    <tr>
-                                        <td  nowrap algin="right">范围</td>
-                                        <td algin="left"><input type="text" id="limit" name="limit"></td>
-                                        <td></td>
-                                        <td></td>
-                                    </tr>
-					    			<tr>
-					    				<td nowrap align="right">通知内容:</td>
-					    				<td colspan="3"nowrap>
-					    				<textarea id="content" name="content" style="width:80%;height:100px"></textarea>
-					    			
-					    				</td>
-                                        <input id="publisher_id" name="publisher_id" style="display:none" value="1" />
-					  				</tr>
-					  				<tr>
+                                            </div>
+                                        </td>
+					    			</tr>
 					    				
 					 
 
@@ -116,8 +104,6 @@ function save(){
 
       				<tr>
         				<td align="center">
-							<input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-							<input type="reset" name="Submit3" value="重置" class="button" onclick="reset();"/>
 							<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
 						</td>
       				</tr>

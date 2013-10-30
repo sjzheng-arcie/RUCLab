@@ -1,5 +1,6 @@
 ﻿<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -41,8 +42,10 @@
 
         <div class="indexNewsCon">
             <ul>
-                <li><span>[2013年5月8日]</span><a href="remind.html">网络整改通知</a></li>
-                <li><span>[2012年4月27日]</span><a href="remind.html">虚拟化实验室配电整改通知</a></li>
+                <c:forEach items="${announcementList}" var="item">
+                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a></li>
+
+                </c:forEach>
 
 
             </ul>
@@ -53,12 +56,10 @@
 
         <div class="indexNoticeCon">
             <ul>
-                <li><span>[2013年3月6日]</span><a href="remind.html">系统操作规范</a></li>
-                <li><span>[2013年3月6日]</span><a href="remind.html">大修业务流程查阅</a></li>
-                <li><span>[2013年3月6日]</span><a href="remind.html">巡检制度查阅</a></li>
-                <li><span>[2013年3月6日]</span><a href="remind.html">更新改造查阅</a></li>
-                <li><span>[2013年3月6日]</span><a href="remind.html">住宅专项制度查阅</a></li>
-                <li><span>[2013年3月6日]</span><a href="remind.html">系统操作手册下载</a></li>
+                <c:forEach items="${messageList}" var="item">
+                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a></li>
+
+                </c:forEach>
 
             </ul>
         </div>

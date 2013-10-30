@@ -15,11 +15,8 @@ public class MajorService {
 
     public Major selectByPrimaryKey(int id) {
         Major role = null;
-        try {
-            role = (Major) mapperMajor.selectByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        role = (Major) mapperMajor.selectByPrimaryKey(id);
+
         return role;
     }
 

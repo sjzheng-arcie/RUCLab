@@ -62,4 +62,24 @@ public class AnnouncementService {
 		}
 		return result;
 	}
+	public Announcement getAnnouncementById(int announcementId) {
+		Announcement announcement= new Announcement();
+		try {
+			announcement=mapperAnnouncement.selectByPrimaryKey(announcementId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return announcement;
+	}
+	public List<Announcement> getAnnouncementListByCriteria(AnnouncementCriteria announcementCriteria){
+		List<Announcement> announcementList=null;
+		try{
+			RowBounds bounds = new RowBounds(1, 8);
+			announcementList= mapperAnnouncement.selectByCriteriaWithRowbounds(announcementCriteria, bounds);
+			//announcementList=mapperAnnouncement.selectByCriteria(announcementCriteria);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return announcementList;
+	}
 }

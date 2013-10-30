@@ -242,7 +242,7 @@
                 <p></p>
 
                 <div id=rr1></div>
-                <iframe id="contentFrm0" onLoad="document.getElementById('rr1').innerHTML=this.body.innerHTML;this.style.display='none';"
+                <iframe id="contentFrm0" onLoad="document.getElementById('rr1').innerHTML=this.document.innerHTML;this.style.display='none';"
                         name="contentFrm0" src="message" width="900px" height="2000px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
             </li>
         </ul>
@@ -254,7 +254,7 @@
 
                 <div id=rr2></div>
                 <iframe id="contentFrm1" onLoad="document.getElementById('rr2').innerHTML=this.body.innerHTML;this.style.display='none';"
-                        name="contentFrm1" src="toaddannouncement" width="900px" height="2000px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm1" src="toaddannouncement" width="900px" height="600px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
             </li>
         </ul>
         <ul>
@@ -263,7 +263,7 @@
 
                 <div id=rr3></div>
                 <iframe id="contentFrm2" onLoad="document.getElementById('rr3').innerHTML=this.body.innerHTML;this.style.display='none';"
-                        name="contentFrm2" src="sendmessage" width="900px" height="2000px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm2" src="sendmessage" width="900px" height="600px"  frameborder="0" style="padding:0px; margin:0px;" scrolling="no"></iframe>
             </li>
         </ul>
 

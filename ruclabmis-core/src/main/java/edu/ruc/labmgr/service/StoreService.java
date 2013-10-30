@@ -1,19 +1,25 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.ApplicationForm;
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.ViewStore;
-import edu.ruc.labmgr.domain.ViewStoreCriteria;
-import edu.ruc.labmgr.mapper.EquipmentMapper;
-import edu.ruc.labmgr.mapper.RoleMapper;
-import edu.ruc.labmgr.mapper.ViewStoreMapper;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.mapper.*;
+import edu.ruc.labmgr.utils.Consts;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.ibatis.session.SqlSession;
+import org.apache.ibatis.transaction.TransactionFactory;
+import org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.TransactionDefinition;
+import org.springframework.transaction.TransactionStatus;
+import org.springframework.transaction.support.DefaultTransactionDefinition;
 
+import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -21,57 +27,127 @@ import java.util.List;
 public class StoreService {
     @Autowired
     private ViewStoreMapper mapperViewStore;
-
     @Autowired
     private EquipmentMapper mapperEquipment;
+    @Autowired
+    private ApplicationFormMapper mapperApply;
+    @Autowired
+    private EquipmentApplicationFormMapper mapperEA;
+    @Autowired
+    private UserService userService;
 
     public ObjectListPage<ViewStore> selectListPage(int currentPage, ViewStoreCriteria criteria) {
         ObjectListPage<ViewStore> retList = null;
-        try {
-            String count = SysUtil.getConfigValue("showCount", "10");
 
-            int limit = Integer.valueOf(count);
-            int currentResult = (currentPage - 1) * limit;
-            int totleCount = mapperViewStore.countByCriteria(criteria);
-            int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
+        String count = SysUtil.getConfigValue("showCount", "10");
 
-            PageInfo pageInfo = new PageInfo();
-            pageInfo.setTotalResult(totleCount);
-            pageInfo.setTotalPage(pageCount);
-            pageInfo.setCurrentPage(currentPage);
+        int limit = Integer.valueOf(count);
+        int currentResult = (currentPage - 1) * limit;
+        int totleCount = mapperViewStore.countByCriteria(criteria);
+        int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
 
-            RowBounds bounds = new RowBounds(currentResult, limit);
-            List<ViewStore> stores = mapperViewStore.selectByCriteriaWithRowbounds(criteria, bounds);
+        PageInfo pageInfo = new PageInfo();
+        pageInfo.setTotalResult(totleCount);
+        pageInfo.setTotalPage(pageCount);
+        pageInfo.setCurrentPage(currentPage);
 
-            retList = new ObjectListPage<ViewStore>(pageInfo, stores);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        RowBounds bounds = new RowBounds(currentResult, limit);
+        List<ViewStore> stores = mapperViewStore.selectByCriteriaWithRowbounds(criteria, bounds);
+
+        retList = new ObjectListPage<ViewStore>(pageInfo, stores);
 
         return retList;
     }
 
 
-    public ViewStore selectByPrimaryKey(int id) {
+    public ViewStore selectByApplyId(int id) {
         ViewStore store = null;
+        store = mapperViewStore.selectByApplyId(id);
 
-        try {
-            store = mapperViewStore.selectByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return store;
     }
 
+    public void insertApply(ApplicationForm apply) {
+        apply.setApplicantId(userService.getCurrentUserId());
+        mapperApply.insert(apply);
+    }
+
+    public void updateApply(ApplicationForm apply) {
+        mapperApply.updateByPrimaryKeySelective(apply);
+    }
+
+    public void deleteApply(int id) {
+        ViewStore store = new ViewStore();
+        store = mapperViewStore.selectByApplyId(id);
+        for(Equipment equipment : store.getEquipments())
+        {
+            EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
+            key.setApplicationFormId(id);
+            key.setEquipmentId(equipment.getId());
+            mapperEA.deleteByPrimaryKey(key);
+
+            mapperEquipment.deleteByPrimaryKey(equipment.getId());
+        }
+
+        mapperApply.deleteByPrimaryKey(id);
+    }
 
     public Equipment selectEquipmentByPrimaryKey(int id) {
         Equipment equipment = null;
+        equipment = mapperEquipment.selectByPrimaryKey(id);
 
-        try {
-            equipment = mapperEquipment.selectByPrimaryKey(id);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
         return equipment;
+    }
+
+
+    public int updateEquipmentByPrimaryKey(Equipment equipment) {
+        int retVal = 0;
+        retVal = mapperEquipment.updateByPrimaryKeySelective(equipment);
+
+        return retVal;
+    }
+
+
+    public void insertEquipmentWithApply(Equipment equipment, int applicationId) {
+        mapperEquipment.insert(equipment);
+
+        EquipmentApplicationFormKey record = new EquipmentApplicationFormKey();
+        record.setEquipmentId(equipment.getId());
+        record.setApplicationFormId(applicationId);
+        mapperEA.insert(record);
+    }
+
+
+    public void deleteEquipmentWithApply(int equipmentId, int applicationId) {
+        EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
+        key.setEquipmentId(equipmentId);
+        key.setApplicationFormId(applicationId);
+        mapperEA.deleteByPrimaryKey(key);
+
+        mapperEquipment.deleteByPrimaryKey(equipmentId);
+    }
+
+
+    public void approveApply(int applicationId) {
+        ApplicationForm form = new ApplicationForm();
+        form.setId(applicationId);
+        form.setProcessTime(new Date());
+        form.setStateId(Consts.APPLY_STATE_PASS);
+
+        form.setApproverId(userService.getCurrentUserId());
+
+        mapperApply.updateByPrimaryKeySelective(form);
+    }
+
+
+    public void rejectApply(int applicationId) {
+        ApplicationForm form = new ApplicationForm();
+        form.setId(applicationId);
+        form.setProcessTime(new Date());
+        form.setStateId(Consts.APPLY_STATE_REJECT);
+
+        form.setApproverId(userService.getCurrentUserId());
+
+        mapperApply.updateByPrimaryKeySelective(form);
     }
 }

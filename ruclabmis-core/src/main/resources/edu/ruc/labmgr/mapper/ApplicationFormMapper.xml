@@ -4,11 +4,13 @@
   <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplicationForm" >
     <id column="id" property="id" jdbcType="INTEGER" />
     <result column="sn" property="sn" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
     <result column="applicant_id" property="applicantId" jdbcType="INTEGER" />
     <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
     <result column="approver_id" property="approverId" jdbcType="INTEGER" />
-    <result column="application_number" property="applicationNumber" jdbcType="SMALLINT" />
     <result column="state_id" property="stateId" jdbcType="INTEGER" />
+    <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
+    <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
   </resultMap>
   <sql id="Criteria_Where_Clause" >
     <where >
@@ -69,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, sn, applicant_id, operator_id, approver_id, application_number, state_id
+    id, sn, type, applicant_id, operator_id, approver_id, state_id, apply_time, process_time
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
     select
@@ -102,21 +104,27 @@
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
-    insert into application_form (id, sn, applicant_id, 
-      operator_id, approver_id, application_number, 
-      state_id)
-    values (#{id,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{applicantId,jdbcType=INTEGER}, 
-      #{operatorId,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER}, #{applicationNumber,jdbcType=SMALLINT}, 
-      #{stateId,jdbcType=INTEGER})
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into application_form (sn, type, applicant_id, 
+      operator_id, approver_id, state_id, 
+      apply_time, process_time)
+    values (#{sn,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{applicantId,jdbcType=INTEGER}, 
+      #{operatorId,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER}, 
+      #{applyTime,jdbcType=TIMESTAMP}, #{processTime,jdbcType=TIMESTAMP})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
     insert into application_form
     <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
       <if test="sn != null" >
         sn,
+      </if>
+      <if test="type != null" >
+        type,
       </if>
       <if test="applicantId != null" >
         applicant_id,
@@ -127,19 +135,22 @@
       <if test="approverId != null" >
         approver_id,
       </if>
-      <if test="applicationNumber != null" >
-        application_number,
-      </if>
       <if test="stateId != null" >
         state_id,
       </if>
+      <if test="applyTime != null" >
+        apply_time,
+      </if>
+      <if test="processTime != null" >
+        process_time,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
       <if test="sn != null" >
         #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
       </if>
       <if test="applicantId != null" >
         #{applicantId,jdbcType=INTEGER},
@@ -150,11 +161,14 @@
       <if test="approverId != null" >
         #{approverId,jdbcType=INTEGER},
       </if>
-      <if test="applicationNumber != null" >
-        #{applicationNumber,jdbcType=SMALLINT},
-      </if>
       <if test="stateId != null" >
         #{stateId,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processTime != null" >
+        #{processTime,jdbcType=TIMESTAMP},
       </if>
     </trim>
   </insert>
@@ -173,6 +187,9 @@
       <if test="record.sn != null" >
         sn = #{record.sn,jdbcType=VARCHAR},
       </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
       <if test="record.applicantId != null" >
         applicant_id = #{record.applicantId,jdbcType=INTEGER},
       </if>
@@ -182,11 +199,14 @@
       <if test="record.approverId != null" >
         approver_id = #{record.approverId,jdbcType=INTEGER},
       </if>
-      <if test="record.applicationNumber != null" >
-        application_number = #{record.applicationNumber,jdbcType=SMALLINT},
-      </if>
       <if test="record.stateId != null" >
         state_id = #{record.stateId,jdbcType=INTEGER},
+      </if>
+      <if test="record.applyTime != null" >
+        apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.processTime != null" >
+        process_time = #{record.processTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     <if test="_parameter != null" >
@@ -197,11 +217,13 @@
     update application_form
     set id = #{record.id,jdbcType=INTEGER},
       sn = #{record.sn,jdbcType=VARCHAR},
+      type = #{record.type,jdbcType=INTEGER},
       applicant_id = #{record.applicantId,jdbcType=INTEGER},
       operator_id = #{record.operatorId,jdbcType=INTEGER},
       approver_id = #{record.approverId,jdbcType=INTEGER},
-      application_number = #{record.applicationNumber,jdbcType=SMALLINT},
-      state_id = #{record.stateId,jdbcType=INTEGER}
+      state_id = #{record.stateId,jdbcType=INTEGER},
+      apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
+      process_time = #{record.processTime,jdbcType=TIMESTAMP}
     <if test="_parameter != null" >
       <include refid="Update_By_Criteria_Where_Clause" />
     </if>
@@ -212,6 +234,9 @@
       <if test="sn != null" >
         sn = #{sn,jdbcType=VARCHAR},
       </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
       <if test="applicantId != null" >
         applicant_id = #{applicantId,jdbcType=INTEGER},
       </if>
@@ -221,11 +246,14 @@
       <if test="approverId != null" >
         approver_id = #{approverId,jdbcType=INTEGER},
       </if>
-      <if test="applicationNumber != null" >
-        application_number = #{applicationNumber,jdbcType=SMALLINT},
-      </if>
       <if test="stateId != null" >
         state_id = #{stateId,jdbcType=INTEGER},
+      </if>
+      <if test="applyTime != null" >
+        apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="processTime != null" >
+        process_time = #{processTime,jdbcType=TIMESTAMP},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -233,11 +261,13 @@
   <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
     update application_form
     set sn = #{sn,jdbcType=VARCHAR},
+      type = #{type,jdbcType=INTEGER},
       applicant_id = #{applicantId,jdbcType=INTEGER},
       operator_id = #{operatorId,jdbcType=INTEGER},
       approver_id = #{approverId,jdbcType=INTEGER},
-      application_number = #{applicationNumber,jdbcType=SMALLINT},
-      state_id = #{stateId,jdbcType=INTEGER}
+      state_id = #{stateId,jdbcType=INTEGER},
+      apply_time = #{applyTime,jdbcType=TIMESTAMP},
+      process_time = #{processTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" id="selectByCriteriaWithRowbounds" >
