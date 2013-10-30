@@ -48,6 +48,7 @@ public class StoreController {
             criteria.andApplicantIdEqualTo(serviceUser.getCurrentUserId());
         }
 
+
         if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
             criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
         }

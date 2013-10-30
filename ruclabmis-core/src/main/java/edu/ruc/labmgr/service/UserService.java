@@ -1,5 +1,7 @@
 package edu.ruc.labmgr.service;
 
+import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.domain.EquipmentCriteria;
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.UserMapper;
@@ -8,6 +10,7 @@ import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.ValidateCode;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -45,35 +48,32 @@ public class UserService {
         return userInfo.getId();
     }
 
-    public ObjectListPage<User> selectListPage(int currentPage, UserCriteria criteria) {
-        ObjectListPage<User> retList = null;
 
-        String count = SysUtil.getConfigValue("showCount", "10");
+    public PageInfo<User> selectListPage(String sn,String name, int pageNum){
+        UserCriteria criteria = new UserCriteria();
+        criteria.setOrderByClause("sn");
+        UserCriteria.Criteria ec = criteria.createCriteria();
+        if (StringUtils.isNotEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (StringUtils.isNotEmpty(name))
+            ec.andNameLike("%" + name + "%");
 
-        int limit = Integer.valueOf(count);
-        int currentResult = (currentPage - 1) * limit;
-        int totleCount = mapperUser.countByCriteria(criteria);
-        int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
-
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setTotalResult(totleCount);
-        pageInfo.setTotalPage(pageCount);
-        pageInfo.setCurrentPage(currentPage);
-
-        RowBounds bounds = new RowBounds(currentResult, limit);
-        List<User> users = mapperUser.selectByCriteriaWithRowbounds(criteria, bounds);
-
-        retList = new ObjectListPage<User>(pageInfo, users);
-
-
-        return retList;
+        return getPageUserByCriteria(pageNum,criteria);
     }
+
+    private PageInfo<User> getPageUserByCriteria(int pageNum,UserCriteria criteria){
+        int totalCount = mapperUser.countByCriteria(criteria);
+        PageInfo<User> page = new PageInfo<>(totalCount,-1,pageNum);
+        List<User> data = mapperUser.selectByCriteriaWithRowbounds(criteria,
+                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+        page.setData(data);
+        return page;
+    }
+
     public List<User> getUserList( UserCriteria criteria) {
         List<User> retList = null;
         try {
-
             retList = mapperUser.selectByCriteria(criteria);
-
         } catch (Exception e) {
             e.printStackTrace();
         }

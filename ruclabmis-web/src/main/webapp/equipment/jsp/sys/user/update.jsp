@@ -118,7 +118,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户角色:</td>
                                                 <td nowrap>
-                                                    <select name="role" id="role">
+                                                    <select name="roleId" id="roleId">
                                                         <c:forEach items="${roles}" var="item">
                                                             <option value="${item.id}"
                                                                     <c:if test="${item.id == user.roleId}"> selected</c:if>>${item.name}
@@ -128,7 +128,7 @@
                                                 </td>
                                                 <td nowrap align="right">所属专业：</td>
                                                 <td nowrap align="left">
-                                                    <select name="major" id="major">
+                                                    <select name="majorId" id="majorId">
                                                         <c:forEach items="${majors}" var="item">
                                                             <option value="${item.id}"
                                                                     <c:if test="${item.id == user.majorId}"> selected</c:if>>${item.name}
@@ -139,8 +139,8 @@
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left"><textarea name="comment"
-                                                                                  id=comment>${user.comment}</textarea>
+                                                <td nowrap align="left">
+                                                    <textarea name="comment" id=comment>${user.comment}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

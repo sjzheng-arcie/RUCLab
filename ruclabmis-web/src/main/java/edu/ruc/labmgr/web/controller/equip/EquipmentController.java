@@ -44,6 +44,4 @@ public class EquipmentController {
         result.addObject("page",page);
         return result;
     }
-
-
 }
