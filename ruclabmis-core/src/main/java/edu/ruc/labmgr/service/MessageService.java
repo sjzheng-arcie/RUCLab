@@ -76,6 +76,14 @@ public class MessageService {
 		}
 		return result;
 	}
+	public void updateByMessage(Message message){
+		try {
+			messageMapper.updateByPrimaryKey(message);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+
+	}
 	public Message selectById(int id) {
 		Message message = null;
 		try {

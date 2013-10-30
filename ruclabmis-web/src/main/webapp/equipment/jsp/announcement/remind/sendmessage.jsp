@@ -66,7 +66,7 @@
 
 	  <div  class="message">
      <form action="/equipment/jsp/announcement/remind/addMessage" method="post" target="_parent" >
-	<table style=" border:1px red solid; width:80%;margin:auto;">
+	<table style=" border:1px; width:80%;margin:auto;">
 		<tr>
 		<td align="right">接收对象</td>
             <td align="left">

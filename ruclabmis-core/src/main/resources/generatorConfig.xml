@@ -46,9 +46,9 @@
 
 
         <!-- 表映射的配置示例-->
-        <table tableName="application_form">
-            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
-        </table>
+        <!--<table tableName="application_form">-->
+            <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="arrangement">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
@@ -137,7 +137,7 @@
         <!--<table tableName="message">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <table tableName="view_store" />
+        <!--<table tableName="view_store" />-->
 
     </context>
 </generatorConfiguration>

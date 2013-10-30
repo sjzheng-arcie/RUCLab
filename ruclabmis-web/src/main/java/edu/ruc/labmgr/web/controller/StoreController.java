@@ -40,17 +40,28 @@ public class StoreController {
 
         ViewStoreCriteria viewStoreCriteria =  new ViewStoreCriteria();
         ViewStoreCriteria.Criteria criteria = viewStoreCriteria.createCriteria();
+
+        //教师账户登录只能看到自己的申请
+        Subject currentUser = SecurityUtils.getSubject();
+        if(currentUser.hasRole(Consts.ROLE_TEACHER))
+        {
+            criteria.andApplicantIdEqualTo(serviceUser.getCurrentUserId());
+        }
+
         if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
             criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
         }
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
-            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
+        if (!StringUtils.isNullOrEmpty(request.getParameter("searchState"))) {
+            criteria.andApplicationStateIdEqualTo(Integer.parseInt(request.getParameter("searchState")));
         }
 
         ObjectListPage<ViewStore> pageInfo = serviceStore.selectListPage(currPage, viewStoreCriteria);
 
+        List<Classif> applyStates = serviceClassif.getItemsByParentID(Consts.CLASSIF_APPLICAT_STATE);
+
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/applylist");
         mav.addObject("stores", pageInfo.getListObject());
+        mav.addObject("applyStates", applyStates);
         mav.addObject("page", pageInfo.getPageInfo());
         return mav;
     }
@@ -67,6 +78,7 @@ public class StoreController {
     @RequestMapping("/addApply")
     public ModelAndView addApply(HttpServletRequest request) {
         ApplicationForm apply = initApplyFromRequest(request);
+
         serviceStore.insertApply(apply);
 
         return pageList(request);
@@ -86,11 +98,9 @@ public class StoreController {
     @RequiresUser
     @RequestMapping("/updateApply")
     public ModelAndView updateApply(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
         ApplicationForm apply = initApplyFromRequest(request);
         serviceStore.updateApply(apply);
         return pageList(request);
-
     }
 
     @RequestMapping("/delete")
@@ -127,7 +137,6 @@ public class StoreController {
         serviceStore.insertEquipmentWithApply(equipment, applicationId);
 
         return toUpdateApply(request);
-
     }
 
     @RequestMapping("/toEditEquipment")
@@ -150,12 +159,9 @@ public class StoreController {
     @RequestMapping("/editEquipment")
     public ModelAndView editEquipment(HttpServletRequest request) {
         Equipment equipment = initEquipmentFromRequest(request);
-        int result = serviceStore.updateEquipmentByPrimaryKey(equipment);
-        if (result > 0) {
-            return toUpdateApply(request);
-        } else {
-            return null;
-        }
+        serviceStore.updateEquipmentByPrimaryKey(equipment);
+
+        return toUpdateApply(request);
     }
 
     @RequestMapping("/deleteEquipment")
@@ -167,59 +173,27 @@ public class StoreController {
 
         return toUpdateApply(request);
     }
-    //
-//    @RequestMapping("/update")
-//    public ModelAndView update(HttpServletRequest request) {
-//        equipment equipment = initFromRequest(request);
-//        int result = serviceequipment.update(equipment);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/delete")
-//    public ModelAndView delete(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        int result = serviceequipment.delete(id);
-//
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/toUpdatePassword")
-//    public ModelAndView toUpdatePassword(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/equipment/password");
-//        mav.addObject("id",id);
-//
-//        return mav;
-//    }
-//
-//    @RequestMapping("/updatePassword")
-//    public ModelAndView updatePassword(HttpServletRequest request) {
-//        String oriPassword = request.getParameter("oriPassword");
-//        String newPassword = request.getParameter("newPassword");
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        int result = serviceequipment.updatePassword(id, oriPassword, newPassword);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else if (result == -1) {
-//            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/equipment/password");
-//            mav.addObject("id",id);
-//            mav.addObject("errMsg","原密码输入不一致，请重新输入!");
-//            return mav;
-//        } else {
-//            return null;
-//        }
-//    }
-//
+
+    @RequestMapping("/approve")
+    public ModelAndView approve(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+
+        serviceStore.approveApply(applicationId);
+
+        return pageList(request);
+    }
+
+
+    @RequestMapping("/reject")
+    public ModelAndView reject(HttpServletRequest request) {
+        int applicationId = Integer.parseInt(request.getParameter("application_id"));
+
+        serviceStore.rejectApply(applicationId);
+
+        return pageList(request);
+    }
+
+
     private ApplicationForm initApplyFromRequest(HttpServletRequest req) {
         ApplicationForm apply = new ApplicationForm();
         if (!StringUtils.isNullOrEmpty(req.getParameter("application_id")))
@@ -234,11 +208,6 @@ public class StoreController {
             apply.setStateId(Consts.APPLY_STATE_WAITING);
 
         apply.setApplyTime(new java.util.Date());
-
-        Subject currentUser = SecurityUtils.getSubject();
-        String userSn = (String) currentUser.getPrincipal();
-        User userInfo = serviceUser.getUserByLoginSn(userSn);
-        apply.setApplicantId(userInfo.getId());
 
         return apply;
     }
@@ -262,6 +231,8 @@ public class StoreController {
             equipment.setManufactureDate(Date.valueOf(req.getParameter("manufacture_date")));
         if (!StringUtils.isNullOrEmpty(req.getParameter("acquisition_date")))
             equipment.setAcquisitionDate(Date.valueOf(req.getParameter("acquisition_date")));
+        if (!StringUtils.isNullOrEmpty(req.getParameter("scrap_date")))
+            equipment.setScrapDate(Date.valueOf(req.getParameter("scrap_date")));
         equipment.setCountry(req.getParameter("country"));
         if (!StringUtils.isNullOrEmpty(req.getParameter("funding_subject")))
             equipment.setFundingSubjectId(Integer.parseInt(req.getParameter("funding_subject")));

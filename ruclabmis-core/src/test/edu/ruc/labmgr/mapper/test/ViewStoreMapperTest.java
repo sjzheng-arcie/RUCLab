@@ -1,11 +1,11 @@
 package edu.ruc.labmgr.mapper.test;
 
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.Privilege;
-import edu.ruc.labmgr.domain.Role;
-import edu.ruc.labmgr.domain.ViewStore;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.ViewStoreMapper;
+import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.utils.Consts;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
@@ -15,10 +15,13 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
 import java.text.DateFormat;
+import java.util.Date;
 import java.util.List;
 
 public class ViewStoreMapperTest {
     private static ViewStoreMapper mapper;
+    private UserService userService;
+    private ApplicationFormMapper mapperApply;
 
     @BeforeClass
     public static void getBean() throws Exception {
@@ -44,9 +47,16 @@ public class ViewStoreMapperTest {
 
     }
 
-    @Ignore
-    public void testQueryList() throws Exception {
-        System.out.println("testQueryList");
+    @Test
+    public void testUpdate() throws Exception {
+        ApplicationForm form = new ApplicationForm();
+        form.setApplicantId(16);
+        form.setProcessTime(new Date());
+        form.setStateId(Consts.APPLY_STATE_PASS);
+
+        form.setApproverId(userService.getCurrentUserId());
+
+        assert(mapperApply.updateByPrimaryKeySelective(form) > 0 );
     }
 
     @Ignore

@@ -1,8 +1,11 @@
 package edu.ruc.labmgr.utils.page;
 
-import java.io.Serializable;
+import edu.ruc.labmgr.utils.SysUtil;
 
-public class PageInfo implements Serializable {
+import java.io.Serializable;
+import java.util.List;
+
+public class PageInfo<T> implements Serializable {
 
     private static final long serialVersionUID = 587754556498974978L;
 
@@ -14,11 +17,29 @@ public class PageInfo implements Serializable {
     private int currentPage;
     //当前显示到的ID, 在mysql limit 中就是第一个参数.
     private int currentResult;
+    //每页的大小
+    private int pageSize;
 
-    public int getTotalPage() {
-        return totalPage;
+    private List<T> data;
+
+    public PageInfo() {
     }
 
+    public PageInfo(int totalCount, int pageSize,int currentPage) {
+        this.totalResult = totalCount;
+        this.pageSize = (pageSize <=0) ? Integer.valueOf(SysUtil.getConfigValue("showCount", "10")) : pageSize ;
+        this.currentPage = currentPage;
+    }
+
+    public int getTotalPage() {
+        if(this.pageSize <=0){
+           this.pageSize = Integer.valueOf(SysUtil.getConfigValue("showCount", "10"));
+        }
+        this.totalPage = (totalResult % pageSize == 0) ? (totalResult / pageSize) : (1 + totalResult / pageSize);
+        return this.totalPage;
+    }
+    //应该将该方法废掉
+    @Deprecated
     public void setTotalPage(int totalPage) {
         this.totalPage = totalPage;
     }
@@ -40,11 +61,26 @@ public class PageInfo implements Serializable {
     }
 
     public int getCurrentResult() {
-        return currentResult;
+        return this.currentResult = (this.currentPage - 1) * this.pageSize;
     }
 
     public void setCurrentResult(int currentResult) {
         this.currentResult = currentResult;
     }
 
+    public int getPageSize() {
+        return this.pageSize;
+    }
+
+    public void setPageSize(int pageSize) {
+        this.pageSize = pageSize;
+    }
+
+    public List<T> getData() {
+        return data;
+    }
+
+    public void setData(List<T> data) {
+        this.data = data;
+    }
 }

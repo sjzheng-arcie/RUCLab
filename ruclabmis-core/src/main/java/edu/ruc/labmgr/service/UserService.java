@@ -9,6 +9,8 @@ import edu.ruc.labmgr.utils.ValidateCode;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,6 +38,13 @@ public class UserService {
         return user;
     }
 
+    public int getCurrentUserId() {
+        Subject currentUser = SecurityUtils.getSubject();
+        String userSn = (String) currentUser.getPrincipal();
+        User userInfo = mapperUser.selectUserByLoginSn(userSn);
+        return userInfo.getId();
+    }
+
     public ObjectListPage<User> selectListPage(int currentPage, UserCriteria criteria) {
         ObjectListPage<User> retList = null;
 
@@ -59,18 +68,18 @@ public class UserService {
 
         return retList;
     }
-	public List<User> getUserList( UserCriteria criteria) {
-		List<User> retList = null;
-		try {
+    public List<User> getUserList( UserCriteria criteria) {
+        List<User> retList = null;
+        try {
 
-			retList = mapperUser.selectByCriteria(criteria);
+            retList = mapperUser.selectByCriteria(criteria);
 
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-		return retList;
-	}
+        return retList;
+    }
 
 
     public int insert(User user) {

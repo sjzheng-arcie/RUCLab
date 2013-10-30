@@ -1,6 +1,8 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<jsp:useBean id="now" class="java.util.Date" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -8,6 +10,14 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
+    function saveEquipment() {
+        if(!validator(document.mainForm)){
+            return;
+        }
+        document.mainForm.action = "addEquipment";
+        document.mainForm.submit();
+    }
+
     function saveEquipment() {
         if(!validator(document.mainForm)){
             return;
@@ -125,10 +135,10 @@
                                         <td>
                                             <input name="unit_price" id="unit_price" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
-                                                   valid="isNumber"
-                                                   errmsg="单价只能为数字"/>
+                                                   valid="required|isNumber"
+                                                   errmsg="单价不能为空|单价只能为数字"/>
                                             <span style="color:red;">*</span>
-                                        </td>
+                                            </td>
                                     </tr>
                                     <tr style="height: 30px;">
                                         <td align="center">厂家</td>
@@ -141,12 +151,10 @@
                                             <input name="factory_number" id="factory_number" onblur="" class="text"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
-                                        <td align="center">出厂日期</td>
+                                        <td align="center">国别</td>
                                         <td>
-                                            <input name="manufacture_date" id="manufacture_date"
-                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
-                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                            <input name="country" id="country" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
@@ -157,10 +165,21 @@
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                                    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                         </td>
-                                        <td align="center">国别</td>
+                                        <td align="center">出厂日期</td>
                                         <td>
-                                            <input name="country" id="country" onblur="" class="text"
-                                                   style="width:154px" maxlength="20"/>
+                                            <input name="manufacture_date" id="manufacture_date"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                        </td>
+                                        <td align="center">报废日期</td>
+                                        <td>
+                                            <c:set var="scrapDate" value="<%=new Date(now.getYear()+3,now.getMonth(),now.getDate())%>"></c:set>
+                                            <input name="scrap_date" id="scrap_date"
+                                                   value="<fmt:formatDate value="${scrapDate}" pattern="yyyy-MM-dd"/>"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                             <span style="color:red;">*</span>
                                         </td>
                                     </tr>
