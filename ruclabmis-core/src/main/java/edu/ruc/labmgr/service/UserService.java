@@ -10,7 +10,7 @@ import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.ValidateCode;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.commons.lang3.StringUtils;
+import com.mysql.jdbc.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -53,9 +53,9 @@ public class UserService {
         UserCriteria criteria = new UserCriteria();
         criteria.setOrderByClause("sn");
         UserCriteria.Criteria ec = criteria.createCriteria();
-        if (StringUtils.isNotEmpty(sn));
+        if (!StringUtils.isNullOrEmpty(sn))
             ec.andSnLike("%" + sn + "%");
-        if (StringUtils.isNotEmpty(name))
+        if (!StringUtils.isNullOrEmpty(name))
             ec.andNameLike("%" + name + "%");
 
         return getPageUserByCriteria(pageNum,criteria);

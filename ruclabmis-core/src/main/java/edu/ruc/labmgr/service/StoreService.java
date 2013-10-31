@@ -1,12 +1,12 @@
 package edu.ruc.labmgr.service;
 
+import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.*;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.transaction.TransactionFactory;
@@ -43,7 +43,7 @@ public class StoreService {
         criteria.setOrderByClause("apply_time");
 
         ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
-        if (StringUtils.isNotEmpty(sn))
+        if (!StringUtils.isNullOrEmpty(sn))
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
