@@ -161,7 +161,7 @@ public class AnnouncementController {
 		AnnouncementCriteria announcementCriteria =  new AnnouncementCriteria();
 		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
-		criteria.andPublishLimitEqualTo(0);
+		//criteria.andPublishLimitEqualTo(0);
 
 		announcementCriteria.setOrderByClause(" publish_time desc");
 		ObjectListPage<Announcement> pageInfo = serviceAnnouncement.selectListPage(currPage, announcementCriteria);
