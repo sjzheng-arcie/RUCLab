@@ -74,7 +74,7 @@ public class AnnouncementService {
 	public List<Announcement> getAnnouncementListByCriteria(AnnouncementCriteria announcementCriteria){
 		List<Announcement> announcementList=null;
 		try{
-			RowBounds bounds = new RowBounds(1, 8);
+			RowBounds bounds = new RowBounds(0, 8);
 			announcementList= mapperAnnouncement.selectByCriteriaWithRowbounds(announcementCriteria, bounds);
 			//announcementList=mapperAnnouncement.selectByCriteria(announcementCriteria);
 		}catch (Exception e){

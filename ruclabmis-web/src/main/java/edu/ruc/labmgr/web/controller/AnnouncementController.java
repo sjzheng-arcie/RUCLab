@@ -118,6 +118,15 @@ public class AnnouncementController {
 
 		return mav;
 	}
+	@RequestMapping("/replyMessage")
+	public ModelAndView replyMessage(HttpServletRequest request) {
+		String replySn = request.getParameter("replyFlag");
+		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
+		mav.addObject("tabId",3);
+		mav.addObject("replySn",replySn);
+
+		return mav;
+	}
 	@RequestMapping("/mysendmessage")
 	public ModelAndView showMySendMessage(HttpServletRequest request) {
 		User user = new User();
@@ -172,7 +181,10 @@ public class AnnouncementController {
 	@RequestMapping("/sendmessage")
 	public ModelAndView sendMessage(HttpServletRequest request) {
 
+		String replySn=request.getParameter("replyFlag");
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/sendmessage");
+		if(replySn!=null&&replySn!="")
+			mav.addObject("replySn",replySn);
 		return mav;
 	}
 
@@ -215,7 +227,7 @@ public class AnnouncementController {
 	}
 	@RequestMapping("/deleteMessage")
 	public ModelAndView deleteMessage(HttpServletRequest request) {
-		int messageId = Integer.parseInt(request.getParameter("messageId"));
+		int messageId = Integer.parseInt(request.getParameter("deleteMessageId"));
 		messageService.deleteById(messageId);
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/remind");
 		mav.addObject("tabId",1);

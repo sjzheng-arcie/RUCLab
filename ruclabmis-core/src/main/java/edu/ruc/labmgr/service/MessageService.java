@@ -96,8 +96,18 @@ public class MessageService {
 	public List<Message> getMessageListByCriteia(MessageCriteria messageCriteria){
 		List<Message> messageList= null;
 		try{
-			RowBounds bounds = new RowBounds(1, 8);
+			RowBounds bounds = new RowBounds(0, 8);
 			messageList= messageMapper.selectByCriteriaWithRowbounds(messageCriteria,bounds);
+			for (int i=0;i<messageList.size();i++){
+				String content="空";
+				if(messageList.get(i).getContent().length()>30){
+					content=messageList.get(i).getContent().substring(0,30)+"......";
+
+				}else{
+					content=messageList.get(i).getContent();
+				}
+				messageList.get(i).setContent(content);
+			}
 		}catch (Exception e){
 			e.printStackTrace();
 		}
