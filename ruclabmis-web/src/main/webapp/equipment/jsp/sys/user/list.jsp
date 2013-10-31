@@ -124,7 +124,7 @@
                                                 </div>
                                             </td>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">编号号</span></div>
+                                                <div align="center"><span class="STYLE10">编号</span></div>
                                             </td>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">用户账号</span></div>

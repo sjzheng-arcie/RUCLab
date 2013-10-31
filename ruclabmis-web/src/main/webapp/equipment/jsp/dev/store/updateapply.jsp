@@ -12,7 +12,7 @@
             return;
         }
 
-        document.mainForm.action = "updateApply?application_id=" + ${store.applicationId};
+        document.mainForm.action = "updateApply";
         document.mainForm.submit();
     }
 
@@ -85,6 +85,7 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr>
+                                        <input name="id" id="id" type="hidden" value="${store.applicationId}">
                                         <td align="center">单据号</td>
                                         <td>
                                             <input name="sn" id="sn" value="${store.applicationSn}" onblur="" class="text"
@@ -97,7 +98,7 @@
                                         <td align="center">申请人</td>
                                         <td>
                                             <input name="applicant" id="applicant"
-                                                   style="color:#aaaaaa" readonly value="<shiro:principal/>"
+                                                   style="color:#aaaaaa" disabled value="<shiro:principal/>"
                                                    valid="required"
                                                    errmsg="申请人不能为空!"/>
                                             <span style="color:red;">*</span>

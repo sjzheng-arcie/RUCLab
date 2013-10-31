@@ -18,7 +18,7 @@
             <id column="equipment_id" jdbcType="INTEGER" property="id" />
             <result column="equipment_sn" jdbcType="VARCHAR" property="sn" />
             <result column="equipment_name" jdbcType="VARCHAR" property="name" />
-            <result column="category_id" jdbcType="SMALLINT" property="categoryId" />
+            <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
             <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
             <result column="specifications" jdbcType="VARCHAR" property="specifications" />
             <result column="unit_price" jdbcType="REAL" property="unitPrice" />

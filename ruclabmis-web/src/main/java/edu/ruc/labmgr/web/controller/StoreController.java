@@ -5,20 +5,26 @@ import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.ClassifService;
 import edu.ruc.labmgr.service.StoreService;
 import edu.ruc.labmgr.service.UserService;
-import edu.ruc.labmgr.utils.Consts;
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
+import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.SimpleAuthenticationInfo;
 import org.apache.shiro.authz.annotation.RequiresUser;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -31,123 +37,101 @@ public class StoreController {
     @Autowired
     UserService serviceUser;
 
-    private int currPage = 0;
-
-    @RequestMapping("/listApply")
-    public ModelAndView pageList(HttpServletRequest request) {
-        currPage = request.getParameter("page") == null   ?
-                (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
-        ViewStoreCriteria viewStoreCriteria =  new ViewStoreCriteria();
-        ViewStoreCriteria.Criteria criteria = viewStoreCriteria.createCriteria();
-
-        //教师账户登录只能看到自己的申请
-        Subject currentUser = SecurityUtils.getSubject();
-        if(currentUser.hasRole(Consts.ROLE_TEACHER))
-        {
-            criteria.andApplicantIdEqualTo(serviceUser.getCurrentUserId());
-        }
-
-
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
-            criteria.andApplicationSnLike("%" + request.getParameter("searchSN") + "%");
-        }
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchState"))) {
-            criteria.andApplicationStateIdEqualTo(Integer.parseInt(request.getParameter("searchState")));
-        }
-
-        ObjectListPage<ViewStore> pageInfo = serviceStore.selectListPage(currPage, viewStoreCriteria);
-
-        List<Classif> applyStates = serviceClassif.getItemsByParentID(Consts.CLASSIF_APPLICAT_STATE);
-
-        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/applylist");
-        mav.addObject("stores", pageInfo.getListObject());
-        mav.addObject("applyStates", applyStates);
-        mav.addObject("page", pageInfo.getPageInfo());
-        return mav;
+    @RequestMapping(value = "/list")
+    public ModelAndView list(){
+        return pageList(null, 0, 1);
     }
 
-    @RequestMapping("/toAddApply")
-    public ModelAndView toAddApply(HttpServletRequest request) {
+    @RequestMapping(value = "/list",method = RequestMethod.POST)
+    public ModelAndView pageList(@RequestParam("searchSN")String sn,@RequestParam("searchState")int stateId,
+                                 @RequestParam("page") int page){
+        ModelAndView result = new ModelAndView();
+        result.setViewName("/equipment/jsp/dev/store/applylist");
 
+        List<Classif> applyStates = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
+
+        PageInfo<ApplicationForm> pageInfo = serviceStore.selectListPage(sn, stateId, page);
+        result.addObject("pageInfo",pageInfo);
+        result.addObject("applyStates", applyStates);
+        return result;
+    }
+
+    @RequestMapping(value = "/toAddApply",method = RequestMethod.GET)
+    public ModelAndView toAddApply() {
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
         ViewStore store = new ViewStore();
         mav.addObject("store", store);
         return mav;
     }
 
-    @RequestMapping("/addApply")
-    public ModelAndView addApply(HttpServletRequest request) {
-        ApplicationForm apply = initApplyFromRequest(request);
+    @RequestMapping(value ="/addApply",method = RequestMethod.POST)
+    public ModelAndView addApply(ApplicationForm apply) {
+        apply.setType(Types.ApplyType.ADD.getValue());
+        apply.setStateId(Types.ApplyState.WAITING.getValue());
+        apply.setApplyTime(new java.util.Date());
+        apply.setApplicantId(serviceUser.getCurrentUserId());
 
         serviceStore.insertApply(apply);
-
-        return pageList(request);
+        return  list();
     }
 
-    @RequestMapping("/toUpdateApply")
-    public ModelAndView toUpdateApply(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("application_id"));
-
-        ViewStore store = serviceStore.selectByApplyId(id);
+    @RequestMapping(value = "/toUpdateApply",method = RequestMethod.GET)
+    public ModelAndView toUpdateApply(@RequestParam("application_id")int applicationId) {
+        ViewStore store = serviceStore.selectByApplyId(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/updateapply");
         mav.addObject("store", store);
         return mav;
     }
 
-    @RequiresUser
-    @RequestMapping("/updateApply")
-    public ModelAndView updateApply(HttpServletRequest request) {
-        ApplicationForm apply = initApplyFromRequest(request);
+    @RequestMapping(value ="/updateApply",method = RequestMethod.POST)
+    public ModelAndView updateApply(ApplicationForm apply) {
         serviceStore.updateApply(apply);
-        return pageList(request);
+        return list();
     }
 
-    @RequestMapping("/delete")
-    public ModelAndView delete(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        serviceStore.deleteApply(id);
-
-        return pageList(request);
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public ModelAndView delete(@RequestParam("id")int applicationId) {
+        serviceStore.deleteApply(applicationId);
+        return list();
     }
 
-    @RequestMapping("/toAddEquipment")
-    public ModelAndView toAddEquipment(HttpServletRequest request) {
-        ApplicationForm apply = initApplyFromRequest(request);
+    @RequestMapping(value = "/toAddEquipment",method = RequestMethod.POST)
+    public ModelAndView toAddEquipment(ApplicationForm apply) {
         if (apply.getId() == null)
         {
+            apply.setType(Types.ApplyType.ADD.getValue());
+            apply.setStateId(Types.ApplyState.WAITING.getValue());
+            apply.setApplyTime(new java.util.Date());
+            apply.setApplicantId(serviceUser.getCurrentUserId());
+
             serviceStore.insertApply(apply);
         }
-        int applicationId = apply.getId();;
-        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
-        List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
+
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/adddevice");
-        mav.addObject("applicationId", applicationId);
+        mav.addObject("applicationId", apply.getId());
         mav.addObject("useDirections", useDirections);
         mav.addObject("fundingSubjects", fundingSubjects);
         return mav;
     }
 
-    @RequestMapping("/addEquipment")
-    public ModelAndView addEquipment(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
-        Equipment equipment = initEquipmentFromRequest(request);
-
-        serviceStore.insertEquipmentWithApply(equipment, applicationId);
-
-        return toUpdateApply(request);
+    @RequestMapping(value = "/addEquipment/{appId}",method = RequestMethod.POST)
+    public ModelAndView addEquipment(@Validated Equipment equipment, @PathVariable("appId") Object applicationId) {
+        equipment.setStateId(Types.ClassifType.EQUIPMENT_STATE.getValue());
+        serviceStore.insertEquipmentWithApply(equipment, 1);
+        return toUpdateApply(1);
     }
 
-    @RequestMapping("/toEditEquipment")
-    public ModelAndView toEditEquipment(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
-        int equipmentId = Integer.parseInt(request.getParameter("equipment_id"));
-
+    @RequestMapping(value = "/toEditEquipment",method = RequestMethod.GET)
+    public ModelAndView toEditEquipment(@RequestParam("application_id")int applicationId,
+                                        @RequestParam("equipment_id")int equipmentId) {
         Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(equipmentId);
-        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Consts.CLASSIF_FUNDING_SUBJECT);
-        List<Classif> useDirections = serviceClassif.getItemsByParentID(Consts.CLASSIF_USE_DIRECTION);
+
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
         mav.addObject("applicationId", applicationId);
@@ -157,91 +141,35 @@ public class StoreController {
         return mav;
     }
 
-    @RequestMapping("/editEquipment")
-    public ModelAndView editEquipment(HttpServletRequest request) {
-        Equipment equipment = initEquipmentFromRequest(request);
+    @RequestMapping(value = "/editEquipment",method = RequestMethod.POST)
+    public ModelAndView editEquipment(Equipment equipment, @RequestParam("application_id")int applicationId) {
         serviceStore.updateEquipmentByPrimaryKey(equipment);
-
-        return toUpdateApply(request);
+        return toUpdateApply(applicationId);
     }
 
-    @RequestMapping("/deleteEquipment")
-    public ModelAndView deleteEquipment(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
-        int equipmentId = Integer.parseInt(request.getParameter("equipment_id"));
-
+    @RequestMapping(value = "/deleteEquipment",method = RequestMethod.GET)
+    public ModelAndView deleteEquipment(@RequestParam("application_id")int applicationId,
+                                        @RequestParam("equipment_id")int equipmentId) {
         serviceStore.deleteEquipmentWithApply(equipmentId, applicationId);
-
-        return toUpdateApply(request);
+        return toUpdateApply(applicationId);
     }
 
-    @RequestMapping("/approve")
-    public ModelAndView approve(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
-
+    @RequestMapping(value = "/approve",method = RequestMethod.POST)
+    public ModelAndView approve(@RequestParam("application_id")int applicationId){
         serviceStore.approveApply(applicationId);
-
-        return pageList(request);
+        return list();
     }
 
-
-    @RequestMapping("/reject")
-    public ModelAndView reject(HttpServletRequest request) {
-        int applicationId = Integer.parseInt(request.getParameter("application_id"));
-
+    @RequestMapping(value = "/reject",method = RequestMethod.POST)
+    public ModelAndView reject(@RequestParam("application_id")int applicationId){
         serviceStore.rejectApply(applicationId);
-
-        return pageList(request);
+        return list();
     }
 
-
-    private ApplicationForm initApplyFromRequest(HttpServletRequest req) {
-        ApplicationForm apply = new ApplicationForm();
-        if (!StringUtils.isNullOrEmpty(req.getParameter("application_id")))
-            apply.setId(Integer.parseInt(req.getParameter("application_id")));
-
-        apply.setSn(req.getParameter("sn"));
-        apply.setType(Consts.APPLY_TYPE_ADD);
-
-        if (!StringUtils.isNullOrEmpty(req.getParameter("state_id")))
-            apply.setStateId(Integer.parseInt(req.getParameter("state_id")));
-        else
-            apply.setStateId(Consts.APPLY_STATE_WAITING);
-
-        apply.setApplyTime(new java.util.Date());
-
-        return apply;
-    }
-
-    private Equipment initEquipmentFromRequest(HttpServletRequest req) {
-        Equipment equipment = new Equipment();
-        if (!StringUtils.isNullOrEmpty(req.getParameter("equipment_id")))
-            equipment.setId(Integer.parseInt(req.getParameter("equipment_id")));
-        equipment.setSn(req.getParameter("sn"));
-        equipment.setName(req.getParameter("name"));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("category_id")))
-            equipment.setCategoryId(Short.parseShort(req.getParameter("category_id")));
-        equipment.setName(req.getParameter("name"));
-        equipment.setModelNumber(req.getParameter("model_number"));
-        equipment.setSpecifications(req.getParameter("specifications"));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("unit_price")))
-            equipment.setUnitPrice(Float.parseFloat(req.getParameter("unit_price")));
-        equipment.setVender(req.getParameter("vender"));
-        equipment.setFactoryNumber(req.getParameter("factory_number"));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("manufacture_date")))
-            equipment.setManufactureDate(Date.valueOf(req.getParameter("manufacture_date")));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("acquisition_date")))
-            equipment.setAcquisitionDate(Date.valueOf(req.getParameter("acquisition_date")));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("scrap_date")))
-            equipment.setScrapDate(Date.valueOf(req.getParameter("scrap_date")));
-        equipment.setCountry(req.getParameter("country"));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("funding_subject")))
-            equipment.setFundingSubjectId(Integer.parseInt(req.getParameter("funding_subject")));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("use_direction")))
-            equipment.setUseDirectionId(Integer.parseInt(req.getParameter("use_direction")));
-        if (!StringUtils.isNullOrEmpty(req.getParameter("state")))
-            equipment.setStateId(Integer.parseInt(req.getParameter("state")));
-
-        return equipment;
+    @InitBinder
+    public void initBinder(WebDataBinder binder) {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+        dateFormat.setLenient(false);
+        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
     }
 }

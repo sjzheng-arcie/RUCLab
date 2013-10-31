@@ -1,9 +1,10 @@
 package edu.ruc.labmgr.service;
 
+import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.*;
-import edu.ruc.labmgr.utils.Consts;
 import edu.ruc.labmgr.utils.SysUtil;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -36,29 +37,28 @@ public class StoreService {
     @Autowired
     private UserService userService;
 
-    public ObjectListPage<ViewStore> selectListPage(int currentPage, ViewStoreCriteria criteria) {
-        ObjectListPage<ViewStore> retList = null;
 
-        String count = SysUtil.getConfigValue("showCount", "10");
+    public PageInfo<ApplicationForm> selectListPage(String sn,int stateId, int pageNum){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time");
 
-        int limit = Integer.valueOf(count);
-        int currentResult = (currentPage - 1) * limit;
-        int totleCount = mapperViewStore.countByCriteria(criteria);
-        int pageCount = (totleCount % limit == 0) ? (totleCount / limit) : (1 + totleCount / limit);
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
 
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setTotalResult(totleCount);
-        pageInfo.setTotalPage(pageCount);
-        pageInfo.setCurrentPage(currentPage);
-
-        RowBounds bounds = new RowBounds(currentResult, limit);
-        List<ViewStore> stores = mapperViewStore.selectByCriteriaWithRowbounds(criteria, bounds);
-
-        retList = new ObjectListPage<ViewStore>(pageInfo, stores);
-
-        return retList;
+        return getPageUserByCriteria(pageNum,criteria);
     }
 
+    private PageInfo<ApplicationForm> getPageUserByCriteria(int pageNum,ApplicationFormCriteria criteria){
+        int totalCount = mapperApply.countByCriteria(criteria);
+        PageInfo<ApplicationForm> page = new PageInfo<>(totalCount,-1,pageNum);
+        List<ApplicationForm> data = mapperApply.selectByCriteriaWithRowbounds(criteria,
+                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+        page.setData(data);
+        return page;
+    }
 
     public ViewStore selectByApplyId(int id) {
         ViewStore store = null;
@@ -68,7 +68,6 @@ public class StoreService {
     }
 
     public void insertApply(ApplicationForm apply) {
-        apply.setApplicantId(userService.getCurrentUserId());
         mapperApply.insert(apply);
     }
 
@@ -132,7 +131,7 @@ public class StoreService {
         ApplicationForm form = new ApplicationForm();
         form.setId(applicationId);
         form.setProcessTime(new Date());
-        form.setStateId(Consts.APPLY_STATE_PASS);
+        form.setStateId(Types.ApplyState.PASS.getValue());
 
         form.setApproverId(userService.getCurrentUserId());
 
@@ -144,7 +143,7 @@ public class StoreService {
         ApplicationForm form = new ApplicationForm();
         form.setId(applicationId);
         form.setProcessTime(new Date());
-        form.setStateId(Consts.APPLY_STATE_REJECT);
+        form.setStateId(Types.ApplyState.REJECT.getValue());
 
         form.setApproverId(userService.getCurrentUserId());
 
