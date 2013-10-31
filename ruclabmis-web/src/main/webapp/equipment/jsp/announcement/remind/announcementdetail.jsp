@@ -26,33 +26,25 @@ function displayClass(value){
 </script>
 
 </head>
-<body style="background-color: #FFFFFF">
+<body style="background-color: #EEF2FB">
 <form name="form1" method="post" target="_parent">
 <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
-  <tr>
-    <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
-    </td>
-    <td valign="top" background="../../../images/content-bg.gif">
 
-    </td>
-    <td width="16" valign="top" background="../../../images/mail_rightbg.gif">
-
-    </td>
-  </tr>
   <tr>
-	<td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
-    <td valign="top" bgcolor="#F7F8F9">
+    <td valign="top" bgcolor="#EEF2FB">
        	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 
  			<tr valign="top">
     			<td>
-    				<table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" style="margin: 10px" >
-      					<tr bgcolor="#FFFFFF" >
-        					<td  align="center"  bgcolor="#FFFFFF" >
-					  			<table border="0" cellpadding="2" cellspacing="1" style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
+    				<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce"  >
+                        <tr  align="center"  bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE"><td bgcolor="#E3E9EE"></td></tr>
+                        <tr bgcolor="#E3E9EE" >
+
+        					<td  align="center"  bgcolor="#E3E9EE" >
+					  			<table border="0" cellpadding="2" cellspacing="1" style="width:99%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
 					 				<tr>
                                         <td align="center">
-                                            <div class="message" style="border: 1px;background: #FFFFFF ;height: 1004px ;width: 95%">
+                                            <div class="message" style="border: 1px;background: #FFFFFF ;height: 800px ;width: 95%">
                                                 <p style="height:30px"><p>
                                                 <h1 style="text-align: center;margin: 20px">${announcementDetailFlag.title}</h1>
                                                 <hr style="margin: 30px">
@@ -65,32 +57,24 @@ function displayClass(value){
                                             </div>
                                         </td>
 					    			</tr>
-					    				
-					 
+
+
 
 					   			</table>
 							</td>
-      					</tr>
-    				</table>
-    				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-      				<tr>
-        				<td align="center">
+      					</tr>
+                        <tr  align="center"  bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE"><td align="center">
                             <input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
-						</td>
-      				</tr>
+                        </td></tr>
     				</table>
     			</td>
   			</tr>
 		</table>
     </td>
-    <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+
   </tr>
-  <tr>
-    <td  valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif" width="17" height="17" /></td>
-    <td  valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif" width="100%" height="17"></td>
-    <td  valign="bottom" background="../../../images/mail_rightbg.gif"><img src="../../../images/buttom_right2.gif" width="16" height="17" /></td>
-  </tr>
+
 </table>
 <input type="hidden" name="us_sreplyby" value=""/>
 </form>

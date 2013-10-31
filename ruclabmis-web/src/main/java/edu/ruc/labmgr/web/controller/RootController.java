@@ -72,7 +72,7 @@ public class RootController {
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
 		AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
@@ -132,7 +132,7 @@ public class RootController {
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
@@ -182,7 +182,7 @@ public class RootController {
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
@@ -234,7 +234,7 @@ public class RootController {
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();

@@ -235,9 +235,11 @@ public class AnnouncementController {
 	}
 	private Announcement initFromRequest(HttpServletRequest request) {
 
+		User user = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
 		Announcement announcement = new Announcement();
-		if (!StringUtils.isNullOrEmpty(request.getParameter("id")))
-			announcement.setId(Integer.parseInt(request.getParameter("id")));
+		announcement.setId(user.getId());
 		announcement.setContent(request.getParameter("content"));
 		announcement.setPublisherId(Integer.parseInt(request.getParameter("publisher_id")));
 		announcement.setPublishLimit(Integer.parseInt(request.getParameter("limit")));

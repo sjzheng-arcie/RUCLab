@@ -12,6 +12,10 @@ function save(){
     document.form1.action="addAnnouncement";
     document.form1.submit();
 }
+function reset(){
+
+    document.form1.content.value="";
+}
 function displayClass(value){
 
     if(value=="2"){
@@ -25,22 +29,12 @@ function displayClass(value){
 </script>
 
 </head>
-<body>
+<body style="background-color: #EEF2FB">
 <form name="form1" method="post" target="_parent">
 <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
-  <tr>
-    <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
-    </td>
-    <td valign="top" background="../../../images/content-bg.gif">
 
-    </td>
-    <td width="16" valign="top" background="../../../images/mail_rightbg.gif">
-
-    </td>
-  </tr>
   <tr>
-	<td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
-    <td valign="top" bgcolor="#F7F8F9">
+    <td valign="top" bgcolor="#EEF2FB">
        	<table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 
  			<tr valign="top">
@@ -94,37 +88,29 @@ function displayClass(value){
                                             </div>
 					    			
 					    				</td>
-                                        <input id="publisher_id" name="publisher_id" style="display:none" value="1" />
                                         <input id="limit" name="limit" style="display:none" value="1" />
 					  				</tr>
-					    				
+                                    <tr>
+                                        <td colspan="2" align="center">
+                                            <input type="button" name="Submit" value="发布" class="button" onclick="save();"/>
+
+                                        </td>
+                                    </tr>
 					 
 
 					   			</table>
 							</td>
       					</tr>
-    				</table>
-    				<table width="100%" border="0" cellspacing="0" cellpadding="0">
 
-      				<tr>
-        				<td align="center">
-							<input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-							<input type="reset" name="Submit3" value="重置" class="button" onclick="reset();"/>
-							<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
-						</td>
-      				</tr>
     				</table>
+
     			</td>
   			</tr>
 		</table>
     </td>
-    <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+
   </tr>
-  <tr>
-    <td  valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif" width="17" height="17" /></td>
-    <td  valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif" width="100%" height="17"></td>
-    <td  valign="bottom" background="../../../images/mail_rightbg.gif"><img src="../../../images/buttom_right2.gif" width="16" height="17" /></td>
-  </tr>
+
 </table>
 <input type="hidden" name="us_sreplyby" value=""/>
 </form>

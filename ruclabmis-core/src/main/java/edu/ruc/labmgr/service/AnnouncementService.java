@@ -33,7 +33,7 @@ public class AnnouncementService {
 		try {
 			String count = SysUtil.getConfigValue("showCount", "10");
 
-			int limit = Integer.valueOf(count);
+			int limit = 16;
 			int currentResult = (currentPage - 1) * limit;
 			int totalCount = mapperAnnouncement.countByCriteria(criteria);
 			int pageCount = (totalCount % limit == 0) ? (totalCount / limit) : (1 + totalCount / limit);
@@ -71,7 +71,19 @@ public class AnnouncementService {
 		}
 		return announcement;
 	}
+
 	public List<Announcement> getAnnouncementListByCriteria(AnnouncementCriteria announcementCriteria){
+		List<Announcement> announcementList=null;
+		try{
+			RowBounds bounds = new RowBounds(0, 16);
+			announcementList= mapperAnnouncement.selectByCriteriaWithRowbounds(announcementCriteria, bounds);
+			//announcementList=mapperAnnouncement.selectByCriteria(announcementCriteria);
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		return announcementList;
+	}
+	public List<Announcement> getAnnouncementListByCriteriaForWelcome(AnnouncementCriteria announcementCriteria){
 		List<Announcement> announcementList=null;
 		try{
 			RowBounds bounds = new RowBounds(0, 8);

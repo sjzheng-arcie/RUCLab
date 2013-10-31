@@ -29,7 +29,7 @@
         font: 12px "宋体";
 
         text-align: center;
-        background-color: #ffffff;
+        background-color: #EEF2FB;
 
     }
 
@@ -84,7 +84,7 @@
         width: 100%;
 
 
-        background-color: #ffffff;
+        background-color: #EEF2FB;
 
     }
 
@@ -101,7 +101,7 @@
 
         float: left;
 
-        padding: 4px 0;
+        padding: 4px 4px;
 
         width: 100px;
 
@@ -199,17 +199,17 @@
 
 </head>
 
-<body onload="initTab(newId)">
+<body onload="initTab(newId)" style="background-color:#EEF2FB;">
 
 
 
 <div id="tabs0">
     <ul class="menu0" id="menu0">
 
-        <li  onclick="initTab(0)" >公告</li>
-        <li onclick="initTab(1)" >短消息</li>
-        <li onclick="initTab(2)">发布公告</li>
-        <li onclick="initTab(3)">发送消息</li>
+        <li  onclick="setTab(0)" >公告</li>
+        <li onclick="setTab(1)" >短消息</li>
+        <li onclick="setTab(2)">发布公告</li>
+        <li onclick="setTab(3)">发送消息</li>
 
 
     </ul>
@@ -224,9 +224,9 @@
 
                 <p></p>
 
-                <div id=rr0 style="border: 1px solid #B7B7B7">
+                <div id=rr0 style="border: 1px  #B7B7B7">
                 <iframe id="contentFrm0"
-                        name="contentFrm0" src="" width="95%" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm0" src="announcement" width="98%" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
 
             </li>
@@ -235,9 +235,9 @@
             <li>
                 <p></p>
 
-                <div id="rr1" style="border: 1px solid #B7B7B7">
+                <div id="rr1" style="border: 1px #B7B7B7">
                     <iframe id="contentFrm1"
-                            name="contentFrm1" src="" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                            name="contentFrm1" src="message" width="99%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
             </li>
         </ul>
@@ -248,9 +248,9 @@
             <li>
                 <p></p>
 
-                <div id="rr2" style="border: 1px solid #B7B7B7" >
+                <div id="rr2" style="border: 1px  #B7B7B7" >
                 <iframe id="contentFrm2"
-                        name="contentFrm2" src=""  width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm2" src="toaddannouncement"  width="99%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
             </li>
         </ul>
@@ -258,10 +258,10 @@
             <li>
                 <p></p>
 
-                <div id="rr3" style="border: 1px solid #B7B7B7">
+                <div id="rr3" style="border: 1px #B7B7B7">
                 <iframe id="contentFrm3"
 
-                        name="contentFrm3" src="" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm3" src="sendmessage?replyFlag=${replySn}" width="99%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
             </li>
         </ul>
