@@ -30,6 +30,12 @@
                 return self.innerHeight;
             }
         }
+        function aa(){
+            var aa=document.getElementById("aa").value;
+            if(aa.length>10){
+                document.getElementById("aa").value=aa.subString(0,10)+"...";
+            }
+        }
 
     })
 
@@ -39,12 +45,13 @@
 <body style="width:100%;">
 <div class="indexMainCon">
     <div class="indexNews">
-        <h3><a href="javascript:void(0)">更多>></a><span>系统公告</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=0&page=0 " target="">更多>></a><span>系统公告</span></h3>
 
         <div class="indexNewsCon">
             <ul>
                 <c:forEach items="${announcementList}" var="item">
-                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a></li>
+                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
+                        <a style="max-width: 200px" href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a></li>
 
                 </c:forEach>
 
@@ -58,7 +65,11 @@
         <div class="indexNoticeCon">
             <ul>
                 <c:forEach items="${messageList}" var="item">
-                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a></li>
+                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
+
+                    <a id="aa" style="max-width: 200px" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
+
+                    </li>
 
                 </c:forEach>
 

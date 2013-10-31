@@ -17,6 +17,7 @@
         var indexMainCon_height = pageHeight();
         $(".indexMainCon").height(indexMainCon_height);
         $(".indexNews").height(indexMainCon_height / 2 - 12);
+        $(".indexteacherapply").height(indexMainCon_height/2-12);
         $(".indexNotice").height(indexMainCon_height / 2 - 12);
         $(window).resize(function () {
             $(".indexMainCon").height(pageHeight());
@@ -66,7 +67,7 @@
         </div>
     </div>
 
-    <div class="indexNotice">
+    <div class="indextrends indexteacherapply">
         <h3><a href="javascript:void(0)">更多>></a><span>待审批单据</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">

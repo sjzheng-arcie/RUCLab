@@ -88,9 +88,12 @@
                 <c:forEach items="${messageLists}" var="item">
                     <div class="message" style="border: 1px;">
                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
-                        <p align="left"><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.sender.name}</span> <span style="color: #A3A3A1"><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span></p>
+                        <p align="left"><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.sender.name}</span> <span style="color: #A3A3A1"><fmt:formatDate  pattern="yyyy-MM-dd HH:mm:ss" value="${item.sendtime}"></fmt:formatDate></span></p>
                         <p align="left">${item.content}</p>
-                        <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage">删除该条信息</a></p>
+                        <p align="left" style="font-size: 12px">
+                            <a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See" target="_parent" href="/equipment/jsp/announcement/remind/replyMessage?replyFlag=${item.sender.sn}">回复</a>
+                            &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See" target="_parent" href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a></p>
 
                     </div>
                 </c:forEach>
@@ -99,10 +102,11 @@
         <c:forEach items="${messageLists}" var="item">
             <div class="message" style="border: 1px;">
                 <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
-                <p align="left"><span style="font-size: 16px;color: #ccc;;">收信人：</span><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.receiver.name}</span> <span style="color: #A3A3A1"><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span></p>
+                <p align="left"><span style="font-size: 16px;color: #ccc;;">收信人：</span><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.receiver.name}</span> <span style="color: #A3A3A1">
+                    <fmt:formatDate pattern="yyyy-MM-dd HH:mm:ss" value="${item.sendtime}"></fmt:formatDate></span></p>
                 <p align="left">${item.content}</p>
-                <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>&nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage">删除该条信息</a></p>
-
+                <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
+                    <a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a></p>
             </div>
         </c:forEach>
     </c:otherwise>

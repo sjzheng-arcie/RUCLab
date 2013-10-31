@@ -71,10 +71,14 @@ public class RootController {
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
+		AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
 		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
+
+		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+		criteria2.andReceiverIdEqualTo(user.getId());
 		messageCriteria.setOrderByClause("sendtime desc");
 		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
 		mav.addObject("messageList",messageList);
@@ -104,30 +108,40 @@ public class RootController {
 		mav.addObject("user",currentUser);
 		return mav;
 	}
-//	@RequestMapping("/admin_welcome")
-//	public ModelAndView showAdminWelcome(HttpServletRequest request) {
-//		ModelAndView mav = new ModelAndView("/equipment/welcome");
-//		User user = new User();
-//		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-//		user=userService.getUserByLoginSn(loginName);
-//
-//		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-//		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-//		criteria.andStateIdEqualTo(2);
-//		criteria.andUserIdEqualTo(user.getId());
-//		applicationFormCriteria.or(criteria);
-//		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-//		mav.addObject("myApplyList",myApplyList );
-//
-//		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-//		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-//		criteria02.andStateIdEqualTo(0);
-//		criteria02.andUserIdEqualTo(user.getId());
-//		applicationFormCriteria.or(criteria);
-//		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-//		mav.addObject("pendingApplyList", pendingApplyList );
-//		return mav;
-//	}
+	@RequestMapping("/admin_welcome")
+	public ModelAndView showAdminWelcome(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("/equipment/admin_welcome");
+		User user = new User();
+		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+		//获取当前用户的申请列表
+		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+		criteria.andApplicantIdEqualTo(user.getId());
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
+		mav.addObject("myApplyList",myApplyList );
+		//获取当前用户需要进行审批的申请列表
+		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
+		criteria02.andApproverIdEqualTo(user.getId());
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
+		mav.addObject("pendingApplyList", pendingApplyList );
+
+		//获取通知列表
+		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+		announcementCriteria.setOrderByClause("publish_time desc");
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		mav.addObject("announcementList",announcementList );
+		//获取消息列表
+		MessageCriteria messageCriteria = new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+		mav.addObject("messageList",messageList);
+
+		return mav;
+	}
 	@RequestMapping("/teacher_index")
 	public ModelAndView teacher_Index(HttpServletRequest request) {
 
@@ -151,19 +165,33 @@ public class RootController {
 		mav.addObject("user",currentUser);
 		return mav;
 	}
-//	@RequestMapping("/teacher_welcome")
-//	public ModelAndView showTeacherWelcome(HttpServletRequest request) {
-//
-//		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-//
-//		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-//
-//		ModelAndView mav = new ModelAndView("/equipment/teacher_welcome");
-//		criteria02.andStateIdEqualTo(0);
-//		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-//		mav.addObject("pendingApplyList", pendingApplyList );
-//		return mav;
-//	}
+	@RequestMapping("/teacher_welcome")
+	public ModelAndView showTeacherWelcome(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/equipment/teacher_welcome");
+		User user = new User();
+		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+		//获取当前用户的申请列表
+		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+		criteria.andApplicantIdEqualTo(user.getId());
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
+		mav.addObject("myApplyList",myApplyList );
+		//获取通知列表
+		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+		announcementCriteria.setOrderByClause("publish_time desc");
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		mav.addObject("announcementList",announcementList );
+		//获取消息列表
+		MessageCriteria messageCriteria = new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+		mav.addObject("messageList",messageList);
+
+		return mav;
+	}
 	@RequestMapping("/leader_index")
 	public ModelAndView leader_Index(HttpServletRequest request) {
 
@@ -189,30 +217,33 @@ public class RootController {
 		return mav;
 	}
 
-//	@RequestMapping("/leader_welcome")
-//	public ModelAndView showLeaderWelcome(HttpServletRequest request) {
-//		ModelAndView mav = new ModelAndView("/equipment/leader_welcome");
-//		User user = new User();
-//		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-//		user=userService.getUserByLoginSn(loginName);
-//
-//		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-//		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-//		criteria.andStateIdEqualTo(2);
-//		criteria.andUserIdEqualTo(user.getId());
-//		applicationFormCriteria.or(criteria);
-//		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-//		mav.addObject("myApplyList",myApplyList );
-//
-//		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-//		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-//		criteria02.andStateIdEqualTo(0);
-//		criteria02.andUserIdEqualTo(user.getId());
-//		applicationFormCriteria.or(criteria);
-//		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-//		mav.addObject("pendingApplyList", pendingApplyList );
-//		return mav;
-//	}
+	@RequestMapping("/leader_welcome")
+	public ModelAndView showLeaderWelcome(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("/equipment/leader_welcome");
+		User user = new User();
+		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
+		user=userService.getUserByLoginSn(loginName);
+
+		//获取当前用户需要进行审批的申请列表
+		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
+		criteria02.andApproverIdEqualTo(user.getId());
+		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
+		mav.addObject("pendingApplyList", pendingApplyList );
+
+		//获取通知列表
+		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+		announcementCriteria.setOrderByClause("publish_time desc");
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteria(announcementCriteria);
+		mav.addObject("announcementList",announcementList );
+		//获取消息列表
+		MessageCriteria messageCriteria = new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+		mav.addObject("messageList",messageList);
+
+		return mav;
+	}
 
 	@RequestMapping("/login")
 	public String login(HttpServletRequest request) {
