@@ -53,7 +53,7 @@ public class UserService {
         UserCriteria criteria = new UserCriteria();
         criteria.setOrderByClause("sn");
         UserCriteria.Criteria ec = criteria.createCriteria();
-        if (StringUtils.isNotEmpty(sn))
+        if (StringUtils.isNotEmpty(sn));
             ec.andSnLike("%" + sn + "%");
         if (StringUtils.isNotEmpty(name))
             ec.andNameLike("%" + name + "%");

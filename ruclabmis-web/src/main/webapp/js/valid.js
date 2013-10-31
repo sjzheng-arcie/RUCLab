@@ -1,3 +1,4 @@
+/*表单验证*/
 var FormValid = function (frm) {
     this.frm = frm;
     this.errMsg = new Array();
