@@ -56,7 +56,7 @@
             if(value=="2"){
                 document.getElementById('scopeDiv').style.display='';
             }else{
-                document.getElementById('scopeDiv').style.display= 'none';
+                document.getElementById('scopeDiv').style.display= 'none';;
             }
 
         }
