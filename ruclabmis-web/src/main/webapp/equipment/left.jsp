@@ -84,11 +84,11 @@
     </table>
     <ul class="MM">
         <shiro:hasAnyRoles name="administrators,teacher">
-            <li><a href="jsp/dev/store/listApply" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备入库申请</a>
+            <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备入库申请</a>
             </li>
         </shiro:hasAnyRoles>
         <shiro:hasAnyRoles name="administrators,leader,equipment_admin">
-            <li><a href="jsp/dev/store/listApply" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备入库审批</a>
+            <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备入库审批</a>
             </li>
         </shiro:hasAnyRoles>
     </ul>
