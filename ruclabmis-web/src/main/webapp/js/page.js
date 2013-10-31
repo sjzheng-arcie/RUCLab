@@ -132,7 +132,7 @@ function toReject(formName,checkBoxName)
 }
 
 function toFind(formName){
-    document.forms[formName].action = baseHref;
+    document.forms[formName].action = baseHref + "?page=1"
     document.forms[formName].submit();
 }
 
@@ -146,7 +146,7 @@ function goPage(pageIndex, maxPage) {
         return;
     }
 
-    document.listForm.action = baseHref + ' ?page=' + pageIndex;
+    document.listForm.action = baseHref + '?page=' + pageIndex;
     document.listForm.submit();
 }
 

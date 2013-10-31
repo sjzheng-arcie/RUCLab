@@ -48,7 +48,7 @@
     <div class="top_left"><img src="images/logo.gif" width="305" height="103"></div>
     <div class="top_right">
         <div class="top_right_top">
-            <span style="float:right">您好！<a>张超</a>[超级管理员]
+           <span style="float:right;" >您好！<a>${user.name}</a>[${user.role.name}]
             <a href="jsp/announcement/remind/remind?id=1" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
             [<a href="/equipment/logout" target="_top">退出</a>]

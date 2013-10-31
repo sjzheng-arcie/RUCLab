@@ -1,18 +1,19 @@
 package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.Major;
-import edu.ruc.labmgr.domain.Role;
-import edu.ruc.labmgr.domain.User;
-import edu.ruc.labmgr.domain.UserCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.MajorService;
 import edu.ruc.labmgr.service.RoleService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
+import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -28,32 +29,24 @@ public class UserController {
     @Autowired
     MajorService serviceMajor;
 
-    private int currPage = 0;
-
-    @RequestMapping("/list")
-    public ModelAndView pageList(HttpServletRequest request) {
-        currPage = request.getParameter("page") == null   ?
-                (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
-        UserCriteria userCriteria =  new UserCriteria();
-        UserCriteria.Criteria criteria = userCriteria.createCriteria();
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
-            criteria.andSnLike("%" + request.getParameter("searchSN") + "%");
-        }
-        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
-            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
-        }
-
-        ObjectListPage<User> pageInfo = serviceUser.selectListPage(currPage, userCriteria);
-
-        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/list");
-        mav.addObject("users", pageInfo.getListObject());
-        mav.addObject("page", pageInfo.getPageInfo());
-        return mav;
+    @RequestMapping(value = "/list")
+    public ModelAndView list(){
+        return pageList(null, null, 1);
     }
 
-    @RequestMapping("/toAdd")
-    public ModelAndView toAdd(HttpServletRequest request) {
+    @RequestMapping(value = "/list",method = RequestMethod.POST)
+    public ModelAndView pageList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
+                                 @RequestParam("page") int page){
+        ModelAndView result = new ModelAndView();
+        result.setViewName("/equipment/jsp/sys/user/list");
+
+        PageInfo<User> pageInfo = serviceUser.selectListPage(sn, name, page);
+        result.addObject("pageInfo",pageInfo);
+        return result;
+    }
+
+    @RequestMapping(value = "/toAdd",method = RequestMethod.GET)
+    public ModelAndView toAdd() {
         List<Role> roles = serviceRole.listAll();
         List<Major> majors = serviceMajor.listAll();
 
@@ -63,21 +56,14 @@ public class UserController {
         return mav;
     }
 
-    @RequestMapping("/add")
-    public ModelAndView add(HttpServletRequest request) {
-        User user = initFromRequest(request);
-        int result = serviceUser.insert(user);
-        if (result > 0) {
-            return pageList(request);
-        } else {
-            return null;
-        }
+    @RequestMapping(value ="/add",method = RequestMethod.POST)
+    public ModelAndView add(User user) {
+        serviceUser.insert(user);
+        return pageList(null,null,0);
     }
 
-    @RequestMapping("/toUpdate")
-    public ModelAndView toUpdate(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-
+    @RequestMapping(value = "/toUpdate",method = RequestMethod.POST)
+    public ModelAndView toUpdate(@RequestParam("id")int id) {
         User user = serviceUser.selectByPrimaryKey(id);
         List<Role> roles = serviceRole.listAll();
         List<Major> majors = serviceMajor.listAll();
@@ -89,75 +75,31 @@ public class UserController {
         return mav;
     }
 
-    @RequestMapping("/update")
-    public ModelAndView update(HttpServletRequest request) {
-        User user = initFromRequest(request);
-        int result = serviceUser.update(user);
-        if (result > 0) {
-            return pageList(request);
-        } else {
-            return null;
-        }
+    @RequestMapping(value ="/update",method = RequestMethod.POST)
+    public ModelAndView update(User user) {
+        serviceUser.update(user);
+        return pageList(null,null,0);
     }
 
-    @RequestMapping("/delete")
-    public ModelAndView delete(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-        int result = serviceUser.delete(id);
+    @RequestMapping(value = "/delete",method = RequestMethod.POST)
+    public ModelAndView delete(@RequestParam("id")int id) {
+        serviceUser.delete(id);
+        return pageList(null,null,0);
 
-        if (result > 0) {
-            return pageList(request);
-        } else {
-            return null;
-        }
     }
 
-    @RequestMapping("/toUpdatePassword")
-    public ModelAndView toUpdatePassword(HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("id"));
-
+    @RequestMapping(value = "/toUpdatePassword",method = RequestMethod.POST)
+    public ModelAndView toUpdatePassword(@RequestParam("id")int id) {
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
         mav.addObject("id",id);
-
         return mav;
     }
 
     @RequestMapping("/updatePassword")
-    public ModelAndView updatePassword(HttpServletRequest request) {
-        String oriPassword = request.getParameter("oriPassword");
-        String newPassword = request.getParameter("newPassword");
-        int id = Integer.parseInt(request.getParameter("id"));
-
-        int result = serviceUser.updatePassword(id, oriPassword, newPassword);
-        if (result > 0) {
-            return pageList(request);
-        } else if (result == -1) {
-            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
-            mav.addObject("id",id);
-            mav.addObject("errMsg","原密码输入不一致，请重新输入!");
-            return mav;
-        } else {
-            return null;
-        }
-    }
-
-    private User initFromRequest(HttpServletRequest req) {
-        User user = new User();
-        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-            user.setId(Integer.parseInt(req.getParameter("id")));
-
-        user.setSn(req.getParameter("sn"));
-
-        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
-            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-            user.setPassword(passwordMD5);
-        }
-        user.setName(req.getParameter("name"));
-        user.setPhoneNum(req.getParameter("phoneNum"));
-        user.setEmail(req.getParameter("email"));
-        user.setComment(req.getParameter("comment"));
-        user.setRoleId(Integer.parseInt(req.getParameter("role")));
-        user.setMajorId(Integer.parseInt(req.getParameter("major")));
-        return user;
+    public ModelAndView updatePassword(@RequestParam("id")int id,
+                                       @RequestParam("oriPassword")String oriPassword,
+                                       @RequestParam("newPassword")String newPassword) {
+        serviceUser.updatePassword(id, oriPassword, newPassword);
+        return pageList(null,null,0);
     }
 }
