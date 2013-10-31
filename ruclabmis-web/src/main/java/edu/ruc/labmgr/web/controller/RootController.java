@@ -2,6 +2,7 @@ package edu.ruc.labmgr.web.controller;
 
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.AnnouncementService;
+import edu.ruc.labmgr.service.ApplicationFormService;
 import edu.ruc.labmgr.service.MessageService;
 import edu.ruc.labmgr.service.UserService;
 
@@ -22,8 +23,8 @@ import java.util.List;
 @RequestMapping("/equipment")
 public class RootController {
 
-//	@Autowired
-//	private ApplicationFormService applicationFormService;
+	@Autowired
+	private ApplicationFormService applicationFormService;
 	@Autowired
 	private UserService userService;
 	@Autowired
@@ -53,22 +54,20 @@ public class RootController {
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		//获取当前用户的申请列表
-//		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-//		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-//		criteria.andStateIdEqualTo(2);
-//		criteria.andApplicantIdEqualTo(user.getId());
-//		applicationFormCriteria.or(criteria);
-//		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-//		mav.addObject("myApplyList",myApplyList );
+		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+		criteria.andApplicantIdEqualTo(user.getId());
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
+		mav.addObject("myApplyList",myApplyList );
 		//获取当前用户需要进行审批的申请列表
-//		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-//		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-//		criteria02.andStateIdEqualTo(0);
-//		criteria02.andUserIdEqualTo(user.getId());
-//		applicationFormCriteria.or(criteria);
-//		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-//		mav.addObject("pendingApplyList", pendingApplyList );
-//
+		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
+		criteria02.andApproverIdEqualTo(user.getId());
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
+		mav.addObject("pendingApplyList", pendingApplyList );
+
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
@@ -102,6 +101,7 @@ public class RootController {
 		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/admin_top");
 		mav.addObject("unreadCount", count);
+		mav.addObject("user",currentUser);
 		return mav;
 	}
 //	@RequestMapping("/admin_welcome")
@@ -148,6 +148,7 @@ public class RootController {
 		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/teacher_top");
 		mav.addObject("unreadCount", count);
+		mav.addObject("user",currentUser);
 		return mav;
 	}
 //	@RequestMapping("/teacher_welcome")
@@ -184,6 +185,7 @@ public class RootController {
 		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/leader_top");
 		mav.addObject("unreadCount", count);
+		mav.addObject("user",currentUser);
 		return mav;
 	}
 
@@ -270,6 +272,7 @@ public class RootController {
 		int count=messageService.getCount(messageCriteria);
 		ModelAndView mav = new ModelAndView("/equipment/top");
 		mav.addObject("unreadCount", count);
+		mav.addObject("user",currentUser);
 		return mav;
 	}
 

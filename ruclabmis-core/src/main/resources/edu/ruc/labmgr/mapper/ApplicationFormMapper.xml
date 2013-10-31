@@ -11,6 +11,16 @@
     <result column="state_id" property="stateId" jdbcType="INTEGER" />
     <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
     <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
+      <association property="applicant" column="applicant_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
+      <association property="operator" column="operator_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
+      <association property="approver" column="approver_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
+      <association property="formType" column="type" javaType="Classif"
+                   select="edu.ruc.labmgr.mapper.ClassifMapper.selectByPrimaryKey"/>
+      <association property="state" column="state_id" javaType="Classif"
+                   select="edu.ruc.labmgr.mapper.ClassifMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Criteria_Where_Clause" >
     <where >

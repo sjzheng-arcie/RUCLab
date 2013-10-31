@@ -21,6 +21,22 @@ public class ApplicationForm {
 
     private Date processTime;
 
+
+	public void setFormType(Classif formType) {
+		this.formType = formType;
+	}
+
+	private User applicant;
+
+	private User approver;
+
+	private User  operator;
+
+	private Classif formType;
+
+
+	private Classif state;
+
     public Integer getId() {
         return id;
     }
@@ -92,4 +108,41 @@ public class ApplicationForm {
     public void setProcessTime(Date processTime) {
         this.processTime = processTime;
     }
+
+	public User getApplicant() {
+		return applicant;
+	}
+
+	public void setApplicant(User applicant) {
+		this.applicant = applicant;
+	}
+
+	public User getApprover() {
+		return approver;
+	}
+
+	public void setApprover(User approver) {
+		this.approver = approver;
+	}
+
+	public User getOperator() {
+		return operator;
+	}
+
+	public void setOperator(User operator) {
+		this.operator = operator;
+	}
+
+	public Classif getFormType() {
+		return formType;
+	}
+
+	public Classif getState() {
+		return state;
+	}
+
+	public void setState(Classif state) {
+		this.state = state;
+	}
+
 }
