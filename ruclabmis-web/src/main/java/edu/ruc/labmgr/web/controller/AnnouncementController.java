@@ -239,9 +239,8 @@ public class AnnouncementController {
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		Announcement announcement = new Announcement();
-		announcement.setId(user.getId());
 		announcement.setContent(request.getParameter("content"));
-		announcement.setPublisherId(Integer.parseInt(request.getParameter("publisher_id")));
+		announcement.setPublisherId(user.getId());
 		announcement.setPublishLimit(Integer.parseInt(request.getParameter("limit")));
 		announcement.setTitle(request.getParameter("title"));
 		announcement.setPublishTime(new Date());
