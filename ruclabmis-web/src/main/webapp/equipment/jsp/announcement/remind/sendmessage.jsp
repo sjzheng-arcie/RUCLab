@@ -70,7 +70,7 @@
 		<tr>
 		<td align="right">接收对象</td>
             <td align="left">
-                <input id="param" name="param" type="text" autocomplete="off" class="autocomplete-suggestion"  />
+                <input id="param" name="param" type="text" autocomplete="off" value="${replySn}" class="autocomplete-suggestion"  />
             </td>
 
         </tr>
