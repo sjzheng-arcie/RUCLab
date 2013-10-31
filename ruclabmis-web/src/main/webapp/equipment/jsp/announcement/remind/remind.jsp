@@ -169,15 +169,19 @@
                 setTab(n);
                 switch (n){
                     case 0:
-                        document.getElementById('contentFrm0').src="announcement";
+                            if(document.getElementById('contentFrm0').src=="")
+                                document.getElementById('contentFrm0').src="announcement";
                         break;
                     case 1:
+                        if(document.getElementById('contentFrm1').src=="")
                         document.getElementById('contentFrm1').src="message";
                         break;
                     case 2:
+                        if(document.getElementById('contentFrm2').src=="")
                         document.getElementById('contentFrm2').src="toaddannouncement";
                         break;
                     case 3:
+                        if(document.getElementById('contentFrm3').src=="")
                         document.getElementById('contentFrm3').src="sendmessage?replyFlag=${replySn}";
                         break;
 
@@ -188,22 +192,24 @@
 
 
 
+
+
 </script>
 
 
 </head>
 
-<body onload="setTab(newId)">
+<body onload="initTab(newId)">
 
 
 
 <div id="tabs0">
     <ul class="menu0" id="menu0">
 
-        <li  onclick="setTab(0)" >公告</li>
-        <li onclick="setTab(1)" >短消息</li>
-        <li onclick="setTab(2)">发布公告</li>
-        <li onclick="setTab(3)">发送消息</li>
+        <li  onclick="initTab(0)" >公告</li>
+        <li onclick="initTab(1)" >短消息</li>
+        <li onclick="initTab(2)">发布公告</li>
+        <li onclick="initTab(3)">发送消息</li>
 
 
     </ul>
@@ -220,7 +226,7 @@
 
                 <div id=rr0 style="border: 1px solid #B7B7B7">
                 <iframe id="contentFrm0"
-                        name="contentFrm0" src="announcement" width="95%" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm0" src="" width="95%" frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
 
             </li>
@@ -231,7 +237,7 @@
 
                 <div id="rr1" style="border: 1px solid #B7B7B7">
                     <iframe id="contentFrm1"
-                            name="contentFrm1" src="message" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                            name="contentFrm1" src="" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
             </li>
         </ul>
@@ -244,7 +250,7 @@
 
                 <div id="rr2" style="border: 1px solid #B7B7B7" >
                 <iframe id="contentFrm2"
-                        name="contentFrm2" src="toaddannouncement"  width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm2" src=""  width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
             </li>
         </ul>
@@ -255,7 +261,7 @@
                 <div id="rr3" style="border: 1px solid #B7B7B7">
                 <iframe id="contentFrm3"
 
-                        name="contentFrm3" src="sendmessage?replyFlag=${replySn}" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                        name="contentFrm3" src="" width="95%"  frameborder="0" onload="this.height=this.contentWindow.document.documentElement.scrollHeight" style="padding:0px; margin:0px;" scrolling="no"></iframe>
                 </div>
             </li>
         </ul>
