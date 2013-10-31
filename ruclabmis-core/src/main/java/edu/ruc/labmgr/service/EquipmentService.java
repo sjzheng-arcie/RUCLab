@@ -2,7 +2,7 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentCriteria;
-import edu.ruc.labmgr.domain.Types;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.commons.lang3.StringUtils;

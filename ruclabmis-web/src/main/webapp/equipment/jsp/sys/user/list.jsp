@@ -148,7 +148,7 @@
                                                 <div align="center"><span class="STYLE10">备注</span></div>
                                             </td>
                                         </tr>
-                                        <c:forEach items="${users}" var="item">
+                                        <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
                                                                        value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>

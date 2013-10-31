@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
-                                                    <input name="sn" id="sn" value="" onblur="" class="text"
+                                                    <input name="sn" id="sn"onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"
                                                            errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
@@ -93,7 +93,7 @@
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
-                                                    <input name="name" id="name" value="" onblur="" class="text"
+                                                    <input name="name" id="name" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isEnglishChinese"
                                                            errmsg="用户名不能为空!|用户名只能为中英文字符"/>
@@ -119,7 +119,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户角色:</td>
                                                 <td nowrap>
-                                                    <select name="role" id="role">
+                                                    <select name="roleId" id="roleId">
                                                         <c:forEach items="${roles}" var="item">
                                                             <option value="${item.id}">${item.name}</option>
                                                         </c:forEach>
@@ -127,7 +127,7 @@
                                                 </td>
                                                 <td nowrap align="right">所属专业：</td>
                                                 <td nowrap align="left">
-                                                    <select name="major" id="major">
+                                                    <select name="majorId" id="majorId">
                                                         <c:forEach items="${majors}" var="item">
                                                             <option value="${item.id}">${item.name}
                                                             </option>
@@ -142,7 +142,10 @@
                                                     <input name="phoneNum" id="phoneNum" type="text">
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left"><textarea name="comment"></textarea></td>
+                                                <td nowrap align="left">
+                                                    <textarea name="comment" id="comment">
+                                                    </textarea>
+                                                </td>
                                             </tr>
                                         </table>
                                     </td>

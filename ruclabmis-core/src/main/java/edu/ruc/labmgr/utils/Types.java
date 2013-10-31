@@ -1,4 +1,4 @@
-package edu.ruc.labmgr.domain;
+package edu.ruc.labmgr.utils;
 
 /**
  * @author lcheng
@@ -22,4 +22,5 @@ public interface Types {
             return value;
         }
     }
+
 }
