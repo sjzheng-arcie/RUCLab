@@ -65,7 +65,6 @@
 
 </head>
 <body style="background-color: #EEF2FB">
-<form name="form1" method="post" target="_parent">
     <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
 
         <tr>
@@ -121,5 +120,5 @@
 
     </table>
     <input type="hidden" name="us_sreplyby" value=""/>
-</form>
+
 </body>
