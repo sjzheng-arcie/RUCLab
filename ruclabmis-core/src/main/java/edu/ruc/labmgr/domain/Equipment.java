@@ -3,9 +3,10 @@ package edu.ruc.labmgr.domain;
 import java.util.Date;
 
 public class Equipment {
+
     private Integer id;
 
-    private Short categoryId;
+    private String categoryId;
 
     private String sn;
 
@@ -49,12 +50,12 @@ public class Equipment {
         this.id = id;
     }
 
-    public Short getCategoryId() {
+    public String getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(Short categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryId(String categoryId) {
+        this.categoryId = categoryId == null ? null : categoryId.trim();
     }
 
     public String getSn() {

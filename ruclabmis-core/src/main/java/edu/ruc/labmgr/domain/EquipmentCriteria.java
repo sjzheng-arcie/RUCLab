@@ -202,52 +202,62 @@ public class EquipmentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdEqualTo(Short value) {
+        public Criteria andCategoryIdEqualTo(String value) {
             addCriterion("category_id =", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdNotEqualTo(Short value) {
+        public Criteria andCategoryIdNotEqualTo(String value) {
             addCriterion("category_id <>", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdGreaterThan(Short value) {
+        public Criteria andCategoryIdGreaterThan(String value) {
             addCriterion("category_id >", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdGreaterThanOrEqualTo(Short value) {
+        public Criteria andCategoryIdGreaterThanOrEqualTo(String value) {
             addCriterion("category_id >=", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdLessThan(Short value) {
+        public Criteria andCategoryIdLessThan(String value) {
             addCriterion("category_id <", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdLessThanOrEqualTo(Short value) {
+        public Criteria andCategoryIdLessThanOrEqualTo(String value) {
             addCriterion("category_id <=", value, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdIn(List<Short> values) {
+        public Criteria andCategoryIdLike(String value) {
+            addCriterion("category_id like", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdNotLike(String value) {
+            addCriterion("category_id not like", value, "categoryId");
+            return (Criteria) this;
+        }
+
+        public Criteria andCategoryIdIn(List<String> values) {
             addCriterion("category_id in", values, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdNotIn(List<Short> values) {
+        public Criteria andCategoryIdNotIn(List<String> values) {
             addCriterion("category_id not in", values, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdBetween(Short value1, Short value2) {
+        public Criteria andCategoryIdBetween(String value1, String value2) {
             addCriterion("category_id between", value1, value2, "categoryId");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIdNotBetween(Short value1, Short value2) {
+        public Criteria andCategoryIdNotBetween(String value1, String value2) {
             addCriterion("category_id not between", value1, value2, "categoryId");
             return (Criteria) this;
         }

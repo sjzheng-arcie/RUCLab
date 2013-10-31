@@ -92,7 +92,7 @@
                                         </td>
                                         <td align="center">分类号</td>
                                         <td>
-                                            <input name="category_id" id="category_id" value="${equipment.categoryId}" onblur="" class="text"
+                                            <input name="categoryId" id="categoryId" value="${equipment.categoryId}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required|isNumber"
                                                    errmsg="分类号不能为空!|分类号只能为数字"/>
@@ -110,7 +110,7 @@
                                     <tr style="height: 30px;">
                                         <td align="center">设备型号</td>
                                         <td>
-                                            <input name="model_number" id="model_number" value="${equipment.modelNumber}" onblur="" class="text"
+                                            <input name="modelNumber" id="modelNumber" value="${equipment.modelNumber}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="isNumber"
                                                    errmsg="设备型号只能为数字"/>
@@ -124,7 +124,7 @@
                                         </td>
                                         <td align="center">单价</td>
                                         <td>
-                                            <input name="unit_price" id="unit_price" value="${equipment.unitPrice}" onblur="" class="text"
+                                            <input name="unitPrice" id="unitPrice" value="${equipment.unitPrice}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required|isNumber"
                                                    errmsg="单价不能为空|单价只能为数字"/>
@@ -139,7 +139,7 @@
                                         </td>
                                         <td align="center">出厂号</td>
                                         <td>
-                                            <input name="factory_number" id="factory_number" value="${equipment.factoryNumber}" onblur="" class="text"
+                                            <input name="factoryNumber" id="factoryNumber" value="${equipment.factoryNumber}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
                                         <td align="center">国别</td>
@@ -151,7 +151,7 @@
                                     <tr style="height: 30px;">
                                         <td align="center">购置日期</td>
                                         <td>
-                                            <input name="acquisition_date" id="acquisition_date"
+                                            <input name="acquisitionDate" id="acquisitionDate"
                                                    value="<fmt:formatDate value="${equipment.acquisitionDate}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
@@ -159,7 +159,7 @@
                                         </td>
                                         <td align="center">出厂日期</td>
                                         <td>
-                                            <input name="manufacture_date" id="manufacture_date"
+                                            <input name="manufactureDate" id="manufactureDate"
                                                    value="<fmt:formatDate value="${equipment.manufactureDate}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
@@ -167,7 +167,7 @@
                                         </td>
                                         <td align="center">报废日期</td>
                                         <td>
-                                            <input name="scrap_date" id="scrap_date"
+                                            <input name="scrapDate" id="scrapDate"
                                                    value="<fmt:formatDate value="${equipment.scrapDate}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                    valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"
@@ -178,7 +178,7 @@
                                     <tr style="height: 30px;">
                                         <td nowrap align="center">经费科目:</td>
                                         <td nowrap>
-                                            <select name="funding_subject" id="funding_subject">
+                                            <select name="fundingSubjectId" id="fundingSubjectId">
                                                 <c:forEach items="${fundingSubjects}" var="fundingSubject">
                                                     <option value="${fundingSubject.id}"
                                                             <c:if test="${fundingSubject.id == equipment.fundingSubjectId}"> selected</c:if>>${fundingSubject.value}
@@ -189,7 +189,7 @@
                                         </td>
                                         <td nowrap align="center">使用方向:</td>
                                         <td nowrap>
-                                            <select name="use_direction" id="use_direction">
+                                            <select name="useDirectionId" id="useDirectionId">
                                                 <c:forEach items="${useDirections}" var="direction">
                                                     <option value="${direction.id}"
                                                             <c:if test="${direction.id == equipment.useDirectionId}"> selected</c:if>>${direction.value}
@@ -200,7 +200,7 @@
                                         </td>
                                         <td align="center">设备状态</td>
                                         <td>
-                                            <input name="state" id="state" value="${equipment.stateId}" onblur="" class="text"
+                                            <input name="stateId" id="stateId" value="${equipment.stateId}" onblur="" class="text"
                                                    style="width:154px" maxlength="20" style="color:#aaaaaa" readonly="readonly" />
                                         </td>
                                     </tr>

@@ -5,7 +5,7 @@ import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.ViewStoreMapper;
 import edu.ruc.labmgr.service.UserService;
-import edu.ruc.labmgr.utils.Consts;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
@@ -32,12 +32,8 @@ public class ViewStoreMapperTest {
 
     @Test
     public void testSelectAll() throws Exception {
-        PageInfo pageInfo = new PageInfo();
-        pageInfo.setTotalResult(10);
-        pageInfo.setTotalPage(2);
-        pageInfo.setCurrentPage(0);
 
-        RowBounds bounds = new RowBounds(0, 10);
+        RowBounds bounds = new RowBounds(8, 8);
         List<ViewStore> stores = mapper.selectByCriteriaWithRowbounds(null, bounds);
 
         System.out.println(stores.size());
@@ -47,12 +43,12 @@ public class ViewStoreMapperTest {
 
     }
 
-    @Test
+    @Ignore
     public void testUpdate() throws Exception {
         ApplicationForm form = new ApplicationForm();
         form.setApplicantId(16);
         form.setProcessTime(new Date());
-        form.setStateId(Consts.APPLY_STATE_PASS);
+        form.setStateId(Types.ApplyState.PASS.getValue());
 
         form.setApproverId(userService.getCurrentUserId());
 

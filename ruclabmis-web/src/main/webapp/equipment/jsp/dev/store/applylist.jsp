@@ -13,7 +13,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <script>
-        var baseHref = '/equipment/jsp/dev/store/listApply';
+        var baseHref = '/equipment/jsp/dev/store/list';
     </script>
 </head>
 
@@ -52,7 +52,7 @@
                             </span>
 		                    <span style="white-space:nowrap">&nbsp;&nbsp;单据状态:
                                 <select id="searchState" name="searchState">
-                                    <option value="">全部</option>
+                                    <option value="0">全部</option>
                                     <c:forEach items="${applyStates}" var="item">
                                         <option value="${item.id}"
                                                 <c:if test="${item.id == param.searchState}"> selected</c:if>>${item.value}
@@ -156,19 +156,19 @@
                                                         <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
                                                 </tr>
-                                                <c:forEach items="${stores}" var="item">
+                                                <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.applicationId}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.applicationSn}</td>
-                                                        <td>${item.applicantName}</td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.applicant.name}</td>
                                                         <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
-                                                        <td>${item.operatorName}</td>
-                                                        <td>${item.approverName}</td>
+                                                        <td>${item.operator.name}</td>
+                                                        <td>${item.approver.name}</td>
                                                         <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
-                                                        <td>${item.applicationStateName}</td>
-                                                        <td><a href="toUpdateApply?application_id=${item.applicationId}">详细信息</a></td>
+                                                        <td>${item.state.value}</td>
+                                                        <td><a href="toUpdateApply?application_id=${item.id}">详细信息</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

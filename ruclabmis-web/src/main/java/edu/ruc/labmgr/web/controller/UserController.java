@@ -59,7 +59,7 @@ public class UserController {
     @RequestMapping(value ="/add",method = RequestMethod.POST)
     public ModelAndView add(User user) {
         serviceUser.insert(user);
-        return pageList(null,null,0);
+        return list();
     }
 
     @RequestMapping(value = "/toUpdate",method = RequestMethod.POST)
@@ -78,13 +78,13 @@ public class UserController {
     @RequestMapping(value ="/update",method = RequestMethod.POST)
     public ModelAndView update(User user) {
         serviceUser.update(user);
-        return pageList(null,null,0);
+        return list();
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam("id")int id) {
         serviceUser.delete(id);
-        return pageList(null,null,0);
+        return list();
 
     }
 
@@ -100,6 +100,6 @@ public class UserController {
                                        @RequestParam("oriPassword")String oriPassword,
                                        @RequestParam("newPassword")String newPassword) {
         serviceUser.updatePassword(id, oriPassword, newPassword);
-        return pageList(null,null,0);
+        return list();
     }
 }
