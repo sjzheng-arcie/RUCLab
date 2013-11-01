@@ -14,7 +14,7 @@
         if(!validator(document.mainForm)){
             return;
         }
-        document.mainForm.action = "addEquipment/"+${applicationId};
+        document.mainForm.action = "addEquipment?application_id="+${applicationId};
         document.mainForm.submit();
     }
 
@@ -156,23 +156,23 @@
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                                    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                         </td>
-                                        <%--<td align="center">出厂日期</td>--%>
-                                        <%--<td>--%>
-                                            <%--<input name="manufactureDate" id="manufactureDate"--%>
-                                                   <%--onblur="" class="Mdate" style="width:154px" maxlength="10"--%>
-                                                   <%--valid="isDate" errmsg="日期只能为：XXXX-XX-XX"--%>
-                                                   <%--onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>--%>
-                                        <%--</td>--%>
-                                        <%--<td align="center">报废日期</td>--%>
-                                        <%--<td>--%>
-                                            <%--<c:set var="scrapDateVal" value="<%=new Date(now.getYear()+3,now.getMonth(),now.getDate())%>"></c:set>--%>
-                                            <%--<input name="scrapDate" id="scrapDate"--%>
-                                                   <%--value="<fmt:formatDate value="${scrapDateVal}" pattern="yyyy-MM-dd"/>"--%>
-                                                   <%--onblur="" class="Mdate" style="width:154px" maxlength="10"--%>
-                                                   <%--valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"--%>
-                                                   <%--onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>--%>
-                                            <%--<span style="color:red;">*</span>--%>
-                                        <%--</td>--%>
+                                        <td align="center">出厂日期</td>
+                                        <td>
+                                            <input name="manufactureDate" id="manufactureDate"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                        </td>
+                                        <td align="center">报废日期</td>
+                                        <td>
+                                            <c:set var="scrapDateVal" value="<%=new Date(now.getYear()+3,now.getMonth(),now.getDate())%>"></c:set>
+                                            <input name="scrapDate" id="scrapDate"
+                                                   value="<fmt:formatDate value="${scrapDateVal}" pattern="yyyy-MM-dd"/>"
+                                                   onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                   valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"
+                                                   onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                            <span style="color:red;">*</span>
+                                        </td>
                                     </tr>
                                     <tr style="height: 30px;">
                                         <td nowrap align="center">经费科目:</td>

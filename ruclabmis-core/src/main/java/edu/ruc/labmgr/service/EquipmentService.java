@@ -12,11 +12,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-/**
- * @author lcheng
- * @version 1.0
- *          ${tags}
- */
+@SuppressWarnings("ALL")
 @Service
 public class EquipmentService {
     @Autowired

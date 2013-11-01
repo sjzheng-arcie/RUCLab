@@ -12,7 +12,7 @@
         if(!validator(document.mainForm)){
             return;
         }
-        document.mainForm.action = "editEquipment";
+        document.mainForm.action = "editEquipment?application_id="+${applicationId};
         document.mainForm.submit();
     }
 </script>
