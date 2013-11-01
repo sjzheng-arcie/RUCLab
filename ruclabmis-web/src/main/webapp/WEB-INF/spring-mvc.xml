@@ -12,7 +12,17 @@
     <context:component-scan base-package="edu.ruc.labmgr.web.controller"/>
 
     <!--添加注解支持-->
-    <mvc:annotation-driven/>
+    <mvc:annotation-driven conversion-service="conversionService"/>
+
+    <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
+        <property name="converters">
+            <set>
+                <bean class="edu.ruc.labmgr.web.controller.converter.StringToDateConverter">
+                    <constructor-arg value="yyyy-MM-dd"/>
+                </bean>
+            </set>
+        </property>
+    </bean>
 
     <!--将无法Mapping的请求交给默认的Servlet进行处理-->
     <mvc:default-servlet-handler/>
