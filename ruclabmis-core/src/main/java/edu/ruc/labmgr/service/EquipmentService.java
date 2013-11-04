@@ -18,19 +18,6 @@ public class EquipmentService {
     @Autowired
     private EquipmentMapper equipmentMapper;
 
-    public PageInfo<Equipment> getPageEquipments(int pageNum){
-        EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
-        return getPageEquipmentByCriteria(pageNum,criteria);
-    }
-
-    public PageInfo<Equipment> getPageAvaiableEquipments(int pageNum){
-        EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
-        criteria.createCriteria().andStateIdEqualTo(Types.EquipStat.UNUSED.getValue());
-        return getPageEquipmentByCriteria(pageNum,criteria);
-    }
-
     /**
      * 按基本条件查询获得分页的设备数据
      * @param sn
@@ -53,6 +40,7 @@ public class EquipmentService {
         return getPageEquipmentByCriteria(pageNum,criteria);
     }
 
+    //所有设备
     private PageInfo<Equipment> getPageEquipmentByCriteria(int pageNum,EquipmentCriteria criteria){
         int totalCount = equipmentMapper.countByCriteria(criteria);
         PageInfo<Equipment> page = new PageInfo<>(totalCount,-1,pageNum);
@@ -60,5 +48,13 @@ public class EquipmentService {
                 new RowBounds(page.getCurrentResult(),page.getPageSize()));
         page.setData(data);
         return page;
+    }
+
+    //得到可借用设备
+    public PageInfo<Equipment> getPageAvaiableEquipments(String sn,String name,int useDirec,int pageNum){
+        EquipmentCriteria criteria = new EquipmentCriteria();
+        criteria.setOrderByClause("sn");
+        criteria.createCriteria().andStateIdEqualTo(Types.EquipStat.UNUSED.getValue());
+        return getPageEquipmentByCriteria(pageNum,criteria);
     }
 }
