@@ -17,9 +17,7 @@
     <bean id="conversionService" class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
         <property name="converters">
             <set>
-                <bean class="edu.ruc.labmgr.web.controller.converter.StringToDateConverter">
-                    <constructor-arg value="yyyy-MM-dd"/>
-                </bean>
+                <bean class="edu.ruc.labmgr.web.controller.converter.StringToDateConverter"/>
             </set>
         </property>
     </bean>
