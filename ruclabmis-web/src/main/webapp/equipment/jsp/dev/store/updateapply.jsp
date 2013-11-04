@@ -117,7 +117,7 @@
                                     <input type="reset" name="reset" value="重置" class="button"/>
                                 </shiro:hasAnyRoles>
                                 <input type="button" name="return" value="返回" class="button"
-                                       onclick="window.location.href='./listApply';"/>
+                                       onclick="window.location.href='./list';"/>
                             </td>
                         </tr>
                     </table>

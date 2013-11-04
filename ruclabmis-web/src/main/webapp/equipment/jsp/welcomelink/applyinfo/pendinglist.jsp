@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -11,13 +10,12 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
     <script>
-        var baseHref = '/equipment/jsp/dev/borrow/deviceList';
+        var baseHref = '/equipment/jsp/welcomelink/myapplyinfo/searchpendinglist';
     </script>
 </head>
 
-<body onload="getWidth()" onresize="getWidth()">
+<body onload="getwidth()" onresize="getwidth()">
 
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
@@ -29,7 +27,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">设备借用管理 > 可借用设备</div>
+                            <div class="titlebt">待审批申请</div>
                         </td>
                     </tr>
                 </table>
@@ -44,26 +42,21 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-                <span style="white-space:nowrap">&nbsp;&nbsp;设备编号:<input type="text" name="searchSN"
-                                                                         id="searchSN" value="${param.searchSN}"
-                                                                         style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="searchName"
-                                                                         id="searchName" value="${param.searchName}"
-                                                                         style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;使用方向:
-                    <select id="searchDirect" name="searchDirect">
-                        <option value="0">全部</option>
-                        <c:forEach items="${useDirections}" var="item">
-                            <option value="${item.id}"
-                                    <c:if test="${item.id == param.searchDirect}"> selected</c:if>>${item.value}
-                            </option>
-                        </c:forEach>
-                    </select>
-                </span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                style="cursor:hand"
-                                                                onclick="toFind('listForm');"><img
-                        src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+
+                            <span style="white-space:nowrap">&nbsp;&nbsp;申请编号:<input type="text" name="applyNo"
+                                                                                     id="applyNo" value=""
+                                                                                     style="width:100px;"/></span>
+		<span style="white-space:nowrap">&nbsp;&nbsp;申请类型:<select id="formType" name="formType">
+            <option value="0">请选择</option>
+            <option value="21">报增申请</option>
+            <option value="22">报减申请</option>
+            <option value="23">借出申请</option>
+            <option value="24">归还申请</option>
+
+        </select></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;
+                                <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                <img src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -85,7 +78,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">可借用设备信息列表</span>
+                                                                                style="white-space:nowrap">设备转移申请列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -93,8 +86,14 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="addapply.html"><img src="/equipment/images/add_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">申请借用</span></a>&nbsp;
+						<a href="exameapply.html"><img src="/equipment/images/add_min.gif" width="10" height="10"
+                                                       border="0"/> <span class="STYLE1">批准申请</span></a>&nbsp;
+      					<a href="" onclick="toUpdate();"><img src="/equipment/images/edit_min.gif" width="10" height="10"
+                                                              border="0"/> <span class="STYLE1">申请未通过</span></a>&nbsp;
+      											<a href="apply.html"><img src="/equipment/images/add_min.gif" width="10"
+                                                                          height="10" border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
+                        <a href="#" onclick="toRoom();"><img src="/equipment/images/del_min.gif" width="10" height="10"
+                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
                                                                 </div>
                                                             </td>
@@ -105,7 +104,6 @@
                                         </table>
                                     </td>
                                 </tr>
-
                                 <tr>
                                     <td>
                                         <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
@@ -118,63 +116,46 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">仪器编号</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请编号</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">名称</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请类型</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">分类号</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请人</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">型号</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">经办人</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">规格</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">审批人</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">单价</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">表单状态</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">厂家</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">提交时间</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">出厂号</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">审批时间</span></div>
                                                     </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">出厂日期</span></div>
-                                                    </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">购置日期</span></div>
-                                                    </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">报废日期</span></div>
-                                                    </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">经费科目</span></div>
-                                                    </td>
-                                                    <td width="80" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">使用方向</span></div>
-                                                    </td>
+
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
-                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="admin" onclick="checkOne(this)"/></td>
-                                                        <td>${item.sn}</td>
-                                                        <td>${item.name}</td>
-                                                        <td>${item.categoryId}</td>
-                                                        <td>${item.modelNumber}</td>
-                                                        <td>${item.specifications}</td>
-                                                        <td>${item.unitPrice}</td>
-                                                        <td>${item.vender}</td>
-                                                        <td>${item.factoryNumber}</td>
-                                                        <td><fmt:formatDate value="${item.manufactureDate}" pattern="yyyy-MM-dd"/></td>
-                                                        <td><fmt:formatDate value="${item.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
-                                                        <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
-                                                        <td>${item.fundingSubject}</td>
-                                                        <td>${item.useDirection}</td>
+
+                                                            <td>${item.sn}</td>
+                                                         <td>${item.formType.value}</td>
+                                                         <td>${item.applicant.name}</td>
+                                                         <td>${item.operator.name}</td>
+                                                         <td>${item.approver.name}</td>
+                                                         <td>${item.state.value}</td>
+                                                         <td>  <fmt:formatDate  value="${item.applyTime}"></fmt:formatDate></td>
+                                                         <td>$<fmt:formatDate  value="${item.processTime}"></fmt:formatDate></td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -182,9 +163,9 @@
                                         </div>
                                     </td>
                                 </tr>
-
                                 <%@ include file="../../common/pagetable.jsp"%>
 
+                                </tr>
                             </table>
                         </td>
                     </tr>
@@ -194,9 +175,9 @@
         </tr>
         <tr>
             <td valign="bottom" background="/equipment/images/mail_leftbg.gif"><img src="/equipment/images/buttom_left2.gif"
-                                                                                    width="17" height="17"/></td>
+                                                                                  width="17" height="17"/></td>
             <td valign="bottom" background="/equipment/images/buttom_bgs.gif"><img src="/equipment/images/buttom_bgs.gif"
-                                                                                   width="100%" height="17"/></td>
+                                                                                 width="100%" height="17"/></td>
             <td valign="bottom" background="/equipment/images/mail_rightbg.gif"><img
                     src="/equipment/images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

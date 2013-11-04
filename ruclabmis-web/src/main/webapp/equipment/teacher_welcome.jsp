@@ -67,7 +67,7 @@
         </div>
     </div>
     <div class="indextrends indexteacherapply">
-        <h3><a href="javascript:void(0)">更多>></a><span>我的申请单</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allmyapplylist">更多>></a><span>我的申请单</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
@@ -77,13 +77,13 @@
                 <td align="center">详细</td>
             </tr>
             <c:forEach items="${myApplyList}" var="item">
-            <tr>
-                <td height="24" align="center">1</td>
-                <td align="center">${item.formType.value}</td>
-                <td align="center"><fmt:formatDate value="${item.applyTime}"></fmt:formatDate></td>
-                <td align="center">${item.state.value}</td>
-                <td align="center">详细</td>
-            </tr>
+                <tr>
+                    <td height="24" align="center">1</td>
+                    <td align="center">${item.formType.value}</td>
+                    <td align="center"><fmt:formatDate value="${item.applyTime}"></fmt:formatDate></td>
+                    <td align="center">${item.state.value}</td>
+                    <td align="center">详细</td>
+                </tr>
             </c:forEach>
 
         </table>

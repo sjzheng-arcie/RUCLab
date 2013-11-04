@@ -98,10 +98,9 @@ public class StoreService {
         return equipment;
     }
 
-
     public int updateEquipmentByPrimaryKey(Equipment equipment) {
         int retVal = 0;
-        retVal = mapperEquipment.updateByPrimaryKeySelective(equipment);
+        retVal = mapperEquipment.updateByPrimaryKey(equipment);
 
         return retVal;
     }

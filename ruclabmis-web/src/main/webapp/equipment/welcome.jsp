@@ -45,7 +45,7 @@
 <body style="width:100%;">
 <div class="indexMainCon">
     <div class="indexNews">
-        <h3><a href="jsp/announcement/remind/remind?id=0&page=0 " target="">更多>></a><span>系统公告</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=0&&page=0 "  target="">更多>></a><span>系统公告</span></h3>
 
         <div class="indexNewsCon">
             <ul>
@@ -77,7 +77,7 @@
         </div>
     </div>
     <div class="indextrends indexNews">
-        <h3><a href="javascript:void(0)">更多>></a><span>我的申请单</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allmyapplylist">更多>></a><span>我的申请单</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
@@ -101,7 +101,7 @@
 
     </div>
     <div class="indexNotice">
-        <h3><a href="javascript:void(0)">更多>></a><span>待审批单据</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allpendinglist">更多>></a><span>待审批单据</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>

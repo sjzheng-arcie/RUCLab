@@ -1,30 +1,21 @@
 package edu.ruc.labmgr.web.controller;
 
-import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.domain.ApplicationForm;
+import edu.ruc.labmgr.domain.Classif;
+import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.domain.ViewStore;
 import edu.ruc.labmgr.service.ClassifService;
 import edu.ruc.labmgr.service.StoreService;
 import edu.ruc.labmgr.service.UserService;
-import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.Types;
-import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.SimpleAuthenticationInfo;
-import org.apache.shiro.authz.annotation.RequiresUser;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
-import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 @Controller
@@ -38,25 +29,25 @@ public class StoreController {
     UserService serviceUser;
 
     @RequestMapping(value = "/list")
-    public ModelAndView list(){
+    public ModelAndView list() {
         return pageList(null, 0, 1);
     }
 
-    @RequestMapping(value = "/list",method = RequestMethod.POST)
-    public ModelAndView pageList(@RequestParam("searchSN")String sn,@RequestParam("searchState")int stateId,
-                                 @RequestParam("page") int page){
+    @RequestMapping(value = "/list", method = RequestMethod.POST)
+    public ModelAndView pageList(@RequestParam("searchSN") String sn, @RequestParam("searchState") int stateId,
+                                 @RequestParam("page") int page) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/dev/store/applylist");
 
         List<Classif> applyStates = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
 
         PageInfo<ApplicationForm> pageInfo = serviceStore.selectListPage(sn, stateId, page);
-        result.addObject("pageInfo",pageInfo);
+        result.addObject("pageInfo", pageInfo);
         result.addObject("applyStates", applyStates);
         return result;
     }
 
-    @RequestMapping(value = "/toAddApply",method = RequestMethod.GET)
+    @RequestMapping(value = "/toAddApply", method = RequestMethod.GET)
     public ModelAndView toAddApply() {
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
         ViewStore store = new ViewStore();
@@ -64,7 +55,7 @@ public class StoreController {
         return mav;
     }
 
-    @RequestMapping(value ="/addApply",method = RequestMethod.POST)
+    @RequestMapping(value = "/addApply", method = RequestMethod.POST)
     public ModelAndView addApply(ApplicationForm apply) {
         apply.setType(Types.ApplyType.ADD.getValue());
         apply.setStateId(Types.ApplyState.WAITING.getValue());
@@ -72,11 +63,11 @@ public class StoreController {
         apply.setApplicantId(serviceUser.getCurrentUserId());
 
         serviceStore.insertApply(apply);
-        return  list();
+        return list();
     }
 
-    @RequestMapping(value = "/toUpdateApply",method = RequestMethod.GET)
-    public ModelAndView toUpdateApply(@RequestParam("application_id")int applicationId) {
+    @RequestMapping(value = "/toUpdateApply", method = RequestMethod.GET)
+    public ModelAndView toUpdateApply(@RequestParam("application_id") int applicationId) {
         ViewStore store = serviceStore.selectByApplyId(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/updateapply");
@@ -84,22 +75,21 @@ public class StoreController {
         return mav;
     }
 
-    @RequestMapping(value ="/updateApply",method = RequestMethod.POST)
+    @RequestMapping(value = "/updateApply", method = RequestMethod.POST)
     public ModelAndView updateApply(ApplicationForm apply) {
         serviceStore.updateApply(apply);
         return list();
     }
 
-    @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam("id")int applicationId) {
+    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    public ModelAndView delete(@RequestParam("id") int applicationId) {
         serviceStore.deleteApply(applicationId);
         return list();
     }
 
-    @RequestMapping(value = "/toAddEquipment",method = RequestMethod.POST)
+    @RequestMapping(value = "/toAddEquipment", method = RequestMethod.POST)
     public ModelAndView toAddEquipment(ApplicationForm apply) {
-        if (apply.getId() == null)
-        {
+        if (apply.getId() == null) {
             apply.setType(Types.ApplyType.ADD.getValue());
             apply.setStateId(Types.ApplyState.WAITING.getValue());
             apply.setApplyTime(new java.util.Date());
@@ -118,16 +108,16 @@ public class StoreController {
         return mav;
     }
 
-    @RequestMapping(value = "/addEquipment/{appId}",method = RequestMethod.POST)
-    public ModelAndView addEquipment(@Validated Equipment equipment, @PathVariable("appId") Object applicationId) {
+    @RequestMapping(value = "/addEquipment", method = RequestMethod.POST)
+    public ModelAndView addEquipment(Equipment equipment, @RequestParam("application_id") int applicationId) {
         equipment.setStateId(Types.ClassifType.EQUIPMENT_STATE.getValue());
-        serviceStore.insertEquipmentWithApply(equipment, 1);
-        return toUpdateApply(1);
+        serviceStore.insertEquipmentWithApply(equipment, applicationId);
+        return toUpdateApply(applicationId);
     }
 
-    @RequestMapping(value = "/toEditEquipment",method = RequestMethod.GET)
-    public ModelAndView toEditEquipment(@RequestParam("application_id")int applicationId,
-                                        @RequestParam("equipment_id")int equipmentId) {
+    @RequestMapping(value = "/toEditEquipment", method = RequestMethod.GET)
+    public ModelAndView toEditEquipment(@RequestParam("application_id") int applicationId,
+                                        @RequestParam("equipment_id") int equipmentId) {
         Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(equipmentId);
 
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
@@ -141,35 +131,29 @@ public class StoreController {
         return mav;
     }
 
-    @RequestMapping(value = "/editEquipment",method = RequestMethod.POST)
-    public ModelAndView editEquipment(Equipment equipment, @RequestParam("application_id")int applicationId) {
+    @RequestMapping(value = "/editEquipment", method = RequestMethod.POST)
+    public ModelAndView editEquipment(Equipment equipment, @RequestParam("application_id") int applicationId) {
         serviceStore.updateEquipmentByPrimaryKey(equipment);
         return toUpdateApply(applicationId);
     }
 
-    @RequestMapping(value = "/deleteEquipment",method = RequestMethod.GET)
-    public ModelAndView deleteEquipment(@RequestParam("application_id")int applicationId,
-                                        @RequestParam("equipment_id")int equipmentId) {
+    @RequestMapping(value = "/deleteEquipment", method = RequestMethod.GET)
+    public ModelAndView deleteEquipment(@RequestParam("application_id") int applicationId,
+                                        @RequestParam("equipment_id") int equipmentId) {
         serviceStore.deleteEquipmentWithApply(equipmentId, applicationId);
         return toUpdateApply(applicationId);
     }
 
-    @RequestMapping(value = "/approve",method = RequestMethod.POST)
-    public ModelAndView approve(@RequestParam("application_id")int applicationId){
+    @RequestMapping(value = "/approve", method = RequestMethod.POST)
+    public ModelAndView approve(@RequestParam("application_id") int applicationId) {
         serviceStore.approveApply(applicationId);
         return list();
     }
 
-    @RequestMapping(value = "/reject",method = RequestMethod.POST)
-    public ModelAndView reject(@RequestParam("application_id")int applicationId){
+    @RequestMapping(value = "/reject", method = RequestMethod.POST)
+    public ModelAndView reject(@RequestParam("application_id") int applicationId) {
         serviceStore.rejectApply(applicationId);
         return list();
     }
 
-    @InitBinder
-    public void initBinder(WebDataBinder binder) {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-        dateFormat.setLenient(false);
-        binder.registerCustomEditor(Date.class, new CustomDateEditor(dateFormat, true));
-    }
 }

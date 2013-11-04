@@ -12,7 +12,7 @@
         if(!validator(document.mainForm)){
             return;
         }
-        document.mainForm.action = "editEquipment";
+        document.mainForm.action = "editEquipment?application_id="+${applicationId};
         document.mainForm.submit();
     }
 </script>
@@ -79,7 +79,7 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr style="height: 30px;">
-                                        <input name="equipment_id" id="equipment_id" type="hidden" value="${equipment.id}">
+                                        <input name="id" id="id" type="hidden" value="${equipment.id}">
                                         <input name="application_id" id="application_id" type="hidden" value="${applicationId}">
 
                                         <td align="center">设备编号</td>

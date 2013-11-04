@@ -68,7 +68,7 @@
     </div>
 
     <div class="indextrends indexteacherapply">
-        <h3><a href="javascript:void(0)">更多>></a><span>待审批单据</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allpendinglist">更多>></a><span>待审批单据</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>

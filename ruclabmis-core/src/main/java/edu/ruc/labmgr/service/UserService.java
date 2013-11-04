@@ -91,7 +91,7 @@ public class UserService {
 
     public int update(User user) {
         int result = 0;
-        result = mapperUser.updateByPrimaryKeySelective(user);
+        result = mapperUser.updateByPrimaryKey(user);
 
         return result;
     }
@@ -106,7 +106,7 @@ public class UserService {
         User updateUser = new User();
         updateUser.setId(id);
         updateUser.setPassword(CipherUtil.generatePassword(newPassword));
-        result = mapperUser.updateByPrimaryKeySelective(updateUser);
+        result = mapperUser.updateByPrimaryKey(updateUser);
 
         return result;
     }

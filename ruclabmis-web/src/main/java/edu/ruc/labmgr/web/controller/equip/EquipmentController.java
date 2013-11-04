@@ -29,7 +29,7 @@ public class EquipmentController {
         ModelAndView result = new ModelAndView();
         result.setViewName("equipment/jsp/dev/borrow/devicelist");
 
-        PageInfo<Equipment> page = equipServicce.getPageAvaiableEquipments(pg);
+        PageInfo<Equipment> page = equipServicce.getPageAvaiableEquipments(null, null, 0, pg);
         result.addObject("page",page);
         return result;
     }

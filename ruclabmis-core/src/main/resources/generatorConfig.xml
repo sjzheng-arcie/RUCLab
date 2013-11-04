@@ -137,7 +137,8 @@
         <!--<table tableName="message">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="view_store" />-->
 
+        <!--<table tableName="view_store" />-->
+        <table tableName="view_borrow" />
     </context>
 </generatorConfiguration>

@@ -1,42 +1,71 @@
 package edu.ruc.labmgr.web.controller;
 
+import edu.ruc.labmgr.domain.Classif;
+import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.service.ClassifService;
+import edu.ruc.labmgr.service.EquipmentService;
+import edu.ruc.labmgr.utils.Types;
+import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/equipment/jsp/dev/borrow")
 public class BorrowController {
-//    @Autowired
-//    UserService serviceUser;
-//    @Autowired
-//    RoleService serviceRole;
-//    @Autowired
+    @Autowired
+    EquipmentService serviceEquipment;
+    @Autowired
+    ClassifService serviceClassif;
+    //    @Autowired
 //    MajorService serviceMajor;
 //
 //    private int currPage = 0;
 //
-//    @RequestMapping("/list")
-//    public ModelAndView pageList(HttpServletRequest request) {
-//        currPage = request.getParameter("page") == null   ?
-//                (currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-//
-//        UserCriteria userCriteria =  new UserCriteria();
-//        UserCriteria.Criteria criteria = userCriteria.createCriteria();
-//        if (!StringUtils.isNullOrEmpty(request.getParameter("searchSN"))) {
-//            criteria.andSnLike("%" + request.getParameter("searchSN") + "%");
-//        }
-//        if (!StringUtils.isNullOrEmpty(request.getParameter("searchName"))) {
-//            criteria.andNameLike("%" + request.getParameter("searchName") + "%");
-//        }
-//
-//        ObjectListPage<User> pageInfo = serviceUser.selectListPage(currPage, userCriteria);
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/list");
-//        mav.addObject("users", pageInfo.getListObject());
-//        mav.addObject("page", pageInfo.getPageInfo());
-//        return mav;
-//    }
+    @RequestMapping(value = "/applyList")
+    public ModelAndView applyList() {
+        return pageApplyList(null, null, 0, 1);
+    }
+
+    @RequestMapping(value = "/applyList", method = RequestMethod.POST)
+    public ModelAndView pageApplyList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
+                                      @RequestParam("searchDirect")int useDirect,
+                                      @RequestParam("page") int page) {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("/equipment/jsp/dev/borrow/applylist");
+
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
+
+        PageInfo<Equipment> pageInfo = serviceEquipment.getPageAvaiableEquipments(sn, name, useDirect, page);
+        result.addObject("pageInfo", pageInfo);
+        result.addObject("useDirections", useDirections);
+        return result;
+    }
+
+    @RequestMapping(value = "/deviceList")
+    public ModelAndView deviceList() {
+        return pageDeviceList(null, null, 0, 1);
+    }
+
+    @RequestMapping(value = "/deviceList", method = RequestMethod.POST)
+    public ModelAndView pageDeviceList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
+                                       @RequestParam("searchDirect")int useDirect,
+                                       @RequestParam("page") int page) {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("/equipment/jsp/dev/borrow/devicelist");
+
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
+
+        PageInfo<Equipment> pageInfo = serviceEquipment.getPageAvaiableEquipments(sn, name, useDirect, page);
+        result.addObject("pageInfo", pageInfo);
+        result.addObject("useDirections", useDirections);
+        return result;
+    }
 //
 //    @RequestMapping("/toAdd")
 //    public ModelAndView toAdd(HttpServletRequest request) {
