@@ -4,7 +4,7 @@
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
@@ -30,6 +30,12 @@
                 return self.innerHeight;
             }
         }
+        function aa(){
+            var aa=document.getElementById("aa").value;
+            if(aa.length>10){
+                document.getElementById("aa").value=aa.subString(0,10)+"...";
+            }
+        }
 
     })
 
@@ -39,12 +45,13 @@
 <body style="width:100%;">
 <div class="indexMainCon">
     <div class="indexNews">
-        <h3><a href="javascript:void(0)">更多>></a><span>系统公告</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=0&&page=0 "  target="">更多>></a><span>系统公告</span></h3>
 
         <div class="indexNewsCon">
             <ul>
                 <c:forEach items="${announcementList}" var="item">
-                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a></li>
+                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
+                        <a style="max-width: 200px" href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a></li>
 
                 </c:forEach>
 
@@ -58,7 +65,11 @@
         <div class="indexNoticeCon">
             <ul>
                 <c:forEach items="${messageList}" var="item">
-                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a></li>
+                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
+
+                        <a id="aa" style="max-width: 200px" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
+
+                    </li>
 
                 </c:forEach>
 
@@ -66,7 +77,7 @@
         </div>
     </div>
     <div class="indextrends indexNews">
-        <h3><a href="javascript:void(0)">更多>></a><span>我的申请单</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allmyapplylist">更多>></a><span>我的申请单</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
@@ -76,13 +87,13 @@
                 <td align="center">详细</td>
             </tr>
             <c:forEach items="${myApplyList}" var="item">
-            <tr>
-                <td height="24" align="center">1</td>
-                <td align="center">${item.formType.value}</td>
-                <td align="center"><fmt:formatDate value="${item.applyTime}"></fmt:formatDate></td>
-                <td align="center">${item.state.value}</td>
-                <td align="center">详细</td>
-            </tr>
+                <tr>
+                    <td height="24" align="center">1</td>
+                    <td align="center">${item.formType.value}</td>
+                    <td align="center"><fmt:formatDate value="${item.applyTime}"></fmt:formatDate></td>
+                    <td align="center">${item.state.value}</td>
+                    <td align="center">详细</td>
+                </tr>
             </c:forEach>
 
         </table>
@@ -90,7 +101,7 @@
 
     </div>
     <div class="indexNotice">
-        <h3><a href="javascript:void(0)">更多>></a><span>待审批单据</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allpendinglist">更多>></a><span>待审批单据</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
