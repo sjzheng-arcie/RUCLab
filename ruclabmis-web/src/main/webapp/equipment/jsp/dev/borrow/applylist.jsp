@@ -1,195 +1,25 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        function checkAll(box) {  //全选或全不选
-            document.listForm.checkbox.checked = box.checked;
-            if (document.listForm.idcheckbox == null)
-                return;
-            var numRow = document.listForm.idcheckbox.length;
-            if (numRow == null) {
-                document.listForm.idcheckbox.checked = box.checked;
-                return;
-            }
-            if (box.checked) {
-                for (var i = 0; i < numRow; i++) {
-                    document.listForm.idcheckbox[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < numRow; i++) {
-                    document.listForm.idcheckbox[i].checked = false;
-                }
-            }
-        }
-
-        function checkOne() {  //选一个时全选或全不选
-            if (document.listForm.idcheckbox == null)
-                return;
-            var numRow = document.listForm.idcheckbox.length;
-            if (numRow == null) {
-                document.listForm.checkbox.checked = listForm.idcheckbox.checked;
-                return;
-            }
-            var numBox = 0;
-            for (var i = 0; i < numRow; i++) {
-                if (document.listForm.idcheckbox[i].checked) {
-                    numBox++;
-                    break;
-                }
-            }
-            if (numBox == numRow) {
-                document.listForm.checkbox.checked = true;
-            } else {
-                document.listForm.checkbox.checked = false;
-            }
-        }
-
-        function toUpdate() {
-            var selectedItem;
-            if (document.listForm.idcheckbox == null) {
-                return;
-            }
-            var len = document.listForm.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.listForm.idcheckbox.checked) {
-                    selectedItem = document.listForm.idcheckbox.value;
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-
-            document.listForm.action = "toUpdate?id=" + selectedItem;
-            document.listForm.submit();
-        }
-
-        function toUpdatePassword() {
-            var selectedItem;
-            if (document.listForm.idcheckbox == null) {
-                return;
-            }
-            var len = document.listForm.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.listForm.idcheckbox.checked) {
-                    selectedItem = document.listForm.idcheckbox.value;
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-
-            document.listForm.action = "toUpdatePassword?id=" + selectedItem;
-            document.listForm.submit();
-        }
-
-        function toDelete() {
-            var selectedItem;
-            if (document.listForm.idcheckbox == null) {
-                return;
-            }
-            var len = document.listForm.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.listForm.idcheckbox[i].checked)) {
-                        selectedItem = document.listForm.idcheckbox[selectedItem].value;
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.listForm.idcheckbox.checked) {
-                    selectedItem = document.listForm.idcheckbox.value;
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-
-            if (confirm("是否删除所选记录？")) {
-                document.listForm.action = "delete?id=" + selectedItem;
-                document.listForm.submit();
-            }
-        }
-
-        function onInit() {
-            getWidth();
-        }
-
-        //获得divwidth的宽度
-        function getWidth() {
-            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-            if (document.body.scrollWidth > document.body.offsetWidth) {
-                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
-            }
-        }
-
-        function toFind() {
-            var href = '/equipment/jsp/sys/user/list';
-
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
-        function goPage(page) {
-            if (page <= 0) {
-                alert("已到达首页！");
-                return;
-            }
-            if (page > ${page.totalPage}) {
-                alert("已到达尾页！");
-                return;
-            }
-            var href = '/equipment/jsp/sys/user/list?page=' + page;
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
+        var baseHref = '/equipment/jsp/dev/borrow/list';
     </script>
 
 </head>
 
-<body onload="onInit()" onresize="getWidth()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
@@ -287,26 +117,11 @@
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                 <div align="center">
                                                     <input type="checkbox" name="checkbox" id="checkbox"
-                                                           onclick="checkAll(this);"/>
+                                                           onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                 </div>
                                             </td>
                                             <td width="40" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">序号</span></div>
-                                            </td>
-                                            <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">设备编号</span></div>
-                                            </td>
-                                            <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">设备名称</span></div>
-                                            </td>
-                                            <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">设备型号</span></div>
-                                            </td>
-                                            <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">设备类型</span></div>
-                                            </td>
-                                            <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">申请部门</span></div>
+                                                <div align="center"><span class="STYLE10">单据号</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">申请人</span></div>
@@ -315,28 +130,34 @@
                                                 <div align="center"><span class="STYLE10">申请时间</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">详细</span></div>
+                                                <div align="center"><span class="STYLE10">经手人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">申请状态</span></div>
+                                                <div align="center"><span class="STYLE10">审批人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">备注</span></div>
+                                                <div align="center"><span class="STYLE10">处理时间</span></div>
+                                            </td>
+                                            <td width="100" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">单据状态</span></div>
+                                            </td>
+                                            <td width="100" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
                                         </tr>
-                                        <c:forEach items="${users}" var="item">
+                                        <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="${item.id}" onclick="checkOne(this)"/>
+                                                                       value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>${item.id}</td>
                                                 <td>${item.sn}</td>
-                                                <td>${item.name}</td>
-                                                <td>${item.phoneNum}</td>
-                                                <td>${item.email}</td>
-                                                <td>${item.major.name}</td>
-                                                <td>${item.role.name}</td>
-                                                <td>${item.comment}</td>
+                                                <td>${item.applicant.name}</td>
+                                                <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
+                                                <td>${item.operator.name}</td>
+                                                <td>${item.approver.name}</td>
+                                                <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
+                                                <td>${item.state.value}</td>
+                                                <td><a href="toUpdateApply?application_id=${item.id}">详细信息</a></td>
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>
@@ -344,59 +165,9 @@
                                 </div>
                             </td>
                         </tr>
-                        <tr>
-                            <td height="30">
-                                <table width='100%' border='0' cellspacing='0' cellpadding='0'
-                                       style='font-size:13px;'>
-                                    <tr>
-                                        <td><span align='left' class='STYLE22' style="white-space:nowrap">
-                                            &nbsp;&nbsp;共有<strong>${page.totalResult}</strong> 条记录，当前第<strong>${page.currentPage}</strong> 页，共 <strong>${page.totalPage}</strong> 页</span>
 
-				<span class='STYLE22' style="white-space:nowrap">
-				<table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                    <tr>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(1)" style="cursor:hand"
-                                                     src='../../../images/main_54.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:hand"
-                                                     src='../../../images/main_56.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:hand"
-                                                     src='../../../images/main_58.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:hand"
-                                                     src='../../../images/main_60.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='37' class='STYLE22'>
-                            <div align='center' style="white-space:nowrap">转到</div>
-                        </td>
-                        <td>
-                            <div align='left'>
-                                <select onchange="goPage(this.options[this.selectedIndex].value)">
-                                    <c:forEach var="i" begin="1" end="${page.totalPage}" step="1">
-                                        <option class='STYLE22' value='${i}'
-                                                <c:if test="${page.currentPage == i}">selected</c:if> > 第${i}页
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </td>
-                    </tr>
-                </table>
-					</span>
-                                        </td>
-                                    </tr>
-                                </table>
-                            </td>
-                        </tr>
+                        <%@ include file="../../common/pagetable.jsp"%>
+
                     </table>
                 </td>
             </tr>
