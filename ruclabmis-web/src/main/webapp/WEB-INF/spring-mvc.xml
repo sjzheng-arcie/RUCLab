@@ -18,7 +18,7 @@
         <property name="converters">
             <set>
                 <bean class="edu.ruc.labmgr.web.controller.converter.StringToDateConverter">
-                    <constructor-arg value="yyyy-MM-dd"/>
+
                 </bean>
             </set>
         </property>
