@@ -1,123 +1,19 @@
-
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <script>
 
-        function checkAll(box) {  //全选或全不选
-            form1.checkbox.checked = box.checked;
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.idcheckbox.checked = box.checked;
-                return;
-            }
-            if (box.checked) {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = false;
-                }
-            }
-        }
+        var baseHref = '/prototype/jsp/bas/class/list';
 
-        function checkOne() {  //选一个时全选或全不选
-
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.checkbox.checked = form1.idcheckbox.checked;
-                return;
-            }
-            var numBox = 0;
-            for (var i = 0; i < numRow; i++) {
-                if (form1.idcheckbox[i].checked) {
-                    numBox++;
-                }
-            }
-            if (numBox == numRow) {
-                form1.checkbox.checked = true;
-            } else {
-                form1.checkbox.checked = false;
-            }
-        }
-
-        function toUpdate() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-            if (confirm("是否修改？")) {
-                document.form1.action = "updateSysint.html";
-                document.form1.submit();
-            }
-
-        }
-        function toDelete() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请至少选择一条记录！");
-                return;
-            }
-            if (confirm("是否删除所选记录？")) {
-                document.form1.action = "";
-                document.form1.submit();
-            }
-
-        }
-        //获得divwidth的宽度
-        function getwidth() {
-            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-            if (document.body.scrollWidth > document.body.offsetWidth) {
-                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
-            }
-        }
     </script>
 
 </head>
@@ -150,10 +46,10 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;班级编号:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;班级编号:<input type="text" name="classNo"
+                                                                                     id="classNo" value=""
                                                                                      style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;所属专业:<select id="searchD1" name="searchD1">
+		<span style="white-space:nowrap">&nbsp;&nbsp;所属专业:<select id="major" name="major">
             <option value=""></option>
             <option value="0">计算机专业</option>
             <option value="1">软件工程</option>
@@ -274,113 +170,21 @@
 
 
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
-                                                    <td title="">00001</td>
-                                                    <td title="">计算机09-1</td>
-                                                    <td title="">2009</td>
-                                                    <td title="">秋季</td>
-                                                    <td title="">本科</td>
-                                                    <td title="">全日制</td>
-                                                    <td title="">4年制</td>
-                                                    <td title="">50</td>
-                                                    <td title="">王春东</td>
-                                                    <td title="">丁天一等</td>
-                                                    <td title="">中国人民大学</td>
-                                                    <td title="">信息学院</td>
-                                                    <td title="">计算机</td>
-                                                    <td title="">软件工程</td>
-
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
-                                                    <td title="">00001</td>
-                                                    <td title="">计算机09-1</td>
-                                                    <td title="">2009</td>
-                                                    <td title="">秋季</td>
-                                                    <td title="">本科</td>
-                                                    <td title="">全日制</td>
-                                                    <td title="">4年制</td>
-                                                    <td title="">50</td>
-                                                    <td title="">王春东</td>
-                                                    <td title="">丁天一等</td>
-                                                    <td title="">中国人民大学</td>
-                                                    <td title="">信息学院</td>
-                                                    <td title="">计算机</td>
-                                                    <td title="">软件工程</td>
-
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>3</td>
-                                                    <td title="">00001</td>
-                                                    <td title="">计算机09-1</td>
-                                                    <td title="">2009</td>
-                                                    <td title="">秋季</td>
-                                                    <td title="">本科</td>
-                                                    <td title="">全日制</td>
-                                                    <td title="">4年制</td>
-                                                    <td title="">50</td>
-                                                    <td title="">王春东</td>
-                                                    <td title="">丁天一等</td>
-                                                    <td title="">中国人民大学</td>
-                                                    <td title="">信息学院</td>
-                                                    <td title="">计算机</td>
-                                                    <td title="">软件工程</td>
-
-                                                </tr>
+                                                <c:forEach items="${pageInfo.data}" var="item">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        </td>
+                                                        <td>${item.id}</td>
+                                                    </tr>
+                                                </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td height="30">
-                                        <table width='100%' border='0' cellspacing='0' cellpadding='0'
-                                               style='font-size:13px;'>
-                                            <tr>
-                                                <td><span align='left' class='STYLE22' style="white-space:nowrap">&nbsp;&nbsp;共有<strong>2</strong> 条记录，当前第<strong>1</strong> 页，共 <strong>1</strong> 页</span>
-				<span class='STYLE22' style="white-space:nowrap">
-				<table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                    <tr>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_54.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_56.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_58.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_60.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='37' class='STYLE22'>
-                            <div align='center' style="white-space:nowrap">转到</div>
-                        </td>
-                        <td>
-                            <div align='left'><select
-                                    onchange=" document.forms[0].action='/NWSVN/sysint!find?page='+this.options[this.selectedIndex].value;document.forms[0].submit();">
-                                <option class='STYLE22' value="1" selected>第1页</option>
-                            </select></div>
-                        </td>
-                    </tr>
-                </table>
-					</span>
-                                                </td>
-                                            </tr>
-                                        </table>
-                                    </td>
-                                </tr>
+                                <%@ include file="../../common/pagetable.jsp"%>
+
                             </table>
                         </td>
                     </tr>

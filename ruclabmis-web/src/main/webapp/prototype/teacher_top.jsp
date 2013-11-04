@@ -5,7 +5,7 @@
     <style>
 
     </style>
-    <title>实验室设备管理系统</title>
+    <title>管理页面</title>
     <script language=JavaScript>
         function logout() {
             if (confirm("您确定要退出控制面板吗？"))
@@ -23,9 +23,6 @@
                 eval("submenu" + sid + ".style.display=\"none\";");
             }
         }
-        function rs1() {
-            parent.main.location.href = "teacher_welcome.html";
-        }
     </script>
     <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
     <meta http-equiv="refresh" content="60">
@@ -38,6 +35,12 @@
             } else {
                 eval("submenu" + sid + ".style.display=\"none\";");
             }
+        }
+        function rs() {
+            parent.main.location.href = "bbs/frame.html";
+        }
+        function rs1() {
+            parent.main.location.href = "teacher_welcome.html";
         }
     </script>
     <base target="main">
@@ -57,11 +60,12 @@
 
         </div>
         <ul class="top_right_menu">
-            <li class="active"><a href="admin_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-
+            <li class="active"><a href="teacher_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
+            <li><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
         </ul>
     </div>
 </div>
 
 </body>
 </html>
+

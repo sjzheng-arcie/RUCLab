@@ -1,124 +1,17 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../js/util.js"></script>
-    <link href="jquery.treetable.theme.default.css" rel="stylesheet" type="text/css"/>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-
-        function checkAll(box) {  //全选或全不选
-            form1.checkbox.checked = box.checked;
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.idcheckbox.checked = box.checked;
-                return;
-            }
-            if (box.checked) {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = false;
-                }
-            }
-        }
-
-        function checkOne() {  //选一个时全选或全不选
-
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.checkbox.checked = form1.idcheckbox.checked;
-                return;
-            }
-            var numBox = 0;
-            for (var i = 0; i < numRow; i++) {
-                if (form1.idcheckbox[i].checked) {
-                    numBox++;
-                }
-            }
-            if (numBox == numRow) {
-                form1.checkbox.checked = true;
-            } else {
-                form1.checkbox.checked = false;
-            }
-        }
-
-        function toUpdate() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-            if (confirm("是否修改？")) {
-                document.form1.action = "update.html";
-                document.form1.submit();
-            }
-
-        }
-        function toDelete() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请至少选择一条记录！");
-                return;
-            }
-            if (confirm("是否删除所选记录？")) {
-                document.form1.action = "";
-                document.form1.submit();
-            }
-
-        }
-        //获得divwidth的宽度
-        function getwidth() {
-            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-            if (document.body.scrollWidth > document.body.offsetWidth) {
-                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
-            }
-        }
+        var baseHref = '/prototype/jsp/sys/user/list';
     </script>
 
 </head>
@@ -134,7 +27,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">基础管理 > 组织架构管理</div>
+                    <div class="titlebt">基础管理 > 实验室管理</div>
                 </td>
             </tr>
         </table>
@@ -214,130 +107,129 @@
                                         </td>
 
                                         <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                            <div align="center"><span class="STYLE10">组织编号</span></div>
+                                            <div align="center"><span class="STYLE10">房间编号</span></div>
                                         </td>
                                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                            <div align="center"><span class="STYLE10">组织名称</span></div>
+                                            <div align="center"><span class="STYLE10">房间名称</span></div>
                                         </td>
                                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                            <div align="center"><span class="STYLE10">级别</span></div>
+                                            <div align="center"><span class="STYLE10">房间位置</span></div>
                                         </td>
                                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                            <div align="center"><span class="STYLE10">类别</span></div>
+                                            <div align="center"><span class="STYLE10">实验工作台</span></div>
                                         </td>
                                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                            <div align="center"><span class="STYLE10">负责人</span></div>
+                                            <div align="center"><span class="STYLE10">设备库存设备</span></div>
+                                        </td>
+                                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                            <div align="center"><span class="STYLE10">详细信息</span></div>
                                         </td>
                                     </tr>
 
                                     <tr bgcolor="#ffffff" align="center" data-tt-id="xxxy">
-                                        <td height="20" align="left">信息学院</td>
+                                        <td height="20" align="left">信息学院实验教学楼</td>
 
 
-                                        <td>SJ003</td>
-                                        <td>信息学院</td>
-                                        <td>院处级</td>
-                                        <td>教学单位</td>
-                                        <td>纪晓岚</td>
+                                        <td colspan="6"></td>
                                     </tr>
 
 
                                     <tr bgcolor="#ffffff" align="center" data-tt-id="rjgc" data-tt-parent-id="xxxy">
-                                        <td height="20" align="left">软件工程</td>
+                                        <td height="20" align="left">信息学院实验楼一</td>
 
 
-                                        <td>SJ003</td>
-                                        <td>软件工程专业</td>
-                                        <td>系科级</td>
-                                        <td>教学单位</td>
-                                        <td>和珅</td>
+                                        <td colspan="6"></td>
                                     </tr>
 
                                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20"
                                         data-tt-parent-id="rjgc">
-                                        <td height="20">软件实验室一</td>
+
+                                        <td height="20"><input type="checkbox">软件实验房间101</td>
 
                                         <td>SJ003</td>
-                                        <td>软件实验室一</td>
-                                        <td>实验室</td>
-                                        <td>实验室</td>
-                                        <td>李白</td>
+                                        <td>软件实验房间</td>
+                                        <td>S1-101</td>
+                                        <td><a href="experimentriglist.html">实验台</a></td>
+
+                                        <td><a href="stocklist.html">库存设备</a></td>
+                                        <td><a href="detail.html">详细信息</a></td>
 
                                     </tr>
 
                                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc1" data-tt-parent-id="xxxy">
-                                        <td height="20" align="left">计算机科学与技术</td>
+                                        <td height="20" align="left">信息学院实验楼二</td>
 
 
-                                        <td>SJ003</td>
-                                        <td>计算机科学与技术专业</td>
-                                        <td>系科级</td>
-                                        <td>教学单位</td>
-                                        <td>曹操</td>
+                                        <td colspan="6"></td>
 
                                     </tr>
                                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="1"
                                         data-tt-parent-id="kc1">
-                                        <td height="20">计算机实验室一</td>
+                                        <td height="20"><input type="checkbox">计算机实验房间101</td>
 
                                         <td>SJ001</td>
-                                        <td>计算机实验室一</td>
+                                        <td>软件实验房间</td>
+                                        <td>S1-101</td>
+                                        <td><a href="experimentriglist.html">实验台</a></td>
 
-                                        <td>实验室</td>
-                                        <td>实验室</td>
-                                        <td>杜甫</td>
+                                        <td><a href="stocklist.html">库存设备</a></td>
+                                        <td><a href="detail.html">详细信息</a></td>
 
                                     </tr>
                                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2"
                                         data-tt-parent-id="kc1">
-                                        <td height="20">计算机实验室二</td>
+                                        <td height="20"><input type="checkbox">计算机实验房间102</td>
 
                                         <td>SY005</td>
-                                        <td>计算机实验室二</td>
-                                        <td>实验室</td>
-                                        <td>实验室</td>
-                                        <td>张三丰</td>
+                                        <td>软件实验房间</td>
+                                        <td>S1-101</td>
+                                        <td><a href="experimentriglist.html">实验台</a></td>
+
+                                        <td><a href="stocklist.html">库存设备</a></td>
+                                        <td><a href="detail.html">详细信息</a></td>
                                     </tr>
                                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc2" data-tt-parent-id="xxxy">
-                                        <td height="20" align="left">网络工程</td>
-                                        <td>SJ003</td>
-                                        <td>网络工程专业</td>
-                                        <td>系科级</td>
-                                        <td>教学单位</td>
-                                        <td>李白</td>
+                                        <td height="20" align="left">信息学院实验楼三</td>
+                                        <td colspan="6"></td>
                                     </tr>
 
                                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="7"
                                         data-tt-parent-id="kc2">
-                                        <td height="20">网络实验室一</td>
+                                        <td height="20"><input type="checkbox">网络实验房间102</td>
 
                                         <td>SJ001</td>
-                                        <td>网络实验室一</td>
-                                        <td>实验室</td>
-                                        <td>实验室</td>
-                                        <td>洪天寿</td>
+                                        <td>软件实验房间</td>
+                                        <td>S1-101</td>
+                                        <td><a href="experimentriglist.html">实验台</a></td>
+
+                                        <td><a href="stocklist.html">库存设备</a></td>
+                                        <td><a href="detail.html">详细信息</a></td>
 
                                     </tr>
                                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8"
                                         data-tt-parent-id="kc2">
-                                        <td height="20">网络实验室二</td>
+                                        <td height="20"><input type="checkbox">网络实验房间201</td>
 
                                         <td>SJ002</td>
-                                        <td>网络实验室二</td>
-                                        <td>实验室</td>
-                                        <td>实验室</td>
-                                        <td>赵天华</td>
+                                        <td>软件实验房间</td>
+                                        <td>S1-101</td>
+                                        <td><a href="experimentriglist.html">实验台</a></td>
+
+                                        <td><a href="stocklist.html">库存设备</a></td>
+                                        <td><a href="detail.html">详细信息</a></td>
 
                                     </tr>
                                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9"
                                         data-tt-parent-id="kc2">
-                                        <td height="20">网络实验室三</td>
+                                        <td height="20"><input type="checkbox">网络实验房间301</td>
 
                                         <td>SJ002</td>
-                                        <td>网络实验室三</td>
-                                        <td>实验室</td>
-                                        <td>实验室</td>
-                                        <td>最光阴</td>
+                                        <td>软件实验房间</td>
+                                        <td>S1-101</td>
+                                        <td><a href="experimentriglist.html">实验台</a></td>
+
+                                        <td><a href="stocklist.html">库存设备</a></td>
+                                        <td><a href="detail.html">详细信息</a></td>
                                     </tr>
 
 
@@ -356,6 +248,7 @@
                             </div>
                         </td>
                     </tr>
+
 
                 </table>
             </td>
