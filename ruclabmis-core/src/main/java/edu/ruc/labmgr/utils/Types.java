@@ -1,10 +1,5 @@
 package edu.ruc.labmgr.utils;
 
-/**
- * @author lcheng
- * @version 1.0
- *          ${tags}
- */
 public interface Types {
     enum Role {
         ADMIN("administrator"), LEADER("leader"),
