@@ -14,6 +14,34 @@
     <title></title>
     <script>
         var baseHref = '/equipment/jsp/dev/borrow/deviceList';
+
+        function borrow()
+        {
+            var id = "${param.application_id}";
+            var selectedItems = getAllSelected('listForm', 'idcheckbox');
+            if(selectedItems.length <= 0 )
+            {
+                alert("请选择要借用的设备！");
+                return;
+            }
+
+            if( id != "") //有父窗体则刷新父窗体，关闭自己
+            {
+                document.forms["listForm"].action = "addEquipment?application_id="+id+"&items=" + selectedItems;
+                document.forms["listForm"].submit();
+
+                window.opener.location.href=window.opener.location.href;
+                window.close();
+            }
+            else //无父窗体则跳转至表单页面
+            {
+                document.forms["listForm"].action = "toBorrow?items=" + selectedItems;
+                document.forms["listForm"].submit();
+            }
+
+        }
+
+
     </script>
 </head>
 
@@ -21,6 +49,7 @@
 
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
+        <input name="application_id" id="application_id" type="hidden" value="${application_id}">
         <tr>
             <td width="17" valign="top" background="/equipment/images/mail_leftbg.gif"><img
                     src="/equipment/images/left-top-right.gif" width="17" height="29"/></td>
@@ -93,8 +122,8 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="addapply.html"><img src="/equipment/images/add_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">申请借用</span></a>&nbsp;
+						<a href="javascript:void(0);" onclick="borrow();return false;"><img src="/equipment/images/add_min.gif" width="10" height="10"
+                                                             border="0"/> <span class="STYLE1">申请借用</span></a>&nbsp;
 	                </span>
                                                                 </div>
                                                             </td>
@@ -157,11 +186,14 @@
                                                     <td width="80" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">使用方向</span></div>
                                                     </td>
+                                                    <td width="80" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">设备状态</span></div>
+                                                    </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="admin" onclick="checkOne(this)"/></td>
+                                                                               value="${item.id}" onclick="checkOne(this)"/></td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.categoryId}</td>
@@ -175,6 +207,7 @@
                                                         <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
                                                         <td>${item.fundingSubject}</td>
                                                         <td>${item.useDirection}</td>
+                                                        <td>${item.state}</td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

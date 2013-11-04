@@ -46,6 +46,33 @@ function checkOne(formName,checkBoxName) {  //选一个时全选或全不选
     }
 }
 
+function getAllSelected(formName,checkBoxName)
+{
+    var selectedItems = new Array();
+    var form_temp = document.forms[formName];
+    if(form_temp==null)
+        return -1;
+
+    var temp = document.forms[formName].elements[checkBoxName];
+    if (temp == null) {
+        return -1;
+    }
+    var len = temp.length;
+    var flag = 0;
+    if (len != undefined) {
+        for (var i = 0; i < len; i++) {
+            if (eval(temp[i].checked)) {
+                selectedItems.push(temp[i].value);
+            }
+        }
+    } else {
+        if (temp.checked) {
+            selectedItem = temp.value;
+        }
+    }
+
+    return selectedItems;
+}
 function getSelectIndex(formName,checkBoxName)
 {
     var form_temp = document.forms[formName];
@@ -101,33 +128,35 @@ function toUpdatePassword(formName,checkBoxName) {
 }
 
 function toDelete(formName,checkBoxName) {
-    selectedItem = getSelectIndex(formName,checkBoxName);
-    if( selectedItem <= 0)
-        return;
+    var selectedItems = getAllSelected(formName,checkBoxName);
 
     if (confirm("是否删除所选记录？")) {
-        document.forms[formName].action = "delete?id=" + selectedItem;
+        document.forms[formName].action = "delete?items=" + selectedItems;
         document.forms[formName].submit();
     }
 }
 
 function toApprove(formName,checkBoxName)
 {
-    selectedItem = getSelectIndex(formName,checkBoxName);
-    if( selectedItem <= 0)
-        return;
+    var selectedItems = getAllSelected(formName,checkBoxName);
 
-    document.forms[formName].action = "approve?application_id=" + selectedItem;
+    document.forms[formName].action = "approve?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
 function toReject(formName,checkBoxName)
 {
-    selectedItem = getSelectIndex(formName,checkBoxName);
-    if( selectedItem <= 0)
-        return;
+    var selectedItems = getAllSelected(formName,checkBoxName);
 
-    document.forms[formName].action = "reject?application_id=" + selectedItem;
+    document.forms[formName].action = "reject?items=" + selectedItems;
+    document.forms[formName].submit();
+}
+
+function toDispose(formName,checkBoxName)
+{
+    var selectedItems = getAllSelected(formName,checkBoxName);
+
+    document.forms[formName].action = "dispose?items=" + selectedItems;
     document.forms[formName].submit();
 }
 

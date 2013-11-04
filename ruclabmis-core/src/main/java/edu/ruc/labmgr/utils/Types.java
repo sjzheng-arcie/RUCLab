@@ -17,11 +17,11 @@ public interface Types {
     /**
      * 设备状态枚举类
      */
-    enum EquipStat {
-        USED(11), UNUSED(12), SCRAPED(13), INMAINTAIN(14), BROKEDOWN(15), TOAPPROVEINSTORE(16);
+    enum EquipState {
+        NORMAL(10), USED(11), TOUSE(12), SCRAPED(13), INMAINTAIN(14), BROKEDOWN(15), TOAPPROVEINSTORE(16);
         private int value;
 
-        private EquipStat(int v) {
+        private EquipState(int v) {
             this.value = v;
         }
 
