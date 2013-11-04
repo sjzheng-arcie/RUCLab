@@ -123,6 +123,12 @@
             <artifactId>aspectjweaver</artifactId>
             <version>1.6.11</version>
         </dependency>
+        <!--poi for excel parser-->
+        <dependency>
+            <groupId>org.apache.poi</groupId>
+            <artifactId>poi</artifactId>
+            <version>3.10-beta2</version>
+        </dependency>
 
     </dependencies>
 
