@@ -117,6 +117,8 @@
             <li><a href="jsp/dev/borrow/applyList?type=process" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用执行</a>
             </li>
         </shiro:hasAnyRoles>
+        <li><a href="jsp/dev/borrow/applyList?type=history" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用历史</a>
+        </li>
     </ul>
 </div>
 

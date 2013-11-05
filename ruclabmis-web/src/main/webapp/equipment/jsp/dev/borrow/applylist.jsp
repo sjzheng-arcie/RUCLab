@@ -133,7 +133,7 @@
                                     <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                            cellspacing="1" bgcolor="#a8c7ce">
                                         <tr>
-                                            <c:if test="${type!='process'}">
+                                            <c:if test="${type!='process' && type!='history'}">
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                     <div align="center">
                                                         <input type="checkbox" name="checkbox" id="checkbox"
@@ -176,7 +176,7 @@
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <c:if test="${type!='process'}">
+                                                <c:if test="${type!='process' && type!='history'}">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
