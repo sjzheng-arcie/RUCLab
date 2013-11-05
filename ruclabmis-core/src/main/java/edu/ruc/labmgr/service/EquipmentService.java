@@ -39,7 +39,7 @@ public class EquipmentService {
         if (useDirect>0){
             ec.andUseDirectionIdEqualTo(useDirect);
         }
-        criteria.createCriteria().andStateIdEqualTo(Types.EquipStat.UNUSED.getValue());
+        ec.andStateIdEqualTo(Types.EquipState.NORMAL.getValue());
         return getPageEquipmentByCriteria(pageNum, criteria);
     }
 

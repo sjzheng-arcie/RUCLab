@@ -105,12 +105,12 @@
     </table>
     <ul class="MM">
 
-        <li><a href="jsp/dev/borrow/devicelist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;可借用设备</a>
+        <li><a href="jsp/dev/borrow/deviceList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;可借用设备</a>
         </li>
-        <li><a href="jsp/dev/borrow/myapplylist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备借用申请</a>
+        <li><a href="jsp/dev/borrow/applyList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备借用申请</a>
         </li>
 
-        <li><a href="jsp/dev/borrow/applylist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用审核</a>
+        <li><a href="jsp/dev/borrow/applyList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用审核</a>
         </li>
 
     </ul>

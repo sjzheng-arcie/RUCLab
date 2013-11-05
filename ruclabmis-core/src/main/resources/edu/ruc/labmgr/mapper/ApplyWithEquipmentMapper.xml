@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="edu.ruc.labmgr.mapper.ViewStoreMapper">
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ViewStore">
+<mapper namespace="edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplyWithEquipment">
         <result column="application_id" jdbcType="INTEGER" property="applicationId" />
         <result column="application_sn" jdbcType="VARCHAR" property="applicationSn" />
         <result column="applicant_id" jdbcType="INTEGER" property="applicantId" />
@@ -13,7 +13,7 @@
         <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
         <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
         <result column="application_state_id" jdbcType="INTEGER" property="applicationStateId" />
-        <result column="application_state_name" jdbcType="VARCHAR" property="applicationStateName" />
+        <result column="application_state" jdbcType="VARCHAR" property="applicationState" />
         <collection ofType="edu.ruc.labmgr.domain.Equipment" property="equipments">
             <id column="equipment_id" jdbcType="INTEGER" property="id" />
             <result column="equipment_sn" jdbcType="VARCHAR" property="sn" />
@@ -33,7 +33,7 @@
             <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId" />
             <result column="use_direction" jdbcType="VARCHAR" property="useDirection" />
             <result column="equipment_state_id" jdbcType="INTEGER" property="stateId" />
-            <result column="equipment_state_name" jdbcType="VARCHAR" property="state" />
+            <result column="equipment_state" jdbcType="VARCHAR" property="state" />
         </collection>
     </resultMap>
 
@@ -72,11 +72,11 @@
     apply_time, process_time, application_state_id, application_state_name,
     equipment_id, equipment_sn, equipment_name, category_id, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, funding_subject_id,
-    funding_subject, use_direction_id, use_direction, equipment_state_id, equipment_state_name
+    funding_subject, use_direction_id, use_direction, equipment_state_id, equipment_state
   </sql>
 
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ViewStoreCriteria" resultType="java.lang.Integer">
-        select count(distinct application_id)  id from view_store
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ApplyWithEquipmentCriteria" resultType="java.lang.Integer">
+        select count(distinct application_id)  id from view_apply_equipment
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause" />
         </if>
@@ -85,17 +85,17 @@
     <select id="selectByApplyId"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
-        from view_store
+        from view_apply_equipment
         where application_id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.ViewStoreCriteria" resultMap="BaseResultMap">
+    <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.ApplyWithEquipmentCriteria" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
         <include refid="Base_Column_List" />
-        from view_store
+        from view_apply_equipment
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause" />
         </if>

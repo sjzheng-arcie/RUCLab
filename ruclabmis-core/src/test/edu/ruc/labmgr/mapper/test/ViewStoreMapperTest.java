@@ -2,11 +2,9 @@ package edu.ruc.labmgr.mapper.test;
 
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.ApplicationFormMapper;
-import edu.ruc.labmgr.mapper.RoleMapper;
-import edu.ruc.labmgr.mapper.ViewStoreMapper;
+import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.Types;
-import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
@@ -14,19 +12,18 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
-import java.text.DateFormat;
 import java.util.Date;
 import java.util.List;
 
 public class ViewStoreMapperTest {
-    private static ViewStoreMapper mapper;
+    private static ApplyWithEquipmentMapper mapper;
     private UserService userService;
     private ApplicationFormMapper mapperApply;
 
     @BeforeClass
     public static void getBean() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
-        mapper = aContext.getBean(ViewStoreMapper.class);
+        mapper = aContext.getBean(ApplyWithEquipmentMapper.class);
         System.out.println("getBean");
     }
 
@@ -34,7 +31,7 @@ public class ViewStoreMapperTest {
     public void testSelectAll() throws Exception {
 
         RowBounds bounds = new RowBounds(8, 8);
-        List<ViewStore> stores = mapper.selectByCriteriaWithRowbounds(null, bounds);
+        List<ApplyWithEquipment> stores = mapper.selectByCriteriaWithRowbounds(null, bounds);
 
         System.out.println(stores.size());
         for (Equipment each : stores.get(0).getEquipments()) {

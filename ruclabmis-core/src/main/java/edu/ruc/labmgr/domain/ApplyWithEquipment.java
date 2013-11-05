@@ -3,7 +3,7 @@ package edu.ruc.labmgr.domain;
 import java.util.Date;
 import java.util.List;
 
-public class ViewStore {
+public class ApplyWithEquipment {
     private Integer applicationId;
 
     private String applicationSn;
@@ -30,7 +30,7 @@ public class ViewStore {
 
     private Integer applicationStateId;
 
-    private String applicationStateName;
+    private String applicationState;
 
     private List<Equipment> equipments;
 
@@ -138,12 +138,12 @@ public class ViewStore {
         this.applicationStateId = applicationStateId;
     }
 
-    public String getApplicationStateName() {
-        return applicationStateName;
+    public String getApplicationState() {
+        return applicationState;
     }
 
-    public void setApplicationStateName(String applicationStateName) {
-        this.applicationStateName = applicationStateName == null ? null : applicationStateName.trim();
+    public void setApplicationState(String applicationState) {
+        this.applicationState = applicationState == null ? null : applicationState.trim();
     }
 
     public List<Equipment> getEquipments() {
