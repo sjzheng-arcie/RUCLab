@@ -9,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -26,6 +27,7 @@ public class ApplyWithEquipmentService {
     @Autowired
     private UserService userService;
 
+    //按类型取得所有表单
     public PageInfo<ApplicationForm> selectListPage(String sn,int stateId, int pageNum, Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time");
@@ -38,6 +40,69 @@ public class ApplyWithEquipmentService {
 
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //设备管理员显示所有已批准的订单
+    public PageInfo<ApplicationForm> selectPageApplyForEquipAdmin(String sn,int stateId, int pageNum,
+                                                                  Types.ApplyType type){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdEqualTo(Types.ApplyState.PASS.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //领导显示所有待审批的订单
+    public PageInfo<ApplicationForm> selectPageApplyForLeader(String sn,int stateId, int pageNum, Types.ApplyType type){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdEqualTo(Types.ApplyState.WAITING.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //教师只显示自己提交且未关闭的订单
+    public PageInfo<ApplicationForm> selectPageApplyForTeacher(String sn,int stateId, int pageNum,
+                                                               Types.ApplyType type, int userId){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        if(userId > 0)
+            ec.andApplicantIdEqualTo(userId);
+
+        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
@@ -148,14 +213,14 @@ public class ApplyWithEquipmentService {
         mapperEquipment.updateByPrimaryKeySelective(equipment);
     }
 
+    //批准表单
     public void approveApplys(List<Integer> appIds) {
         for(Integer id : appIds){
             //更新表单状态
             ApplicationForm form = new ApplicationForm();
             form.setId(id);
-            form.setProcessTime(new Date());
+            form.setApproveTime(new Date());
             form.setStateId(Types.ApplyState.PASS.getValue());
-
             form.setApproverId(userService.getCurrentUserId());
 
             mapperApply.updateByPrimaryKeySelective(form);
@@ -164,21 +229,20 @@ public class ApplyWithEquipmentService {
             for(Equipment equipment : applyWithEquipment.getEquipments())
             {
                 //更新设备状态
-                equipment.setStateId(Types.EquipState.USED.getValue());
+                equipment.setStateId(Types.EquipState.TOUSE.getValue());
                 mapperEquipment.updateByPrimaryKeySelective(equipment);
             }
         }
     }
 
-
+    //驳回表单
     public void rejectApplys(List<Integer> appIds) {
         for(Integer id : appIds){
             //更新表单状态
             ApplicationForm form = new ApplicationForm();
             form.setId(id);
-            form.setProcessTime(new Date());
+            form.setApproveTime(new Date());
             form.setStateId(Types.ApplyState.REJECT.getValue());
-
             form.setApproverId(userService.getCurrentUserId());
 
             mapperApply.updateByPrimaryKeySelective(form);
@@ -193,4 +257,24 @@ public class ApplyWithEquipmentService {
         }
     }
 
+    public void processApplys(List<Integer> appIds) {
+        for(Integer id : appIds){
+            //更新表单状态
+            ApplicationForm form = new ApplicationForm();
+            form.setId(id);
+            form.setProcessTime(new Date());
+            form.setStateId(Types.ApplyState.CLOSE.getValue());
+            form.setOperatorId(userService.getCurrentUserId());
+
+            mapperApply.updateByPrimaryKeySelective(form);
+
+            ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(id);
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                //更新设备状态
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+        }
+    }
 }

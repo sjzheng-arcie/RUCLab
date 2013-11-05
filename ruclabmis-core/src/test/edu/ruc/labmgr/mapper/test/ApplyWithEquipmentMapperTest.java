@@ -15,15 +15,16 @@ import org.springframework.context.support.FileSystemXmlApplicationContext;
 import java.util.Date;
 import java.util.List;
 
-public class ViewStoreMapperTest {
+public class ApplyWithEquipmentMapperTest {
     private static ApplyWithEquipmentMapper mapper;
     private UserService userService;
-    private ApplicationFormMapper mapperApply;
+    private static ApplicationFormMapper mapperApply;
 
     @BeforeClass
     public static void getBean() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
         mapper = aContext.getBean(ApplyWithEquipmentMapper.class);
+        mapperApply = aContext.getBean(ApplicationFormMapper.class);
         System.out.println("getBean");
     }
 
@@ -40,14 +41,14 @@ public class ViewStoreMapperTest {
 
     }
 
-    @Ignore
+    @Test
     public void testUpdate() throws Exception {
         ApplicationForm form = new ApplicationForm();
-        form.setApplicantId(16);
-        form.setProcessTime(new Date());
+        form.setId(89);
+        form.setSn("test");
+//        form.setProcessTime(new Date());
         form.setStateId(Types.ApplyState.PASS.getValue());
-
-        form.setApproverId(userService.getCurrentUserId());
+        form.setApproveTime(new Date());
 
         assert(mapperApply.updateByPrimaryKeySelective(form) > 0 );
     }

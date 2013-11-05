@@ -902,6 +902,66 @@ public class ApplyWithEquipmentCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andApproveTimeIsNull() {
+            addCriterion("approve_time is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeIsNotNull() {
+            addCriterion("approve_time is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeEqualTo(Date value) {
+            addCriterion("approve_time =", value, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeNotEqualTo(Date value) {
+            addCriterion("approve_time <>", value, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeGreaterThan(Date value) {
+            addCriterion("approve_time >", value, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("approve_time >=", value, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeLessThan(Date value) {
+            addCriterion("approve_time <", value, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeLessThanOrEqualTo(Date value) {
+            addCriterion("approve_time <=", value, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeIn(List<Date> values) {
+            addCriterion("approve_time in", values, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeNotIn(List<Date> values) {
+            addCriterion("approve_time not in", values, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeBetween(Date value1, Date value2) {
+            addCriterion("approve_time between", value1, value2, "approveTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andApproveTimeNotBetween(Date value1, Date value2) {
+            addCriterion("approve_time not between", value1, value2, "approveTime");
+            return (Criteria) this;
+        }
+
         public Criteria andApplicationStateIdIsNull() {
             addCriterion("application_state_id is null");
             return (Criteria) this;

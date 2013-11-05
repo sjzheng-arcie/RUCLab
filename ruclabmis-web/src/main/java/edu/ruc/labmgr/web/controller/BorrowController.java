@@ -10,6 +10,8 @@ import edu.ruc.labmgr.service.EquipmentService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -45,7 +48,27 @@ public class BorrowController {
 
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
 
-        PageInfo<ApplicationForm> pageInfo = serviceApply.selectListPage(sn, stateId, page,  Types.ApplyType.BORROW);
+        Subject currentUser = SecurityUtils.getSubject();
+        PageInfo<ApplicationForm> pageInfo = new PageInfo<ApplicationForm>();
+        //管理员则显示所有订单
+        if(currentUser.hasRole(Types.Role.ADMIN.getValue()) ) {
+            pageInfo = serviceApply.selectListPage(sn, stateId, page, Types.ApplyType.BORROW);
+        }
+        //领导显示待审批的订单
+        else if(currentUser.hasRole(Types.Role.LEADER.getValue())){
+            pageInfo = serviceApply.selectPageApplyForLeader(sn, stateId, page, Types.ApplyType.BORROW);
+        }
+        //教师只显示自己提交的订单
+        else if(currentUser.hasRole(Types.Role.TEACHER.getValue())){
+            pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
+                    Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
+        }
+        //设备管理员显示所有已批准的订单
+        else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getValue())){
+            pageInfo = serviceApply.selectPageApplyForEquipAdmin(sn, stateId, page,
+                    Types.ApplyType.BORROW);
+        }
+
         result.addObject("pageInfo", pageInfo);
         result.addObject("states", states);
         return result;
@@ -142,119 +165,16 @@ public class BorrowController {
         return applyList();
     }
 
+    @RequestMapping(value = "/process", method = RequestMethod.POST)
+    public ModelAndView process(@RequestParam("items") List<Integer> appIds) {
+        serviceApply.processApplys(appIds);
+        return applyList();
+    }
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam("items") List<Integer> appIds) {
         serviceApply.deleteApplys(appIds);
         return applyList();
     }
 
-//
-//    @RequestMapping("/toAdd")
-//    public ModelAndView toAdd(HttpServletRequest request) {
-//        List<Role> roles = serviceRole.listAll();
-//        List<Major> majors = serviceMajor.listAll();
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/add");
-//        mav.addObject("roles", roles);
-//        mav.addObject("majors", majors);
-//        return mav;
-//    }
-//
-//    @RequestMapping("/add")
-//    public ModelAndView add(HttpServletRequest request) {
-//        User user = initFromRequest(request);
-//        int result = serviceUser.insert(user);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/toUpdate")
-//    public ModelAndView toUpdate(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        User user = serviceUser.selectByPrimaryKey(id);
-//        List<Role> roles = serviceRole.listAll();
-//        List<Major> majors = serviceMajor.listAll();
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/update");
-//        mav.addObject("user", user);
-//        mav.addObject("roles", roles);
-//        mav.addObject("majors", majors);
-//        return mav;
-//    }
-//
-//    @RequestMapping("/update")
-//    public ModelAndView update(HttpServletRequest request) {
-//        User user = initFromRequest(request);
-//        int result = serviceUser.update(user);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/delete")
-//    public ModelAndView delete(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//        int result = serviceUser.delete(id);
-//
-//        if (result > 0) {
-//            return pageList(request);
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    @RequestMapping("/toUpdatePassword")
-//    public ModelAndView toUpdatePassword(HttpServletRequest request) {
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
-//        mav.addObject("id",id);
-//
-//        return mav;
-//    }
-//
-//    @RequestMapping("/updatePassword")
-//    public ModelAndView updatePassword(HttpServletRequest request) {
-//        String oriPassword = request.getParameter("oriPassword");
-//        String newPassword = request.getParameter("newPassword");
-//        int id = Integer.parseInt(request.getParameter("id"));
-//
-//        int result = serviceUser.updatePassword(id, oriPassword, newPassword);
-//        if (result > 0) {
-//            return pageList(request);
-//        } else if (result == -1) {
-//            ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
-//            mav.addObject("id",id);
-//            mav.addObject("errMsg","原密码输入不一致，请重新输入!");
-//            return mav;
-//        } else {
-//            return null;
-//        }
-//    }
-//
-//    private User initFromRequest(HttpServletRequest req) {
-//        User user = new User();
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("id")))
-//            user.setId(Integer.parseInt(req.getParameter("id")));
-//
-//        user.setSn(req.getParameter("sn"));
-//
-//        if (!StringUtils.isNullOrEmpty(req.getParameter("password"))){
-//            String passwordMD5 = CipherUtil.generatePassword(req.getParameter("password"));
-//            user.setPassword(passwordMD5);
-//        }
-//        user.setName(req.getParameter("name"));
-//        user.setPhoneNum(req.getParameter("phoneNum"));
-//        user.setEmail(req.getParameter("email"));
-//        user.setComment(req.getParameter("comment"));
-//        user.setRoleId(Integer.parseInt(req.getParameter("role")));
-//        user.setMajorId(Integer.parseInt(req.getParameter("major")));
-//        return user;
-//    }
 }

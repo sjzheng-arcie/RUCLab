@@ -95,20 +95,20 @@
                                                                 <div align="right">
 	            	            	<span class="STYLE1" style="white-space:nowrap">
                         <shiro:hasAnyRoles name="administrators,leader">
-                            <a href="#" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                            <a href="javascript:void(0);" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
                                 <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                 <span class="STYLE1">批准申请</span></a>&nbsp;
-                            <a href="#" onclick="toReject('listForm', 'idcheckbox');return false;">
+                            <a href="javascript:void(0);" onclick="toReject('listForm', 'idcheckbox');return false;">
                                 <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                 <span class="STYLE1">驳回申请</span></a>&nbsp;
                         </shiro:hasAnyRoles>
                         <shiro:hasAnyRoles name="administrators,equipment_admin">
-                            <a href="#" onclick="toDispose('listForm', 'idcheckbox');return false;">&nbsp;
+                            <a href="javascript:void(0);" onclick="toDispose('listForm', 'idcheckbox');return false;">&nbsp;
                                 <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                 <span class="STYLE1">处理申请</span></a>&nbsp;
                         </shiro:hasAnyRoles>
                         <shiro:hasAnyRoles name="administrators,teacher">
-                            <a href="#" onclick="toDelete('listForm', 'idcheckbox');return false;">
+                            <a href="javascript:void(0);" onclick="toDelete('listForm', 'idcheckbox');return false;">
                                 <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
                                 <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
                         </shiro:hasAnyRoles>
@@ -144,10 +144,13 @@
                                                         <div align="center"><span class="STYLE10">申请时间</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">经手人</span></div>
+                                                        <div align="center"><span class="STYLE10">审批人</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">审批人</span></div>
+                                                        <div align="center"><span class="STYLE10">审批时间</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">经手人</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">处理时间</span></div>
@@ -167,8 +170,9 @@
                                                         <td>${item.sn}</td>
                                                         <td>${item.applicant.name}</td>
                                                         <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
-                                                        <td>${item.operator.name}</td>
                                                         <td>${item.approver.name}</td>
+                                                        <td><fmt:formatDate value="${item.approveTime}" type="both"/></td>
+                                                        <td>${item.operator.name}</td>
                                                         <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                         <td>${item.state.value}</td>
                                                         <td><a href="toUpdateApply?application_id=${item.id}">详细信息</a></td>

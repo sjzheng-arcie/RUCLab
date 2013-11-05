@@ -67,7 +67,7 @@ function getAllSelected(formName,checkBoxName)
         }
     } else {
         if (temp.checked) {
-            selectedItem = temp.value;
+            selectedItems.push( temp.value);
         }
     }
 
@@ -156,7 +156,7 @@ function toDispose(formName,checkBoxName)
 {
     var selectedItems = getAllSelected(formName,checkBoxName);
 
-    document.forms[formName].action = "dispose?items=" + selectedItems;
+    document.forms[formName].action = "process?items=" + selectedItems;
     document.forms[formName].submit();
 }
 

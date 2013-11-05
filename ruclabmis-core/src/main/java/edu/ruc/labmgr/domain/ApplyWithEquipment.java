@@ -28,6 +28,8 @@ public class ApplyWithEquipment {
 
     private Date processTime;
 
+    private Date approveTime;
+
     private Integer applicationStateId;
 
     private String applicationState;
@@ -128,6 +130,14 @@ public class ApplyWithEquipment {
 
     public void setProcessTime(Date processTime) {
         this.processTime = processTime;
+    }
+
+    public Date getApproveTime() {
+        return approveTime;
+    }
+
+    public void setApproveTime(Date approveTime) {
+        this.approveTime = approveTime;
     }
 
     public Integer getApplicationStateId() {
