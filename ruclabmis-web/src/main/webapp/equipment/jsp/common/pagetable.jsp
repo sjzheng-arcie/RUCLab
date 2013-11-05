@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <tr>
     <td height="30">
         <table width='100%' border='0' cellspacing='0' cellpadding='0'
@@ -13,22 +13,22 @@
                     <tr>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(1, ${pageInfo.totalPage})" style="cursor:hand"
-                                                     src='../../../images/main_54.gif' width='40' height='15'
+                                                     src='/equipment/images/main_54.gif' width='40' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(${pageInfo.currentPage-1}, ${pageInfo.totalPage})" style="cursor:hand"
-                                                     src='../../../images/main_56.gif' width='45' height='15'
+                                                     src='/equipment/images/main_56.gif' width='45' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(${pageInfo.currentPage+1}, ${pageInfo.totalPage})" style="cursor:hand"
-                                                     src='../../../images/main_58.gif' width='45' height='15'
+                                                     src='/equipment/images/main_58.gif' width='45' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(${pageInfo.totalPage}, ${pageInfo.totalPage})" style="cursor:hand"
-                                                     src='../../../images/main_60.gif' width='40' height='15'
+                                                     src='/equipment/images/main_60.gif' width='40' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='37' class='STYLE22'>
