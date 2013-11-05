@@ -1,139 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../js/util.js"></script>
-    <link href="jquery.treetable.theme.default.css" rel="stylesheet" type="text/css"/>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-
-        function checkAll(box) {  //全选或全不选
-            form1.checkbox.checked = box.checked;
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.idcheckbox.checked = box.checked;
-                return;
-            }
-            if (box.checked) {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = false;
-                }
-            }
-        }
-
-        function checkOne() {  //选一个时全选或全不选
-
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.checkbox.checked = form1.idcheckbox.checked;
-                return;
-            }
-            var numBox = 0;
-            for (var i = 0; i < numRow; i++) {
-                if (form1.idcheckbox[i].checked) {
-                    numBox++;
-                }
-            }
-            if (numBox == numRow) {
-                form1.checkbox.checked = true;
-            } else {
-                form1.checkbox.checked = false;
-            }
-        }
-
-        function toUpdate() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-            if (confirm("是否修改？")) {
-                document.form1.action = "update.html";
-                document.form1.submit();
-            }
-
-        }
-        function toDelete() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请至少选择一条记录！");
-                return;
-            }
-            if (confirm("是否删除所选记录？")) {
-                document.form1.action = "";
-                document.form1.submit();
-            }
-
-        }
-        //获得divwidth的宽度
-        function getwidth() {
-            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-            if (document.body.scrollWidth > document.body.offsetWidth) {
-                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
-            }
-        }
-        function score() {
-            document.form1.action = "leaderscore.html";
-            document.form1.submit();
-        }
-        function update() {
-            document.form1.action = "update.html";
-            document.form1.submit();
-        }
+        var baseHref = '/prototype/jsp/task/task/leaderlist';
     </script>
 
 </head>
 
-<body onload="getwidth()" onresize="getwidth()">
+<body onload="getWidth()" onresize="getWidth()">
 
-<form name="form1" method="post">
+<form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
