@@ -133,7 +133,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 角色管理</div>
+                            <div class="titlebt">系统管理 > 用户管理</div>
                         </td>
                     </tr>
                 </table>
@@ -152,9 +152,14 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;角色编号.:<input type="text" name="searchB1"
                                                                                       id="searchB1" value=""
                                                                                       style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;角色名称:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
-                                                                                     style="width:100px;"/></span>
+		<span style="white-space:nowrap">&nbsp;&nbsp;角色名称:<select>
+            <option>设备管理员</option>
+            <option>领导</option>
+            <option>领用人</option>
+            <option>使用人</option>
+            <option>资产人员</option>
+            <option>系统管理员</option>
+        </select></span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
@@ -246,8 +251,8 @@
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
                                                     <td>FE00000034</td>
-                                                    <td>教师</td>
-                                                    <td>教师</td>
+                                                    <td>资产人员</td>
+                                                    <td>资产人员</td>
                                                     <td>1</td>
 
                                                     <td>无</td>
@@ -257,9 +262,9 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>2</td>
-                                                    <td>FE00000034</td>
-                                                    <td>学生</td>
-                                                    <td>学生</td>
+                                                    <td>FE00500034</td>
+                                                    <td>院领导</td>
+                                                    <td>院领导</td>
                                                     <td>2</td>
 
                                                     <td>无</td>
@@ -269,9 +274,9 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>3</td>
-                                                    <td>FE00000034</td>
-                                                    <td>实验员</td>
-                                                    <td>掌管某一实验室</td>
+                                                    <td>FE00009034</td>
+                                                    <td>设备管理员</td>
+                                                    <td>设备管理员</td>
                                                     <td>3</td>
 
                                                     <td>拥有设备的管理权限</td>
@@ -281,9 +286,9 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>4</td>
-                                                    <td>FE00000034</td>
-                                                    <td>管理员</td>
-                                                    <td>管理本系统</td>
+                                                    <td>FE00005034</td>
+                                                    <td>超级管理员</td>
+                                                    <td>超级管理员</td>
                                                     <td>4</td>
 
                                                     <td>拥有本系统中用户管理的权限</td>
@@ -294,12 +299,25 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>4</td>
-                                                    <td>FE00000034</td>
-                                                    <td>论坛管理员</td>
-                                                    <td>管理论坛</td>
+                                                    <td>FE00030034</td>
+                                                    <td>使用者</td>
+                                                    <td>使用者</td>
                                                     <td>5</td>
 
-                                                    <td>适合交由学生管理</td>
+                                                    <td>使用设备</td>
+
+
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>4</td>
+                                                    <td>FE00000134</td>
+                                                    <td>系主任</td>
+                                                    <td>系主任</td>
+                                                    <td>5</td>
+
+                                                    <td>使用设备</td>
 
 
                                                 </tr>

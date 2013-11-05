@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -77,7 +79,7 @@
                 return;
             }
             if (confirm("是否修改？")) {
-                document.form1.action = "updateSysint.html";
+                document.form1.action = "update.html";
                 document.form1.submit();
             }
 
@@ -133,7 +135,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 工作台管理</div>
+                            <div class="titlebt">系统管理 > 用户管理</div>
                         </td>
                     </tr>
                 </table>
@@ -149,12 +151,17 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;工作台编号:<input type="text" name="searchB1"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;角色编号.:<input type="text" name="searchB1"
                                                                                       id="searchB1" value=""
                                                                                       style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;工作台名称:<input type="text" name="searchB1"
-                                                                                      id="searchB1" value=""
-                                                                                      style="width:100px;"/></span>
+		<span style="white-space:nowrap">&nbsp;&nbsp;角色名称:<select>
+            <option>设备管理员</option>
+            <option>领导</option>
+            <option>领用人</option>
+            <option>使用人</option>
+            <option>资产人员</option>
+            <option>系统管理员</option>
+        </select></span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
@@ -181,7 +188,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">工作台信息列表</span>
+                                                                                style="white-space:nowrap">角色列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -189,16 +196,14 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-	            		      					<a href="addrig.html" onclick="toUpdate();"><img
-                                                        src="../../../images/edit_min.gif" width="10" height="10"
-                                                        border="0"/> <span class="STYLE1">添加</span></a>&nbsp;
-      					<a href="updaterig.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif"
-                                                                            width="10" height="10" border="0"/> <span
-                                class="STYLE1">修改</span></a>&nbsp;
+						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span></a>&nbsp;
+      					<a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
+                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
       					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
                                                                 </div>
                                                             </td>
@@ -221,82 +226,42 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" bgcolor="d3eaef">
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">工作台编号</span></div>
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">角色编码</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">工作台名称</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">角色名称</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">角色描述</span></div>
+                                                    </td>
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">权限类别</span></div>
                                                     </td>
 
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">所属实验房间</span></div>
-                                                    </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">工作台配备设备</span></div>
-                                                    </td>
-
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">备注</span></div>
                                                     </td>
 
 
                                                 </tr>
+                                                <c:forEach items="${pageInfo}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td title="">00001</td>
-                                                    <td title="">工作台01</td>
-                                                    <td title="">网络实验室101</td>
-                                                    <td title=""><a href="equipmentlist.html">配备设备</a></td>
-                                                    <td title=""><a href="experimentdetail.html">工作台详细</a></td>
+                                                    <td>${item.sn}</td>
+                                                    <td>${item.name}</td>
+                                                    <td>${item.detail}</td>
+                                                    <td>${item.privilige}</td>
 
+                                                    <td>备注</td>
 
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
-                                                    <td title="">00002</td>
-                                                    <td title="">工作台02</td>
-                                                    <td title="">网络实验室101</td>
-                                                    <td title=""><a href="equipmentlist.html">配备设备</a></td>
-                                                    <td title=""><a href="experimentdetail.html">工作台详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>3</td>
-                                                    <td title="">00003</td>
-                                                    <td title="">工作台03</td>
-                                                    <td title="">网络实验室101</td>
-                                                    <td title=""><a href="equipmentlist.html">配备设备</a></td>
-                                                    <td title=""><a href="experimentdetail.html">工作台详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>4</td>
-                                                    <td title="">00004</td>
-                                                    <td title="">工作台04</td>
-                                                    <td title="">网络实验室101</td>
-                                                    <td title=""><a href="equipmentlist.html">配备设备</a></td>
-                                                    <td title=""><a href="experimentdetail.html">工作台详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>5</td>
-                                                    <td title="">00005</td>
-                                                    <td title="">工作台05</td>
-                                                    <td title="">网络实验室101</td>
-                                                    <td title=""><a href="equipmentlist.html">配备设备</a></td>
-                                                    <td title=""><a href="experimentdetail.html">工作台详细</a></td>
-                                                </tr>
-
+                                                </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>
                                         </div>
