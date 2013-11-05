@@ -129,56 +129,39 @@
     <td title="">网络实验室101</td>
 		<td title=""><a href="equipmentlist.html">配备设备</a></td>
 		<td title=""><a href="experimentdetail.html">工作台详细</a></td>
-		</tr>	
-		<tr bgcolor="#ffffff" align="center" class="STYLE19">
- 		<td height="20"><input name="idcheckbox"  type="checkbox"   value="admin" onclick="checkOne(this)"/></td>
-		<td>5 </td>
-				<td title="">00005</td>
-					<td title="">工作台05</td>
-    <td title="">网络实验室101</td>
-		<td title=""><a href="equipmentlist.html">配备设备</a></td>
-		<td title=""><a href="experimentdetail.html">工作台详细</a></td>
-		</tr>	
-		
-        <tr height="16px"></tr>	
+		</tr>
+        <c:forEach items="${pageInfo.data}" var="item">
+            <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                <td height="20"><input name="idcheckbox" type="checkbox"
+                                       value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                </td>
+                <td>${item.id}</td>
+                <td>${item.sn}</td>
+                <td>${item.name}</td>
+
+            </tr>
+        </c:forEach>
+        <tr height="16px"></tr>
     </table>
-	</div>
-   </td>
+    </div>
+    </td>
   </tr>
-  <tr>
-    <td height="30">
-		<table  width='100%' border='0' cellspacing='0' cellpadding='0' style='font-size:13px;'>
-			<tr>
-				<td><span align='left'  class='STYLE22' style="white-space:nowrap">&nbsp;&nbsp;共有<strong>2</strong> 条记录，当前第<strong>1</strong> 页，共 <strong>1</strong> 页</span> 
-				<span class='STYLE22' style="white-space:nowrap">
-				<table   border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-						<tr>
-							<td width='49'><div align='center'><img src='../../../images/main_54.gif' width='40' height='15' border='0'/></div></td>
-							<td width='49'><div align='center'><img src='../../../images/main_56.gif' width='45' height='15' border='0'/></div></td>
-							<td width='49'><div align='center'><img src='../../../images/main_58.gif' width='45' height='15' border='0'/></div></td>
-							<td width='49'><div align='center'><img src='../../../images/main_60.gif' width='40' height='15' border='0'/></div></td>
-							<td width='37' class='STYLE22'><div align='center' style="white-space:nowrap">转到</div></td>
-							<td ><div align='left'><select onchange=" document.forms[0].action='/NWSVN/sysint!find?page='+this.options[this.selectedIndex].value;document.forms[0].submit();"><option class='STYLE22' value="1" selected>第1页</option></select></div></td>
-						</tr>
-					</table>
-					</span>
-				</td>
-			</tr>
-		</table>
-	</td>
-  </tr>
-</table>
-    	</td> 
-    	</tr>
+            <%@ include file="../../common/pagetable.jsp"%>
+        </table>
+        </td>
+      </tr>
     </table>
     </td>
-    <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+      <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
   </tr>
-  <tr>
-    <td  valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif" width="17" height="17" /></td>
-    <td  valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif" width="100%" height="17" /></td>
-    <td  valign="bottom" background="../../../images/mail_rightbg.gif"><img src="../../../images/buttom_right2.gif" width="16" height="17" /></td>
-  </tr>
+    <tr>
+        <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
+                                                                              width="17" height="17"/></td>
+        <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
+                                                                             width="100%" height="17"/></td>
+        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
+                src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
+    </tr>
 </table>
 </form>
 </body>

@@ -173,12 +173,17 @@
                                                     <td title="">8828123</td>
                                                     <td title=""><a href="loglist.html">人员日志</a></td>
                                                 </tr>
-                                                <c:forEach items="${pageInfo}" var="item">
-                                                    <tr>
-                                                        <td>${item}</td>
+                                                <c:forEach items="${pageInfo.data}" var="item">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        </td>
+                                                        <td>${item.id}</td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
+
                                                     </tr>
                                                 </c:forEach>
-
                                                 <tr height="16px"></tr>
                                             </table>
                                         </div>

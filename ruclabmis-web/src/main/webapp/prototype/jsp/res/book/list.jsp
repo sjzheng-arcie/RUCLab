@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/lab/device/list';
+        var baseHref = '/prototype/jsp/res/book/list';
     </script>
 
 </head>
@@ -28,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 设备信息管理</div>
+                            <div class="titlebt">资源管理 > 教学资源管理</div>
                         </td>
                     </tr>
                 </table>
@@ -44,14 +44,22 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所在房间:<input type="text" name="theRoom"
-                                                                                     id="theRoom" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;设备编号:<input type="text" name="deviceNo"
-                                                                                     id="deviceNo" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="deviceName"
-                                                                                     id="deviceName" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;资源名称.:<input type="text" name="rsourceName"
+                                                                                      id="rsourceName" value=""
+                                                                                      style="width:100px;"/></span>
+		<span style="white-space:nowrap">&nbsp;&nbsp;资源类型:<select id="resourceType" name="resourceType">
+            <option value="">请选择</option>
+            <option value="0">教学大纲</option>
+            <option value="1">课程简介</option>
+            <option value="2">实验指导书</option>
+            <option value="3">参考书目</option>
+            <option value="4">相关软件</option>
+            <option value="5">课件</option>
+            <option value="6">实验方案</option>
+            <option value="7">论文</option>
+        </select></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="text" name="theCourse"
+                                                                                     id="theCourse" value=""
                                                                                      style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
@@ -78,7 +86,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">设备信息列表</span>
+                                                                                style="white-space:nowrap">教学资源列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -86,12 +94,14 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-      					<a href="update.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10"
-                                                                         height="10" border="0"/> <span class="STYLE1">修改设备归属位置</span></a>&nbsp;
+						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span></a>&nbsp;
+      					<a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
+                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
       					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
                                                                 </div>
                                                             </td>
@@ -114,50 +124,84 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" bgcolor="d3eaef">
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备编号</span></div>
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">编号</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备名称</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">资源名称</span></div>
                                                     </td>
-
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备类型</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">资源类型</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备描述</span></div>
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">上传时间</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">存放位置</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">上传人</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">归属</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">所属课程</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">是否存在故障</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">资源内容</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">资源附件</span></div>
                                                     </td>
-
-
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">下载权限</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">下载</span></div>
+                                                    </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td title="">00001</td>
-                                                    <td title="">整流器</td>
-                                                    <td title="">电子</td>
-                                                    <td title="">200CM*120CM*80CM</td>
-
-                                                    <td title="">网络工程实验室一</td>
-                                                    <td title="">网络实验室</td>
-                                                    <td title="">否</td>
-                                                    <td title=""><a href="devinfo.html">详细信息</a></td>
+                                                    <td>P001</td>
+                                                    <td>P128码单频通讯实验指导书</td>
+                                                    <td>实验指导书</td>
+                                                    <td>2012-02-12</td>
+                                                    <td>赵天华</td>
+                                                    <td>电子电路基础</td>
+                                                    <td>关于单频通讯实验的指导说明</td>
+                                                    <td>实验报告</td>
+                                                    <td>课程公开</td>
+                                                    <td><input type="button" class="button" value="下载"/></td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>2</td>
+                                                    <td>P002</td>
+                                                    <td>数据库系统导论</td>
+                                                    <td>参考书目</td>
+                                                    <td>2012-02-12</td>
+                                                    <td>张红贤</td>
+                                                    <td>数据库导论</td>
+                                                    <td>数据库基础概念</td>
+                                                    <td>数据库导论电子版.doc</td>
+                                                    <td>全网公开</td>
+                                                    <td><input type="button" class="button" value="下载"/></td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>3</td>
+                                                    <td>P003</td>
+                                                    <td>C语言基础</td>
+                                                    <td>教学大纲</td>
+                                                    <td>2012-02-12</td>
+                                                    <td>李志刚</td>
+                                                    <td>软件工程</td>
+                                                    <td>C语言入门基础</td>
+                                                    <td>实验案例.doc</td>
+                                                    <td>全网公开</td>
+                                                    <td><input type="button" class="button" value="下载"/></td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">

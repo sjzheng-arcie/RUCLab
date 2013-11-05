@@ -173,13 +173,17 @@
                                                     <td title="">dasa@sd.com</td>
                                                     <td title="">8828123</td>
                                                 </tr>
-                                                <c:forEach items="${pageInfo}" var="item">
-                                                    <tr>
-                                                        <td>${item}</td>
+                                                <c:forEach items="${pageInfo.data}" var="item">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        </td>
+                                                        <td>${item.id}</td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
 
                                                     </tr>
                                                 </c:forEach>
-
                                                 <tr height="16px"></tr>
                                             </table>
                                         </div>

@@ -1,17 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/lab/device/list';
+        var baseHref = '/prototype/jsp/bas/teachingmetiral/list';
     </script>
 
 </head>
@@ -28,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 设备信息管理</div>
+                            <div class="titlebt">实验室管理 > 人员日志</div>
                         </td>
                     </tr>
                 </table>
@@ -44,15 +44,14 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所在房间:<input type="text" name="theRoom"
-                                                                                     id="theRoom" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;岗位名称:<input type="text" name="searchB1"
+                                                                                     id="searchB1" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;设备编号:<input type="text" name="deviceNo"
-                                                                                     id="deviceNo" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="deviceName"
-                                                                                     id="deviceName" value=""
-                                                                                     style="width:100px;"/></span>
+		<span style="white-space:nowrap">&nbsp;&nbsp;岗位级别:<select id="searchD1" name="searchD1">
+            <option value=""></option>
+            <option value="0">1级</option>
+            <option value="1">2级</option>
+        </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
                                                                             onclick="findInfo()"><img
@@ -78,7 +77,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">设备信息列表</span>
+                                                                                style="white-space:nowrap">调动记录列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -86,10 +85,16 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
+						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span></a>&nbsp;
       					<a href="update.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10"
-                                                                         height="10" border="0"/> <span class="STYLE1">修改设备归属位置</span></a>&nbsp;
+                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
       					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toHouseDy();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toHouseLay();"><img src="../../../images/del_min.gif" width="10"
+                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
                         <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                              border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
@@ -114,50 +119,55 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" bgcolor="d3eaef">
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备编号</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">人员编号</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备名称</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">人员姓名</span></div>
                                                     </td>
-
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备类型</span></div>
+                                                    <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">原部门</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">设备描述</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">现部门</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">存放位置</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">调动时间</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">归属</span></div>
-                                                    </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">是否存在故障</span></div>
-                                                    </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
-
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td title="">00001</td>
-                                                    <td title="">整流器</td>
-                                                    <td title="">电子</td>
-                                                    <td title="">200CM*120CM*80CM</td>
-
-                                                    <td title="">网络工程实验室一</td>
-                                                    <td title="">网络实验室</td>
-                                                    <td title="">否</td>
-                                                    <td title=""><a href="devinfo.html">详细信息</a></td>
+                                                    <td title="">P001</td>
+                                                    <td title="">张思凤</td>
+                                                    <td title="">网络实验办公室</td>
+                                                    <td title="">计算机实验办公室</td>
+                                                    <td title="">2012-12-14</td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>2</td>
+                                                    <td title="">P002</td>
+                                                    <td title="">陈申收</td>
+                                                    <td title="">计算机实验办公室</td>
+                                                    <td title="">网络实验办公室</td>
+                                                    <td title="">2012-12-14</td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>3</td>
+                                                    <td title="">P003</td>
+                                                    <td title="">韩珊学</td>
+                                                    <td title="">网络实验办公室</td>
+                                                    <td title="">计算机实验办公室</td>
+                                                    <td title="">2012-12-14</td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">

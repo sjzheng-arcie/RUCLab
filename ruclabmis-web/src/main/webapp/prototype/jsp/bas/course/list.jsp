@@ -183,13 +183,17 @@
 
 
                                                 </tr>
-                                                <C:forEach items="${pageInfo}" var="item">
-                                                    <tr>
-                                                        <td></td>
+                                                <c:forEach items="${pageInfo.data}" var="item">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        </td>
+                                                        <td>${item.id}</td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
+
                                                     </tr>
-
-                                                </C:forEach>
-
+                                                </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>
                                         </div>
