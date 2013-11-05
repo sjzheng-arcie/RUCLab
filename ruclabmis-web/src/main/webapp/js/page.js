@@ -67,7 +67,7 @@ function getAllSelected(formName,checkBoxName)
         }
     } else {
         if (temp.checked) {
-            selectedItem = temp.value;
+            selectedItems.push( temp.value);
         }
     }
 
@@ -156,12 +156,19 @@ function toDispose(formName,checkBoxName)
 {
     var selectedItems = getAllSelected(formName,checkBoxName);
 
-    document.forms[formName].action = "dispose?items=" + selectedItems;
+    document.forms[formName].action = "process?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
 function toFind(formName){
-    document.forms[formName].action = baseHref + "?page=1"
+    var curUrl = window.location.href;
+    var flag = curUrl.indexOf('?');
+    if(flag!=-1){
+
+        curUrl = curUrl.substr(0,flag);
+
+    }
+    document.forms[formName].action = curUrl + "page=1"
     document.forms[formName].submit();
 }
 
@@ -174,9 +181,15 @@ function goPage(pageIndex, maxPage) {
         alert("已到达尾页！");
         return;
     }
+    var curUrl = window.location.href;
+    var flag = curUrl.indexOf('?');
+    if(flag!=-1){
 
-    document.listForm.action = baseHref + '?page=' + pageIndex;
-    document.listForm.submit();
+        curUrl = curUrl.substr(0,flag);
+
+    }
+    document.forms[0].action = curUrl + 'page=' + pageIndex;
+    document.forms[0].submit();
 }
 
 //获得divwidth的宽度

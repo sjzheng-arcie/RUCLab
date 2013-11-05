@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.service;
 
+import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.Message;
 import edu.ruc.labmgr.domain.MessageCriteria;
 import edu.ruc.labmgr.mapper.MessageMapper;
@@ -10,6 +11,8 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -113,5 +116,62 @@ public class MessageService {
 		}
 
 		return  messageList;
+	}
+
+	public boolean sendApplicationStateMessage(ApplicationForm applicationForm,String messageType){
+
+		Message message = new Message();
+		message.setIfread(false);
+		message.setSendtime(new Date());
+		if (messageType.equals("request")){
+			message.setReceiverId(applicationForm.getApproverId());
+			message.setSenderId(applicationForm.getApplicantId());
+			message.setContent(applicationForm.getApplicant().getName() + "于" + applicationForm.getApplyTime() + "向您提出" + applicationForm.getFormType());
+			insert(message);
+		}else if(messageType.equals("response")){
+			message.setReceiverId(applicationForm.getApplicantId());
+			message.setSenderId(applicationForm.getApproverId());
+			message.setContent(applicationForm.getApprover().getName()+"于"+applicationForm.getProcessTime()+"批准了您的"+applicationForm.getFormType());
+			insert(message);
+
+			message.setContent(applicationForm.getApprover().getName()+"于"+applicationForm.getProcessTime()+"批准了"+applicationForm.getApplicant().getName()+"的"+
+				applicationForm.getFormType()	+"，请准备好设备。");
+			message.setReceiverId(applicationForm.getOperatorId());
+			message.setSenderId(applicationForm.getApproverId());
+			insert(message);
+		}
+		return true;
+	}
+	public void sendMessageToLeader(ApplicationForm applicationForm){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Message message = new Message();
+		message.setIfread(false);
+		message.setSendtime(new Date());
+		message.setReceiverId(applicationForm.getApproverId());
+		message.setSenderId(applicationForm.getApplicantId());
+		message.setContent(applicationForm.getApplicant().getName()+"于"+format.format(applicationForm.getApplyTime())+"向您提出"+applicationForm.getFormType());
+		insert(message);
+	}
+	public void sendMessageToTeacher(ApplicationForm applicationForm){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Message message = new Message();
+		message.setIfread(false);
+		message.setSendtime(new Date());
+		message.setReceiverId(applicationForm.getApplicantId());
+		message.setSenderId(applicationForm.getApproverId());
+		message.setContent("您好，" + applicationForm.getApprover().getName() + "已于" + format.format(applicationForm.getProcessTime()) + "批准了您的" + applicationForm.getFormType());
+		insert(message);
+
+	}
+	public void sendMessageToEquipmentAdmin(ApplicationForm applicationForm){
+		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		Message message = new Message();
+		message.setIfread(false);
+		message.setSendtime(new Date());
+		message.setContent(applicationForm.getApprover().getName()+"于"+ format.format(applicationForm.getProcessTime())+"批准了"+applicationForm.getApplicant().getName()+"的"+
+				applicationForm.getFormType()	+"，请准备好设备。");
+		message.setReceiverId(applicationForm.getOperatorId());
+		message.setSenderId(applicationForm.getApproverId());
+		insert(message);
 	}
 }

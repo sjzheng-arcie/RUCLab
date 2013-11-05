@@ -42,7 +42,7 @@ public class StoreController {
 
         List<Classif> applyStates = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
 
-        PageInfo<ApplicationForm> pageInfo = serviceApply.selectListPage(sn, stateId, page, Types.ApplyType.ADD);
+        PageInfo<ApplicationForm> pageInfo = serviceApply.selectPageApplyForAdmin(sn, stateId, page, Types.ApplyType.ADD);
         result.addObject("pageInfo", pageInfo);
         result.addObject("applyStates", applyStates);
         return result;

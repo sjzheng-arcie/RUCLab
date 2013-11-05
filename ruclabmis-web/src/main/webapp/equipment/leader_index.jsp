@@ -16,7 +16,7 @@
     <frame src="leader_top" noresize="noresize" frameborder="NO" name="topFrame" scrolling="no" marginwidth="0"
            marginheight="0" target="main"/>
     <frameset cols="202,*" rows="2000,*" id="frame">
-        <frame src="leader_left.html" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0"
+        <frame src="left.jsp" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0"
                frameborder="0" scrolling="no" target="main"/>
         <frame src="leader_welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
                target="_self"/>
