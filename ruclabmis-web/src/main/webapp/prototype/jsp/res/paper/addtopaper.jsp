@@ -206,18 +206,18 @@
                 <tr>
                     <td valign="top" class="STYLE10">
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;题目编号名称.:<input type="text" name="searchB1"
-                                                                                    id="searchB1" value=""
+                        <span style="white-space:nowrap">&nbsp;&nbsp;题目编号.:<input type="text" name="questionNo"
+                                                                                    id="questionNo" value=""
                                                                                     style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;题目类型:<select id="searchD1" name="searchD1">
+		<span style="white-space:nowrap">&nbsp;&nbsp;题目类型:<select id="questionType" name="questionType">
             <option value="">请选择</option>
             <option value="0">单选</option>
             <option value="1">多选</option>
             <option value="2">填空</option>
             <option value="3">简答</option>
         </select></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="text" name="searchB1"
-                                                                                 id="searchB1" value=""
+                        <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="text" name="theQuestionCourse"
+                                                                                 id="theQuestionCourse" value=""
                                                                                  style="width:100px;"/></span>
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
                                                                         onclick="findInfo()"><img
@@ -343,69 +343,23 @@
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
                                                 <td><a>查看详细</a></td>
                                             </tr>
+                                            <c:forEach items="${pageInfo.data}" var="item">
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    </td>
+                                                    <td>${item.id}</td>
+                                                    <td>${item.sn}</td>
+                                                    <td>${item.name}</td>
 
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>5</td>
-                                                <td>JD002</td>
-                                                <td>编程语言</td>
-                                                <td>简答题</td>
-                                                <td>关于面向对象</td>
-                                                <td>(1)什么是面向对象的编程语言。</td>
-                                                <td>(2)请举出几种常见的面向对象的语言。</td>
-                                                <td>(3)什么是类？什么是对象？</td>
-                                                <td>&nbsp</td>
-                                                <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
-                                                <td><a>查看详细</a></td>
-                                            </tr>
+                                                </tr>
+                                            </c:forEach>
                                             <tr height="16px"></tr>
                                         </table>
                                     </div>
                                 </td>
                             </tr>
-                            <tr>
-                                <td height="30">
-                                    <table width='100%' border='0' cellspacing='0' cellpadding='0'
-                                           style='font-size:13px;'>
-                                        <tr>
-                                            <td><span align='left' class='STYLE22' style="white-space:nowrap">&nbsp;&nbsp;共有<strong>2</strong> 条记录，当前第<strong>1</strong> 页，共 <strong>1</strong> 页</span>
-				<span class='STYLE22' style="white-space:nowrap">
-				<table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                    <tr>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_54.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_56.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_58.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../images/main_60.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='37' class='STYLE22'>
-                            <div align='center' style="white-space:nowrap">转到</div>
-                        </td>
-                        <td>
-                            <div align='left'><select
-                                    onchange=" document.forms[0].action='/NWSVN/sysint!find?page='+this.options[this.selectedIndex].value;document.forms[0].submit();">
-                                <option class='STYLE22' value="1" selected>第1页</option>
-                            </select></div>
-                        </td>
-                    </tr>
-                </table>
-					</span>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
+                            <%@ include file="../../common/pagetable.jsp"%>
                         </table>
                     </td>
                 </tr>
@@ -418,8 +372,8 @@
                                                                               width="17" height="17"/></td>
         <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
                                                                              width="100%" height="17"/></td>
-        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img src="../../../images/buttom_right2.gif"
-                                                                               width="16" height="17"/></td>
+        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
+                src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
     </tr>
 </table>
 </form>
