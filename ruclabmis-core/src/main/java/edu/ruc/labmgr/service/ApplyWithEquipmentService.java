@@ -27,8 +27,50 @@ public class ApplyWithEquipmentService {
     @Autowired
     private UserService userService;
 
-    //按类型取得所有表单
-    public PageInfo<ApplicationForm> selectListPageForAdmin(String sn,int stateId, int pageNum, Types.ApplyType type){
+    //按类型取得所有已关闭的表单
+    public PageInfo<ApplicationForm> selectPageHistoryApply(String sn,int stateId, int pageNum, Types.ApplyType type){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time desc");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //按用户和类型取得所有已关闭的表单
+    public PageInfo<ApplicationForm> selectUserPageHistoryApply(String sn,int stateId, int pageNum,
+                                                                     Types.ApplyType type, int userId){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time desc");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(userId > 0)
+            ec.andApplicantIdEqualTo(userId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //管理员按类型取得所有表单
+    public PageInfo<ApplicationForm> selectPageApplyForAdmin(String sn,int stateId, int pageNum, Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
 

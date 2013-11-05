@@ -53,7 +53,10 @@ public class BorrowController {
         PageInfo<ApplicationForm> pageInfo = new PageInfo<ApplicationForm>();
         //管理员则显示所有未关闭订单
         if(currentUser.hasRole(Types.Role.ADMIN.getValue()) ) {
-            pageInfo = serviceApply.selectListPageForAdmin(sn, stateId, page, Types.ApplyType.BORROW);
+            if(type.endsWith("history"))
+                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.BORROW);
+            else
+                pageInfo = serviceApply.selectPageApplyForAdmin(sn, stateId, page, Types.ApplyType.BORROW);
         }
         //领导显示待审批的订单
         else if(currentUser.hasRole(Types.Role.LEADER.getValue())){
@@ -62,16 +65,26 @@ public class BorrowController {
                         Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
             else if(type.endsWith("review"))
                 pageInfo = serviceApply.selectPageApplyForLeader(sn, stateId, page, Types.ApplyType.BORROW);
+            else if(type.endsWith("history"))
+                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.BORROW);
         }
         //教师只显示自己提交的未关闭订单
         else if(currentUser.hasRole(Types.Role.TEACHER.getValue())){
-            pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
-                    Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
+            if(type.endsWith("history"))
+                pageInfo = serviceApply.selectUserPageHistoryApply(sn, stateId, page,
+                        Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
+            else
+                pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
+                        Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
         }
         //设备管理员显示所有未关闭的订单
         else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getValue())){
-            pageInfo = serviceApply.selectPageApplyForEquipAdmin(sn, stateId, page,
-                    Types.ApplyType.BORROW);
+            if(type.endsWith("history"))
+                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page,
+                        Types.ApplyType.BORROW);
+            else
+                pageInfo = serviceApply.selectPageApplyForEquipAdmin(sn, stateId, page,
+                        Types.ApplyType.BORROW);
         }
 
         result.addObject("type", type);
