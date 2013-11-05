@@ -50,7 +50,7 @@
 
         <li><a href="jsp/sys/permission/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;权限管理</a>
         </li>
-        <li><a href="jsp/sys/typecode/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;分类及分类号</a>
+        <li><a href="jsp/sys/typecode/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;分类及分类号</a>
         </li>
 
     </ul>
