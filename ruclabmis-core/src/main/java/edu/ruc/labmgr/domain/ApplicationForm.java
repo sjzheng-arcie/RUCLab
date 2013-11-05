@@ -21,10 +21,7 @@ public class ApplicationForm {
 
     private Date processTime;
 
-
-	public void setFormType(Classif formType) {
-		this.formType = formType;
-	}
+    private Date approveTime;
 
 	private User applicant;
 
@@ -33,7 +30,6 @@ public class ApplicationForm {
 	private User  operator;
 
 	private Classif formType;
-
 
 	private Classif state;
 
@@ -50,7 +46,7 @@ public class ApplicationForm {
     }
 
     public void setSn(String sn) {
-        this.sn = sn == null ? null : sn.trim();
+        this.sn = sn;
     }
 
     public Integer getType() {
@@ -109,40 +105,51 @@ public class ApplicationForm {
         this.processTime = processTime;
     }
 
-	public User getApplicant() {
-		return applicant;
-	}
+    public Date getApproveTime() {
+        return approveTime;
+    }
 
-	public void setApplicant(User applicant) {
-		this.applicant = applicant;
-	}
+    public void setApproveTime(Date approveTime) {
+        this.approveTime = approveTime;
+    }
 
-	public User getApprover() {
-		return approver;
-	}
+    public User getApplicant() {
+        return applicant;
+    }
 
-	public void setApprover(User approver) {
-		this.approver = approver;
-	}
+    public void setApplicant(User applicant) {
+        this.applicant = applicant;
+    }
 
-	public User getOperator() {
-		return operator;
-	}
+    public User getApprover() {
+        return approver;
+    }
 
-	public void setOperator(User operator) {
-		this.operator = operator;
-	}
+    public void setApprover(User approver) {
+        this.approver = approver;
+    }
 
-	public Classif getFormType() {
-		return formType;
-	}
+    public User getOperator() {
+        return operator;
+    }
 
-	public Classif getState() {
-		return state;
-	}
+    public void setOperator(User operator) {
+        this.operator = operator;
+    }
 
-	public void setState(Classif state) {
-		this.state = state;
-	}
+    public Classif getFormType() {
+        return formType;
+    }
 
+    public void setFormType(Classif formType) {
+        this.formType = formType;
+    }
+
+    public Classif getState() {
+        return state;
+    }
+
+    public void setState(Classif state) {
+        this.state = state;
+    }
 }

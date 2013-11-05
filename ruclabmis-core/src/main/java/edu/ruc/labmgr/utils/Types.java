@@ -2,7 +2,7 @@ package edu.ruc.labmgr.utils;
 
 public interface Types {
     enum Role {
-        ADMIN("administrator"), LEADER("leader"),
+        ADMIN("administrators"), LEADER("leader"),
         EQUIPMENT_ADMIN("equipment_admin"), TEACHER("teacher");
         private String value;
 
@@ -17,11 +17,11 @@ public interface Types {
     /**
      * 设备状态枚举类
      */
-    enum EquipStat {
-        USED(11), UNUSED(12), SCRAPED(13), INMAINTAIN(14), BROKEDOWN(15), TOAPPROVEINSTORE(16);
+    enum EquipState {
+        NORMAL(10), USED(11), TOUSE(12), SCRAPED(13), INMAINTAIN(14), BROKEDOWN(15), TOAPPROVEINSTORE(16);
         private int value;
 
-        private EquipStat(int v) {
+        private EquipState(int v) {
             this.value = v;
         }
 
@@ -31,7 +31,7 @@ public interface Types {
     }
 
     enum ApplyState {
-        PASS(31), WAITING(32), REJECT(33);
+        PASS(31), WAITING(32), REJECT(33), CLOSE(34);
         private int value;
 
         private ApplyState(int v) {

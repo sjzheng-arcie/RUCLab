@@ -9,12 +9,11 @@
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
-    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/equipment/jsp/dev/borrow/list';
+        var baseHref = '/equipment/jsp/dev/borrow/applyList?type=${type}&';
     </script>
 
 </head>
@@ -31,7 +30,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备借用管理 > 设备借用申请</div>
+                    <div class="titlebt">申请管理</div>
                 </td>
             </tr>
         </table>
@@ -48,16 +47,22 @@
                 <td valign="top" class="STYLE10">
                     <span style="white-space:nowrap">
                         &nbsp;&nbsp;申请编号&nbsp;:&nbsp;<input type="text" name="searchSN"
-                                                          id="searchSN" value="${param.searchSN}"
-                                                          style="width:100px;"/>
+                                                            id="searchSN" value="${param.searchSN}"
+                                                            style="width:100px;"/>
                     </span>
-                    <span style="white-space:nowrap">
-                        &nbsp;&nbsp;申请设备类型&nbsp;:&nbsp;<input type="text" name="searchName"
-                                                           id="searchName" value="${param.searchName}"
-                                                           style="width:100px;"/>
+                    <span style="white-space:nowrap">&nbsp;&nbsp;申请状态:
+                        <select id="searchState" name="searchState">
+                            <option value="0">全部</option>
+                            <c:forEach items="${states}" var="item">
+                                <option value="${item.id}"
+                                        <c:if test="${item.id == param.searchState}"> selected</c:if>>${item.value}
+                                </option>
+                            </c:forEach>
+                        </select>
                     </span>
+
                      <span style="white-space:nowrap">&nbsp;&nbsp;
-                         <a href="javascript:void(0)" onclick="toFind();">
+                         <a href="javascript:void(0)" onclick="toFind('listForm');">
                              <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
                      </span>
 
@@ -80,25 +85,39 @@
                                                                 </td>
                                                                 <td width="94%" valign="bottom"><span
                                                                         class="STYLE1"
-                                                                        style="white-space:nowrap">设备借用申请列表</span>
+                                                                        style="white-space:nowrap">申请单据列表</span>
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </td>
                                                     <td>
                                                         <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="addapply.html"><img src="../../../images/add_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">批准申请</span></a>&nbsp;
-      					<a href="updateapply.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif"
-                                                                              width="10" height="10" border="0"/> <span
-                                class="STYLE1">退回申请</span></a>&nbsp;
-      											<a href="apply.html"><img src="../../../images/add_min.gif" width="10"
-                                                                          height="10" border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
-
-                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+	            	            	<span class="STYLE1" style="white-space:nowrap">
+                                       <c:if test="${type=='review'}">
+                                           <shiro:hasAnyRoles name="administrators,leader">
+                                               <a href="javascript:void(0);" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                                   <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                   <span class="STYLE1">批准申请</span></a>&nbsp;
+                                               <a href="javascript:void(0);" onclick="toReject('listForm', 'idcheckbox');return false;">
+                                                   <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                   <span class="STYLE1">驳回申请</span></a>&nbsp;
+                                           </shiro:hasAnyRoles>
+                                       </c:if>
+                                        <%--<c:if test="${type=='process'}">--%>
+                                            <%--<shiro:hasAnyRoles name="administrators,equipment_admin">--%>
+                                                <%--<a href="javascript:void(0);" onclick="toDispose('listForm', 'idcheckbox');return false;">&nbsp;--%>
+                                                    <%--<img src="../../../images/add_min.gif" width="10" height="10" border="0"/>--%>
+                                                    <%--<span class="STYLE1">处理申请</span></a>&nbsp;--%>
+                                            <%--</shiro:hasAnyRoles>--%>
+                                        <%--</c:if>--%>
+                                        <c:if test="${type=='apply'}">
+                                            <shiro:hasAnyRoles name="administrators,teacher,leader">
+                                                <a href="javascript:void(0);" onclick="toDelete('listForm', 'idcheckbox');return false;">
+                                                    <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                    <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
+                                            </shiro:hasAnyRoles>
+                                        </c:if>
+	                                </span>
                                                         </div>
                                                     </td>
                                                 </tr>
@@ -114,13 +133,15 @@
                                     <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                            cellspacing="1" bgcolor="#a8c7ce">
                                         <tr>
-                                            <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                <div align="center">
-                                                    <input type="checkbox" name="checkbox" id="checkbox"
-                                                           onclick="checkAll(this,'listForm', 'idcheckbox');"/>
-                                                </div>
-                                            </td>
-                                            <td width="40" bgcolor="d3eaef">
+                                            <c:if test="${type!='process'}">
+                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
+                                                    <div align="center">
+                                                        <input type="checkbox" name="checkbox" id="checkbox"
+                                                               onclick="checkAll(this,'listForm', 'idcheckbox');"/>
+                                                    </div>
+                                                </td>
+                                            </c:if>
+                                            <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">单据号</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
@@ -130,10 +151,13 @@
                                                 <div align="center"><span class="STYLE10">申请时间</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">经手人</span></div>
+                                                <div align="center"><span class="STYLE10">审批人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">审批人</span></div>
+                                                <div align="center"><span class="STYLE10">审批时间</span></div>
+                                            </td>
+                                            <td width="100" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">经手人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">处理时间</span></div>
@@ -144,20 +168,35 @@
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
+                                            <c:if test="${type=='process'}">
+                                                <td width="100" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">处理申请</span></div>
+                                                </td>
+                                            </c:if>
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
-                                                </td>
+                                                <c:if test="${type!='process'}">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    </td>
+                                                </c:if>
                                                 <td>${item.sn}</td>
                                                 <td>${item.applicant.name}</td>
                                                 <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
-                                                <td>${item.operator.name}</td>
                                                 <td>${item.approver.name}</td>
+                                                <td><fmt:formatDate value="${item.approveTime}" type="both"/></td>
+                                                <td>${item.operator.name}</td>
                                                 <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                 <td>${item.state.value}</td>
-                                                <td><a href="toUpdateApply?application_id=${item.id}">详细信息</a></td>
+                                                <td><a href="toUpdateApply?application_id=${item.id}&type=${type}">
+                                                    <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                </a></td>
+                                                <c:if test="${type=='process'}">
+                                                    <td><a href="process?application_id=${item.id}">
+                                                        <img src="../../../images/tb.gif" width="10" height="10" border="0"/>
+                                                    </a></td>
+                                                </c:if>
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>

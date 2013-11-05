@@ -17,7 +17,7 @@ public class StringToDateConverter implements Converter<String,Date>{
                 if(strDate.length() <= 8){
                     DateFormat df = new SimpleDateFormat("HH:mm:ss");
                     return df.parse(strDate);
-                } else if( strDate.length() <= 10){
+                } else if( strDate.length() <= 10 && strDate.length() > 8){
                     DateFormat df = new SimpleDateFormat("yyyy-MM-dd");
                     return df.parse(strDate);
                 }

@@ -1,11 +1,11 @@
 package edu.ruc.labmgr.web.controller;
 
 import edu.ruc.labmgr.domain.ApplicationForm;
+import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.ViewStore;
 import edu.ruc.labmgr.service.ClassifService;
-import edu.ruc.labmgr.service.StoreService;
+import edu.ruc.labmgr.service.ApplyWithEquipmentService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -22,11 +22,12 @@ import java.util.List;
 @RequestMapping("/equipment/jsp/dev/store")
 public class StoreController {
     @Autowired
-    StoreService serviceStore;
+    ApplyWithEquipmentService serviceApply;
     @Autowired
     ClassifService serviceClassif;
     @Autowired
     UserService serviceUser;
+
 
     @RequestMapping(value = "/list")
     public ModelAndView list() {
@@ -41,7 +42,7 @@ public class StoreController {
 
         List<Classif> applyStates = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
 
-        PageInfo<ApplicationForm> pageInfo = serviceStore.selectListPage(sn, stateId, page);
+        PageInfo<ApplicationForm> pageInfo = serviceApply.selectListPageForAdmin(sn, stateId, page, Types.ApplyType.ADD);
         result.addObject("pageInfo", pageInfo);
         result.addObject("applyStates", applyStates);
         return result;
@@ -50,7 +51,7 @@ public class StoreController {
     @RequestMapping(value = "/toAddApply", method = RequestMethod.GET)
     public ModelAndView toAddApply() {
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/addapply");
-        ViewStore store = new ViewStore();
+        ApplyWithEquipment store = new ApplyWithEquipment();
         mav.addObject("store", store);
         return mav;
     }
@@ -62,13 +63,13 @@ public class StoreController {
         apply.setApplyTime(new java.util.Date());
         apply.setApplicantId(serviceUser.getCurrentUserId());
 
-        serviceStore.insertApply(apply);
+        serviceApply.insertApply(apply);
         return list();
     }
 
     @RequestMapping(value = "/toUpdateApply", method = RequestMethod.GET)
     public ModelAndView toUpdateApply(@RequestParam("application_id") int applicationId) {
-        ViewStore store = serviceStore.selectByApplyId(applicationId);
+        ApplyWithEquipment store = serviceApply.selectByApplyId(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/updateapply");
         mav.addObject("store", store);
@@ -77,13 +78,13 @@ public class StoreController {
 
     @RequestMapping(value = "/updateApply", method = RequestMethod.POST)
     public ModelAndView updateApply(ApplicationForm apply) {
-        serviceStore.updateApply(apply);
+        serviceApply.updateApply(apply);
         return list();
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam("id") int applicationId) {
-        serviceStore.deleteApply(applicationId);
+    public ModelAndView delete(@RequestParam("items") List<Integer> appIds) {
+        serviceApply.deleteApplys(appIds);
         return list();
     }
 
@@ -95,7 +96,7 @@ public class StoreController {
             apply.setApplyTime(new java.util.Date());
             apply.setApplicantId(serviceUser.getCurrentUserId());
 
-            serviceStore.insertApply(apply);
+            serviceApply.insertApply(apply);
         }
 
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
@@ -111,14 +112,14 @@ public class StoreController {
     @RequestMapping(value = "/addEquipment", method = RequestMethod.POST)
     public ModelAndView addEquipment(Equipment equipment, @RequestParam("application_id") int applicationId) {
         equipment.setStateId(Types.ClassifType.EQUIPMENT_STATE.getValue());
-        serviceStore.insertEquipmentWithApply(equipment, applicationId);
+        serviceApply.insertEquipmentWithApply(applicationId, equipment);
         return toUpdateApply(applicationId);
     }
 
     @RequestMapping(value = "/toEditEquipment", method = RequestMethod.GET)
     public ModelAndView toEditEquipment(@RequestParam("application_id") int applicationId,
                                         @RequestParam("equipment_id") int equipmentId) {
-        Equipment equipment = serviceStore.selectEquipmentByPrimaryKey(equipmentId);
+        Equipment equipment = serviceApply.selectEquipmentByPrimaryKey(equipmentId);
 
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
@@ -133,26 +134,26 @@ public class StoreController {
 
     @RequestMapping(value = "/editEquipment", method = RequestMethod.POST)
     public ModelAndView editEquipment(Equipment equipment, @RequestParam("application_id") int applicationId) {
-        serviceStore.updateEquipmentByPrimaryKey(equipment);
+        serviceApply.updateEquipmentByPrimaryKey(equipment);
         return toUpdateApply(applicationId);
     }
 
     @RequestMapping(value = "/deleteEquipment", method = RequestMethod.GET)
     public ModelAndView deleteEquipment(@RequestParam("application_id") int applicationId,
                                         @RequestParam("equipment_id") int equipmentId) {
-        serviceStore.deleteEquipmentWithApply(equipmentId, applicationId);
+        serviceApply.deleteEquipmentWithApply(applicationId, equipmentId);
         return toUpdateApply(applicationId);
     }
 
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
-    public ModelAndView approve(@RequestParam("application_id") int applicationId) {
-        serviceStore.approveApply(applicationId);
+    public ModelAndView approve(@RequestParam("items") List<Integer> appIds) {
+        serviceApply.approveApplys(appIds);
         return list();
     }
 
     @RequestMapping(value = "/reject", method = RequestMethod.POST)
-    public ModelAndView reject(@RequestParam("application_id") int applicationId) {
-        serviceStore.rejectApply(applicationId);
+    public ModelAndView reject(@RequestParam("items") List<Integer> appIds) {
+        serviceApply.rejectApplys(appIds);
         return list();
     }
 
