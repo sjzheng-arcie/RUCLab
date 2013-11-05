@@ -128,15 +128,15 @@ public class MessageService {
 			message.setContent(applicationForm.getApplicant().getName()+"于"+applicationForm.getApplyTime()+"向您提出"+applicationForm.getFormType());
 			insert(message);
 		}else if(messageType.equals("response")){
-			message.setReceiverId(applicationForm.getApproverId());
-			message.setSenderId(applicationForm.getApplicantId());
+			message.setReceiverId(applicationForm.getApplicantId());
+			message.setSenderId(applicationForm.getApproverId());
 			message.setContent(applicationForm.getApprover().getName()+"于"+applicationForm.getProcessTime()+"批准了您的"+applicationForm.getFormType());
 			insert(message);
 
 			message.setContent(applicationForm.getApprover().getName()+"于"+applicationForm.getProcessTime()+"批准了"+applicationForm.getApplicant().getName()+"的"+
 				applicationForm.getFormType()	+"，请准备好设备。");
 			message.setReceiverId(applicationForm.getOperatorId());
-			message.setSenderId(applicationForm.getApplicantId());
+			message.setSenderId(applicationForm.getApproverId());
 			insert(message);
 		}
 		return true;
