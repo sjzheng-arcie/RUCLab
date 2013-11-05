@@ -12,9 +12,9 @@ public class ApplyWithEquipment {
 
     private String applicantName;
 
-    private Integer applicantTypeId;
+    private Integer applicationTypeId;
 
-    private String applicantType;
+    private String applicationType;
 
     private Integer operatorId;
 
@@ -68,20 +68,20 @@ public class ApplyWithEquipment {
         this.applicantName = applicantName == null ? null : applicantName.trim();
     }
 
-    public Integer getApplicantTypeId() {
-        return applicantTypeId;
+    public Integer getApplicationTypeId() {
+        return applicationTypeId;
     }
 
-    public void setApplicantTypeId(Integer applicantTypeId) {
-        this.applicantTypeId = applicantTypeId;
+    public void setApplicationTypeId(Integer applicationTypeId) {
+        this.applicationTypeId = applicationTypeId;
     }
 
-    public String getApplicantType() {
-        return applicantType;
+    public String getApplicationType() {
+        return applicationType;
     }
 
-    public void setApplicantType(String applicantType) {
-        this.applicantType = applicantType == null ? null : applicantType.trim();
+    public void setApplicationType(String applicationType) {
+        this.applicationType = applicationType == null ? null : applicationType.trim();
     }
 
     public Integer getOperatorId() {
@@ -163,4 +163,5 @@ public class ApplyWithEquipment {
     public void setEquipments(List<Equipment> equipments) {
         this.equipments = equipments;
     }
+
 }

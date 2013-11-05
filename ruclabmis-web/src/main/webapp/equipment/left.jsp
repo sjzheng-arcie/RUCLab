@@ -106,18 +106,18 @@
             </li>
         </shiro:hasAnyRoles>
         <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/borrow/applyList?type=apply" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用申请</a>
+            <li><a href="jsp/dev/borrow/applyList?formType=apply" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用申请</a>
             </li>
         </shiro:hasAnyRoles>
         <shiro:hasAnyRoles name="administrators,leader">
-            <li><a href="jsp/dev/borrow/applyList?type=review" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用审核</a>
+            <li><a href="jsp/dev/borrow/applyList?formType=review" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用审核</a>
             </li>
         </shiro:hasAnyRoles>
         <shiro:hasAnyRoles name="administrators,equipment_admin">
-            <li><a href="jsp/dev/borrow/applyList?type=process" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用执行</a>
+            <li><a href="jsp/dev/borrow/applyList?formType=process" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用执行</a>
             </li>
         </shiro:hasAnyRoles>
-        <li><a href="jsp/dev/borrow/applyList?type=history" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用历史</a>
+        <li><a href="jsp/dev/borrow/applyList?formType=history" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用历史</a>
         </li>
     </ul>
 </div>
