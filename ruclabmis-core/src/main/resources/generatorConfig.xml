@@ -71,9 +71,9 @@
         <!--<table tableName="desk">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="equipment">-->
-            <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
+        <table tableName="equipment">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
         <!--<table tableName="exam_item_pool">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
@@ -138,7 +138,7 @@
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
 
-        <!--<table tableName="view_apply_equipment" />-->
-        <!--<table tableName="view_equipment" />-->
+        <!--<table tableName="view_store" />-->
+        <table tableName="view_borrow" />
     </context>
 </generatorConfiguration>
