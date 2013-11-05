@@ -28,9 +28,9 @@ public class ApplyWithEquipmentService {
     private UserService userService;
 
     //按类型取得所有表单
-    public PageInfo<ApplicationForm> selectListPage(String sn,int stateId, int pageNum, Types.ApplyType type){
+    public PageInfo<ApplicationForm> selectListPageForAdmin(String sn,int stateId, int pageNum, Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
-        criteria.setOrderByClause("apply_time");
+        criteria.setOrderByClause("apply_time desc");
 
         ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
@@ -40,6 +40,8 @@ public class ApplyWithEquipmentService {
 
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
@@ -48,7 +50,7 @@ public class ApplyWithEquipmentService {
     public PageInfo<ApplicationForm> selectPageApplyForEquipAdmin(String sn,int stateId, int pageNum,
                                                                   Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
-        criteria.setOrderByClause("apply_time");
+        criteria.setOrderByClause("apply_time desc");
 
         ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
@@ -59,7 +61,7 @@ public class ApplyWithEquipmentService {
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
 
-        ec.andStateIdEqualTo(Types.ApplyState.PASS.getValue());
+        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
@@ -67,7 +69,7 @@ public class ApplyWithEquipmentService {
     //领导显示所有待审批的订单
     public PageInfo<ApplicationForm> selectPageApplyForLeader(String sn,int stateId, int pageNum, Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
-        criteria.setOrderByClause("apply_time");
+        criteria.setOrderByClause("apply_time desc");
 
         ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
@@ -88,7 +90,7 @@ public class ApplyWithEquipmentService {
     public PageInfo<ApplicationForm> selectPageApplyForTeacher(String sn,int stateId, int pageNum,
                                                                Types.ApplyType type, int userId){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
-        criteria.setOrderByClause("apply_time");
+        criteria.setOrderByClause("apply_time desc");
 
         ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
@@ -257,24 +259,23 @@ public class ApplyWithEquipmentService {
         }
     }
 
-    public void processApplys(List<Integer> appIds) {
-        for(Integer id : appIds){
-            //更新表单状态
-            ApplicationForm form = new ApplicationForm();
-            form.setId(id);
-            form.setProcessTime(new Date());
-            form.setStateId(Types.ApplyState.CLOSE.getValue());
-            form.setOperatorId(userService.getCurrentUserId());
+    //处理表单
+    public void processApply(int application_id) {
+        //更新表单状态
+        ApplicationForm form = new ApplicationForm();
+        form.setId(application_id);
+        form.setProcessTime(new Date());
+        form.setStateId(Types.ApplyState.CLOSE.getValue());
+        form.setOperatorId(userService.getCurrentUserId());
 
-            mapperApply.updateByPrimaryKeySelective(form);
+        mapperApply.updateByPrimaryKeySelective(form);
 
-            ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(id);
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                //更新设备状态
-                equipment.setStateId(Types.EquipState.USED.getValue());
-                mapperEquipment.updateByPrimaryKeySelective(equipment);
-            }
+        ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(application_id);
+        for(Equipment equipment : applyWithEquipment.getEquipments())
+        {
+            //更新设备状态
+            equipment.setStateId(Types.EquipState.USED.getValue());
+            mapperEquipment.updateByPrimaryKeySelective(equipment);
         }
     }
 }

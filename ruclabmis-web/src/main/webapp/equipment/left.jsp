@@ -1,5 +1,5 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
@@ -33,46 +33,44 @@
 <tr>
 <td width="182" valign="top">
 <div id="container">
-<h1 class="type"><a href="javascript:void(0)">系统管理</a></h1>
 
+<shiro:hasAnyRoles name="administrators,equipment_admin">
+    <h1 class="type"><a href="javascript:void(0)">系统管理</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <shiro:hasRole name="administrators">
+                <li><a href="jsp/sys/user/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;用户管理</a>
+                </li>
+                <li><a href="jsp/sys/role/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;角色管理</a>
+                </li>
+                <li><a href="jsp/sys/permission/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;权限管理</a>
+                </li>
+            </shiro:hasRole>
+            <li><a href="jsp/sys/typecode/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;分类及分类号</a>
+            </li>
+        </ul>
+    </div>
+</shiro:hasAnyRoles>
 
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <li><a href="jsp/sys/user/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;用户管理</a>
-        </li>
-        <li><a href="jsp/sys/role/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;角色管理</a>
-        </li>
-
-        <li><a href="jsp/sys/permission/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;权限管理</a>
-        </li>
-        <li><a href="jsp/sys/typecode/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;分类及分类号</a>
-        </li>
-
-    </ul>
-</div>
-
-<h1 class="type"><a href="javascript:void(0)">设备库管理</a></h1>
-
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-
-        <li><a href="jsp/dev/info/devicelist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备信息库管理</a>
-        </li>
-
-
-    </ul>
-</div>
-
+<shiro:hasAnyRoles name="administrators,equipment_admin">
+    <h1 class="type"><a href="javascript:void(0)">设备库管理</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <li><a href="jsp/dev/info/devicelist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备信息库管理</a>
+            </li>
+        </ul>
+    </div>
+</shiro:hasAnyRoles>
 
 <h1 class="type"><a href="javascript:void(0)">验收管理</a></h1>
 
@@ -83,14 +81,13 @@
         </tr>
     </table>
     <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher">
-            <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备入库申请</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,leader,equipment_admin">
-            <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备入库审批</a>
-            </li>
-        </shiro:hasAnyRoles>
+
+        <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备入库申请</a>
+        </li>
+
+        <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备入库审批</a>
+        </li>
+
     </ul>
 </div>
 
@@ -104,15 +101,22 @@
         </tr>
     </table>
     <ul class="MM">
-
-        <li><a href="jsp/dev/borrow/deviceList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;可借用设备</a>
-        </li>
-        <li><a href="jsp/dev/borrow/applyList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的设备借用申请</a>
-        </li>
-
-        <li><a href="jsp/dev/borrow/applyList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用审核</a>
-        </li>
-
+        <shiro:hasAnyRoles name="administrators,teacher,leader">
+            <li><a href="jsp/dev/borrow/deviceList" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;可借用设备</a>
+            </li>
+        </shiro:hasAnyRoles>
+        <shiro:hasAnyRoles name="administrators,teacher,leader">
+            <li><a href="jsp/dev/borrow/applyList?type=apply" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用申请</a>
+            </li>
+        </shiro:hasAnyRoles>
+        <shiro:hasAnyRoles name="administrators,leader">
+            <li><a href="jsp/dev/borrow/applyList?type=review" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用审核</a>
+            </li>
+        </shiro:hasAnyRoles>
+        <shiro:hasAnyRoles name="administrators,equipment_admin">
+            <li><a href="jsp/dev/borrow/applyList?type=process" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;设备借用执行</a>
+            </li>
+        </shiro:hasAnyRoles>
     </ul>
 </div>
 
