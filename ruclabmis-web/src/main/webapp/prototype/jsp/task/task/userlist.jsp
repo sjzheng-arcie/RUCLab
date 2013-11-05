@@ -1,139 +1,24 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../js/util.js"></script>
-    <link href="jquery.treetable.theme.default.css" rel="stylesheet" type="text/css"/>
-
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-
-        function checkAll(box) {  //全选或全不选
-            form1.checkbox.checked = box.checked;
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.idcheckbox.checked = box.checked;
-                return;
-            }
-            if (box.checked) {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = true;
-                }
-            } else {
-                for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = false;
-                }
-            }
-        }
-
-        function checkOne() {  //选一个时全选或全不选
-
-            if (form1.idcheckbox == null)
-                return;
-            var numRow = form1.idcheckbox.length;
-            if (numRow == null) {
-                form1.checkbox.checked = form1.idcheckbox.checked;
-                return;
-            }
-            var numBox = 0;
-            for (var i = 0; i < numRow; i++) {
-                if (form1.idcheckbox[i].checked) {
-                    numBox++;
-                }
-            }
-            if (numBox == numRow) {
-                form1.checkbox.checked = true;
-            } else {
-                form1.checkbox.checked = false;
-            }
-        }
-
-        function toUpdate() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请选择一条记录！");
-                return;
-            } else if (flag != 1) {
-                alert("请只选择一条记录，不要多选！");
-                return;
-            }
-            if (confirm("是否修改？")) {
-                document.form1.action = "update.html";
-                document.form1.submit();
-            }
-
-        }
-        function toDelete() {
-            if (document.form1.idcheckbox == null) {
-                return;
-            }
-            var len = document.form1.idcheckbox.length;
-            var flag = 0;
-            if (len != undefined) {
-                for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
-                        flag++;
-                    }
-                }
-            } else {
-                if (document.form1.idcheckbox.checked) {
-                    flag++;
-                }
-            }
-
-            if (flag == 0) {
-                alert("请至少选择一条记录！");
-                return;
-            }
-            if (confirm("是否删除所选记录？")) {
-                document.form1.action = "";
-                document.form1.submit();
-            }
-
-        }
-        //获得divwidth的宽度
-        function getwidth() {
-            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-            if (document.body.scrollWidth > document.body.offsetWidth) {
-                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
-            }
-        }
-        function score() {
-            document.form1.action = "leaderscore.html";
-            document.form1.submit();
-        }
-        function update() {
-            document.form1.action = "update.html";
-            document.form1.submit();
-        }
+        var baseHref = '/prototype/jsp/task/task/userlist';
     </script>
 
 </head>
 
-<body onload="getwidth()" onresize="getwidth()">
+<body onload="getWidth()" onresize="getWidth()">
 
-<form name="form1" method="post">
+<form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
@@ -142,7 +27,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">审核管理 > 任务管理</div>
+                    <div class="titlebt">基础管理 > 组织架构管理</div>
                 </td>
             </tr>
         </table>
@@ -157,6 +42,15 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
 <tr>
 <td valign="top" class="STYLE10">
+
+<span style="white-space:nowrap">&nbsp;&nbsp;组织编号:<input type="text" name="searchB1" id="searchB1" value=""
+                                                         style="width:100px;"/></span>
+<span style="white-space:nowrap">&nbsp;&nbsp;组织名称:<input type="text" name="searchB1" id="searchB1" value=""
+                                                         style="width:100px;"/></span>
+<span style="white-space:nowrap">&nbsp;&nbsp;级别:<input type="text" name="searchB1" id="searchB1" value=""
+                                                       style="width:100px;"/></span>
+<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
+        src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -174,7 +68,7 @@
                                             <div align="center"><img src="../../../images/tb.gif" width="14"
                                                                      height="14"/></div>
                                         </td>
-                                        <td width="94%" valign="bottom"><span class="STYLE1" style="white-space:nowrap">任务管理</span>
+                                        <td width="94%" valign="bottom"><span class="STYLE1" style="white-space:nowrap">组织结构</span>
                                         </td>
                                     </tr>
                                 </table>
@@ -214,7 +108,7 @@
     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">完成时间</span></div>
     </td>
-    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">任务内容</span></div>
     </td>
     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -223,11 +117,11 @@
     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">备注</span></div>
     </td>
-    <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
+    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">完成度</span></div>
     </td>
-    <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
-        <div align="center"><span class="STYLE10">操作</span></div>
+    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+        <div align="center"><span class="STYLE10">评分</span></div>
     </td>
 </tr>
 
@@ -240,8 +134,7 @@
 
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="lby" data-tt-parent-id="rjgc">
-    <td height="20" align="left">陆伯言<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
-    </td>
+    <td height="20" align="left">陆伯言</td>
 
 
     <td colspan="7"></td>
@@ -257,15 +150,12 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+
 </tr>
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="jby" data-tt-parent-id="rjgc">
-    <td height="20" align="left">姜伯约<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
-    </td>
+    <td height="20" align="left">姜伯约</td>
 
 
     <td colspan="7"></td>
@@ -281,10 +171,8 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2" data-tt-parent-id="jby">
     <td height="20">任务二</td>
@@ -297,14 +185,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 </tr>
 <tr bgcolor="#ffffff" align="center" data-tt-id="gfx" data-tt-parent-id="rjgc">
-    <td height="20" align="left">郭奉孝<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
-    </td>
+    <td height="20" align="left">郭奉孝</td>
 
     <td colspan="7"></td>
 
@@ -320,10 +204,7 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8" data-tt-parent-id="gfx">
@@ -337,10 +218,8 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9" data-tt-parent-id="gfx">
     <td height="20">任务三</td>
@@ -352,10 +231,7 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 </tr>
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="wlgc">
@@ -367,8 +243,7 @@
 
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="cmd" data-tt-parent-id="wlgc">
-    <td height="20" align="left">曹孟德<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
-    </td>
+    <td height="20" align="left">曹孟德</td>
 
 
     <td colspan="7"></td>
@@ -384,16 +259,12 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 
 </tr>
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="zwy" data-tt-parent-id="wlgc">
-    <td height="20" align="left">张文远<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
-    </td>
+    <td height="20" align="left">张文远</td>
 
 
     <td colspan="7"></td>
@@ -410,10 +281,7 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="92" data-tt-parent-id="zwy">
@@ -427,14 +295,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 </tr>
 <tr bgcolor="#ffffff" align="center" data-tt-id="xwr" data-tt-parent-id="wlgc">
-    <td height="20" align="left">荀文若<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
-    </td>
+    <td height="20" align="left">荀文若</td>
 
     <td colspan="7"></td>
 
@@ -450,10 +314,7 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="99" data-tt-parent-id="xwr">
     <td height="20">任务二</td>
@@ -465,10 +326,7 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 </tr>
 
 </tr>
@@ -482,10 +340,7 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/>
-        <input type="button" value="编辑" class="button" onclick="update();"/>
-        <input type="button" value="删除" class="button" onclick="delete();"/>
-    </td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
 </tr>
 
 
