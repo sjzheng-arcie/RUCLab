@@ -111,11 +111,13 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                    <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
-                                    <input type="button" name="save" value="保存" class="button" onclick="update();"/>
-                                    <input type="reset" name="reset" value="重置" class="button"/>
-                                </shiro:hasAnyRoles>
+                                <c:if test="${type=='apply'}">
+                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                        <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
+                                        <input type="button" name="save" value="保存" class="button" onclick="update();"/>
+                                        <input type="reset" name="reset" value="重置" class="button"/>
+                                    </shiro:hasAnyRoles>
+                                </c:if>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
                             </td>
@@ -194,11 +196,13 @@
                                 <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">使用方向</span></div>
                                 </td>
-                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                    <td width="80" bgcolor="d3eaef">
-                                        <div align="center"><span class="STYLE10">移除设备</span></div>
-                                    </td>
-                                </shiro:hasAnyRoles>
+                                <c:if test="${type=='apply'}">
+                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                        <td width="80" bgcolor="d3eaef">
+                                            <div align="center"><span class="STYLE10">移除设备</span></div>
+                                        </td>
+                                    </shiro:hasAnyRoles>
+                                </c:if>
                             </tr>
                             <c:forEach items="${apply.equipments}" var="item">
                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -215,11 +219,13 @@
                                     <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
-                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                        <td><a href="/equipment/jsp/dev/borrow/removeEquipment?application_id=${apply.applicationId}&equipment_id=${item.id}">
-                                            <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
-                                        </td>
-                                    </shiro:hasAnyRoles>
+                                    <c:if test="${type=='apply'}">
+                                        <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                            <td><a href="/equipment/jsp/dev/borrow/removeEquipment?application_id=${apply.applicationId}&equipment_id=${item.id}">
+                                                <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
+                                            </td>
+                                        </shiro:hasAnyRoles>
+                                    </c:if>
                                 </tr>
                             </c:forEach>
                             <tr height="16px"></tr>
