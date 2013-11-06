@@ -182,13 +182,12 @@ function goPage(pageIndex, maxPage) {
         return;
     }
     var curUrl = window.location.href;
-    var flag = curUrl.indexOf('?');
-    if(flag!=-1){
+    var flag = curUrl.indexOf('?'),
+        pageFlag = curUrl.indexOf("page=");
+    curUrl = (flag==-1) ? (curUrl+"?page="+pageIndex) :
+        ((pageFlag==-1) ? (curUrl+"&page="+pageIndex):(curUrl.replace(/page=\d+/,'page='+pageIndex)));
 
-        curUrl = curUrl.substr(0,flag);
-
-    }
-    document.forms[0].action = curUrl + 'page=' + pageIndex;
+    document.forms[0].action = curUrl;
     document.forms[0].submit();
 }
 
