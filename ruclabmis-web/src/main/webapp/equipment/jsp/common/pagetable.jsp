@@ -1,5 +1,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<script type="text/javascript" src="../../../../js/page.js"></script>
 <tr>
     <td height="30">
         <table width='100%' border='0' cellspacing='0' cellpadding='0'
