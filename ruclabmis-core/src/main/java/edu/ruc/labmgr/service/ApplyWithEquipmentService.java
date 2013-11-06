@@ -123,7 +123,7 @@ public class ApplyWithEquipmentService {
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
 
-        ec.andStateIdEqualTo(Types.ApplyState.WAITING.getValue());
+        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
@@ -171,7 +171,7 @@ public class ApplyWithEquipmentService {
         mapperApply.insert(apply);
     }
 
-    public void updateApply(ApplicationForm apply) {
+    public void updateApplication(ApplicationForm apply) {
         apply.setApplyTime(new Date());
         apply.setStateId(Types.ApplyState.WAITING.getValue());
         apply.setApproveTime(null);

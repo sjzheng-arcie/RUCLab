@@ -44,15 +44,32 @@ public interface Types {
     }
 
     enum ApplyType {
-        ADD(21), REMOVE(22), BORROW(23), RETURN(24);
-        private int value;
+        BORROW(23, "borrow"), ALLOT(24, "allot");
+        private int id;
+        private String name;
 
-        private ApplyType(int v) {
-            this.value = v;
+        private ApplyType(int id, String name) {
+            this.id = id;
+            this.name = name;
         }
 
         public int getValue() {
-            return value;
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+
+        public static ApplyType getApplyTypeFromStr(String name){
+            if( ApplyType.BORROW.getName().equals(name))
+                return ApplyType.BORROW;
+
+            if( ApplyType.ALLOT.getName().equals(name))
+                return ApplyType.ALLOT;
+
+            return null;
         }
     }
 

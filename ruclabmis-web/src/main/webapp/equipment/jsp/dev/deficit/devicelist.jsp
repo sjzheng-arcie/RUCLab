@@ -12,13 +12,13 @@
     <script>
         var baseHref = '/equipment/jsp/dev/borrow/deviceList';
 
-        function borrow()
+        function toApply()
         {
             var id = "${param.application_id}";
             var selectedItems = getAllSelected('listForm', 'idcheckbox');
             if(selectedItems.length <= 0 )
             {
-                alert("请选择要借用的设备！");
+                alert("请选择要转移的设备！");
                 return;
             }
 
@@ -32,7 +32,7 @@
             }
             else //无父窗体则跳转至表单页面
             {
-                document.forms["listForm"].action = "toBorrow?items=" + selectedItems;
+                document.forms["listForm"].action = "toApply?items=" + selectedItems;
                 document.forms["listForm"].submit();
             }
 
@@ -119,9 +119,9 @@
                                                         <td>
                                                             <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="javascript:void(0);" onclick="borrow();return false;">
+						<a href="javascript:void(0);" onclick="toApply();return false;">
                             <img src="/equipment/images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">申请借用</span>
+                            <span class="STYLE1">申请转移</span>
                         </a>
 	                </span>
                                                             </div>

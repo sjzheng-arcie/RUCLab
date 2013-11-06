@@ -12,7 +12,7 @@
             return;
         }
 
-        document.mainForm.action = "updateApply";
+        document.mainForm.action = "updateApplication";
         document.mainForm.submit();
     }
 

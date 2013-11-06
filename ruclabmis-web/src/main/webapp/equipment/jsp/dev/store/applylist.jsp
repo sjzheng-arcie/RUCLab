@@ -168,7 +168,7 @@
                                                         <td>${item.approver.name}</td>
                                                         <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                         <td>${item.state.value}</td>
-                                                        <td><a href="toUpdateApply?application_id=${item.id}">详细信息</a></td>
+                                                        <td><a href="toUpdateApplication?application_id=${item.id}">详细信息</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
