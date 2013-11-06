@@ -336,7 +336,6 @@ public class ApplyWithEquipmentService {
         {
             for(Equipment equipment : applyWithEquipment.getEquipments())
             {
-
                 equipment.setHolder(applyWithEquipment.getApplicantId());
                 equipment.setStateId(Types.EquipState.USED.getValue());
                 mapperEquipment.updateByPrimaryKeySelective(equipment);
@@ -360,6 +359,16 @@ public class ApplyWithEquipmentService {
                 equipment.setHolder(applyWithEquipment.getApplicantId());
                 equipment.setStateId(Types.EquipState.DONATED.getValue());
                 mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+        }
+        //报减申请,更改持有人为空,更新设备状态为
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.DEFICIT.getValue())
+        {
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(null);
+                equipment.setStateId(Types.EquipState.OFF.getValue());
+                mapperEquipment.updateByPrimaryKey(equipment);
             }
         }
 

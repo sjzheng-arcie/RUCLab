@@ -1,9 +1,6 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.EquipmentCriteria;
-import edu.ruc.labmgr.domain.User;
-import edu.ruc.labmgr.domain.UserCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.SysUtil;
@@ -48,6 +45,16 @@ public class UserService {
         return userInfo.getId();
     }
 
+    public int getUserIdByName(String name) {
+        UserCriteria criteria = new UserCriteria();
+        UserCriteria.Criteria ec = criteria.createCriteria();
+        ec.andNameEqualTo(name);
+        List<User> users = mapperUser.selectByCriteria(criteria);
+        if(users.size() != 1)
+            return -1;
+
+        return users.get(0).getId();
+    }
 
     public PageInfo<User> selectListPage(String sn,String name, int pageNum){
         UserCriteria criteria = new UserCriteria();

@@ -140,7 +140,7 @@
                                                 <div align="center"><span class="STYLE10">申请人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">转移方向</span></div>
+                                                <div align="center"><span class="STYLE10">接收人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">申请时间</span></div>
@@ -178,7 +178,7 @@
                                                 </c:if>
                                                 <td>${item.sn}</td>
                                                 <td>${item.applicant.name}</td>
-                                                <td>${item.annex}</td>
+                                                <td>${item.target}</td>
                                                 <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
                                                 <td>${item.approver.name}</td>
                                                 <td><fmt:formatDate value="${item.approveTime}" type="both"/></td>
