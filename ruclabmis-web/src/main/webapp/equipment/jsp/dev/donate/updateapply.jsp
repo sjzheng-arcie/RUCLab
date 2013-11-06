@@ -109,6 +109,20 @@
                                                    errmsg="申请人不能为空!"/>
                                             <span style="color:red;">*</span>
                                         </td>
+                                        <td align="center">捐赠对象</td>
+                                        <td>
+                                            <input name="annex" id="annex" value="${apply.annex}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required"
+                                                   errmsg="捐赠对象不能为空!"/>
+                                            <span style="color:red;">*</span>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td align="right" class="identifier">备注</td>
+                                        <td align="left"><textarea>
+                                            ${apply.comments}
+                                        </textarea></td>
                                     </tr>
                                 </table>
                             </td>

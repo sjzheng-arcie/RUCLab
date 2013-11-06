@@ -8,6 +8,8 @@
         <result column="application_type" jdbcType="VARCHAR" property="applicationType" />
         <result column="applicant_id" jdbcType="INTEGER" property="applicantId" />
         <result column="applicant_name" jdbcType="VARCHAR" property="applicantName" />
+        <result column="annex" property="annex" jdbcType="VARCHAR" />
+        <result column="comments" property="comments" jdbcType="VARCHAR" />
         <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
         <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
         <result column="approver_id" jdbcType="INTEGER" property="approverId" />
@@ -21,6 +23,9 @@
             <id column="equipment_id" jdbcType="INTEGER" property="id" />
             <result column="equipment_sn" jdbcType="VARCHAR" property="sn" />
             <result column="equipment_name" jdbcType="VARCHAR" property="name" />
+            <result column="holder" jdbcType="INTEGER" property="holder" />
+            <result column="holder_name" jdbcType="VARCHAR" property="holderName" />
+            <result column="user" jdbcType="VARCHAR" property="user" />
             <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
             <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
             <result column="specifications" jdbcType="VARCHAR" property="specifications" />
@@ -71,7 +76,8 @@
     </sql>
 
     <sql id="Base_Column_List">
-    application_id, application_sn, application_type_id, application_type, applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
+    application_id, application_sn, application_type_id, application_type, annex, comments,
+    applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
     apply_time, process_time, approve_time, application_state_id, application_state_name,
     equipment_id, equipment_sn, equipment_name, category_id, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, funding_subject_id,

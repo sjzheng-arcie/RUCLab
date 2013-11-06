@@ -41,7 +41,7 @@ public class ApplyWithEquipmentMapperTest {
 
     }
 
-    @Test
+    @Ignore
     public void testUpdate() throws Exception {
         ApplicationForm form = new ApplicationForm();
         form.setId(89);

@@ -48,7 +48,7 @@
   </sql>
   <sql id="Update_By_Criteria_Where_Clause">
     <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
           <trim prefix="(" prefixOverrides="and" suffix=")">
             <foreach collection="criteria.criteria" item="criterion">

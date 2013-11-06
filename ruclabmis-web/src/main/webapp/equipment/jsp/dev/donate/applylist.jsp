@@ -137,6 +137,9 @@
                                                 <div align="center"><span class="STYLE10">单据号</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">捐赠对象</span></div>
+                                            </td>
+                                            <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">申请人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
@@ -174,6 +177,7 @@
                                                     </td>
                                                 </c:if>
                                                 <td>${item.sn}</td>
+                                                <td>${item.annex}</td>
                                                 <td>${item.applicant.name}</td>
                                                 <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
                                                 <td>${item.approver.name}</td>
