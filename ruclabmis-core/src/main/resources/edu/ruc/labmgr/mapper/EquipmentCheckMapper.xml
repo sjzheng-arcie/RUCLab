@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.ruc.labmgr.mapper.EquipmentCheckMapper">
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.EquipmentCheck">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+    <result column="sn" jdbcType="VARCHAR" property="sn" />
+    <result column="name" jdbcType="VARCHAR" property="name" />
+    <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
+    <result column="specifications" jdbcType="VARCHAR" property="specifications" />
+    <result column="unit_price" jdbcType="REAL" property="unitPrice" />
+    <result column="vender" jdbcType="VARCHAR" property="vender" />
+    <result column="factory_number" jdbcType="VARCHAR" property="factoryNumber" />
+    <result column="acquisition_date" jdbcType="DATE" property="acquisitionDate" />
+    <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
+    <result column="cur_user" jdbcType="VARCHAR" property="currentUser" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="remarks" jdbcType="VARCHAR" property="remarks" />
+  </resultMap>
+  <sql id="Criteria_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Criteria_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, category_id, sn, name, model_number, specifications, unit_price, vender, factory_number, 
+    acquisition_date, funding_subject, cur_user, location, remarks
+  </sql>
+  <select id="selectByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCheckCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from equipment_check
+    <if test="_parameter != null">
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from equipment_check
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from equipment_check
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCheckCriteria">
+    delete from equipment_check
+    <if test="_parameter != null">
+      <include refid="Criteria_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.EquipmentCheck">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into equipment_check (category_id, sn, name, 
+      model_number, specifications, unit_price, 
+      vender, factory_number, acquisition_date, 
+      funding_subject, current_user, location, 
+      remarks)
+    values (#{categoryId,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, 
+      #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, #{acquisitionDate,jdbcType=DATE}, 
+      #{fundingSubject,jdbcType=VARCHAR}, #{currentUser,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{remarks,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.EquipmentCheck">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into equipment_check
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        category_id,
+      </if>
+      <if test="sn != null">
+        sn,
+      </if>
+      <if test="name != null">
+        name,
+      </if>
+      <if test="modelNumber != null">
+        model_number,
+      </if>
+      <if test="specifications != null">
+        specifications,
+      </if>
+      <if test="unitPrice != null">
+        unit_price,
+      </if>
+      <if test="vender != null">
+        vender,
+      </if>
+      <if test="factoryNumber != null">
+        factory_number,
+      </if>
+      <if test="acquisitionDate != null">
+        acquisition_date,
+      </if>
+      <if test="fundingSubject != null">
+        funding_subject,
+      </if>
+      <if test="currentUser != null">
+        current_user,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="remarks != null">
+        remarks,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="categoryId != null">
+        #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNumber != null">
+        #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null">
+        #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null">
+        #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="vender != null">
+        #{vender,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNumber != null">
+        #{factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="acquisitionDate != null">
+        #{acquisitionDate,jdbcType=DATE},
+      </if>
+      <if test="fundingSubject != null">
+        #{fundingSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="currentUser != null">
+        #{currentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        #{remarks,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCheckCriteria" resultType="java.lang.Integer">
+    select count(*) from equipment_check
+    <if test="_parameter != null">
+      <include refid="Criteria_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByCriteriaSelective" parameterType="map">
+    update equipment_check
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.categoryId != null">
+        category_id = #{record.categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.sn != null">
+        sn = #{record.sn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.name != null">
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
+      <if test="record.modelNumber != null">
+        model_number = #{record.modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.specifications != null">
+        specifications = #{record.specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="record.unitPrice != null">
+        unit_price = #{record.unitPrice,jdbcType=REAL},
+      </if>
+      <if test="record.vender != null">
+        vender = #{record.vender,jdbcType=VARCHAR},
+      </if>
+      <if test="record.factoryNumber != null">
+        factory_number = #{record.factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="record.acquisitionDate != null">
+        acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
+      </if>
+      <if test="record.fundingSubject != null">
+        funding_subject = #{record.fundingSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="record.currentUser != null">
+        current_user = #{record.currentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remarks != null">
+        remarks = #{record.remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByCriteria" parameterType="map">
+    update equipment_check
+    set id = #{record.id,jdbcType=INTEGER},
+      category_id = #{record.categoryId,jdbcType=VARCHAR},
+      sn = #{record.sn,jdbcType=VARCHAR},
+      name = #{record.name,jdbcType=VARCHAR},
+      model_number = #{record.modelNumber,jdbcType=VARCHAR},
+      specifications = #{record.specifications,jdbcType=VARCHAR},
+      unit_price = #{record.unitPrice,jdbcType=REAL},
+      vender = #{record.vender,jdbcType=VARCHAR},
+      factory_number = #{record.factoryNumber,jdbcType=VARCHAR},
+      acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
+      funding_subject = #{record.fundingSubject,jdbcType=VARCHAR},
+      current_user = #{record.currentUser,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      remarks = #{record.remarks,jdbcType=VARCHAR}
+    <if test="_parameter != null">
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.EquipmentCheck">
+    update equipment_check
+    <set>
+      <if test="categoryId != null">
+        category_id = #{categoryId,jdbcType=VARCHAR},
+      </if>
+      <if test="sn != null">
+        sn = #{sn,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null">
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="modelNumber != null">
+        model_number = #{modelNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="specifications != null">
+        specifications = #{specifications,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null">
+        unit_price = #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="vender != null">
+        vender = #{vender,jdbcType=VARCHAR},
+      </if>
+      <if test="factoryNumber != null">
+        factory_number = #{factoryNumber,jdbcType=VARCHAR},
+      </if>
+      <if test="acquisitionDate != null">
+        acquisition_date = #{acquisitionDate,jdbcType=DATE},
+      </if>
+      <if test="fundingSubject != null">
+        funding_subject = #{fundingSubject,jdbcType=VARCHAR},
+      </if>
+      <if test="currentUser != null">
+        current_user = #{currentUser,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="remarks != null">
+        remarks = #{remarks,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.EquipmentCheck">
+    update equipment_check
+    set category_id = #{categoryId,jdbcType=VARCHAR},
+      sn = #{sn,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      model_number = #{modelNumber,jdbcType=VARCHAR},
+      specifications = #{specifications,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=REAL},
+      vender = #{vender,jdbcType=VARCHAR},
+      factory_number = #{factoryNumber,jdbcType=VARCHAR},
+      acquisition_date = #{acquisitionDate,jdbcType=DATE},
+      funding_subject = #{fundingSubject,jdbcType=VARCHAR},
+      current_user = #{currentUser,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      remarks = #{remarks,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.EquipmentCheckCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from equipment_check
+    <if test="_parameter != null">
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+  <select id="selectInventoryLoseWithRowbounds" resultMap= "BaseResultMap">
+      SELECT ec.* FROM equipment_check ec WHERE ec.sn NOT IN (
+        SELECT e.sn FROM equipment e )
+  </select>
+
+  <select id="countInventoryLose" resultType="java.lang.Integer">
+      SELECT COUNT(ec.id) FROM equipment_check ec WHERE ec.sn NOT IN (
+        SELECT e.sn FROM equipment e )
+  </select>
+</mapper>
