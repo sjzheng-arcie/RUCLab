@@ -85,7 +85,13 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr>
-                                        <input name="id" id="id" type="hidden" value="${apply.applicationId}">
+                                        <input type="hidden" name="id" id="id" value="${apply.applicationId}">
+                                        <input type="hidden" name="applicantId" id="applicantId" value="${apply.applicantId}">
+                                        <input type="hidden" name="operatorId" id="operatorId" value="${apply.operatorId}">
+                                        <input type="hidden" name="approverId" id="approverId" value="${apply.approverId}">
+                                        <input type="hidden" name="stateId" id="stateId" value="${apply.applicationStateId}">
+                                        <input type="hidden" name="type" id="type" value="${apply.applicationTypeId}">
+
                                         <td align="center">单据号</td>
                                         <td>
                                             <input name="sn" id="sn" value="${apply.applicationSn}" onblur="" class="text"
@@ -111,7 +117,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <c:if test="${type=='apply'}">
+                                <c:if test="${formType=='apply'}">
                                     <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
                                         <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
                                         <input type="button" name="save" value="保存" class="button" onclick="update();"/>
@@ -196,7 +202,7 @@
                                 <td width="80" bgcolor="d3eaef">
                                     <div align="center"><span class="STYLE10">使用方向</span></div>
                                 </td>
-                                <c:if test="${type=='apply'}">
+                                <c:if test="${formType=='apply'}">
                                     <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
                                         <td width="80" bgcolor="d3eaef">
                                             <div align="center"><span class="STYLE10">移除设备</span></div>
@@ -219,7 +225,7 @@
                                     <td><fmt:formatDate value="${item.scrapDate}" pattern="yyyy-MM-dd"/></td>
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
-                                    <c:if test="${type=='apply'}">
+                                    <c:if test="${formType=='apply'}">
                                         <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
                                             <td><a href="/equipment/jsp/dev/borrow/removeEquipment?application_id=${apply.applicationId}&equipment_id=${item.id}">
                                                 <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>

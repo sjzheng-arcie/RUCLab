@@ -4,6 +4,8 @@
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplyWithEquipment">
         <result column="application_id" jdbcType="INTEGER" property="applicationId" />
         <result column="application_sn" jdbcType="VARCHAR" property="applicationSn" />
+        <result column="application_type_id" jdbcType="INTEGER" property="applicationTypeId" />
+        <result column="application_type" jdbcType="VARCHAR" property="applicationType" />
         <result column="applicant_id" jdbcType="INTEGER" property="applicantId" />
         <result column="applicant_name" jdbcType="VARCHAR" property="applicantName" />
         <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
@@ -69,7 +71,7 @@
     </sql>
 
     <sql id="Base_Column_List">
-    application_id, application_sn, applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
+    application_id, application_sn, application_type_id, application_type, applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
     apply_time, process_time, approve_time, application_state_id, application_state_name,
     equipment_id, equipment_sn, equipment_name, category_id, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, funding_subject_id,

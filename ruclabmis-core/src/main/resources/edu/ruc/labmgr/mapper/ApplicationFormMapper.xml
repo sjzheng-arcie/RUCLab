@@ -291,7 +291,7 @@
       approver_id = #{approverId,jdbcType=INTEGER},
       state_id = #{stateId,jdbcType=INTEGER},
       apply_time = #{applyTime,jdbcType=TIMESTAMP},
-      process_time = #{processTime,jdbcType=TIMESTAMP},.
+      process_time = #{processTime,jdbcType=TIMESTAMP},
       approve_time = #{approveTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

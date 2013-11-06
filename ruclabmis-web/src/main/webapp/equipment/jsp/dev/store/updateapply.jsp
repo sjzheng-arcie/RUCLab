@@ -85,7 +85,13 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr>
-                                        <input name="id" id="id" type="hidden" value="${store.applicationId}">
+                                        <input type="hidden" name="id" id="id" value="${store.applicationId}">
+                                        <input type="hidden" name="applicantId" id="applicantId" value="${store.applicantId}">
+                                        <input type="hidden" name="operatorId" id="operatorId" value="${store.operatorId}">
+                                        <input type="hidden" name="approverId" id="approverId" value="${store.approverId}">
+                                        <input type="hidden" name="stateId" id="stateId" value="${store.stateId}">
+                                        <input type="hidden" name="formType" id="formType" value="${store.formType}">
+
                                         <td align="center">单据号</td>
                                         <td>
                                             <input name="sn" id="sn" value="${store.applicationSn}" onblur="" class="text"

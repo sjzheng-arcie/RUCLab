@@ -13,6 +13,7 @@ import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,13 +38,13 @@ public class BorrowController {
     UserService serviceUser;
 
     @RequestMapping(value = "/applyList")
-    public ModelAndView applyList(@RequestParam("type")String type) {
-        return pageApplyList(null, 0, 1, type);
+    public ModelAndView applyList(@RequestParam("formType")String formType) {
+        return pageApplyList(null, 0, 1, formType);
     }
 
     @RequestMapping(value = "/applyList", method = RequestMethod.POST)
     public ModelAndView pageApplyList(@RequestParam("searchSN") String sn, @RequestParam("searchState") Integer stateId,
-                                      @RequestParam("page") Integer page,@RequestParam("type")String type) {
+                                      @RequestParam("page") Integer page,@RequestParam("formType")String formType) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/dev/borrow/applylist");
 
@@ -53,24 +54,24 @@ public class BorrowController {
         PageInfo<ApplicationForm> pageInfo = new PageInfo<ApplicationForm>();
         //管理员则显示所有未关闭订单
         if(currentUser.hasRole(Types.Role.ADMIN.getValue()) ) {
-            if(type.endsWith("history"))
+            if(formType.endsWith("history"))
                 pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.BORROW);
             else
                 pageInfo = serviceApply.selectPageApplyForAdmin(sn, stateId, page, Types.ApplyType.BORROW);
         }
         //领导显示待审批的订单
         else if(currentUser.hasRole(Types.Role.LEADER.getValue())){
-            if(type.endsWith("apply"))
+            if(formType.endsWith("apply"))
                 pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
                         Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
-            else if(type.endsWith("review"))
+            else if(formType.endsWith("review"))
                 pageInfo = serviceApply.selectPageApplyForLeader(sn, stateId, page, Types.ApplyType.BORROW);
-            else if(type.endsWith("history"))
+            else if(formType.endsWith("history"))
                 pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.BORROW);
         }
         //教师只显示自己提交的未关闭订单
         else if(currentUser.hasRole(Types.Role.TEACHER.getValue())){
-            if(type.endsWith("history"))
+            if(formType.endsWith("history"))
                 pageInfo = serviceApply.selectUserPageHistoryApply(sn, stateId, page,
                         Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
             else
@@ -79,7 +80,7 @@ public class BorrowController {
         }
         //设备管理员显示所有未关闭的订单
         else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getValue())){
-            if(type.endsWith("history"))
+            if(formType.endsWith("history"))
                 pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page,
                         Types.ApplyType.BORROW);
             else
@@ -87,7 +88,7 @@ public class BorrowController {
                         Types.ApplyType.BORROW);
         }
 
-        result.addObject("type", type);
+        result.addObject("formType", formType);
         result.addObject("pageInfo", pageInfo);
         result.addObject("states", states);
         return result;
@@ -116,11 +117,11 @@ public class BorrowController {
 
     @RequestMapping(value = "/toUpdateApply", method = RequestMethod.GET)
     public ModelAndView toUpdateApply(@RequestParam("application_id") int applicationId,
-                                      @RequestParam("type")String type) {
+                                      @RequestParam("formType")String formType) {
         ApplyWithEquipment apply = serviceApply.selectByApplyId(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/borrow/updateapply");
-        mav.addObject("type", type);
+        mav.addObject("formType", formType);
         mav.addObject("apply", apply);
         return mav;
     }

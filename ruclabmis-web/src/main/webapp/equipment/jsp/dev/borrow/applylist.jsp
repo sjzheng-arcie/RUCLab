@@ -13,7 +13,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/equipment/jsp/dev/borrow/applyList?type=${type}&';
+        var baseHref = '/equipment/jsp/dev/borrow/applyList?formType=${type}&';
     </script>
 
 </head>
@@ -93,7 +93,7 @@
                                                     <td>
                                                         <div align="right">
 	            	            	<span class="STYLE1" style="white-space:nowrap">
-                                       <c:if test="${type=='review'}">
+                                       <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
                                                <a href="javascript:void(0);" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
                                                    <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
@@ -103,14 +103,14 @@
                                                    <span class="STYLE1">驳回申请</span></a>&nbsp;
                                            </shiro:hasAnyRoles>
                                        </c:if>
-                                        <%--<c:if test="${type=='process'}">--%>
+                                        <%--<c:if test="${formType=='process'}">--%>
                                             <%--<shiro:hasAnyRoles name="administrators,equipment_admin">--%>
                                                 <%--<a href="javascript:void(0);" onclick="toDispose('listForm', 'idcheckbox');return false;">&nbsp;--%>
                                                     <%--<img src="../../../images/add_min.gif" width="10" height="10" border="0"/>--%>
                                                     <%--<span class="STYLE1">处理申请</span></a>&nbsp;--%>
                                             <%--</shiro:hasAnyRoles>--%>
                                         <%--</c:if>--%>
-                                        <c:if test="${type=='apply'}">
+                                        <c:if test="${formType=='apply'}">
                                             <shiro:hasAnyRoles name="administrators,teacher,leader">
                                                 <a href="javascript:void(0);" onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
@@ -168,7 +168,7 @@
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
-                                            <c:if test="${type=='process'}">
+                                            <c:if test="${formType=='process'}">
                                                 <td width="100" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">处理申请</span></div>
                                                 </td>
@@ -189,13 +189,18 @@
                                                 <td>${item.operator.name}</td>
                                                 <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                 <td>${item.state.value}</td>
-                                                <td><a href="toUpdateApply?application_id=${item.id}&type=${type}">
+                                                <td><a href="toUpdateApply?application_id=${item.id}&formType=${formType}">
                                                     <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                 </a></td>
-                                                <c:if test="${type=='process'}">
-                                                    <td><a href="process?application_id=${item.id}">
-                                                        <img src="../../../images/tb.gif" width="10" height="10" border="0"/>
-                                                    </a></td>
+
+                                                <c:if test="${formType=='process'}">
+                                                    <td>
+                                                        <c:if test="${item.state.id==31}">
+                                                            <a href="process?application_id=${item.id}">
+                                                                <img src="../../../images/tb.gif" width="10" height="10" border="0"/>
+                                                            </a>
+                                                        </c:if>
+                                                    </td>
                                                 </c:if>
                                             </tr>
                                         </c:forEach>

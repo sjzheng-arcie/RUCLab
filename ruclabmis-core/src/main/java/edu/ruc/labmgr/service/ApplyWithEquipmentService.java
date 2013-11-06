@@ -172,7 +172,11 @@ public class ApplyWithEquipmentService {
     }
 
     public void updateApply(ApplicationForm apply) {
-        mapperApply.updateByPrimaryKeySelective(apply);
+        apply.setApplyTime(new Date());
+        apply.setStateId(Types.ApplyState.WAITING.getValue());
+        apply.setApproveTime(null);
+        apply.setApproverId(null);
+        mapperApply.updateByPrimaryKey(apply);
     }
 
     public void deleteApplys(List<Integer> appIds) {
@@ -232,6 +236,12 @@ public class ApplyWithEquipmentService {
             record.setEquipmentId(id);
             record.setApplicationFormId(applicationId);
             mapperEA.insert(record);
+
+            ApplicationForm apply = mapperApply.selectByPrimaryKey(applicationId);
+            apply.setStateId(Types.ApplyState.WAITING.getValue());
+            apply.setApproveTime(null);
+            apply.setApproverId(null);
+            mapperApply.updateByPrimaryKey(apply);
         }
     }
 
@@ -242,6 +252,7 @@ public class ApplyWithEquipmentService {
         mapperEA.deleteByPrimaryKey(key);
 
         mapperEquipment.deleteByPrimaryKey(equipmentId);
+
     }
 
     public void removeEquipmentFromApply(int applicationId, int equipmentId) {
@@ -255,6 +266,12 @@ public class ApplyWithEquipmentService {
         equipment.setId(equipmentId);
         equipment.setStateId(Types.EquipState.NORMAL.getValue());
         mapperEquipment.updateByPrimaryKeySelective(equipment);
+
+        ApplicationForm apply = mapperApply.selectByPrimaryKey(applicationId);
+        apply.setStateId(Types.ApplyState.WAITING.getValue());
+        apply.setApproveTime(null);
+        apply.setApproverId(null);
+        mapperApply.updateByPrimaryKey(apply);
     }
 
     //批准表单

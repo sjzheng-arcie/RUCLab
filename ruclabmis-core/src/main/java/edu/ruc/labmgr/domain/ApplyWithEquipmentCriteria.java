@@ -392,133 +392,133 @@ public class ApplyWithEquipmentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdIsNull() {
-            addCriterion("applicant_type_id is null");
+        public Criteria andApplicationTypeIdIsNull() {
+            addCriterion("application_type_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdIsNotNull() {
-            addCriterion("applicant_type_id is not null");
+        public Criteria andApplicationTypeIdIsNotNull() {
+            addCriterion("application_type_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdEqualTo(Integer value) {
-            addCriterion("applicant_type_id =", value, "applicantTypeId");
+        public Criteria andApplicationTypeIdEqualTo(Integer value) {
+            addCriterion("application_type_id =", value, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdNotEqualTo(Integer value) {
-            addCriterion("applicant_type_id <>", value, "applicantTypeId");
+        public Criteria andApplicationTypeIdNotEqualTo(Integer value) {
+            addCriterion("application_type_id <>", value, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdGreaterThan(Integer value) {
-            addCriterion("applicant_type_id >", value, "applicantTypeId");
+        public Criteria andApplicationTypeIdGreaterThan(Integer value) {
+            addCriterion("application_type_id >", value, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("applicant_type_id >=", value, "applicantTypeId");
+        public Criteria andApplicationTypeIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("application_type_id >=", value, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdLessThan(Integer value) {
-            addCriterion("applicant_type_id <", value, "applicantTypeId");
+        public Criteria andApplicationTypeIdLessThan(Integer value) {
+            addCriterion("application_type_id <", value, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdLessThanOrEqualTo(Integer value) {
-            addCriterion("applicant_type_id <=", value, "applicantTypeId");
+        public Criteria andApplicationTypeIdLessThanOrEqualTo(Integer value) {
+            addCriterion("application_type_id <=", value, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdIn(List<Integer> values) {
-            addCriterion("applicant_type_id in", values, "applicantTypeId");
+        public Criteria andApplicationTypeIdIn(List<Integer> values) {
+            addCriterion("application_type_id in", values, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdNotIn(List<Integer> values) {
-            addCriterion("applicant_type_id not in", values, "applicantTypeId");
+        public Criteria andApplicationTypeIdNotIn(List<Integer> values) {
+            addCriterion("application_type_id not in", values, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdBetween(Integer value1, Integer value2) {
-            addCriterion("applicant_type_id between", value1, value2, "applicantTypeId");
+        public Criteria andApplicationTypeIdBetween(Integer value1, Integer value2) {
+            addCriterion("application_type_id between", value1, value2, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("applicant_type_id not between", value1, value2, "applicantTypeId");
+        public Criteria andApplicationTypeIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("application_type_id not between", value1, value2, "applicationTypeId");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIsNull() {
-            addCriterion("applicant_type is null");
+        public Criteria andApplicationTypeIsNull() {
+            addCriterion("application_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIsNotNull() {
-            addCriterion("applicant_type is not null");
+        public Criteria andApplicationTypeIsNotNull() {
+            addCriterion("application_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeEqualTo(String value) {
-            addCriterion("applicant_type =", value, "applicantType");
+        public Criteria andApplicationTypeEqualTo(String value) {
+            addCriterion("application_type =", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeNotEqualTo(String value) {
-            addCriterion("applicant_type <>", value, "applicantType");
+        public Criteria andApplicationTypeNotEqualTo(String value) {
+            addCriterion("application_type <>", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeGreaterThan(String value) {
-            addCriterion("applicant_type >", value, "applicantType");
+        public Criteria andApplicationTypeGreaterThan(String value) {
+            addCriterion("application_type >", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeGreaterThanOrEqualTo(String value) {
-            addCriterion("applicant_type >=", value, "applicantType");
+        public Criteria andApplicationTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("application_type >=", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeLessThan(String value) {
-            addCriterion("applicant_type <", value, "applicantType");
+        public Criteria andApplicationTypeLessThan(String value) {
+            addCriterion("application_type <", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeLessThanOrEqualTo(String value) {
-            addCriterion("applicant_type <=", value, "applicantType");
+        public Criteria andApplicationTypeLessThanOrEqualTo(String value) {
+            addCriterion("application_type <=", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeLike(String value) {
-            addCriterion("applicant_type like", value, "applicantType");
+        public Criteria andApplicationTypeLike(String value) {
+            addCriterion("application_type like", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeNotLike(String value) {
-            addCriterion("applicant_type not like", value, "applicantType");
+        public Criteria andApplicationTypeNotLike(String value) {
+            addCriterion("application_type not like", value, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeIn(List<String> values) {
-            addCriterion("applicant_type in", values, "applicantType");
+        public Criteria andApplicationTypeIn(List<String> values) {
+            addCriterion("application_type in", values, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeNotIn(List<String> values) {
-            addCriterion("applicant_type not in", values, "applicantType");
+        public Criteria andApplicationTypeNotIn(List<String> values) {
+            addCriterion("application_type not in", values, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeBetween(String value1, String value2) {
-            addCriterion("applicant_type between", value1, value2, "applicantType");
+        public Criteria andApplicationTypeBetween(String value1, String value2) {
+            addCriterion("application_type between", value1, value2, "applicationType");
             return (Criteria) this;
         }
 
-        public Criteria andApplicantTypeNotBetween(String value1, String value2) {
-            addCriterion("applicant_type not between", value1, value2, "applicantType");
+        public Criteria andApplicationTypeNotBetween(String value1, String value2) {
+            addCriterion("application_type not between", value1, value2, "applicationType");
             return (Criteria) this;
         }
 
