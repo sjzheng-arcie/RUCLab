@@ -11,6 +11,8 @@ public class ApplicationForm {
 
     private String annex;
 
+    private String target;
+
     private String comments;
 
     private Integer applicantId;
@@ -171,5 +173,13 @@ public class ApplicationForm {
 
     public void setComments(String comments) {
         this.comments = comments;
+    }
+
+    public String getTarget() {
+        return target;
+    }
+
+    public void setTarget(String target) {
+        this.target = target;
     }
 }

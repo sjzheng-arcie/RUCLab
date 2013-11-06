@@ -62,7 +62,7 @@ public class ApplicationFormController {
         else if(currentUser.hasRole(Types.Role.LEADER.getValue())){
             if(formType.endsWith("apply"))
                 pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
-                       Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
+                        Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
             else if(formType.endsWith("review"))
                 pageInfo = serviceApply.selectPageApplyForLeader(sn, stateId, page,Types.ApplyType.getApplyTypeFromStr(applyType));
             else if(formType.endsWith("history"))
@@ -72,19 +72,26 @@ public class ApplicationFormController {
         else if(currentUser.hasRole(Types.Role.TEACHER.getValue())){
             if(formType.endsWith("history"))
                 pageInfo = serviceApply.selectUserPageHistoryApply(sn, stateId, page,
-                       Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
+                        Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
             else
                 pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
-                       Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
+                        Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
         }
         //设备管理员显示所有未关闭的订单
         else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getValue())){
             if(formType.endsWith("history"))
                 pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page,
-                       Types.ApplyType.getApplyTypeFromStr(applyType));
+                        Types.ApplyType.getApplyTypeFromStr(applyType));
             else
                 pageInfo = serviceApply.selectPageApplyForEquipAdmin(sn, stateId, page,
-                       Types.ApplyType.getApplyTypeFromStr(applyType));
+                        Types.ApplyType.getApplyTypeFromStr(applyType));
+        }
+
+        for(ApplicationForm apply : pageInfo.getData()){
+            if(Types.ApplyType.ALLOT.getName().endsWith(applyType)){
+                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
+                apply.setTarget(target);
+            }
         }
 
         result.addObject("formType", formType);
@@ -123,6 +130,12 @@ public class ApplicationFormController {
         ApplyWithEquipment apply = serviceApply.selectByApplyId(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/"+applyType+"/updateapply");
+
+        if(Types.ApplyType.ALLOT.getName().endsWith(applyType)){
+            String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
+            mav.addObject("target", target);
+        }
+
         mav.addObject("formType", formType);
         mav.addObject("apply", apply);
         return mav;
@@ -130,7 +143,17 @@ public class ApplicationFormController {
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/updateApplication", method = RequestMethod.POST)
     public ModelAndView updateApplication(ApplicationForm apply,
-                                          @PathVariable("applyType") String applyType) {
+                                          @RequestParam("target") String targetName,
+                                          @PathVariable("applyType") String applyType) throws Exception {
+        if(Types.ApplyType.ALLOT.getName().endsWith(applyType)){
+            int id = serviceUser.getUserIdByName(targetName);
+            if(id < 0) {
+                throw(new Exception("接收人不存在，请检查后重新输入"));
+            }
+
+            apply.setAnnex(Integer.toString(id));
+        }
+
         serviceApply.updateApplication(apply);
         return applyList("apply", applyType);
     }
