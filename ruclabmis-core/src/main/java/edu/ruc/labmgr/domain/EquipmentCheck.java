@@ -25,7 +25,7 @@ public class EquipmentCheck {
 
     private String fundingSubject;
 
-    private String currentUser;
+    private String user;
 
     private String location;
 
@@ -119,12 +119,12 @@ public class EquipmentCheck {
         this.fundingSubject = fundingSubject == null ? null : fundingSubject.trim();
     }
 
-    public String getCurrentUser() {
-        return currentUser;
+    public String getUser() {
+        return user;
     }
 
-    public void setCurrentUser(String currentUser) {
-        this.currentUser = currentUser == null ? null : currentUser.trim();
+    public void setUser(String user) {
+        this.user = user == null ? null : user.trim();
     }
 
     public String getLocation() {

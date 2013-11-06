@@ -13,7 +13,7 @@
     <result column="factory_number" jdbcType="VARCHAR" property="factoryNumber" />
     <result column="acquisition_date" jdbcType="DATE" property="acquisitionDate" />
     <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
-    <result column="cur_user" jdbcType="VARCHAR" property="currentUser" />
+    <result column="user" jdbcType="VARCHAR" property="user" />
     <result column="location" jdbcType="VARCHAR" property="location" />
     <result column="remarks" jdbcType="VARCHAR" property="remarks" />
   </resultMap>
@@ -77,7 +77,7 @@
   </sql>
   <sql id="Base_Column_List">
     id, category_id, sn, name, model_number, specifications, unit_price, vender, factory_number, 
-    acquisition_date, funding_subject, cur_user, location, remarks
+    acquisition_date, funding_subject, user, location, remarks
   </sql>
   <select id="selectByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCheckCriteria" resultMap="BaseResultMap">
     select
@@ -367,7 +367,7 @@
 
   <select id="selectInventoryLoseWithRowbounds" resultMap= "BaseResultMap">
       SELECT ec.* FROM equipment_check ec WHERE ec.sn NOT IN (
-        SELECT e.sn FROM equipment e )
+        SELECT e.sn FROM equipment e ) ORDER BY acquisition_date desc
   </select>
 
   <select id="countInventoryLose" resultType="java.lang.Integer">

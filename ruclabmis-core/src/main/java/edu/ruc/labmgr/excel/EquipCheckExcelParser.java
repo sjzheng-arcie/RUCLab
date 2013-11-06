@@ -18,7 +18,7 @@ public class EquipCheckExcelParser extends POIEntityParser<EquipmentCheck>{
         result.setName((String)map.get("name"));
         result.setAcquisitionDate((Date)map.get("acquisitionDate"));
         result.setCategoryId((String)map.get("categoryId"));
-        result.setCurrentUser((String)map.get("currentUser"));
+        result.setUser((String)map.get("user"));
         result.setFactoryNumber((String)map.get("factoryNumber"));
         result.setFundingSubject((String)map.get("fundingSubject"));
         result.setLocation((String)map.get("location"));
