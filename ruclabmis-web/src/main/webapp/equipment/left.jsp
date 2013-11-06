@@ -246,7 +246,7 @@
         </tr>
     </table>
     <ul class="MM">
-        <li><a href="jsp/dev/check/list.html" onfocus="toFocus(this)" target="main">
+        <li><a href="/equipCheck/list?page=1" onfocus="toFocus(this)" target="main">
             &nbsp;&nbsp;&nbsp;&nbsp;固定资产盘点</a></li>
 
     </ul>
