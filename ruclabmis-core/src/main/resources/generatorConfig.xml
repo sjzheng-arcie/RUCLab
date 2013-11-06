@@ -140,5 +140,9 @@
 
         <!--<table tableName="view_apply_equipment" />-->
         <!--<table tableName="view_equipment" />-->
+
+        <!--<table tableName="equipment_check">-->
+            <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
+        <!--</table>-->
     </context>
 </generatorConfiguration>

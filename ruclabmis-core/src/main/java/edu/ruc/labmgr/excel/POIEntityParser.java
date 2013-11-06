@@ -19,13 +19,20 @@ public abstract class POIEntityParser<T> {
 
     private static String COL_PROP_BEAN = "colPropMapping";
     private static String COL_PROP_MAP_PREFIX = "CPMAP.";
+    private static String DATA_START_PROP = ".DataStartIndex";
 
     private Class<T> type;
     private String colPropMapPrefix;
 
     public POIEntityParser() {
-        this.type = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
-        ;
+        Class clz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
+        this.type = clz;
+        this.colPropMapPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName();
+
+    }
+
+    public POIEntityParser(Class<T> clz) {
+        this.type = clz;
         this.colPropMapPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName();
     }
 
@@ -37,18 +44,18 @@ public abstract class POIEntityParser<T> {
      */
     public T parseFromRow(HSSFRow row) {
         List<ColumnPropMapping> mappings = getColPropMapping();
-        Map<String,Object> map = new HashMap<>();
+        Map<String, Object> map = new HashMap<>();
         for (ColumnPropMapping m : mappings) {
             HSSFCell c = row.getCell(m.getIndex());
             switch (c.getCellType()) {
                 case Cell.CELL_TYPE_STRING:
-                    map.put(m.getPropName(),c.getStringCellValue());
+                    map.put(m.getPropName(), c.getStringCellValue());
                     break;
                 case Cell.CELL_TYPE_NUMERIC:
-                    map.put(m.getPropName(),c.getNumericCellValue());
+                    map.put(m.getPropName(), c.getNumericCellValue());
                     break;
                 case Cell.CELL_TYPE_BOOLEAN:
-                    map.put(m.getPropName(),c.getBooleanCellValue());
+                    map.put(m.getPropName(), c.getBooleanCellValue());
                     break;
             }
         }
@@ -63,7 +70,9 @@ public abstract class POIEntityParser<T> {
      * @return
      */
     public int getDataStartIndex() {
-        return -1;
+        Properties p = SysUtil.getBean(COL_PROP_BEAN, Properties.class);
+        String startIndex = p.getProperty(this.colPropMapPrefix + DATA_START_PROP, "0");
+        return Integer.valueOf(startIndex);
     }
 
     /**
@@ -144,13 +153,13 @@ public abstract class POIEntityParser<T> {
         return null;
     }
 
-//    private T newType() {
-//        try {
-//            T result = this.type.newInstance();
-//            return result;
-//        } catch (InstantiationException | IllegalAccessException e) {
-//            e.printStackTrace();
-//        }
-//        return null;
-//    }
+    protected T newType() {
+        try {
+            T result = this.type.newInstance();
+            return result;
+        } catch (InstantiationException | IllegalAccessException e) {
+            e.printStackTrace();
+        }
+        return null;
+    }
 }

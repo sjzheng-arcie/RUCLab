@@ -27,8 +27,50 @@ public class ApplyWithEquipmentService {
     @Autowired
     private UserService userService;
 
-    //按类型取得所有表单
-    public PageInfo<ApplicationForm> selectListPageForAdmin(String sn,int stateId, int pageNum, Types.ApplyType type){
+    //按类型取得所有已关闭的表单
+    public PageInfo<ApplicationForm> selectPageHistoryApply(String sn,int stateId, int pageNum, Types.ApplyType type){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time desc");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //按用户和类型取得所有已关闭的表单
+    public PageInfo<ApplicationForm> selectUserPageHistoryApply(String sn,int stateId, int pageNum,
+                                                                     Types.ApplyType type, int userId){
+        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
+        criteria.setOrderByClause("apply_time desc");
+
+        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(sn))
+            ec.andSnLike("%" + sn + "%");
+        if (stateId > 0)
+            ec.andStateIdEqualTo(stateId);
+
+        if(userId > 0)
+            ec.andApplicantIdEqualTo(userId);
+
+        if(type != null)
+            ec.andTypeEqualTo(type.getValue());
+
+        ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
+
+        return getPageUserByCriteria(pageNum,criteria);
+    }
+
+    //管理员按类型取得所有表单
+    public PageInfo<ApplicationForm> selectPageApplyForAdmin(String sn,int stateId, int pageNum, Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
 
@@ -81,7 +123,7 @@ public class ApplyWithEquipmentService {
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
 
-        ec.andStateIdEqualTo(Types.ApplyState.WAITING.getValue());
+        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
@@ -129,8 +171,12 @@ public class ApplyWithEquipmentService {
         mapperApply.insert(apply);
     }
 
-    public void updateApply(ApplicationForm apply) {
-        mapperApply.updateByPrimaryKeySelective(apply);
+    public void updateApplication(ApplicationForm apply) {
+        apply.setApplyTime(new Date());
+        apply.setStateId(Types.ApplyState.WAITING.getValue());
+        apply.setApproveTime(null);
+        apply.setApproverId(null);
+        mapperApply.updateByPrimaryKey(apply);
     }
 
     public void deleteApplys(List<Integer> appIds) {
@@ -190,6 +236,12 @@ public class ApplyWithEquipmentService {
             record.setEquipmentId(id);
             record.setApplicationFormId(applicationId);
             mapperEA.insert(record);
+
+            ApplicationForm apply = mapperApply.selectByPrimaryKey(applicationId);
+            apply.setStateId(Types.ApplyState.WAITING.getValue());
+            apply.setApproveTime(null);
+            apply.setApproverId(null);
+            mapperApply.updateByPrimaryKey(apply);
         }
     }
 
@@ -200,6 +252,7 @@ public class ApplyWithEquipmentService {
         mapperEA.deleteByPrimaryKey(key);
 
         mapperEquipment.deleteByPrimaryKey(equipmentId);
+
     }
 
     public void removeEquipmentFromApply(int applicationId, int equipmentId) {
@@ -213,6 +266,12 @@ public class ApplyWithEquipmentService {
         equipment.setId(equipmentId);
         equipment.setStateId(Types.EquipState.NORMAL.getValue());
         mapperEquipment.updateByPrimaryKeySelective(equipment);
+
+        ApplicationForm apply = mapperApply.selectByPrimaryKey(applicationId);
+        apply.setStateId(Types.ApplyState.WAITING.getValue());
+        apply.setApproveTime(null);
+        apply.setApproverId(null);
+        mapperApply.updateByPrimaryKey(apply);
     }
 
     //批准表单
@@ -271,11 +330,47 @@ public class ApplyWithEquipmentService {
         mapperApply.updateByPrimaryKeySelective(form);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(application_id);
-        for(Equipment equipment : applyWithEquipment.getEquipments())
+
+        //借用申请,更改持有人为申请人,更新设备状态为已借用
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.BORROW.getValue())
         {
-            //更新设备状态
-            equipment.setStateId(Types.EquipState.USED.getValue());
-            mapperEquipment.updateByPrimaryKeySelective(equipment);
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(applyWithEquipment.getApplicantId());
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
         }
+        //转移申请,更改持有人为转移对象,更新设备状态为已借用
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.ALLOT.getValue())
+        {
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(Integer.parseInt(applyWithEquipment.getAnnex()));
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+        }
+        //捐赠申请,更改持有人为转移对象,更新设备状态为已捐赠
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.DONATE.getValue())
+        {
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(applyWithEquipment.getApplicantId());
+                equipment.setStateId(Types.EquipState.DONATED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+        }
+        //报减申请,更改持有人为空,更新设备状态为
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.DEFICIT.getValue())
+        {
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(null);
+                equipment.setStateId(Types.EquipState.OFF.getValue());
+                mapperEquipment.updateByPrimaryKey(equipment);
+            }
+        }
+
     }
 }

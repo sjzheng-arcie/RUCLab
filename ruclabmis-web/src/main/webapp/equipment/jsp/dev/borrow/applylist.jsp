@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
@@ -7,13 +7,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/equipment/jsp/dev/borrow/applyList?type=${type}&';
+        var baseHref = '/equipment/jsp/dev/borrow/applyList?formType=${formType}&';
     </script>
 
 </head>
@@ -93,7 +93,7 @@
                                                     <td>
                                                         <div align="right">
 	            	            	<span class="STYLE1" style="white-space:nowrap">
-                                       <c:if test="${type=='review'}">
+                                       <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
                                                <a href="javascript:void(0);" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
                                                    <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
@@ -103,14 +103,7 @@
                                                    <span class="STYLE1">驳回申请</span></a>&nbsp;
                                            </shiro:hasAnyRoles>
                                        </c:if>
-                                        <%--<c:if test="${type=='process'}">--%>
-                                            <%--<shiro:hasAnyRoles name="administrators,equipment_admin">--%>
-                                                <%--<a href="javascript:void(0);" onclick="toDispose('listForm', 'idcheckbox');return false;">&nbsp;--%>
-                                                    <%--<img src="../../../images/add_min.gif" width="10" height="10" border="0"/>--%>
-                                                    <%--<span class="STYLE1">处理申请</span></a>&nbsp;--%>
-                                            <%--</shiro:hasAnyRoles>--%>
-                                        <%--</c:if>--%>
-                                        <c:if test="${type=='apply'}">
+                                        <c:if test="${formType=='apply'}">
                                             <shiro:hasAnyRoles name="administrators,teacher,leader">
                                                 <a href="javascript:void(0);" onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
@@ -133,7 +126,7 @@
                                     <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                            cellspacing="1" bgcolor="#a8c7ce">
                                         <tr>
-                                            <c:if test="${type!='process'}">
+                                            <c:if test="${formType!='process' && formType!='history'}">
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                     <div align="center">
                                                         <input type="checkbox" name="checkbox" id="checkbox"
@@ -168,7 +161,7 @@
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
-                                            <c:if test="${type=='process'}">
+                                            <c:if test="${formType=='process'}">
                                                 <td width="100" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">处理申请</span></div>
                                                 </td>
@@ -176,7 +169,7 @@
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <c:if test="${type!='process'}">
+                                                <c:if test="${formType!='process' && formType!='history'}">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
@@ -189,13 +182,18 @@
                                                 <td>${item.operator.name}</td>
                                                 <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                 <td>${item.state.value}</td>
-                                                <td><a href="toUpdateApply?application_id=${item.id}&type=${type}">
+                                                <td><a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
                                                     <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                 </a></td>
-                                                <c:if test="${type=='process'}">
-                                                    <td><a href="process?application_id=${item.id}">
-                                                        <img src="../../../images/tb.gif" width="10" height="10" border="0"/>
-                                                    </a></td>
+
+                                                <c:if test="${formType=='process'}">
+                                                    <td>
+                                                        <c:if test="${item.state.id==31}">
+                                                            <a href="process?application_id=${item.id}">
+                                                                <img src="../../../images/tb.gif" width="10" height="10" border="0"/>
+                                                            </a>
+                                                        </c:if>
+                                                    </td>
                                                 </c:if>
                                             </tr>
                                         </c:forEach>

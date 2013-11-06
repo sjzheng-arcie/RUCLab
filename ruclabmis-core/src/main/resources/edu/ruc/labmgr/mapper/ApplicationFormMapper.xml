@@ -5,6 +5,8 @@
         <id column="id" property="id" jdbcType="INTEGER" />
         <result column="sn" property="sn" jdbcType="VARCHAR" />
         <result column="type" property="type" jdbcType="INTEGER" />
+        <result column="annex" property="annex" jdbcType="VARCHAR" />
+        <result column="comments" property="comments" jdbcType="VARCHAR" />
         <result column="applicant_id" property="applicantId" jdbcType="INTEGER" />
         <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
         <result column="approver_id" property="approverId" jdbcType="INTEGER" />
@@ -82,7 +84,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, sn, type, applicant_id, operator_id, approver_id, state_id, apply_time, process_time, approve_time
+    id, sn, type, annex, comments, applicant_id, operator_id, approver_id, state_id, apply_time, process_time, approve_time
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
         select
@@ -118,10 +120,11 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into application_form (sn, type, applicant_id,
+        insert into application_form (sn, type, annex,comments, applicant_id,
         operator_id, approver_id, state_id,
         apply_time, process_time, approve_time)
-        values (#{sn,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER}, #{applicantId,jdbcType=INTEGER},
+        values (#{sn,jdbcType=VARCHAR}, #{type,jdbcType=INTEGER},#{annex,jdbcType=VARCHAR},
+        #{comments,jdbcType=VARCHAR}, #{applicantId,jdbcType=INTEGER},
         #{operatorId,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER},
         #{applyTime,jdbcType=TIMESTAMP}, #{processTime,jdbcType=TIMESTAMP}, #{approveTime,jdbcType=TIMESTAMP})
     </insert>
@@ -136,6 +139,12 @@
             </if>
             <if test="type != null" >
                 type,
+            </if>
+            <if test="annex != null" >
+                annex,
+            </if>
+            <if test="comments != null" >
+                comments,
             </if>
             <if test="applicantId != null" >
                 applicant_id,
@@ -165,6 +174,12 @@
             </if>
             <if test="type != null" >
                 #{type,jdbcType=INTEGER},
+            </if>
+            <if test="annex != null" >
+                #{annex,jdbcType=VARCHAR},
+            </if>
+            <if test="comments != null" >
+                #{comments,jdbcType=VARCHAR},
             </if>
             <if test="applicantId != null" >
                 #{applicantId,jdbcType=INTEGER},
@@ -207,6 +222,12 @@
             <if test="record.type != null" >
                 type = #{record.type,jdbcType=INTEGER},
             </if>
+            <if test="record.annex != null" >
+                annex = #{record.annex,jdbcType=VARCHAR},
+            </if>
+            <if test="record.comments != null" >
+                comments = #{record.comments,jdbcType=VARCHAR},
+            </if>
             <if test="record.applicantId != null" >
                 applicant_id = #{record.applicantId,jdbcType=INTEGER},
             </if>
@@ -238,6 +259,8 @@
         set id = #{record.id,jdbcType=INTEGER},
         sn = #{record.sn,jdbcType=VARCHAR},
         type = #{record.type,jdbcType=INTEGER},
+        annex = #{record.annex,jdbcType=VARCHAR},
+        comments = #{record.comments,jdbcType=VARCHAR},
         applicant_id = #{record.applicantId,jdbcType=INTEGER},
         operator_id = #{record.operatorId,jdbcType=INTEGER},
         approver_id = #{record.approverId,jdbcType=INTEGER},
@@ -257,6 +280,12 @@
             </if>
             <if test="type != null" >
                 type = #{type,jdbcType=INTEGER},
+            </if>
+            <if test="annex != null" >
+                annex = #{annex,jdbcType=VARCHAR},
+            </if>
+            <if test="comments != null" >
+                comments = #{comments,jdbcType=VARCHAR},
             </if>
             <if test="applicantId != null" >
                 applicant_id = #{applicantId,jdbcType=INTEGER},
@@ -286,12 +315,14 @@
     update application_form
     set sn = #{sn,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
+      annex = #{annex,jdbcType=VARCHAR},
+      comments = #{comments,jdbcType=VARCHAR},
       applicant_id = #{applicantId,jdbcType=INTEGER},
       operator_id = #{operatorId,jdbcType=INTEGER},
       approver_id = #{approverId,jdbcType=INTEGER},
       state_id = #{stateId,jdbcType=INTEGER},
       apply_time = #{applyTime,jdbcType=TIMESTAMP},
-      process_time = #{processTime,jdbcType=TIMESTAMP},.
+      process_time = #{processTime,jdbcType=TIMESTAMP},
       approve_time = #{approveTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>

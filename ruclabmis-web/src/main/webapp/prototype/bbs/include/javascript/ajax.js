@@ -1,6 +1,4 @@
 /*
- [Discuz!] (C)2001-2007 Comsenz Inc.
- This is NOT a freeware, use is subject to license terms
 
  $RCSfile: ajax.js,v $
  $Revision: 1.117 $

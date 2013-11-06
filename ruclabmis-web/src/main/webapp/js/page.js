@@ -161,7 +161,14 @@ function toDispose(formName,checkBoxName)
 }
 
 function toFind(formName){
-    document.forms[formName].action = baseHref + "page=1"
+    var curUrl = window.location.href;
+    var flag = curUrl.indexOf('?');
+    if(flag!=-1){
+
+        curUrl = curUrl.substr(0,flag);
+
+    }
+    document.forms[formName].action = curUrl + "page=1"
     document.forms[formName].submit();
 }
 
@@ -174,9 +181,14 @@ function goPage(pageIndex, maxPage) {
         alert("已到达尾页！");
         return;
     }
+    var curUrl = window.location.href;
+    var flag = curUrl.indexOf('?'),
+        pageFlag = curUrl.indexOf("page=");
+    curUrl = (flag==-1) ? (curUrl+"?page="+pageIndex) :
+        ((pageFlag==-1) ? (curUrl+"&page="+pageIndex):(curUrl.replace(/page=\d+/,'page='+pageIndex)));
 
-    document.listForm.action = baseHref + 'page=' + pageIndex;
-    document.listForm.submit();
+    document.forms[0].action = curUrl;
+    document.forms[0].submit();
 }
 
 //获得divwidth的宽度

@@ -12,9 +12,13 @@ public class ApplyWithEquipment {
 
     private String applicantName;
 
-    private Integer applicantTypeId;
+    private String annex;
 
-    private String applicantType;
+    private String comments;
+
+    private Integer applicationTypeId;
+
+    private String applicationType;
 
     private Integer operatorId;
 
@@ -68,20 +72,20 @@ public class ApplyWithEquipment {
         this.applicantName = applicantName == null ? null : applicantName.trim();
     }
 
-    public Integer getApplicantTypeId() {
-        return applicantTypeId;
+    public Integer getApplicationTypeId() {
+        return applicationTypeId;
     }
 
-    public void setApplicantTypeId(Integer applicantTypeId) {
-        this.applicantTypeId = applicantTypeId;
+    public void setApplicationTypeId(Integer applicationTypeId) {
+        this.applicationTypeId = applicationTypeId;
     }
 
-    public String getApplicantType() {
-        return applicantType;
+    public String getApplicationType() {
+        return applicationType;
     }
 
-    public void setApplicantType(String applicantType) {
-        this.applicantType = applicantType == null ? null : applicantType.trim();
+    public void setApplicationType(String applicationType) {
+        this.applicationType = applicationType == null ? null : applicationType.trim();
     }
 
     public Integer getOperatorId() {
@@ -162,5 +166,21 @@ public class ApplyWithEquipment {
 
     public void setEquipments(List<Equipment> equipments) {
         this.equipments = equipments;
+    }
+
+    public String getAnnex() {
+        return annex;
+    }
+
+    public void setAnnex(String annex) {
+        this.annex = annex;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }

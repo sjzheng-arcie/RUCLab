@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
@@ -10,7 +10,7 @@
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
     <script>
         var baseHref = '/equipment/jsp/dev/store/list';
@@ -168,7 +168,7 @@
                                                         <td>${item.approver.name}</td>
                                                         <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                         <td>${item.state.value}</td>
-                                                        <td><a href="toUpdateApply?application_id=${item.id}">详细信息</a></td>
+                                                        <td><a href="toUpdateApplication?application_id=${item.id}">详细信息</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

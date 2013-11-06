@@ -3,7 +3,6 @@ package edu.ruc.labmgr.domain;
 import java.util.Date;
 
 public class Equipment {
-
     private Integer id;
 
     private String categoryId;
@@ -11,6 +10,12 @@ public class Equipment {
     private String sn;
 
     private String name;
+
+    private Integer holder;
+
+    private String holderName;
+
+    private String user;
 
     private String modelNumber;
 
@@ -72,6 +77,22 @@ public class Equipment {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public Integer getHolder() {
+        return holder;
+    }
+
+    public void setHolder(Integer holder) {
+        this.holder = holder;
+    }
+
+    public String getUser() {
+        return user;
+    }
+
+    public void setUser(String user) {
+        this.user = user == null ? null : user.trim();
     }
 
     public String getModelNumber() {
@@ -192,5 +213,13 @@ public class Equipment {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    public String getHolderName() {
+        return holderName;
+    }
+
+    public void setHolderName(String holderName) {
+        this.holderName = holderName;
     }
 }

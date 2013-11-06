@@ -1,9 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 
 <script>
@@ -12,7 +12,7 @@
             return;
         }
 
-        document.mainForm.action = "updateApply";
+        document.mainForm.action = "updateApplication";
         document.mainForm.submit();
     }
 
@@ -85,7 +85,13 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr>
-                                        <input name="id" id="id" type="hidden" value="${store.applicationId}">
+                                        <input type="hidden" name="id" id="id" value="${store.applicationId}">
+                                        <input type="hidden" name="applicantId" id="applicantId" value="${store.applicantId}">
+                                        <input type="hidden" name="operatorId" id="operatorId" value="${store.operatorId}">
+                                        <input type="hidden" name="approverId" id="approverId" value="${store.approverId}">
+                                        <input type="hidden" name="stateId" id="stateId" value="${store.stateId}">
+                                        <input type="hidden" name="formType" id="formType" value="${store.formType}">
+
                                         <td align="center">单据号</td>
                                         <td>
                                             <input name="sn" id="sn" value="${store.applicationSn}" onblur="" class="text"

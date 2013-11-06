@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=utf-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%
     String url = request.getRequestURL().toString();
     url = url.substring(0, url.indexOf('/', url.indexOf("//") + 2));
