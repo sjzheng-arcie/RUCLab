@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>My JSP 'index.jsp' starting page</title>
-    <meta http-equiv=Content-Type content="text/html; charset=UTF-8">
+    <meta http-equiv=Content-Type content="text/html;charset=UTF-8">
     <!--
 <link rel="stylesheet" type="text/css" href="styles.css">
 -->

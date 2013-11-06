@@ -10,7 +10,7 @@
 <head>
     <base href="<%=basePath%>">
     <title>shirodemo login page</title>
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8">
     <script type="text/javascript" src='<c:url value="/resources/js/jquery-1.6.3.min.js"/>'></script>
     <script type="text/javascript">
         <!--
