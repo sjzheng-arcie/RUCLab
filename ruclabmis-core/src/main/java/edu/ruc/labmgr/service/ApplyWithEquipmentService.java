@@ -330,11 +330,38 @@ public class ApplyWithEquipmentService {
         mapperApply.updateByPrimaryKeySelective(form);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(application_id);
-        for(Equipment equipment : applyWithEquipment.getEquipments())
+
+        //借用申请,更改持有人为申请人,更新设备状态为已借用
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.BORROW.getValue())
         {
-            //更新设备状态
-            equipment.setStateId(Types.EquipState.USED.getValue());
-            mapperEquipment.updateByPrimaryKeySelective(equipment);
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+
+                equipment.setHolder(applyWithEquipment.getApplicantId());
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
         }
+        //转移申请,更改持有人为转移对象,更新设备状态为已借用
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.ALLOT.getValue())
+        {
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(Integer.parseInt(applyWithEquipment.getAnnex()));
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+        }
+        //捐赠申请,更改持有人为转移对象,更新设备状态为已捐赠
+        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.DONATE.getValue())
+        {
+            for(Equipment equipment : applyWithEquipment.getEquipments())
+            {
+                equipment.setHolder(applyWithEquipment.getApplicantId());
+                equipment.setStateId(Types.EquipState.DONATED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+        }
+
     }
 }

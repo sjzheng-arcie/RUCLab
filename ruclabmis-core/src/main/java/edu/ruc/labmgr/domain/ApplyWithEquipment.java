@@ -12,6 +12,10 @@ public class ApplyWithEquipment {
 
     private String applicantName;
 
+    private String annex;
+
+    private String comments;
+
     private Integer applicationTypeId;
 
     private String applicationType;
@@ -164,4 +168,19 @@ public class ApplyWithEquipment {
         this.equipments = equipments;
     }
 
+    public String getAnnex() {
+        return annex;
+    }
+
+    public void setAnnex(String annex) {
+        this.annex = annex;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
+    }
 }

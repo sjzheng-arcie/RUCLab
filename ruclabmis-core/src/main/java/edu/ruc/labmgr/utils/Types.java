@@ -18,7 +18,7 @@ public interface Types {
      * 设备状态枚举类
      */
     enum EquipState {
-        NORMAL(10), USED(11), TOUSE(12), SCRAPED(13), INMAINTAIN(14), BROKEDOWN(15), TOAPPROVEINSTORE(16);
+        NORMAL(10), USED(11), TOUSE(12), SCRAPED(13), INMAINTAIN(14), BROKEDOWN(15), DONATED(16);
         private int value;
 
         private EquipState(int v) {
@@ -44,7 +44,7 @@ public interface Types {
     }
 
     enum ApplyType {
-        BORROW(23, "borrow"), ALLOT(24, "allot");
+        BORROW(21, "borrow"), ALLOT(22, "allot"), DONATE(23, "donate"), REPAIR(24, "repair"), DEFICIT(25, "deficit");
         private int id;
         private String name;
 
@@ -69,6 +69,14 @@ public interface Types {
             if( ApplyType.ALLOT.getName().equals(name))
                 return ApplyType.ALLOT;
 
+            if( ApplyType.DONATE.getName().equals(name))
+                return ApplyType.DONATE;
+
+            if( ApplyType.REPAIR.getName().equals(name))
+                return ApplyType.REPAIR;
+
+            if( ApplyType.DEFICIT.getName().equals(name))
+                return ApplyType.DEFICIT;
             return null;
         }
     }

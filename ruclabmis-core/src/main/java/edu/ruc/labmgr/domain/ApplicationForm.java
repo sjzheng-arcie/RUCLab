@@ -9,6 +9,10 @@ public class ApplicationForm {
 
     private Integer type;
 
+    private String annex;
+
+    private String comments;
+
     private Integer applicantId;
 
     private Integer operatorId;
@@ -23,15 +27,15 @@ public class ApplicationForm {
 
     private Date approveTime;
 
-	private User applicant;
+    private User applicant;
 
-	private User approver;
+    private User approver;
 
-	private User  operator;
+    private User  operator;
 
-	private Classif formType;
+    private Classif formType;
 
-	private Classif state;
+    private Classif state;
 
     public Integer getId() {
         return id;
@@ -55,6 +59,14 @@ public class ApplicationForm {
 
     public void setType(Integer type) {
         this.type = type;
+    }
+
+    public String getAnnex() {
+        return annex;
+    }
+
+    public void setAnnex(String annex) {
+        this.annex = annex;
     }
 
     public Integer getApplicantId() {
@@ -151,5 +163,13 @@ public class ApplicationForm {
 
     public void setState(Classif state) {
         this.state = state;
+    }
+
+    public String getComments() {
+        return comments;
+    }
+
+    public void setComments(String comments) {
+        this.comments = comments;
     }
 }
