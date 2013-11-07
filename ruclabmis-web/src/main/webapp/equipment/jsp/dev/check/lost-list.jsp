@@ -2,8 +2,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <title>仪器设备类资产实盘</title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title>仪器设备类资产盘亏</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link href="/equipment/css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript" src="/js/page.js"></script>
@@ -13,7 +13,7 @@
 </head>
 <body onload="getWidth()" onresize="getWidth()">
 
-<form name="listForm" method="post">
+<form name="listForm" method="get">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="/equipment/images/mail_leftbg.gif"><img
@@ -23,7 +23,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">设备管理系统 > 仪器设备类资产实盘</div>
+                            <div class="titlebt">设备管理系统 > 仪器设备类资产盘亏</div>
                         </td>
                     </tr>
                 </table>
@@ -38,13 +38,6 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-
-<span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="name" id="name" value=""
-                                                         style="width:100px;"/></span>
-
-<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')"><img
-        src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -74,11 +67,11 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-	            			<a href="/equipCheck/profitList?page=1"><img src="/equipment/images/add_min.gif" width="10" height="10"
-                                                           border="0"/> <span class="STYLE1">盘盈</span></a>&nbsp;
-      					  <a href="/equipCheck/loseList?page=1"><img src="/equipment/images/add_min.gif" width="10" height="10"
-                                                          border="0"/> <span class="STYLE1">盘亏</span></a>&nbsp;
-                  <a href="/equipCheck/importRealCheck"><img src="/equipment/images/del_min.gif" width="10" height="10"
+	            			<a href="../deficit/addapply.html"><img src="/equipment/images/add_min.gif" width="10"
+                                                                    height="10" border="0"/> <span
+                                    class="STYLE1">报减</span></a>&nbsp;
+      					 
+                  <a href="#" onclick="toHouseDy();"><img src="/equipment/images/del_min.gif" width="10" height="10"
                                                           border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
                   <a href="#" onclick="toHouseLay();"><img src="/equipment/images/del_min.gif" width="10" height="10"
                                                            border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
