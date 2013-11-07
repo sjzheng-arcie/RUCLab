@@ -1,13 +1,28 @@
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "list.html";
-        document.form1.submit();
-    }
+<%--
+  Created by IntelliJ IDEA.
+  User: sjzheng
+  Date: 13-11-6
+  Time: 下午5:15
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 
-</script>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function save() {
+            if(!validator(document.form1)){
+                return;
+            }
+            document.form1.action = "/equipment/jsp/sys/typecode/add";
+            document.form1.submit();
+        }
+
+    </script>
+</head>
 <body>
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 分类修改</div>
+                            <div class="titlebt">系统管理 > 分类添加</div>
                         </td>
                     </tr>
                 </table>
@@ -48,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改分类</span></td>
+                                                                    class="STYLE1">添加分类</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -74,33 +89,27 @@
                                             <tr>
                                                 <td nowrap align="right">分类名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">分类编号:</td>
-                                                <td nowrap>
-                                                    <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">分类描述:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <input name="name" id="name" class="text"
+                                                           style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类名称不能为空!"/>
 
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-
+                                                <td nowrap align="right">分类号:</td>
+                                                <td nowrap>
+                                                    <input name= "sn" id="sn" class="text" style="width:154px" maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类号不能为空!"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
                                             </tr>
                                             <tr>
 
 
-                                                <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left" colspan="3"><textarea
+                                                <td nowrap align="right">描述：</td>
+                                                <td nowrap align="left" colspan="3"><textarea name= "description" id="description"
                                                         style="width:70%;height:100"></textarea></td>
                                             </tr>
 

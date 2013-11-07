@@ -1,13 +1,18 @@
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "list.html";
-        document.form1.submit();
-    }
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function save() {
+            document.form1.action = "update";
+            document.form1.submit();
+        }
 
-</script>
+    </script>
+</head>
+
 <body>
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 分类添加</div>
+                            <div class="titlebt">系统管理 > 分类号修改</div>
                         </td>
                     </tr>
                 </table>
@@ -48,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加分类</span></td>
+                                                                    class="STYLE1">修改分类</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -71,37 +76,36 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
+                                            <input name="id" id="id" type="hidden" value="${typecode.id}">
                                             <tr>
                                                 <td nowrap align="right">分类名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">分类编号:</td>
-                                                <td nowrap>
-                                                    <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">分类描述:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <input name="name" id="name" class="text"
+                                                           style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类名称不能为空!"
+                                                           value="${typecode.name}"/>
 
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-
+                                                <td nowrap align="right">分类号:</td>
+                                                <td nowrap>
+                                                    <input name= "sn" id="sn" class="text" style="width:154px" maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类号不能为空!"
+                                                           value="${typecode.sn}"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
                                             </tr>
                                             <tr>
 
 
-                                                <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left" colspan="3"><textarea
-                                                        style="width:70%;height:100"></textarea></td>
+                                                <td nowrap align="right">描述：</td>
+                                                <td nowrap align="left" colspan="3">
+                                                    <textarea name= "description" id="description"
+                                                  style="width:70%;height:100"
+                                                  value="${typecode.description}"></textarea></td>
                                             </tr>
 
 

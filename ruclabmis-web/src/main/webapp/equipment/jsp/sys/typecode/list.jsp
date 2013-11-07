@@ -48,7 +48,7 @@
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
-                                                                            onclick="findInfo()"><img
+                                                                            onclick="toFind('listForm')"><img
                                     src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
@@ -79,11 +79,11 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
+      					<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../images/edit_min.gif" width="10" height="10"
                                                                border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
+      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                 <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                      border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
