@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>仪器设备类资产实盘</title>
@@ -163,7 +164,7 @@
                                                         <td>${equip.unitPrice}</td>
                                                         <td>${equip.vender}</td>
                                                         <td>${equip.factoryNumber}</td>
-                                                        <td>${equip.acquisitionDate}</td>
+                                                        <td><fmt:formatDate value="${equip.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
                                                         <td>${equip.fundingSubject}</td>
                                                         <td>${equip.user}</td>
                                                         <td>${equip.location}</td>

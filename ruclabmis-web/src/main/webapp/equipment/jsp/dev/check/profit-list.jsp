@@ -66,9 +66,7 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-	            			
-                  <a href="../profit/add.html"><img src="/equipment/images/del_min.gif" width="10" height="10"
-                                                    border="0"/> <span class="STYLE1">报增</span></a>&nbsp;&nbsp;
+
                   <a href="#" onclick="toHouseLay();"><img src="/equipment/images/del_min.gif" width="10" height="10"
                                                            border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
                   <a href="#" onclick="toRoom();"><img src="/equipment/images/del_min.gif" width="10" height="10"
@@ -92,7 +90,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm','checkbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="40" bgcolor="d3eaef">
@@ -140,7 +138,7 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="equip" varStatus="st">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                        <td height="20"><input name="checkbox" type="checkbox"
                                                                                value="admin" onclick="checkOne(this)"/>
                                                         </td>
                                                         <td>${st.index+1}</td>

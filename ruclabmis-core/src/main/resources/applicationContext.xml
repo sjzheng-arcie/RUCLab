@@ -30,6 +30,7 @@
 
     <!--系统参数配置-->
     <util:properties id="appConfig" location="classpath:appConfig.properties"/>
+    <util:properties id="colPropMapping" location="classpath:importColProp.properties"/>
 
     <bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
         <property name="driverClassName" value="${db.driverClass}"/>
@@ -87,6 +88,10 @@
 
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="edu.ruc.labmgr.mapper"/>
+    </bean>
+
+    <bean id="singleThreadPool" class="java.util.concurrent.Executors"
+          factory-method="newSingleThreadExecutor" destroy-method="shutdown">
     </bean>
 
 </beans>

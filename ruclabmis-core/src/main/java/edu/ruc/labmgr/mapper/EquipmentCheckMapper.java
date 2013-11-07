@@ -34,4 +34,6 @@ public interface EquipmentCheckMapper {
     int updateByPrimaryKeySelective(EquipmentCheck record);
 
     int updateByPrimaryKey(EquipmentCheck record);
+
+    int selectIdBySn(@Param("sn")String sn);
 }
