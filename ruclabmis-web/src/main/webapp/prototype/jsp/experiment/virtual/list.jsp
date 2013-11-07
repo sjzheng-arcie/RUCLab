@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -11,7 +11,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/achievement/scorelist';
+        var baseHref = '/prototype/jsp/experiment/virtual/list';
     </script>
 
 </head>
@@ -28,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学实验管理 > 学期成绩评定</div>
+                            <div class="titlebt">教学实验管理 > 虚拟班级</div>
                         </td>
                     </tr>
                 </table>
@@ -44,10 +44,10 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="searchB1"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;班级编号:<input type="text" name="searchB1"
                                                                                      id="searchB1" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="searchB1"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;班级名称:<input type="text" name="searchB1"
                                                                                      id="searchB1" value=""
                                                                                      style="width:100px;"/></span>
 
@@ -76,7 +76,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">学生列表</span>
+                                                                                style="white-space:nowrap">虚拟班级列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -86,12 +86,18 @@
                                                                     <span class="STYLE1" style="white-space:nowrap">
                                                                         <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+                                                                        <a href="editclass.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif"
+                                                                                                                            width="10" height="10" border="0"/> <span
+                                                                                class="STYLE1">修改班级信息</span></a>&nbsp;
+
                                                                         <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                        <a href="#" onclick="toHouseDy();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                                                                border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                                                                        <a href="#" onclick="toHouseLay();"><img src="../../../images/del_min.gif" width="10"
+                                                                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
                                                                         <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                                                     </span>
                                                                 </div>
                                                             </td>
@@ -117,32 +123,48 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学号</span></div>
-                                                    </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学生姓名</span></div>
-                                                    </td>
-
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">评分</span></div>
+                                                        <div align="center"><span class="STYLE10">班级编号</span></div>
                                                     </td>
-
-
-
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">班级名称</span></div>
+                                                    </td>
+                                                    <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">学年</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">学期</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">任课老师</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">学生</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">编辑班级</span></div>
+                                                    </td>
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td>0101</td>
-                                                    <td>李小白</td>
-                                                    <td><a href="score.html">评分</a></td>
-
-
+                                                    <td title="">BJ001</td>
+                                                    <td title="">软件工程虚拟班级一</td>
+                                                    <td title="">软件工程基础导论</td>
+                                                    <td title="">2012</td>
+                                                    <td title="">1</td>
+                                                    <td title="">赵天华</td>
+                                                    <td title=""><a href="studentlist.html">查看学生名单</a></td>
+                                                    <td><a href="editclass.html"><input type="button"
+                                                                                        onClick="editclass()"
+                                                                                        class="button" value="编辑"></a>
+                                                    </td>
                                                 </tr>
-
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
@@ -151,6 +173,7 @@
                                                         <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

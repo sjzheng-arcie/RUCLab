@@ -9,9 +9,9 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/achievement/scorelist';
+        var baseHref = '/prototype/jsp/experiment/notice/list';
     </script>
 
 </head>
@@ -19,7 +19,8 @@
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
-    <table width="98%" border="0" cellpadding="0" cellspacing="0">
+
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
                     src="../../../images/left-top-right.gif" width="17" height="29"/></td>
@@ -28,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学实验管理 > 学期成绩评定</div>
+                            <div class="titlebt">教学实验管理 > 通知公告管理</div>
                         </td>
                     </tr>
                 </table>
@@ -44,13 +45,12 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;通知编号:<input type="text" name="noticeNo"
+                                                                                     id="noticeNo" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;通知标题:<input type="text" name="noticeTitle"
+                                                                                     id="noticeTitle" value=""
                                                                                      style="width:100px;"/></span>
-
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
                                                                             onclick="findInfo()"><img
@@ -76,23 +76,30 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">学生列表</span>
+                                                                                style="white-space:nowrap">通知公告管理</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                                    </span>
+	            	<span class="STYLE1" style="white-space:nowrap">
+						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span></a>&nbsp;
+						
+      					<a href="update.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10"
+                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+      						<a href="detail.html"><img src="../../../images/add_min.gif" width="10" height="10"
+                                                       border="0"/> <span class="STYLE1">详细</span></a>&nbsp;
+      					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toHouseDy();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toHouseLay();"><img src="../../../images/del_min.gif" width="10"
+                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+	                </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -117,32 +124,37 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学号</span></div>
-                                                    </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学生姓名</span></div>
-                                                    </td>
-
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">评分</span></div>
+                                                        <div align="center"><span class="STYLE10">通知标题</span></div>
                                                     </td>
-
-
-
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">通知内容</span></div>
+                                                    </td>
+                                                    <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">发布人</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">发布时间</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">浏览人范围</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">查看详细</span></div>
+                                                    </td>
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td>0101</td>
-                                                    <td>李小白</td>
-                                                    <td><a href="score.html">评分</a></td>
-
-
+                                                    <td title="">关于实验课时间调整的通知</td>
+                                                    <td title="">由于实验室设备损坏，原定于09月01日的上机实验取消，具体时间听从老师安排。</td>
+                                                    <td title="">宋御风</td>
+                                                    <td title="">2010-08-29</td>
+                                                    <td title="">班级可见</td>
+                                                    <td title=""><a href="detail.html">查看详细</a></td>
                                                 </tr>
-
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
@@ -151,6 +163,7 @@
                                                         <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -166,15 +179,15 @@
             </td>
             <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
-        <tr>
-            <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
-            <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
-                    src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
-        </tr>
-    </table>
+    <tr>
+        <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
+                                                                              width="17" height="17"/></td>
+        <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
+                                                                             width="100%" height="17"/></td>
+        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
+                src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
+    </tr>
+</table>
 </form>
 </body>
 </html>

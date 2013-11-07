@@ -9,9 +9,9 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/achievement/scorelist';
+        var baseHref = '/prototype/jsp/experiment/report/courselist';
     </script>
 
 </head>
@@ -19,7 +19,8 @@
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
-    <table width="98%" border="0" cellpadding="0" cellspacing="0">
+
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
                     src="../../../images/left-top-right.gif" width="17" height="29"/></td>
@@ -28,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学实验管理 > 学期成绩评定</div>
+                            <div class="titlebt">教学实验管理 > 实验报告上传</div>
                         </td>
                     </tr>
                 </table>
@@ -44,13 +45,20 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验编号:<input type="text" name="experimentNo"
+                                                                                     id="experimentNo" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="experimentName"
+                                                                                     id="experimentName" value=""
                                                                                      style="width:100px;"/></span>
-
+		<span style="white-space:nowrap">&nbsp;&nbsp;是否提交实验报告:<select id="searchD1" name="ifReport">
+            <option></option>
+            <option value="0">是</option>
+            <option value="1">否</option>
+        </select></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告提交期限:<input type="text" name="limitTime"
+                                                                                         id="limitTime" value=""
+                                                                                         style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
                                                                             onclick="findInfo()"><img
@@ -76,25 +84,12 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">学生列表</span>
+                                                                                style="white-space:nowrap">实验信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
-                                                            <td>
-                                                                <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                                    </span>
-                                                                </div>
-                                                            </td>
+
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -117,30 +112,77 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学号</span></div>
-                                                    </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学生姓名</span></div>
+                                                        <div align="center"><span class="STYLE10">实验编号</span></div>
                                                     </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验名称</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验时间</span></div>
+                                                    </td>
+
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">评分</span></div>
+                                                        <div align="center"><span class="STYLE10">是否提交实验报告</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验报告提交期限</span></div>
                                                     </td>
 
 
-
-
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">上传实验报告</span></div>
+                                                    </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td>0101</td>
-                                                    <td>李小白</td>
-                                                    <td><a href="score.html">评分</a></td>
+                                                    <td>KC001</td>
+                                                    <td>编程语言基础实验课</td>
+                                                    <td>09年第一学期第2周第5节</td>
 
 
+                                                    <td>是</td>
+                                                    <td>2012-02-12</td>
+
+
+                                                    <td><a href="detial.html"><input type="button" value="上传"
+                                                                                     class="button" onclick="upload()"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>2</td>
+                                                    <td>KC002</td>
+                                                    <td>面向对象编程</td>
+                                                    <td>09年第二学期第8周第3节</td>
+
+                                                    <td>是</td>
+                                                    <td>2012-01-13</td>
+
+
+                                                    <td><a href="detial.html"><input type="button" value="上传"
+                                                                                     class="button" onclick="upload()"></a>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                    <td>3</td>
+                                                    <td>KC003</td>
+                                                    <td>电子电路实验课</td>
+                                                    <td>09年第二学期第12周第6节</td>
+
+                                                    <td>是</td>
+                                                    <td>2012-11-13</td>
+
+
+                                                    <td><a href="detial.html"><input type="button" value="上传"
+                                                                                     class="button" onclick="upload()"></a>
+                                                    </td>
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -151,6 +193,7 @@
                                                         <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

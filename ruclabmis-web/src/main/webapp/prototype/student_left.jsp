@@ -41,15 +41,15 @@
                         </tr>
                     </table>
                     <ul class="MM">
-                        <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.html"
+                        <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.jsp"
                                onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的课程表</a></li>
-                        <li><a href="jsp/experiment/experimentpaper/myexperimentmain.html" onfocus="toFocus(this)"
+                        <li><a href="jsp/experiment/experimentpaper/myexperimentliststudent.jsp" onfocus="toFocus(this)"
                                target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的实验课程</a></li>
                         <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的短消息</a>
                         </li>
                         <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的通知</a>
                         </li>
-                        <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
+                        <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.jsp" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;我的预约申请</a></li>
 
                     </ul>
@@ -64,11 +64,11 @@
                         </tr>
                     </table>
                     <ul class="MM">
-                        <li><a href="jsp/res/book/downloadlist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;教学资源下载</a>
+                        <li><a href="jsp/res/book/downloadlist.jsp onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;教学资源下载</a>
                         </li>
-                        <li><a href="jsp/experiment/report/uploadmain.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告提交</a>
+                        <li><a href="jsp/experiment/report/courselist.jsp" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告提交</a>
                         </li>
-                        <li><a href="jsp/experiment/achievement/myscoremain.html" onfocus="toFocus(this)" target="main">
+                        <li><a href="jsp/experiment/achievement/myscore.jsp" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;分数查看</a></li>
 
                     </ul>

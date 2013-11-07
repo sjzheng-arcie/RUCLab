@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -11,7 +11,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/achievement/scorelist';
+        var baseHref = '/prototype/jsp/experiment/virtual/studentlist';
     </script>
 
 </head>
@@ -19,7 +19,8 @@
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
-    <table width="98%" border="0" cellpadding="0" cellspacing="0">
+
+<table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
                     src="../../../images/left-top-right.gif" width="17" height="29"/></td>
@@ -28,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学实验管理 > 学期成绩评定</div>
+                            <div class="titlebt">基础信息管理 > 学生信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -44,13 +45,14 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
-                                                                                     style="width:100px;"/></span>
-
+                            <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="searchB1"
+                                                                                   id="searchB1" value=""
+                                                                                   style="width:100px;"/></span>
+		<span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<select id="searchD1" name="searchD1">
+            <option value=""></option>
+            <option value="0">1级</option>
+            <option value="1">2级</option>
+        </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
                                                                             onclick="findInfo()"><img
@@ -76,23 +78,27 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">学生列表</span>
+                                                                                style="white-space:nowrap">学生信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                                    </span>
+	            	<span class="STYLE1" style="white-space:nowrap">
+						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span></a>&nbsp;
+      					<a href="update.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10"
+                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+      					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toHouseDy();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toHouseLay();"><img src="../../../images/del_min.gif" width="10"
+                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+	                </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -114,35 +120,73 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="40" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">学号</span></div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学生姓名</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">姓名</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">性别</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">出生日期</span></div>
                                                     </td>
 
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">评分</span></div>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">籍贯</span></div>
                                                     </td>
-
-
-
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">入学时间</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">所属学部</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">所属院系</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">所属系科</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">职称</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">职务</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">电子邮件</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">电话</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">备注</span></div>
+                                                    </td>
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td>1</td>
-                                                    <td>0101</td>
-                                                    <td>李小白</td>
-                                                    <td><a href="score.html">评分</a></td>
-
-
+                                                    <td title="">00001</td>
+                                                    <td title="">黄显明</td>
+                                                    <td title="">男</td>
+                                                    <td title="">2010-10-10</td>
+                                                    <td title="">山东聊城</td>
+                                                    <td title="">1991-10-10</td>
+                                                    <td title="">中国人民大学</td>
+                                                    <td title="">信息学院</td>
+                                                    <td title="">计算机</td>
+                                                    <td title="">班长</td>
+                                                    <td title="">班长</td>
+                                                    <td title="">dasa@sd.com</td>
+                                                    <td title="">8828123</td>
+                                                    <td title="">备注</td>
                                                 </tr>
-
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
