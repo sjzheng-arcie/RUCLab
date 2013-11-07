@@ -109,6 +109,20 @@
                                                    errmsg="申请人不能为空!"/>
                                             <span style="color:red;">*</span>
                                         </td>
+                                    <tr>
+                                        <td align="center">维修经费</td>
+                                        <td>
+                                            <input name="annex" id="annex" value="${apply.annex}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required|isNumber"
+                                                   errmsg="捐赠对象不能为空!|维修经费只能为数字"/>
+                                            <span style="color:red;">*</span>
+                                        </td>
+                                        <td align="center" class="identifier">备注</td>
+                                        <td align="left">
+                                            <textarea id="comments" name="comments">${apply.comments}</textarea>
+                                        </td>
+                                    </tr>
                                     </tr>
                                 </table>
                             </td>

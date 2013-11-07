@@ -3,6 +3,7 @@ package edu.ruc.labmgr.mapper.test;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
+import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.Types;
 import org.apache.ibatis.session.RowBounds;
@@ -19,12 +20,14 @@ public class ApplyWithEquipmentMapperTest {
     private static ApplyWithEquipmentMapper mapper;
     private UserService userService;
     private static ApplicationFormMapper mapperApply;
+    private static EquipmentMapper mapperEquipment;
 
     @BeforeClass
     public static void getBean() throws Exception {
         ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
         mapper = aContext.getBean(ApplyWithEquipmentMapper.class);
         mapperApply = aContext.getBean(ApplicationFormMapper.class);
+        mapperEquipment = aContext.getBean(EquipmentMapper.class);
         System.out.println("getBean");
     }
 
@@ -39,6 +42,8 @@ public class ApplyWithEquipmentMapperTest {
             System.out.println(each.getName());
         }
 
+        Equipment equipment = mapperEquipment.selectByPrimaryKey(1);
+        System.out.println(equipment.getName());
     }
 
     @Ignore

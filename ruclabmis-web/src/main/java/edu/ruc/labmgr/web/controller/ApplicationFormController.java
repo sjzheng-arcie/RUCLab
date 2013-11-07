@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.web.controller;
 
+import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Classif;
@@ -10,8 +11,7 @@ import edu.ruc.labmgr.service.EquipmentService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
+import edu.ruc.labmgr.service.ApplyStrategic.ApplyContext;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -37,7 +37,7 @@ public class ApplicationFormController {
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/applyList")
     public ModelAndView applyList(@RequestParam("formType")String formType,
                                   @PathVariable("applyType")String applyType) {
-        return pageApplyList(null, 0, 1, formType, applyType);
+        return pageApplyList("", 0, 1, formType, applyType);
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/applyList", method = RequestMethod.POST)
@@ -49,50 +49,17 @@ public class ApplicationFormController {
 
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
 
-        Subject currentUser = SecurityUtils.getSubject();
         PageInfo<ApplicationForm> pageInfo = new PageInfo<ApplicationForm>();
-        //管理员则显示所有未关闭订单
-        if(currentUser.hasRole(Types.Role.ADMIN.getValue()) ) {
-            if(formType.endsWith("history"))
-                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.getApplyTypeFromStr(applyType));
-            else
-                pageInfo = serviceApply.selectPageApplyForAdmin(sn, stateId, page, Types.ApplyType.getApplyTypeFromStr(applyType));
-        }
-        //领导显示待审批的订单
-        else if(currentUser.hasRole(Types.Role.LEADER.getValue())){
-            if(formType.endsWith("apply"))
-                pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
-                        Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
-            else if(formType.endsWith("review"))
-                pageInfo = serviceApply.selectPageApplyForLeader(sn, stateId, page,Types.ApplyType.getApplyTypeFromStr(applyType));
-            else if(formType.endsWith("history"))
-                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page,Types.ApplyType.getApplyTypeFromStr(applyType));
-        }
-        //教师只显示自己提交的未关闭订单
-        else if(currentUser.hasRole(Types.Role.TEACHER.getValue())){
-            if(formType.endsWith("history"))
-                pageInfo = serviceApply.selectUserPageHistoryApply(sn, stateId, page,
-                        Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
-            else
-                pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
-                        Types.ApplyType.getApplyTypeFromStr(applyType), serviceUser.getCurrentUserId());
-        }
-        //设备管理员显示所有未关闭的订单
-        else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getValue())){
-            if(formType.endsWith("history"))
-                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page,
-                        Types.ApplyType.getApplyTypeFromStr(applyType));
-            else
-                pageInfo = serviceApply.selectPageApplyForEquipAdmin(sn, stateId, page,
-                        Types.ApplyType.getApplyTypeFromStr(applyType));
-        }
 
-        for(ApplicationForm apply : pageInfo.getData()){
-            if(Types.ApplyType.ALLOT.getName().endsWith(applyType)){
-                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
-                apply.setTarget(target);
-            }
-        }
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        if(formType.equalsIgnoreCase("apply"))
+            pageInfo = applyContext.pageApplicationList(sn, stateId, page);
+        else if(formType.equalsIgnoreCase("review") || formType.equalsIgnoreCase("process"))
+            pageInfo = applyContext.pageApplicationProcessList(sn, stateId, page);
+        else if(formType.equalsIgnoreCase("history"))
+            pageInfo = applyContext.pageApplicationHistoryList(sn, stateId, page);
 
         result.addObject("formType", formType);
         result.addObject("pageInfo", pageInfo);
@@ -102,21 +69,24 @@ public class ApplicationFormController {
 
     //备选设备列表
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList")
-    public ModelAndView deviceList() {
-        return pageDeviceList(null, null, 0, 1);
+    public ModelAndView deviceList(@PathVariable("applyType")String applyType) {
+        return pageDeviceList("", "", 0, applyType, 1);
     }
 
     //备选设备列表
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList", method = RequestMethod.POST)
     public ModelAndView pageDeviceList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
-                                       @RequestParam("searchDirect")int useDirect,
+                                       @RequestParam("searchDirect")int useDirect,@PathVariable("applyType")String applyType,
                                        @RequestParam("page") int page) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/common/devicelist");
 
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
 
-        PageInfo<Equipment> pageInfo = serviceEquipment.getPageAvaiableEquipments(sn, name, useDirect, page);
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        PageInfo<Equipment> pageInfo = applyContext.pageDeviceList(sn, name, useDirect, page);
 
         result.addObject("pageInfo", pageInfo);
         result.addObject("useDirections", useDirections);
@@ -127,13 +97,15 @@ public class ApplicationFormController {
     public ModelAndView toUpdateApplication(@RequestParam("application_id") int applicationId,
                                             @RequestParam("formType") String formType,
                                             @PathVariable("applyType") String applyType) {
-        ApplyWithEquipment apply = serviceApply.selectByApplyId(applicationId);
+        ApplyWithEquipment apply = serviceApply.selectApplyById(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/"+applyType+"/updateapply");
 
-        if(Types.ApplyType.ALLOT.getName().endsWith(applyType)){
-            String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
-            mav.addObject("target", target);
+        if(Types.ApplyType.ALLOT.getName().equalsIgnoreCase(applyType)){
+            if(!StringUtils.isNullOrEmpty(apply.getAnnex())){
+                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
+                mav.addObject("target", target);
+            }
         }
 
         mav.addObject("formType", formType);
@@ -142,19 +114,11 @@ public class ApplicationFormController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/updateApplication", method = RequestMethod.POST)
-    public ModelAndView updateApplication(ApplicationForm apply,
-                                          @RequestParam("target") String targetName,
-                                          @PathVariable("applyType") String applyType) throws Exception {
-        if(Types.ApplyType.ALLOT.getName().endsWith(applyType)){
-            int id = serviceUser.getUserIdByName(targetName);
-            if(id < 0) {
-                throw(new Exception("接收人不存在，请检查后重新输入"));
-            }
+    public ModelAndView updateApplication(ApplicationForm apply, @PathVariable("applyType") String applyType) throws Exception {
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
 
-            apply.setAnnex(Integer.toString(id));
-        }
-
-        serviceApply.updateApplication(apply);
+        applyContext.updateApplication(apply);
         return applyList("apply", applyType);
     }
 
@@ -173,16 +137,23 @@ public class ApplicationFormController {
 
         serviceApply.insertApply(apply);
 
-        serviceApply.addEquipmentsToApply(apply.getId(), items, Types.EquipState.TOUSE);
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        applyContext.addEquipmentsToApply(apply.getId(), items);
 
         return toUpdateApplication(apply.getId(), "apply", applyType);
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/addEquipment", method = RequestMethod.POST)
     public ModelAndView addEquipment(@RequestParam("application_id") int applicationId,
-                                     @RequestParam("items") List<Integer> appIds,
+                                     @RequestParam("items") List<Integer> items,
                                      @PathVariable("applyType")String applyType) {
-        serviceApply.addEquipmentsToApply(applicationId, appIds,  Types.EquipState.TOUSE);
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        applyContext.addEquipmentsToApply(applicationId, items);
+
         return toUpdateApplication(applicationId, "apply", applyType);
     }
 
@@ -209,11 +180,16 @@ public class ApplicationFormController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/process", method = RequestMethod.GET)
-    public ModelAndView process(@RequestParam("application_id") int applicationId,
-                                @PathVariable("applyType")String applyType) {
-        serviceApply.processApply(applicationId);
+         public ModelAndView process(@RequestParam("application_id") int applicationId,
+                                     @PathVariable("applyType")String applyType) {
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        applyContext.processApply(applicationId);
         return applyList("process",applyType);
     }
+
+
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/delete", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam("items") List<Integer> appIds,

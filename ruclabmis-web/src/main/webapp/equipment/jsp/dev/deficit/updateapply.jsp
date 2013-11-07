@@ -110,6 +110,20 @@
                                             <span style="color:red;">*</span>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td align="center">报减理由</td>
+                                        <td>
+                                            <input name="annex" id="annex" value="${apply.annex}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required"
+                                                   errmsg="报减理由不能为空!"/>
+                                            <span style="color:red;">*</span>
+                                        </td>
+                                        <td align="center" class="identifier">备注</td>
+                                        <td align="left">
+                                            <textarea id="comments" name="comments">${apply.comments}</textarea>
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>

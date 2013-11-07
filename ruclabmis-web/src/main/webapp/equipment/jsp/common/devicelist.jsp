@@ -154,31 +154,37 @@
                                                 <td width="80" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">名称</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">持有人</span></div>
+                                                </td>
+                                                <td width="60" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">使用人</span></div>
+                                                </td>
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">分类号</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="50" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">型号</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="50" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">规格</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">单价</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">厂家</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">出厂号</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">出厂日期</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">购置日期</span></div>
                                                 </td>
-                                                <td width="80" bgcolor="d3eaef">
+                                                <td width="60" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">报废日期</span></div>
                                                 </td>
                                                 <td width="80" bgcolor="d3eaef">
@@ -197,6 +203,8 @@
                                                                            value="${item.id}" onclick="checkOne(this)"/></td>
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
+                                                    <td>${item.holderName}</td>
+                                                    <td>${item.user}</td>
                                                     <td>${item.categoryId}</td>
                                                     <td>${item.modelNumber}</td>
                                                     <td>${item.specifications}</td>

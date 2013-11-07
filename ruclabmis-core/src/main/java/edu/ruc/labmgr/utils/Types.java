@@ -18,7 +18,11 @@ public interface Types {
      * 设备状态枚举类
      */
     enum EquipState {
-        NORMAL(10), USED(11), TOUSE(12), OFF(13), INMAINTAIN(14), BROKEDOWN(15), DONATED(16);
+        //可用   待分配 已分配 待归还 待转移  待捐赠  已捐赠
+        NORMAL(101), TOUSE(102), USED(103), TOREURN(104), TOALLOT(105),  TODONATE(106), DONATED(107),
+        //待维修  维修中  已损坏  待报减   已销账
+        TOREPAIR(108), REPAIRING(109), BROKEN(110), TODEFICIT(111), DEFICITED(112);
+
         private int value;
 
         private EquipState(int v) {
@@ -44,7 +48,8 @@ public interface Types {
     }
 
     enum ApplyType {
-        BORROW(21, "borrow"), ALLOT(22, "allot"), DONATE(23, "donate"), REPAIR(24, "repair"), DEFICIT(25, "deficit");
+        BORROW(21, "borrow"), ALLOT(22, "allot"), DONATE(23, "donate"),
+        REPAIR(24, "repair"), DEFICIT(25, "deficit"), RETURN(29, "return");
         private int id;
         private String name;
 

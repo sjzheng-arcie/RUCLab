@@ -37,17 +37,15 @@ public class ApplyWithEquipmentService {
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
-
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
-
         ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
 
-    //按用户和类型取得所有已关闭的表单
-    public PageInfo<ApplicationForm> selectUserPageHistoryApply(String sn,int stateId, int pageNum,
+    //按申请人和类型取得所有已关闭的表单
+    public PageInfo<ApplicationForm> selectPageUserHistoryApply(String sn,int stateId, int pageNum,
                                                                      Types.ApplyType type, int userId){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
@@ -57,39 +55,17 @@ public class ApplyWithEquipmentService {
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
-
         if(userId > 0)
             ec.andApplicantIdEqualTo(userId);
-
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
-
         ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
 
-    //管理员按类型取得所有表单
-    public PageInfo<ApplicationForm> selectPageApplyForAdmin(String sn,int stateId, int pageNum, Types.ApplyType type){
-        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
-        criteria.setOrderByClause("apply_time desc");
-
-        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
-        if (!StringUtils.isNullOrEmpty(sn))
-            ec.andSnLike("%" + sn + "%");
-        if (stateId > 0)
-            ec.andStateIdEqualTo(stateId);
-
-        if(type != null)
-            ec.andTypeEqualTo(type.getValue());
-
-        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
-
-        return getPageUserByCriteria(pageNum,criteria);
-    }
-
-    //设备管理员显示所有已批准的订单
-    public PageInfo<ApplicationForm> selectPageApplyForEquipAdmin(String sn,int stateId, int pageNum,
+    //得到所有未关闭的订单
+    public PageInfo<ApplicationForm> selectPageApplyNotClosed(String sn,int stateId, int pageNum,
                                                                   Types.ApplyType type){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
@@ -99,37 +75,15 @@ public class ApplyWithEquipmentService {
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
-
         if(type != null)
             ec.andTypeEqualTo(type.getValue());
-
         ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
         return getPageUserByCriteria(pageNum,criteria);
     }
 
-    //领导显示所有待审批的订单
-    public PageInfo<ApplicationForm> selectPageApplyForLeader(String sn,int stateId, int pageNum, Types.ApplyType type){
-        ApplicationFormCriteria criteria = new ApplicationFormCriteria();
-        criteria.setOrderByClause("apply_time desc");
-
-        ApplicationFormCriteria.Criteria ec = criteria.createCriteria();
-        if (!StringUtils.isNullOrEmpty(sn))
-            ec.andSnLike("%" + sn + "%");
-
-        if (stateId > 0)
-            ec.andStateIdEqualTo(stateId);
-
-        if(type != null)
-            ec.andTypeEqualTo(type.getValue());
-
-        ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
-
-        return getPageUserByCriteria(pageNum,criteria);
-    }
-
-    //教师只显示自己提交且未关闭的订单
-    public PageInfo<ApplicationForm> selectPageApplyForTeacher(String sn,int stateId, int pageNum,
+    //按申请人得到未关闭的表单
+    public PageInfo<ApplicationForm> selectPageUserApplyNotClosed(String sn,int stateId, int pageNum,
                                                                Types.ApplyType type, int userId){
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
@@ -160,7 +114,7 @@ public class ApplyWithEquipmentService {
         return page;
     }
 
-    public ApplyWithEquipment selectByApplyId(int id) {
+    public ApplyWithEquipment selectApplyById(int id) {
         ApplyWithEquipment applyWithEquipment = null;
         applyWithEquipment = mapperViewStore.selectByApplyId(id);
 
@@ -212,8 +166,6 @@ public class ApplyWithEquipmentService {
 
         return retVal;
     }
-
-
     public void insertEquipmentWithApply( int applicationId, Equipment equipment) {
         mapperEquipment.insert(equipment);
 
@@ -223,14 +175,8 @@ public class ApplyWithEquipmentService {
         mapperEA.insert(record);
     }
 
-    public void addEquipmentsToApply(int applicationId, List<Integer> equipIds,  Types.EquipState newEuipState) {
+    public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         for(Integer id : equipIds){
-            //更新设备状态
-            Equipment equipment = new Equipment();
-            equipment.setId(id);
-            equipment.setStateId(newEuipState.getValue());
-            mapperEquipment.updateByPrimaryKeySelective(equipment);
-
             //关联设备与申请单
             EquipmentApplicationFormKey record = new EquipmentApplicationFormKey();
             record.setEquipmentId(id);
@@ -285,14 +231,6 @@ public class ApplyWithEquipmentService {
             form.setApproverId(userService.getCurrentUserId());
 
             mapperApply.updateByPrimaryKeySelective(form);
-
-            ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(id);
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                //更新设备状态
-                equipment.setStateId(Types.EquipState.TOUSE.getValue());
-                mapperEquipment.updateByPrimaryKeySelective(equipment);
-            }
         }
     }
 
@@ -308,13 +246,6 @@ public class ApplyWithEquipmentService {
 
             mapperApply.updateByPrimaryKeySelective(form);
 
-            ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(id);
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                //更新设备状态
-                equipment.setStateId(Types.EquipState.NORMAL.getValue());
-                mapperEquipment.updateByPrimaryKeySelective(equipment);
-            }
         }
     }
 
@@ -330,47 +261,5 @@ public class ApplyWithEquipmentService {
         mapperApply.updateByPrimaryKeySelective(form);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(application_id);
-
-        //借用申请,更改持有人为申请人,更新设备状态为已借用
-        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.BORROW.getValue())
-        {
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                equipment.setHolder(applyWithEquipment.getApplicantId());
-                equipment.setStateId(Types.EquipState.USED.getValue());
-                mapperEquipment.updateByPrimaryKeySelective(equipment);
-            }
-        }
-        //转移申请,更改持有人为转移对象,更新设备状态为已借用
-        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.ALLOT.getValue())
-        {
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                equipment.setHolder(Integer.parseInt(applyWithEquipment.getAnnex()));
-                equipment.setStateId(Types.EquipState.USED.getValue());
-                mapperEquipment.updateByPrimaryKeySelective(equipment);
-            }
-        }
-        //捐赠申请,更改持有人为转移对象,更新设备状态为已捐赠
-        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.DONATE.getValue())
-        {
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                equipment.setHolder(applyWithEquipment.getApplicantId());
-                equipment.setStateId(Types.EquipState.DONATED.getValue());
-                mapperEquipment.updateByPrimaryKeySelective(equipment);
-            }
-        }
-        //报减申请,更改持有人为空,更新设备状态为
-        if(applyWithEquipment.getApplicationTypeId() == Types.ApplyType.DEFICIT.getValue())
-        {
-            for(Equipment equipment : applyWithEquipment.getEquipments())
-            {
-                equipment.setHolder(null);
-                equipment.setStateId(Types.EquipState.OFF.getValue());
-                mapperEquipment.updateByPrimaryKey(equipment);
-            }
-        }
-
     }
 }
