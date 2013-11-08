@@ -43,7 +43,7 @@
                     <ul class="MM">
                         <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.jsp"
                                onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的课程表</a></li>
-                        <li><a href="jsp/experiment/experimentpaper/myexperimentliststudent.jsp" onfocus="toFocus(this)"
+                        <li><a href="jsp/experiment/experimentpaper/myexperimentlist.jsp" onfocus="toFocus(this)"
                                target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的实验课程</a></li>
                         <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的短消息</a>
                         </li>

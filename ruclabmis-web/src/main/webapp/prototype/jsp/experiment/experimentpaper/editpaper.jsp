@@ -219,7 +219,7 @@
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                 <div align="center">
                                                     <input type="checkbox" name="checkbox" id="checkbox"
-                                                           onclick="checkAll(this);"/>
+                                                           onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                 </div>
                                             </td>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -251,8 +251,10 @@
 
                                         </tr>
                                         <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                            <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                   onclick="checkOne(this)"/></td>
+                                            <td height="20">
+                                                <input name="idcheckbox" type="checkbox"
+                                                       value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                            </td>
                                             <td>1</td>
                                             <td>XZ001</td>
                                             <td>编程语言</td>
@@ -265,7 +267,8 @@
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox"
+                                                <td height="20">
+                                                    <input name="idcheckbox" type="checkbox"
                                                                        value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
                                                 <td>${item.id}</td>

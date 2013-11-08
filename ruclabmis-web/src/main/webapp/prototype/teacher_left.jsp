@@ -73,9 +73,9 @@
                         </li>
                         <li><a href="jsp/curriculum/experiment/curriculum/curriculum.html" onfocus="toFocus(this)"
                                target="main">&nbsp;&nbsp;&nbsp;&nbsp;课程信息管理</a></li>
-                        <li><a href="jsp/experiment/experimentpaper/main.html" onfocus="toFocus(this)" target="main">
+                        <li><a href="jsp/experiment/experimentpaper/myexperimentlist.jsp" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;实验信息管理</a></li>
-                        <li><a href="jsp/experiment/report/main.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告管理</a>
+                        <li><a href="jsp/experiment/report/list.jsp" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告管理</a>
                         </li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;实验室预约</a></li>

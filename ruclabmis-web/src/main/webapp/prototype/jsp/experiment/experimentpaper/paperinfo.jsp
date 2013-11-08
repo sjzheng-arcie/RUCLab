@@ -80,41 +80,21 @@
                                            bgcolor="#E3E9EE">
                                         <tr>
                                             <td nowrap align="right">实验编号:</td>
-                                            <td nowrap>
-                                                SJ001
-
-                                            </td>
+                                            <td nowrap>${experimentInfo.sn}</td>
                                             <td nowrap align="right">实验名称:</td>
-                                            <td nowrap>
-                                                软件工程编程实验
-                                            </td>
-
+                                            <td nowrap>${experimentInfo.name}</td>
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">所属课程:</td>
-                                            <td nowrap>
-                                                软件工程
-
-                                            </td>
+                                            <td nowrap>${experimentInfo.course}</td>
                                             <td nowrap align="right">指导老师:</td>
-                                            <td nowrap>
-                                                赵天华
-
-                                            </td>
+                                            <td nowrap>${experimentInfo.teachername}</td>
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">实验指导书:</td>
-                                            <td nowrap>
-                                                实验指导书.doc
-                                                <input type="button" class="buttom" value="下载"/>
-
-                                            </td>
+                                            <td nowrap>${experimentInfo.instructor}<input type="button" value="下载"/></td>
                                             <td nowrap align="right">实验报告书:</td>
-                                            <td nowrap>
-                                                实验报告书.doc
-                                                <input type="button" class="buttom" value="浏览"/>
-                                            </td>
-
+                                            <td nowrap>${experimentInfo.report}<input type="button"  value="下载"/></td>
                                         </tr>
 
 
@@ -177,12 +157,10 @@
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                     <div align="center">
                                                         <input type="checkbox" name="checkbox" id="checkbox"
-                                                               onclick="checkAll(this);"/>
+                                                               onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                     </div>
                                                 </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">序号</span></div>
-                                                </td>
+
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">编号</span></div>
                                                 </td>
@@ -195,10 +173,6 @@
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">题目内容</span></div>
                                                 </td>
-                                                <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">难易程度</span></div>
-                                                </td>
-
 
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">查看详细</span></div>
@@ -206,14 +180,30 @@
 
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>1</td>
+                                                <td height="20">
+                                                    <input name="idcheckbox" type="checkbox"
+                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                </td>
+
                                                 <td>XZ001</td>
                                                 <td>编程语言</td>
                                                 <td>选择题目</td>
                                                 <td>下面属于面向对象编程的语言有（）</td>
-                                                <td>中</td>
+
+                                                <td><a href="detial.html">查看详细</a></td>
+
+                                            </tr>
+                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                <td height="20">
+                                                    <input name="idcheckbox" type="checkbox"
+                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                </td>
+
+                                                <td>XZ001</td>
+                                                <td>编程语言</td>
+                                                <td>选择题目</td>
+                                                <td>下面属于面向对象编程的语言有（）</td>
+
                                                 <td><a href="detial.html">查看详细</a></td>
 
                                             </tr>
@@ -222,14 +212,11 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.id}</td>
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
-                                                    <td>${item.phoneNum}</td>
-                                                    <td>${item.email}</td>
-                                                    <td>${item.major.name}</td>
-                                                    <td>${item.role.name}</td>
-                                                    <td>${item.comment}</td>
+                                                    <td>${item.type}</td>
+                                                    <td>${item.content}</td>
+                                                     <td><a href="detail?id=${item.id}">查看详细</a></td>
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>

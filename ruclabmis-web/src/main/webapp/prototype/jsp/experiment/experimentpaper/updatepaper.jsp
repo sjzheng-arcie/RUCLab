@@ -14,34 +14,19 @@
         var baseHref = '/prototype/jsp/experiment/experimentpaper/addtopaper';
 
 
-        function toApply()
-        {
-            var id = "141";
-            var selectedItems = getAllSelected('listForm', 'idcheckbox');
-            if(selectedItems.length <= 0 )
-            {
-                alert("请选择要添加的的题目！");
+        function update() {
+            if(!validator(document.listForm)){
                 return;
             }
 
-            if( id != "") //有父窗体则刷新父窗体，关闭自己
-            {
-                document.forms["listForm"].action = "addQuestion?questionId="+id+"&items=" + selectedItems;
-                document.forms["listForm"].submit();
-
-                window.opener.location.href=window.opener.location.href;
-                window.close();
-            }
-            else //无父窗体则跳转至表单页面
-            {
-                document.forms["listForm"].action = "toApply?items=" + selectedItems;
-                document.forms["listForm"].submit();
-            }
-
+            document.listForm.action = "updatePaper";
+            document.listForm.submit();
         }
 
-
-
+        function toAddQuestion(){
+            window.open("/prototype/jsp/experiment/experimentpaper/addtopaper", "实验试题",
+                    "height=600, width=1350, toolbar=no, status=no");
+        }
 
     </script>
 
@@ -59,13 +44,142 @@
             <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                 <tr>
                     <td height="31">
-                        <div class="titlebt">试卷修改 > 添加题目到试卷</div>
+                        <div class="titlebt">资源管理 > 试题资源管理</div>
                     </td>
                 </tr>
             </table>
         </td>
         <td width="16" valign="top" background="../../../images/mail_rightbg.gif"><img
                 src="../../../images/nav-right-bg.gif" width="16" height="29"/></td>
+    </tr>
+    <tr>
+        <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
+        <td valign="top" bgcolor="#F7F8F9">
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <tr>
+                    <td height="30">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td height="24" bgcolor="#353c44">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td>
+                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                    <tr>
+                                                        <td width="6%" height="19" valign="bottom">
+                                                            <div align="center"><img src="../../../images/tb.gif"
+                                                                                     width="14" height="14"/></div>
+                                                        </td>
+                                                        <td width="94%" valign="bottom"><span
+                                                                class="STYLE1">修改试卷资源</span></td>
+                                                    </tr>
+                                                </table>
+                                            </td>
+                                            <td>
+                                                <div align="right"><span class="STYLE1">&nbsp;</span><span
+                                                        class="STYLE1"> &nbsp;</span></div>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr valign="top">
+                    <td>
+                        <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+                            <tr bgcolor="#FFFFFF">
+                                <td bgcolor="#FFFFFF">
+                                    <table border="0" cellpadding="2" cellspacing="1"
+                                           style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
+                                           bgcolor="#E3E9EE">
+                                        <tr>
+                                            <td nowrap align="right">实验编号:</td>
+                                            <td nowrap>
+                                                <input name="experimentNo" id="experimentNo" onblur="" class="text"
+                                                       style="width:154px" maxlength="20" valid="required|isAccount"
+                                                       value="${experimentNo}" readonly/>
+                                                <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                            </td>
+                                            <td nowrap align="right">实验名称:</td>
+                                            <td nowrap>
+                                                <input name="experimentName" id="experimentName" onblur="" class="text"
+                                                       style="width:154px" maxlength="20" valid="required|isAccount"
+                                                       value="${experimentName}" readonly/>
+                                                <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">所属课程:</td>
+                                            <td nowrap>
+                                                <select name="theCourse">
+                                                    <option></option>
+                                                    <c:forEach items="${courseList}" var="item">
+                                                        <option value="${item.id}">${item.value}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </td>
+                                            <td nowrap align="right">指导老师:</td>
+                                            <td nowrap>
+                                                <input name="instructor" id="instructor" class="text" style="width:154px"
+                                                       valid="required|isPassword" value="${instructor}" readonly/>
+                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_us_spwd"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">实验指导书:</td>
+                                            <td nowrap>
+                                                <input name="guideBook" id="guideBook" onblur="" type="file"
+                                                       style="width:154px" maxlength="20" valid="required|isAccount"
+                                                       value="" readonly/>${instructor}
+                                                <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_us_sno"></span>
+
+                                            </td>
+                                            <td nowrap align="right">实验报告书:</td>
+                                            <td nowrap>
+                                                <input name="report" id="report" type="file"
+                                                       style="width:154px" maxlength="20" valid="required|isAccount"
+                                                       value="" readonly/>${report}
+                                                <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_us_sname"></span>
+                                            </td>
+
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">是否提交实验报告:</td>
+                                            <td nowrap>
+                                                <select name="ifReported">
+                                                    <option></option>
+                                                    <c:forEach items="${ifReported}" var="item">
+                                                        <option value="${item.id}">${item.value}</option>
+                                                    </c:forEach>
+                                                </select>
+                                            </td>
+                                            <td nowrap align="right">最后提交期限:</td>
+                                            <td nowrap>
+                                                <input name="instructor" id="limitDate" class="text" style="width:154px"
+                                                       valid="required|isPassword" value="${limitDate}" readonly/>
+                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_us_spwd"></span>
+                                            </td>
+                                        </tr>
+
+                                    </table>
+                                </td>
+                            </tr>
+                        </table>
+
+                    </td>
+                </tr>
+            </table>
+        </td>
+        <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
     </tr>
 
 
@@ -128,7 +242,16 @@
                                                             </table>
                                                         </td>
                                                         <td>
-
+                                                            <div align="right">
+                                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                                        <a href="" onclick="toAddQuestion()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                            <span class="STYLE1">新增题目</span></a>&nbsp;
+                                                                        <a href="#"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                                                               border="0"/> <span class="STYLE1">删除题目</span></a>&nbsp;&nbsp;
+                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                                    </span>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -148,9 +271,6 @@
                                                         <input type="checkbox" name="checkbox" id="checkbox"
                                                                onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                     </div>
-                                                </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">序号</span></div>
                                                 </td>
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">编号</span></div>
@@ -188,9 +308,9 @@
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20">
                                                     <input name="idcheckbox" type="checkbox"
-                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>1</td>
+
                                                 <td>XZ001</td>
                                                 <td>编程语言</td>
                                                 <td>选择题目</td>
@@ -200,14 +320,14 @@
                                                 <td>C、 HTML</td>
                                                 <td>D、 Java</td>
                                                 <td>D</td>
-                                                <td><a href="detail.jsp">查看详细</a></td>
+                                                <td><a href="detail">查看详细</a></td>
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20">
                                                     <input name="idcheckbox" type="checkbox"
                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>2</td>
+
                                                 <td>XZ002</td>
                                                 <td>编程语言</td>
                                                 <td>选择题目</td>
@@ -217,18 +337,29 @@
                                                 <td>C、 HTML</td>
                                                 <td>D、 Java</td>
                                                 <td>D</td>
-                                                <td><a href="detail.jsp">查看详细</a></td>
+                                                <td><a href="detail">查看详细</a></td>
                                             </tr>
 
 
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                    <td height="20">
+                                                        <input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.id}</td>
+
                                                     <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
+                                                    <td>${item.course}</td>
+                                                    <td>${item.type}</td>
+                                                    <td>${item.content}</td>
+                                                    <td>${item.type}</td>
+                                                    <td>${item.questionItem1}</td>
+                                                    <td>${item.questionItem2}</td>
+                                                    <td>${item.questionItem3}</td>
+                                                    <td>${item.questionItem4}</td>
+                                                    <td>${item.answer}</td>
+                                                    <td><a href="detail">查看详细</a></td>
+
 
                                                 </tr>
                                             </c:forEach>
@@ -244,8 +375,8 @@
                                 <td align="center">
                                     <input type="button" name="Submit2" value="返回" class="button"
                                            onclick="window.history.go(-1);"/>
-                                    <input type="button" name="Submit" value="添加选中题目到本试卷" class="button"
-                                           onclick="toApply();return false;"/>
+                                    <input type="button" name="Submit" value="保存" class="button"
+                                           onclick="addend();"/>
 
                                 </td>
                             </tr>
