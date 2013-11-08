@@ -136,19 +136,22 @@
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">单据号</span></div>
                                             </td>
-                                            <td width="100" bgcolor="d3eaef">
+                                            <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">申请人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">申请时间</span></div>
                                             </td>
-                                            <td width="100" bgcolor="d3eaef">
+                                            <td width="60" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">维修经费</span></div>
+                                            </td>
+                                            <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">审批人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">审批时间</span></div>
                                             </td>
-                                            <td width="100" bgcolor="d3eaef">
+                                            <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">经手人</span></div>
                                             </td>
                                             <td width="100" bgcolor="d3eaef">
@@ -162,7 +165,10 @@
                                             </td>
                                             <c:if test="${formType=='process'}">
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">处理申请</span></div>
+                                                    <div align="center"><span class="STYLE10">已修缮</span></div>
+                                                </td>
+                                                <td width="100" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">报废设备</span></div>
                                                 </td>
                                             </c:if>
                                         </tr>
@@ -176,6 +182,7 @@
                                                 <td>${item.sn}</td>
                                                 <td>${item.applicant.name}</td>
                                                 <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
+                                                <td>${item.annex}</td>
                                                 <td>${item.approver.name}</td>
                                                 <td><fmt:formatDate value="${item.approveTime}" type="both"/></td>
                                                 <td>${item.operator.name}</td>
@@ -189,7 +196,14 @@
                                                     <td>
                                                         <c:if test="${item.state.id==31}">
                                                             <a href="process?application_id=${item.id}">
-                                                                <img src="../../../images/tb.gif" width="10" height="10" border="0"/>
+                                                                <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                            </a>
+                                                        </c:if>
+                                                    </td>
+                                                    <td>
+                                                        <c:if test="${item.state.id==31}">
+                                                            <a href="process?application_id=${item.id}">
+                                                                <img src="../../../images/X.gif" width="10" height="10" border="0"/>
                                                             </a>
                                                         </c:if>
                                                     </td>

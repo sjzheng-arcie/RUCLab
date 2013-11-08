@@ -1,13 +1,28 @@
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "applylist.html";
-        document.form1.submit();
-    }
+<%--
+  Created by IntelliJ IDEA.
+  User: sjzheng
+  Date: 13-11-6
+  Time: 下午5:15
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 
-</script>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function save() {
+            if(!validator(document.form1)){
+                return;
+            }
+            document.form1.action = "/equipment/jsp/sys/typecode/add";
+            document.form1.submit();
+        }
+
+    </script>
+</head>
 <body>
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">设备信息管理 >设备登记入库管理</div>
+                            <div class="titlebt">系统管理 > 分类添加</div>
                         </td>
                     </tr>
                 </table>
@@ -35,7 +50,7 @@
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
                         <td height="30">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <table width="100%" border="" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td height="24" bgcolor="#353c44">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">设备信息修改</span></td>
+                                                                    class="STYLE1">添加分类</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -65,87 +80,37 @@
                     </tr>
                     <tr valign="top">
                         <td>
-                            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">设备编号:</td>
+                                                <td nowrap align="right">分类名称:</td>
                                                 <td nowrap>
-                                                    <input value="" onblur="" class="text" style="width:154px"
-                                                           maxlength="20" v/>
+                                                    <input name="name" id="name" class="text"
+                                                           style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类名称不能为空!"/>
+
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-                                                <td nowrap align="right">设备名称:</td>
+                                                <td nowrap align="right">分类号:</td>
                                                 <td nowrap>
-                                                    <input value="" onblur="" class="text" style="width:154px"
-                                                           maxlength="20"/>
+                                                    <input name= "sn" id="sn" class="text" style="width:154px" maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类号不能为空!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">设备型号:</td>
-                                                <td nowrap>
-                                                    <input value="" onblur="" class="text" style="width:154px"
-                                                           maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-                                                <td nowrap align="right">设备类型:</td>
-                                                <td nowrap>
-                                                    <input value="" onblur="" class="text" style="width:154px"
-                                                           maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">设备规格:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text"
-                                                           style="width:154px"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-                                                <td nowrap align="right">实验室:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text"
-                                                           style="width:154px"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">试验台:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text"
-                                                           style="width:154px"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-                                                <td nowrap align="right">使用方向:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text"
-                                                           style="width:154px"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">备注:</td>
-                                                <td nowrap>
-                                                    <textarea></textarea>
-
-                                                </td>
 
 
+                                                <td nowrap align="right">描述：</td>
+                                                <td nowrap align="left" colspan="3"><textarea name= "description" id="description"
+                                                        style="width:70%;height:100"></textarea></td>
                                             </tr>
 
 

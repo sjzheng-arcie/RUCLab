@@ -66,34 +66,30 @@
             </tr>
         </table>
         <ul class="MM">
-            <li><a href="jsp/dev/info/devicelist.html" onfocus="toFocus(this)" target="main">设备信息库管理</a>
+            <li><a href="jsp/dev/info/deviceList" onfocus="toFocus(this)" target="main">设备信息库管理</a>
             </li>
         </ul>
     </div>
 </shiro:hasAnyRoles>
 
-<h1 class="type"><a href="javascript:void(0)">验收管理</a></h1>
+<%--<h1 class="type"><a href="javascript:void(0)">验收管理</a></h1>--%>
 
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-
-        <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">我的设备入库申请</a>
-        </li>
-
-        <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">设备入库审批</a>
-        </li>
-
-    </ul>
-</div>
+<%--<div class="content">--%>
+<%--<table width="100%" border="0" cellspacing="0" cellpadding="0">--%>
+<%--<tr>--%>
+<%--<td><img src="images/menu_topline.gif" width="182" height="5"/></td>--%>
+<%--</tr>--%>
+<%--</table>--%>
+<%--<ul class="MM">--%>
+<%--<shiro:hasAnyRoles name="administrators,equipment_admin">--%>
+<%--<li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">设备验收入库</a>--%>
+<%--</li>--%>
+<%--</shiro:hasAnyRoles>--%>
+<%--</ul>--%>
+<%--</div>--%>
 
 
 <h1 class="type"><a href="javascript:void(0)">设备借用管理</a></h1>
-
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -123,7 +119,6 @@
 </div>
 
 <h1 class="type"><a href="javascript:void(0)">设备归还管理</a></h1>
-
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -131,20 +126,14 @@
         </tr>
     </table>
     <ul class="MM">
-
-        <li><a href="jsp/dev/return/myusingdevicelist.html" onfocus="toFocus(this)" target="main">我使用中的设备</a>
-        </li>
-        <li><a href="jsp/dev/return/myapplylist.html" onfocus="toFocus(this)" target="main">我的设备归还申请</a>
-        </li>
-
-        <li><a href="jsp/dev/return/applylist.html" onfocus="toFocus(this)" target="main">设备归还审核</a>
-        </li>
-
+        <shiro:hasAnyRoles name="administrators,teacher,leader">
+            <li><a href="jsp/dev/return/deviceList.html" onfocus="toFocus(this)" target="main">我使用中的设备</a>
+            </li>
+        </shiro:hasAnyRoles>
     </ul>
 </div>
 
 <h1 class="type"><a href="javascript:void(0)">设备转移管理</a></h1>
-
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -173,96 +162,98 @@
     </ul>
 </div>
 
+<shiro:hasAnyRoles name="administrators,equipment_admin,leader">
+    <h1 class="type"><a href="javascript:void(0)">设备捐赠管理</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/donate/deviceList" onfocus="toFocus(this)" target="main">可捐赠设备</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/donate/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备捐赠申请</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,leader">
+                <li><a href="jsp/dev/donate/applyList?formType=review" onfocus="toFocus(this)" target="main">设备捐赠审核</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/donate/applyList?formType=process" onfocus="toFocus(this)" target="main">设备捐赠执行</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <li><a href="jsp/dev/donate/applyList?formType=history" onfocus="toFocus(this)" target="main">设备捐赠历史</a>
+            </li>
+        </ul>
+    </div>
+</shiro:hasAnyRoles>
 
-<h1 class="type"><a href="javascript:void(0)">设备捐赠管理</a></h1>
+<shiro:hasAnyRoles name="administrators,equipment_admin,leader">
+    <h1 class="type"><a href="javascript:void(0)">设备维修保养</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/repair/deviceList" onfocus="toFocus(this)" target="main">可维修设备</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/repair/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备维修申请</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,leader">
+                <li><a href="jsp/dev/repair/applyList?formType=review" onfocus="toFocus(this)" target="main">设备维修审核</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/repair/applyList?formType=process" onfocus="toFocus(this)" target="main">设备维修执行</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <li><a href="jsp/dev/repair/applyList?formType=history" onfocus="toFocus(this)" target="main">设备维修历史</a>
+            </li>
+        </ul>
+    </div>
+</shiro:hasAnyRoles>
 
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/donate/deviceList" onfocus="toFocus(this)" target="main">可捐赠设备</a>
+<shiro:hasAnyRoles name="administrators,equipment_admin,leader">
+    <h1 class="type"><a href="javascript:void(0)">设备报减销账</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/deficit/deviceList" onfocus="toFocus(this)" target="main">可报减设备</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/deficit/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备报减申请</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,leader">
+                <li><a href="jsp/dev/deficit/applyList?formType=review" onfocus="toFocus(this)" target="main">设备报减审核</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <shiro:hasAnyRoles name="administrators,equipment_admin">
+                <li><a href="jsp/dev/deficit/applyList?formType=process" onfocus="toFocus(this)" target="main">设备报减执行</a>
+                </li>
+            </shiro:hasAnyRoles>
+            <li><a href="jsp/dev/deficit/applyList?formType=history" onfocus="toFocus(this)" target="main">设备报减历史</a>
             </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/donate/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备捐赠申请</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,leader">
-            <li><a href="jsp/dev/donate/applyList?formType=review" onfocus="toFocus(this)" target="main">设备捐赠审核</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,equipment_admin">
-            <li><a href="jsp/dev/donate/applyList?formType=process" onfocus="toFocus(this)" target="main">设备捐赠执行</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <li><a href="jsp/dev/donate/applyList?formType=history" onfocus="toFocus(this)" target="main">设备捐赠历史</a>
-        </li>
-    </ul>
-</div>
-
-<h1 class="type"><a href="javascript:void(0)">设备维修保养</a></h1>
-
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/repair/deviceList" onfocus="toFocus(this)" target="main">可维修设备</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/repair/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备维修申请</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,leader">
-            <li><a href="jsp/dev/repair/applyList?formType=review" onfocus="toFocus(this)" target="main">设备维修审核</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,equipment_admin">
-            <li><a href="jsp/dev/repair/applyList?formType=process" onfocus="toFocus(this)" target="main">设备维修执行</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <li><a href="jsp/dev/repair/applyList?formType=history" onfocus="toFocus(this)" target="main">设备维修历史</a>
-        </li>
-    </ul>
-</div>
-
-<h1 class="type"><a href="javascript:void(0)">设备报减销账</a></h1>
-
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/deficit/deviceList" onfocus="toFocus(this)" target="main">可报减设备</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/deficit/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备报减申请</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,leader">
-            <li><a href="jsp/dev/deficit/applyList?formType=review" onfocus="toFocus(this)" target="main">设备报减审核</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,equipment_admin">
-            <li><a href="jsp/dev/deficit/applyList?formType=process" onfocus="toFocus(this)" target="main">设备报减执行</a>
-            </li>
-        </shiro:hasAnyRoles>
-        <li><a href="jsp/dev/deficit/applyList?formType=history" onfocus="toFocus(this)" target="main">设备报减历史</a>
-        </li>
-    </ul>
-</div>
+        </ul>
+    </div>
+</shiro:hasAnyRoles>
 
 <h1 class="type"><a href="javascript:void(0)">设备增减值</a></h1>
 <div class="content">
@@ -278,6 +269,7 @@
         </li>
     </ul>
 </div>
+
 
 <h1 class="type"><a href="javascript:void(0)">固定资产盘点</a></h1>
 <div class="content">

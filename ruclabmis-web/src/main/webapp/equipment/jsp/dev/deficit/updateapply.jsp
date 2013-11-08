@@ -110,6 +110,20 @@
                                             <span style="color:red;">*</span>
                                         </td>
                                     </tr>
+                                    <tr>
+                                        <td align="center">报减理由</td>
+                                        <td>
+                                            <input name="annex" id="annex" value="${apply.annex}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   valid="required"
+                                                   errmsg="报减理由不能为空!"/>
+                                            <span style="color:red;">*</span>
+                                        </td>
+                                        <td align="center" class="identifier">备注</td>
+                                        <td align="left">
+                                            <textarea id="comments" name="comments">${apply.comments}</textarea>
+                                        </td>
+                                    </tr>
                                 </table>
                             </td>
                         </tr>
@@ -119,7 +133,7 @@
                             <td align="center">
                                 <c:if test="${formType=='apply'}">
                                     <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                        <input type="button" name="addEquipment" value="添加设备" class="button" onclick="toAddEquipment();"/>
+                                        <input type="button" name="addEquipmentsToApply" value="添加设备" class="button" onclick="toAddEquipment();"/>
                                         <input type="button" name="save" value="保存" class="button" onclick="update();"/>
                                         <input type="reset" name="reset" value="重置" class="button"/>
                                     </shiro:hasAnyRoles>
@@ -227,7 +241,7 @@
                                     <td>${item.useDirection}</td>
                                     <c:if test="${formType=='apply'}">
                                         <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                            <td><a href="/equipment/jsp/dev/borrow/removeEquipment?application_id=${apply.applicationId}&equipment_id=${item.id}">
+                                            <td><a href="/equipment/jsp/dev/borrow/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
                                                 <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
                                             </td>
                                         </shiro:hasAnyRoles>

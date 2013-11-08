@@ -1,13 +1,18 @@
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "myapplylist.html";
-        document.form1.submit();
-    }
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function save() {
+            document.form1.action = "update";
+            document.form1.submit();
+        }
 
-</script>
+    </script>
+</head>
+
 <body>
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">设备捐赠管理 > 捐赠申请</div>
+                            <div class="titlebt">系统管理 > 分类号修改</div>
                         </td>
                     </tr>
                 </table>
@@ -35,7 +40,7 @@
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
                         <td height="30">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <table width="100%" border="" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td height="24" bgcolor="#353c44">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">设备捐赠申请</span></td>
+                                                                    class="STYLE1">修改分类</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -65,78 +70,42 @@
                     </tr>
                     <tr valign="top">
                         <td>
-                            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
+                                            <input name="id" id="id" type="hidden" value="${typecode.id}">
                                             <tr>
-                                                <td align="right">申请编号：</td>
-                                                <td align="left"><input type="text" value="DBSQ000001"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-                                                <td align="right">申请人：</td>
-                                                <td align="left"><input type="text" value="风凌雪"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
+                                                <td nowrap align="right">分类名称:</td>
+                                                <td nowrap>
+                                                    <input name="name" id="name" class="text"
+                                                           style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类名称不能为空!"
+                                                           value="${typecode.name}"/>
+
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-
-                                            </tr>
-
-                                            <tr>
-                                                <td align="right">持有部门:</td>
-                                                <td align="left"><input type="text" value="网络实验室"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-
-                                                <td align="right">持有人:</td>
-                                                <td align="left"><input type="text" value="云天青"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-
-
+                                                <td nowrap align="right">分类号:</td>
+                                                <td nowrap>
+                                                    <input name= "sn" id="sn" class="text" style="width:154px" maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类号不能为空!"
+                                                           value="${typecode.sn}"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
                                             </tr>
                                             <tr>
 
-                                                <td align="right">接收单位：</td>
-                                                <td align="left"><input type="text" value="软件实验室"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-                                                <td align="right">申请时间：</td>
-                                                <td align="left"><input type="text" value="2013-10-11"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
 
-                                            </tr>
-
-                                            <tr>
-                                                <td align="right">设备编号：</td>
-                                                <td align="left"><input type="text" value="SB20008"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-                                                <td align="right">设备名称：</td>
-                                                <td align="left"><input type="text" value="1248单片机"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-
-                                            </tr>
-
-                                            <tr>
-                                                <td align="right">设备型号：</td>
-                                                <td align="left"><input type="text" value="SB-120"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-
-                                                <td align="right">设备规格：</td>
-                                                <td align="left"><input type="text" value="200CM*120CM*80CM"/> <span
-                                                        style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span></td>
-                                            </tr>
-
-                                            <tr>
-                                                <td align="right">捐赠备注：</td>
-                                                <td align="left" colspan="3"><textarea
-                                                        style="width:70%;height:100">贫困救助</textarea></td>
+                                                <td nowrap align="right">描述：</td>
+                                                <td nowrap align="left" colspan="3">
+                                                    <textarea name= "description" id="description"
+                                                  style="width:70%;height:100"
+                                                  value="${typecode.description}"></textarea></td>
                                             </tr>
 
 
@@ -150,8 +119,6 @@
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="Submit3" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="button" name="Submit" value="提交" class="button" onclick="save();"/>
-
                                         <input type="button" name="Submit2" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>

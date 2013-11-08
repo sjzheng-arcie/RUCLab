@@ -116,12 +116,12 @@
     insert into equipment_check (category_id, sn, name, 
       model_number, specifications, unit_price, 
       vender, factory_number, acquisition_date, 
-      funding_subject, current_user, location, 
+      funding_subject, user, location, 
       remarks)
     values (#{categoryId,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
       #{modelNumber,jdbcType=VARCHAR}, #{specifications,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, 
       #{vender,jdbcType=VARCHAR}, #{factoryNumber,jdbcType=VARCHAR}, #{acquisitionDate,jdbcType=DATE}, 
-      #{fundingSubject,jdbcType=VARCHAR}, #{currentUser,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, 
+      #{fundingSubject,jdbcType=VARCHAR}, #{user,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR},
       #{remarks,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.EquipmentCheck">
@@ -160,8 +160,8 @@
       <if test="fundingSubject != null">
         funding_subject,
       </if>
-      <if test="currentUser != null">
-        current_user,
+      <if test="user != null">
+        user,
       </if>
       <if test="location != null">
         location,
@@ -201,8 +201,8 @@
       <if test="fundingSubject != null">
         #{fundingSubject,jdbcType=VARCHAR},
       </if>
-      <if test="currentUser != null">
-        #{currentUser,jdbcType=VARCHAR},
+      <if test="user != null">
+        #{user,jdbcType=VARCHAR},
       </if>
       <if test="location != null">
         #{location,jdbcType=VARCHAR},
@@ -254,8 +254,8 @@
       <if test="record.fundingSubject != null">
         funding_subject = #{record.fundingSubject,jdbcType=VARCHAR},
       </if>
-      <if test="record.currentUser != null">
-        current_user = #{record.currentUser,jdbcType=VARCHAR},
+      <if test="record.user != null">
+        user = #{record.user,jdbcType=VARCHAR},
       </if>
       <if test="record.location != null">
         location = #{record.location,jdbcType=VARCHAR},
@@ -281,7 +281,7 @@
       factory_number = #{record.factoryNumber,jdbcType=VARCHAR},
       acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
       funding_subject = #{record.fundingSubject,jdbcType=VARCHAR},
-      current_user = #{record.currentUser,jdbcType=VARCHAR},
+      user = #{record.user,jdbcType=VARCHAR},
       location = #{record.location,jdbcType=VARCHAR},
       remarks = #{record.remarks,jdbcType=VARCHAR}
     <if test="_parameter != null">
@@ -321,8 +321,8 @@
       <if test="fundingSubject != null">
         funding_subject = #{fundingSubject,jdbcType=VARCHAR},
       </if>
-      <if test="currentUser != null">
-        current_user = #{currentUser,jdbcType=VARCHAR},
+      <if test="user != null">
+        user = #{user,jdbcType=VARCHAR},
       </if>
       <if test="location != null">
         location = #{location,jdbcType=VARCHAR},
@@ -345,7 +345,7 @@
       factory_number = #{factoryNumber,jdbcType=VARCHAR},
       acquisition_date = #{acquisitionDate,jdbcType=DATE},
       funding_subject = #{fundingSubject,jdbcType=VARCHAR},
-      current_user = #{currentUser,jdbcType=VARCHAR},
+      user = #{user,jdbcType=VARCHAR},
       location = #{location,jdbcType=VARCHAR},
       remarks = #{remarks,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
@@ -373,5 +373,9 @@
   <select id="countInventoryLose" resultType="java.lang.Integer">
       SELECT COUNT(ec.id) FROM equipment_check ec WHERE ec.sn NOT IN (
         SELECT e.sn FROM equipment e )
+  </select>
+
+  <select id="selectIdBySn" parameterType="String" resultType="Integer">
+      SELECT id FROM equipment_check WHERE sn = #{sn}
   </select>
 </mapper>

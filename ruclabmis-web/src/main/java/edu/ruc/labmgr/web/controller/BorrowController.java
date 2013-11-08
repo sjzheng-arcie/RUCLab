@@ -118,7 +118,7 @@ public class BorrowController {
 //    @RequestMapping(value = "/toUpdateApplication", method = RequestMethod.GET)
 //    public ModelAndView toUpdateApplication(@RequestParam("application_id") int applicationId,
 //                                      @RequestParam("formType")String formType) {
-//        ApplyWithEquipment apply = serviceApply.selectByApplyId(applicationId);
+//        ApplyWithEquipment apply = serviceApply.selectApplyById(applicationId);
 //
 //        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/borrow/updateapply");
 //        mav.addObject("formType", formType);

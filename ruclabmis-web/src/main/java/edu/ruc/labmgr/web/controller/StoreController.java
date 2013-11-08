@@ -69,7 +69,7 @@ public class StoreController {
 //
 //    @RequestMapping(value = "/toUpdateApplication", method = RequestMethod.GET)
 //    public ModelAndView toUpdateApplication(@RequestParam("application_id") int applicationId) {
-//        ApplyWithEquipment store = serviceApply.selectByApplyId(applicationId);
+//        ApplyWithEquipment store = serviceApply.selectApplyById(applicationId);
 //
 //        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/updateapply");
 //        mav.addObject("store", store);

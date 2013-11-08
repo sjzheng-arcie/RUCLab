@@ -1,5 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 <head>
     <title>仪器设备类资产盘亏</title>
@@ -67,16 +68,11 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-	            			<a href="../deficit/addapply.html"><img src="/equipment/images/add_min.gif" width="10"
-                                                                    height="10" border="0"/> <span
-                                    class="STYLE1">报减</span></a>&nbsp;
-      					 
+
                   <a href="#" onclick="toHouseDy();"><img src="/equipment/images/del_min.gif" width="10" height="10"
-                                                          border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                                                          border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
                   <a href="#" onclick="toHouseLay();"><img src="/equipment/images/del_min.gif" width="10" height="10"
-                                                           border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                  <a href="#" onclick="toRoom();"><img src="/equipment/images/del_min.gif" width="10" height="10"
-                                                       border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                           border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	              </span>
                                                                 </div>
                                                             </td>
@@ -96,7 +92,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm','checkbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="40" bgcolor="d3eaef">
@@ -144,7 +140,7 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="equip" varStatus="st">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                        <td height="20"><input name="checkbox" type="checkbox"
                                                                                value="admin" onclick="checkOne(this)"/>
                                                         </td>
                                                         <td>${st.index+1}</td>
@@ -156,7 +152,7 @@
                                                         <td>${equip.unitPrice}</td>
                                                         <td>${equip.vender}</td>
                                                         <td>${equip.factoryNumber}</td>
-                                                        <td>${equip.acquisitionDate}</td>
+                                                        <td><fmt:formatDate value="${equip.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
                                                         <td>${equip.fundingSubject}</td>
                                                         <td>${equip.user}</td>
                                                         <td>${equip.location}</td>

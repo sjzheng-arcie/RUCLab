@@ -1,8 +1,6 @@
-<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date" />
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -10,14 +8,13 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
-    function saveEquipment() {
+    function update() {
         if(!validator(document.mainForm)){
             return;
         }
-        document.mainForm.action = "addEquipment?application_id="+${applicationId};
+        document.mainForm.action = "update";
         document.mainForm.submit();
     }
-
 </script>
 <body>
 <form name="mainForm" method="post">
@@ -30,7 +27,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备信息管理 > 设备资产报增 > 添加设备 </div>
+                    <div class="titlebt">设备信息管理 > 设备资产报增 </div>
                 </td>
             </tr>
         </table>
@@ -57,7 +54,7 @@
                                                         <div align="center"><img src="../../../images/tb.gif" width="14"
                                                                                  height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产报增单 > 添加设备</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产报增单</span>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -82,9 +79,12 @@
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr style="height: 30px;">
+                                        <input name="id" id="id" type="hidden" value="${equipment.id}">
+                                        <input name="application_id" id="application_id" type="hidden" value="${applicationId}">
+
                                         <td align="center">设备编号</td>
                                         <td>
-                                            <input name="sn" id="sn" onblur="" class="text"
+                                            <input name="sn" id="sn" value="${equipment.sn}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required|isNumber"
                                                    errmsg="设备编号不能为空!|设备编号只能为数字"/>
@@ -92,15 +92,15 @@
                                         </td>
                                         <td align="center">分类号</td>
                                         <td>
-                                            <input name="categoryId" id="categoryId" onblur="" class="text"
+                                            <input name="categoryId" id="categoryId" value="${equipment.categoryId}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
-                                                   valid="required|isNumber"  min="1" max="32767"
+                                                   valid="required|isNumber"
                                                    errmsg="分类号不能为空!|分类号只能为数字"/>
                                             <span style="color:red;">*</span>
                                         </td>
                                         <td align="center">设备名称</td>
                                         <td>
-                                            <input name="name" id="name" onblur="" class="text"
+                                            <input name="name" id="name" value="${equipment.name}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required"
                                                    errmsg="设备名称不能为空!"/>
@@ -108,43 +108,66 @@
                                         </td>
                                     </tr>
                                     <tr style="height: 30px;">
+                                        <td align="center">领用人</td>
+                                        <input name="holder" id="holder" type="hidden" value="${equipment.holder}">
+                                        <td>
+                                            <input name="holderName" id="holderName" value="${equipment.holderName}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
+                                        </td>
+                                        <td align="center">使用人</td>
+                                        <td>
+                                            <input name="user" id="user" value="${equipment.user}" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"/>
+                                        </td>
+                                        <td align="center">设备状态</td>
+                                        <td>
+                                            <select name="stateId" id="stateId">
+                                                <c:forEach items="${states}" var="states">
+                                                    <option value="${states.id}"
+                                                            <c:if test="${states.id == equipment.stateId}"> selected</c:if>>${states.value}
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
+                                        </td>
+                                    </tr>
+                                    <tr style="height: 30px;">
                                         <td align="center">设备型号</td>
                                         <td>
-                                            <input name="modelNumber" id="modelNumber" onblur="" class="text"
+                                            <input name="modelNumber" id="modelNumber" value="${equipment.modelNumber}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="isNumber"
                                                    errmsg="设备型号只能为数字"/>
                                         </td>
                                         <td align="center">设备规格</td>
                                         <td>
-                                            <input name="specifications" id="specifications" onblur="" class="text"
+                                            <input name="specifications" id="specifications" value="${equipment.specifications}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="isNumber"
                                                    errmsg="设备规格只能为数字"/>
                                         </td>
                                         <td align="center">单价</td>
                                         <td>
-                                            <input name="unitPrice" id="unitPrice" onblur="" class="text"
+                                            <input name="unitPrice" id="unitPrice" value="${equipment.unitPrice}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required|isNumber"
                                                    errmsg="单价不能为空|单价只能为数字"/>
                                             <span style="color:red;">*</span>
-                                            </td>
+                                        </td>
                                     </tr>
                                     <tr style="height: 30px;">
                                         <td align="center">厂家</td>
                                         <td>
-                                            <input name="vender" id="vender" onblur="" class="text"
+                                            <input name="vender" id="vender" value="${equipment.vender}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
                                         <td align="center">出厂号</td>
                                         <td>
-                                            <input name="factoryNumber" id="factoryNumber" onblur="" class="text"
+                                            <input name="factoryNumber" id="factoryNumber" value="${equipment.factoryNumber}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
                                         <td align="center">国别</td>
                                         <td>
-                                            <input name="country" id="country" onblur="" class="text"
+                                            <input name="country" id="country" value="${equipment.country}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
                                     </tr>
@@ -152,6 +175,7 @@
                                         <td align="center">购置日期</td>
                                         <td>
                                             <input name="acquisitionDate" id="acquisitionDate"
+                                                   value="<fmt:formatDate value="${equipment.acquisitionDate}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                                    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
@@ -159,15 +183,15 @@
                                         <td align="center">出厂日期</td>
                                         <td>
                                             <input name="manufactureDate" id="manufactureDate"
+                                                   value="<fmt:formatDate value="${equipment.manufactureDate}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                    valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                                    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                         </td>
                                         <td align="center">报废日期</td>
                                         <td>
-                                            <c:set var="scrapDateVal" value="<%=new Date(now.getYear()+3,now.getMonth(),now.getDate())%>"></c:set>
                                             <input name="scrapDate" id="scrapDate"
-                                                   value="<fmt:formatDate value="${scrapDateVal}" pattern="yyyy-MM-dd"/>"
+                                                   value="<fmt:formatDate value="${equipment.scrapDate}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                    valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"
                                                    onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
@@ -203,7 +227,7 @@
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="center">
-                                            <input type="button" name="save" value="保存" class="button" onclick="saveEquipment();"/>
+                                            <input type="button" name="save" value="保存" class="button" onclick="update();"/>
                                             <input type="reset" name="reset" value="重置" class="button"/>
                                             <input type="button" name="return" value="返回" class="button"
                                                    onclick="window.history.go(-1);"/>

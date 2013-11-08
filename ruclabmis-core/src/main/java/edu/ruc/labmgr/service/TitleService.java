@@ -2,17 +2,12 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.Title;
 import edu.ruc.labmgr.domain.TitleCriteria;
-import edu.ruc.labmgr.domain.User;
-import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.TitleMapper;
-import edu.ruc.labmgr.utils.SysUtil;
-import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import com.mysql.jdbc.StringUtils;
 import java.util.List;
 
 /**
@@ -32,9 +27,9 @@ public class TitleService {
 		TitleCriteria criteria = new TitleCriteria();
 		criteria.setOrderByClause("name");
 		TitleCriteria.Criteria ec = criteria.createCriteria();
-		if (StringUtils.isNotEmpty(name))
+		if (StringUtils.isNullOrEmpty(name))
 			ec.andNameLike("%" + name + "%");
-		if (StringUtils.isNotEmpty(grade))
+		if (StringUtils.isNullOrEmpty(grade))
 			ec.andGradeLike("%" + grade + "%");
 		return getTitlesByCriteria(PageNum,criteria);
 

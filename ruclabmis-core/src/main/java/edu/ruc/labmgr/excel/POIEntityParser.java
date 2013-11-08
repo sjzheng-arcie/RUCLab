@@ -1,11 +1,7 @@
 package edu.ruc.labmgr.excel;
 
 import edu.ruc.labmgr.utils.SysUtil;
-import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
-import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.*;
 
 import java.lang.reflect.ParameterizedType;
 import java.util.*;
@@ -19,21 +15,23 @@ public abstract class POIEntityParser<T> {
 
     private static String COL_PROP_BEAN = "colPropMapping";
     private static String COL_PROP_MAP_PREFIX = "CPMAP.";
-    private static String DATA_START_PROP = ".DataStartIndex";
+    private static String DATA_START_PROP = ".DataStart";
 
     private Class<T> type;
     private String colPropMapPrefix;
+    private String dataStartIndexPrefix;
 
     public POIEntityParser() {
         Class clz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass()).getActualTypeArguments()[0];
         this.type = clz;
-        this.colPropMapPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName();
-
+        this.colPropMapPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName() + ".Field";
+        this.dataStartIndexPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName();
     }
 
     public POIEntityParser(Class<T> clz) {
         this.type = clz;
-        this.colPropMapPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName();
+        this.colPropMapPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName() + ".Field";
+        this.dataStartIndexPrefix = COL_PROP_MAP_PREFIX + type.getSimpleName();
     }
 
     /**
@@ -42,21 +40,35 @@ public abstract class POIEntityParser<T> {
      * @param row
      * @return
      */
-    public T parseFromRow(HSSFRow row) {
+    public T parseFromRow(Row row) {
         List<ColumnPropMapping> mappings = getColPropMapping();
         Map<String, Object> map = new HashMap<>();
         for (ColumnPropMapping m : mappings) {
-            HSSFCell c = row.getCell(m.getIndex());
-            switch (c.getCellType()) {
-                case Cell.CELL_TYPE_STRING:
-                    map.put(m.getPropName(), c.getStringCellValue());
-                    break;
-                case Cell.CELL_TYPE_NUMERIC:
-                    map.put(m.getPropName(), c.getNumericCellValue());
-                    break;
-                case Cell.CELL_TYPE_BOOLEAN:
-                    map.put(m.getPropName(), c.getBooleanCellValue());
-                    break;
+            Cell c = row.getCell(m.getIndex());
+            if (c != null) {
+                switch (c.getCellType()) {
+                    case Cell.CELL_TYPE_STRING:
+                        map.put(m.getPropName(), c.getStringCellValue());
+                        break;
+                    case Cell.CELL_TYPE_NUMERIC:
+                        if (DateUtil.isCellDateFormatted(c)){
+                            map.put(m.getPropName(),c.getDateCellValue());
+                        }else{
+                            map.put(m.getPropName(), c.getNumericCellValue());
+                        }
+                        break;
+                    case Cell.CELL_TYPE_BOOLEAN:
+                        map.put(m.getPropName(), c.getBooleanCellValue());
+                        break;
+                    case Cell.CELL_TYPE_BLANK:
+                        map.put(m.getPropName(), "");
+                        break;
+                    default:
+                        map.put(m.getPropName(), null);
+                        break;
+                }
+            } else {
+                map.put(m.getPropName(), null);
             }
         }
         return mapToEntity(map);
@@ -71,7 +83,7 @@ public abstract class POIEntityParser<T> {
      */
     public int getDataStartIndex() {
         Properties p = SysUtil.getBean(COL_PROP_BEAN, Properties.class);
-        String startIndex = p.getProperty(this.colPropMapPrefix + DATA_START_PROP, "0");
+        String startIndex = p.getProperty(this.dataStartIndexPrefix + DATA_START_PROP, "0");
         return Integer.valueOf(startIndex);
     }
 
@@ -81,27 +93,27 @@ public abstract class POIEntityParser<T> {
      * @param sheet
      * @return
      */
-    public List<T> parseFromSheet(HSSFSheet sheet) {
+    public List<T> parseFromSheet(Sheet sheet) {
         assert sheet != null;
         int max = sheet.getLastRowNum();
         int min = getDataStartIndex();
         List<T> result = new ArrayList();
         if (max > min) {
             for (int i = min; i < max; i++) {
-                HSSFRow row = sheet.getRow(i);
+                Row row = sheet.getRow(i);
                 result.add(parseFromRow(row));
             }
         }
         return result;
     }
 
-    public List<T> parseFromWorkBook(HSSFWorkbook workbook) {
+    public List<T> parseFromWorkBook(Workbook workbook) {
         assert workbook != null;
         int nos = workbook.getNumberOfSheets();
         List<T> result = new ArrayList<>();
         if (nos > 0) {
             for (int i = 0; i < nos; i++) {
-                HSSFSheet sheet = workbook.getSheetAt(i);
+                Sheet sheet = workbook.getSheetAt(i);
                 result.addAll(parseFromSheet(sheet));
             }
         }
