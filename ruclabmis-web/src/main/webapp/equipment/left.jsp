@@ -66,30 +66,27 @@
             </tr>
         </table>
         <ul class="MM">
-            <li><a href="jsp/dev/info/devicelist.html" onfocus="toFocus(this)" target="main">设备信息库管理</a>
+            <li><a href="jsp/dev/info/deviceList" onfocus="toFocus(this)" target="main">设备信息库管理</a>
             </li>
         </ul>
     </div>
 </shiro:hasAnyRoles>
 
-<h1 class="type"><a href="javascript:void(0)">验收管理</a></h1>
+<%--<h1 class="type"><a href="javascript:void(0)">验收管理</a></h1>--%>
 
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-
-        <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">我的设备入库申请</a>
-        </li>
-
-        <li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">设备入库审批</a>
-        </li>
-
-    </ul>
-</div>
+<%--<div class="content">--%>
+<%--<table width="100%" border="0" cellspacing="0" cellpadding="0">--%>
+<%--<tr>--%>
+<%--<td><img src="images/menu_topline.gif" width="182" height="5"/></td>--%>
+<%--</tr>--%>
+<%--</table>--%>
+<%--<ul class="MM">--%>
+<%--<shiro:hasAnyRoles name="administrators,equipment_admin">--%>
+<%--<li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">设备验收入库</a>--%>
+<%--</li>--%>
+<%--</shiro:hasAnyRoles>--%>
+<%--</ul>--%>
+<%--</div>--%>
 
 
 <h1 class="type"><a href="javascript:void(0)">设备借用管理</a></h1>
@@ -130,16 +127,9 @@
     </table>
     <ul class="MM">
         <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/return/myusingdevicelist.html" onfocus="toFocus(this)" target="main">我使用中的设备</a>
+            <li><a href="jsp/dev/return/deviceList.html" onfocus="toFocus(this)" target="main">我使用中的设备</a>
             </li>
         </shiro:hasAnyRoles>
-
-        <li><a href="jsp/dev/return/myapplylist.html" onfocus="toFocus(this)" target="main">我的设备归还申请</a>
-        </li>
-
-        <li><a href="jsp/dev/return/applylist.html" onfocus="toFocus(this)" target="main">设备归还审核</a>
-        </li>
-
     </ul>
 </div>
 

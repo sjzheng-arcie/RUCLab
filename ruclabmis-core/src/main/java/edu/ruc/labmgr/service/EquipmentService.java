@@ -18,6 +18,8 @@ import java.util.List;
 public class EquipmentService {
     @Autowired
     private EquipmentMapper equipmentMapper;
+    @Autowired
+    UserService serviceUser;
 
     private PageInfo<Equipment> getPageEquipmentByCriteria(int pageNum,EquipmentCriteria criteria){
         int totalCount = equipmentMapper.countByCriteria(criteria);
@@ -98,5 +100,39 @@ public class EquipmentService {
         return getPageEquipmentByCriteria(pageNum,criteria);
     }
 
+    public void returnEquipments(List<Integer> equipmentIds){
+        for(int id : equipmentIds){
+            Equipment equipment = equipmentMapper.selectByPrimaryKey(id);
+            equipment.setId(id);
+            equipment.setHolder(null);
+            equipment.setUser(null);
+            equipment.setStateId(Types.EquipState.NORMAL.getValue());
+            equipmentMapper.updateByPrimaryKey(equipment);
+        }
+    }
 
+    public Equipment selectByPrimaryKey(int id){
+        return equipmentMapper.selectByPrimaryKey(id);
+    }
+
+    public void insertEquipment(Equipment equipment){
+        equipmentMapper.insert(equipment);
+    }
+
+    public void updateEquipment(Equipment equipment) throws Exception {
+
+        if(!StringUtils.isNullOrEmpty(equipment.getHolderName())){
+            int id = serviceUser.getUserIdByName(equipment.getHolderName());
+            if(id < 0) {
+                throw(new Exception("领用人不存在，请检查后重新输入"));
+            }
+            equipment.setHolder(id);
+        }
+        equipmentMapper.updateByPrimaryKey(equipment);
+    }
+
+    public void deleteEquipments(List<Integer> equipmentIds){
+        for(int id : equipmentIds)
+            equipmentMapper.deleteByPrimaryKey(id);
+    }
 }

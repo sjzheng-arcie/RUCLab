@@ -49,7 +49,8 @@ public interface Types {
 
     enum ApplyType {
         BORROW(21, "borrow"), ALLOT(22, "allot"), DONATE(23, "donate"),
-        REPAIR(24, "repair"), DEFICIT(25, "deficit"), RETURN(29, "return");
+        REPAIR(24, "repair"), DEFICIT(25, "deficit"),
+        RETURN(28, "return"), INFO(29, "info");
         private int id;
         private String name;
 
@@ -82,6 +83,13 @@ public interface Types {
 
             if( ApplyType.DEFICIT.getName().equals(name))
                 return ApplyType.DEFICIT;
+
+            if( ApplyType.RETURN.getName().equals(name))
+                return ApplyType.RETURN;
+
+            if( ApplyType.INFO.getName().equals(name))
+                return ApplyType.INFO;
+
             return null;
         }
     }

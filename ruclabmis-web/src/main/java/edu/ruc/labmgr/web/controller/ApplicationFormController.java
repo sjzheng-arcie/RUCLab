@@ -67,31 +67,6 @@ public class ApplicationFormController {
         return result;
     }
 
-    //备选设备列表
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList")
-    public ModelAndView deviceList(@PathVariable("applyType")String applyType) {
-        return pageDeviceList("", "", 0, applyType, 1);
-    }
-
-    //备选设备列表
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList", method = RequestMethod.POST)
-    public ModelAndView pageDeviceList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
-                                       @RequestParam("searchDirect")int useDirect,@PathVariable("applyType")String applyType,
-                                       @RequestParam("page") int page) {
-        ModelAndView result = new ModelAndView();
-        result.setViewName("/equipment/jsp/common/devicelist");
-
-        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
-
-        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
-        ApplyContext applyContext = new ApplyContext(type);
-
-        PageInfo<Equipment> pageInfo = applyContext.pageDeviceList(sn, name, useDirect, page);
-
-        result.addObject("pageInfo", pageInfo);
-        result.addObject("useDirections", useDirections);
-        return result;
-    }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/toUpdateApplication", method = RequestMethod.GET)
     public ModelAndView toUpdateApplication(@RequestParam("application_id") int applicationId,
@@ -145,8 +120,8 @@ public class ApplicationFormController {
         return toUpdateApplication(apply.getId(), "apply", applyType);
     }
 
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/addEquipment", method = RequestMethod.POST)
-    public ModelAndView addEquipment(@RequestParam("application_id") int applicationId,
+    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/addEquipmentsToApply", method = RequestMethod.POST)
+    public ModelAndView addEquipmentsToApply(@RequestParam("application_id") int applicationId,
                                      @RequestParam("items") List<Integer> items,
                                      @PathVariable("applyType")String applyType) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
@@ -157,8 +132,8 @@ public class ApplicationFormController {
         return toUpdateApplication(applicationId, "apply", applyType);
     }
 
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/removeEquipment", method = RequestMethod.GET)
-    public ModelAndView removeEquipment(@RequestParam("application_id") int applicationId,
+    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/removeEquipmentFromApply", method = RequestMethod.GET)
+    public ModelAndView removeEquipmentFromApply(@RequestParam("application_id") int applicationId,
                                         @RequestParam("equipment_id") int equipmentId,
                                         @PathVariable("applyType")String applyType) {
         serviceApply.removeEquipmentFromApply(applicationId, equipmentId);
@@ -188,8 +163,6 @@ public class ApplicationFormController {
         applyContext.processApply(applicationId);
         return applyList("process",applyType);
     }
-
-
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/delete", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam("items") List<Integer> appIds,

@@ -32,7 +32,7 @@ public class DonateApply  extends BaseApply{
         }
     }
 
-    //捐赠申请,更改持有人为转移对象,更新设备状态为已捐赠
+    //捐赠申请,更改领用人为转移对象,更新设备状态为已捐赠
     @Override
     void processApply(int applicationId) {
         super.processApply(applicationId);
