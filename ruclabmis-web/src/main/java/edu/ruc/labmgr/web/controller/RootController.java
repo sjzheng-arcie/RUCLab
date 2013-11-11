@@ -7,6 +7,7 @@ import edu.ruc.labmgr.service.MessageService;
 import edu.ruc.labmgr.service.UserService;
 
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.UsernamePasswordToken;
@@ -264,7 +265,7 @@ public class RootController {
 				result = "/equipment/login";
 			}
 		}
-		if (currentUser.hasRole("administrators")) {
+		if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
 
 
 			result = "redirect:index";

@@ -2,9 +2,11 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.mapper.RoleMapper;
+import edu.ruc.labmgr.utils.Types;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -23,4 +25,5 @@ public class RoleService {
     public List<Role> listAll() {
         return mapperRole.selectByCriteria(null);
     }
+
 }

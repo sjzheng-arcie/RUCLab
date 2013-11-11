@@ -2,14 +2,17 @@ package edu.ruc.labmgr.utils;
 
 public interface Types {
     enum Role {
-        ADMIN(1, "administrators"), LEADER(3, "leader"),
-        EQUIPMENT_ADMIN(4, "equipment_admin"), TEACHER(2, "teacher"), STUDENT(5, "student");
+        ADMIN(1, "administrators", "系统管理员"), LEADER(3, "leader", "领导"),
+        EQUIPMENT_ADMIN(4, "equipment_admin", "设备管理员"), TEACHER(2, "teacher", "教师"),
+        STUDENT(5, "student", "学生");
         private int id;
         private String name;
+        private String title;
 
-        private Role(int id, String name) {
+        private Role(int id, String name, String title) {
             this.id = id;
             this.name = name;
+            this.title = title;
         }
 
         public int getValue() {
@@ -19,6 +22,12 @@ public interface Types {
         public String getName() {
             return name;
         }
+
+        public String getTitle() {
+            return title;
+        }
+
+
     }
     /**
      * 设备状态枚举类

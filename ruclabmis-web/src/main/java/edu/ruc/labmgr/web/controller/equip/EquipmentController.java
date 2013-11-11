@@ -22,19 +22,15 @@ public class EquipmentController {
     @Autowired
     private EquipmentService serviceEquipment;
     @Autowired
-    ClassifService serviceClassif;
+    private ClassifService serviceClassif;
 
     //备选设备列表
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList")
-    public ModelAndView deviceList(@PathVariable("applyType")String applyType) {
-        return pageDeviceList("", "", 0, applyType, 1);
-    }
-
-    //备选设备列表
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList", method = RequestMethod.POST)
-    public ModelAndView pageDeviceList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
-                                       @RequestParam("searchDirect")int useDirect,@PathVariable("applyType")String applyType,
-                                       @RequestParam("page") int page) {
+    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList",  method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView pageDeviceList(@RequestParam(value="searchSN", required = false)String sn,
+                                       @RequestParam(value="searchName", required = false)String name,
+                                       @RequestParam(value="searchDirect", required = false, defaultValue = "0")int useDirect,
+                                       @RequestParam(value="page", required = false, defaultValue = "1")int page,
+                                       @PathVariable("applyType")String applyType ) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/common/devicelist");
 
@@ -44,17 +40,17 @@ public class EquipmentController {
         ApplyContext applyContext = new ApplyContext(type);
 
         PageInfo<Equipment> pageInfo = applyContext.pageDeviceList(sn, name, useDirect, page);
-//        result.addObject("applyType", applyType);
+        result.addObject("applyType", applyType);
         result.addObject("pageInfo", pageInfo);
         result.addObject("useDirections", useDirections);
         return result;
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/returnEquipments", method = RequestMethod.POST)
-    public ModelAndView returnEquipments(@RequestParam("items") List<Integer> items,
+    public String returnEquipments(@RequestParam("items") List<Integer> items,
                                 @PathVariable("applyType")String applyType) {
         serviceEquipment.returnEquipments(items);
-        return deviceList(applyType);
+        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/toAdd", method = RequestMethod.GET)
@@ -71,14 +67,13 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/insert", method = RequestMethod.POST)
-    public ModelAndView insert(Equipment equipment, @PathVariable("applyType")String applyType) {
+    public String insert(Equipment equipment, @PathVariable("applyType")String applyType) {
         serviceEquipment.insertEquipment(equipment);
-        return deviceList(applyType);
+        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/toUpdate", method = RequestMethod.GET)
-    public ModelAndView toUpdate(@RequestParam("id") int id,
-                                          @PathVariable("applyType")String applyType) {
+    public ModelAndView toUpdate(@RequestParam("id") int id, @PathVariable("applyType")String applyType) {
         Equipment equipment = serviceEquipment.selectByPrimaryKey(id);
 
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
@@ -94,16 +89,15 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/update", method = RequestMethod.POST)
-    public ModelAndView update(Equipment equipment, @PathVariable("applyType")String applyType) throws Exception {
+    public String update(Equipment equipment, @PathVariable("applyType")String applyType) throws Exception {
         serviceEquipment.updateEquipment(equipment);
-        return deviceList(applyType);
+        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deleteEquipments", method = RequestMethod.POST)
-    public ModelAndView delete( @RequestParam("items") List<Integer> items,
-                                          @PathVariable("applyType")String applyType) {
+    public String delete( @RequestParam("items") List<Integer> items, @PathVariable("applyType")String applyType) {
         serviceEquipment.deleteEquipments(items);
-        return deviceList(applyType);
+        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
     }
 
 }

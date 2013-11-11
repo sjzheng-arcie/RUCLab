@@ -22,18 +22,11 @@ public class UserService {
     private UserMapper mapperUser;
 
     public User selectByPrimaryKey(int id) {
-        User user = null;
-        user = mapperUser.selectByPrimaryKey(id);
-
-        return user;
+        return mapperUser.selectByPrimaryKey(id);
     }
 
     public User getUserByLoginSn(String loginSn) {
-        User user = null;
-        UserCriteria criteria;
-        user = mapperUser.selectUserByLoginSn(loginSn);
-
-        return user;
+        return mapperUser.selectUserByLoginSn(loginSn);
     }
 
     public int getCurrentUserId() {
@@ -100,6 +93,10 @@ public class UserService {
 
     public int update(User user) {
         int result = 0;
+        if(StringUtils.isNullOrEmpty(user.getPassword())){
+            User tmpUser = mapperUser.selectByPrimaryKey(user.getId());
+            user.setPassword(tmpUser.getPassword());
+        }
         result = mapperUser.updateByPrimaryKey(user);
 
         return result;

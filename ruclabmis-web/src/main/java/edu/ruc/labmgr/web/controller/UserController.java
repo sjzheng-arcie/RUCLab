@@ -29,14 +29,10 @@ public class UserController {
     @Autowired
     MajorService serviceMajor;
 
-    @RequestMapping(value = "/list")
-    public ModelAndView list(){
-        return pageList(null, null, 1);
-    }
-
-    @RequestMapping(value = "/list",method = RequestMethod.POST)
-    public ModelAndView pageList(@RequestParam("searchSN")String sn,@RequestParam("searchName")String name,
-                                 @RequestParam("page") int page){
+    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView pageList(@RequestParam(value="searchSN", required = false, defaultValue = "")String sn,
+                                 @RequestParam(value="searchName", required = false, defaultValue = "")String name,
+                                 @RequestParam(value="page", required = false, defaultValue = "1") int page){
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/sys/user/list");
 
@@ -57,12 +53,12 @@ public class UserController {
     }
 
     @RequestMapping(value ="/add",method = RequestMethod.POST)
-    public ModelAndView add(User user) {
+    public String add(User user) {
         serviceUser.insert(user);
-        return list();
+        return "redirect:/equipment/jsp/sys/user/list";
     }
 
-    @RequestMapping(value = "/toUpdate",method = RequestMethod.POST)
+    @RequestMapping(value = "/toUpdate",method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id")int id) {
         User user = serviceUser.selectByPrimaryKey(id);
         List<Role> roles = serviceRole.listAll();
@@ -76,19 +72,20 @@ public class UserController {
     }
 
     @RequestMapping(value ="/update",method = RequestMethod.POST)
-    public ModelAndView update(User user) {
+    public String update(User user) {
         serviceUser.update(user);
-        return list();
+        return "redirect:/equipment/jsp/sys/user/list";
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam("id")int id) {
-        serviceUser.delete(id);
-        return list();
-
+    public String delete(@RequestParam("items")List<Integer> items) {
+        for(int id : items){
+            serviceUser.delete(id);
+        }
+        return "redirect:/equipment/jsp/sys/user/list";
     }
 
-    @RequestMapping(value = "/toUpdatePassword",method = RequestMethod.POST)
+    @RequestMapping(value = "/toUpdatePassword",method = RequestMethod.GET)
     public ModelAndView toUpdatePassword(@RequestParam("id")int id) {
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
         mav.addObject("id",id);
@@ -96,10 +93,10 @@ public class UserController {
     }
 
     @RequestMapping("/updatePassword")
-    public ModelAndView updatePassword(@RequestParam("id")int id,
+    public String updatePassword(@RequestParam("id")int id,
                                        @RequestParam("oriPassword")String oriPassword,
                                        @RequestParam("newPassword")String newPassword) {
         serviceUser.updatePassword(id, oriPassword, newPassword);
-        return list();
+        return "redirect:/equipment/jsp/sys/user/list";
     }
 }
