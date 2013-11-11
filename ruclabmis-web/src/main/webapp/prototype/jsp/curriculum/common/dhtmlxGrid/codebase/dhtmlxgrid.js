@@ -1956,13 +1956,13 @@ dhtmlXGridObject.prototype = {getRowAttribute: function (a, b) {
         return this.rowsBuffer[a]
     }, _get_cell_value: function (a, b, c) {
         return a._locator ? (this._c_order && (b = this._c_order[b]), a._locator.call(this,
-            a.data, b)) : this.cells3(a, b)[c ? c : "getValue"]()
+            a.data, b)) : this.cells3(a, b)[c ? c : "getName"]()
     }, sortRows: function (a, b, c) {
         c = (c || "asc").toLowerCase();
         b = b || this.fldSort[a];
         a = a || 0;
         if (this.isTreeGrid())this.sortTreeRows(a, b, c); else {
-            var d = {}, e = this.cellType[a], i = "getValue";
+            var d = {}, e = this.cellType[a], i = "getName";
             e == "link" && (i = "getContent");
             if (e == "dhxCalendar" || e == "dhxCalendarA")i = "getDate";
             for (var j = 0; j < this.rowsBuffer.length; j++)d[this.rowsBuffer[j].idd] = this._get_cell_value(this.rowsBuffer[j], a, i);

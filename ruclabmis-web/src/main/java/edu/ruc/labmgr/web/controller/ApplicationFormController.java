@@ -5,10 +5,7 @@ import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.service.ApplyWithEquipmentService;
-import edu.ruc.labmgr.service.ClassifService;
-import edu.ruc.labmgr.service.EquipmentService;
-import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import edu.ruc.labmgr.service.ApplyStrategic.ApplyContext;
@@ -20,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
 import java.util.List;
 
@@ -31,6 +29,8 @@ public class ApplicationFormController {
     ApplyWithEquipmentService serviceApply;
     @Autowired
     UserService serviceUser;
+    @Autowired
+    MessageService serviceMessage;
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/applyList")
     public ModelAndView applyList(@RequestParam("formType")String formType,
@@ -87,11 +87,20 @@ public class ApplicationFormController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/updateApplication", method = RequestMethod.POST)
-    public ModelAndView updateApplication(ApplicationForm apply, @PathVariable("applyType") String applyType) throws Exception {
+    public ModelAndView updateApplication(ApplicationForm apply, @PathVariable("applyType") String applyType,
+                                          HttpServletRequest request) throws Exception {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
         applyContext.updateApplication(apply);
+
+        //发送表单提交消息
+        String path = request.getRequestURL().toString();
+        path = path.replace("updateApplication", "toUpdateApplication");
+        path+= "?application_id=" + apply.getId();
+        path+= "&formType=review";
+        serviceMessage.sendUpdateApplyMessage(apply, type, path);
+
         return applyList("apply", applyType);
     }
 
@@ -120,8 +129,8 @@ public class ApplicationFormController {
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/addEquipmentsToApply", method = RequestMethod.POST)
     public ModelAndView addEquipmentsToApply(@RequestParam("application_id") int applicationId,
-                                     @RequestParam("items") List<Integer> items,
-                                     @PathVariable("applyType")String applyType) {
+                                             @RequestParam("items") List<Integer> items,
+                                             @PathVariable("applyType")String applyType) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
@@ -132,46 +141,93 @@ public class ApplicationFormController {
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/removeEquipmentFromApply", method = RequestMethod.GET)
     public ModelAndView removeEquipmentFromApply(@RequestParam("application_id") int applicationId,
-                                        @RequestParam("equipment_id") int equipmentId,
-                                        @PathVariable("applyType")String applyType) {
+                                                 @RequestParam("equipment_id") int equipmentId,
+                                                 @PathVariable("applyType")String applyType) {
         serviceApply.removeEquipmentFromApply(applicationId, equipmentId);
         return toUpdateApplication(applicationId, "apply", applyType);
     }
 
+    //审批通过
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/approve", method = RequestMethod.POST)
     public ModelAndView approve(@RequestParam("items") List<Integer> appIds,
-                                @PathVariable("applyType")String applyType) {
+                                @PathVariable("applyType")String applyType,
+                                HttpServletRequest request) {
         serviceApply.approveApplys(appIds);
+
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        //发送表单批准消息
+        for(int appId : appIds){
+            String path = request.getRequestURL().toString();
+            path = path.replace("approve", "toUpdateApplication");
+            path+= "?application_id=" + appId;
+            path+= "&formType=review";
+            serviceMessage.sendApproveApplyMessage(appId, type, path, true);
+        }
+
         return applyList("review",applyType);
     }
 
+    //审批拒绝
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/reject", method = RequestMethod.POST)
     public ModelAndView reject(@RequestParam("items") List<Integer> appIds,
-                               @PathVariable("applyType")String applyType) {
+                               @PathVariable("applyType")String applyType,
+                               HttpServletRequest request) {
         serviceApply.rejectApplys(appIds);
+
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        //发送表单拒绝消息
+        for(int appId : appIds){
+            String path = request.getRequestURL().toString();
+            path = path.replace("reject", "toUpdateApplication");
+            path+= "?application_id=" + appId;
+            path+= "&formType=review";
+            serviceMessage.sendApproveApplyMessage(appId, type, path, false);
+        }
+
         return applyList("review",applyType);
     }
 
+    //执行申请
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/process", method = RequestMethod.GET)
-         public ModelAndView process(@RequestParam("application_id") int applicationId,
-                                     @PathVariable("applyType")String applyType) {
+    public ModelAndView process(@RequestParam("application_id") int applicationId,
+                                @PathVariable("applyType")String applyType,
+                                HttpServletRequest request) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
         applyContext.processApply(applicationId);
+
+        //发送表单执行消息
+        String path = request.getRequestURL().toString();
+        path = path.replace("process", "toUpdateApplication");
+        path+= "?application_id=" + applicationId;
+        path+= "&formType=review";
+        serviceMessage.sendProcessApplyMessage(applicationId, type, path);
+
         return applyList("process",applyType);
     }
 
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/reject", method = RequestMethod.GET)
-    public ModelAndView reject(@RequestParam("application_id") int applicationId,
-                                @PathVariable("applyType")String applyType) {
+    //执行报废
+    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/scrap", method = RequestMethod.GET)
+    public ModelAndView processScrap(@RequestParam("application_id") int applicationId,
+                                     @PathVariable("applyType")String applyType,
+                                     HttpServletRequest request) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
-        applyContext.rejectApply(applicationId);
+        applyContext.processApply(applicationId, Types.EquipState.BROKEN);
+
+        //发送表单执行消息
+        String path = request.getRequestURL().toString();
+        path = path.replace("process", "toUpdateApplication");
+        path+= "?application_id=" + applicationId;
+        path+= "&formType=review";
+        serviceMessage.sendProcessApplyMessage(applicationId, type, path);
+
         return applyList("process",applyType);
     }
 
+    //删除申请
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/delete", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam("items") List<Integer> appIds,
                                @PathVariable("applyType")String applyType) {

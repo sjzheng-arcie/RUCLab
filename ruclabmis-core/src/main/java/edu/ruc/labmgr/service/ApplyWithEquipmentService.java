@@ -260,11 +260,10 @@ public class ApplyWithEquipmentService {
 
         mapperApply.updateByPrimaryKeySelective(form);
 
-        ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(application_id);
     }
 
-    //处理表单
-    public void rejectApply(int application_id) {
+    //处理表单，报废
+    public void processApply(int application_id, Types.EquipState state) {
         //更新表单状态
         ApplicationForm form = new ApplicationForm();
         form.setId(application_id);
@@ -274,6 +273,5 @@ public class ApplyWithEquipmentService {
 
         mapperApply.updateByPrimaryKeySelective(form);
 
-        ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(application_id);
     }
 }

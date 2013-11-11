@@ -48,19 +48,19 @@ public class BorrowController {
 //        ModelAndView result = new ModelAndView();
 //        result.setViewName("/equipment/jsp/dev/borrow/applylist");
 //
-//        List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
+//        List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getName());
 //
 //        Subject currentUser = SecurityUtils.getSubject();
 //        PageInfo<ApplicationForm> pageInfo = new PageInfo<ApplicationForm>();
 //        //管理员则显示所有未关闭订单
-//        if(currentUser.hasRole(Types.Role.ADMIN.getValue()) ) {
+//        if(currentUser.hasRole(Types.Role.ADMIN.getName()) ) {
 //            if(formType.endsWith("history"))
 //                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.BORROW);
 //            else
 //                pageInfo = serviceApply.selectPageApplyForAdmin(sn, stateId, page, Types.ApplyType.BORROW);
 //        }
 //        //领导显示待审批的订单
-//        else if(currentUser.hasRole(Types.Role.LEADER.getValue())){
+//        else if(currentUser.hasRole(Types.Role.LEADER.getName())){
 //            if(formType.endsWith("apply"))
 //                pageInfo = serviceApply.selectPageApplyForTeacher(sn, stateId, page,
 //                        Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
@@ -70,7 +70,7 @@ public class BorrowController {
 //                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page, Types.ApplyType.BORROW);
 //        }
 //        //教师只显示自己提交的未关闭订单
-//        else if(currentUser.hasRole(Types.Role.TEACHER.getValue())){
+//        else if(currentUser.hasRole(Types.Role.TEACHER.getName())){
 //            if(formType.endsWith("history"))
 //                pageInfo = serviceApply.selectUserPageHistoryApply(sn, stateId, page,
 //                        Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
@@ -79,7 +79,7 @@ public class BorrowController {
 //                        Types.ApplyType.BORROW, serviceUser.getCurrentUserId());
 //        }
 //        //设备管理员显示所有未关闭的订单
-//        else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getValue())){
+//        else if(currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getName())){
 //            if(formType.endsWith("history"))
 //                pageInfo = serviceApply.selectPageHistoryApply(sn, stateId, page,
 //                        Types.ApplyType.BORROW);
@@ -106,7 +106,7 @@ public class BorrowController {
 //        ModelAndView result = new ModelAndView();
 //        result.setViewName("/equipment/jsp/dev/borrow/devicelist");
 //
-//        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
+//        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getName());
 //
 //        PageInfo<Equipment> pageInfo = serviceEquipment.getPageAvaiableEquipments(sn, name, useDirect, page);
 //
@@ -139,8 +139,8 @@ public class BorrowController {
 //        Date now = new Date();
 //        String sn = String.format("%d", now.getTime()) ;
 //        apply.setSn(sn);
-//        apply.setType(Types.ApplyType.BORROW.getValue());
-//        apply.setStateId(Types.ApplyState.WAITING.getValue());
+//        apply.setType(Types.ApplyType.BORROW.getName());
+//        apply.setStateId(Types.ApplyState.WAITING.getName());
 //        apply.setApplyTime(new java.util.Date());
 //        apply.setApplicantId(serviceUser.getCurrentUserId());
 //

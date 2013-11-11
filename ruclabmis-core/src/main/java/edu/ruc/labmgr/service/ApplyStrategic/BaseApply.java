@@ -44,7 +44,7 @@ public class BaseApply {
     public PageInfo<ApplicationForm> pageApplicationHistoryList(String sn,int stateId, int pageNum, Types.ApplyType type){
         Subject currentUser = SecurityUtils.getSubject();
         //教师只看到自己的历史
-        if(currentUser.hasRole(Types.Role.TEACHER.getValue())) {
+        if(currentUser.hasRole(Types.Role.TEACHER.getName())) {
             int currUserId = serviceUser.getCurrentUserId();
             return   serviceApply.selectPageUserHistoryApply(sn, stateId, pageNum, type, currUserId);
         }//其他角色看到所有人的历史
@@ -64,7 +64,7 @@ public class BaseApply {
         serviceApply.processApply(applicationId);
     }
 
-    public void rejectApply(int applicationId){
-        serviceApply.rejectApply(applicationId);
+    public void processApply(int applicationId, Types.EquipState state){
+        serviceApply.processApply(applicationId, state);
     };
 }

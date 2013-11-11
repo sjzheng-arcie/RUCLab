@@ -23,7 +23,7 @@ dhtmlXGridObject.prototype.loadCSVString = function (b) {
 };
 dhtmlXGridObject.prototype.serializeToCSV = function (b) {
     this.editStop();
-    this._agetm = this._mathSerialization ? "getMathValue" : this._strictText || b ? "getTitle" : "getValue";
+    this._agetm = this._mathSerialization ? "getMathValue" : this._strictText || b ? "getTitle" : "getName";
     var d = [];
     if (this._csvHdr)for (var c = 1; c < this.hdr.rows.length; c++) {
         for (var e = [], a = 0; a < this._cCount; a++)(!this._srClmn || this._srClmn[a]) && e.push(this.getColumnLabel(a, c - 1));
@@ -83,7 +83,7 @@ dhtmlXGridObject.prototype.updateCellFromClipboard = function (b, d) {
 };
 dhtmlXGridObject.prototype.rowToClipboard = function (b) {
     var d = "";
-    this._agetm = this._mathSerialization ? "getMathValue" : this._strictText ? "getTitle" : "getValue";
+    this._agetm = this._mathSerialization ? "getMathValue" : this._strictText ? "getTitle" : "getName";
     if (b)d = this._serializeRowToCVS(this.getRowById(b)); else for (var c = [], e = 0; e < this.selectedRows.length; e++)c[c.length] = this._serializeRowToCVS(this.selectedRows[e]), d = this.csvParser.block(c, this.csv.row);
     this.toClipBoard(d)
 };

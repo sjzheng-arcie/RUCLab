@@ -1,10 +1,10 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.ApplicationForm;
-import edu.ruc.labmgr.domain.Message;
-import edu.ruc.labmgr.domain.MessageCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.MessageMapper;
+import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.SysUtil;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -27,6 +27,11 @@ import java.util.List;
 public class MessageService {
     @Autowired
     private MessageMapper messageMapper;
+    @Autowired
+    private UserService serviceUser;
+    @Autowired
+    private ApplyWithEquipmentService serviceApply;
+
     public ObjectListPage<Message> selectListPage(int currentPage, MessageCriteria criteria){
 
 
@@ -118,60 +123,109 @@ public class MessageService {
 		return  messageList;
 	}
 
-	public boolean sendApplicationStateMessage(ApplicationForm applicationForm,String messageType){
-
-		Message message = new Message();
-		message.setIfread(false);
-		message.setSendtime(new Date());
-		if (messageType.equals("request")){
-			message.setReceiverId(applicationForm.getApproverId());
-			message.setSenderId(applicationForm.getApplicantId());
-			message.setContent(applicationForm.getApplicant().getName() + "于" + applicationForm.getApplyTime() + "向您提出" + applicationForm.getFormType());
-			insert(message);
-		}else if(messageType.equals("response")){
-			message.setReceiverId(applicationForm.getApplicantId());
-			message.setSenderId(applicationForm.getApproverId());
-			message.setContent(applicationForm.getApprover().getName()+"于"+applicationForm.getProcessTime()+"批准了您的"+applicationForm.getFormType());
-			insert(message);
-
-			message.setContent(applicationForm.getApprover().getName()+"于"+applicationForm.getProcessTime()+"批准了"+applicationForm.getApplicant().getName()+"的"+
-				applicationForm.getFormType()	+"，请准备好设备。");
-			message.setReceiverId(applicationForm.getOperatorId());
-			message.setSenderId(applicationForm.getApproverId());
-			insert(message);
-		}
-		return true;
-	}
-	public void sendMessageToLeader(ApplicationForm applicationForm){
+    //提交申请时，向设备管理员和领导发送消息
+	public void sendUpdateApplyMessage(ApplicationForm applicationForm,  Types.ApplyType type, String path){
 		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		Message message = new Message();
 		message.setIfread(false);
 		message.setSendtime(new Date());
-		message.setReceiverId(applicationForm.getApproverId());
-		message.setSenderId(applicationForm.getApplicantId());
-		message.setContent(applicationForm.getApplicant().getName()+"于"+format.format(applicationForm.getApplyTime())+"向您提出"+applicationForm.getFormType());
-		insert(message);
-	}
-	public void sendMessageToTeacher(ApplicationForm applicationForm){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Message message = new Message();
-		message.setIfread(false);
-		message.setSendtime(new Date());
-		message.setReceiverId(applicationForm.getApplicantId());
-		message.setSenderId(applicationForm.getApproverId());
-		message.setContent("您好，" + applicationForm.getApprover().getName() + "已于" + format.format(applicationForm.getProcessTime()) + "批准了您的" + applicationForm.getFormType());
-		insert(message);
+		message.setSenderId(0);
 
+        User applicant = serviceUser.selectByPrimaryKey(applicationForm.getApplicantId());
+
+        List<User> leaders = serviceUser.getRoleUserList(Types.Role.LEADER);
+        for(User leader : leaders){
+            if(leader.getId() == applicant.getId())
+                continue;
+            message.setReceiverId(leader.getId());
+            String content = "";
+            content +=  applicant.getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请:";
+            content +=  path;
+            message.setContent(content);
+            insert(message);
+        }
+
+        List<User> equpiAdmins = serviceUser.getRoleUserList(Types.Role.EQUIPMENT_ADMIN);
+        for(User equpiAdmin : equpiAdmins){
+            if(equpiAdmin.getId() == applicant.getId())
+                continue;
+            message.setReceiverId(equpiAdmin.getId());
+            String content = "";
+            content +=  applicant.getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请:";
+            content +=  path;
+            message.setContent(content);
+            insert(message);
+        }
 	}
-	public void sendMessageToEquipmentAdmin(ApplicationForm applicationForm){
-		SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		Message message = new Message();
-		message.setIfread(false);
-		message.setSendtime(new Date());
-		message.setContent(applicationForm.getApprover().getName()+"于"+ format.format(applicationForm.getProcessTime())+"批准了"+applicationForm.getApplicant().getName()+"的"+
-				applicationForm.getFormType()	+"，请准备好设备。");
-		message.setReceiverId(applicationForm.getOperatorId());
-		message.setSenderId(applicationForm.getApproverId());
-		insert(message);
+
+    //审批 通过/拒绝 申请时，向申请提交人和设备管理员发送消息
+    public void sendApproveApplyMessage(int appId,  Types.ApplyType type, String path, boolean isPassed) {
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Message message = new Message();
+        message.setIfread(false);
+        message.setSendtime(new Date());
+
+        ApplyWithEquipment apply = serviceApply.selectApplyById(appId);
+        message.setSenderId(0);
+
+        User applicant = serviceUser.selectByPrimaryKey(apply.getApplicantId());
+        message.setReceiverId(applicant.getId());
+        String content = "";
+        content +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+        content += isPassed ? " 批准 " : "拒绝";
+        content += "了您的 "+ type.getTitle() +" 申请:";
+        content +=  path;
+        message.setContent(content);
+        insert(message);
+
+        List<User> equpiAdmins = serviceUser.getRoleUserList(Types.Role.EQUIPMENT_ADMIN);
+        for(User equpiAdmin : equpiAdmins){
+            if(equpiAdmin.getId() == applicant.getId())
+                continue;
+
+            message.setReceiverId(equpiAdmin.getId());
+            String adminContent = "";
+            adminContent +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+            adminContent += isPassed ? " 批准 " : "拒绝";
+            adminContent += "了 " + apply.getApplicantName() + " 的 "+ type.getTitle() +" 申请:";
+            adminContent +=  path;
+            message.setContent(adminContent);
+            insert(message);
+        }
+    }
+
+    //处理表单申请时，向申请提交人和领导发送消息
+	public void sendProcessApplyMessage(int appId,  Types.ApplyType type, String path){
+        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        Message message = new Message();
+        message.setIfread(false);
+        message.setSendtime(new Date());
+
+        ApplyWithEquipment apply = serviceApply.selectApplyById(appId);
+        message.setSenderId(0);
+
+        User applicant = serviceUser.selectByPrimaryKey(apply.getApplicantId());
+        message.setReceiverId(applicant.getId());
+        String content = "";
+        content +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+        content += "处理了您的 "+ type.getTitle() +" 申请:";
+        content +=  path;
+        message.setContent(content);
+        insert(message);
+
+        List<User> equpiAdmins = serviceUser.getRoleUserList(Types.Role.LEADER);
+        for(User equpiAdmin : equpiAdmins){
+            if(equpiAdmin.getId() == applicant.getId())
+                continue;
+
+            message.setReceiverId(equpiAdmin.getId());
+            String adminContent = "";
+            adminContent +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+            adminContent += "处理了 " + apply.getApplicantName() + " 的 "+ type.getTitle() +" 申请:";
+            adminContent +=  path;
+            message.setContent(adminContent);
+            insert(message);
+        }
 	}
+
 }

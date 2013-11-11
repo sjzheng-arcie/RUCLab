@@ -74,7 +74,7 @@ dhtmlXGridObject.prototype.serializeToCSV = function (textmode) {
         this._agetm = "getMathValue";
     else if (this._strictText || textmode)
         this._agetm = "getTitle";
-    else this._agetm = "getValue";
+    else this._agetm = "getName";
 
     var out = [];
     if (this._csvHdr) {
@@ -234,7 +234,7 @@ dhtmlXGridObject.prototype.rowToClipboard = function (rowId) {
     else if (this._strictText)
         this._agetm = "getTitle";
     else
-        this._agetm = "getValue";
+        this._agetm = "getName";
 
     if (rowId)
         out = this._serializeRowToCVS(this.getRowById(rowId));

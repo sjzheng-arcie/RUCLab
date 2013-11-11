@@ -83,7 +83,7 @@ public class ApplyContext {
         apply.processApply(applicationId);
     }
 
-    public void rejectApply(int applicationId) {
-        apply.rejectApply(applicationId);
+    public void processApply(int applicationId, Types.EquipState state) {
+        apply.processApply(applicationId, state);
     }
 }

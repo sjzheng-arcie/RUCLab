@@ -350,7 +350,7 @@ dhtmlXGridObject.prototype.copyBlockToClipboard = function () {
             this._agetm = "getMathValue";
         else if (this._strictText)
             this._agetm = "getTitle";
-        else this._agetm = "getValue";
+        else this._agetm = "getName";
 
         for (var i = this._selectionArea.LeftTopRow; i <= this._selectionArea.RightBottomRow; i++) {
             var data = this._serializeRowToCVS(this.rowsBuffer[i], null, this._selectionArea.LeftTopCol, this._selectionArea.RightBottomCol + 1);
