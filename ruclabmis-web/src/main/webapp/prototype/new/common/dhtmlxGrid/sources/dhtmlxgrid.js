@@ -4861,7 +4861,7 @@ dhtmlXGridObject.prototype = {
                 ind = this._c_order[ind];
             return row._locator.call(this, row.data, ind);
         }
-        return this.cells3(row, ind)[method ? method : "getValue"]();
+        return this.cells3(row, ind)[method ? method : "getName"]();
     },
 //#sorting:06042008{	
     /**
@@ -4885,7 +4885,7 @@ dhtmlXGridObject.prototype = {
             };
 
             var atype = this.cellType[col];
-            var amet = "getValue";
+            var amet = "getName";
 
             if (atype == "link")
                 amet = "getContent";

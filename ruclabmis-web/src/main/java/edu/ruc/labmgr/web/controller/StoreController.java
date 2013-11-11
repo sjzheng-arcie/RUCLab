@@ -40,7 +40,7 @@ public class StoreController {
 //        ModelAndView result = new ModelAndView();
 //        result.setViewName("/equipment/jsp/dev/store/applylist");
 //
-//        List<Classif> applyStates = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getValue());
+//        List<Classif> applyStates = serviceClassif.getItemsByParentID(Types.ClassifType.APPLY_STATE.getName());
 //
 //        PageInfo<ApplicationForm> pageInfo = serviceApply.selectPageApplyForAdmin(sn, stateId, page, Types.ApplyType.ADD);
 //        result.addObject("pageInfo", pageInfo);
@@ -58,8 +58,8 @@ public class StoreController {
 //
 //    @RequestMapping(value = "/addApply", method = RequestMethod.POST)
 //    public ModelAndView addApply(ApplicationForm apply) {
-//        apply.setType(Types.ApplyType.ADD.getValue());
-//        apply.setStateId(Types.ApplyState.WAITING.getValue());
+//        apply.setType(Types.ApplyType.ADD.getName());
+//        apply.setStateId(Types.ApplyState.WAITING.getName());
 //        apply.setApplyTime(new java.util.Date());
 //        apply.setApplicantId(serviceUser.getCurrentUserId());
 //
@@ -91,16 +91,16 @@ public class StoreController {
 //    @RequestMapping(value = "/toAddEquipment", method = RequestMethod.POST)
 //    public ModelAndView toAddEquipment(ApplicationForm apply) {
 //        if (apply.getId() == null) {
-//            apply.setType(Types.ApplyType.ADD.getValue());
-//            apply.setStateId(Types.ApplyState.WAITING.getValue());
+//            apply.setType(Types.ApplyType.ADD.getName());
+//            apply.setStateId(Types.ApplyState.WAITING.getName());
 //            apply.setApplyTime(new java.util.Date());
 //            apply.setApplicantId(serviceUser.getCurrentUserId());
 //
 //            serviceApply.insertApply(apply);
 //        }
 //
-//        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
-//        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
+//        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getName());
+//        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getName());
 //
 //        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/adddevice");
 //        mav.addObject("applicationId", apply.getId());
@@ -111,7 +111,7 @@ public class StoreController {
 //
 //    @RequestMapping(value = "/addEquipment", method = RequestMethod.POST)
 //    public ModelAndView addEquipment(Equipment equipment, @RequestParam("application_id") int applicationId) {
-//        equipment.setStateId(Types.ClassifType.EQUIPMENT_STATE.getValue());
+//        equipment.setStateId(Types.ClassifType.EQUIPMENT_STATE.getName());
 //        serviceApply.insertEquipmentWithApply(applicationId, equipment);
 //        return toUpdateApplication(applicationId);
 //    }
@@ -121,8 +121,8 @@ public class StoreController {
 //                                        @RequestParam("equipment_id") int equipmentId) {
 //        Equipment equipment = serviceApply.selectEquipmentByPrimaryKey(equipmentId);
 //
-//        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
-//        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
+//        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getName());
+//        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getName());
 //
 //        ModelAndView mav = new ModelAndView("/equipment/jsp/dev/store/editdevice");
 //        mav.addObject("applicationId", applicationId);

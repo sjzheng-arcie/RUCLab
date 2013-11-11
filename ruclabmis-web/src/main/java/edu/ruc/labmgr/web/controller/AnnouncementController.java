@@ -39,9 +39,6 @@ public class AnnouncementController {
 	@Autowired
 	private UserService userService;
 
-
-
-
 	private int currPage = 0;
 	@RequestMapping("/remind")
 	public ModelAndView pageList(HttpServletRequest request) {

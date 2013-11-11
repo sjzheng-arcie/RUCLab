@@ -2,16 +2,22 @@ package edu.ruc.labmgr.utils;
 
 public interface Types {
     enum Role {
-        ADMIN("administrators"), LEADER("leader"),
-        EQUIPMENT_ADMIN("equipment_admin"), TEACHER("teacher");
-        private String value;
+        ADMIN(1, "administrators"), LEADER(3, "leader"),
+        EQUIPMENT_ADMIN(4, "equipment_admin"), TEACHER(2, "teacher"), STUDENT(5, "student");
+        private int id;
+        private String name;
 
-        private Role(String v) {
-            this.value = v;
+        private Role(int id, String name) {
+            this.id = id;
+            this.name = name;
         }
 
-        public String getValue() {
-            return value;
+        public int getValue() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
         }
     }
     /**
@@ -48,15 +54,17 @@ public interface Types {
     }
 
     enum ApplyType {
-        BORROW(21, "borrow"), ALLOT(22, "allot"), DONATE(23, "donate"),
-        REPAIR(24, "repair"), DEFICIT(25, "deficit"),
-        RETURN(28, "return"), INFO(29, "info");
+        BORROW(21, "borrow", "借用"), ALLOT(22, "allot", "转移"), DONATE(23, "donate", "捐赠"),
+        REPAIR(24, "repair", "维修"), DEFICIT(25, "deficit", "报减销账"),
+        RETURN(28, "return", "归还"), INFO(29, "info", "设备信息");
         private int id;
         private String name;
+        private String title;
 
-        private ApplyType(int id, String name) {
+        private ApplyType(int id, String name, String title) {
             this.id = id;
             this.name = name;
+            this.title = title;
         }
 
         public int getValue() {
@@ -67,6 +75,9 @@ public interface Types {
             return name;
         }
 
+        public String getTitle() {
+            return title;
+        }
 
         public static ApplyType getApplyTypeFromStr(String name){
             if( ApplyType.BORROW.getName().equals(name))

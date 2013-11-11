@@ -5,6 +5,7 @@ import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
+import edu.ruc.labmgr.service.MessageService;
 import edu.ruc.labmgr.utils.Types;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -29,7 +30,6 @@ public class BorrowApply extends BaseApply {
             equipment.setId(id);
             equipment.setStateId(Types.EquipState.TOUSE.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
-
         }
     }
 

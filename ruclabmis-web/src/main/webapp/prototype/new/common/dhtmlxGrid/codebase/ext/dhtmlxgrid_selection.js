@@ -187,7 +187,7 @@ dhtmlXGridObject.prototype._HideSelection = function () {
 dhtmlXGridObject.prototype.copyBlockToClipboard = function () {
     if (this._selectionArea != null) {
         var b = [];
-        this._agetm = this._mathSerialization ? "getMathValue" : this._strictText ? "getTitle" : "getValue";
+        this._agetm = this._mathSerialization ? "getMathValue" : this._strictText ? "getTitle" : "getName";
         for (var c = this._selectionArea.LeftTopRow; c <= this._selectionArea.RightBottomRow; c++) {
             var a = this._serializeRowToCVS(this.rowsBuffer[c], null, this._selectionArea.LeftTopCol, this._selectionArea.RightBottomCol + 1);
             b[b.length] = this._csvAID ? a : a.substr(a.indexOf(this.csv.cell) + 1)

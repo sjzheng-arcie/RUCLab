@@ -385,7 +385,7 @@ dhtmlXToolbarObject.prototype.forEachItem = function (b) {
     for (var c in this.objPull)this.inArray(this.rootTypes, this.objPull[c].type) && b(this.objPull[c].id.replace(this.idPrefix, ""))
 };
 (function () {
-    for (var b = "showItem,hideItem,isVisible,enableItem,disableItem,isEnabled,setItemText,getItemText,setItemToolTip,getItemToolTip,getInput,setItemImage,setItemImageDis,clearItemImage,clearItemImageDis,setItemState,getItemState,setItemToolTipTemplate,getItemToolTipTemplate,setValue,getValue,setMinValue,getMinValue,setMaxValue,getMaxValue,setWidth,getWidth,setMaxOpen".split(","), c = ["", "", !1, "", "", !1, "", "", "", "", "", "", "", "", "", !1, "", "", "", null, "", [null, null], "", [null, null], "", null], a = function (a, b) {
+    for (var b = "showItem,hideItem,isVisible,enableItem,disableItem,isEnabled,setItemText,getItemText,setItemToolTip,getItemToolTip,getInput,setItemImage,setItemImageDis,clearItemImage,clearItemImageDis,setItemState,getItemState,setItemToolTipTemplate,getItemToolTipTemplate,setValue,getName,setMinValue,getMinValue,setMaxValue,getMaxValue,setWidth,getWidth,setMaxOpen".split(","), c = ["", "", !1, "", "", !1, "", "", "", "", "", "", "", "", "", !1, "", "", "", null, "", [null, null], "", [null, null], "", null], a = function (a, b) {
         return function (d, c, e) {
             d = this.idPrefix + d;
             return this.objPull[d][a] != null ? this.objPull[d][a].call(this.objPull[d], c, e) : b

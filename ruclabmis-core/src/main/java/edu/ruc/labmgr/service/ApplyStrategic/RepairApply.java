@@ -52,14 +52,15 @@ public class RepairApply extends BaseApply {
         }
     }
 
-    public void rejectApply(int applicationId) {
-        super.rejectApply(applicationId);
+    @Override
+    public void processApply(int applicationId, Types.EquipState state) {
+        super.processApply(applicationId);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
         for(Equipment equipment : applyWithEquipment.getEquipments())
         {
             equipment.setHolder(applyWithEquipment.getApplicantId());
-            equipment.setStateId(Types.EquipState.BROKEN.getValue());
+            equipment.setStateId(state.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
         }
     }

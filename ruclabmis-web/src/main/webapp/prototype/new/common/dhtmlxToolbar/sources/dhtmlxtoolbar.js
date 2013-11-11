@@ -712,7 +712,7 @@ dhtmlXToolbarObject.prototype.forEachItem = function (handler) {
     }
 };
 (function () {
-    var list = "showItem,hideItem,isVisible,enableItem,disableItem,isEnabled,setItemText,getItemText,setItemToolTip,getItemToolTip,getInput,setItemImage,setItemImageDis,clearItemImage,clearItemImageDis,setItemState,getItemState,setItemToolTipTemplate,getItemToolTipTemplate,setValue,getValue,setMinValue,getMinValue,setMaxValue,getMaxValue,setWidth,getWidth,setMaxOpen".split(",")
+    var list = "showItem,hideItem,isVisible,enableItem,disableItem,isEnabled,setItemText,getItemText,setItemToolTip,getItemToolTip,getInput,setItemImage,setItemImageDis,clearItemImage,clearItemImageDis,setItemState,getItemState,setItemToolTipTemplate,getItemToolTipTemplate,setValue,getName,setMinValue,getMinValue,setMaxValue,getMaxValue,setWidth,getWidth,setMaxOpen".split(",")
     var ret = ["", "", false, "", "", false, "", "", "", "", "", "", "", "", "", false, "", "", "", null, "", [null, null], "", [null, null], "", null]
     var functor = function (name, res) {
         return function (itemId, a, b) {
@@ -858,7 +858,7 @@ dhtmlXToolbarObject.prototype.forEachItem = function (handler) {
  *   @param: itemId - id of a slider or an input item
  *   @type: public
  */
-//dhtmlXToolbarObject.prototype.getValue = function(itemId) {
+//dhtmlXToolbarObject.prototype.getName = function(itemId) {
 /**
  *   @desc: sets minimal value and label for a slider
  *   @param: itemId - id of a slider

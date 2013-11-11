@@ -3,9 +3,7 @@ package edu.ruc.labmgr.service;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
-import edu.ruc.labmgr.utils.SysUtil;
-import edu.ruc.labmgr.utils.ValidateCode;
-import edu.ruc.labmgr.utils.page.ObjectListPage;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import com.mysql.jdbc.StringUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -77,17 +75,21 @@ public class UserService {
         return page;
     }
 
-    public List<User> getUserList( UserCriteria criteria) {
-        List<User> retList = null;
-        try {
-            retList = mapperUser.selectByCriteria(criteria);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-
-        return retList;
+    public List<User> getUserList(UserCriteria criteria) {
+        return mapperUser.selectByCriteria(criteria);
     }
 
+    public List<User> getAllUserList() {
+        return mapperUser.selectByCriteria(null);
+    }
+
+    public List<User> getRoleUserList(Types.Role role) {
+        UserCriteria criteria = new UserCriteria();
+        criteria.setOrderByClause("sn");
+        UserCriteria.Criteria ec = criteria.createCriteria();
+        ec.andRoleIdEqualTo(role.getValue());
+        return mapperUser.selectByCriteria(criteria);
+    }
 
     public int insert(User user) {
         int result = 0;
