@@ -22,7 +22,7 @@ public class InfoApply extends BaseApply {
     private EquipmentMapper mapperEquipment;
 
     @Override
-    PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
+    public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
         return serviceEquipment.getPageEquipments(sn, name, useDirect, page);
     }
 }

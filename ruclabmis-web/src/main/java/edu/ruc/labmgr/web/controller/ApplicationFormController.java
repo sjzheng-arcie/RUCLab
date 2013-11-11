@@ -26,8 +26,6 @@ import java.util.List;
 @Controller
 public class ApplicationFormController {
     @Autowired
-    EquipmentService serviceEquipment;
-    @Autowired
     ClassifService serviceClassif;
     @Autowired
     ApplyWithEquipmentService serviceApply;
@@ -157,6 +155,16 @@ public class ApplicationFormController {
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/process", method = RequestMethod.GET)
          public ModelAndView process(@RequestParam("application_id") int applicationId,
                                      @PathVariable("applyType")String applyType) {
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        applyContext.processApply(applicationId);
+        return applyList("process",applyType);
+    }
+
+    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/reject", method = RequestMethod.GET)
+    public ModelAndView reject(@RequestParam("application_id") int applicationId,
+                                @PathVariable("applyType")String applyType) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 

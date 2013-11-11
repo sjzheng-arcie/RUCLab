@@ -20,7 +20,7 @@ public class DonateApply  extends BaseApply{
     private EquipmentMapper mapperEquipment;
 
     @Override
-    void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
+    public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
         for(Integer id : equipIds){
             //更新设备状态
@@ -34,7 +34,7 @@ public class DonateApply  extends BaseApply{
 
     //捐赠申请,更改领用人为转移对象,更新设备状态为已捐赠
     @Override
-    void processApply(int applicationId) {
+    public void processApply(int applicationId) {
         super.processApply(applicationId);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);

@@ -218,18 +218,18 @@
                                     <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">报废日期</span></div>
                                     </td>
-                                    <td width="80" bgcolor="d3eaef">
+                                    <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">经费科目</span></div>
                                     </td>
-                                    <td width="80" bgcolor="d3eaef">
+                                    <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">使用方向</span></div>
                                     </td>
-                                    <td width="80" bgcolor="d3eaef">
+                                    <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">设备状态</span></div>
                                     </td>
                                     <c:if test="${applyType=='info'}">
                                         <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                            <td width="40" bgcolor="d3eaef">
+                                            <td width="50" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
                                         </shiro:hasAnyRoles>
