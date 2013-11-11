@@ -64,4 +64,7 @@ public class BaseApply {
         serviceApply.processApply(applicationId);
     }
 
+    public void rejectApply(int applicationId){
+        serviceApply.rejectApply(applicationId);
+    };
 }

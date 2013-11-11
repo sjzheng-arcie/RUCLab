@@ -202,7 +202,7 @@
                                                     </td>
                                                     <td>
                                                         <c:if test="${item.state.id==31}">
-                                                            <a href="process?application_id=${item.id}">
+                                                            <a href="reject?application_id=${item.id}">
                                                                 <img src="../../../images/X.gif" width="10" height="10" border="0"/>
                                                             </a>
                                                         </c:if>

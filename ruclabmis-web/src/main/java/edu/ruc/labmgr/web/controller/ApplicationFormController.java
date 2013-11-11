@@ -168,7 +168,7 @@ public class ApplicationFormController {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
-        applyContext.processApply(applicationId);
+        applyContext.rejectApply(applicationId);
         return applyList("process",applyType);
     }
 

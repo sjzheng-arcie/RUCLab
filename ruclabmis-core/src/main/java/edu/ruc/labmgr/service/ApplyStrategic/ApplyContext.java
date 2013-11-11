@@ -82,4 +82,8 @@ public class ApplyContext {
     public void processApply(int applicationId) {
         apply.processApply(applicationId);
     }
+
+    public void rejectApply(int applicationId) {
+        apply.rejectApply(applicationId);
+    }
 }

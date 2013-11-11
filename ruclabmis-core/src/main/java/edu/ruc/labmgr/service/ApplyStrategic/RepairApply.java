@@ -53,7 +53,7 @@ public class RepairApply extends BaseApply {
     }
 
     public void rejectApply(int applicationId) {
-        super.processApply(applicationId);
+        super.rejectApply(applicationId);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
         for(Equipment equipment : applyWithEquipment.getEquipments())
