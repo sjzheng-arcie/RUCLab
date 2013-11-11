@@ -145,7 +145,7 @@
                                                     <td>0901051803</td>
                                                     <td>鲍尔默</td>
 
-                                                    <td><a>单频通讯实验报告书.doc<a/></td>
+                                                    <td><a>单频通讯实验报告书.doc</a></td>
                                                     <td><input type="text"><input type="button" value="保存"
                                                                                   class="button"></td>
 
