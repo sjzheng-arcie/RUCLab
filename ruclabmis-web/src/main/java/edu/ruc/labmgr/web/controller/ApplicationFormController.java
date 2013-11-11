@@ -158,9 +158,6 @@ public class ApplicationFormController {
         //发送表单批准消息
         for(int appId : appIds){
             String path = request.getRequestURL().toString();
-            path = path.replace("approve", "toUpdateApplication");
-            path+= "?application_id=" + appId;
-            path+= "&formType=review";
             serviceMessage.sendApproveApplyMessage(appId, type, path, true);
         }
 
@@ -178,9 +175,6 @@ public class ApplicationFormController {
         //发送表单拒绝消息
         for(int appId : appIds){
             String path = request.getRequestURL().toString();
-            path = path.replace("reject", "toUpdateApplication");
-            path+= "?application_id=" + appId;
-            path+= "&formType=review";
             serviceMessage.sendApproveApplyMessage(appId, type, path, false);
         }
 
@@ -199,9 +193,6 @@ public class ApplicationFormController {
 
         //发送表单执行消息
         String path = request.getRequestURL().toString();
-        path = path.replace("process", "toUpdateApplication");
-        path+= "?application_id=" + applicationId;
-        path+= "&formType=review";
         serviceMessage.sendProcessApplyMessage(applicationId, type, path);
 
         return applyList("process",applyType);
@@ -219,9 +210,6 @@ public class ApplicationFormController {
 
         //发送表单执行消息
         String path = request.getRequestURL().toString();
-        path = path.replace("process", "toUpdateApplication");
-        path+= "?application_id=" + applicationId;
-        path+= "&formType=review";
         serviceMessage.sendProcessApplyMessage(applicationId, type, path);
 
         return applyList("process",applyType);
