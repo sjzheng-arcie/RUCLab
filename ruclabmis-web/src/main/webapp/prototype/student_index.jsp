@@ -4,7 +4,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-    <title>人大信息学院实验室管理平台</title>
+    <title>人民大学信息学院实验室管理平台</title>
     <style>
         body {
             background: #eef2fb;
@@ -22,7 +22,5 @@
                target="_self"/>
     </frameset>
 </frameset>
-    <script type="text/javascript">
 
-    </script>
 </html>

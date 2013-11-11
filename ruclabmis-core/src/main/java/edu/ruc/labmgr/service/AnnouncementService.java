@@ -31,7 +31,7 @@ public class AnnouncementService {
 
 		ObjectListPage<Announcement> retList = null;
 		try {
-			String count = SysUtil.getConfigValue("showCount", "10");
+			String count = SysUtil.getConfigValue("", "6");
 
 			int limit = 16;
 			int currentResult = (currentPage - 1) * limit;
@@ -86,7 +86,7 @@ public class AnnouncementService {
 	public List<Announcement> getAnnouncementListByCriteriaForWelcome(AnnouncementCriteria announcementCriteria){
 		List<Announcement> announcementList=null;
 		try{
-			RowBounds bounds = new RowBounds(0, 8);
+			RowBounds bounds = new RowBounds(0, 6);
 			announcementList= mapperAnnouncement.selectByCriteriaWithRowbounds(announcementCriteria, bounds);
 			//announcementList=mapperAnnouncement.selectByCriteria(announcementCriteria);
 		}catch (Exception e){

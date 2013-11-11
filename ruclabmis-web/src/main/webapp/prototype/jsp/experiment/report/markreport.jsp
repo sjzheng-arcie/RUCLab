@@ -11,7 +11,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/experimentpaper/studentlist';
+        var baseHref = '/prototype/jsp/experiment/report/courselist';
     </script>
 
 </head>
@@ -29,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验报告 > 实验课学生信息</div>
+                            <div class="titlebt">教学实验管理 > 实验报告上传</div>
                         </td>
                     </tr>
                 </table>
@@ -45,17 +45,29 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学号.:<input type="text" name="studentNo"
-                                                                                    id="studentNo" value=""
-                                                                                    style="width:100px;"/></span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="studentName"
-                                                                                     id="studentName" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验课程:
+                                <select name="theCourse">
+                                    <c:forEach items="${courseList}" var="item">
+                                        <option value="${item.value}">
+                                            ${item.value}
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="experimentName"
+                                                                                     id="experimentName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;是否提交实验报告:<select id="ifReport" name="ifReport">
+                                <option></option>
+                                <option value="0">是</option>
+                                <option value="1">否</option>
+                            </select></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告提交期限:<input type="text" name="limitTime"
+                                                                                         id="limitTime" value=""
+                                                                                         style="width:100px;"/></span>
+                              <span style="white-space:nowrap">&nbsp;&nbsp;
+                                            <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                                <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -77,14 +89,12 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">实验课学生名单</span>
+                                                                                style="white-space:nowrap">实验信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
-                                                            <td>
 
-                                                            </td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -104,98 +114,55 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
 
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学号</span></div>
+                                                        <div align="center"><span class="STYLE10">实验编号</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">姓名</span></div>
+                                                        <div align="center"><span class="STYLE10">实验名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所在专业</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所在班级</span></div>
-                                                    </td>
-
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所在学院</span></div>
+                                                        <div align="center"><span class="STYLE10">实验时间</span></div>
                                                     </td>
 
 
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">是否提交实验报告</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验报告提交期限</span></div>
+                                                    </td>
+
+
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验报告打分</span></div>
+                                                    </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
-
-
-                                                    <td>0901051803</td>
-                                                    <td>鲍尔默</td>
-                                                    <td>软件工程</td>
-                                                    <td>09-1</td>
-                                                    <td>信息学院</td>
-
-
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
-
-
-                                                    <td>0901011306</td>
-                                                    <td>贾斯汀</td>
-                                                    <td>电子电路</td>
-                                                    <td>09-1</td>
-                                                    <td>信息学院</td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>3</td>
-
-
-                                                    <td>1006121225</td>
-                                                    <td>李开复</td>
-                                                    <td>软件工程</td>
-                                                    <td>09-1</td>
-                                                    <td>信息学院</td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>4</td>
-
-                                                    <td>0812451235</td>
-                                                    <td>赵天华</td>
-
-                                                    <td>软件工程</td>
-                                                    <td>09-1</td>
-                                                    <td>信息学院</td>
-                                                    <c:forEach items="${pageInfo.data}" var="item">
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td>KC001</td>
+                                                    <td>编程语言基础实验课</td>
+                                                    <td>09年第一学期第2周第5节</td>
+                                                    <td>是</td>
+                                                    <td>2012-02-12</td>
+                                                    <td><a href="list">打分</a>
                                                     </td>
-                                                    <td>${item.id}</td>
-                                                    <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
                                                 </tr>
+                                                <c:forEach items="${pageInfo.data}" var="item">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        </td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
+                                                        <td>${item.date}</td>
+                                                        <td>${item.ifUpload}</td>
+                                                        <td>${item.limitTime}</td>
+                                                        <td><a href="list?reportId">打分</a></td>
+                                                    </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
-                                            </table>
-                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                <tr>
-                                                    <td align="center">
-                                                        <input type="button" name="Submit" value="返回上级" class="button"
-                                                               onclick="back();"/>
-
-                                                    </td>
-                                                </tr>
                                             </table>
                                         </div>
                                     </td>
@@ -208,15 +175,15 @@
             </td>
             <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
-    <tr>
-        <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
-                                                                              width="17" height="17"/></td>
-        <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
-                                                                             width="100%" height="17"/></td>
-        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
-                src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
-    </tr>
-</table>
+        <tr>
+            <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
+                                                                                  width="17" height="17"/></td>
+            <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
+                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
+                    src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

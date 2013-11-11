@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <html>
@@ -7,7 +7,7 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/prototype/jsp/experiment/report/list';
     </script>
@@ -43,17 +43,27 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告名称.:<input type="text" name="reportName"
+                           <span style="white-space:nowrap">&nbsp;&nbsp;实验课程:
+                           <select>
+                               <c:forEach items="${courseList}" var="item">
+                                   <option value="${item.value}">
+                                        ${item.value}
+                                   </option>
+                               </c:forEach>
+
+                           </select>
+                           </span>
+
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告名称:<input type="text" name="reportName"
                                                                                         id="reportName" value=""
                                                                                         style="width:100px;"/></span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="studentName"
                                                                                      id="studentName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;
+                                <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                    <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -83,10 +93,9 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">下载</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
+						<a href=""><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">下载实验报告</span></a>&nbsp;
+
       					   </span>
                                                                 </div>
                                                             </td>
@@ -109,9 +118,6 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">所属实验课程</span></div>
@@ -125,11 +131,11 @@
 
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">资源附件</span></div>
+                                                        <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">输入成绩</span></span>
+                                                        <div align="center"><span class="STYLE10">分数</span></span>
                                                         </div>
                                                     </td>
 
@@ -138,59 +144,29 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
+
 
 
                                                     <td>P128码单频通讯实验</td>
                                                     <td>0901051803</td>
                                                     <td>鲍尔默</td>
 
-                                                    <td><a>单频通讯实验报告书.doc</a></td>
-                                                    <td><input type="text"><input type="button" value="保存"
+                                                    <td><a href="">单频通讯实验报告书.doc</a></td>
+                                                    <td><input type="text" style="width: 30px" ><input  type="button" value="保存"
                                                                                   class="button"></td>
 
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
 
-
-                                                    <td>P128码单频通讯实验</td>
-                                                    <td>0901011306</td>
-                                                    <td>贾斯汀</td>
-
-                                                    <td><a>单频通讯实验报告书.doc<a/></td>
-                                                    <td><input type="text"><input type="button" value="保存"
-                                                                                  class="button"></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>3</td>
-
-
-                                                    <td>P128码单频通讯实验</td>
-                                                    <td>1006121225</td>
-                                                    <td>李开复</td>
-
-                                                    <td><a>单频通讯实验报告书.doc<a/></td>
-                                                    <td><input type="text"><input type="button" value="保存"
-                                                                                  class="button"></td>
-                                                </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.phoneNum}</td>
-                                                        <td>${item.email}</td>
-                                                        <td>${item.major.name}</td>
-                                                        <td>${item.role.name}</td>
-                                                        <td>${item.comment}</td>
+                                                        <td>${item.report}</td>
+                                                        <td><input type="text" style="width: 30px" ><input  type="button" value="保存"
+                                                                                                            class="button"></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

@@ -32,7 +32,7 @@ public class MessageService {
 
 		ObjectListPage<Message> retList = null;
 		try {
-			String count = SysUtil.getConfigValue("showCount", "10");
+			String count = SysUtil.getConfigValue("", "6");
 
 			int limit = Integer.valueOf(count);
 			int currentResult = (currentPage - 1) * limit;
@@ -99,7 +99,7 @@ public class MessageService {
 	public List<Message> getMessageListByCriteia(MessageCriteria messageCriteria){
 		List<Message> messageList= null;
 		try{
-			RowBounds bounds = new RowBounds(0, 8);
+			RowBounds bounds = new RowBounds(0, 6);
 			messageList= messageMapper.selectByCriteriaWithRowbounds(messageCriteria,bounds);
 			for (int i=0;i<messageList.size();i++){
 				String content="空";
