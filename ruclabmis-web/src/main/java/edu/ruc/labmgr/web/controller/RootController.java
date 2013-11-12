@@ -60,11 +60,8 @@ public class RootController {
 		mav.addObject("pendingApplyList", getPendingApplyList(user) );
 
 		//获取通知列表
-		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
-		announcementCriteria.setOrderByClause("publish_time desc");
-		AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
-		mav.addObject("announcementList",announcementList );
+
+		mav.addObject("announcementList",getAnnouncementList() );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
 
@@ -91,6 +88,13 @@ public class RootController {
 		criteria02.andStateIdNotEqualTo(34);
 		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
 		return pendingApplyList;
+	}
+	public List<Announcement> getAnnouncementList(){
+		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+		announcementCriteria.setOrderByClause("publish_time desc");
+		AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+		return  announcementList;
 	}
 	@RequestMapping("/admin_index")
 	public ModelAndView admin_Index(HttpServletRequest request) {
@@ -125,10 +129,8 @@ public class RootController {
 		//获取当前用户需要进行审批的申请列表
 		mav.addObject("pendingApplyList", getPendingApplyList(user));
 		//获取通知列表
-		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
-		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
-		mav.addObject("announcementList",announcementList );
+
+		mav.addObject("announcementList",getAnnouncementList());
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
 		messageCriteria.setOrderByClause("sendtime desc");
@@ -143,23 +145,13 @@ public class RootController {
 		ModelAndView mav = new ModelAndView("/equipment/teacher_index");
 		return mav;
 	}
-	@RequestMapping("/teacher_top")
-	public ModelAndView teacher_top(HttpServletRequest request) {
+	@RequestMapping("/left")
+	public ModelAndView allLeft(HttpServletRequest request) {
 
-		User currentUser = new User();
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		currentUser=userService.getUserByLoginSn(loginName);
-		MessageCriteria messageCriteria=  new MessageCriteria();
-		messageCriteria.setOrderByClause("sendtime desc");
-		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-		criteria.andReceiverIdEqualTo(currentUser.getId());
-		criteria.andIfreadEqualTo(false);
-		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/equipment/teacher_top");
-		mav.addObject("unreadCount", count);
-		mav.addObject("user",currentUser);
+		ModelAndView mav = new ModelAndView("/equipment/left");
 		return mav;
 	}
+
 	@RequestMapping("/teacher_welcome")
 	public ModelAndView showTeacherWelcome(HttpServletRequest request) {
 
@@ -170,10 +162,7 @@ public class RootController {
 		//获取当前用户的申请列表
 		mav.addObject("myApplyList",getMyApplyList(user));
 		//获取通知列表
-		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
-		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
-		mav.addObject("announcementList",announcementList );
+		mav.addObject("announcementList",getAnnouncementList() );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
 		messageCriteria.setOrderByClause("sendtime desc");
@@ -189,23 +178,6 @@ public class RootController {
 		return mav;
 	}
 
-	@RequestMapping("/leader_top")
-	public ModelAndView leader_Top(HttpServletRequest request) {
-
-		User currentUser = new User();
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		currentUser=userService.getUserByLoginSn(loginName);
-		MessageCriteria messageCriteria=  new MessageCriteria();
-		messageCriteria.setOrderByClause("sendtime desc");
-		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-		criteria.andReceiverIdEqualTo(currentUser.getId());
-		criteria.andIfreadEqualTo(false);
-		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/equipment/leader_top");
-		mav.addObject("unreadCount", count);
-		mav.addObject("user",currentUser);
-		return mav;
-	}
 
 	@RequestMapping("/leader_welcome")
 	public ModelAndView showLeaderWelcome(HttpServletRequest request) {
@@ -213,16 +185,10 @@ public class RootController {
 		User user = new User();
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
-
 		//获取当前用户需要进行审批的申请列表
-
 		mav.addObject("pendingApplyList", getPendingApplyList(user) );
-
 		//获取通知列表
-		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
-		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
-		mav.addObject("announcementList",announcementList );
+		mav.addObject("announcementList",getAnnouncementList() );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
 		messageCriteria.setOrderByClause("sendtime desc");
@@ -278,7 +244,7 @@ public class RootController {
 	}
 
 	@RequestMapping("/top")
-	public ModelAndView showUnreadMessage(HttpServletRequest request) {
+	public ModelAndView showUnreadMessage() {
 		User currentUser = new User();
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
 		currentUser=userService.getUserByLoginSn(loginName);
@@ -354,7 +320,9 @@ public class RootController {
 	public ModelAndView getMessage(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("messageDetailId"));
 		Message message= messageService.selectById(id);
-
+		message.setIfread(true);
+		messageService.updateByMessage(message);
+		showUnreadMessage();
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
 		mav.addObject("messageDetailFlag",message);
 		return mav;

@@ -13,10 +13,10 @@
     <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
 </head>
 <frameset rows="103,*" frameborder="NO" border="0" framespacing="0" name="mainFrame">
-    <frame src="admin_top" noresize="noresize" frameborder="NO" name="topFrame" scrolling="no" marginwidth="0"
+    <frame src="top" noresize="noresize" frameborder="NO" name="topFrame" scrolling="no" marginwidth="0"
            marginheight="0" target="main"/>
     <frameset cols="202,*" rows="2000,*" id="frame">
-        <frame src="left.jsp" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0"
+        <frame src="left" name="leftFrame" noresize="noresize" marginwidth="0" marginheight="0"
                frameborder="0" scrolling="no" target="main"/>
         <frame src="admin_welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
                target="_self"/>

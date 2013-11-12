@@ -91,11 +91,11 @@
                                         <table width="100%" border="0" cellpadding="0" cellspacing="1"
                                                bgcolor="#a8c7ce">
                                             <tr>
-                                                <td width="20" height="20" bgcolor="d3eaef">
+
 
                                                 </td>
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">序号</span></div>
+                                                    <div align="center"><span class="STYLE10">实验编号</span></div>
                                                 </td>
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">实验名</span></div>
@@ -110,58 +110,34 @@
 
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>1</td>
+
+                                                <td>201312</td>
                                                 <td>编程实验</td>
 
                                                 <td>6</td>
-                                                <td>7</td>
+                                                <td>已签</td>
 
 
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>2</td>
+
+                                                <td>201312</td>
                                                 <td>编程实验</td>
 
                                                 <td>6</td>
-                                                <td>7</td>
+                                                <td>未签</td>
+
 
                                             </tr>
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>3</td>
-                                                <td>编程实验</td>
+                                            <c:forEach items="${pageInfo.data}" var="item">
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
 
-                                                <td>6</td>
-                                                <td>7</td>
-
-                                            </tr>
-
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>4</td>
-                                                <td>编程实验</td>
-
-                                                <td>6</td>
-                                                <td>7</td>
-
-                                            </tr>
-
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>5</td>
-                                                <td>编程实验</td>
-
-                                                <td>6</td>
-                                                <td>7</td>
-
-                                            </tr>
+                                                    <td>${item.sn}</td>
+                                                    <td>${item.name}</td>
+                                                    <td>${item.reportScore}</td>
+                                                    <td>${item.signIn}</td>
+                                                </tr>
+                                            </c:forEach>
                                             <tr height="16px"></tr>
                                         </table>
                                     </div>
@@ -230,8 +206,6 @@
                                                 <input name="finalScore" class="text" value="7"/>
                                                 <span style="color:red;">*</span>
                                             </td>
-
-
                                             </td>
                                             <td nowrap align="right">最终成绩:</td>
                                             <td nowrap align="left">

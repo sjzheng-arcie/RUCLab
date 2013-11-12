@@ -58,7 +58,7 @@ public class AnnouncementController {
 		user=userService.getUserByLoginSn(loginName);
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
+		String fatherPage=request.getParameter("fatherPage");
 		MessageCriteria messageCriteria=  new MessageCriteria();
 		messageCriteria.setOrderByClause(" sendtime desc");
 		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
@@ -69,7 +69,7 @@ public class AnnouncementController {
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
 		mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
-
+		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
 	@RequestMapping("/unreadmessage")
@@ -79,7 +79,7 @@ public class AnnouncementController {
 		user=userService.getUserByLoginSn(loginName);
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
+		String fatherPage=request.getParameter("fatherPage");
 		MessageCriteria messageCriteria=  new MessageCriteria();
 		messageCriteria.setOrderByClause(" sendtime desc");
 		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
@@ -90,7 +90,7 @@ public class AnnouncementController {
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
 		mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
-
+		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
 
@@ -101,7 +101,7 @@ public class AnnouncementController {
 		user=userService.getUserByLoginSn(loginName);
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
+		String fatherPage=request.getParameter("fatherPage");
 		MessageCriteria messageCriteria=  new MessageCriteria();
 		messageCriteria.setOrderByClause(" sendtime desc");
 		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
@@ -112,7 +112,7 @@ public class AnnouncementController {
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
 		mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
-
+		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
 	@RequestMapping("/replyMessage")
@@ -131,7 +131,7 @@ public class AnnouncementController {
 		user=userService.getUserByLoginSn(loginName);
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
-
+		String fatherPage=request.getParameter("fatherPage");
 		MessageCriteria messageCriteria=  new MessageCriteria();
 		messageCriteria.setOrderByClause(" sendtime desc");
 		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
@@ -143,7 +143,7 @@ public class AnnouncementController {
 		mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
 		mav.addObject("mode", "mode");
-
+		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
 
@@ -206,12 +206,14 @@ public class AnnouncementController {
 	@RequestMapping("/messageDetail")
 	public ModelAndView getMessage(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("messageDetailId"));
+		String fatherPage=request.getParameter("fatherPage");
 		Message message= messageService.selectById(id);
 		message.setIfread(true);
 		messageService.updateByMessage(message);
-
+		showUnreadMessage();
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
 		mav.addObject("messageDetailFlag",message);
+		mav.addObject("fatherPage",fatherPage);
 		return mav;
 	}
 	@RequestMapping("/addMessage")
@@ -282,7 +284,21 @@ public class AnnouncementController {
 
 	}
 
-
+	public ModelAndView showUnreadMessage() {
+		User currentUser = new User();
+		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
+		currentUser=userService.getUserByLoginSn(loginName);
+		MessageCriteria messageCriteria=  new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andReceiverIdEqualTo(currentUser.getId());
+		criteria.andIfreadEqualTo(false);
+		int count=messageService.getCount(messageCriteria);
+		ModelAndView mav = new ModelAndView("/equipment/top");
+		mav.addObject("unreadCount", count);
+		mav.addObject("user",currentUser);
+		return mav;
+	}
 
 
 

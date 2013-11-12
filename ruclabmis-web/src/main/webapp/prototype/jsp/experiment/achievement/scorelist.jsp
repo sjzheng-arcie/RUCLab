@@ -54,6 +54,16 @@
                                 </c:forEach>
                             </select>
                             </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;课程:
+                            <select name="theCourse">
+                                <option></option>
+                                <c:forEach items="${courseList}" var="item">
+                                    <option value="${item.Id}">
+                                            ${item.courseName}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                            </span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="studentNo"
                                                                                      id="studentNo" value=""
                                                                                      style="width:100px;"/></span>
