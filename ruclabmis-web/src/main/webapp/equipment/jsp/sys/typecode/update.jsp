@@ -99,13 +99,11 @@
                                                 </td>
                                             </tr>
                                             <tr>
-
-
                                                 <td nowrap align="right">描述：</td>
                                                 <td nowrap align="left" colspan="3">
                                                     <textarea name= "description" id="description"
-                                                  style="width:70%;height:100"
-                                                  value="${typecode.description}"></textarea></td>
+                                                              style="width:70%;height:100">${typecode.description}</textarea>
+                                                </td>
                                             </tr>
 
 

@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <html >
 <head>
@@ -38,12 +39,12 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;分类名称:<input type="text" name="searchName"
-                                                                                     id="searchName" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;分类号:<input type="text" name="searchId"
-                                                                                    id="searchId" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;分类名称<input type="text" name="searchName"
+                                                                                    id="searchName" value=""
                                                                                     style="width:100px;"/></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;分类号<input type="text" name="searchId"
+                                                                                   id="searchId" value=""
+                                                                                   style="width:100px;"/></span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
@@ -80,10 +81,10 @@
 	            	<span class="STYLE1" style="white-space:nowrap">
 						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+      					<%--<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../images/edit_min.gif" width="10" height="10"--%>
+                                                               <%--border="0"/> <span class="STYLE1">修改</span></a>&nbsp;--%>
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                                       border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                 <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                      border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
@@ -117,20 +118,27 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">分类名称</span></div>
                                                     </td>
-
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">描述</span></div>
                                                     </td>
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                                    </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/></td>
-                                                    <td>${item.id}</td>
-                                                    <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
-                                                    <td>${item.description}</td>
-                                                </tr>
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/></td>
+                                                        <td>${item.id}</td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
+                                                        <td>${item.description}</td>
+                                                        <shiro:hasAnyRoles name="administrators,equipment_admin">
+                                                            <td><a href="toUpdate?id=${item.id}">
+                                                                <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                            </a></td>
+                                                        </shiro:hasAnyRoles>
+                                                    </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>

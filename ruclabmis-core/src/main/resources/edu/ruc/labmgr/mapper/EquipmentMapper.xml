@@ -3,7 +3,9 @@
 <mapper namespace="edu.ruc.labmgr.mapper.EquipmentMapper" >
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Equipment" >
         <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="category_id" property="categoryId" jdbcType="VARCHAR" />
+        <result column="category_id" property="categoryId" jdbcType="INTEGER" />
+        <result column="category_sn" property="categorySn" jdbcType="VARCHAR" />
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
         <result column="sn" property="sn" jdbcType="VARCHAR" />
         <result column="name" property="name" jdbcType="VARCHAR" />
         <result column="holder" property="holder" jdbcType="INTEGER" />
@@ -84,7 +86,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, category_id, sn, name, holder, user, model_number, specifications, unit_price, 
+    id, category_id, category_sn, category_name, sn, name, holder, user, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, 
     funding_subject_id, use_direction_id, state_id ,holder_name,funding_subject, use_direction, state
   </sql>
@@ -128,7 +130,7 @@
         factory_number, manufacture_date, acquisition_date,
         scrap_date, country, funding_subject_id,
         use_direction_id, state_id)
-        values (#{categoryId,jdbcType=VARCHAR}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
+        values (#{categoryId,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
         #{holder,jdbcType=INTEGER}, #{user,jdbcType=VARCHAR}, #{modelNumber,jdbcType=VARCHAR},
         #{specifications,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, #{vender,jdbcType=VARCHAR},
         #{factoryNumber,jdbcType=VARCHAR}, #{manufactureDate,jdbcType=DATE}, #{acquisitionDate,jdbcType=DATE},
@@ -195,7 +197,7 @@
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="categoryId != null" >
-                #{categoryId,jdbcType=VARCHAR},
+                #{categoryId,jdbcType=INTEGER},
             </if>
             <if test="sn != null" >
                 #{sn,jdbcType=VARCHAR},
@@ -260,7 +262,7 @@
                 id = #{record.id,jdbcType=INTEGER},
             </if>
             <if test="record.categoryId != null" >
-                category_id = #{record.categoryId,jdbcType=VARCHAR},
+                category_id = #{record.categoryId,jdbcType=INTEGER},
             </if>
             <if test="record.sn != null" >
                 sn = #{record.sn,jdbcType=VARCHAR},
@@ -318,7 +320,7 @@
     <update id="updateByCriteria" parameterType="map" >
         update equipment
         set id = #{record.id,jdbcType=INTEGER},
-        category_id = #{record.categoryId,jdbcType=VARCHAR},
+        category_id = #{record.categoryId,jdbcType=INTEGER},
         sn = #{record.sn,jdbcType=VARCHAR},
         name = #{record.name,jdbcType=VARCHAR},
         holder = #{record.holder,jdbcType=INTEGER},
@@ -343,7 +345,7 @@
         update equipment
         <set >
             <if test="categoryId != null" >
-                category_id = #{categoryId,jdbcType=VARCHAR},
+                category_id = #{categoryId,jdbcType=INTEGER},
             </if>
             <if test="sn != null" >
                 sn = #{sn,jdbcType=VARCHAR},
@@ -398,7 +400,7 @@
     </update>
     <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Equipment" >
     update equipment
-    set category_id = #{categoryId,jdbcType=VARCHAR},
+    set category_id = #{categoryId,jdbcType=INTEGER},
       sn = #{sn,jdbcType=VARCHAR},
       name = #{name,jdbcType=VARCHAR},
       holder = #{holder,jdbcType=INTEGER},

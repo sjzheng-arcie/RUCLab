@@ -92,10 +92,13 @@
                                         </td>
                                         <td align="center">分类号</td>
                                         <td>
-                                            <input name="categoryId" id="categoryId" onblur="" class="text"
-                                                   style="width:154px" maxlength="20"
-                                                   valid="required|isNumber"  min="1" max="32767"
-                                                   errmsg="分类号不能为空!|分类号只能为数字"/>
+                                            <select name="categoryId" id="categoryId">
+                                                <c:forEach items="${typecodes}" var="typecode">
+                                                    <option value="${typecode.id}"
+                                                            <c:if test="${typecode.id == equipment.categoryId}"> selected</c:if>>${typecode.name}
+                                                    </option>
+                                                </c:forEach>
+                                            </select>
                                             <span style="color:red;">*</span>
                                         </td>
                                         <td align="center">设备名称</td>
