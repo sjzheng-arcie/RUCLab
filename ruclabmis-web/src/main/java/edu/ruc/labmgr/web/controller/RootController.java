@@ -284,7 +284,7 @@ public class RootController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
-		String result = "redirect:login";
+		String result = "/equipment/login";
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
 		return result;

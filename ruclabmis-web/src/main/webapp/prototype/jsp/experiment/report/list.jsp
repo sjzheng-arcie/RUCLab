@@ -43,19 +43,9 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                           <span style="white-space:nowrap">&nbsp;&nbsp;实验课程:
-                           <select>
-                               <c:forEach items="${courseList}" var="item">
-                                   <option value="${item.value}">
-                                        ${item.value}
-                                   </option>
-                               </c:forEach>
 
-                           </select>
-                           </span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告名称:<input type="text" name="reportName"
-                                                                                        id="reportName" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="studentNo"
+                                                                                        id="studentNo" value=""
                                                                                         style="width:100px;"/></span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="studentName"
@@ -115,12 +105,12 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所属实验课程</span></div>
+                                                        <div align="center"><span class="STYLE10">实验课程</span></div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学号</span></div>

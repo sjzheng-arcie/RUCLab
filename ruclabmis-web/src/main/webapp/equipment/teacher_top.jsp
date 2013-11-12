@@ -53,7 +53,7 @@
            <span style="float:right;" >您好！<a>${user.name}</a>[${user.role.name}]
             <a href="jsp/announcement/remind/remind?id=1" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
-            [<a href="/prototype/logout" target="_top">退出</a>]
+            [<a href="/equipment/logout" target="_top">退出</a>]
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             </span>
 
