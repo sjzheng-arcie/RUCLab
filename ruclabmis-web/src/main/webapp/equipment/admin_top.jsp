@@ -57,8 +57,7 @@
 
         </div>
         <ul class="top_right_menu">
-            <li class="active"><a href="admin_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-
+            <li class="active"><a href="left.jsp" target="leftFrame" onclick=rs1();>首页</a></li>
         </ul>
     </div>
 </div>

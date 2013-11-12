@@ -33,8 +33,8 @@ public class TypeCodeService {
 		if (!StringUtils.isNullOrEmpty(name))
 			ec.andNameLike("%" + name + "%");
 		return getPageTypecodeByCritera(Page,criteria);
-
 	}
+
 	private  PageInfo<Typecode> getPageTypecodeByCritera(int PageNum,TypecodeCriteria criteria){
 		int totalCount = typeMapper.countByCriteria(criteria);
 		PageInfo<Typecode> typeCodes =  new PageInfo<Typecode>(totalCount,-1,PageNum);
@@ -44,6 +44,11 @@ public class TypeCodeService {
 		return typeCodes;
 
 	}
+
+    public List<Typecode> selectAllTypecode(){
+        return typeMapper.selectByCriteria(null);
+    }
+
 	public int insert(Typecode title){
 		int result = 0;
 		result=typeMapper.insert(title);

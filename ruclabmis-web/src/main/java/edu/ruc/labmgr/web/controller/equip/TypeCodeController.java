@@ -55,7 +55,7 @@ public class TypeCodeController {
 		return "redirect:/equipment/jsp/sys/typecode/list" ;
 
 	}
-	@RequestMapping(value = "/toUpdate",method = RequestMethod.POST)
+	@RequestMapping(value = "/toUpdate",method = RequestMethod.GET)
 	public ModelAndView toUpdate(@RequestParam("id")int id){
 		Typecode typecode = typeService.selectByPrimerKey(id);
 		ModelAndView mav =  new ModelAndView("/equipment/jsp/sys/typecode/update");
