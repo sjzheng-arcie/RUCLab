@@ -6,7 +6,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
-    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
 </head>
 
@@ -79,17 +78,9 @@
                                                     <td>
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="#" onclick="toUpdatePassword('listForm', 'idcheckbox'); return false">
-                            <img src="../../../images/set2.gif" width="10" height="10"
-                                 border="0"/> <span class="STYLE1">修改密码</span>
-                        </a>&nbsp;
                         <a href="/equipment/jsp/sys/user/toAdd">
                             <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
-                        </a>&nbsp;
-                        <a href="#" onclick="toUpdate('listForm', 'idcheckbox'); return false">
-                            <img src="../../../images/edit_min.gif" width="10" height="10"
-                                 border="0"/> <span class="STYLE1">修改</span>
                         </a>&nbsp;
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
                             <img src="../../../images/del_min.gif" width="10" height="10"
@@ -120,8 +111,8 @@
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">编号</span></div>
                                             </td>
-                                            <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">用户账号</span></div>
+                                            <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">账号</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">用户名</span></div>
@@ -141,6 +132,12 @@
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">备注</span></div>
                                             </td>
+                                            <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">详细信息</span></div>
+                                            </td>
+                                            <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
+                                            <div align="center"><span class="STYLE10">修改密码</span></div>
+                                        </td>
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -153,8 +150,14 @@
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.email}</td>
                                                 <td>${item.major.name}</td>
-                                                <td>${item.role.name}</td>
+                                                <td>${item.role.displayName}</td>
                                                 <td>${item.comment}</td>
+                                                <td><a href="toUpdate?id=${item.id}">
+                                                    <img src="../../../images/set2.gif" width="10" height="10" border="0"/>
+                                                </a></td>
+                                                <td><a href="toUpdatePassword?id=${item.id}">
+                                                    <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                </a></td>
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>

@@ -7,6 +7,8 @@ public class Role {
 
     private String name;
 
+    private String displayName;
+
     private List<Privilege> privileges;
 
     public Integer getId() {
@@ -23,6 +25,14 @@ public class Role {
 
     public void setName(String name) {
         this.name = name == null ? null : name.trim();
+    }
+
+    public String getDisplayName() {
+        return displayName;
+    }
+
+    public void setDisplayName(String displayName) {
+        this.displayName = displayName;
     }
 
     public List<Privilege> getPrivileges() {

@@ -121,7 +121,7 @@
                                                 <td nowrap>
                                                     <select name="roleId" id="roleId">
                                                         <c:forEach items="${roles}" var="item">
-                                                            <option value="${item.id}">${item.name}</option>
+                                                            <option value="${item.id}">${item.displayName}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>

@@ -121,7 +121,7 @@
                                                     <select name="roleId" id="roleId">
                                                         <c:forEach items="${roles}" var="item">
                                                             <option value="${item.id}"
-                                                                    <c:if test="${item.id == user.roleId}"> selected</c:if>>${item.name}
+                                                                    <c:if test="${item.id == user.roleId}"> selected</c:if>>${item.displayName}
                                                             </option>
                                                         </c:forEach>
                                                     </select>

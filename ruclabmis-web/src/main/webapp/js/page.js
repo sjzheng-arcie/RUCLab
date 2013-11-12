@@ -162,13 +162,12 @@ function toDispose(formName,checkBoxName)
 
 function toFind(formName){
     var curUrl = window.location.href;
-    var flag = curUrl.indexOf('?');
-    if(flag!=-1){
+    var flag = curUrl.indexOf('?'),
+        pageFlag = curUrl.indexOf("page=");
+    curUrl = (flag==-1) ? (curUrl+"?page=1") :
+        ((pageFlag==-1) ? (curUrl+"&page=1"):(curUrl.replace(/page=\d+/,'page=1')));
 
-        curUrl = curUrl.substr(0,flag);
-
-    }
-    document.forms[formName].action = curUrl + "page=1"
+    document.forms[formName].action = curUrl;
     document.forms[formName].submit();
 }
 
