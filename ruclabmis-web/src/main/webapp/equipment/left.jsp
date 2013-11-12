@@ -68,23 +68,6 @@
     </div>
 </shiro:hasAnyRoles>
 
-<%--<h1 class="type"><a href="javascript:void(0)">验收管理</a></h1>--%>
-
-<%--<div class="content">--%>
-<%--<table width="100%" border="0" cellspacing="0" cellpadding="0">--%>
-<%--<tr>--%>
-<%--<td><img src="images/menu_topline.gif" width="182" height="5"/></td>--%>
-<%--</tr>--%>
-<%--</table>--%>
-<%--<ul class="MM">--%>
-<%--<shiro:hasAnyRoles name="administrators,equipment_admin">--%>
-<%--<li><a href="jsp/dev/store/list" onfocus="toFocus(this)" target="main">设备验收入库</a>--%>
-<%--</li>--%>
-<%--</shiro:hasAnyRoles>--%>
-<%--</ul>--%>
-<%--</div>--%>
-
-
 <h1 class="type"><a href="javascript:void(0)">设备借用管理</a></h1>
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -250,22 +233,6 @@
         </ul>
     </div>
 </shiro:hasAnyRoles>
-
-<h1 class="type"><a href="javascript:void(0)">设备增减值</a></h1>
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <li><a href="jsp/dev/value/myapplylist.html" onfocus="toFocus(this)" target="main">设备增减值申请</a>
-        </li>
-        <li><a href="jsp/dev/value/applylist.html" onfocus="toFocus(this)" target="main">设备增减值审核</a>
-        </li>
-    </ul>
-</div>
-
 
 <h1 class="type"><a href="javascript:void(0)">固定资产盘点</a></h1>
 <div class="content">
