@@ -90,7 +90,7 @@
                                                    errmsg="设备编号不能为空!|设备编号只能为数字"/>
                                             <span style="color:red;">*</span>
                                         </td>
-                                        <td align="center">分类号</td>
+                                        <td align="center">分类</td>
                                         <td>
                                             <select name="categoryId" id="categoryId">
                                                 <c:forEach items="${typecodes}" var="typecode">

@@ -184,7 +184,7 @@
                         <div align="center"><span class="STYLE10">名称</span></div>
                     </td>
                     <td width="80" bgcolor="d3eaef">
-                        <div align="center"><span class="STYLE10">分类号</span></div>
+                        <div align="center"><span class="STYLE10">分类</span></div>
                     </td>
                     <td width="80" bgcolor="d3eaef">
                         <div align="center"><span class="STYLE10">型号</span></div>
@@ -228,7 +228,7 @@
                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                         <td>${item.sn}</td>
                         <td>${item.name}</td>
-                        <td>${item.categoryId}</td>
+                        <td>${item.categoryName}</td>
                         <td>${item.modelNumber}</td>
                         <td>${item.specifications}</td>
                         <td>${item.unitPrice}</td>
