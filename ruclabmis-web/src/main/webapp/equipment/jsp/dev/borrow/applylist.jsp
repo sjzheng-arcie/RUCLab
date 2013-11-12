@@ -12,9 +12,7 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <title></title>
     <script>
-        var baseHref = '/equipment/jsp/dev/borrow/applyList?formType=${formType}&';
     </script>
-
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">

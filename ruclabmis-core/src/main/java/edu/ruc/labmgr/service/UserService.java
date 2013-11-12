@@ -85,10 +85,8 @@ public class UserService {
     }
 
     public int insert(User user) {
-        int result = 0;
-        result = mapperUser.insert(user);
-
-        return result;
+        user.setPassword(CipherUtil.generatePassword(user.getPassword()));
+        return mapperUser.insert(user);
     }
 
     public int update(User user) {

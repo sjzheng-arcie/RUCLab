@@ -12,7 +12,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
     <script>
-        var baseHref = '/equipment/jsp/dev/borrow/applyList?formType=${formType}&';
     </script>
 
 </head>
