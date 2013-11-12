@@ -23,7 +23,7 @@ public class RepairApply extends BaseApply {
 
     @Override
     public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
-        int currUserId = super.serviceUser.getCurrentUserId();
+        int currUserId = super.serviceTeacher.getCurrentUserId();
         return super.serviceEquipment.getPageToRepairEquipments(sn, name, useDirect, page);
     }
 

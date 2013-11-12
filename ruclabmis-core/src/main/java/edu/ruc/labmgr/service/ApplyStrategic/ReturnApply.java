@@ -22,7 +22,7 @@ public class ReturnApply extends BaseApply {
 
     @Override
     public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
-        int currUserId = super.serviceUser.getCurrentUserId();
+        int currUserId = super.serviceTeacher.getCurrentUserId();
         return super.serviceEquipment.getUserPageBorrowedEquipments(sn, name, useDirect, currUserId, page);
     }
 

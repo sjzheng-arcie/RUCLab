@@ -69,7 +69,7 @@
             <tx:method name="saveOrUpdate*" propagation="REQUIRED" isolation="READ_COMMITTED"/>
             <tx:method name="get*" propagation="REQUIRED" read-only="true"/>
             <tx:method name="select*" propagation="REQUIRED" read-only="true"/>
-
+            <tx:method name="query*" propagation="REQUIRED" read-only="true"/>
         </tx:attributes>
     </tx:advice>
 

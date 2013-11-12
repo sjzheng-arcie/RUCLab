@@ -4,7 +4,7 @@ import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.service.ApplyWithEquipmentService;
 import edu.ruc.labmgr.service.EquipmentService;
-import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
@@ -22,7 +22,7 @@ public class BaseApply {
     @Autowired
     protected EquipmentService serviceEquipment;
     @Autowired
-    protected UserService serviceUser;
+    protected TeacherService serviceTeacher;
 
     //默认返回所有可用设备列表
     public PageInfo<Equipment> pageDeviceList(String sn,String name, int useDirect, int page){
@@ -32,7 +32,7 @@ public class BaseApply {
     //默认返回申请人下所有未关闭表单
     public  PageInfo<ApplicationForm> pageApplicationList(String sn,int stateId, int pageNum, Types.ApplyType type){
         Subject currentUser = SecurityUtils.getSubject();
-        int currUserId = serviceUser.getCurrentUserId();
+        int currUserId = serviceTeacher.getCurrentUserId();
         return   serviceApply.selectPageUserApplyNotClosed(sn, stateId, pageNum, type, currUserId);
     }
 
@@ -45,7 +45,7 @@ public class BaseApply {
         Subject currentUser = SecurityUtils.getSubject();
         //教师只看到自己的历史
         if(currentUser.hasRole(Types.Role.TEACHER.getName())) {
-            int currUserId = serviceUser.getCurrentUserId();
+            int currUserId = serviceTeacher.getCurrentUserId();
             return   serviceApply.selectPageUserHistoryApply(sn, stateId, pageNum, type, currUserId);
         }//其他角色看到所有人的历史
         else

@@ -117,17 +117,26 @@
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">用户名</span></div>
                                             </td>
-                                            <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">联系电话</span></div>
-                                            </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">邮箱</span></div>
+                                                <div align="center"><span class="STYLE10">用户角色</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">专业</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">用户角色</span></div>
+                                                <div align="center"><span class="STYLE10">部门</span></div>
+                                            </td>
+                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">职位</span></div>
+                                            </td>
+                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">职称</span></div>
+                                            </td>
+                                            <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">联系电话</span></div>
+                                            </td>
+                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">邮箱</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">备注</span></div>
@@ -144,14 +153,17 @@
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
                                                                        value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>${item.id}</td>
-                                                <td>${item.sn}</td>
-                                                <td>${item.name}</td>
-                                                <td>${item.phoneNum}</td>
-                                                <td>${item.email}</td>
-                                                <td>${item.major.name}</td>
-                                                <td>${item.role.displayName}</td>
-                                                <td>${item.comment}</td>
+                                                <td>${item.user.id}</td>
+                                                <td>${item.user.sn}</td>
+                                                <td>${item.user.name}</td>
+                                                <td>${item.user.role.displayName}</td>
+                                                <td>${item.user.major.name}</td>
+                                                <td>${item.organizationName}</td>
+                                                <td>${item.positionName}</td>
+                                                <td>${item.titleName}</td>
+                                                <td>${item.user.phoneNum}</td>
+                                                <td>${item.user.email}</td>
+                                                <td>${item.user.comment}</td>
                                                 <td><a href="toUpdate?id=${item.id}">
                                                     <img src="../../../images/set2.gif" width="10" height="10" border="0"/>
                                                 </a></td>

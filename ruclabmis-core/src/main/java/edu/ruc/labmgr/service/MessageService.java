@@ -2,7 +2,6 @@ package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.MessageMapper;
-import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
@@ -28,7 +27,7 @@ public class MessageService {
     @Autowired
     private MessageMapper messageMapper;
     @Autowired
-    private UserService serviceUser;
+    private TeacherService serviceTeacher;
     @Autowired
     private ApplyWithEquipmentService serviceApply;
 
@@ -131,15 +130,15 @@ public class MessageService {
         message.setSendtime(new Date());
         message.setSenderId(0);
 
-        User applicant = serviceUser.selectByPrimaryKey(applicationForm.getApplicantId());
+        Teacher applicant = serviceTeacher.selectByPrimaryKey(applicationForm.getApplicantId());
 
-        List<User> leaders = serviceUser.getRoleUserList(Types.Role.LEADER);
-        for(User leader : leaders){
+        List<Teacher> leaders = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
+        for(Teacher leader : leaders){
             if(leader.getId() == applicant.getId())
                 continue;
             message.setReceiverId(leader.getId());
             String content = "";
-            content +=  applicant.getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请: ";
+            content +=  applicant.getUser().getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请: ";
 
             String listPath = path.substring(0, path.lastIndexOf("/"));
             listPath += "/applyList?formType=review";
@@ -149,13 +148,13 @@ public class MessageService {
             insert(message);
         }
 
-        List<User> equpiAdmins = serviceUser.getRoleUserList(Types.Role.EQUIPMENT_ADMIN);
-        for(User equpiAdmin : equpiAdmins){
+        List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
+        for(Teacher equpiAdmin : equpiAdmins){
             if(equpiAdmin.getId() == applicant.getId())
                 continue;
             message.setReceiverId(equpiAdmin.getId());
             String content = "";
-            content +=  applicant.getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请: ";
+            content +=  applicant.getUser().getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请: ";
 
             String listPath = path.substring(0, path.lastIndexOf("/"));
             listPath += "/applyList?formType=process";
@@ -176,7 +175,7 @@ public class MessageService {
         ApplyWithEquipment apply = serviceApply.selectApplyById(appId);
         message.setSenderId(0);
 
-        User applicant = serviceUser.selectByPrimaryKey(apply.getApplicantId());
+        Teacher applicant = serviceTeacher.selectByPrimaryKey(apply.getApplicantId());
         message.setReceiverId(applicant.getId());
         String content = "";
         content +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
@@ -190,8 +189,8 @@ public class MessageService {
         message.setContent(content);
         insert(message);
 
-        List<User> equpiAdmins = serviceUser.getRoleUserList(Types.Role.EQUIPMENT_ADMIN);
-        for(User equpiAdmin : equpiAdmins){
+        List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
+        for(Teacher equpiAdmin : equpiAdmins){
             if(equpiAdmin.getId() == applicant.getId())
                 continue;
 
@@ -220,7 +219,7 @@ public class MessageService {
         ApplyWithEquipment apply = serviceApply.selectApplyById(appId);
         message.setSenderId(0);
 
-        User applicant = serviceUser.selectByPrimaryKey(apply.getApplicantId());
+        Teacher applicant = serviceTeacher.selectByPrimaryKey(apply.getApplicantId());
         message.setReceiverId(applicant.getId());
         String content = "";
         content +=  apply.getOperatorName()+" 于"+format.format(apply.getApproveTime());
@@ -233,8 +232,8 @@ public class MessageService {
         message.setContent(content);
         insert(message);
 
-        List<User> equpiAdmins = serviceUser.getRoleUserList(Types.Role.LEADER);
-        for(User equpiAdmin : equpiAdmins){
+        List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
+        for(Teacher equpiAdmin : equpiAdmins){
             if(equpiAdmin.getId() == applicant.getId())
                 continue;
 

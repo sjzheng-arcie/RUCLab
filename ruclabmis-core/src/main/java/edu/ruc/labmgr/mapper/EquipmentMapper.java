@@ -23,10 +23,6 @@ public interface EquipmentMapper {
 
     Equipment selectByPrimaryKey(Integer id);
 
-    List<Equipment> selectInventoryProfitWithRowbounds(RowBounds rowBounds);
-
-    int countInventoryProfit();
-
     int updateByCriteriaSelective(@Param("record") Equipment record, @Param("criteria") EquipmentCriteria criteria);
 
     int updateByCriteria(@Param("record") Equipment record, @Param("criteria") EquipmentCriteria criteria);
@@ -34,4 +30,8 @@ public interface EquipmentMapper {
     int updateByPrimaryKeySelective(Equipment record);
 
     int updateByPrimaryKey(Equipment record);
+
+    int countInventoryProfit();
+
+    List<Equipment> selectInventoryProfitWithRowbounds(RowBounds RowBounds);
 }

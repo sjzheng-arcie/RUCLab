@@ -4,6 +4,7 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.AnnouncementService;
 import edu.ruc.labmgr.service.MessageService;
+import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
@@ -22,13 +23,6 @@ import java.io.PrintWriter;
 import java.util.Date;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: jinlytin
- * Date: 13-10-16
- * Time: 下午4:35
- * To change this template use File | Settings | File Templates.
- */
 @Controller
 @RequestMapping("/equipment/jsp/announcement/remind")
 public class AnnouncementController {
@@ -37,7 +31,7 @@ public class AnnouncementController {
 	@Autowired
 	MessageService messageService;
 	@Autowired
-	private UserService userService;
+	private TeacherService userService;
 
 	private int currPage = 0;
 	@RequestMapping("/remind")
@@ -262,26 +256,6 @@ public class AnnouncementController {
 		message.setSenderId(user.getId());
 		message.setSendtime(new Date());
 		return message;
-	}
-
-
-
-	@RequestMapping(value="/getUserSno",produces = "application/json")
-	public @ResponseBody List<User> doRegister(
-			HttpServletRequest request,HttpServletResponse response)
-			throws Exception{
-
-
-
-		String param=request.getParameter("param");
-		List<User> userList = null;
-		UserCriteria userCriteria= new UserCriteria();
-		UserCriteria.Criteria criteria= userCriteria.createCriteria();
-		criteria.andSnLike("%"+param+"%");
-		userList= userService.getUserList(userCriteria);
-		return userList;
-
-
 	}
 
 	public ModelAndView showUnreadMessage() {

@@ -24,7 +24,7 @@ public class AllotApply extends BaseApply {
 
     @Override
     public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
-        int currUserId = super.serviceUser.getCurrentUserId();
+        int currUserId = super.serviceTeacher.getCurrentUserId();
         return super.serviceEquipment.getUserPageBorrowedEquipments(sn, name, useDirect, currUserId, page);
     }
 
@@ -32,7 +32,7 @@ public class AllotApply extends BaseApply {
         //转移申请时，取出接受者名字
         for(ApplicationForm apply : pageInfo.getData()){
             if(!StringUtils.isNullOrEmpty(apply.getAnnex())){
-                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
+                String target = serviceTeacher.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getUser().getName();
                 apply.setTarget(target);
             }
         }
@@ -64,7 +64,7 @@ public class AllotApply extends BaseApply {
     @Override
     public void updateApplication(ApplicationForm applyForm) throws Exception {
         String targetName = applyForm.getTarget();
-        int id = serviceUser.getUserIdByName(targetName);
+        int id = serviceTeacher.getUserIdByName(targetName);
         if(id < 0) {
             throw(new Exception("接收人不存在，请检查后重新输入"));
         }
