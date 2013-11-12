@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -44,17 +44,26 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;班级:
+                            <select name="classId">
+                                <option></option>
+                                <c:forEach items="${classList}" var="item">
+                                    <option value="${item.Id}">
+                                        ${item.className}
+                                    </option>
+                                </c:forEach>
+                            </select>
+                            </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;学生学号:<input type="text" name="studentNo"
+                                                                                     id="studentNo" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="searchB1"
-                                                                                     id="searchB1" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="studentName"
+                                                                                     id="studentName" value=""
                                                                                      style="width:100px;"/></span>
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                              <span style="white-space:nowrap">&nbsp;&nbsp;
+                                <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                    <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -111,12 +120,10 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
+
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学号</span></div>
                                                     </td>
@@ -135,10 +142,10 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
+
                                                     <td>0101</td>
                                                     <td>李小白</td>
-                                                    <td><a href="score.html">评分</a></td>
+                                                    <td><a href="score?studentId=${item.studentId}">评分</a></td>
 
 
                                                 </tr>
@@ -148,9 +155,9 @@
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+                                                        <td><a href="score?studentId=${item.studentId}">评分</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

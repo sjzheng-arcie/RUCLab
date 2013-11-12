@@ -181,7 +181,7 @@
                                     <td width="80" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">仪器编号</span></div>
                                     </td>
-                                    <td width="80" bgcolor="d3eaef">
+                                    <td width="100" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">名称</span></div>
                                     </td>
                                     <td width="60" bgcolor="d3eaef">
@@ -190,8 +190,8 @@
                                     <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">使用人</span></div>
                                     </td>
-                                    <td width="60" bgcolor="d3eaef">
-                                        <div align="center"><span class="STYLE10">分类号</span></div>
+                                    <td width="100" bgcolor="d3eaef">
+                                        <div align="center"><span class="STYLE10">分类</span></div>
                                     </td>
                                     <td width="50" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">型号</span></div>
@@ -242,7 +242,7 @@
                                         <td>${item.name}</td>
                                         <td>${item.holderName}</td>
                                         <td>${item.user}</td>
-                                        <td>${item.categoryId}</td>
+                                        <td>${item.categoryName}</td>
                                         <td>${item.modelNumber}</td>
                                         <td>${item.specifications}</td>
                                         <td>${item.unitPrice}</td>

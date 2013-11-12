@@ -29,7 +29,7 @@ public class ApplicationFormService {
 		List<ApplicationForm> applicationFormList = null;
 
 		try{
-			RowBounds bounds = new RowBounds(0, 8);
+			RowBounds bounds = new RowBounds(0, 6);
 			applicationFormList= applicationFormMapper.selectByCriteriaWithRowbounds(applicationFormCriteria,bounds);
 		}catch (Exception e){
 			e.printStackTrace();
@@ -46,31 +46,6 @@ public class ApplicationFormService {
 		return page;
 	}
 
-	public ObjectListPage<ApplicationForm> selectListPage(int currentPage, ApplicationFormCriteria criteria){
 
 
-		ObjectListPage<ApplicationForm> retList = null;
-		try {
-			String count = SysUtil.getConfigValue("showCount", "10");
-
-			int limit = Integer.valueOf(count);
-			int currentResult = (currentPage - 1) * limit;
-			int totalCount = applicationFormMapper.countByCriteria(criteria);
-			int pageCount = (totalCount % limit == 0) ? (totalCount / limit) : (1 + totalCount / limit);
-
-			PageInfo pageInfo = new PageInfo();
-			pageInfo.setTotalResult(totalCount);
-			pageInfo.setTotalPage(pageCount);
-			pageInfo.setCurrentPage(currentPage);
-
-			RowBounds bounds = new RowBounds(currentResult, limit);
-			List<ApplicationForm> applicationFormList= applicationFormMapper.selectByCriteriaWithRowbounds(criteria, bounds);
-
-			retList = new ObjectListPage(pageInfo, applicationFormList);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-
-		return retList;
-	}
 }

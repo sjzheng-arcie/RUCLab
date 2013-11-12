@@ -55,19 +55,9 @@ public class RootController {
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		//获取当前用户的申请列表
-		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApplicantIdEqualTo(user.getId());
-		applicationFormCriteria.or(criteria);
-		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-		mav.addObject("myApplyList",myApplyList );
+		mav.addObject("myApplyList",getMyApplyList(user) );
 		//获取当前用户需要进行审批的申请列表
-		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-		criteria02.andApproverIdEqualTo(user.getId());
-		applicationFormCriteria.or(criteria);
-		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-		mav.addObject("pendingApplyList", pendingApplyList );
+		mav.addObject("pendingApplyList", getPendingApplyList(user) );
 
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
@@ -86,7 +76,22 @@ public class RootController {
 
 		return mav;
 	}
-
+	public List<ApplicationForm> getMyApplyList(User user){
+		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+		criteria.andApplicantIdEqualTo(user.getId());
+		criteria.andStateIdNotEqualTo(34);
+		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
+		return myApplyList;
+	}
+	public List<ApplicationForm> getPendingApplyList(User user){
+		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
+		criteria02.andApproverIdEqualTo(user.getId());
+		criteria02.andStateIdNotEqualTo(34);
+		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
+		return pendingApplyList;
+	}
 	@RequestMapping("/admin_index")
 	public ModelAndView admin_Index(HttpServletRequest request) {
 
@@ -116,20 +121,9 @@ public class RootController {
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		//获取当前用户的申请列表
-		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApplicantIdEqualTo(user.getId());
-		applicationFormCriteria.or(criteria);
-		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-		mav.addObject("myApplyList",myApplyList );
+		mav.addObject("myApplyList",getMyApplyList(user) );
 		//获取当前用户需要进行审批的申请列表
-		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-		criteria02.andApproverIdEqualTo(user.getId());
-		applicationFormCriteria.or(criteria);
-		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-		mav.addObject("pendingApplyList", pendingApplyList );
-
+		mav.addObject("pendingApplyList", getPendingApplyList(user));
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
@@ -174,12 +168,7 @@ public class RootController {
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
 		//获取当前用户的申请列表
-		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApplicantIdEqualTo(user.getId());
-		applicationFormCriteria.or(criteria);
-		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-		mav.addObject("myApplyList",myApplyList );
+		mav.addObject("myApplyList",getMyApplyList(user));
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
@@ -226,11 +215,8 @@ public class RootController {
 		user=userService.getUserByLoginSn(loginName);
 
 		//获取当前用户需要进行审批的申请列表
-		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-		criteria02.andApproverIdEqualTo(user.getId());
-		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-		mav.addObject("pendingApplyList", pendingApplyList );
+
+		mav.addObject("pendingApplyList", getPendingApplyList(user) );
 
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
@@ -285,7 +271,7 @@ public class RootController {
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
-		String result = "redirect:login";
+		String result = "/equipment/login";
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
 		return result;

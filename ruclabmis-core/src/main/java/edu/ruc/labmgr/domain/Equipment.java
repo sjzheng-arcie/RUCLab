@@ -5,7 +5,11 @@ import java.util.Date;
 public class Equipment {
     private Integer id;
 
-    private String categoryId;
+    private Integer categoryId;
+
+    private String categorySn;
+
+    private String categoryName;
 
     private String sn;
 
@@ -55,12 +59,28 @@ public class Equipment {
         this.id = id;
     }
 
-    public String getCategoryId() {
+    public Integer getCategoryId() {
         return categoryId;
     }
 
-    public void setCategoryId(String categoryId) {
-        this.categoryId = categoryId == null ? null : categoryId.trim();
+    public void setCategoryId(Integer categoryId) {
+        this.categoryId = categoryId;
+    }
+
+    public String getCategorySn() {
+        return categorySn;
+    }
+
+    public void setCategorySn(String categorySn) {
+        this.categorySn = categorySn;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getSn() {

@@ -2,9 +2,11 @@ package edu.ruc.labmgr.web.controller.equip;
 
 import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.domain.Typecode;
 import edu.ruc.labmgr.service.ApplyStrategic.ApplyContext;
 import edu.ruc.labmgr.service.ClassifService;
 import edu.ruc.labmgr.service.EquipmentService;
+import edu.ruc.labmgr.service.TypeCodeService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ public class EquipmentController {
     private EquipmentService serviceEquipment;
     @Autowired
     private ClassifService serviceClassif;
+    @Autowired
+    private TypeCodeService serviceTypecode;
 
     //备选设备列表
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList",  method = {RequestMethod.GET, RequestMethod.POST})
@@ -58,10 +62,12 @@ public class EquipmentController {
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
+         List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/info/adddevice");
         mav.addObject("useDirections", useDirections);
         mav.addObject("states", states);
+        mav.addObject("typecodes", typecodes);
         mav.addObject("fundingSubjects", fundingSubjects);
         return mav;
     }
@@ -79,11 +85,13 @@ public class EquipmentController {
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
+        List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/info/editdevice");
         mav.addObject("equipment", equipment);
         mav.addObject("useDirections", useDirections);
         mav.addObject("states", states);
+        mav.addObject("typecodes", typecodes);
         mav.addObject("fundingSubjects", fundingSubjects);
         return mav;
     }
