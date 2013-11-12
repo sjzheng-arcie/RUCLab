@@ -9,7 +9,6 @@
     <script type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript" src="/js/page.js"></script>
     <script>
-        var baseHref = "/equipCheck/list";
     </script>
 </head>
 <body onload="getWidth()" onresize="getWidth()">

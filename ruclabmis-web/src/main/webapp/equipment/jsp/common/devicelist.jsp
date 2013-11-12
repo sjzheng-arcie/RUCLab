@@ -12,8 +12,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
     <script>
-        var baseHref = '/equipment/jsp/dev/info/deviceList';
-
         function toReturn(formName,checkBoxName) {
             var selectedItems = getAllSelected(formName,checkBoxName);
 
