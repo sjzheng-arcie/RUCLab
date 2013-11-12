@@ -14,16 +14,28 @@ public class EquipCheckExcelParser extends POIEntityParser<EquipmentCheck>{
     @Override
     public EquipmentCheck mapToEntity(Map<String, Object> map) {
         EquipmentCheck result = new EquipmentCheck();
-        result.setSn(map.get("sn").toString());
+		Object sn_temp = map.get("sn");
+        result.setSn(cellDoubletoString(sn_temp));
         result.setName((String)map.get("name"));
         result.setAcquisitionDate((Date)map.get("acquisitionDate"));
-        result.setCategoryId(map.get("categoryId").toString());
+        result.setCategoryId(cellDoubletoString(map.get("categoryId")));
         result.setUser((String)map.get("user"));
-        result.setFactoryNumber(map.get("factoryNumber").toString());
+        result.setFactoryNumber(cellDoubletoString(map.get("factoryNumber")));
         result.setFundingSubject((String)map.get("fundingSubject"));
         result.setLocation((String)map.get("location"));
         result.setModelNumber((String)map.get("modelNumber"));
         result.setUnitPrice(((Double)map.get("unitPrice")).floatValue());
         return result;
     }
+	private String cellDoubletoString(Object value ){
+		if(value==null)
+			return null;
+		if(value instanceof  Double){
+			long result = Double.valueOf(value.toString()).longValue();
+			return  ""+result;
+
+		}
+		return  value.toString();
+
+	}
 }
