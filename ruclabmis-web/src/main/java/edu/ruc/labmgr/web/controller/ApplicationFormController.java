@@ -83,7 +83,7 @@ public class ApplicationFormController {
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/updateApplication", method = RequestMethod.POST)
     public String updateApplication(ApplicationForm apply, @PathVariable("applyType") String applyType,
-                                          HttpServletRequest request) throws Exception {
+                                    HttpServletRequest request) throws Exception {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
@@ -91,17 +91,14 @@ public class ApplicationFormController {
 
         //发送表单提交消息
         String path = request.getRequestURL().toString();
-        path = path.replace("updateApplication", "toUpdateApplication");
-        path+= "?application_id=" + apply.getId();
-        path+= "&formType=review";
         serviceMessage.sendUpdateApplyMessage(apply, type, path);
 
-        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList";
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=apply";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/toApply", method = RequestMethod.POST)
-    public ModelAndView toApply(@RequestParam("items") List<Integer> items,
-                                @PathVariable("applyType")String applyType) {
+    public String toApply(@RequestParam("items") List<Integer> items,
+                          @PathVariable("applyType")String applyType) {
         ApplicationForm apply = new ApplicationForm();
 
         Date now = new Date();
@@ -119,34 +116,37 @@ public class ApplicationFormController {
 
         applyContext.addEquipmentsToApply(apply.getId(), items);
 
-        return toUpdateApplication(apply.getId(), "apply", applyType);
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/toUpdateApplication?formType=apply&application_id="+apply.getId();
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/addEquipmentsToApply", method = RequestMethod.POST)
-    public ModelAndView addEquipmentsToApply(@RequestParam("application_id") int applicationId,
-                                             @RequestParam("items") List<Integer> items,
-                                             @PathVariable("applyType")String applyType) {
+    public String addEquipmentsToApply(@RequestParam("application_id") int applicationId,
+                                       @RequestParam("items") List<Integer> items,
+                                       @PathVariable("applyType")String applyType) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
         applyContext.addEquipmentsToApply(applicationId, items);
 
-        return toUpdateApplication(applicationId, "apply", applyType);
-    }
+        return "redirect:/equipment/jsp/dev/"+ applyType +
+                "/toUpdateApplication?formType=apply&application_id=" +
+                Integer.toString(applicationId);    }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/removeEquipmentFromApply", method = RequestMethod.GET)
-    public ModelAndView removeEquipmentFromApply(@RequestParam("application_id") int applicationId,
-                                                 @RequestParam("equipment_id") int equipmentId,
-                                                 @PathVariable("applyType")String applyType) {
+    public String removeEquipmentFromApply(@RequestParam("application_id") int applicationId,
+                                           @RequestParam("equipment_id") int equipmentId,
+                                           @PathVariable("applyType")String applyType) {
         serviceApply.removeEquipmentFromApply(applicationId, equipmentId);
-        return toUpdateApplication(applicationId, "apply", applyType);
+        return "redirect:/equipment/jsp/dev/"+ applyType +
+                "/toUpdateApplication?formType=apply&application_id=" +
+                Integer.toString(applicationId);
     }
 
     //审批通过
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/approve", method = RequestMethod.POST)
     public String approve(@RequestParam("items") List<Integer> appIds,
-                                @PathVariable("applyType")String applyType,
-                                HttpServletRequest request) {
+                          @PathVariable("applyType")String applyType,
+                          HttpServletRequest request) {
         serviceApply.approveApplys(appIds);
 
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
@@ -156,14 +156,14 @@ public class ApplicationFormController {
             serviceMessage.sendApproveApplyMessage(appId, type, path, true);
         }
 
-        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList";
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=review";
     }
 
     //审批拒绝
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/reject", method = RequestMethod.POST)
     public String reject(@RequestParam("items") List<Integer> appIds,
-                               @PathVariable("applyType")String applyType,
-                               HttpServletRequest request) {
+                         @PathVariable("applyType")String applyType,
+                         HttpServletRequest request) {
         serviceApply.rejectApplys(appIds);
 
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
@@ -173,14 +173,14 @@ public class ApplicationFormController {
             serviceMessage.sendApproveApplyMessage(appId, type, path, false);
         }
 
-        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList";
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=review";
     }
 
     //执行申请
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/process", method = RequestMethod.GET)
     public String process(@RequestParam("application_id") int applicationId,
-                                @PathVariable("applyType")String applyType,
-                                HttpServletRequest request) {
+                          @PathVariable("applyType")String applyType,
+                          HttpServletRequest request) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
@@ -190,14 +190,14 @@ public class ApplicationFormController {
         String path = request.getRequestURL().toString();
         serviceMessage.sendProcessApplyMessage(applicationId, type, path);
 
-        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList";
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=process";
     }
 
     //执行报废
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/scrap", method = RequestMethod.GET)
     public String processScrap(@RequestParam("application_id") int applicationId,
-                                     @PathVariable("applyType")String applyType,
-                                     HttpServletRequest request) {
+                               @PathVariable("applyType")String applyType,
+                               HttpServletRequest request) {
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
 
@@ -207,14 +207,14 @@ public class ApplicationFormController {
         String path = request.getRequestURL().toString();
         serviceMessage.sendProcessApplyMessage(applicationId, type, path);
 
-        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList";
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=process";
     }
 
     //删除申请
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> appIds, @PathVariable("applyType")String applyType) {
         serviceApply.deleteApplys(appIds);
-        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList";
+        return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=apply";
     }
 
 }
