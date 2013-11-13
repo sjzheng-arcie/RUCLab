@@ -9,7 +9,6 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -25,7 +24,7 @@ public class ApplyWithEquipmentService {
     @Autowired
     private EquipmentApplicationFormMapper mapperEA;
     @Autowired
-    private UserService userService;
+    private TeacherService teacherService;
 
     //按类型取得所有已关闭的表单
     public PageInfo<ApplicationForm> selectPageHistoryApply(String sn,int stateId, int pageNum, Types.ApplyType type){
@@ -228,7 +227,7 @@ public class ApplyWithEquipmentService {
             form.setId(id);
             form.setApproveTime(new Date());
             form.setStateId(Types.ApplyState.PASS.getValue());
-            form.setApproverId(userService.getCurrentUserId());
+            form.setApproverId(teacherService.getCurrentUserId());
 
             mapperApply.updateByPrimaryKeySelective(form);
         }
@@ -242,7 +241,7 @@ public class ApplyWithEquipmentService {
             form.setId(id);
             form.setApproveTime(new Date());
             form.setStateId(Types.ApplyState.REJECT.getValue());
-            form.setApproverId(userService.getCurrentUserId());
+            form.setApproverId(teacherService.getCurrentUserId());
 
             mapperApply.updateByPrimaryKeySelective(form);
 
@@ -256,7 +255,7 @@ public class ApplyWithEquipmentService {
         form.setId(application_id);
         form.setProcessTime(new Date());
         form.setStateId(Types.ApplyState.CLOSE.getValue());
-        form.setOperatorId(userService.getCurrentUserId());
+        form.setOperatorId(teacherService.getCurrentUserId());
 
         mapperApply.updateByPrimaryKeySelective(form);
 
@@ -269,7 +268,7 @@ public class ApplyWithEquipmentService {
         form.setId(application_id);
         form.setProcessTime(new Date());
         form.setStateId(Types.ApplyState.CLOSE.getValue());
-        form.setOperatorId(userService.getCurrentUserId());
+        form.setOperatorId(teacherService.getCurrentUserId());
 
         mapperApply.updateByPrimaryKeySelective(form);
 

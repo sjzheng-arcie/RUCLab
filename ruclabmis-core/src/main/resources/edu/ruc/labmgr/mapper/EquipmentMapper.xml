@@ -86,9 +86,10 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, category_id, category_sn, category_name, sn, name, holder, user, model_number, specifications, unit_price,
+    id, category_id,category_sn, category_name, sn, name, holder, holder_name, user,
+    model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, 
-    funding_subject_id, use_direction_id, state_id ,holder_name,funding_subject, use_direction, state
+    funding_subject_id, funding_subject, use_direction_id, use_direction,  state_id, state
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
         select
@@ -250,7 +251,7 @@
         </trim>
     </insert>
     <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer" >
-        select count(*) from equipment
+        select count(*) from view_equipment
         <if test="_parameter != null" >
             <include refid="Criteria_Where_Clause" />
         </if>

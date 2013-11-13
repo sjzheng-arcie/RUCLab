@@ -67,22 +67,6 @@ public class Equipment {
         this.categoryId = categoryId;
     }
 
-    public String getCategorySn() {
-        return categorySn;
-    }
-
-    public void setCategorySn(String categorySn) {
-        this.categorySn = categorySn;
-    }
-
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
     public String getSn() {
         return sn;
     }
@@ -209,6 +193,22 @@ public class Equipment {
 
     public void setStateId(Integer stateId) {
         this.stateId = stateId;
+    }
+
+    public String getCategorySn() {
+        return categorySn;
+    }
+
+    public void setCategorySn(String categorySn) {
+        this.categorySn = categorySn;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
+    }
+
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 
     public String getFundingSubject() {

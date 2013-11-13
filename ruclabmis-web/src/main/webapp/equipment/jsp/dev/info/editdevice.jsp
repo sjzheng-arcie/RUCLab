@@ -27,7 +27,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备信息管理 > 设备资产报增 </div>
+                    <div class="titlebt">设备信息管理 > 设备资产 </div>
                 </td>
             </tr>
         </table>
@@ -54,7 +54,7 @@
                                                         <div align="center"><img src="../../../images/tb.gif" width="14"
                                                                                  height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产报增单</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产</span>
                                                     </td>
                                                 </tr>
                                             </table>

@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
-                                                    <input name="sn" id="sn"onblur="" class="text"
+                                                    <input name="user.sn" id="user.sn"onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"
                                                            errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
@@ -93,7 +93,7 @@
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
-                                                    <input name="name" id="name" onblur="" class="text"
+                                                    <input name="user.name" id="user.name" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isEnglishChinese"
                                                            errmsg="用户名不能为空!|用户名只能为中英文字符"/>
@@ -103,7 +103,7 @@
                                             <tr>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
-                                                    <input name="password" id="password" value="" onblur="" class="text"
+                                                    <input name="user.password" id="user.password" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="16"
                                                            valid="required|isPassword" type="password"
                                                            errmsg="账号密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
@@ -111,7 +111,7 @@
                                                 </td>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input name="email" id="email"
+                                                    <input name="user.email" id="user.email"
                                                            valid="isEmail"
                                                            errmsg="邮箱格式不正确!"/>
                                                 </td>
@@ -119,7 +119,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户角色:</td>
                                                 <td nowrap>
-                                                    <select name="roleId" id="roleId">
+                                                    <select name="user.roleId" id="user.roleId">
                                                         <c:forEach items="${roles}" var="item">
                                                             <option value="${item.id}">${item.displayName}</option>
                                                         </c:forEach>
@@ -127,23 +127,56 @@
                                                 </td>
                                                 <td nowrap align="right">所属专业：</td>
                                                 <td nowrap align="left">
-                                                    <select name="majorId" id="majorId">
+                                                    <select name="user.majorId" id="user.majorId">
                                                         <c:forEach items="${majors}" var="item">
                                                             <option value="${item.id}">${item.name}
                                                             </option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
-
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">职称:</td>
+                                                <td nowrap>
+                                                    <select name="titleId" id="titleId">
+                                                        <c:forEach items="${titles}" var="item">
+                                                            <option value="${item.id}"
+                                                                    <c:if test="${item.id == teacher.titleId}"> selected</c:if>>${item.name}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                                <td nowrap align="right">职位：</td>
+                                                <td nowrap align="left">
+                                                    <select name="positionId" id="positionId">
+                                                        <c:forEach items="${positions}" var="item">
+                                                            <option value="${item.id}"
+                                                                    <c:if test="${item.id == teacher.positionId}"> selected</c:if>>${item.name}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">所属部门：</td>
+                                                <td nowrap align="left">
+                                                    <select name="organizationId" id="organizationId">
+                                                        <c:forEach items="${organizations}" var="item">
+                                                            <option value="${item.id}"
+                                                                    <c:if test="${item.id == teacher.organizationId}"> selected</c:if>>${item.name}
+                                                            </option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text">
+                                                    <input name="user.phoneNum" id="user.phoneNum" type="text">
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="comment" id="comment">
+                                                    <textarea name="user.comment" id="user.comment">
                                                     </textarea>
                                                 </td>
                                             </tr>

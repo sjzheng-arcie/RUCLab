@@ -3,6 +3,8 @@ package edu.ruc.labmgr.domain;
 public class Organization {
     private Integer id;
 
+    private String sn;
+
     private String name;
 
     private String grade;
@@ -19,6 +21,14 @@ public class Organization {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn == null ? null : sn.trim();
     }
 
     public String getName() {

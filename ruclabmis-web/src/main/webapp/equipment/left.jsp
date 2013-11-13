@@ -256,13 +256,7 @@
         </tr>
     </table>
     <ul class="MM">
-        <li><a href="jsp/dev/inquery/devicelist.jsp" onfocus="toFocus(this)" target="main">设备统计查询</a>
-        </li>
-        <li><a href="jsp/dev/inquery/repairlist.html" onfocus="toFocus(this)" target="main">设备维修查询</a>
-        </li>
-        <li><a href="jsp/dev/inquery/allotlist.html" onfocus="toFocus(this)" target="main">设备转移查询</a>
-        </li>
-        <li><a href="jsp/dev/inquery/scraplist.html" onfocus="toFocus(this)" target="main">报废统计查询</a>
+        <li><a href="jsp/dev/inquery/querydevice" onfocus="toFocus(this)" target="main">设备统计查询</a>
         </li>
     </ul>
 </div>

@@ -10,13 +10,6 @@ import org.springframework.stereotype.Service;
 import com.mysql.jdbc.StringUtils;
 import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sjzheng
- * Date: 13-10-28
- * Time: 上午9:24
- * To change this template use File | Settings | File Templates.
- */
 @SuppressWarnings("ALL")
 @Service
 public class TitleService {
@@ -27,9 +20,9 @@ public class TitleService {
 		TitleCriteria criteria = new TitleCriteria();
 		criteria.setOrderByClause("name");
 		TitleCriteria.Criteria ec = criteria.createCriteria();
-		if (StringUtils.isNullOrEmpty(name))
+		if (!StringUtils.isNullOrEmpty(name))
 			ec.andNameLike("%" + name + "%");
-		if (StringUtils.isNullOrEmpty(grade))
+		if (!StringUtils.isNullOrEmpty(grade))
 			ec.andGradeLike("%" + grade + "%");
 		return getTitlesByCriteria(PageNum,criteria);
 
@@ -58,6 +51,11 @@ public class TitleService {
 		title = titleMapper.selectByPrimaryKey(id);
 		return title;
 	}
+
+    public List<Title> selectAllTitles(){
+        return titleMapper.selectByCriteria(null);
+    }
+
 	public int delete(int  id){
 		int result = 0;
 		titleMapper.deleteByPrimaryKey(id);

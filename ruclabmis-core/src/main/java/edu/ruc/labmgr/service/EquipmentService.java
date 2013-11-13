@@ -3,6 +3,7 @@ package edu.ruc.labmgr.service;
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentCriteria;
+import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -19,7 +20,7 @@ public class EquipmentService {
     @Autowired
     private EquipmentMapper equipmentMapper;
     @Autowired
-    UserService serviceUser;
+    TeacherService serviceTeacher;
 
     private PageInfo<Equipment> getPageEquipmentByCriteria(int pageNum,EquipmentCriteria criteria){
         int totalCount = equipmentMapper.countByCriteria(criteria);
@@ -29,6 +30,53 @@ public class EquipmentService {
 
         page.setData(data);
         return page;
+    }
+
+    //设备统计
+    public PageInfo<Equipment> queryPageEquipments(Equipment equipment,int pageNum){
+        if(equipment == null)
+            return getPageEquipmentByCriteria(pageNum, null);
+
+        EquipmentCriteria criteria = new EquipmentCriteria();
+        criteria.setOrderByClause("sn");
+        EquipmentCriteria.Criteria ec = criteria.createCriteria();
+
+        if(!StringUtils.isNullOrEmpty(equipment.getSn()))
+            ec.andSnLike("%" + equipment.getSn() + "%");
+        if(!StringUtils.isNullOrEmpty(equipment.getName()))
+            ec.andNameLike("%" + equipment.getName() + "%");
+        if(equipment.getHolder() != null ) {
+            User holder = serviceTeacher.selectByPrimaryKey(equipment.getHolder()).getUser();
+            if(holder != null){
+                ec.andHolderEqualTo(holder.getId());
+            }
+        }
+        if(equipment.getCategoryId() != null && equipment.getCategoryId() >= 0 )
+            ec.andCategoryIdEqualTo(equipment.getCategoryId());
+        //部门
+
+        if(!StringUtils.isNullOrEmpty(equipment.getModelNumber()))
+            ec.andModelNumberLike("%" + equipment.getModelNumber() + "%");
+        if(!StringUtils.isNullOrEmpty(equipment.getSpecifications()))
+            ec.andSpecificationsLike("%" + equipment.getSpecifications() + "%");
+        if(equipment.getUnitPrice() != null)
+            ec.andUnitPriceEqualTo(equipment.getUnitPrice());
+        if(equipment.getUnitPrice() != null)
+            ec.andUnitPriceEqualTo(equipment.getUnitPrice());
+        if(!StringUtils.isNullOrEmpty(equipment.getVender()))
+            ec.andVenderLike("%" + equipment.getVender() + "%");
+        if(!StringUtils.isNullOrEmpty(equipment.getFactoryNumber()))
+            ec.andFactoryNumberLike("%" + equipment.getFactoryNumber() + "%");
+        if(!StringUtils.isNullOrEmpty(equipment.getCountry()))
+            ec.andCountryLike("%" + equipment.getCountry() + "%");
+        if(equipment.getStateId() != null && equipment.getStateId() >= 0 )
+            ec.andStateIdEqualTo(equipment.getStateId());
+        if(equipment.getFundingSubjectId() != null && equipment.getFundingSubjectId() >= 0 )
+            ec.andFundingSubjectIdEqualTo(equipment.getFundingSubjectId());
+        if(equipment.getUseDirectionId() != null && equipment.getUseDirectionId() >= 0 )
+            ec.andUseDirectionIdEqualTo(equipment.getUseDirectionId());
+
+        return getPageEquipmentByCriteria(pageNum, criteria);
     }
 
     //分页过滤可用设备
@@ -122,7 +170,7 @@ public class EquipmentService {
     public void updateEquipment(Equipment equipment) throws Exception {
 
         if(!StringUtils.isNullOrEmpty(equipment.getHolderName())){
-            int id = serviceUser.getUserIdByName(equipment.getHolderName());
+            int id = serviceTeacher.getUserIdByName(equipment.getHolderName());
             if(id < 0) {
                 throw(new Exception("领用人不存在，请检查后重新输入"));
             }

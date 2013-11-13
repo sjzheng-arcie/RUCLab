@@ -26,7 +26,9 @@
             <result column="holder" jdbcType="INTEGER" property="holder" />
             <result column="holder_name" jdbcType="VARCHAR" property="holderName" />
             <result column="user" jdbcType="VARCHAR" property="user" />
-            <result column="category_id" jdbcType="VARCHAR" property="categoryId" />
+            <result column="category_id" jdbcType="INTEGER" property="categoryId" />
+            <result column="category_sn" jdbcType="VARCHAR" property="categorySn" />
+            <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
             <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
             <result column="specifications" jdbcType="VARCHAR" property="specifications" />
             <result column="unit_price" jdbcType="REAL" property="unitPrice" />
@@ -79,7 +81,7 @@
     application_id, application_sn, application_type_id, application_type, annex, comments,
     applicant_id, applicant_name, operator_id, operator_name, approver_id, approver_name,
     apply_time, process_time, approve_time, application_state_id, application_state_name,
-    equipment_id, equipment_sn, equipment_name, category_id, model_number, specifications, unit_price,
+    equipment_id, equipment_sn, equipment_name, category_id, category_sn, category_name, model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, funding_subject_id,
     funding_subject, use_direction_id, use_direction, equipment_state_id, equipment_state
   </sql>

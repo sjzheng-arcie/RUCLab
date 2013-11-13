@@ -22,8 +22,17 @@ public class RoleService {
         return Role;
     }
 
+    public List<Role> listAllWithoutStudent() {
+        List<Role> roles =  mapperRole.selectByCriteria(null);
+        for(int i = 0 ; i < roles.size() ; i++){
+            if(roles.get(i).getName().equals(Types.Role.STUDENT.getName())){
+                roles.remove(i);
+            }
+        }
+        return roles;
+    }
+
     public List<Role> listAll() {
         return mapperRole.selectByCriteria(null);
     }
-
 }

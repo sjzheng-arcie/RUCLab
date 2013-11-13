@@ -4,7 +4,6 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Classif;
-import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -28,7 +27,7 @@ public class ApplicationFormController {
     @Autowired
     ApplyWithEquipmentService serviceApply;
     @Autowired
-    UserService serviceUser;
+    TeacherService serviceUser;
     @Autowired
     MessageService serviceMessage;
 
@@ -71,7 +70,7 @@ public class ApplicationFormController {
 
         if(Types.ApplyType.ALLOT.getName().equalsIgnoreCase(applyType)){
             if(!StringUtils.isNullOrEmpty(apply.getAnnex())){
-                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getName();
+                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getUser().getName();
                 mav.addObject("target", target);
             }
         }

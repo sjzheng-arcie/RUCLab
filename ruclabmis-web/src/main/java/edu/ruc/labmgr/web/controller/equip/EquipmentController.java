@@ -50,9 +50,31 @@ public class EquipmentController {
         return result;
     }
 
+    //设备信息统计
+    @RequestMapping(value = "/equipment/jsp/dev/inquery/querydevice",  method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView queryDevice(Equipment equipment,
+                                    @RequestParam(value="page", required = false, defaultValue = "1")int page ) {
+        ModelAndView result = new ModelAndView();
+        result.setViewName("/equipment/jsp/dev/inquery/querydevice");
+
+        List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
+        List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
+        List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
+        List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
+
+        PageInfo<Equipment> pageInfo = serviceEquipment.queryPageEquipments(equipment, page);
+        result.addObject("searchEquipment", equipment);
+        result.addObject("useDirections", useDirections);
+        result.addObject("states", states);
+        result.addObject("pageInfo", pageInfo);
+        result.addObject("typecodes", typecodes);
+        result.addObject("fundingSubjects", fundingSubjects);
+        return result;
+    }
+
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/returnEquipments", method = RequestMethod.POST)
     public String returnEquipments(@RequestParam("items") List<Integer> items,
-                                @PathVariable("applyType")String applyType) {
+                                   @PathVariable("applyType")String applyType) {
         serviceEquipment.returnEquipments(items);
         return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
     }
@@ -62,7 +84,7 @@ public class EquipmentController {
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
-         List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
+        List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/info/adddevice");
         mav.addObject("useDirections", useDirections);

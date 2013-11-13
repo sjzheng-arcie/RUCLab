@@ -5,11 +5,17 @@ public class Teacher {
 
     private Integer titleId;
 
+    private String titleName;
+
     private Integer positionId;
+
+    private String positionName;
 
     private Integer organizationId;
 
-    private Integer userId;
+    private String organizationName;
+
+    private User user;
 
     public Integer getId() {
         return id;
@@ -43,11 +49,35 @@ public class Teacher {
         this.organizationId = organizationId;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public User getUser() {
+        return user;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public String getTitleName() {
+        return titleName;
+    }
+
+    public void setTitleName(String titleName) {
+        this.titleName = titleName;
+    }
+
+    public String getPositionName() {
+        return positionName;
+    }
+
+    public void setPositionName(String positionName) {
+        this.positionName = positionName;
+    }
+
+    public String getOrganizationName() {
+        return organizationName;
+    }
+
+    public void setOrganizationName(String organizationName) {
+        this.organizationName = organizationName;
     }
 }
