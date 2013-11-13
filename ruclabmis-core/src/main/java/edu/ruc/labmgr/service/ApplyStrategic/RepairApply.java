@@ -46,7 +46,6 @@ public class RepairApply extends BaseApply {
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
         for(Equipment equipment : applyWithEquipment.getEquipments())
         {
-            equipment.setHolder(applyWithEquipment.getApplicantId());
             equipment.setStateId(Types.EquipState.NORMAL.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
         }
@@ -59,7 +58,6 @@ public class RepairApply extends BaseApply {
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
         for(Equipment equipment : applyWithEquipment.getEquipments())
         {
-            equipment.setHolder(applyWithEquipment.getApplicantId());
             equipment.setStateId(state.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
         }

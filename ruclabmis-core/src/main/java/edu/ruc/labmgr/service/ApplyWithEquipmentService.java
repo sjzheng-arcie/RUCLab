@@ -271,6 +271,5 @@ public class ApplyWithEquipmentService {
         form.setOperatorId(teacherService.getCurrentUserId());
 
         mapperApply.updateByPrimaryKeySelective(form);
-
     }
 }
