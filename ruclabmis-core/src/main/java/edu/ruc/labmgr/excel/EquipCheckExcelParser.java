@@ -25,6 +25,8 @@ public class EquipCheckExcelParser extends POIEntityParser<EquipmentCheck>{
         result.setLocation((String)map.get("location"));
         result.setModelNumber((String)map.get("modelNumber"));
         result.setUnitPrice(((Double)map.get("unitPrice")).floatValue());
+		result.setSpecifications(map.get("specifications").toString());
+		result.setVender(map.get("vender").toString());
         return result;
     }
 	private String cellDoubletoString(Object value ){
