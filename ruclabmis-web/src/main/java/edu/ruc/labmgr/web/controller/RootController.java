@@ -227,6 +227,8 @@ public class RootController {
 				result="/equipment/login";
 			}catch (IncorrectCredentialsException e){
 				request.setAttribute("passwordNotMatch","* 密码错误");
+
+				request.setAttribute("nonexistUserName",userSn);
 				result="/equipment/login";
 			}
 		}
