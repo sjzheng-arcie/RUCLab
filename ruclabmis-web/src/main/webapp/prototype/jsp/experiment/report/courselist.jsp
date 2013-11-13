@@ -65,27 +65,14 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">班级列表</span>
+                                                                                style="white-space:nowrap">课程列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="../experimentpaper/add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="editclass.html" onclick="toUpdate();"><img src="../../../images/edit_min.gif"
-                                                                                                                            width="10" height="10" border="0"/> <span
-                                                                                class="STYLE1">修改</span></a>&nbsp;
 
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-
-
-                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -127,7 +114,7 @@
                                                     <td title="">BJ001</td>
 
 
-                                                    <td title=""><a href="list?courseId=${item.id}">查看实验</a></td>
+                                                    <td title=""><a href="markreport?courseId=${item.id}">查看实验</a></td>
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -137,7 +124,7 @@
                                                         </td>
                                                         <td>${item.name}</td>
                                                         <td>${item.sn}</td>
-                                                        <td title=""><a href="list?courseId=${item.id}">查看实验</a></td>
+                                                        <td title=""><a href="markreport?courseId=${item.id}">查看实验</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

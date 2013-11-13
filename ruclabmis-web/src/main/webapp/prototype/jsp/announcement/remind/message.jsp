@@ -138,7 +138,7 @@
 
 
 
-                                                                      &&fatherPage=${fatherPage}  <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                                       <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
                                                                             <a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a></p>
                                                                     </div>
                                                                 </c:forEach>

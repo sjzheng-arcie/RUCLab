@@ -8,6 +8,7 @@ import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
+import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -59,10 +60,10 @@ public class AnnouncementController {
 		criteria.andReceiverIdEqualTo(user.getId());
 
 
-		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
-		mav.addObject("messageLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+		//mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
@@ -80,10 +81,10 @@ public class AnnouncementController {
 		criteria.andReceiverIdEqualTo(user.getId());
 		criteria.andIfreadEqualTo(false);
 
-		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
-		mav.addObject("messageLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+		//mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
@@ -102,10 +103,10 @@ public class AnnouncementController {
 		criteria.andReceiverIdEqualTo(user.getId());
 		criteria.andIfreadEqualTo(true);
 
-		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
-		mav.addObject("messageLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+		//mav.addObject("messageLists", pageInfo.getListObject());
+		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("fatherPage", fatherPage);
 		return mav;
 	}
@@ -132,10 +133,10 @@ public class AnnouncementController {
 		criteria.andSenderIdEqualTo(user.getId());
 		criteria.andIfreadEqualTo(true);
 
-		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
+		PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
-		mav.addObject("messageLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+		//mav.addObject("messageLists", pageInfo);
+		mav.addObject("pageInfo", pageInfo);
 		mav.addObject("mode", "mode");
 		mav.addObject("fatherPage", fatherPage);
 		return mav;

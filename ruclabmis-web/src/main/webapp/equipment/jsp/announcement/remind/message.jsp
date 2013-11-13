@@ -6,6 +6,8 @@
 <html>
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="../../../../js/valid.js" type=text/javascript>
 
@@ -59,8 +61,8 @@
     <script>
         function save(){
 
-            document.form1.action="addAnnouncement";
-            document.form1.submit();
+            document.listForm.action="addAnnouncement";
+            document.listForm.submit();
         }
         function displayClass(value){
 
@@ -76,7 +78,7 @@
 
 </head>
 <body style="background-color: #EEF2FB">
-
+<form name="listForm"  method="post">
     <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
 
         <tr>
@@ -97,15 +99,15 @@
                                                     <div style="border: 1px; background:#FFFFFF;margin: 10px ;">
                                                         <div class="message" style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                         <p align="left" style="font-size: 12px">
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/message?page=0&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/readmessage?page=0&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessag&&fatherPage=mysendmessagee?page=0">我发送的消息</a>
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/message?page=1&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/unreadmessage?page=1&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/readmessage?page=1&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessage?fatherPage=mysendmessagee&page=1">我发送的消息</a>
                                                         </p>
                                                         </div>
                                                         <c:choose>
                                                             <c:when test="${mode==null}">
-                                                                <c:forEach items="${messageLists}" var="item">
+                                                                <c:forEach items="${pageInfo.data}" var="item">
                                                                     <div class="message" style="border: 1px ;background-color: #FFFFFF ;margin: 10px ;">
                                                                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
                                                                         <p align="left"><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.sender.name
@@ -127,7 +129,7 @@
                                                                 </c:forEach>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <c:forEach items="${messageLists}" var="item">
+                                                                <c:forEach items="${pageInfo.data}" var="item">
                                                                     <div class="message" style="border: 1px;background-color: #FFFFFF;margin: 10px ;">
                                                                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
                                                                         <p align="left"><span style="font-size: 16px;color: #ccc;;">收信人：</span><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.receiver.name}</span> <span style="color: #A3A3A1">
@@ -138,7 +140,7 @@
 
 
 
-                                                                      &&fatherPage=${fatherPage}  <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                                       <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
                                                                             <a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a></p>
                                                                     </div>
                                                                 </c:forEach>
@@ -147,47 +149,9 @@
                                                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
 
 
-                                                        <form name="listForm">
-                                                            <input type="hidden" id="page" name = "page"/>
-                                                            <table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                                                                <tr>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(1)" style="cursor:hand"
-                                                                                                 src='../../../images/main_54.gif' width='40' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:hand"
-                                                                                                 src='../../../images/main_56.gif' width='45' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:hand"
-                                                                                                 src='../../../images/main_58.gif' width='45' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:hand"
-                                                                                                 src='../../../images/main_60.gif' width='40' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='37' class='STYLE22'>
-                                                                        <div align='center' style="white-space:nowrap">转到</div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div align='left'>
-                                                                            <select onchange="goPage(this.options[this.selectedIndex].value)">
-                                                                                <c:forEach var="i" begin="1" end="${page.totalPage}" step="1">
-                                                                                    <option class='STYLE22' value='${i}'
-                                                                                            <c:if test="${page.currentPage == i}">selected</c:if> > 第${i}页
-                                                                                    </option>
-                                                                                </c:forEach>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </form>
+
+                                                            <%@ include file="../../common/pagetable.jsp"%>
+
 
 
 
@@ -216,5 +180,5 @@
 
     </table>
     <input type="hidden" name="us_sreplyby" value=""/>
-
+    </form>
 </body>
