@@ -9,6 +9,7 @@ import edu.ruc.labmgr.utils.page.PageInfo;
 import com.mysql.jdbc.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -73,10 +74,10 @@ public class TeacherService extends UserService {
         ecu.andNameLike("%" + name + "%");
 
         List<User> users = mapperUser.selectByCriteria(userCriteria);
-        List<Integer> teacherIds = new ArrayList<Integer>();
-        if(teacherIds.size() <= 0)
+        if(users.size() <= 0)
             return new ArrayList<Teacher>();
 
+        List<Integer> teacherIds = new ArrayList<Integer>();
         for(User user : users){
             teacherIds.add(user.getId());
         }
@@ -100,12 +101,13 @@ public class TeacherService extends UserService {
         ecu.andRoleIdEqualTo(role.getValue());
 
         List<User> users = mapperUser.selectByCriteria(userCriteria);
+        if(users.size() <= 0)
+            return new ArrayList<Teacher>();
+
         List<Integer> teacherIds = new ArrayList<Integer>();
         for(User user : users){
             teacherIds.add(user.getId());
         }
-        if(teacherIds.size() <= 0)
-            return new ArrayList<Teacher>();
 
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
@@ -131,14 +133,19 @@ public class TeacherService extends UserService {
         mapperTeacher.updateByPrimaryKey(teacher);
     }
 
-    public void updatePassword(int id, String oriPassword, String newPassword) {
+    public void updatePassword(int id, String oriPassword, String newPassword) throws Exception {
         Teacher teacher = mapperTeacher.selectByPrimaryKey(id);
-        if(!CipherUtil.validatePassword(teacher.getUser().getPassword(), oriPassword)){
-            return;
-        };
+
+        //没有管理员权限则需要验证当前密码
+        Subject subject = SecurityUtils.getSubject();
+        if(!subject.hasRole(Types.Role.ADMIN.getName())) {
+            if(!CipherUtil.validatePassword(teacher.getUser().getPassword(), oriPassword)){
+                throw(new Exception("用户原密码不匹配，请重新输入"));
+            };
+        }
 
         teacher.getUser().setPassword(CipherUtil.generatePassword(newPassword));
-        mapperTeacher.updateByPrimaryKey(teacher);
+        mapperUser.updateByPrimaryKey(teacher.getUser());
     }
 
     public void delete(int id) {

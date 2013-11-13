@@ -248,7 +248,7 @@ public class AnnouncementController {
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
         User user=userService.getUserByLoginSn(loginName);
 
-        String targetName = request.getParameter("name");
+        String targetName = request.getParameter("target");
         String userSn =  targetName.substring(targetName.indexOf('(')+1, targetName.indexOf(')'));
         User receiverUser=userService.getUserByLoginSn(userSn);
 

@@ -3,6 +3,8 @@ package edu.ruc.labmgr.web.controller;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -93,15 +95,6 @@ public class TeacherController {
         return "redirect:/equipment/jsp/sys/user/list";
     }
 
-    @RequestMapping(value="/autoFillUserName",produces = "application/json")
-    public @ResponseBody
-    List<Teacher> getUsersByName(
-            HttpServletRequest request,HttpServletResponse response)
-            throws Exception{
-        String name = request.getParameter("param");
-        return serviceTeacher.getTeacherListByName(name);
-    }
-
     @RequestMapping(value = "/delete",method = RequestMethod.POST)
     public String delete(@RequestParam("items")List<Integer> items) {
         for(int id : items){
@@ -111,7 +104,12 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/toUpdatePassword",method = RequestMethod.GET)
-    public ModelAndView toUpdatePassword(@RequestParam("id")int id) {
+    public ModelAndView toUpdatePassword(@RequestParam(value="id", required = false, defaultValue = "-1") int id) {
+        //没有传进id则取出当前登录用户id
+        if(id == -1){
+            String loginSn = SecurityUtils.getSubject().getPrincipal().toString();
+            id = serviceTeacher.getUserIdBySn(loginSn);
+        }
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
         mav.addObject("id",id);
         return mav;
@@ -119,9 +117,18 @@ public class TeacherController {
 
     @RequestMapping("/updatePassword")
     public String updatePassword(@RequestParam("id")int id,
-                                       @RequestParam("oriPassword")String oriPassword,
-                                       @RequestParam("newPassword")String newPassword) {
+                                 @RequestParam(value="oriPassword", required = false)String oriPassword,
+                                       @RequestParam("newPassword")String newPassword) throws Exception {
         serviceTeacher.updatePassword(id, oriPassword, newPassword);
         return "redirect:/equipment/jsp/sys/user/list";
+    }
+
+    @RequestMapping(value="/autoFillUserName",produces = "application/json")
+    public @ResponseBody
+    List<Teacher> getUsersByName(
+            HttpServletRequest request,HttpServletResponse response)
+            throws Exception{
+        String name = request.getParameter("param");
+        return serviceTeacher.getTeacherListByName(name);
     }
 }

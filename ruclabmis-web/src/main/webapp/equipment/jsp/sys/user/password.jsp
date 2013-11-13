@@ -2,6 +2,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8"
          pageEncoding="UTF-8" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -83,6 +84,7 @@
                             </table>
                         </td>
                     </tr>
+
                     <tr valign="top">
                         <td align="center">
                             <table align="center" width="100%" border="0" cellpadding="0" cellspacing="0"
@@ -92,23 +94,26 @@
                                         <table align="center" border="0" cellpadding="2" cellspacing="1"
                                                style="width:50%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <input name="id" id="id" type="hidden"
-                                                   value="${id}"/>
+                                            <input name="id" id="id" type="hidden" value="${id}"/>
+
+                                            <shiro:lacksRole name="administrators">
                                             <tr>
                                                 <td nowrap align="right">原密码:</td>
                                                 <td nowrap>
-                                                    <input name="oriPassword" id="oriPassword" class="text" type="password"/>
+                                                    <input name="oriPassword" id="oriPassword" class="text" type="password"
+                                                           valid="required"
+                                                           errmsg="原密码不能为空!!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 
                                             </tr>
-
+                                            </shiro:lacksRole>
                                             <tr>
                                                 <td nowrap align="right">新密码:</td>
                                                 <td nowrap>
                                                     <input type="password" name="newPassword" id="newPassword" class="text"
                                                            valid="required|isPassword"
-                                                           errmsg="密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
+                                                           errmsg="新密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 

@@ -97,10 +97,10 @@
                                                     <div style="border: 1px; background:#FFFFFF;margin: 10px ;">
                                                         <div class="message" style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                         <p align="left" style="font-size: 12px">
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/message?page=0&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/readmessage?page=0&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessag&&fatherPage=mysendmessagee?page=0">我发送的消息</a>
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/message?page=0&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/unreadmessage?page=0&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/readmessage?page=0&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessag?fatherPage=mysendmessagee&page=0">我发送的消息</a>
                                                         </p>
                                                         </div>
                                                         <c:choose>
