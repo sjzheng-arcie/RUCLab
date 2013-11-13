@@ -66,27 +66,6 @@
             </td>
         </tr>
         <tr style="height: 30px;">
-            <td align="center">分类</td>
-            <td>
-                <select name="categoryId" id="categoryId">
-                    <option value="-1">所有</option>
-                    <c:forEach items="${typecodes}" var="typeCode">
-                        <option value="${typeCode.id}"
-                                <c:if test="${typeCode.id == searchEquipment.categoryId}"> selected</c:if>>${typeCode.name}
-                        </option>
-                    </c:forEach>
-                </select>
-            </td>
-            <td align='center'>使用部门</td>
-            <td>
-                <select id="searchDepartment" name="searchDepartment">
-                    <option value="-1">所有</option>
-                    <option value="-1">网络工程系</option>
-                    <option value="1">软件工程系</option>
-                </select>
-            </td>
-        </tr>
-        <tr style="height: 30px;">
             <td align="center">设备型号</td>
             <td>
                 <input name="modelNumber" id="modelNumber" value="${searchEquipment.modelNumber}" onblur="" class="text"
@@ -107,7 +86,6 @@
                        style="width:154px" maxlength="20"
                        valid="required|isNumber"
                        errmsg="单价不能为空|单价只能为数字"/>
-                <span style="color:red;">*</span>
             </td>
         </tr>
         <tr style="height: 30px;">
@@ -157,6 +135,19 @@
                     <c:forEach items="${useDirections}" var="direction">
                         <option value="${fundingSubject.id}"
                                 <c:if test="${direction.id == searchEquipment.useDirectionId}"> selected</c:if>>${direction.value}
+                        </option>
+                    </c:forEach>
+                </select>
+            </td>
+        </tr>
+        <tr style="height: 30px;">
+            <td align="center">分类</td>
+            <td>
+                <select name="categoryId" id="categoryId">
+                    <option value="-1">所有</option>
+                    <c:forEach items="${typecodes}" var="typeCode">
+                        <option value="${typeCode.id}"
+                                <c:if test="${typeCode.id == searchEquipment.categoryId}"> selected</c:if>>${typeCode.name}
                         </option>
                     </c:forEach>
                 </select>

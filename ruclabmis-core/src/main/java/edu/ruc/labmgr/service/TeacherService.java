@@ -67,6 +67,29 @@ public class TeacherService extends UserService {
         return mapperTeacher.selectByCriteria(criteria);
     }
 
+    public List<Teacher> getTeacherListByName(String name) {
+        UserCriteria userCriteria = new UserCriteria();
+        UserCriteria.Criteria ecu = userCriteria.createCriteria();
+        ecu.andNameLike("%" + name + "%");
+
+        List<User> users = mapperUser.selectByCriteria(userCriteria);
+        List<Integer> teacherIds = new ArrayList<Integer>();
+        if(teacherIds.size() <= 0)
+            return new ArrayList<Teacher>();
+
+        for(User user : users){
+            teacherIds.add(user.getId());
+        }
+
+        TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
+        teacherCriteriaCriteria.setOrderByClause("id");
+        TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
+        ect.andIdIn(teacherIds);
+
+        List<Teacher> teachers = mapperTeacher.selectByCriteria(teacherCriteriaCriteria);
+        return mapperTeacher.selectByCriteria(teacherCriteriaCriteria);
+    }
+
     public List<Teacher> getAllTeacherList() {
         return mapperTeacher.selectByCriteria(null);
     }
@@ -81,6 +104,8 @@ public class TeacherService extends UserService {
         for(User user : users){
             teacherIds.add(user.getId());
         }
+        if(teacherIds.size() <= 0)
+            return new ArrayList<Teacher>();
 
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
@@ -107,7 +132,6 @@ public class TeacherService extends UserService {
     }
 
     public void updatePassword(int id, String oriPassword, String newPassword) {
-
         Teacher teacher = mapperTeacher.selectByPrimaryKey(id);
         if(!CipherUtil.validatePassword(teacher.getUser().getPassword(), oriPassword)){
             return;
@@ -115,7 +139,6 @@ public class TeacherService extends UserService {
 
         teacher.getUser().setPassword(CipherUtil.generatePassword(newPassword));
         mapperTeacher.updateByPrimaryKey(teacher);
-
     }
 
     public void delete(int id) {

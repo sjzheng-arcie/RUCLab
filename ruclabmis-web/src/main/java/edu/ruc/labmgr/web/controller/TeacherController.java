@@ -8,8 +8,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -88,6 +91,15 @@ public class TeacherController {
     public String update(Teacher teacher) {
         serviceTeacher.update(teacher);
         return "redirect:/equipment/jsp/sys/user/list";
+    }
+
+    @RequestMapping(value="/autoFillUserName",produces = "application/json")
+    public @ResponseBody
+    List<Teacher> getUsersByName(
+            HttpServletRequest request,HttpServletResponse response)
+            throws Exception{
+        String name = request.getParameter("param");
+        return serviceTeacher.getTeacherListByName(name);
     }
 
     @RequestMapping(value = "/delete",method = RequestMethod.POST)

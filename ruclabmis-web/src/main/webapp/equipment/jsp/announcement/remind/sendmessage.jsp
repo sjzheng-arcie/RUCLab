@@ -17,11 +17,10 @@
 
     <script>
         $().ready(function() {
-
-            $( "#param" ).autocomplete({
+            $( "#name" ).autocomplete({
                 source: function( request, response ) {
                     $.ajax({
-                        url: "/equipment/jsp/announcement/remind/getUserSno",
+                        url: "/equipment/jsp/sys/user/autoFillUserName",
                         dataType: "json",
                         data:{
                             param: request.term
@@ -29,8 +28,8 @@
                         success: function( userList ) {
                             response( $.map( userList, function( item ) {
                                 return {
-                                    label:item.sn,
-                                    value:item.sn
+                                    label:item.user.name + "(" +item.user.sn + ")",
+                                    value:item.user.name + "(" +item.user.sn + ")"
                                 }
                             }));
                         }
@@ -65,60 +64,60 @@
 
 </head>
 <body style="background-color: #EEF2FB">
-    <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
+<table width="100%"  border="0" cellpadding="0" cellspacing="0" >
 
-        <tr>
-            <td valign="top" bgcolor="#EEF2FB">
-                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+    <tr>
+        <td valign="top" bgcolor="#EEF2FB">
+            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
 
-                    <tr valign="top">
-                        <td>
-                            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
-                                <tr bgcolor="#E3E9EE" >
-                                    <td  align="center"   bgcolor="#E3E9EE" >
-                                        <div id="">
+                <tr valign="top">
+                    <td>
+                        <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce" >
+                            <tr bgcolor="#E3E9EE" >
+                                <td  align="center"   bgcolor="#E3E9EE" >
+                                    <div id="">
 
 
-                                            <div  class="message">
-                                                <form action="/equipment/jsp/announcement/remind/addMessage" method="post" target="_parent" >
-                                                    <table style=" border:1px; width:80%;margin:auto;">
-                                                        <tr>
-                                                            <td align="right">接收对象</td>
-                                                            <td align="left">
-                                                                <input id="param" name="param" type="text" autocomplete="off" value="${replySn}" class="autocomplete-suggestion"  />
-                                                            </td>
-
-                                                        </tr>
-                                                        <tr>
-                                                            <td align="right">消息内容</td><td align="left">
-
-                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"
-                                                                      tabIndex="2"></textarea></span>
+                                        <div  class="message">
+                                            <form action="/equipment/jsp/announcement/remind/addMessage" method="post" target="_parent" >
+                                                <table style=" border:1px; width:80%;margin:auto;">
+                                                    <tr>
+                                                        <td align="right">接收对象</td>
+                                                        <td align="left">
+                                                            <input id="name" name="name" type="text" autocomplete="off" value="${replySn}" class="autocomplete-suggestion"  />
                                                         </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td></td><td align="center"><input type="submit" class="autocomplete-suggestion" value="发送"></td>
-                                                        </tr>
-                                                    </table>
-                                                </form>
 
+                                                    </tr>
+                                                    <tr>
+                                                        <td align="right">消息内容</td><td align="left">
 
-                                            </div>
+                                                        <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"
+                                                                  tabIndex="2"></textarea></span>
+                                                    </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td><td align="center"><input type="submit" class="autocomplete-suggestion" value="发送"></td>
+                                                    </tr>
+                                                </table>
+                                            </form>
+
 
                                         </div>
-                                    </td>
-                                </tr>
 
-                            </table>
+                                    </div>
+                                </td>
+                            </tr>
 
-                        </td>
-                    </tr>
-                </table>
-            </td>
+                        </table>
 
-        </tr>
+                    </td>
+                </tr>
+            </table>
+        </td>
 
-    </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+    </tr>
+
+</table>
+<input type="hidden" name="us_sreplyby" value=""/>
 
 </body>
