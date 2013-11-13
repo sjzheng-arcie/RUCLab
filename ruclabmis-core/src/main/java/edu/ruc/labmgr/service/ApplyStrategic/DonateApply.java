@@ -40,7 +40,6 @@ public class DonateApply  extends BaseApply{
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
         for(Equipment equipment : applyWithEquipment.getEquipments())
         {
-            equipment.setHolder(applyWithEquipment.getApplicantId());
             equipment.setStateId(Types.EquipState.DONATED.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
         }

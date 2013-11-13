@@ -42,7 +42,7 @@
 <span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="name" id="name" value=""
                                                          style="width:100px;"/></span>
 
-<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')"><img
+<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm')"><img
         src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 

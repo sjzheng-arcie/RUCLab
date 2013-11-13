@@ -115,7 +115,7 @@
                                             <input name="annex" id="annex" value="${apply.annex}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
                                                    valid="required|isNumber"
-                                                   errmsg="捐赠对象不能为空!|维修经费只能为数字"/>
+                                                   errmsg="维修经费不能为空!|维修经费只能为数字"/>
                                             <span style="color:red;">*</span>
                                         </td>
                                         <td align="center" class="identifier">备注</td>

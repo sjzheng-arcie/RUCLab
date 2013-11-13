@@ -166,7 +166,8 @@ public class MessageService {
 
             String listPath = path.substring(0, path.lastIndexOf("/"));
             listPath += "/applyList?formType=process";
-            content += " <a href='"+path+"'>查看申请</a>" ;
+
+            content += " <a href='" + listPath + "'>查看申请</a>" ;
 
             message.setContent(content);
             insert(message);
@@ -192,7 +193,7 @@ public class MessageService {
 
         String listPath = path.substring(0, path.lastIndexOf("/"));
         listPath += "/applyList?formType=apply";
-        content += " <a href='"+path+"'>查看申请</a>" ;
+        content += " <a href='" + listPath + "'>查看申请</a>" ;
 
         message.setContent(content);
         insert(message);
@@ -210,7 +211,7 @@ public class MessageService {
 
             String listAdminPath = path.substring(0, path.lastIndexOf("/"));
             listAdminPath += "/applyList?formType=process";
-            adminContent += " <a href='"+listAdminPath+"'>查看申请</a>" ;
+            adminContent += " <a href='" + listAdminPath + "'>查看申请</a>" ;
 
             message.setContent(adminContent);
             insert(message);
@@ -249,7 +250,7 @@ public class MessageService {
             String adminContent = "";
             adminContent +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
             adminContent += "处理了 " + apply.getApplicantName() + " 的 "+ type.getTitle() +" 申请: ";
-            content += " <a href='"+listPath+"'>查看申请</a>" ;
+            adminContent += " <a href='" + listPath + "'>查看申请</a>" ;
             message.setContent(adminContent);
             insert(message);
         }

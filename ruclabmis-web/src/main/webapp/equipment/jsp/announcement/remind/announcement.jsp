@@ -10,9 +10,6 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
 
     <style type="text/css">
-
-
-    <style type="text/css">
         .message {
 
             width: 100%;
@@ -162,22 +159,22 @@
                                                         <table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
                                                             <tr>
                                                                 <td width='49'>
-                                                                    <div align='center'><img onclick="goPage(1)" style="cursor:hand"
+                                                                    <div align='center'><img onclick="goPage(1)" style="cursor:pointer"
                                                                                              src='../../../images/main_54.gif' width='40' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='49'>
-                                                                    <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:hand"
+                                                                    <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:pointer"
                                                                                              src='../../../images/main_56.gif' width='45' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='49'>
-                                                                    <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:hand"
+                                                                    <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:pointer"
                                                                                              src='../../../images/main_58.gif' width='45' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='49'>
-                                                                    <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:hand"
+                                                                    <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:pointer"
                                                                                              src='../../../images/main_60.gif' width='40' height='15'
                                                                                              border='0'/></div>
                                                                 </td>

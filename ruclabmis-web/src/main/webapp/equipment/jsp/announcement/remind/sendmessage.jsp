@@ -8,7 +8,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="../../../../js/valid.js" type=text/javascript></script>
 
-
     <link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css" />
     <link rel="stylesheet" href="../../../../js/autocomplete/autocomplete.styles.css" />
 
@@ -17,7 +16,7 @@
 
     <script>
         $().ready(function() {
-            $( "#name" ).autocomplete({
+            $( "#target" ).autocomplete({
                 source: function( request, response ) {
                     $.ajax({
                         url: "/equipment/jsp/sys/user/autoFillUserName",
@@ -42,14 +41,13 @@
     </script>
     <script>
         function save(){
+            if(!validator(document.mainForm)){
+                return;
+            }
 
-            document.form1.action="addMessage";
-            document.form1.submit();
+            document.mainForm.submit();
         }
-        function reset(){
 
-            document.form1.content.value="";
-        }
         function displayClass(value){
 
             if(value=="2"){
@@ -76,27 +74,28 @@
                             <tr bgcolor="#E3E9EE" >
                                 <td  align="center"   bgcolor="#E3E9EE" >
                                     <div id="">
-
-
                                         <div  class="message">
-                                            <form action="/equipment/jsp/announcement/remind/addMessage" method="post" target="_parent" >
+                                            <form action="/equipment/jsp/announcement/remind/addMessage"
+                                                  method="post" target="_parent" name="mainForm">
                                                 <table style=" border:1px; width:80%;margin:auto;">
                                                     <tr>
                                                         <td align="right">接收对象</td>
                                                         <td align="left">
-                                                            <input id="name" name="name" type="text" autocomplete="off" value="${replySn}" class="autocomplete-suggestion"  />
+                                                            <input id="target" name="target"  value="${replySn}"
+                                                                   autocomplete="off"  valid="required"
+                                                                   class="autocomplete-suggestion"
+                                                                   errmsg="接收对象不能为空!"  />
                                                         </td>
-
                                                     </tr>
                                                     <tr>
                                                         <td align="right">消息内容</td><td align="left">
-
                                                         <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"
                                                                   tabIndex="2"></textarea></span>
                                                     </td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td><td align="center"><input type="submit" class="autocomplete-suggestion" value="发送"></td>
+                                                        <td></td><td align="center"><input type="button" class="autocomplete-suggestion"
+                                                                                           onclick="save();" value="发送"></td>
                                                     </tr>
                                                 </table>
                                             </form>
