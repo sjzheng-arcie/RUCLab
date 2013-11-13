@@ -171,7 +171,7 @@
                                                                                                  src='../../../images/main_60.gif' width='40' height='15'
                                                                                                  border='0'/></div>
                                                                     </td>
-                                                                    <td width='37' class='STYLE22'>
+                                                                    <td width='38' class='STYLE22'>
                                                                         <div align='center' style="white-space:nowrap">转到</div>
                                                                     </td>
                                                                     <td>
