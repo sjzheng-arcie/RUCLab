@@ -10,14 +10,18 @@ import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
 import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.IncorrectCredentialsException;
+import org.apache.shiro.authc.UnknownAccountException;
 import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
@@ -197,8 +201,12 @@ public class RootController {
 
 		return mav;
 	}
-
 	@RequestMapping("/login")
+	public String toLogin() {
+
+		return "/equipment/login";
+	}
+	@RequestMapping("/excutelogin")
 	public String login(HttpServletRequest request) {
 		String result = "/login";
 		String userSn = request.getParameter("username");
@@ -209,12 +217,15 @@ public class RootController {
 		Subject currentUser = SecurityUtils.getSubject();
 
 		if (!currentUser.isAuthenticated()) {
-			token.setRememberMe(true);
+			token.setRememberMe(false);
 			try {
 				currentUser.login(token);
-				result = "redirect:index";
-			} catch (Exception e) {
-				result = "/equipment/login";
+			}catch(UnknownAccountException e){
+				request.setAttribute("userNameNotExist","* 用户名不存在");
+				result="/equipment/login";
+			}catch (IncorrectCredentialsException e){
+				request.setAttribute("passwordNotMatch","* 密码错误");
+				result="/equipment/login";
 			}
 		}
 		if (currentUser.hasRole(Types.Role.ADMIN.getName())) {

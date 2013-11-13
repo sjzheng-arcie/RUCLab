@@ -10,7 +10,7 @@
 <script> 
 function save(){
 
-    document.form1.action="addAnnouncement";
+    document.form1.action="/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
     document.form1.submit();
 }
 function displayClass(value){
@@ -27,7 +27,7 @@ function displayClass(value){
 
 </head>
 <body style="background-color: #ffffff">
-<form name="form1" method="post" target="_parent">
+<form name="form1" method="post" target="_self" action="/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}">
 <table width="100%"  border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
   <tr>
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
@@ -75,7 +75,7 @@ function displayClass(value){
 
       				<tr>
         				<td align="center">
-							<input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
+							<input type="button" name="Submit2" value="返回" class="button" onclick="save()"/>
 						</td>
       				</tr>
     				</table>

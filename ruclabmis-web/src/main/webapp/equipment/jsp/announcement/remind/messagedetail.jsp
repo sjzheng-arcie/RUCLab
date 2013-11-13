@@ -7,7 +7,8 @@
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <script src="../../../../js/valid.js" type=text/javascript></script>
-<script> 
+<script>
+    window.top.frames["topFrame"].location.reload();
 function save(){
 
     document.form1.action="/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";

@@ -210,7 +210,6 @@ public class AnnouncementController {
 		Message message= messageService.selectById(id);
 		message.setIfread(true);
 		messageService.updateByMessage(message);
-		showUnreadMessage();
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
 		mav.addObject("messageDetailFlag",message);
 		mav.addObject("fatherPage",fatherPage);

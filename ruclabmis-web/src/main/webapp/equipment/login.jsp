@@ -95,16 +95,17 @@
                         <td height="21"><table cellSpacing="0" cellPadding="0" width="100%" border="0" id="table211" height="328">
                             <tr>
                                 <td height="164" colspan="2" align="middle">
-                                    <form name="myform" action="/equipment/login" method="post">
+                                    <form name="myform" action="/equipment/excutelogin" method="post">
                                     <table cellSpacing="0" cellPadding="0" width="100%" border="0" height="143" id="table212">
                                         <tr>
                                             <td width="13%" height="38" class="top_hui_text"><span class="login_txt">管理员：&nbsp;&nbsp; </span></td>
-                                            <td height="38" colspan="2" class="top_hui_text"><input name="username" class="editbox4" value="" size="20">                            </td>
+                                            <td height="38" colspan="2" class="top_hui_text"><input name="username" class="editbox4" value="" size="20">
+                                                <span style="color: #ff0000">${userNameNotExist}</span></td>
                                         </tr>
                                         <tr>
                                             <td width="13%" height="35" class="top_hui_text"><span class="login_txt"> 密 码： &nbsp;&nbsp; </span></td>
                                             <td height="35" colspan="2" class="top_hui_text"><input class="editbox4" type="password" size="20" name="password">
-                                                <img src="images/luck.gif" width="19" height="18"> </td>
+                                                <span style="color: #ff0000">${passwordNotMatch}</span></td>
                                         </tr>
 
                                         <tr>
