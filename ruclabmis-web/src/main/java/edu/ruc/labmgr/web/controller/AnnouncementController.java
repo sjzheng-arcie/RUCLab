@@ -233,7 +233,11 @@ public class AnnouncementController {
 		Announcement announcement = new Announcement();
 		announcement.setContent(request.getParameter("content"));
 		announcement.setPublisherId(user.getId());
-		announcement.setPublishLimit(Integer.parseInt(request.getParameter("limit")));
+		if(request.getParameter("limit")!=null){
+			announcement.setPublishLimit(Integer.parseInt(request.getParameter("limit")));
+		}else {
+			announcement.setPublishLimit(0);
+		}
 		announcement.setTitle(request.getParameter("title"));
 		announcement.setPublishTime(new Date());
 		return announcement;

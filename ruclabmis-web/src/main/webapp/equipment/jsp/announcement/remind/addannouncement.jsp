@@ -55,20 +55,6 @@ function displayClass(value){
 
 					    				
 					  				</tr>
-                                    <tr>
-                                        <td nowrap align="right">浏览人范围:</td>
-                                        <td nowrap  >
-
-
-                                            <input type="radio" id="radio1" name="scope" value="1" onclick="displayClass(this.value);" checked>全网可见</input>
-                                            <input type="radio" id="radio2" name="scope" value="2" onclick="displayClass(this.value);" >班级可见</input>
-                                            <div id="scopeDiv" style="display:none">
-                                                <select><option>虚拟班级一</option><option>虚拟班级二</option></select>
-                                            </div>
-
-                                        </td>
-
-                                    </tr>
 					    			<tr>
 					    				<td nowrap align="right">通知内容:</td>
 					    				<td colspan="3"nowrap>
@@ -88,7 +74,6 @@ function displayClass(value){
                                             </div>
 					    			
 					    				</td>
-                                        <input id="limit" name="limit" style="display:none" value="1" />
 					  				</tr>
                                     <tr>
                                         <td colspan="2" align="center">
