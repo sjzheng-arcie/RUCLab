@@ -42,4 +42,16 @@ public class UserService {
 
         return teachers.get(0).getId();
     }
+
+
+    public int getUserIdBySn(String sn) {
+        UserCriteria criteria = new UserCriteria();
+        UserCriteria.Criteria ec = criteria.createCriteria();
+        ec.andSnEqualTo(sn);
+        List<User> teachers = mapperUser.selectByCriteria(criteria);
+        if(teachers.size() != 1)
+            return -1;
+
+        return teachers.get(0).getId();
+    }
 }

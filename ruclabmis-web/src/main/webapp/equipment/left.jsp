@@ -234,6 +234,7 @@
     </div>
 </shiro:hasAnyRoles>
 
+<shiro:hasAnyRoles name="administrators, equipment_admin">
 <h1 class="type"><a href="javascript:void(0)">固定资产盘点</a></h1>
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -244,10 +245,11 @@
     <ul class="MM">
         <li><a href="/equipCheck/list?page=1" onfocus="toFocus(this)" target="main">
             &nbsp;&nbsp;&nbsp;&nbsp;固定资产盘点</a></li>
-
     </ul>
 </div>
+</shiro:hasAnyRoles>
 
+<shiro:hasAnyRoles name="administrators, equipment_admin, leader">
 <h1 class="type"><a href="javascript:void(0)">信息查询</a></h1>
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -260,7 +262,7 @@
         </li>
     </ul>
 </div>
-
+</shiro:hasAnyRoles>
 
 </div>
 <script type="text/javascript">

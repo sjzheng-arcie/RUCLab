@@ -6,7 +6,34 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 
+<link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css" />
+<script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
+<script src="../../../../js/autocomplete/jquery-ui.js"></script>
+
 <script>
+    $().ready(function() {
+        $( "#target" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax({
+                    url: "/equipment/jsp/sys/user/autoFillUserName",
+                    dataType: "json",
+                    data:{
+                        param: request.term
+                    },
+                    success: function( userList ) {
+                        response( $.map( userList, function( item ) {
+                            return {
+                                label:item.user.name + "(" +item.user.sn + ")",
+                                value:item.user.name + "(" +item.user.sn + ")"
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 1
+
+        });});
+
     function update() {
         if(!validator(document.mainForm)){
             return;
@@ -33,7 +60,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备基本信息管理 > 实验设备借用</div>
+                    <div class="titlebt">设备基本信息管理 > 实验设备转移</div>
                 </td>
             </tr>
         </table>
@@ -60,7 +87,7 @@
                                                         <div align="center"><img src="../../../images/tb.gif"
                                                                                  width="14" height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备借用申请</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备转移申请</span>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -113,9 +140,9 @@
                                     <tr>
                                         <td align="center">接收人</td>
                                         <td>
-                                            <input name="target" id="target" value="${target}" onblur="" class="text"
-                                                   style="width:154px" maxlength="20"
-                                                   valid="required"
+                                            <input name="target" id="target" value="${target}" onblur=""
+                                                   style="width:154px" maxlength="20"  valid="required"
+                                                   autocomplete="off"   class="autocomplete-suggestion"
                                                    errmsg="接收人不能为空!"/>
                                             <span style="color:red;">*</span>
                                         </td>

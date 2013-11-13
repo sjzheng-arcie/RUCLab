@@ -225,6 +225,7 @@ public class AnnouncementController {
 		mav.addObject("tabId",1);
 		return mav;
 	}
+
 	private Announcement initFromRequest(HttpServletRequest request) {
 
 		User user = new User();
@@ -242,13 +243,14 @@ public class AnnouncementController {
 		announcement.setPublishTime(new Date());
 		return announcement;
 	}
-	private Message insertMessageIntoDB(HttpServletRequest request) {
 
-		User user = new User();
+	private Message insertMessageIntoDB(HttpServletRequest request) {
 		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
-		User receiverUser = new User();
-		receiverUser=userService.getUserByLoginSn(request.getParameter("param"));
+        User user=userService.getUserByLoginSn(loginName);
+
+        String targetName = request.getParameter("name");
+        String userSn =  targetName.substring(targetName.indexOf('(')+1, targetName.indexOf(')'));
+        User receiverUser=userService.getUserByLoginSn(userSn);
 
 		Message message= new Message();
 		if (!StringUtils.isNullOrEmpty(request.getParameter("id")))

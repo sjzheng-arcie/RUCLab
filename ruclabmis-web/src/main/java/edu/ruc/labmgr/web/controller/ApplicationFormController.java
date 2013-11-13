@@ -27,7 +27,7 @@ public class ApplicationFormController {
     @Autowired
     ApplyWithEquipmentService serviceApply;
     @Autowired
-    TeacherService serviceUser;
+    TeacherService serviceTeacher;
     @Autowired
     MessageService serviceMessage;
 
@@ -70,7 +70,7 @@ public class ApplicationFormController {
 
         if(Types.ApplyType.ALLOT.getName().equalsIgnoreCase(applyType)){
             if(!StringUtils.isNullOrEmpty(apply.getAnnex())){
-                String target = serviceUser.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getUser().getName();
+                String target = serviceTeacher.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getUser().getName();
                 mav.addObject("target", target);
             }
         }
@@ -106,7 +106,7 @@ public class ApplicationFormController {
         apply.setType(Types.ApplyType.getApplyTypeFromStr(applyType).getValue());
         apply.setStateId(Types.ApplyState.WAITING.getValue());
         apply.setApplyTime(new Date());
-        apply.setApplicantId(serviceUser.getCurrentUserId());
+        apply.setApplicantId(serviceTeacher.getCurrentUserId());
 
         serviceApply.insertApply(apply);
 

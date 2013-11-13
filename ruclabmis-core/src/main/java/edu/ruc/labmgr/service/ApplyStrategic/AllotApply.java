@@ -64,7 +64,8 @@ public class AllotApply extends BaseApply {
     @Override
     public void updateApplication(ApplicationForm applyForm) throws Exception {
         String targetName = applyForm.getTarget();
-        int id = serviceTeacher.getUserIdByName(targetName);
+        String userSn =  targetName.substring(targetName.indexOf('(')+1, targetName.indexOf(')'));
+        int id = serviceTeacher.getUserIdBySn(userSn);
         if(id < 0) {
             throw(new Exception("接收人不存在，请检查后重新输入"));
         }
