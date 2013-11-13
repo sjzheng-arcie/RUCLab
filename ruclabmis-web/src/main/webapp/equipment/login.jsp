@@ -99,7 +99,7 @@
                                     <table cellSpacing="0" cellPadding="0" width="100%" border="0" height="143" id="table212">
                                         <tr>
                                             <td width="13%" height="38" class="top_hui_text"><span class="login_txt">管理员：&nbsp;&nbsp; </span></td>
-                                            <td height="38" colspan="2" class="top_hui_text"><input name="username" class="editbox4" value="" size="20">
+                                            <td height="38" colspan="2" class="top_hui_text"><input name="username" class="editbox4" value="${nonexistUserName}" size="20">
                                                 <span style="color: #ff0000">${userNameNotExist}</span></td>
                                         </tr>
                                         <tr>
