@@ -44,7 +44,7 @@
     <script>
         function save(){
 
-            document.form1.action="addAnnouncement";
+            document.form1.action="addMessage";
             document.form1.submit();
         }
         function reset(){
