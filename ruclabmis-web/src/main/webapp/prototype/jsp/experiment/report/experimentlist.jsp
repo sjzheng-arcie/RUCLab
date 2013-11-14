@@ -8,10 +8,19 @@
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/prototype/jsp/experiment/report/courselist';
+        function toPublic() {
+            selectedItem = getSelectIndex("listForm","idCheckBox");
+            if( selectedItem <= 0)
+                return;
+
+            document.listForm.action = "toPublic?id=" + selectedItem;
+            document.listForm.submit();
+        }
     </script>
 
 </head>
@@ -46,17 +55,18 @@
                         <td valign="top" class="STYLE10">
 
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="experimentName"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="nameForSearch"
                                                                                      id="experimentName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;是否提交实验报告:<select id="ifReport" name="ifReport">
+                            <span style="white-space:nowrap">&nbsp;&nbsp;是否提交实验报告:<select id="ifReport" name="ifReportForSearch">
                                 <option></option>
                                 <option value="0">是</option>
                                 <option value="1">否</option>
                             </select></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告提交期限:<input type="text" name="limitTime"
-                                                                                         id="limitTime" value=""
-                                                                                         style="width:100px;"/></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告提交期限: <input name="limitTimeForSearch" id="manufactureDate"
+                                                                                          onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                                                          valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                                                          onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                               <span style="white-space:nowrap">&nbsp;&nbsp;
                                             <a href="javascript:void(0)" onclick="toFind('listForm');">
                                                 <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
@@ -89,13 +99,11 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="maintain"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="toUpdate"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">维护</span></a>&nbsp;
-                                                                    <a href="addpaper"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="" onclick="toPublic()"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;
 
-                                                                    <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                         border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                                                 </span>
                                                                 </div>
                                                             </td>
@@ -143,6 +151,7 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
+
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
@@ -199,9 +208,9 @@
                                                         <td>${item.name}</td>
                                                         <td>${item.date}</td>
                                                         <td>${item.state}</td>
-                                                        <td>${item.ifUpload}</td>
+                                                        <td>${item.ifUploaded}</td>
                                                         <td>${item.limitTime}</td>
-                                                        <td><a href="list?reportId">——</a></td>
+                                                        <td><a href="list?experimentId=${item.id}">——</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

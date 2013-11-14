@@ -95,12 +95,14 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="addpaper"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="addpaper" onclick="toAdd()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"                                      border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                    <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                 border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                                </span>
+                                                                    <a href="updatepaper"onclick="toUpdate()"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">编辑</span></a>&nbsp;
+                                                                    <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+
+                                                                </span>`
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -134,11 +136,9 @@
                                                         <div align="center"><span class="STYLE10">实验指导书</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验报告名称</span></div>
+                                                        <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验报告格式</span></div>
-                                                    </td>
+
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验题描述</span></div>
                                                     </td>
@@ -159,7 +159,7 @@
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
                                                     <td>${item.director}</td>
-                                                    <td>${item.style}</td>
+
                                                     <td>${item.reportName}</td>
                                                     <td>${item.detail}</td>
                                                     <td><a href="/prototype/jsp/experiment/experimentpaper/paperinfo.jsp">查看实验</a></td>
@@ -175,7 +175,7 @@
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
                                                     <td>${item.director}</td>
-                                                    <td>${item.style}</td>
+
                                                     <td>${item.reportName}
                                                     </td>
                                                     <td>${item.detail}</td>
@@ -194,7 +194,7 @@
                                                             <td>${item.name}</td>
                                                             <td>${item.director}</td>
                                                             <td>${item.reportName}</td>
-                                                            <td>${item.style}</td>
+
                                                             <td>${item.detail}</td>
                                                             <td><a href="paperinfo?id=${item.id}">查看实验</a></td>
                                                         </tr>
