@@ -88,12 +88,7 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                        <div align="center">
-                                                            <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
-                                                        </div>
-                                                    </td>
+
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
@@ -108,23 +103,19 @@
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
+
                                                     <td title="">软件工程虚拟班级一</td>
                                                     <td title="">BJ001</td>
 
 
-                                                    <td title=""><a href="markreport?courseId=${item.id}">查看实验</a></td>
+                                                    <td title=""><a href="experimentlist?courseId=${item.id}">查看实验</a></td>
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
-                                                        </td>
-                                                        <td>${item.name}</td>
-                                                        <td>${item.sn}</td>
-                                                        <td title=""><a href="markreport?courseId=${item.id}">查看实验</a></td>
+                                                        <td>${item.coursrName}</td>
+                                                        <td>${item.courseNo}</td>
+                                                        <td title=""><a href="experimentlist?courseId=${item.id}">查看实验</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

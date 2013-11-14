@@ -8,10 +8,12 @@
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
+
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/experimentpaper/addtopaper';
+        var baseHref = '/prototype/jsp/experiment/experimentpaper/maintain';
 
 
         function update() {
@@ -19,15 +21,10 @@
                 return;
             }
 
-            document.listForm.action = "addPaper";
+            document.listForm.action = "maintain";
             document.listForm.submit();
         }
 
-        function toAddQuestion(){
-            //要在添加之前插入该记录并将Id传入addtopaper页面
-            window.open("/prototype/jsp/experiment/experimentpaper/addtopaper?paperId=${experiment.Id}", "实验试题",
-                    "height=600, width=1350, toolbar=no, status=no");
-        }
 
     </script>
 
@@ -96,39 +93,39 @@
                                            style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                            bgcolor="#E3E9EE">
                                         <tr>
-                                            <td nowrap align="right">实验编号:</td>
-                                            <td nowrap>${experimentNo}</td>
-                                            <td nowrap align="right">实验名称:</td>
-                                            <td nowrap>${experimentName}</td>
+                                            <td nowrap align="right">实验编号:</td><td nowrap>${experiment.experimentNo}</td>
+                                            <td nowrap align="right">实验名称:</td><td nowrap>${experiment.experimentName}</td>
 
                                         </tr>
                                         <tr>
-                                            <td nowrap align="right">所属课程:</td>
-                                            <td nowrap>${courseList}</td>
-                                            <td nowrap align="right">指导老师:</td>
-                                            <td nowrap>${instructor}</td>
+                                            <td nowrap align="right">所属课程:</td><td nowrap>${experiment.courseList}</td>
+                                            <td nowrap align="right">指导老师:</td><td nowrap>${experiment.instructor}</td>
                                         </tr>
                                         <tr>
-                                            <td nowrap align="right">实验指导书:</td>
-                                            <td nowrap>${instructor}</td>
-                                            <td nowrap align="right">实验报告书:</td>
-                                            <td nowrap>${experimentReport}</td>
-
+                                            <td nowrap align="right">实验指导书:</td><td nowrap>${experiment.instructor}</td>
+                                            <td nowrap align="right">实验报告书:</td><td nowrap>${experiment.experimentReport}</td>
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">是否提交实验报告:</td>
                                             <td nowrap>
                                                 <select name="ifReported">
-                                                    <option></option>
-                                                    <c:forEach items="${ifReported}" var="item">
-                                                        <option value="${item.id}">${item.value}</option>
-                                                    </c:forEach>
+                                                    <c:if test="${experiment.ifReported==null}">
+                                                        <option selected></option>
+                                                    </c:if>
+                                                    <c:if test="${experiment.ifReported==1}">
+                                                        <option value="0" selected>是</option>
+                                                    </c:if>
+                                                    <c:if test="${experiment.ifReported==0}">
+                                                        <option value="0" selected>否</option>
+                                                    </c:if>
                                                 </select>
                                             </td>
                                             <td nowrap align="right">最后提交期限:</td>
                                             <td nowrap>
-                                                <input name="instructor" id="limitDate" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="${limitDate}" readonly/>
+                                                <input name="limitTime" id="manufactureDate"
+                                                       onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                       valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                       onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})" value="${experiment.limitTime}"/>
                                                 <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_us_spwd"></span>
                                             </td>
