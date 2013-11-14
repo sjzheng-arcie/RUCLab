@@ -140,20 +140,24 @@ public class MessageService {
 
         Teacher applicant = serviceTeacher.selectByPrimaryKey(applicationForm.getApplicantId());
 
-        List<Teacher> leaders = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
-        for(Teacher leader : leaders){
-            if(leader.getId() == applicant.getId())
-                continue;
-            message.setReceiverId(leader.getId());
-            String content = "";
-            content +=  applicant.getUser().getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请: ";
 
-            String listPath = path.substring(0, path.lastIndexOf("/"));
-            listPath += "/applyList?formType=review";
+        if(type != Types.ApplyType.RETURN){
+        //归还设备不通知领导
+            List<Teacher> leaders = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
+            for(Teacher leader : leaders){
+                if(leader.getId() == applicant.getId())
+                    continue;
+                message.setReceiverId(leader.getId());
+                String content = "";
+                content +=  applicant.getUser().getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+ type.getTitle() +" 申请: ";
 
-            content += " <a href='"+listPath+"'>查看申请</a>" ;
-            message.setContent(content);
-            insert(message);
+                String listPath = path.substring(0, path.lastIndexOf("/"));
+                listPath += "/applyList?formType=review";
+
+                content += " <a href='"+listPath+"'>查看申请</a>" ;
+                message.setContent(content);
+                insert(message);
+            }
         }
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
@@ -231,7 +235,7 @@ public class MessageService {
         Teacher applicant = serviceTeacher.selectByPrimaryKey(apply.getApplicantId());
         message.setReceiverId(applicant.getId());
         String content = "";
-        content +=  apply.getOperatorName()+" 于"+format.format(apply.getApproveTime());
+        content +=  apply.getOperatorName()+" 于"+format.format(apply.getProcessTime());
         content += "处理了您的 "+ type.getTitle() +" 申请: ";
 
         String listPath = path.substring(0, path.lastIndexOf("/"));
@@ -248,7 +252,7 @@ public class MessageService {
 
             message.setReceiverId(equpiAdmin.getId());
             String adminContent = "";
-            adminContent +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+            adminContent +=  apply.getOperatorName()+" 于"+format.format(apply.getProcessTime());
             adminContent += "处理了 " + apply.getApplicantName() + " 的 "+ type.getTitle() +" 申请: ";
             adminContent += " <a href='" + listPath + "'>查看申请</a>" ;
             message.setContent(adminContent);

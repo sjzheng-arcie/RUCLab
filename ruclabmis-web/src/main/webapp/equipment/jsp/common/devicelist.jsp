@@ -141,12 +141,6 @@
                                       </a>
                                   </shiro:hasAnyRoles>
                               </c:when>
-                              <c:when test="${applyType=='return'}">
-                                  <a href="#" onclick="toReturn('listForm', 'idcheckbox'); return false">
-                                      <img src="../../../images/pic25.gif" width="10" height="10"
-                                           border="0"/> <span class="STYLE1">归还设备</span>
-                                  </a>
-                              </c:when>
                               <c:otherwise>
                                   <a href="javascript:void(0);" onclick="toApply();return false;">
                                       <img src="/equipment/images/add_min.gif" width="10" height="10" border="0"/>

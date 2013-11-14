@@ -106,7 +106,13 @@
     </table>
     <ul class="MM">
         <shiro:hasAnyRoles name="administrators,teacher,leader">
-            <li><a href="jsp/dev/return/deviceList.html" onfocus="toFocus(this)" target="main">我使用中的设备</a>
+            <li><a href="jsp/dev/return/deviceList" onfocus="toFocus(this)" target="main">我使用中的设备</a>
+            </li>
+            <li><a href="jsp/dev/return/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备归还申请</a>
+            </li>
+        </shiro:hasAnyRoles>
+        <shiro:hasAnyRoles name="administrators,equipment_admin">
+            <li><a href="jsp/dev/return/applyList?formType=process" onfocus="toFocus(this)" target="main">设备归还执行</a>
             </li>
         </shiro:hasAnyRoles>
     </ul>
@@ -235,33 +241,33 @@
 </shiro:hasAnyRoles>
 
 <shiro:hasAnyRoles name="administrators, equipment_admin">
-<h1 class="type"><a href="javascript:void(0)">固定资产盘点</a></h1>
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <li><a href="/equipCheck/list?page=1" onfocus="toFocus(this)" target="main">
-            &nbsp;&nbsp;&nbsp;&nbsp;固定资产盘点</a></li>
-    </ul>
-</div>
+    <h1 class="type"><a href="javascript:void(0)">固定资产盘点</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <li><a href="/equipCheck/list?page=1" onfocus="toFocus(this)" target="main">
+                &nbsp;&nbsp;&nbsp;&nbsp;固定资产盘点</a></li>
+        </ul>
+    </div>
 </shiro:hasAnyRoles>
 
 <shiro:hasAnyRoles name="administrators, equipment_admin, leader">
-<h1 class="type"><a href="javascript:void(0)">信息查询</a></h1>
-<div class="content">
-    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-        <tr>
-            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
-        </tr>
-    </table>
-    <ul class="MM">
-        <li><a href="jsp/dev/inquery/querydevice" onfocus="toFocus(this)" target="main">设备统计查询</a>
-        </li>
-    </ul>
-</div>
+    <h1 class="type"><a href="javascript:void(0)">信息查询</a></h1>
+    <div class="content">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+                <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+            </tr>
+        </table>
+        <ul class="MM">
+            <li><a href="jsp/dev/inquery/querydevice" onfocus="toFocus(this)" target="main">设备统计查询</a>
+            </li>
+        </ul>
+    </div>
 </shiro:hasAnyRoles>
 
 </div>
