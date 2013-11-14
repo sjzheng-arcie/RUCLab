@@ -156,11 +156,12 @@ public class AnnouncementController {
 		//criteria.andPublishLimitEqualTo(0);
 
 		announcementCriteria.setOrderByClause(" publish_time desc");
-		ObjectListPage<Announcement> pageInfo = serviceAnnouncement.selectListPage(currPage, announcementCriteria);
-		System.out.print(pageInfo .getListObject().size());
+		//PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
+		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage( announcementCriteria,currPage);
+		//System.out.print(pageInfo .getListObject().size());
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcement");
-		mav.addObject("announcementLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+		mav.addObject("pageInfo", pageInfo);
+		//mav.addObject("page", pageInfo.getPageInfo());
 
 		return mav;
 	}
