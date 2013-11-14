@@ -4,7 +4,10 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.domain.EquipmentApplicationFormKey;
+import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
+import edu.ruc.labmgr.mapper.EquipmentApplicationFormMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -21,6 +24,10 @@ public class AllotApply extends BaseApply {
     private ApplyWithEquipmentMapper mapperViewStore;
     @Autowired
     private EquipmentMapper mapperEquipment;
+    @Autowired
+    private EquipmentApplicationFormMapper mapperEA;
+    @Autowired
+    private ApplicationFormMapper mapperApply;
 
     @Override
     public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
@@ -100,6 +107,28 @@ public class AllotApply extends BaseApply {
             equipment.setHolder(Integer.parseInt(applyWithEquipment.getAnnex()));
             equipment.setStateId(Types.EquipState.USED.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
+        }
+    }
+
+    //删除捐赠申请，更新设备状态为已借用
+    @Override
+    public void deleteApplys(List<Integer> appIds) {
+        for(Integer id : appIds){
+            ApplyWithEquipment applyWithEquipmen = mapperViewStore.selectByApplyId(id);
+            for(Equipment equipment : applyWithEquipmen.getEquipments())
+            {
+                //删除关联
+                EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
+                key.setApplicationFormId(id);
+                key.setEquipmentId(equipment.getId());
+                mapperEA.deleteByPrimaryKey(key);
+
+                //更新设备状态
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+
+            mapperApply.deleteByPrimaryKey(id);
         }
     }
 }

@@ -66,5 +66,9 @@ public class BaseApply {
 
     public void processApply(int applicationId, Types.EquipState state){
         serviceApply.processApply(applicationId, state);
-    };
+    }
+
+    public void deleteApplys( List<Integer> appIds){
+        serviceApply.deleteApplys(appIds);
+    }
 }

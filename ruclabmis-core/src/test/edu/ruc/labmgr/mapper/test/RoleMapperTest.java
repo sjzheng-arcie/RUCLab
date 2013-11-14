@@ -4,6 +4,7 @@ import edu.ruc.labmgr.domain.Privilege;
 import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
@@ -18,7 +19,7 @@ public class RoleMapperTest {
         System.out.println("getBean");
     }
 
-    @Test
+    @Ignore
     public void testSelectRoleWithPrivileges() throws Exception {
         Role role = mapper.selectByPrimaryKey(2);
         System.out.println(role.getName());
@@ -33,13 +34,13 @@ public class RoleMapperTest {
         }
     }
 
-    @Test
+    @Ignore
     public void testQueryList() throws Exception {
         System.out.println("testQueryList");
     }
 
 
-    @Test
+    @Ignore
     public void testListAll() throws Exception {
         System.out.println("testListAll");
     }

@@ -133,7 +133,7 @@
                 <select name="useDirectionId" id="useDirectionId">
                     <option value="-1"> 所有 </option>
                     <c:forEach items="${useDirections}" var="direction">
-                        <option value="${fundingSubject.id}"
+                        <option value="${direction.id}"
                                 <c:if test="${direction.id == searchEquipment.useDirectionId}"> selected</c:if>>${direction.value}
                         </option>
                     </c:forEach>

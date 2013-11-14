@@ -6,6 +6,7 @@ import edu.ruc.labmgr.mapper.AnnouncementMapper;
 import edu.ruc.labmgr.mapper.AnnouncementMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -19,13 +20,13 @@ import java.util.List;
 public class AnnouncementMapperTest {
 	private static AnnouncementMapper mapper;
 
-	@BeforeClass
+	@Ignore
 	public static void init() throws Exception {
 		ApplicationContext aContext = new FileSystemXmlApplicationContext("applicationContext.xml");
 		mapper = aContext.getBean(AnnouncementMapper.class);
 	}
 
-	@Test
+	@Ignore
 	public void testSearchPage() throws Exception {
 		//Announcement announcement = mapper.selectByCriteriaWithRowbounds(0,2);
 	}

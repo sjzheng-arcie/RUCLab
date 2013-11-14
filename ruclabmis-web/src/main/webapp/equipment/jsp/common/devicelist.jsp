@@ -23,6 +23,10 @@
         }
         function toApply()
         {
+            if (!confirm("确认添加所选设备并提交表单？")) {
+              return;
+            }
+
             var id = "${param.application_id}";
             var selectedItems = getAllSelected('listForm', 'idcheckbox');
             if(selectedItems.length <= 0 )
@@ -35,15 +39,6 @@
             {
                 var myUrl = "addEquipmentsToApply?application_id="+id+"&items=" + selectedItems;
                 Submit(myUrl);
-              /*  document.forms["listForm"].action = "addEquipmentsToApply?application_id="+id+"&items=" + selectedItems;
-                document.forms["listForm"].submit();*/
-//                 window.opener.freshWindow();
-
-//                window.opener.location.reload();
-/*                window.opener.location.href=window.opener.location.href;*/
-//                setTimeout('delayclose',1000);
-
-
             }
             else //无父窗体则跳转至表单页面
             {
@@ -152,6 +147,10 @@
                           <c:choose>
                               <c:when test="${applyType=='info'}">
                                   <shiro:hasAnyRoles name="administrators,equipment_admin">
+                                      <a href="/equipment/jsp/dev/info/importEquipments">
+                                          <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                          <span class="STYLE1">设备导入</span>
+                                      </a>
                                       <a href="/equipment/jsp/dev/info/toAdd">
                                           <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">验收入库</span>

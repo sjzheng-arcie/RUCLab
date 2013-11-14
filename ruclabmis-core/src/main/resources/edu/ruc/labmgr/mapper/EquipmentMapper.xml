@@ -444,4 +444,9 @@
           SELECT ec.sn FROM equipment_check ec
         )
   </select>
+
+    <select id="selectIdBySn" parameterType="String" resultType="Integer">
+      SELECT id FROM equipment_check WHERE sn = #{sn}
+  </select>
+
 </mapper>

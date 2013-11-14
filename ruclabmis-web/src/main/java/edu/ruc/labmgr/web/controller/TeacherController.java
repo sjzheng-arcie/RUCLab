@@ -4,7 +4,6 @@ import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -129,6 +128,6 @@ public class TeacherController {
             HttpServletRequest request,HttpServletResponse response)
             throws Exception{
         String name = request.getParameter("param");
-        return serviceTeacher.getTeacherListByName(name);
+        return serviceTeacher.getTeacherListNameLike(name);
     }
 }

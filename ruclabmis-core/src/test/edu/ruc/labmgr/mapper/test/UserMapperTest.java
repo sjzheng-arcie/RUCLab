@@ -5,6 +5,7 @@ import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.UserMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
@@ -47,7 +48,7 @@ public class UserMapperTest {
         mapper.updateByPrimaryKeySelective(user);
     }
 
-    @Test
+    @Ignore
     public void testSearchPage() throws Exception {
         RowBounds bounds = new RowBounds(offset, limit);
         UserCriteria criteria = new UserCriteria();

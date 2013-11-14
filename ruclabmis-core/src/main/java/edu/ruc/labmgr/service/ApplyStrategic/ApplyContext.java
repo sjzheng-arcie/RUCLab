@@ -86,4 +86,8 @@ public class ApplyContext {
     public void processApply(int applicationId, Types.EquipState state) {
         apply.processApply(applicationId, state);
     }
+
+    public void deleteApplys( List<Integer> appIds){
+        apply.deleteApplys(appIds);
+    }
 }

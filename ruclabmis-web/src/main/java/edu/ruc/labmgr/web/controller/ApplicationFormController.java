@@ -212,7 +212,11 @@ public class ApplicationFormController {
     //删除申请
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> appIds, @PathVariable("applyType")String applyType) {
-        serviceApply.deleteApplys(appIds);
+        Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
+        ApplyContext applyContext = new ApplyContext(type);
+
+        applyContext.deleteApplys(appIds);
+
         return "redirect:/equipment/jsp/dev/"+ applyType + "/applyList?formType=apply";
     }
 

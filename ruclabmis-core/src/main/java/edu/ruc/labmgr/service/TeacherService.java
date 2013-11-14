@@ -68,7 +68,7 @@ public class TeacherService extends UserService {
         return mapperTeacher.selectByCriteria(criteria);
     }
 
-    public List<Teacher> getTeacherListByName(String name) {
+    public List<Teacher> getTeacherListNameLike(String name) {
         UserCriteria userCriteria = new UserCriteria();
         UserCriteria.Criteria ecu = userCriteria.createCriteria();
         ecu.andNameLike("%" + name + "%");
