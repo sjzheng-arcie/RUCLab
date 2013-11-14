@@ -36,11 +36,14 @@
                 eval("submenu" + sid + ".style.display=\"none\";");
             }
         }
-        function rs() {
-            parent.main.location.href = "bbs/frame.html";
-        }
-        function rs1() {
-            parent.main.location.href = "welcome.html";
+        function rs(object) {
+            var x = document.getElementsByTagName("li");
+            for (var i=0;i<x.length;i++)
+            {
+                x[i].className="";
+
+            }
+            object.className="active";
         }
     </script>
     <base target="main">
@@ -60,15 +63,15 @@
 
         </div>
         <ul class="top_right_menu">
-            <li class="active"><a href="left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-            <li><a href="leftmenusys.html" target="leftFrame">系统管理</a></li>
-            <li><a href="leftmenubasinfo.html" target="leftFrame">基础信息管理</a></li>
-            <li><a href="leftmenulab.html" target="leftFrame">实验室管理</a></li>
-            <li><a href="leftmenu.html" target="leftFrame">教学资源管理</a></li>
-            <li><a href="leftmenuteach.html" target="leftFrame">实验教学管理</a></li>
-            <li><a href="new/left.html" target="leftFrame">预约管理</a></li>
-            <li><a href="leftmenutask.html" target="leftFrame">考核管理</a></li>
-            <li><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
+            <li class="active" onclick="rs(this)"><a href="left.html" target="leftFrame">首页</a></li>
+            <li onclick=rs(this)><a href="leftmenusys.html" target="leftFrame" >系统管理</a></li>
+            <li onclick=rs(this)><a href="leftmenubasinfo.html" target="leftFrame" >基础信息管理</a></li>
+            <li onclick=rs(this)><a href="leftmenulab.html" target="leftFrame">实验室管理</a></li>
+            <li onclick=rs(this)><a href="leftmenu.html" target="leftFrame">教学资源管理</a></li>
+            <li onclick=rs(this)><a href="leftmenuteach.html" target="leftFrame">实验教学管理</a></li>
+            <li onclick=rs(this)><a href="new/left.html" target="leftFrame">预约管理</a></li>
+            <li onclick=rs(this)><a href="leftmenutask.html" target="leftFrame">考核管理</a></li>
+            <li onclick=rs(this)><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
         </ul>
     </div>
 </div>

@@ -36,11 +36,15 @@
                 eval("submenu" + sid + ".style.display=\"none\";");
             }
         }
-        function rs() {
-            parent.main.location.href = "bbs/frame.html";
-        }
-        function rs1() {
-            parent.main.location.href = "student_welcome.html";
+
+        function rs(object) {
+            var x = document.getElementsByTagName("li");
+            for (var i=0;i<x.length;i++)
+            {
+                x[i].className="";
+
+            }
+            object.className="active";
         }
     </script>
     <base target="main">
@@ -59,8 +63,8 @@
 
     </div>
         <ul class="top_right_menu">
-            <li class="active"><a href="student_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-            <li><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
+            <li class="active"  onclick="rs(this)" id="homePage"><a href="student_left.html" target="leftFrame" >首页</a></li>
+            <li id="bbs" onclick="rs(this)"><a href="bbs/left.html" target="leftFrame" >论坛</a></li>
         </ul>
     </div>
 </div>
