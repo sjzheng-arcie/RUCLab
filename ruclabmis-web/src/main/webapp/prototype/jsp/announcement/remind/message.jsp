@@ -56,13 +56,10 @@
             document.listForm.action = href;
             document.listForm.submit();
         }
-
-    </script>
-    <script>
         function save(){
 
-            document.form1.action="addAnnouncement";
-            document.form1.submit();
+            document.listForm.action="addAnnouncement";
+            document.listForm.submit();
         }
         function displayClass(value){
 
@@ -78,7 +75,7 @@
 
 </head>
 <body style="background-color: #EEF2FB">
-
+<form name="listForm" method="post">
     <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
 
         <tr>
@@ -107,7 +104,7 @@
                                                         </div>
                                                         <c:choose>
                                                             <c:when test="${mode==null}">
-                                                                <c:forEach items="${messageLists}" var="item">
+                                                                <c:forEach items="${pageInfo.data}" var="item">
                                                                     <div class="message" style="border: 1px ;background-color: #FFFFFF ;margin: 10px ;">
                                                                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
                                                                         <p align="left"><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.sender.name
@@ -129,7 +126,7 @@
                                                                 </c:forEach>
                                                             </c:when>
                                                             <c:otherwise>
-                                                                <c:forEach items="${messageLists}" var="item">
+                                                                <c:forEach items="${pageInfo.data}" var="item">
                                                                     <div class="message" style="border: 1px;background-color: #FFFFFF;margin: 10px ;">
                                                                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
                                                                         <p align="left"><span style="font-size: 16px;color: #ccc;;">收信人：</span><span style="font-size: 16px;color: #316491;font-weight: bold;">${item.receiver.name}</span> <span style="color: #A3A3A1">
@@ -147,63 +144,12 @@
                                                             </c:otherwise>
                                                         </c:choose>
                                                         <hr size="0"  style="  border:none; border-bottom:1px dashed #ccc;">
-
-
-                                                        <form name="listForm">
-                                                            <input type="hidden" id="page" name = "page"/>
-                                                            <table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                                                                <tr>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(1)" style="cursor:hand"
-                                                                                                 src='../../../images/main_54.gif' width='40' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:hand"
-                                                                                                 src='../../../images/main_56.gif' width='45' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:hand"
-                                                                                                 src='../../../images/main_58.gif' width='45' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='49'>
-                                                                        <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:hand"
-                                                                                                 src='../../../images/main_60.gif' width='40' height='15'
-                                                                                                 border='0'/></div>
-                                                                    </td>
-                                                                    <td width='38' class='STYLE22'>
-                                                                        <div align='center' style="white-space:nowrap">转到</div>
-                                                                    </td>
-                                                                    <td>
-                                                                        <div align='left'>
-                                                                            <select onchange="goPage(this.options[this.selectedIndex].value)">
-                                                                                <c:forEach var="i" begin="1" end="${page.totalPage}" step="1">
-                                                                                    <option class='STYLE22' value='${i}'
-                                                                                            <c:if test="${page.currentPage == i}">selected</c:if> > 第${i}页
-                                                                                    </option>
-                                                                                </c:forEach>
-                                                                            </select>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </form>
-
-
-
                                                     </div>
-
-
                                                 </td>
                                             </tr>
-
-
-
+                                            <%@ include file="../../common/pagetable.jsp"%>
                                         </table>
                                     </td>
-
                                 </tr>
                                 <tr  align="center"  bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE"><td align="center">
                                     <input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
@@ -213,10 +159,7 @@
                     </tr>
                 </table>
             </td>
-
         </tr>
-
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
-
+</form>
 </body>
