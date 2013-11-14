@@ -94,4 +94,12 @@ public class AnnouncementService {
 		}
 		return announcementList;
 	}
+	public PageInfo<Announcement> selectListPage(AnnouncementCriteria criteria, int pageNum){
+		int totalCount = mapperAnnouncement.countByCriteria(criteria);
+		PageInfo<Announcement> page = new PageInfo<>(totalCount,-1,pageNum);
+		List<Announcement> data = mapperAnnouncement.selectByCriteriaWithRowbounds(criteria,
+				new RowBounds(page.getCurrentResult(),page.getPageSize()));
+		page.setData(data);
+		return page;
+	}
 }

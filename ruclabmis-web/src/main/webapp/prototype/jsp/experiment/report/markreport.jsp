@@ -29,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学实验管理 > 实验报告上传</div>
+                            <div class="titlebt">实验报告管理 > 课程实验</div>
                         </td>
                     </tr>
                 </table>
@@ -45,15 +45,7 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验课程:
-                                <select name="theCourse">
-                                    <c:forEach items="${courseList}" var="item">
-                                        <option value="${item.value}">
-                                            ${item.value}
-                                        </option>
-                                    </c:forEach>
-                                </select>
-                            </span>
+
                             <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="experimentName"
                                                                                      id="experimentName" value=""
                                                                                      style="width:100px;"/></span>
@@ -94,7 +86,19 @@
                                                                     </tr>
                                                                 </table>
                                                             </td>
+                                                            <td>
+                                                                <div align="right">
+                                                                <span class="STYLE1" style="white-space:nowrap">
+                                                                    <a href="maintain"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">维护</span></a>&nbsp;
+                                                                    <a href="addpaper"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">发布</span></a>&nbsp;
 
+                                                                    <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                                                         border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                                </span>
+                                                                </div>
+                                                            </td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -111,7 +115,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
 
@@ -124,7 +128,9 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验时间</span></div>
                                                     </td>
-
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">发布状态</span></div>
+                                                    </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">是否提交实验报告</span></div>
@@ -135,19 +141,54 @@
 
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验报告打分</span></div>
+                                                        <div align="center"><span class="STYLE10">实验报告</span></div>
+                                                    </td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td>KC001</td>
+                                                    <td>编程语言基础实验课</td>
+                                                    <td>09年第一学期第2周第5节</td>
+                                                        <td>待发布</td>
+                                                    <td>是</td>
+                                                    <td>2012-02-12</td>
+                                                    <td><a href="list">查看</a>
                                                     </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
+                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     <td>KC001</td>
                                                     <td>编程语言基础实验课</td>
                                                     <td>09年第一学期第2周第5节</td>
+                                                    <td>已发布</td>
                                                     <td>是</td>
                                                     <td>2012-02-12</td>
-                                                    <td><a href="list">打分</a>
+                                                    <td><a href="list">查看</a>
                                                     </td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td>KC001</td>
+                                                    <td>编程语言基础实验课</td>
+                                                    <td>09年第一学期第2周第5节</td>
+                                                    <td>待维护</td>
+                                                    <td>——</td>
+                                                    <td>——</td>
+                                                    <td>——</td>
+                                                </tr>
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td>KC001</td>
+                                                    <td>编程语言基础实验课</td>
+                                                    <td>09年第一学期第2周第5节</td>
+                                                    <td>已发布</td>
+                                                    <td>否</td>
+                                                    <td>——</td>
+                                                    <td>——</td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -157,9 +198,10 @@
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.date}</td>
+                                                        <td>${item.state}</td>
                                                         <td>${item.ifUpload}</td>
                                                         <td>${item.limitTime}</td>
-                                                        <td><a href="list?reportId">打分</a></td>
+                                                        <td><a href="list?reportId">——</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

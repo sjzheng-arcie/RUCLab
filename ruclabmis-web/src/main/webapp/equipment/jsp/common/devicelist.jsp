@@ -97,7 +97,7 @@
                             </select>
                         </span>
                         <span style="white-space:nowrap">
-                            <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm');">
+                            <a href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
                                 <img src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询
                             </a>
                          </span>

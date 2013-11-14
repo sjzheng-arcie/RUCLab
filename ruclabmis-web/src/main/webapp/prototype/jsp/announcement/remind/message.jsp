@@ -6,6 +6,8 @@
 <html>
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="../../../../js/valid.js" type=text/javascript>
 
@@ -138,7 +140,7 @@
 
 
 
-                                                                      &&fatherPage=${fatherPage}  <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
+                                                                       <p align="left" style="font-size: 12px"><a class="A_See" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a> &nbsp&nbsp&nbsp&nbsp&nbsp
                                                                             <a class="A_See" href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a></p>
                                                                     </div>
                                                                 </c:forEach>
@@ -171,7 +173,7 @@
                                                                                                  src='../../../images/main_60.gif' width='40' height='15'
                                                                                                  border='0'/></div>
                                                                     </td>
-                                                                    <td width='37' class='STYLE22'>
+                                                                    <td width='38' class='STYLE22'>
                                                                         <div align='center' style="white-space:nowrap">转到</div>
                                                                     </td>
                                                                     <td>

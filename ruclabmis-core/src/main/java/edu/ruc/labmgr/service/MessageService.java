@@ -91,6 +91,14 @@ public class MessageService {
         }
 
     }
+	public PageInfo<Message> selectListPage(MessageCriteria criteria, int pageNum){
+		int totalCount = messageMapper.countByCriteria(criteria);
+		PageInfo<Message> page = new PageInfo<>(totalCount,-1,pageNum);
+		List<Message> data = messageMapper.selectByCriteriaWithRowbounds(criteria,
+				new RowBounds(page.getCurrentResult(),page.getPageSize()));
+		page.setData(data);
+		return page;
+	}
     public Message selectById(int id) {
         Message message = null;
         try {
