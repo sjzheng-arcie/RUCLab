@@ -45,6 +45,7 @@
 
             }
             object.className="active";
+            parent.main.location.href="student_welcome";
         }
     </script>
     <base target="main">

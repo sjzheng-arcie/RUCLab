@@ -44,6 +44,11 @@
 
             }
             object.className="active";
+            if(object.name="homePage")
+                parent.main.location.href="teacher_welcome";
+            else{
+                parent.main.location.href="/bbs/index.html";
+            }
         }
     </script>
     <base target="main">

@@ -13,17 +13,9 @@
 
 
     <script language=JavaScript1.2>
-        function showsubmenu(sid) {
-            var whichEl = eval("submenu" + sid);
-            var menuTitle = eval("menuTitle" + sid);
-            if (whichEl.style.display == "none") {
-                eval("submenu" + sid + ".style.display=\"\";");
-            } else {
-                eval("submenu" + sid + ".style.display=\"none\";");
-            }
-        }
         function rs1() {
-            var roleName=${user.role.name};
+
+            var roleName="${user.role.name}";
            if(roleName=="teacher"){
                parent.main.location.href = "teacher_welcome";
            }else if(roleName=="leader"){
@@ -36,6 +28,7 @@
 
 
         }
+
     </script>
 
 </head>
