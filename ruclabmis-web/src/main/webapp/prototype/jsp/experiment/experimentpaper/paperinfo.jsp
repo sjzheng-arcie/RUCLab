@@ -190,7 +190,7 @@
                                                 <td>选择题目</td>
                                                 <td>下面属于面向对象编程的语言有（）</td>
 
-                                                <td><a href="detial.html">查看详细</a></td>
+                                                <td><a href="detail">查看详细</a></td>
 
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -204,7 +204,7 @@
                                                 <td>选择题目</td>
                                                 <td>下面属于面向对象编程的语言有（）</td>
 
-                                                <td><a href="detial.html">查看详细</a></td>
+                                                <td><a href="detail">查看详细</a></td>
 
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">

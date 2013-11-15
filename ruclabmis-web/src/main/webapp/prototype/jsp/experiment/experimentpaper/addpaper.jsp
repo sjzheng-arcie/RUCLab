@@ -152,25 +152,6 @@
                                             </td>
 
                                         </tr>
-                                        <tr>
-                                            <td nowrap align="right">是否提交实验报告:</td>
-                                            <td nowrap>
-                                                <select name="ifReported">
-                                                    <option></option>
-                                                    <c:forEach items="${ifReported}" var="item">
-                                                        <option value="${item.id}">${item.value}</option>
-                                                    </c:forEach>
-                                                </select>
-                                            </td>
-                                            <td nowrap align="right">最后提交期限:</td>
-                                            <td nowrap>
-                                                <input name="instructor" id="limitDate" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="${limitDate}" readonly/>
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
-                                            </td>
-                                        </tr>
-
                                     </table>
                                 </td>
                             </tr>
@@ -249,8 +230,6 @@
                                                                             <span class="STYLE1">新增题目</span></a>&nbsp;
                                                                         <a href="#"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                                                                border="0"/> <span class="STYLE1">删除题目</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                                                     </span>
                                                             </div>
                                                         </td>

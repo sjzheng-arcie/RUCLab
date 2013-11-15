@@ -94,15 +94,16 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="addpaper" onclick="toAdd()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                        <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="updatepaper"onclick="toUpdate()"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
-                                                                        <span class="STYLE1">编辑</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
-                                                                        <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-
-                                                                </span>`
+                                                                    <shiro:hasAnyRoles name="administrators,teacher">
+                                                                        <span class="STYLE1" style="white-space:nowrap">
+                                                                            <a href="addpaper" onclick="toAdd()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                                <span class="STYLE1">新增</span></a>&nbsp;
+                                                                            <a href="updatepaper"onclick="toUpdate()"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                                <span class="STYLE1">编辑</span></a>&nbsp;
+                                                                            <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                                                <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                    </shiro:hasAnyRoles>
+                                                                </span>
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -94,7 +94,7 @@
                                                     </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">课程编号</span></div>
+                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">查看实验</span></div>
@@ -105,7 +105,7 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
 
                                                     <td title="">软件工程虚拟班级一</td>
-                                                    <td title="">BJ001</td>
+                                                    <td title="">软件工程</td>
 
 
                                                     <td title=""><a href="experimentlist?courseId=${item.id}">查看实验</a></td>
@@ -113,8 +113,8 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td>${item.coursrName}</td>
-                                                        <td>${item.courseNo}</td>
+                                                        <td>${item.className}</td>
+                                                        <td>${item.courseName}</td>
                                                         <td title=""><a href="experimentlist?courseId=${item.id}">查看实验</a></td>
                                                     </tr>
                                                 </c:forEach>
