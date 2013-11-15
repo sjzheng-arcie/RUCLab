@@ -9,6 +9,7 @@
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
     <script>
@@ -20,9 +21,12 @@
                 document.forms[formName].submit();
             }
         }
-
         function toApply()
         {
+            if (!confirm("确认添加所选设备并提交表单？")) {
+              return;
+            }
+
             var id = "${param.application_id}";
             var selectedItems = getAllSelected('listForm', 'idcheckbox');
             if(selectedItems.length <= 0 )
@@ -33,11 +37,8 @@
 
             if( id != "") //有父窗体则刷新父窗体，关闭自己
             {
-                document.forms["listForm"].action = "addEquipmentsToApply?application_id="+id+"&items=" + selectedItems;
-                document.forms["listForm"].submit();
-
-                window.opener.location.href=window.opener.location.href;
-                window.close();
+                var myUrl = "addEquipmentsToApply?application_id="+id+"&items=" + selectedItems;
+                Submit(myUrl);
             }
             else //无父窗体则跳转至表单页面
             {
@@ -47,13 +48,28 @@
 
         }
 
+        function Submit(url) {
+            $.ajax( {
+                type : "POST",
+                url : url,
+                data:$("#listForm").serialize(),
+                success : function(msg) {
+
+                    window.opener.freshWindow();
+                    window.close();
+
+
+            }
+        })
+
+        }
 
     </script>
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
 
-<form name="listForm" method="post">
+<form id= "listForm" name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <input name="application_id" id="application_id" type="hidden" value="${application_id}">
 <tr>
@@ -131,6 +147,10 @@
                           <c:choose>
                               <c:when test="${applyType=='info'}">
                                   <shiro:hasAnyRoles name="administrators,equipment_admin">
+                                      <a href="/equipment/jsp/dev/info/importEquipments">
+                                          <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                          <span class="STYLE1">设备导入</span>
+                                      </a>
                                       <a href="/equipment/jsp/dev/info/toAdd">
                                           <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">验收入库</span>

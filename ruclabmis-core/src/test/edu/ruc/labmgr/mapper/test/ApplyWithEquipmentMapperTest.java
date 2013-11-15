@@ -31,7 +31,7 @@ public class ApplyWithEquipmentMapperTest {
         System.out.println("getBean");
     }
 
-    @Test
+    @Ignore
     public void testSelectAll() throws Exception {
 
         RowBounds bounds = new RowBounds(8, 8);

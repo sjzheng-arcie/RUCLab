@@ -2,7 +2,10 @@ package edu.ruc.labmgr.service.ApplyStrategic;
 
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.domain.EquipmentApplicationFormKey;
+import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
+import edu.ruc.labmgr.mapper.EquipmentApplicationFormMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -19,6 +22,10 @@ public class ReturnApply extends BaseApply {
     private EquipmentMapper mapperEquipment;
     @Autowired
     private ApplyWithEquipmentMapper mapperViewStore;
+    @Autowired
+    private EquipmentApplicationFormMapper mapperEA;
+    @Autowired
+    private ApplicationFormMapper mapperApply;
 
     @Override
     public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
@@ -48,6 +55,28 @@ public class ReturnApply extends BaseApply {
             equipment.setHolder(applyWithEquipment.getApplicantId());
             equipment.setStateId(Types.EquipState.NORMAL.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
+        }
+    }
+
+    //删除捐赠申请，更新设备状态为已借用
+    @Override
+    public void deleteApplys(List<Integer> appIds) {
+        for(Integer id : appIds){
+            ApplyWithEquipment applyWithEquipmen = mapperViewStore.selectByApplyId(id);
+            for(Equipment equipment : applyWithEquipmen.getEquipments())
+            {
+                //删除关联
+                EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
+                key.setApplicationFormId(id);
+                key.setEquipmentId(equipment.getId());
+                mapperEA.deleteByPrimaryKey(key);
+
+                //更新设备状态
+                equipment.setStateId(Types.EquipState.USED.getValue());
+                mapperEquipment.updateByPrimaryKeySelective(equipment);
+            }
+
+            mapperApply.deleteByPrimaryKey(id);
         }
     }
 }

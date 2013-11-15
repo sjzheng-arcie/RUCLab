@@ -2,13 +2,11 @@ package edu.ruc.labmgr.web.controller.equip;
 
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentCheck;
-import edu.ruc.labmgr.excel.EquipCheckImportTask;
 import edu.ruc.labmgr.service.EquipmentCheckService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -22,7 +20,6 @@ import java.util.Map;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
-import java.util.concurrent.ThreadPoolExecutor;
 
 /**
  * @author lcheng
@@ -81,7 +78,7 @@ public class EquipmentCheckController {
             String name = file.getOriginalFilename();
             File local = new File(System.getProperty("java.io.tmpdir")+name);
             file.transferTo(local);
-            EquipCheckImportTask task = new EquipCheckImportTask(local,clean);
+            edu.ruc.labmgr.excel.EquipmentsImportTask task = new edu.ruc.labmgr.excel.EquipmentsImportTask(local,clean);
             Future<Boolean> result = singleTreadPool.submit(task);
             boolean success = result.get();
             local.delete();

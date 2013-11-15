@@ -1,9 +1,7 @@
 package edu.ruc.labmgr.service;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.EquipmentCriteria;
-import edu.ruc.labmgr.domain.User;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -45,12 +43,16 @@ public class EquipmentService {
             ec.andSnLike("%" + equipment.getSn() + "%");
         if(!StringUtils.isNullOrEmpty(equipment.getName()))
             ec.andNameLike("%" + equipment.getName() + "%");
-        if(equipment.getHolder() != null ) {
-            User holder = serviceTeacher.selectByPrimaryKey(equipment.getHolder()).getUser();
-            if(holder != null){
-                ec.andHolderEqualTo(holder.getId());
+        if(!StringUtils.isNullOrEmpty(equipment.getHolderName())){
+
+            List<Teacher> holders = serviceTeacher.getTeacherListNameLike(equipment.getHolderName());
+            List<Integer> holderIds = new ArrayList<Integer>();
+            for(Teacher holder : holders){
+                holderIds.add(holder.getId());
             }
+            ec.andHolderIn(holderIds);
         }
+
         if(equipment.getCategoryId() != null && equipment.getCategoryId() >= 0 )
             ec.andCategoryIdEqualTo(equipment.getCategoryId());
         //部门
@@ -177,6 +179,23 @@ public class EquipmentService {
             equipment.setHolder(id);
         }
         equipmentMapper.updateByPrimaryKey(equipment);
+    }
+
+    public void saveOrUpdateEquipments( List<Equipment> equipments) {
+        if (equipments != null) {
+            for (Equipment equipment : equipments) {
+                String sn = equipment.getSn();
+                if (!StringUtils.isNullOrEmpty(sn)) {
+                    int id = equipmentMapper.selectIdBySn(sn);
+                    if (id > 0) {
+                        equipment.setId(id);
+                        equipmentMapper.updateByPrimaryKey(equipment);
+                    } else {
+                        equipmentMapper.insert(equipment);
+                    }
+                }
+            }
+        }
     }
 
     public void deleteEquipments(List<Integer> equipmentIds){

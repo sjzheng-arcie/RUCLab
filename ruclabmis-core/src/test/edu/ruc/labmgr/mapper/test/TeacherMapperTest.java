@@ -21,7 +21,7 @@ public class TeacherMapperTest {
         System.out.println("getBean");
     }
 
-    @Test
+    @Ignore
     public void testSelectTeacher() throws Exception {
         Teacher teacher = mapper.selectByPrimaryKey(1);
         System.out.println(teacher.getUser().getName());
