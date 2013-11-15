@@ -5,11 +5,15 @@ public class CurriculumClass {
 
     private Integer curriculumId;
 
-    private Integer studentId;
+    private String curriculumName;
 
-    private Short usualPerformance;
+    private String teacherName;
 
-    private Short finalGrade;
+    private String className;
+
+    private String classSn;
+
+    private Integer classYear;
 
     public Integer getId() {
         return id;
@@ -27,27 +31,43 @@ public class CurriculumClass {
         this.curriculumId = curriculumId;
     }
 
-    public Integer getStudentId() {
-        return studentId;
+    public String getClassName() {
+        return className;
     }
 
-    public void setStudentId(Integer studentId) {
-        this.studentId = studentId;
+    public void setClassName(String className) {
+        this.className = className == null ? null : className.trim();
     }
 
-    public Short getUsualPerformance() {
-        return usualPerformance;
+    public String getClassSn() {
+        return classSn;
     }
 
-    public void setUsualPerformance(Short usualPerformance) {
-        this.usualPerformance = usualPerformance;
+    public void setClassSn(String classSn) {
+        this.classSn = classSn == null ? null : classSn.trim();
     }
 
-    public Short getFinalGrade() {
-        return finalGrade;
+    public Integer getClassYear() {
+        return classYear;
     }
 
-    public void setFinalGrade(Short finalGrade) {
-        this.finalGrade = finalGrade;
+    public void setClassYear(Integer classYear) {
+        this.classYear = classYear;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
+    }
+
+    public String getCurriculumName() {
+        return curriculumName;
+    }
+
+    public void setCurriculumName(String curriculumName) {
+        this.curriculumName = curriculumName;
     }
 }

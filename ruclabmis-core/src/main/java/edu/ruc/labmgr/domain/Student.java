@@ -2,8 +2,7 @@ package edu.ruc.labmgr.domain;
 
 import java.util.Date;
 
-public class Student {
-    private Integer id;
+public class Student extends User {
 
     private Date birthday;
 
@@ -11,15 +10,7 @@ public class Student {
 
     private Date admissionDate;
 
-    private Integer userId;
-
-    public Integer getId() {
-        return id;
-    }
-
-    public void setId(Integer id) {
-        this.id = id;
-    }
+    private String majorName;
 
     public Date getBirthday() {
         return birthday;
@@ -45,11 +36,11 @@ public class Student {
         this.admissionDate = admissionDate;
     }
 
-    public Integer getUserId() {
-        return userId;
+    public String getMajorName() {
+        return majorName;
     }
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
     }
 }

@@ -2,14 +2,15 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Student;
 import edu.ruc.labmgr.domain.StudentCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-public interface StudentMapper {
-    int countByCriteria(StudentCriteria criteria);
+import java.util.List;
 
-    int deleteByCriteria(StudentCriteria criteria);
+public interface StudentMapper {
+    int countByCriteria(StudentCriteria example);
+
+    int deleteByCriteria(StudentCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +18,15 @@ public interface StudentMapper {
 
     int insertSelective(Student record);
 
-    List<Student> selectByCriteriaWithRowbounds(StudentCriteria criteria, RowBounds rowBounds);
+    List<Student> selectByCriteriaWithRowbounds(StudentCriteria example, RowBounds rowBounds);
 
-    List<Student> selectByCriteria(StudentCriteria criteria);
+    List<Student> selectByCriteria(StudentCriteria example);
 
     Student selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Student record, @Param("criteria") StudentCriteria criteria);
+    int updateByCriteriaSelective(@Param("record") Student record, @Param("example") StudentCriteria example);
 
-    int updateByCriteria(@Param("record") Student record, @Param("criteria") StudentCriteria criteria);
+    int updateByCriteria(@Param("record") Student record, @Param("example") StudentCriteria example);
 
     int updateByPrimaryKeySelective(Student record);
 

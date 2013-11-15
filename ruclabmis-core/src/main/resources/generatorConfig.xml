@@ -64,10 +64,13 @@
         <!--<table tableName="classif">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="curriculum">-->
+        <!--<table tableName="curriculum" alias="c">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="curriculum_class"/>-->
+        <table tableName="class_student" alias="cs"></table>
+        <!--<table tableName="curriculum_class" alias="cc">-->
+            <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
+        <!--</table>-->
         <!--<table tableName="desk">-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
@@ -122,7 +125,8 @@
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
         <!--<table tableName="user_role"/>-->
-        <!--<table tableName="student">-->
+        <!--<table tableName="student" alias="st">-->
+            <!--<property name="rootClass" value="edu.ruc.labmgr.domain.User"/>-->
             <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
         <!--<table tableName="teacher">-->

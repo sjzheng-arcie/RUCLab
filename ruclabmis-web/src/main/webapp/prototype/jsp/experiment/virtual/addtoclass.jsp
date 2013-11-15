@@ -1,17 +1,73 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
-    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../../js/util.js"></script>
-    <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link href="/prototype/css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/util.js"></script>
+    <script type="text/javascript" src="/js/page.js"></script>
+    <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
     <script>
-        var baseHref = '/prototype/jsp/experiment/virtual/addtoclass';
+        function createCurriculumOption(target,item){
+           $("<option>").html(item.name).attr('value',item.id).attr('teacher',item.teacherName)
+                   .attr('teacherId',item.teacherId).appendTo("#"+target);
+        }
+        function initCurriculumSelect(){
+            $.getJSON("/curriculum/list",{name:""},function(data){
+                $.each(data,function(idx,item){
+                    createCurriculumOption("curriculum",item);
+                });
+
+                $("#curriculum").chosen({
+                    no_results_text:"没有找到!",
+                    disable_search_threshold:10
+                });
+            });
+
+            $("#curriculum").on("change",function(evn,params){
+                var t = $("#curriculum option:selected").attr('teacher') ;
+                $("#teacher").val(t);
+            });
+        }
+
+        function addNewClass(){
+            var classId = $("#curriculum").val(),
+                classSn = $("#classSn").val(),
+                className=$("#className").val(),
+                classYear= $("classYear").val(),
+                teacherId = $("#curriculum option:selected").attr('teacherId');
+            var sids = new Array();
+            $.each($("input[name='stCheckbox']:checked"),function(idx,data){
+                sids.push(data);
+            } );
+
+            $.ajax({
+                url: "/experiment/virtual/addClass",
+                type:"POST",
+                data:{'classSn' : classSn,
+                    'className' : className,
+                    'classYear' : classYear,
+                    'curriculumId' : classId,
+                    'sidStr':sids.join(",")
+                },
+                dataType:"json",
+                success:function(data){
+                    alert(data.message);
+                    if(data.success){
+                        window.location.href = "/experiment/virtual/list?page=1";
+                    }
+                }
+            });
+
+        }
+        $(document).ready(function(){
+            initCurriculumSelect();
+        });
     </script>
 
 </head>
@@ -22,24 +78,25 @@
 
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
-            <img src="../../../images/left-top-right.gif" width="17" height="29"/>
+        <td width="17" valign="top" background="/prototype/images/mail_leftbg.gif">
+            <img src="/prototype/images/left-top-right.gif" width="17" height="29"/>
         </td>
-        <td valign="top" background="../../../images/content-bg.gif">
-            <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
+        <td valign="top" background="/prototype/images/content-bg.gif">
+            <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
+                   id="newClassTable">
                 <tr>
                     <td height="31">
-                        <div class="titlebt">教学实验管理 > 添加学生到班级</div>
+                        <div class="titlebt">教学实验管理 > 新增班级</div>
                     </td>
                 </tr>
             </table>
         </td>
-        <td width="16" valign="top" background="../../../images/mail_rightbg.gif">
-            <img src="../../../images/nav-right-bg.gif" width="16" height="29"/>
+        <td width="16" valign="top" background="/prototype/images/mail_rightbg.gif">
+            <img src="/prototype/images/nav-right-bg.gif" width="16" height="29"/>
         </td>
     </tr>
     <tr>
-        <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
+        <td valign="middle" background="/prototype/images/mail_leftbg.gif">&nbsp;</td>
         <td valign="top" bgcolor="#F7F8F9">
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                 <tr>
@@ -53,11 +110,11 @@
                                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                     <tr>
                                                         <td width="6%" height="19" valign="bottom">
-                                                            <div align="center"><img src="../../../images/tb.gif"
+                                                            <div align="center"><img src="/prototype/images/tb.gif"
                                                                                      width="14" height="14"/></div>
                                                         </td>
                                                         <td width="94%" valign="bottom"><span
-                                                                class="STYLE1">添加学生名单</span></td>
+                                                                class="STYLE1">班级信息</span></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -83,46 +140,42 @@
                                         <tr>
                                             <td nowrap align="right">班级编号:</td>
                                             <td nowrap>
-                                                <input class="text" value="SJ001" readonly/>
+                                                <input id="classSn" class="text" value=""/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                                <span style="color:red;" id="errMsg_sn"></span>
                                             </td>
                                             <td nowrap align="right">班级名称:</td>
                                             <td nowrap>
-                                                <input class="text" value="软件工程虚拟班级一" readonly/>
+                                                <input id="className" class="text" value=""/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                                <span style="color:red;" id="errMsg_name"></span>
                                             </td>
 
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <input class="text" value="软件工程" readonly/>
+                                                <select id="curriculum" style="width: 152px;height: 22px"
+                                                        data-placeholder="请选择课程...">
+                                                    <option value="-1"></option>
+                                                </select>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                                <span style="color:red;" id="errMsg_curriculum"></span>
 
                                             </td>
                                             <td nowrap align="right">任课老师:</td>
                                             <td nowrap>
-                                                <input class="text" value="赵天华" readonly/>
+                                                <input id="teacher" class="text" value=""/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sname"></span>
+                                                <span style="color:red;" id="errMsg_teacher"></span>
                                             </td>
-
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">学年:</td>
                                             <td nowrap>
-                                                <input lass="text" value="2010" readonly/>
+                                                <input id="classYear" class="text" value=""/>
                                                 <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
-                                            </td>
-                                            <td nowrap align="right">学期:</td>
-                                            <td nowrap>
-                                                <input id="us_spwd" class="text" value="1" readonly/>
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                <span style="color:red;" id="errMsg_year"></span>
                                             </td>
                                         </tr>
 
@@ -134,9 +187,9 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td align="center">
-                                    <input type="button" name="Submit" value="添加选中学生到本班级" class="button"
-                                           onclick="addend();"/>
-
+                                    <input type="button" name="Submit" value="添加课程和学生" class="button"
+                                           onclick="addNewClass();"/>
+                                    <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);">
                                 </td>
                             </tr>
                         </table>
@@ -144,24 +197,25 @@
                 </tr>
             </table>
         </td>
-        <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+        <td background="/prototype/images/mail_rightbg.gif">&nbsp;</td>
     </tr>
     <tr>
-        <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
-                                                                              width="17" height="17"/></td>
-        <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
-                                                                             width="100%" height="17"></td>
-        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img src="../../../images/buttom_right2.gif"
-                                                                               width="16" height="17"/></td>
+        <td valign="bottom" background="/prototype/images/mail_leftbg.gif"><img src="/prototype/images/buttom_left2.gif"
+                                                                                width="17" height="17"/></td>
+        <td valign="bottom" background="/prototype/images/buttom_bgs.gif"><img src="/prototype/images/buttom_bgs.gif"
+                                                                               width="100%" height="17"></td>
+        <td valign="bottom" background="/prototype/images/mail_rightbg.gif"><img
+                src="/prototype/images/buttom_right2.gif"
+                width="16" height="17"/></td>
     </tr>
 </table>
 
 
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
     <tr>
-        <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
-                src="../../../images/left-top-right.gif" width="17" height="29"/></td>
-        <td valign="top" background="../../../images/content-bg.gif">
+        <td width="17" valign="top" background="/prototype/images/mail_leftbg.gif"><img
+                src="/prototype/images/left-top-right.gif" width="17" height="29"/></td>
+        <td valign="top" background="/prototype/images/content-bg.gif">
             <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                 <tr>
                     <td height="31">
@@ -170,34 +224,30 @@
                 </tr>
             </table>
         </td>
-        <td width="16" valign="top" background="../../../images/mail_rightbg.gif"><img
-                src="../../../images/nav-right-bg.gif" width="16" height="29"/></td>
+        <td width="16" valign="top" background="/prototype/images/mail_rightbg.gif"><img
+                src="/prototype/images/nav-right-bg.gif" width="16" height="29"/></td>
     </tr>
 
     <tr>
-        <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
+        <td valign="middle" background="/prototype/images/mail_leftbg.gif">&nbsp;</td>
         <td valign="top" bgcolor="#F7F8F9">
             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                 <tr>
                     <td valign="top" class="STYLE10">
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;学年:<input type="text" name="searchB1" id="searchB1"
+                        <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="sn" id="sn"
                                                                                value="" style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;学期:<select id="searchD1" name="searchD1">
-            <option value="">请选择</option>
-            <option value="0">1</option>
-            <option value="1">2</option>
 
-        </select></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="theCourse" name="searchB1"
+                        <span style="white-space:nowrap">&nbsp;&nbsp;名称:<input type="text" name="name" id="name"
+                                                                               value="" style="width:100px;"/></span>
+
+                        <span style="white-space:nowrap">&nbsp;&nbsp;所属专业:<input type="theCourse" name="searchB1"
                                                                                  id="theCourse" value=""
                                                                                  style="width:100px;"/></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;任课老师:<input type="text" name="teacherName"
-                                                                                 id="teacherName" value=""
-                                                                                 style="width:100px;"/></span>
+
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
-                                                                        onclick="findInfo()"><img
-                                src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                                                        onclick="toFind('listForm')"><img
+                                src="/prototype/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -214,7 +264,7 @@
                                                                 <tr>
                                                                     <td width="6%" height="19" valign="bottom">
                                                                         <div align="center"><img
-                                                                                src="../../../images/tb.gif"
+                                                                                src="/prototype/images/tb.gif"
                                                                                 width="14" height="14"/></div>
                                                                     </td>
                                                                     <td width="94%" valign="bottom"><span
@@ -223,20 +273,6 @@
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                        </td>
-                                                        <td>
-                                                            <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                                    </span>
-                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -254,7 +290,7 @@
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                     <div align="center">
                                                         <input type="checkbox" name="checkbox" id="checkbox"
-                                                               onclick="checkAll(this);"/>
+                                                               onclick="checkAll(this,'listForm','');"/>
                                                     </div>
                                                 </td>
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -267,40 +303,27 @@
                                                     <div align="center"><span class="STYLE10">学生姓名</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">所属课程</span></div>
-                                                </td>
-                                                <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">任课老师</span></div>
+                                                    <div align="center"><span class="STYLE10">专业</span></div>
                                                 </td>
                                                 <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">学年</span></div>
+                                                    <div align="center"><span class="STYLE10">入学日期</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">学期</span></div>
+                                                    <div align="center"><span class="STYLE10">籍贯</span></div>
                                                 </td>
 
                                             </tr>
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>1</td>
-                                                <td>XH0001</td>
-                                                <td>白子画</td>
-                                                <td>软件工程</td>
-                                                <td>宋玉峰</td>
-                                                <td>2012</td>
-                                                <td>1</td>
-
-                                            </tr>
-                                            <c:forEach items="${pageInfo.data}" var="item">
+                                            <c:forEach items="${pageInfo.data}" var="item" varStatus="st">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td height="20"><input name="stCheckbox" type="checkbox" value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'stCheckbox')"/>
                                                     </td>
-                                                    <td>${item.id}</td>
+                                                    <td>${st.index+1}</td>
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
-
+                                                    <td>${item.majorName}</td>
+                                                    <td><fmt:formatDate value="${item.admissionDate}" pattern="yyyy-MM-dd"/></td>
+                                                    <td>${item.originPlace}</td>
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>
@@ -308,21 +331,21 @@
                                     </div>
                                 </td>
                             </tr>
-                            <%@ include file="../../common/pagetable.jsp"%>
+                            <%@ include file="../../common/pagetable.jsp" %>
                         </table>
                     </td>
                 </tr>
             </table>
         </td>
-        <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+        <td background="/prototype/images/mail_rightbg.gif">&nbsp;</td>
     </tr>
     <tr>
-        <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
-                                                                              width="17" height="17"/></td>
-        <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
-                                                                             width="100%" height="17"/></td>
-        <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
-                src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
+        <td valign="bottom" background="/prototype/images/mail_leftbg.gif"><img src="/prototype/images/buttom_left2.gif"
+                                                                                width="17" height="17"/></td>
+        <td valign="bottom" background="/prototype/images/buttom_bgs.gif"><img src="/prototype/images/buttom_bgs.gif"
+                                                                               width="100%" height="17"/></td>
+        <td valign="bottom" background="/prototype/images/mail_rightbg.gif"><img
+                src="/prototype/images/buttom_right2.gif" width="16" height="17"/></td>
     </tr>
 </table>
 </form>

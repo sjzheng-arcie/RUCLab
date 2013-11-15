@@ -133,312 +133,292 @@ public class StudentCriteria {
         }
 
         public Criteria andIdIsNull() {
-            addCriterion("id is null");
+            addCriterion("st.id is null");
             return (Criteria) this;
         }
 
         public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+            addCriterion("st.id is not null");
             return (Criteria) this;
         }
 
         public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+            addCriterion("st.id =", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+            addCriterion("st.id <>", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+            addCriterion("st.id >", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+            addCriterion("st.id >=", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+            addCriterion("st.id <", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+            addCriterion("st.id <=", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+            addCriterion("st.id in", values, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+            addCriterion("st.id not in", values, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+            addCriterion("st.id between", value1, value2, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+            addCriterion("st.id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayIsNull() {
-            addCriterion("birthday is null");
+            addCriterion("st.birthday is null");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayIsNotNull() {
-            addCriterion("birthday is not null");
+            addCriterion("st.birthday is not null");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayEqualTo(Date value) {
-            addCriterionForJDBCDate("birthday =", value, "birthday");
+            addCriterionForJDBCDate("st.birthday =", value, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayNotEqualTo(Date value) {
-            addCriterionForJDBCDate("birthday <>", value, "birthday");
+            addCriterionForJDBCDate("st.birthday <>", value, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayGreaterThan(Date value) {
-            addCriterionForJDBCDate("birthday >", value, "birthday");
+            addCriterionForJDBCDate("st.birthday >", value, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("birthday >=", value, "birthday");
+            addCriterionForJDBCDate("st.birthday >=", value, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayLessThan(Date value) {
-            addCriterionForJDBCDate("birthday <", value, "birthday");
+            addCriterionForJDBCDate("st.birthday <", value, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("birthday <=", value, "birthday");
+            addCriterionForJDBCDate("st.birthday <=", value, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayIn(List<Date> values) {
-            addCriterionForJDBCDate("birthday in", values, "birthday");
+            addCriterionForJDBCDate("st.birthday in", values, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayNotIn(List<Date> values) {
-            addCriterionForJDBCDate("birthday not in", values, "birthday");
+            addCriterionForJDBCDate("st.birthday not in", values, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("birthday between", value1, value2, "birthday");
+            addCriterionForJDBCDate("st.birthday between", value1, value2, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andBirthdayNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("birthday not between", value1, value2, "birthday");
+            addCriterionForJDBCDate("st.birthday not between", value1, value2, "birthday");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceIsNull() {
-            addCriterion("origin_place is null");
+            addCriterion("st.origin_place is null");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceIsNotNull() {
-            addCriterion("origin_place is not null");
+            addCriterion("st.origin_place is not null");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceEqualTo(String value) {
-            addCriterion("origin_place =", value, "originPlace");
+            addCriterion("st.origin_place =", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceNotEqualTo(String value) {
-            addCriterion("origin_place <>", value, "originPlace");
+            addCriterion("st.origin_place <>", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceGreaterThan(String value) {
-            addCriterion("origin_place >", value, "originPlace");
+            addCriterion("st.origin_place >", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceGreaterThanOrEqualTo(String value) {
-            addCriterion("origin_place >=", value, "originPlace");
+            addCriterion("st.origin_place >=", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceLessThan(String value) {
-            addCriterion("origin_place <", value, "originPlace");
+            addCriterion("st.origin_place <", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceLessThanOrEqualTo(String value) {
-            addCriterion("origin_place <=", value, "originPlace");
+            addCriterion("st.origin_place <=", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceLike(String value) {
-            addCriterion("origin_place like", value, "originPlace");
+            addCriterion("st.origin_place like", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceNotLike(String value) {
-            addCriterion("origin_place not like", value, "originPlace");
+            addCriterion("st.origin_place not like", value, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceIn(List<String> values) {
-            addCriterion("origin_place in", values, "originPlace");
+            addCriterion("st.origin_place in", values, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceNotIn(List<String> values) {
-            addCriterion("origin_place not in", values, "originPlace");
+            addCriterion("st.origin_place not in", values, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceBetween(String value1, String value2) {
-            addCriterion("origin_place between", value1, value2, "originPlace");
+            addCriterion("st.origin_place between", value1, value2, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andOriginPlaceNotBetween(String value1, String value2) {
-            addCriterion("origin_place not between", value1, value2, "originPlace");
+            addCriterion("st.origin_place not between", value1, value2, "originPlace");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateIsNull() {
-            addCriterion("admission_date is null");
+            addCriterion("st.admission_date is null");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateIsNotNull() {
-            addCriterion("admission_date is not null");
+            addCriterion("st.admission_date is not null");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateEqualTo(Date value) {
-            addCriterionForJDBCDate("admission_date =", value, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date =", value, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("admission_date <>", value, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date <>", value, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("admission_date >", value, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date >", value, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("admission_date >=", value, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date >=", value, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateLessThan(Date value) {
-            addCriterionForJDBCDate("admission_date <", value, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date <", value, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("admission_date <=", value, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date <=", value, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateIn(List<Date> values) {
-            addCriterionForJDBCDate("admission_date in", values, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date in", values, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("admission_date not in", values, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date not in", values, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("admission_date between", value1, value2, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date between", value1, value2, "admissionDate");
             return (Criteria) this;
         }
 
         public Criteria andAdmissionDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("admission_date not between", value1, value2, "admissionDate");
+            addCriterionForJDBCDate("st.admission_date not between", value1, value2, "admissionDate");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIsNull() {
-            addCriterion("user_id is null");
+        public Criteria andStudentSnEqualTo(String value){
+           addCriterion("u.sn=",value,"u.sn");
+           return (Criteria) this;
+        }
+
+        public Criteria andStudentSnLike(String value){
+            addCriterion("u.sn like", value, "u.sn");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdIsNotNull() {
-            addCriterion("user_id is not null");
+        public Criteria andStudentNameEqualTo(String value){
+            addCriterion("u.name=",value,"u.name");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdEqualTo(Integer value) {
-            addCriterion("user_id =", value, "userId");
+        public Criteria andStudentNameLike(String value){
+            addCriterion("u.name like ",value,"u.name");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdNotEqualTo(Integer value) {
-            addCriterion("user_id <>", value, "userId");
+        public Criteria andStudentMajorEqualTo(String value){
+            addCriterion("m.name = ",value,"m.name");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThan(Integer value) {
-            addCriterion("user_id >", value, "userId");
+        public Criteria andStudentMajorLike(String value){
+            addCriterion("m.name like ",value,"m.name");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("user_id >=", value, "userId");
+        public Criteria andJoinUser(){
+            addCriterion("st.id = u.id");
             return (Criteria) this;
         }
 
-        public Criteria andUserIdLessThan(Integer value) {
-            addCriterion("user_id <", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdLessThanOrEqualTo(Integer value) {
-            addCriterion("user_id <=", value, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdIn(List<Integer> values) {
-            addCriterion("user_id in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotIn(List<Integer> values) {
-            addCriterion("user_id not in", values, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdBetween(Integer value1, Integer value2) {
-            addCriterion("user_id between", value1, value2, "userId");
-            return (Criteria) this;
-        }
-
-        public Criteria andUserIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("user_id not between", value1, value2, "userId");
+        public Criteria andJoinMajor(){
+            addCriterion("u.major_id = m.id");
             return (Criteria) this;
         }
     }

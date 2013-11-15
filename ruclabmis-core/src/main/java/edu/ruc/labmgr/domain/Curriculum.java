@@ -5,7 +5,11 @@ public class Curriculum {
 
     private Integer majorId;
 
+    private String majorName;
+
     private Integer teacherId;
+
+    private String teacherName;
 
     private String name;
 
@@ -129,5 +133,21 @@ public class Curriculum {
 
     public void setComments(String comments) {
         this.comments = comments == null ? null : comments.trim();
+    }
+
+    public String getMajorName() {
+        return majorName;
+    }
+
+    public void setMajorName(String majorName) {
+        this.majorName = majorName;
+    }
+
+    public String getTeacherName() {
+        return teacherName;
+    }
+
+    public void setTeacherName(String teacherName) {
+        this.teacherName = teacherName;
     }
 }

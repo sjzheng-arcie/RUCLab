@@ -1,32 +1,38 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.ruc.labmgr.mapper.CurriculumClassMapper" >
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.CurriculumClass" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
-        <result column="student_id" property="studentId" jdbcType="INTEGER" />
-        <result column="usual_performance" property="usualPerformance" jdbcType="SMALLINT" />
-        <result column="final_grade" property="finalGrade" jdbcType="SMALLINT" />
+<mapper namespace="edu.ruc.labmgr.mapper.CurriculumClassMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.CurriculumClass">
+        <id column="cc_id" property="id" jdbcType="INTEGER"/>
+        <result column="cc_curriculum_id" property="curriculumId" jdbcType="INTEGER"/>
+        <!--<result column="cc_student_id" property="studentId" jdbcType="INTEGER"/>-->
+        <!--<result column="cc_usual_performance" property="usualPerformance" jdbcType="SMALLINT"/>-->
+        <!--<result column="cc_final_grade" property="finalGrade" jdbcType="SMALLINT"/>-->
+        <result column="cc_class_name" property="className" jdbcType="VARCHAR"/>
+        <result column="cc_class_sn" property="classSn" jdbcType="VARCHAR"/>
+        <result column="curriculum_name" property="curriculumName" jdbcType="VARCHAR"/>
+        <result column="teacher_name" property="teacherName" jdbcType="VARCHAR"/>
+        <result column="cc_class_year" property="classYear" jdbcType="INTEGER"/>
     </resultMap>
-    <sql id="Criteria_Where_Clause" >
-        <where >
-            <foreach collection="oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -37,25 +43,26 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Update_By_Criteria_Where_Clause" >
-        <where >
-            <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -66,165 +73,171 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Base_Column_List" >
-    id, curriculum_id, student_id, usual_performance, final_grade
+    <sql id="Base_Column_List">
+    cc.id as cc_id, cc.curriculum_id as cc_curriculum_id,
+--     cc.student_id as cc_student_id, cc.usual_performance as cc_usual_performance, cc.final_grade as cc_final_grade,
+    cc.class_name as cc_class_name,cc.class_sn as cc_class_sn, cc.class_year as cc_class_year
   </sql>
-    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria" >
+    <select id="selectByCriteria" resultMap="BaseResultMap"
+            parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
-        from curriculum_class
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <include refid="Base_Column_List"/>
+        ,c.name as curriculum_name,u.name as teacher_name
+        from curriculum_class cc,curriculum c, user u
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List" />
-        from curriculum_class
-        where id = #{id,jdbcType=INTEGER}
+        <include refid="Base_Column_List"/>
+        from curriculum_class cc
+        where cc.id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from curriculum_class
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria" >
-        delete from curriculum_class
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria">
+        delete from curriculum_class cc
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="edu.ruc.labmgr.domain.CurriculumClass" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into curriculum_class (id, curriculum_id, student_id,
-        usual_performance, final_grade)
-        values (#{id,jdbcType=INTEGER}, #{curriculumId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
-        #{usualPerformance,jdbcType=SMALLINT}, #{finalGrade,jdbcType=SMALLINT})
+        insert into curriculum_class (curriculum_id, class_name, class_sn,
+        class_year)
+        values (#{curriculumId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{classSn,jdbcType=VARCHAR},
+        #{classYear,jdbcType=TINYINT})
     </insert>
-    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.CurriculumClass" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into curriculum_class
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                id,
-            </if>
-            <if test="curriculumId != null" >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="curriculumId != null">
                 curriculum_id,
             </if>
-            <if test="studentId != null" >
-                student_id,
+
+            <if test="className != null">
+                class_name,
             </if>
-            <if test="usualPerformance != null" >
-                usual_performance,
+            <if test="classSn != null">
+                class_sn,
             </if>
-            <if test="finalGrade != null" >
-                final_grade,
+            <if test="classYear != null">
+                class_year,
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
-                #{id,jdbcType=INTEGER},
-            </if>
-            <if test="curriculumId != null" >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="curriculumId != null">
                 #{curriculumId,jdbcType=INTEGER},
             </if>
-            <if test="studentId != null" >
-                #{studentId,jdbcType=INTEGER},
+
+            <if test="className != null">
+                #{className,jdbcType=VARCHAR},
             </if>
-            <if test="usualPerformance != null" >
-                #{usualPerformance,jdbcType=SMALLINT},
+            <if test="classSn != null">
+                #{classSn,jdbcType=VARCHAR},
             </if>
-            <if test="finalGrade != null" >
-                #{finalGrade,jdbcType=SMALLINT},
+            <if test="classYear != null">
+                #{classYear,jdbcType=TINYINT},
             </if>
         </trim>
     </insert>
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria" resultType="java.lang.Integer" >
-        select count(*) from curriculum_class
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from curriculum_class cc
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </select>
-    <update id="updateByCriteriaSelective" parameterType="map" >
-        update curriculum_class
-        <set >
-            <if test="record.id != null" >
-                id = #{record.id,jdbcType=INTEGER},
+    <update id="updateByCriteriaSelective" parameterType="map">
+        update curriculum_class cc
+        <set>
+            <if test="record.id != null">
+                cc.id = #{record.id,jdbcType=INTEGER},
             </if>
-            <if test="record.curriculumId != null" >
-                curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
+            <if test="record.curriculumId != null">
+                cc.curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
             </if>
-            <if test="record.studentId != null" >
-                student_id = #{record.studentId,jdbcType=INTEGER},
+
+            <if test="record.className != null">
+                cc.class_name = #{record.className,jdbcType=VARCHAR},
             </if>
-            <if test="record.usualPerformance != null" >
-                usual_performance = #{record.usualPerformance,jdbcType=SMALLINT},
+            <if test="record.classSn != null">
+                cc.class_sn = #{record.classSn,jdbcType=VARCHAR},
             </if>
-            <if test="record.finalGrade != null" >
-                final_grade = #{record.finalGrade,jdbcType=SMALLINT},
+            <if test="record.classYear != null">
+                cc.class_year = #{record.classYear,jdbcType=TINYINT},
             </if>
         </set>
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByCriteria" parameterType="map" >
-        update curriculum_class
-        set id = #{record.id,jdbcType=INTEGER},
-        curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-        student_id = #{record.studentId,jdbcType=INTEGER},
-        usual_performance = #{record.usualPerformance,jdbcType=SMALLINT},
-        final_grade = #{record.finalGrade,jdbcType=SMALLINT}
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+    <update id="updateByCriteria" parameterType="map">
+        update curriculum_class cc
+        set cc.id = #{record.id,jdbcType=INTEGER},
+        cc.curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
+
+        cc.class_name = #{record.className,jdbcType=VARCHAR},
+        cc.class_sn = #{record.classSn,jdbcType=VARCHAR},
+        cc.class_year = #{record.classYear,jdbcType=TINYINT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.CurriculumClass" >
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
         update curriculum_class
-        <set >
-            <if test="curriculumId != null" >
+        <set>
+            <if test="curriculumId != null">
                 curriculum_id = #{curriculumId,jdbcType=INTEGER},
             </if>
-            <if test="studentId != null" >
-                student_id = #{studentId,jdbcType=INTEGER},
+
+            <if test="className != null">
+                class_name = #{className,jdbcType=VARCHAR},
             </if>
-            <if test="usualPerformance != null" >
-                usual_performance = #{usualPerformance,jdbcType=SMALLINT},
+            <if test="classSn != null">
+                class_sn = #{classSn,jdbcType=VARCHAR},
             </if>
-            <if test="finalGrade != null" >
-                final_grade = #{finalGrade,jdbcType=SMALLINT},
+            <if test="classYear != null">
+                class_year = #{classYear,jdbcType=TINYINT},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.CurriculumClass" >
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
     update curriculum_class
     set curriculum_id = #{curriculumId,jdbcType=INTEGER},
-      student_id = #{studentId,jdbcType=INTEGER},
-      usual_performance = #{usualPerformance,jdbcType=SMALLINT},
-      final_grade = #{finalGrade,jdbcType=SMALLINT}
+      class_name = #{className,jdbcType=VARCHAR},
+      class_sn = #{classSn,jdbcType=VARCHAR},
+      class_year = #{classYear,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria" id="selectByCriteriaWithRowbounds" >
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria"
+            id="selectByCriteriaWithRowbounds">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
-        from curriculum_class
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <include refid="Base_Column_List"/>
+        ,c.name as curriculum_name,u.name as teacher_name
+        from curriculum_class cc,curriculum c, user u
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>

@@ -105,302 +105,333 @@ public class CurriculumClassCriteria {
         }
 
         public Criteria andIdIsNull() {
-            addCriterion("id is null");
+            addCriterion("cc.id is null");
             return (Criteria) this;
         }
 
         public Criteria andIdIsNotNull() {
-            addCriterion("id is not null");
+            addCriterion("cc.id is not null");
             return (Criteria) this;
         }
 
         public Criteria andIdEqualTo(Integer value) {
-            addCriterion("id =", value, "id");
+            addCriterion("cc.id =", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotEqualTo(Integer value) {
-            addCriterion("id <>", value, "id");
+            addCriterion("cc.id <>", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdGreaterThan(Integer value) {
-            addCriterion("id >", value, "id");
+            addCriterion("cc.id >", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("id >=", value, "id");
+            addCriterion("cc.id >=", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdLessThan(Integer value) {
-            addCriterion("id <", value, "id");
+            addCriterion("cc.id <", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdLessThanOrEqualTo(Integer value) {
-            addCriterion("id <=", value, "id");
+            addCriterion("cc.id <=", value, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdIn(List<Integer> values) {
-            addCriterion("id in", values, "id");
+            addCriterion("cc.id in", values, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotIn(List<Integer> values) {
-            addCriterion("id not in", values, "id");
+            addCriterion("cc.id not in", values, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdBetween(Integer value1, Integer value2) {
-            addCriterion("id between", value1, value2, "id");
+            addCriterion("cc.id between", value1, value2, "id");
             return (Criteria) this;
         }
 
         public Criteria andIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("id not between", value1, value2, "id");
+            addCriterion("cc.id not between", value1, value2, "id");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdIsNull() {
-            addCriterion("curriculum_id is null");
+            addCriterion("cc.curriculum_id is null");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdIsNotNull() {
-            addCriterion("curriculum_id is not null");
+            addCriterion("cc.curriculum_id is not null");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdEqualTo(Integer value) {
-            addCriterion("curriculum_id =", value, "curriculumId");
+            addCriterion("cc.curriculum_id =", value, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdNotEqualTo(Integer value) {
-            addCriterion("curriculum_id <>", value, "curriculumId");
+            addCriterion("cc.curriculum_id <>", value, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdGreaterThan(Integer value) {
-            addCriterion("curriculum_id >", value, "curriculumId");
+            addCriterion("cc.curriculum_id >", value, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("curriculum_id >=", value, "curriculumId");
+            addCriterion("cc.curriculum_id >=", value, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdLessThan(Integer value) {
-            addCriterion("curriculum_id <", value, "curriculumId");
+            addCriterion("cc.curriculum_id <", value, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdLessThanOrEqualTo(Integer value) {
-            addCriterion("curriculum_id <=", value, "curriculumId");
+            addCriterion("cc.curriculum_id <=", value, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdIn(List<Integer> values) {
-            addCriterion("curriculum_id in", values, "curriculumId");
+            addCriterion("cc.curriculum_id in", values, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdNotIn(List<Integer> values) {
-            addCriterion("curriculum_id not in", values, "curriculumId");
+            addCriterion("cc.curriculum_id not in", values, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdBetween(Integer value1, Integer value2) {
-            addCriterion("curriculum_id between", value1, value2, "curriculumId");
+            addCriterion("cc.curriculum_id between", value1, value2, "curriculumId");
             return (Criteria) this;
         }
 
         public Criteria andCurriculumIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("curriculum_id not between", value1, value2, "curriculumId");
+            addCriterion("cc.curriculum_id not between", value1, value2, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNull() {
-            addCriterion("student_id is null");
+        public Criteria andClassNameIsNull() {
+            addCriterion("cc.class_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNotNull() {
-            addCriterion("student_id is not null");
+        public Criteria andClassNameIsNotNull() {
+            addCriterion("cc.class_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdEqualTo(Integer value) {
-            addCriterion("student_id =", value, "studentId");
+        public Criteria andClassNameEqualTo(String value) {
+            addCriterion("cc.class_name =", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotEqualTo(Integer value) {
-            addCriterion("student_id <>", value, "studentId");
+        public Criteria andClassNameNotEqualTo(String value) {
+            addCriterion("cc.class_name <>", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThan(Integer value) {
-            addCriterion("student_id >", value, "studentId");
+        public Criteria andClassNameGreaterThan(String value) {
+            addCriterion("cc.class_name >", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("student_id >=", value, "studentId");
+        public Criteria andClassNameGreaterThanOrEqualTo(String value) {
+            addCriterion("cc.class_name >=", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThan(Integer value) {
-            addCriterion("student_id <", value, "studentId");
+        public Criteria andClassNameLessThan(String value) {
+            addCriterion("cc.class_name <", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThanOrEqualTo(Integer value) {
-            addCriterion("student_id <=", value, "studentId");
+        public Criteria andClassNameLessThanOrEqualTo(String value) {
+            addCriterion("cc.class_name <=", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIn(List<Integer> values) {
-            addCriterion("student_id in", values, "studentId");
+        public Criteria andClassNameLike(String value) {
+            addCriterion("cc.class_name like", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotIn(List<Integer> values) {
-            addCriterion("student_id not in", values, "studentId");
+        public Criteria andClassNameNotLike(String value) {
+            addCriterion("cc.class_name not like", value, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdBetween(Integer value1, Integer value2) {
-            addCriterion("student_id between", value1, value2, "studentId");
+        public Criteria andClassNameIn(List<String> values) {
+            addCriterion("cc.class_name in", values, "className");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("student_id not between", value1, value2, "studentId");
+        public Criteria andClassNameNotIn(List<String> values) {
+            addCriterion("cc.class_name not in", values, "className");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceIsNull() {
-            addCriterion("usual_performance is null");
+        public Criteria andClassNameBetween(String value1, String value2) {
+            addCriterion("cc.class_name between", value1, value2, "className");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceIsNotNull() {
-            addCriterion("usual_performance is not null");
+        public Criteria andClassNameNotBetween(String value1, String value2) {
+            addCriterion("cc.class_name not between", value1, value2, "className");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceEqualTo(Short value) {
-            addCriterion("usual_performance =", value, "usualPerformance");
+        public Criteria andClassSnIsNull() {
+            addCriterion("cc.class_sn is null");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceNotEqualTo(Short value) {
-            addCriterion("usual_performance <>", value, "usualPerformance");
+        public Criteria andClassSnIsNotNull() {
+            addCriterion("cc.class_sn is not null");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceGreaterThan(Short value) {
-            addCriterion("usual_performance >", value, "usualPerformance");
+        public Criteria andClassSnEqualTo(String value) {
+            addCriterion("cc.class_sn =", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceGreaterThanOrEqualTo(Short value) {
-            addCriterion("usual_performance >=", value, "usualPerformance");
+        public Criteria andClassSnNotEqualTo(String value) {
+            addCriterion("cc.class_sn <>", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceLessThan(Short value) {
-            addCriterion("usual_performance <", value, "usualPerformance");
+        public Criteria andClassSnGreaterThan(String value) {
+            addCriterion("cc.class_sn >", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceLessThanOrEqualTo(Short value) {
-            addCriterion("usual_performance <=", value, "usualPerformance");
+        public Criteria andClassSnGreaterThanOrEqualTo(String value) {
+            addCriterion("cc.class_sn >=", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceIn(List<Short> values) {
-            addCriterion("usual_performance in", values, "usualPerformance");
+        public Criteria andClassSnLessThan(String value) {
+            addCriterion("cc.class_sn <", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceNotIn(List<Short> values) {
-            addCriterion("usual_performance not in", values, "usualPerformance");
+        public Criteria andClassSnLessThanOrEqualTo(String value) {
+            addCriterion("cc.class_sn <=", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceBetween(Short value1, Short value2) {
-            addCriterion("usual_performance between", value1, value2, "usualPerformance");
+        public Criteria andClassSnLike(String value) {
+            addCriterion("cc.class_sn like", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andUsualPerformanceNotBetween(Short value1, Short value2) {
-            addCriterion("usual_performance not between", value1, value2, "usualPerformance");
+        public Criteria andClassSnNotLike(String value) {
+            addCriterion("cc.class_sn not like", value, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeIsNull() {
-            addCriterion("final_grade is null");
+        public Criteria andClassSnIn(List<String> values) {
+            addCriterion("cc.class_sn in", values, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeIsNotNull() {
-            addCriterion("final_grade is not null");
+        public Criteria andClassSnNotIn(List<String> values) {
+            addCriterion("cc.class_sn not in", values, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeEqualTo(Short value) {
-            addCriterion("final_grade =", value, "finalGrade");
+        public Criteria andClassSnBetween(String value1, String value2) {
+            addCriterion("cc.class_sn between", value1, value2, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeNotEqualTo(Short value) {
-            addCriterion("final_grade <>", value, "finalGrade");
+        public Criteria andClassSnNotBetween(String value1, String value2) {
+            addCriterion("cc.class_sn not between", value1, value2, "classSn");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeGreaterThan(Short value) {
-            addCriterion("final_grade >", value, "finalGrade");
+        public Criteria andClassYearIsNull() {
+            addCriterion("cc.class_year is null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeGreaterThanOrEqualTo(Short value) {
-            addCriterion("final_grade >=", value, "finalGrade");
+        public Criteria andClassYearIsNotNull() {
+            addCriterion("cc.class_year is not null");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeLessThan(Short value) {
-            addCriterion("final_grade <", value, "finalGrade");
+        public Criteria andClassYearEqualTo(Byte value) {
+            addCriterion("cc.class_year =", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeLessThanOrEqualTo(Short value) {
-            addCriterion("final_grade <=", value, "finalGrade");
+        public Criteria andClassYearNotEqualTo(Byte value) {
+            addCriterion("cc.class_year <>", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeIn(List<Short> values) {
-            addCriterion("final_grade in", values, "finalGrade");
+        public Criteria andClassYearGreaterThan(Byte value) {
+            addCriterion("cc.class_year >", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeNotIn(List<Short> values) {
-            addCriterion("final_grade not in", values, "finalGrade");
+        public Criteria andClassYearGreaterThanOrEqualTo(Byte value) {
+            addCriterion("cc.class_year >=", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeBetween(Short value1, Short value2) {
-            addCriterion("final_grade between", value1, value2, "finalGrade");
+        public Criteria andClassYearLessThan(Byte value) {
+            addCriterion("cc.class_year <", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andFinalGradeNotBetween(Short value1, Short value2) {
-            addCriterion("final_grade not between", value1, value2, "finalGrade");
+        public Criteria andClassYearLessThanOrEqualTo(Byte value) {
+            addCriterion("cc.class_year <=", value, "classYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassYearIn(List<Byte> values) {
+            addCriterion("cc.class_year in", values, "classYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassYearNotIn(List<Byte> values) {
+            addCriterion("cc.class_year not in", values, "classYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassYearBetween(Byte value1, Byte value2) {
+            addCriterion("cc.class_year between", value1, value2, "classYear");
+            return (Criteria) this;
+        }
+
+        public Criteria andClassYearNotBetween(Byte value1, Byte value2) {
+            addCriterion("cc.class_year not between", value1, value2, "classYear");
+            return (Criteria) this;
+        }
+
+        //以下为连表查询
+        public Criteria andJoinCurriculum(){
+            addCriterion("cc.curriculum_id = c.id ");
+            return (Criteria) this;
+        }
+
+        public Criteria andJoinUser(){
+            addCriterion("c.teacher_id = u.id ");
             return (Criteria) this;
         }
     }
