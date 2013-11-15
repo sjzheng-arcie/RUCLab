@@ -12,7 +12,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/experimentpaper/myexperimentlist';
+        var baseHref = '/prototype/jsp/experiment/experiment/myexperimentlist';
     </script>
 
 </head>
@@ -46,22 +46,12 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验编号:<input type="text" name="experimentNo"
-                                                                                     id="experimentNo" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验编号:<input type="text" name="experimentNoForSearch"
+                                                                                     id="experimentNoForSearch" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="experimentName"
-                                                                                     id="experimentName" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="experimentNameForSearch"
+                                                                                     id="experimentNameForSearch" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:
-
-                            <select name="courseName">
-                                <option></option>
-                                <c:forEach items="${courseList}" var="item">
-                                    <option value="${item.id}">${item.value}</option>
-                                </c:forEach>
-
-                            </select>
-                            </span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
@@ -96,10 +86,8 @@
                                                                 <div align="right">
                                                                     <shiro:hasAnyRoles name="administrators,teacher">
                                                                         <span class="STYLE1" style="white-space:nowrap">
-                                                                            <a href="addpaper" onclick="toAdd()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                            <a href="toadd" onclick="toAdd()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span></a>&nbsp;
-                                                                            <a href="updatepaper"onclick="toUpdate()"><img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
-                                                                                <span class="STYLE1">编辑</span></a>&nbsp;
                                                                             <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                     </shiro:hasAnyRoles>
@@ -139,18 +127,12 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
-
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验题描述</span></div>
+                                                        <div align="center"><span class="STYLE10">查看
+                                                            <shiro:hasAnyRoles name="administrators,teacher">/编辑
+                                                            </shiro:hasAnyRoles>
+                                                        </span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">查看</span></div>
-                                                    </td>
-                                                    <shiro:hasAnyRoles name="administrators,teacher">
-                                                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                            <div align="center"><span class="STYLE10">编辑</span></div>
-                                                        </td>
-                                                    </shiro:hasAnyRoles>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20">
@@ -160,13 +142,12 @@
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
                                                     <td>${item.director}</td>
-
                                                     <td>${item.reportName}</td>
-                                                    <td>${item.detail}</td>
-                                                    <td><a href="/prototype/jsp/experiment/experimentpaper/paperinfo.jsp">查看实验</a></td>
-                                                    <shiro:hasAnyRoles name="administrators,teacher">
-                                                    <td><a href="updatepaper?id=${item.id}">编辑实验</a></td>
+                                                    <td><a href="detail?id=${item.id}"> 查看</a>
+                                                        <shiro:hasAnyRoles name="administrators,teacher">
+                                                        /<a href="update?id=${item.id}">编辑</a></td>
                                                     </shiro:hasAnyRoles>
+                                                    </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20">
@@ -176,14 +157,12 @@
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
                                                     <td>${item.director}</td>
-
-                                                    <td>${item.reportName}
-                                                    </td>
-                                                    <td>${item.detail}</td>
-                                                    <td><a href="/prototype/jsp/experiment/experimentpaper/paperinfo.jsp">查看实验</a></td>
-                                                    <shiro:hasAnyRoles name="administrators,teacher">
-                                                        <td><a href="updatepaper?id=${item.id}">编辑实验</a></td>
+                                                    <td>${item.reportName}</td>
+                                                    <td><a href="detail?id=${item.id}"> 查看</a>
+                                                        <shiro:hasAnyRoles name="administrators,teacher">
+                                                        /<a href="update?id=${item.id}">编辑</a></td>
                                                     </shiro:hasAnyRoles>
+                                                    </td>
                                                 </tr>
 
                                                     <c:forEach items="${pageInfo.data}" var="item">
@@ -195,9 +174,11 @@
                                                             <td>${item.name}</td>
                                                             <td>${item.director}</td>
                                                             <td>${item.reportName}</td>
-
-                                                            <td>${item.detail}</td>
-                                                            <td><a href="paperinfo?id=${item.id}">查看实验</a></td>
+                                                            <td><a href="detail?id=${item.id}"> 查看</a>
+                                                                <shiro:hasAnyRoles name="administrators,teacher">
+                                                                /<a href="update?id=${item.id}">编辑</a></td>
+                                                            </shiro:hasAnyRoles>
+                                                            </td>
                                                         </tr>
                                                     </c:forEach>
                                                 <tr height="16px"></tr>
