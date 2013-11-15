@@ -59,7 +59,14 @@
         <div class="indexNoticeCon">
             <ul>
                 <c:forEach items="${messageList}" var="item">
-                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a></li>
+                    <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
+                        <c:if test="${item.ifread==false}">
+                            <a style="font-weight: bold " href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                        </c:if>
+                        <c:if test="${item.ifread==true}">
+                            <a href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                        </c:if>
+                    </li>
 
                 </c:forEach>
 

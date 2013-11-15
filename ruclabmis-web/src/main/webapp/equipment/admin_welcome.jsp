@@ -66,9 +66,12 @@
             <ul>
                 <c:forEach items="${messageList}" var="item">
                     <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
-
-                        <a id="aa" style="max-width: 200px" href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
-
+                        <c:if test="${item.ifread==false}">
+                            <a style="font-weight: bold " href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                        </c:if>
+                        <c:if test="${item.ifread==true}">
+                            <a href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                        </c:if>
                     </li>
 
                 </c:forEach>

@@ -53,6 +53,7 @@ public class AnnouncementController {
 		user=userService.getUserByLoginSn(loginName);
 		currPage = request.getParameter("page") == null   ?
 				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+
 		String fatherPage=request.getParameter("fatherPage");
 		MessageCriteria messageCriteria=  new MessageCriteria();
 		messageCriteria.setOrderByClause(" sendtime desc");
@@ -61,6 +62,7 @@ public class AnnouncementController {
 
 
 		PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
+
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
 		//mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("pageInfo", pageInfo);
@@ -82,6 +84,9 @@ public class AnnouncementController {
 		criteria.andIfreadEqualTo(false);
 
 		PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria,currPage );
+		if(pageInfo.getTotalPage()<currPage){
+			pageInfo = messageService.selectListPage(messageCriteria,currPage-1 );
+		}
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/message");
 		//mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("pageInfo", pageInfo);
@@ -202,6 +207,8 @@ public class AnnouncementController {
 	@RequestMapping("/messageDetail")
 	public ModelAndView getMessage(HttpServletRequest request) {
 		int id = Integer.parseInt(request.getParameter("messageDetailId"));
+		currPage = request.getParameter("page") == null   ?
+				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
 		String fatherPage=request.getParameter("fatherPage");
 		Message message= messageService.selectById(id);
 		message.setIfread(true);
@@ -209,6 +216,7 @@ public class AnnouncementController {
 		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
 		mav.addObject("messageDetailFlag",message);
 		mav.addObject("fatherPage",fatherPage);
+		mav.addObject("page",currPage);
 		return mav;
 	}
 	@RequestMapping("/addMessage")

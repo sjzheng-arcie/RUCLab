@@ -155,7 +155,12 @@ public class RootController {
 		ModelAndView mav = new ModelAndView("/equipment/left");
 		return mav;
 	}
+	@RequestMapping("/teacher_top")
+	public ModelAndView teacher_Top(HttpServletRequest request) {
 
+		ModelAndView mav = new ModelAndView("/equipment/teacher_top");
+		return mav;
+	}
 	@RequestMapping("/teacher_welcome")
 	public ModelAndView showTeacherWelcome(HttpServletRequest request) {
 
@@ -181,7 +186,12 @@ public class RootController {
 		ModelAndView mav = new ModelAndView("/equipment/leader_index");
 		return mav;
 	}
+	@RequestMapping("/leader_top")
+	public ModelAndView leader_Top(HttpServletRequest request) {
 
+		ModelAndView mav = new ModelAndView("/equipment/leader_top");
+		return mav;
+	}
 
 	@RequestMapping("/leader_welcome")
 	public ModelAndView showLeaderWelcome(HttpServletRequest request) {

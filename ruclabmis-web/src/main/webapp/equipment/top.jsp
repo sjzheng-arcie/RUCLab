@@ -6,13 +6,12 @@
 
     </style>
     <title>设备管理系统</title>
-    <script language=JavaScript>
-        function logout() {
-            if (confirm("您确定要退出控制面板吗？"))
-                top.location = "out.asp";
-            return false;
-        }
-    </script>
+    <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
+    <meta http-equiv="refresh" content="60">
+    <base target="main">
+    <link href="images/skin.css" rel="stylesheet" type="text/css">
+
+
     <script language=JavaScript1.2>
         function showsubmenu(sid) {
             var whichEl = eval("submenu" + sid);
@@ -24,24 +23,21 @@
             }
         }
         function rs1() {
-            parent.main.location.href = "welcome";
+            var roleName=${user.role.name};
+           if(roleName=="teacher"){
+               parent.main.location.href = "teacher_welcome";
+           }else if(roleName=="leader"){
+               parent.main.location.href = "leader_welcome";
+           }else if(roleName=="administrators"){
+               parent.main.location.href = "welcome";
+           }else if(roleName=="equipment_admin"){
+               parent.main.location.href = "admin_welcome";
+           }
+
+
         }
     </script>
-    <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
-    <meta http-equiv="refresh" content="60">
-    <script language=JavaScript1.2>
-        function showsubmenu(sid) {
-            var whichEl = eval("submenu" + sid);
-            var menuTitle = eval("menuTitle" + sid);
-            if (whichEl.style.display == "none") {
-                eval("submenu" + sid + ".style.display=\"\";");
-            } else {
-                eval("submenu" + sid + ".style.display=\"none\";");
-            }
-        }
-    </script>
-    <base target="main">
-    <link href="images/skin.css" rel="stylesheet" type="text/css">
+
 </head>
 <body leftmargin="0" topmargin="0">
 <div class="top">

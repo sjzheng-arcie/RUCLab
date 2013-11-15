@@ -102,7 +102,7 @@
                                                             <a class="A_See" href="/equipment/jsp/announcement/remind/message?page=1&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                             <a class="A_See" href="/equipment/jsp/announcement/remind/unreadmessage?page=1&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                             <a class="A_See" href="/equipment/jsp/announcement/remind/readmessage?page=1&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
-                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessage?page=1&fatherPage=mysendmessage">我发送的消息</a>
+                                                            <a class="A_See" href="/equipment/jsp/announcement/remind/mysendmessage?page=1&&fatherPage=mysendmessage">我发送的消息</a>
                                                         </p>
                                                         </div>
                                                         <c:choose>
