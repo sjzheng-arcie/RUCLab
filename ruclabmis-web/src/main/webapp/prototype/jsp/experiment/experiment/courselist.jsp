@@ -108,14 +108,14 @@
                                                     <td title="">软件工程</td>
 
 
-                                                    <td title=""><a href="experimentlist?courseId=${item.id}">查看实验</a></td>
+                                                    <td title=""><a href="myexperimentlist?courseId=${item.id}">查看实验</a></td>
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td>${item.className}</td>
                                                         <td>${item.courseName}</td>
-                                                        <td title=""><a href="experimentlist?courseId=${item.id}">查看实验</a></td>
+                                                        <td title=""><a href="myexperimentlist?courseId=${item.id}">查看实验</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

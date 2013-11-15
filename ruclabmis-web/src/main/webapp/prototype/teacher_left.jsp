@@ -71,7 +71,7 @@
                     <ul class="MM">
                         <li><a href="jsp/experiment/virtual/main.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;虚拟班级管理</a>
                         </li>
-                        <li><a href="jsp/experiment/experimentpaper/myexperimentlist.jsp" onfocus="toFocus(this)" target="main">
+                        <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;实验信息管理</a></li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;实验室预约</a></li>
