@@ -85,9 +85,7 @@
                 <td align="center">状态</td>
                 <td align="center">详细</td>
             </tr>
-            <%
-                int temp =0;
-            %>
+            <% int temp =0;%>
             <c:forEach items="${myApplyList}" var="item">
                 <tr>
                     <%

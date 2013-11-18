@@ -46,7 +46,7 @@
                                                                                      id="applyNo" value=""
                                                                                      style="width:100px;"/></span>
 		<span style="white-space:nowrap">&nbsp;&nbsp;申请类型:<select id="formType" name="formType">
-            <option value="0">请选择</option>
+            <option value="0"></option>
             <c:forEach items="${classifList}" var="item">
                 <option value="${item.id}">${item.value}</option>
             </c:forEach>
