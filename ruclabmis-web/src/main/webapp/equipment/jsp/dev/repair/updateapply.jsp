@@ -36,7 +36,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备基本信息管理 > 实验设备借用</div>
+                    <div class="titlebt">设备基本信息管理 > 实验设备维修</div>
                 </td>
             </tr>
         </table>
@@ -63,7 +63,7 @@
                                                         <div align="center"><img src="../../../images/tb.gif"
                                                                                  width="14" height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备借用申请</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备维修申请</span>
                                                     </td>
                                                 </tr>
                                             </table>
