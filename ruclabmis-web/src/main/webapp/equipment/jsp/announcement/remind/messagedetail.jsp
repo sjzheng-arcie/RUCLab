@@ -26,13 +26,12 @@ function displayClass(value){
     }else{
         document.getElementById('scopeDiv').style.display= 'none';
     }
-
 }
 
 </script>
 
 </head>
-<body style="background-color: #ffffff">
+<body>
 <form name="form1" method="post" target="_self">
 <table width="100%"  border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF" >
   <tr>
@@ -63,15 +62,12 @@ function displayClass(value){
                                                 <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="/equipment/images/close_ico.ico"></a></span>
                                                 <p style="height:30px"><p>
                                                 <h1 style="text-align: left;margin: 20px">详细信息：</h1>
-
                                                 <p style="margin: 30px" align="left"><span>接收人 :  </span><span>${messageDetailFlag.sender.name}</span> <span style="float:right"><fmt:formatDate value="${messageDetailFlag.sendtime}"></fmt:formatDate></span>
                                                     <span style="float:right;">发送时间 :  </span></p>
                                                 <hr style="margin: 30px">
-
                                                 <div style="margin: 30px;text-align: left">${messageDetailFlag.content}</div>
                                                 <p style="height:30px"><p>
                                                 <hr style="margin:30px">
-
                                                 <p style="margin: 30px" align="left"><span>发送人 :  </span><span>${messageDetailFlag.sender.name}</span></p>
                                                 <p style="height:30px"><p>
                                             </div>
@@ -81,7 +77,6 @@ function displayClass(value){
 							</td>
       					</tr>
     				</table>
-
     			</td>
   			</tr>
 		</table>
