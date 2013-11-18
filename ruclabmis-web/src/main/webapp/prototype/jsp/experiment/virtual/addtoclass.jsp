@@ -13,37 +13,43 @@
     <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
     <script>
+        var classId = "${vclass.curriculumId}";
         function createCurriculumOption(target,item){
-           $("<option>").html(item.name).attr('value',item.id).attr('teacher',item.teacherName)
-                   .attr('teacherId',item.teacherId).appendTo("#"+target);
+           if(classId && classId == item.id.toString()){
+               $("<option>").html(item.name).attr('value',item.id).attr('selected','selected')
+                       .attr('teacher',item.teacherName).attr('teacherId',item.teacherId).appendTo("#"+target);
+           }else{
+               $("<option>").html(item.name).attr('value',item.id).attr('teacher',item.teacherName)
+                       .attr('teacherId',item.teacherId).appendTo("#"+target);
+           }
         }
         function initCurriculumSelect(){
             $.getJSON("/curriculum/list",{name:""},function(data){
                 $.each(data,function(idx,item){
-                    createCurriculumOption("curriculum",item);
+                    createCurriculumOption("curriculumId",item);
                 });
 
-                $("#curriculum").chosen({
+                $("#curriculumId").chosen({
                     no_results_text:"没有找到!",
                     disable_search_threshold:10
                 });
             });
 
-            $("#curriculum").on("change",function(evn,params){
-                var t = $("#curriculum option:selected").attr('teacher') ;
-                $("#teacher").val(t);
+            $("#curriculumId").on("change",function(evn,params){
+                var t = $("#curriculumId option:selected").attr('teacher') ;
+                $("#teacherName").val(t);
             });
         }
 
         function addNewClass(){
-            var classId = $("#curriculum").val(),
+            var classId = $("#curriculumId").val(),
                 classSn = $("#classSn").val(),
                 className=$("#className").val(),
-                classYear= $("classYear").val(),
+                classYear= $("#classYear").val(),
                 teacherId = $("#curriculum option:selected").attr('teacherId');
             var sids = new Array();
             $.each($("input[name='stCheckbox']:checked"),function(idx,data){
-                sids.push(data);
+                sids.push($(data).val());
             } );
 
             $.ajax({
@@ -65,6 +71,7 @@
             });
 
         }
+
         $(document).ready(function(){
             initCurriculumSelect();
         });
@@ -140,13 +147,13 @@
                                         <tr>
                                             <td nowrap align="right">班级编号:</td>
                                             <td nowrap>
-                                                <input id="classSn" class="text" value=""/>
+                                                <input id="classSn" name="classSn" class="text" value="${vclass.classSn}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_sn"></span>
                                             </td>
                                             <td nowrap align="right">班级名称:</td>
                                             <td nowrap>
-                                                <input id="className" class="text" value=""/>
+                                                <input id="className" name="className" class="text" value="${vclass.className}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_name"></span>
                                             </td>
@@ -155,7 +162,7 @@
                                         <tr>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <select id="curriculum" style="width: 152px;height: 22px"
+                                                <select id="curriculumId" name="curriculumId" style="width: 152px;height: 22px"
                                                         data-placeholder="请选择课程...">
                                                     <option value="-1"></option>
                                                 </select>
@@ -165,7 +172,7 @@
                                             </td>
                                             <td nowrap align="right">任课老师:</td>
                                             <td nowrap>
-                                                <input id="teacher" class="text" value=""/>
+                                                <input id="teacherName" name="teacherName" class="text" value="${vclass.teacherName}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_teacher"></span>
                                             </td>
@@ -173,7 +180,7 @@
                                         <tr>
                                             <td nowrap align="right">学年:</td>
                                             <td nowrap>
-                                                <input id="classYear" class="text" value=""/>
+                                                <input id="classYear" name="classYear" class="text" value="${vclass.classYear}"/>
                                                 <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_year"></span>
                                             </td>
@@ -241,8 +248,8 @@
                         <span style="white-space:nowrap">&nbsp;&nbsp;名称:<input type="text" name="name" id="name"
                                                                                value="" style="width:100px;"/></span>
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;所属专业:<input type="theCourse" name="searchB1"
-                                                                                 id="theCourse" value=""
+                        <span style="white-space:nowrap">&nbsp;&nbsp;所属专业:<input type="text" name="major"
+                                                                                 id="major" value=""
                                                                                  style="width:100px;"/></span>
 
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"

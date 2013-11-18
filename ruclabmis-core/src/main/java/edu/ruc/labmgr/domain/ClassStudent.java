@@ -5,7 +5,7 @@ public class ClassStudent {
 
     private Integer classId;
 
-    private Integer studendId;
+    private Integer studentId;
 
     private Short usualPerformance;
 
@@ -27,12 +27,12 @@ public class ClassStudent {
         this.classId = classId;
     }
 
-    public Integer getStudendId() {
-        return studendId;
+    public Integer getStudentId() {
+        return studentId;
     }
 
     public void setStudendId(Integer studendId) {
-        this.studendId = studendId;
+        this.studentId = studendId;
     }
 
     public Short getUsualPerformance() {

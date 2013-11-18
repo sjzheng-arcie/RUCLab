@@ -1,226 +1,261 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.ruc.labmgr.mapper.ClassStudentMapper" >
-  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ClassStudent" >
-    <id column="cs_id" property="id" jdbcType="INTEGER" />
-    <result column="cs_class_id" property="classId" jdbcType="INTEGER" />
-    <result column="cs_studend_id" property="studendId" jdbcType="INTEGER" />
-    <result column="cs_usual_performance" property="usualPerformance" jdbcType="SMALLINT" />
-    <result column="cs_final_grade" property="finalGrade" jdbcType="SMALLINT" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
-    <where >
-      <foreach collection="oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+<mapper namespace="edu.ruc.labmgr.mapper.ClassStudentMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ClassStudent">
+        <id column="cs_id" property="id" jdbcType="INTEGER"/>
+        <result column="cs_class_id" property="classId" jdbcType="INTEGER"/>
+        <result column="cs_student_id" property="studentId" jdbcType="INTEGER"/>
+        <result column="cs_usual_performance" property="usualPerformance" jdbcType="SMALLINT"/>
+        <result column="cs_final_grade" property="finalGrade" jdbcType="SMALLINT"/>
+    </resultMap>
+
+    <resultMap id="ClassStudentResultMap" type="edu.ruc.labmgr.domain.Student">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="sn" property="sn" jdbcType="VARCHAR" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="sex" property="sex" jdbcType="BIT" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
+        <result column="comment" property="comment" jdbcType="VARCHAR" />
+        <result column="major_id" property="majorId" jdbcType="INTEGER" />
+        <result column="st_birthday" property="birthday" jdbcType="DATE"/>
+        <result column="st_origin_place" property="originPlace" jdbcType="VARCHAR"/>
+        <result column="st_major_name" property="majorName" jdbcType="VARCHAR"/>
+        <result column="st_admission_date" property="admissionDate" jdbcType="DATE"/>
+    </resultMap>
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Example_Where_Clause" >
-    <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
-        <if test="criteria.valid" >
-          <trim prefix="(" suffix=")" prefixOverrides="and" >
-            <foreach collection="criteria.criteria" item="criterion" >
-              <choose >
-                <when test="criterion.noValue" >
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue" >
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue" >
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue" >
-                  and ${criterion.condition}
-                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="example.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List" >
-    cs.id as cs_id, cs.class_id as cs_class_id, cs.studend_id as cs_studend_id, cs.usual_performance as cs_usual_performance, 
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    cs.id as cs_id, cs.class_id as cs_class_id, cs.student_id as cs_student_id, cs.usual_performance as cs_usual_performance,
     cs.final_grade as cs_final_grade
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from class_student cs
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
-    select 
-    <include refid="Base_Column_List" />
-    from class_student cs
-    where cs.id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from class_student cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByCriteriaWithStudent" resultMap="ClassStudentResultMap"
+            parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria">
+        select
+        u.*,st.birthday as st_birthday,st.admission_date as st_admission_date,st.origin_place as st_origin_place,
+        m.name as st_major_name
+        from class_student cs,user u,student st,major m
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+        select
+        <include refid="Base_Column_List"/>
+        from class_student cs
+        where cs.id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from class_student
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria" >
-    delete from class_student cs
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="edu.ruc.labmgr.domain.ClassStudent" >
-    insert into class_student (id, class_id, studend_id, 
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria">
+        delete from class_student as cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </delete>
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.ClassStudent">
+    insert into class_student (id, class_id, student_id,
       usual_performance, final_grade)
-    values (#{id,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{studendId,jdbcType=INTEGER}, 
+    values (#{id,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{studentId,jdbcType=INTEGER},
       #{usualPerformance,jdbcType=SMALLINT}, #{finalGrade,jdbcType=SMALLINT})
   </insert>
-  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ClassStudent" >
-    insert into class_student
-    <trim prefix="(" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        id,
-      </if>
-      <if test="classId != null" >
-        class_id,
-      </if>
-      <if test="studendId != null" >
-        studend_id,
-      </if>
-      <if test="usualPerformance != null" >
-        usual_performance,
-      </if>
-      <if test="finalGrade != null" >
-        final_grade,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides="," >
-      <if test="id != null" >
-        #{id,jdbcType=INTEGER},
-      </if>
-      <if test="classId != null" >
-        #{classId,jdbcType=INTEGER},
-      </if>
-      <if test="studendId != null" >
-        #{studendId,jdbcType=INTEGER},
-      </if>
-      <if test="usualPerformance != null" >
-        #{usualPerformance,jdbcType=SMALLINT},
-      </if>
-      <if test="finalGrade != null" >
-        #{finalGrade,jdbcType=SMALLINT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria" resultType="java.lang.Integer" >
-    select count(*) from class_student cs
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByExampleSelective" parameterType="map" >
-    update class_student cs
-    <set >
-      <if test="record.id != null" >
-        cs.id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.classId != null" >
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ClassStudent">
+        insert into class_student
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
+            <if test="classId != null">
+                class_id,
+            </if>
+            <if test="studentId != null">
+                student_id,
+            </if>
+            <if test="usualPerformance != null">
+                usual_performance,
+            </if>
+            <if test="finalGrade != null">
+                final_grade,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=INTEGER},
+            </if>
+            <if test="classId != null">
+                #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="studentId != null">
+                #{studentId,jdbcType=INTEGER},
+            </if>
+            <if test="usualPerformance != null">
+                #{usualPerformance,jdbcType=SMALLINT},
+            </if>
+            <if test="finalGrade != null">
+                #{finalGrade,jdbcType=SMALLINT},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from class_student cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </select>
+    <update id="updateByCriteriaSelective" parameterType="map">
+        update class_student cs
+        <set>
+            <if test="record.id != null">
+                cs.id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.classId != null">
+                cs.class_id = #{record.classId,jdbcType=INTEGER},
+            </if>
+            <if test="record.studentId != null">
+                cs.student_id = #{record.studentId,jdbcType=INTEGER},
+            </if>
+            <if test="record.usualPerformance != null">
+                cs.usual_performance = #{record.usualPerformance,jdbcType=SMALLINT},
+            </if>
+            <if test="record.finalGrade != null">
+                cs.final_grade = #{record.finalGrade,jdbcType=SMALLINT},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByCriteria" parameterType="map">
+        update class_student cs
+        set cs.id = #{record.id,jdbcType=INTEGER},
         cs.class_id = #{record.classId,jdbcType=INTEGER},
-      </if>
-      <if test="record.studendId != null" >
-        cs.studend_id = #{record.studendId,jdbcType=INTEGER},
-      </if>
-      <if test="record.usualPerformance != null" >
+        cs.student_id = #{record.studentId,jdbcType=INTEGER},
         cs.usual_performance = #{record.usualPerformance,jdbcType=SMALLINT},
-      </if>
-      <if test="record.finalGrade != null" >
-        cs.final_grade = #{record.finalGrade,jdbcType=SMALLINT},
-      </if>
-    </set>
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update class_student cs
-    set cs.id = #{record.id,jdbcType=INTEGER},
-      cs.class_id = #{record.classId,jdbcType=INTEGER},
-      cs.studend_id = #{record.studendId,jdbcType=INTEGER},
-      cs.usual_performance = #{record.usualPerformance,jdbcType=SMALLINT},
-      cs.final_grade = #{record.finalGrade,jdbcType=SMALLINT}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ClassStudent" >
-    update class_student
-    <set >
-      <if test="classId != null" >
-        class_id = #{classId,jdbcType=INTEGER},
-      </if>
-      <if test="studendId != null" >
-        studend_id = #{studendId,jdbcType=INTEGER},
-      </if>
-      <if test="usualPerformance != null" >
-        usual_performance = #{usualPerformance,jdbcType=SMALLINT},
-      </if>
-      <if test="finalGrade != null" >
-        final_grade = #{finalGrade,jdbcType=SMALLINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ClassStudent" >
+        cs.final_grade = #{record.finalGrade,jdbcType=SMALLINT}
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ClassStudent">
+        update class_student
+        <set>
+            <if test="classId != null">
+                class_id = #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="studentId != null">
+                student_id = #{studentId,jdbcType=INTEGER},
+            </if>
+            <if test="usualPerformance != null">
+                usual_performance = #{usualPerformance,jdbcType=SMALLINT},
+            </if>
+            <if test="finalGrade != null">
+                final_grade = #{finalGrade,jdbcType=SMALLINT},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ClassStudent">
     update class_student
     set class_id = #{classId,jdbcType=INTEGER},
-      studend_id = #{studendId,jdbcType=INTEGER},
+      student_id = #{studentId,jdbcType=INTEGER},
       usual_performance = #{usualPerformance,jdbcType=SMALLINT},
       final_grade = #{finalGrade,jdbcType=SMALLINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria" id="selectByExampleWithRowbounds" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from class_student cs
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria"
+            id="selectByCriteriaWithRowbounds">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        from class_student cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
 </mapper>
