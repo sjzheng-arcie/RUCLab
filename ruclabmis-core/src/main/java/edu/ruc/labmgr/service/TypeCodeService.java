@@ -64,6 +64,16 @@ public class TypeCodeService {
 		title = typeMapper.selectByPrimaryKey(id);
 		return title;
 	}
+    public Integer getIdBySn(String sn){
+        TypecodeCriteria criteria = new  TypecodeCriteria();
+        TypecodeCriteria.Criteria ec =  criteria.createCriteria();
+        ec.andSnEqualTo(sn);
+        List<Typecode> codes = typeMapper.selectByCriteria(criteria);
+        if(codes.size() > 0)
+            return codes.get(0).getId();
+        else
+            return null;
+    }
 	public int delete(int  id){
 		int result = 0;
 		typeMapper.deleteByPrimaryKey(id);

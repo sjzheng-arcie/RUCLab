@@ -375,7 +375,7 @@
         SELECT e.sn FROM equipment e )
   </select>
 
-  <select id="selectIdBySn" parameterType="String" resultType="Integer">
+  <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
       SELECT id FROM equipment_check WHERE sn = #{sn}
   </select>
 </mapper>

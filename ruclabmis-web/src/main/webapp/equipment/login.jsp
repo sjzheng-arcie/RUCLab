@@ -43,7 +43,16 @@
             }
         }
     }
-    window.attachEvent("onload", correctPNG);
+    if(window.attachEvent)
+    {
+        window.attachEvent("onload",  correctPNG);
+        //window.attachEvent("onresize",  iframeAutoFit);
+    }
+    else if(window.addEventListener)
+    {
+        window.addEventListener('load',  correctPNG,  false);
+        //window.addEventListener('resize',  iframeAutoFit,  false);
+    }
 </script>
 
 

@@ -18,7 +18,11 @@ public class EquipmentService {
     @Autowired
     private EquipmentMapper equipmentMapper;
     @Autowired
-    TeacherService serviceTeacher;
+    private TeacherService serviceTeacher;
+    @Autowired
+    private TypeCodeService serviceTypecode;
+    @Autowired
+    private ClassifService serviceClassif;
 
     private PageInfo<Equipment> getPageEquipmentByCriteria(int pageNum,EquipmentCriteria criteria){
         int totalCount = equipmentMapper.countByCriteria(criteria);
@@ -170,7 +174,6 @@ public class EquipmentService {
     }
 
     public void updateEquipment(Equipment equipment) throws Exception {
-
         if(!StringUtils.isNullOrEmpty(equipment.getHolderName())){
             int id = serviceTeacher.getUserIdByName(equipment.getHolderName());
             if(id < 0) {
@@ -185,18 +188,35 @@ public class EquipmentService {
         if (equipments != null) {
             for (Equipment equipment : equipments) {
                 String sn = equipment.getSn();
-                if (!StringUtils.isNullOrEmpty(sn)) {
-                    int id = equipmentMapper.selectIdBySn(sn);
-                    if (id > 0) {
-                        equipment.setId(id);
-                        equipmentMapper.updateByPrimaryKey(equipment);
-                    } else {
-                        equipmentMapper.insert(equipment);
-                    }
+                if (StringUtils.isNullOrEmpty(sn))
+                    continue;
+
+                if (!StringUtils.isNullOrEmpty(equipment.getCategorySn())) {
+                    Integer categoryId = serviceTypecode.getIdBySn(equipment.getCategorySn());
+                    equipment.setCategoryId(categoryId);
+                }
+
+                if (!StringUtils.isNullOrEmpty(equipment.getFundingSubject())) {
+                    Integer fundingSubjectId = serviceClassif.getIdByName(equipment.getFundingSubject());
+                    equipment.setFundingSubjectId(fundingSubjectId);
+                }
+                if (!StringUtils.isNullOrEmpty(equipment.getUseDirection())) {
+                    Integer useDirectionId = serviceClassif.getIdByName(equipment.getUseDirection());
+                    equipment.setUseDirectionId(useDirectionId);
+                }
+                equipment.setStateId(Types.EquipState.NORMAL.getValue());
+
+                Integer id = equipmentMapper.selectIdBySn(sn);
+                if (id != null && id > 0) {
+                    equipment.setId(id);
+                    equipmentMapper.updateByPrimaryKey(equipment);
+                } else {
+                    equipmentMapper.insert(equipment);
                 }
             }
         }
     }
+
 
     public void deleteEquipments(List<Integer> equipmentIds){
         for(int id : equipmentIds)

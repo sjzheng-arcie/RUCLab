@@ -14,7 +14,7 @@
     </script>
 </head>
 
-<body onload="getwidth()" onresize="getwidth()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
