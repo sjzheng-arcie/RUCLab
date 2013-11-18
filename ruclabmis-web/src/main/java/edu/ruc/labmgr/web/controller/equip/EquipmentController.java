@@ -164,7 +164,7 @@ public class EquipmentController {
             boolean success = result.get();
             local.delete();
             if (success){
-                return "redirect:/equipment/jsp/dev/info/devicelist";
+                return "redirect:/equipment/jsp/dev/info/deviceList";
             }
         }
         redirectAttributes.addFlashAttribute("error","数据文件上传错误或数据导入出错!");

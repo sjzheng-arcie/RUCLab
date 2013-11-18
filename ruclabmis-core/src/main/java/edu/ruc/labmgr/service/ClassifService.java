@@ -21,6 +21,17 @@ public class ClassifService {
         return mapper.selectByPrimaryKey(id);
     }
 
+    public Integer getIdByName(String name) {
+        ClassifCriteria criteria = new  ClassifCriteria();
+        ClassifCriteria.Criteria ec =  criteria.createCriteria();
+        ec.andValueEqualTo(name);
+        List<Classif> codes = mapper.selectByCriteria(criteria);
+        if(codes.size() > 0)
+            return codes.get(0).getId();
+        else
+            return null;
+    }
+
     public List<Classif> getItemsByParentID(int parent_id) {
         ClassifCriteria classifCriteria = new ClassifCriteria();
         ClassifCriteria.Criteria criteria = classifCriteria.createCriteria();

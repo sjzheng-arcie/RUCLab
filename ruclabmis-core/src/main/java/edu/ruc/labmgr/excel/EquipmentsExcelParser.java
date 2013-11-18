@@ -9,18 +9,21 @@ public class EquipmentsExcelParser extends POIEntityParser<Equipment>{
     @Override
     public Equipment mapToEntity(Map<String, Object> map) {
         Equipment result = new Equipment();
+
 		Object sn_temp = map.get("sn");
         result.setSn(cellDoubleToString(sn_temp));
+        result.setCategorySn((String)map.get("categorySn"));
         result.setName((String)map.get("name"));
-        result.setAcquisitionDate((Date)map.get("acquisitionDate"));
-
-        result.setUser((String)map.get("user"));
-        result.setFactoryNumber(cellDoubleToString(map.get("factoryNumber")));
-        result.setFundingSubject((String)map.get("fundingSubject"));
         result.setModelNumber((String)map.get("modelNumber"));
+        result.setSpecifications(map.get("specifications").toString());
         result.setUnitPrice(((Double)map.get("unitPrice")).floatValue());
-		result.setSpecifications(map.get("specifications").toString());
-		result.setVender(map.get("vender").toString());
+        result.setCountry((String)map.get("country"));
+        result.setVender((String)map.get("vender"));
+        result.setFactoryNumber(cellDoubleToString(map.get("factoryNumber")));
+        result.setAcquisitionDate((Date)map.get("acquisitionDate"));
+        result.setFundingSubject((String)map.get("fundingSubject"));
+        result.setUseDirection((String)map.get("useDirection"));
+
         return result;
     }
 

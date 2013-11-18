@@ -35,5 +35,5 @@ public interface EquipmentMapper {
 
     List<Equipment> selectInventoryProfitWithRowbounds(RowBounds RowBounds);
 
-    int selectIdBySn(@Param("sn")String sn);
+    Integer selectIdBySn(@Param("sn")String sn);
 }

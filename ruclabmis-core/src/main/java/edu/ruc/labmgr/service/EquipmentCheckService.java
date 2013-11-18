@@ -19,6 +19,7 @@ import java.util.List;
  * @version 1.0
  *          ${tags}
  */
+@SuppressWarnings("ALL")
 @Service
 public class EquipmentCheckService {
 
@@ -91,7 +92,7 @@ public class EquipmentCheckService {
             for (EquipmentCheck check : checks) {
                 String sn = check.getSn();
                 if (!StringUtils.isEmpty(sn)) {
-                    int id = equipCheckMapper.selectIdBySn(sn);
+                    Integer id = equipCheckMapper.selectIdBySn(sn);
                     if (id > 0) {
                         check.setId(id);
                         equipCheckMapper.updateByPrimaryKey(check);
