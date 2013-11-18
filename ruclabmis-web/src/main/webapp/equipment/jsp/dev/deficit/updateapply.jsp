@@ -20,6 +20,9 @@
         window.open("/equipment/jsp/dev/deficit/deviceList?application_id="+${apply.applicationId}, "设备信息",
                 "height=400, width=1350, toolbar=no, status=no");
     }
+    function freshWindow(){
+        window.location.reload(true);
+    }
 </script>
 <body>
 <form name="mainForm" method="post">

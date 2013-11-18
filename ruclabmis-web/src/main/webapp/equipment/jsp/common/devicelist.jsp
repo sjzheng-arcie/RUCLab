@@ -54,7 +54,7 @@
                 url : url,
                 data:$("#listForm").serialize(),
                 success : function(msg) {
-                    window.opener.location.reload();
+                    window.opener.freshWindow();
                     window.close();
             }
         })

@@ -48,7 +48,9 @@
 
         });});
 
-
+    function freshWindow(){
+        window.location.reload(true);
+    }
 </script>
 <body>
 <form name="mainForm" method="post">
