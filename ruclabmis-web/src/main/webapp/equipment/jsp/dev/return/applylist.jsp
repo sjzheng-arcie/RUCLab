@@ -147,9 +147,6 @@
                                                         <div align="center"><span class="STYLE10">处理时间</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">单据状态</span></div>
-                                                    </td>
-                                                    <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
                                                     <c:if test="${formType=='process'}">
@@ -170,7 +167,6 @@
                                                         <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
                                                         <td>${item.operator.name}</td>
                                                         <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
-                                                        <td>${item.state.value}</td>
                                                         <td><a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
                                                             <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                         </a></td>

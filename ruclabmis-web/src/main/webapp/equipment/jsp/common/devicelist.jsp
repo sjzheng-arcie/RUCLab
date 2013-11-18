@@ -54,11 +54,8 @@
                 url : url,
                 data:$("#listForm").serialize(),
                 success : function(msg) {
-
                     window.opener.freshWindow();
                     window.close();
-
-
             }
         })
 
