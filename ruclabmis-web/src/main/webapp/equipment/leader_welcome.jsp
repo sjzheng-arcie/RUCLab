@@ -75,7 +75,7 @@
     </div>
 
     <div class="indextrends indexteacherapply">
-        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/allpendinglist">更多>></a><span>待审批单据</span></h3>
+        <h3><a href="/equipment/jsp/welcomelink/myapplyinfo/pendinglist">更多>></a><span>待审批单据</span></h3>
         <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
             <tr class="title">
                 <td width="8%" height="24" align="center">序号</td>
@@ -84,14 +84,41 @@
                 <td width="20%" align="center">提交日期</td>
                 <td align="center">详细</td>
             </tr>
+            <%
+                int temp=0;
+            %>
             <c:forEach items="${pendingApplyList}" var="item">
                 <tr>
-                    <td height="24" align="center">1</td>
+                    <%
+                        temp++;
+                    %>
+                    <td height="24" align="center"><%=temp%></td>
                     <td align="center">${item.formType.value}</td>
 
                     <td align="center">${item.state.value}</td>
                     <td align="center"><fmt:formatDate value="${item.applyTime}"></fmt:formatDate></td>
-                    <td align="center">详细</td>
+                    <c:choose>
+                        <c:when test="${item.formType.value=='借用申请'}" >
+                            <td align="center"><a href="/equipment/jsp/dev/borrow/toUpdateApplication?formType=borrow&&application_id=${item.id}">详细</a></td>
+                        </c:when>
+                        <c:when test="${item.formType.value=='转移申请'}" >
+                            <td align="center"><a href="/equipment/jsp/dev/allot/toUpdateApplication?formType=allot&&application_id=${item.id}">详细</a></td>
+                        </c:when>
+                        <c:when test="${item.formType.value=='捐赠申请'}" >
+                            <td align="center"><a href="/equipment/jsp/dev/donate/toUpdateApplication?formType=donate&&application_id=${item.id}">详细</a></td>
+                        </c:when>
+                        <c:when test="${item.formType.value=='维修申请'}" >
+                            <td align="center"><a href="/equipment/jsp/dev/repair/toUpdateApplication?formType=repair&&application_id=${item.id}">详细</a></td>
+                        </c:when>
+                        <c:when test="${item.formType.value=='报减申请'}" >
+                            <td align="center"><a href="/equipment/jsp/dev/deficit/toUpdateApplication?formType=deficit&&application_id=${item.id}">详细</a></td>
+                        </c:when>
+                        <c:when test="${item.formType.value=='归还申请'}" >
+                            <td align="center"><a href="/equipment/jsp/dev/return/toUpdateApplication?formType=return&&application_id=${item.id}">详细</a></td>
+                        </c:when>
+
+                    </c:choose>
+
                 </tr>
             </c:forEach>
         </table>

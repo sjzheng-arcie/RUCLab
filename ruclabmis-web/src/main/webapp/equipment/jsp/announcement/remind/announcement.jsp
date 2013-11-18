@@ -119,30 +119,13 @@
                             </span>
                                                         </div>
                                                     </c:forEach>
-
-
-
-
-
-
-
-
-
                                                 </div>
-
-
                                             </td>
                                         </tr>
-
                                         <%@ include file="../../common/pagetable.jsp"%>
-
                                     </table>
                                 </td>
-
                             </tr>
-                            <tr  align="center"  bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE"><td align="center">
-                                <input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
-                            </td></tr>
                         </table>
                     </td>
                 </tr>
