@@ -193,7 +193,7 @@
                                     <td width="100" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">名称</span></div>
                                     </td>
-                                    <td width="60" bgcolor="d3eaef">
+                                    <td width="80" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">领用人</span></div>
                                     </td>
                                     <td width="60" bgcolor="d3eaef">
@@ -202,7 +202,7 @@
                                     <td width="100" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">分类</span></div>
                                     </td>
-                                    <td width="50" bgcolor="d3eaef">
+                                    <td width="40" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">型号</span></div>
                                     </td>
                                     <td width="50" bgcolor="d3eaef">
