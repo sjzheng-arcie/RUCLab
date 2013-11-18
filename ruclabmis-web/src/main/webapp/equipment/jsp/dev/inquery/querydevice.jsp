@@ -20,7 +20,7 @@
 
 <form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
-<tr>
+<tr class="noprint">
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
             src="../../../images/left-top-right.gif" width="17" height="29"/></td>
     <td valign="top" background="../../../images/content-bg.gif">
@@ -40,9 +40,9 @@
 <td valign="middle" background="../../../images/mail_leftbg.gif"></td>
 <td valign="top" bgcolor="#F7F8F9">
 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
-<tr>
+<tr >
 <td valign="top" class="STYLE10">
-<div style="border: 1px solid;width:99%;">
+<div class="noprint" style="border: 1px solid;width:99%;">
     <table width="100%" border="0" cellpadding="0">
         <tr style="height: 30px;">
             <td align="center">设备编号</td>
@@ -185,9 +185,9 @@
                                 <td>
                                     <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-                        <a href="#" onclick="toHouseLay();"><img src="../../../images/del_min.gif" width="10"
-                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                        <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+<%--                        <a href="#" onclick="toHouseLay();"><img src="../../../images/del_min.gif" width="10"
+                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
+                        <a href="#" onclick="window.print()"><img src="../../../images/del_min.gif" width="10" height="10"
                                                              border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
                                     </div>

@@ -9,6 +9,9 @@
     <script type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript" src="/js/page.js"></script>
     <script>
+        function toPrint(){
+            window.print();
+        }
     </script>
 </head>
 <body onload="getWidth()" onresize="getWidth()">
@@ -16,19 +19,19 @@
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="17" valign="top" background="/equipment/images/mail_leftbg.gif"><img
+            <td class="noprint" width="17" valign="top" background="/equipment/images/mail_leftbg.gif"><img
                     src="/equipment/images/left-top-right.gif" width="17" height="29"/></td>
-            <td valign="top" background="/equipment/images/content-bg.gif">
+            <td class="noprint" valign="top" background="/equipment/images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
-                    <tr>
+                    <tr class="noprint" >
                         <td height="31">
                             <div class="titlebt">设备管理系统 > 仪器设备类资产实盘</div>
                         </td>
                     </tr>
                 </table>
             </td>
-            <td width="16" valign="top" background="/equipment/images/mail_rightbg.gif"><img
+            <td class="noprint" width="16" valign="top" background="/equipment/images/mail_rightbg.gif"><img
                     src="/equipment/images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
 
@@ -39,10 +42,10 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-<span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="name" id="name" value=""
+<span class="noprint" style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input class="noprint" type="text" name="name" id="name" value=""
                                                          style="width:100px;"/></span>
 
-<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm')"><img
+<span style="white-space:nowrap">&nbsp;&nbsp;<a class="noprint" href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm')"><img
         src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
@@ -53,7 +56,7 @@
                                             <tr>
                                                 <td height="24" bgcolor="#353c44">
                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                        <tr>
+                                                        <tr class="noprint">
                                                             <td>
                                                                 <table width="100%" border="0" cellspacing="0"
                                                                        cellpadding="0">
@@ -80,9 +83,9 @@
                                                           border="0"/> <span class="STYLE1">盘亏</span></a>&nbsp;
                   <a href="/equipCheck/importRealCheck"><img src="/equipment/images/del_min.gif" width="10" height="10"
                                                           border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
-                  <a href="#" onclick="toHouseLay();"><img src="/equipment/images/del_min.gif" width="10" height="10"
-                                                           border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                  <a href="#" onclick="toRoom();"><img src="/equipment/images/del_min.gif" width="10" height="10"
+<%--                  <a href="#" onclick="toHouseLay();"><img src="/equipment/images/del_min.gif" width="10" height="10"
+                                                           border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
+                  <a href="#" onclick="toPrint();"><img src="/equipment/images/del_min.gif" width="10" height="10"
                                                        border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	              </span>
                                                                 </div>
@@ -96,7 +99,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
+                                        <div id="divwidth"  style="overflow:auto;overflow-y:hidden;">
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
@@ -184,7 +187,7 @@
             </td>
             <td background="/equipment/images/mail_rightbg.gif">&nbsp;</td>
         </tr>
-        <tr>
+        <tr class="noprint">
             <td valign="bottom" background="/equipment/images/mail_leftbg.gif"><img
                     src="/equipment/images/buttom_left2.gif"
                     width="17" height="17"/></td>

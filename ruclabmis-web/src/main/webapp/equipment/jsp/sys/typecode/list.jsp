@@ -85,9 +85,9 @@
                                                                <%--border="0"/> <span class="STYLE1">修改</span></a>&nbsp;--%>
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                                        border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+<%--                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                      border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+	                </span>--%>
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -27,7 +27,7 @@
 <body>
 <form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tr>
+<tr class="noprint">
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
         <img src="../../../images/left-top-right.gif" width="17" height="29"/>
     </td>
@@ -49,7 +49,7 @@
     <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
+            <tr class="noprint">
                 <td height="30">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
@@ -70,7 +70,11 @@
                                         </td>
                                         <td>
                                             <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                    class="STYLE1"> &nbsp;</span></div>
+                                                    class="STYLE1"> &nbsp;</span>
+                                                <a href="#" onclick="window.print()"><img src="/equipment/images/del_min.gif" width="10" height="10"
+                                                                                          border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                </span>
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>
@@ -132,7 +136,7 @@
                         </tr>
                     </table>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
+                        <tr class="noprint">
                             <td align="center">
                                 <c:if test="${formType=='apply'}">
                                     <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
