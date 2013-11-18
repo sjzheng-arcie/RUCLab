@@ -11,6 +11,20 @@
 <script src="../../../../js/autocomplete/jquery-ui.js"></script>
 
 <script>
+    function update() {
+        if(!validator(document.mainForm)){
+            return;
+        }
+
+        document.mainForm.action = "updateApplication";
+        document.mainForm.submit();
+    }
+
+    function toAddEquipment(){
+        window.open("/equipment/jsp/dev/allot/deviceList?application_id="+${apply.applicationId}, "设备信息",
+                "height=400, width=1350, toolbar=no, status=no");
+    }
+
     $().ready(function() {
         $( "#target" ).autocomplete({
             source: function( request, response ) {
@@ -34,19 +48,7 @@
 
         });});
 
-    function update() {
-        if(!validator(document.mainForm)){
-            return;
-        }
 
-        document.mainForm.action = "updateApplication";
-        document.mainForm.submit();
-    }
-
-    function toAddEquipment(){
-        window.open("/equipment/jsp/dev/allot/deviceList?application_id="+${apply.applicationId}, "设备信息",
-                "height=400, width=1350, toolbar=no, status=no");
-    }
 </script>
 <body>
 <form name="mainForm" method="post">
@@ -159,7 +161,7 @@
                         <tr>
                             <td align="center">
                                 <c:if test="${formType=='apply'}">
-                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                    <shiro:hasAnyRoles name="administrators,teacher,leader">
                                         <input type="button" name="addEquipmentsToApply" value="添加设备" class="button" onclick="toAddEquipment();"/>
                                         <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
                                         <input type="reset" name="reset" value="重置" class="button"/>
@@ -244,7 +246,7 @@
                                     <div align="center"><span class="STYLE10">使用方向</span></div>
                                 </td>
                                 <c:if test="${formType=='apply'}">
-                                    <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
+                                    <shiro:hasAnyRoles name="administrators,teacher,leader">
                                         <td width="80" bgcolor="d3eaef">
                                             <div align="center"><span class="STYLE10">移除设备</span></div>
                                         </td>
@@ -267,8 +269,8 @@
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
                                     <c:if test="${formType=='apply'}">
-                                        <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                            <td><a href="/equipment/jsp/dev/borrow/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
+                                        <shiro:hasAnyRoles name="administrators,teacher,leader">
+                                            <td><a href="/equipment/jsp/dev/allot/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
                                                 <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
                                             </td>
                                         </shiro:hasAnyRoles>
