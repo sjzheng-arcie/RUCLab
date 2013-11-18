@@ -6,10 +6,34 @@
     <link href="/prototype/css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript" src="/js/page.js"></script>
+    <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        //var baseHref = '/prototype/jsp/experiment/virtual/list';
+        function editorClass(vcid){
+           window.location.href = "/experiment/virtual/editClass?vcId="+vcid;
+        }
+        function deleteClasses(id) {
+            var idsStr = "";
+            if (id) {
+                idsStr = id;
+            } else {
+                var ids = new Array();
+                $.each($("input[name='idCheckbox']:checked"), function (idx, data) {
+                    ids.push($(data).val());
+                });
+                idsStr = ids.join(",");
+                console.log(idsStr);
+            }
+            if (idsStr && idsStr.length > 0 &&  window.confirm("您确定要删除指定的班级吗?")) {
+                $.post("/experiment/virtual/removeClass", {
+                    'ids': idsStr
+                }, function (data) {
+                    alert(data.message);
+                    window.location.href = window.location.href;
+                });
+            }
+        }
     </script>
 
 </head>
@@ -91,9 +115,9 @@
                                                                                 src="/prototype/images/edit_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
-                                                                                class="STYLE1">修改班级信息</span></a>&nbsp;
+                                                                                class="STYLE1">编辑</span></a>&nbsp;
 
-                                                                        <a href="#" onclick="toDelete();"><img
+                                                                        <a href="#" onclick="deleteClasses();"><img
                                                                                 src="/prototype/images/del_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
@@ -132,7 +156,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm','idCheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -154,9 +178,6 @@
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学生</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">编辑班级</span></div>
                                                     </td>
 
@@ -164,9 +185,9 @@
 
                                                 <c:forEach items="${pageInfo.data}" var="item" varStatus="st">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                        <td height="20"><input name="idCheckbox" type="checkbox"
                                                                                value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               onclick="checkOne('listForm', 'idCheckbox')"/>
                                                         </td>
                                                         <td>${st.index+1}</td>
                                                         <td>${item.classSn}</td>
@@ -174,11 +195,12 @@
                                                         <td>${item.curriculumName}</td>
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
-                                                        <td><a href="studentlist.html">查看</a> <a
-                                                                href="studentlist.html">修改</a></td>
-                                                        <td><a href="editclass.html"><input type="button"
-                                                                                            onClick="editclass()"
-                                                                                            class="button" value="编辑">
+
+                                                        <td>
+                                                            <input type="button" onClick="editorClass(${item.id})" class="button"
+                                                                   value="编辑"/>
+                                                            <input type="button" onClick="deleteClasses('${item.id}')"
+                                                                   class="button" value="删除"/>
                                                         </td>
 
                                                     </tr>

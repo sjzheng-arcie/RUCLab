@@ -1,8 +1,6 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.ClassStudent;
-import edu.ruc.labmgr.domain.CurriculumClass;
-import edu.ruc.labmgr.domain.CurriculumClassCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.ClassStudentMapper;
 import edu.ruc.labmgr.mapper.CurriculumClassMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -27,6 +25,7 @@ public class CurriculumClassService {
 
     /**
      * 获得分页的虚拟班级列表
+     *
      * @param pageNum
      * @param sn
      * @param name
@@ -44,30 +43,72 @@ public class CurriculumClassService {
         return getPageClassByCriteria(pageNum, criteria);
     }
 
+    public CurriculumClass getVirtualClass(int cid) {
+        return classMapper.selectByPrimaryKey(cid);
+    }
+
+    public List<Student> getClassStudents(int cid, String sn, String name, String major) {
+        ClassStudentCriteria criteria = new ClassStudentCriteria();
+        ClassStudentCriteria.Criteria c = criteria.or();
+        c.andJoinUser().andJoinStudent().andJoinMajor().andClassIdEqualTo(cid);
+        if (StringUtils.isNotEmpty(sn))
+            c.andStudentSnLike("%" + sn + "%");
+        if (StringUtils.isNotEmpty(name))
+            c.andStudentNameLike("%" + name + "%");
+        if (StringUtils.isNotEmpty(major))
+            c.andStudentMajorLike("%" + major + "%");
+        return classStudentMapper.selectByCriteriaWithStudent(criteria);
+    }
+
     /**
      * 添加班级
+     *
      * @param clazz
      * @return
      */
-    public int addCurriculumClass(CurriculumClass clazz){
+    public int addCurriculumClass(CurriculumClass clazz) {
         classMapper.insert(clazz);
         return clazz.getId();
     }
 
     /**
      * 添加班级及班级对应的学生。
+     *
      * @param clazz
      * @param sids
      */
-    public void addCurriculumClass(CurriculumClass clazz,List<Integer> sids){
-        int cid = classMapper.insert(clazz);
-        if (sids!=null && sids.size()>0){
-            for (Integer i : sids){
+    public void addCurriculumClass(CurriculumClass clazz, List<Integer> sids) {
+        classMapper.insert(clazz);
+        int cid = clazz.getId();
+        if (sids != null && sids.size() > 0) {
+            for (Integer i : sids) {
                 ClassStudent cs = new ClassStudent();
                 cs.setClassId(cid);
                 cs.setStudendId(i);
                 classStudentMapper.insertSelective(cs);
             }
+        }
+    }
+
+    public void updateCurriculumClass(CurriculumClass clazz) {
+        if (clazz.getId() != null) {
+            classMapper.updateByPrimaryKey(clazz);
+        }
+    }
+
+    public void deleteClass(int[] ids) {
+        if (ids != null && ids.length > 0) {
+            for (int i : ids) {
+                classMapper.deleteByPrimaryKey(i);
+            }
+        }
+    }
+
+    public void deleteClassStudent(int vcid, int[] stIds) {
+        for (int sid : stIds) {
+            ClassStudentCriteria criteria = new ClassStudentCriteria();
+            criteria.or().andClassIdEqualTo(vcid).andStudentIdEqualTo(sid);
+            classStudentMapper.deleteByCriteria(criteria);
         }
     }
 
