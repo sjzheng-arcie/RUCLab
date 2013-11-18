@@ -8,12 +8,13 @@
 <head>
     <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
     </script>
 </head>
 
-<body onload="getwidth()" onresize="getwidth()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
@@ -25,7 +26,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">待审批申请</div>
+                            <div class="titlebt">我的申请</div>
                         </td>
                     </tr>
                 </table>
@@ -46,11 +47,9 @@
                                                                                      style="width:100px;"/></span>
 		<span style="white-space:nowrap">&nbsp;&nbsp;申请类型:<select id="formType" name="formType">
             <option value="0">请选择</option>
-            <option value="21">报增申请</option>
-            <option value="22">报减申请</option>
-            <option value="23">借出申请</option>
-            <option value="24">归还申请</option>
-
+            <c:forEach items="${classifList}" var="item">
+                <option value="${item.id}">${item.value}</option>
+            </c:forEach>
         </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
@@ -76,23 +75,15 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">设备转移申请列表</span>
+                                                                                style="white-space:nowrap">设备申请列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="exameapply.html"><img src="/equipment/images/add_min.gif" width="10" height="10"
-                                                       border="0"/> <span class="STYLE1">批准申请</span></a>&nbsp;
-      					<a href="" onclick="toUpdate();"><img src="/equipment/images/edit_min.gif" width="10" height="10"
-                                                              border="0"/> <span class="STYLE1">申请未通过</span></a>&nbsp;
-      											<a href="apply.html"><img src="/equipment/images/add_min.gif" width="10"
-                                                                          height="10" border="0"/> <span class="STYLE1">查看详细</span></a>&nbsp;
-                        <a href="#" onclick="toRoom();"><img src="/equipment/images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -138,6 +129,9 @@
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">审批时间</span></div>
                                                     </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">查看详细</span></div>
+                                                    </td>
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -145,16 +139,35 @@
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="admin" onclick="checkOne(this)"/></td>
 
-                                                            <td>${item.sn}</td>
-                                                         <td>${item.formType.value}</td>
-                                                         <td>${item.applicant.name}</td>
-                                                         <td>${item.operator.name}</td>
-                                                         <td>${item.approver.name}</td>
-                                                         <td>${item.state.value}</td>
-                                                         <td>  <fmt:formatDate  value="${item.applyTime}"></fmt:formatDate></td>
-                                                         <td>$<fmt:formatDate  value="${item.processTime}"></fmt:formatDate></td>
-
-                                                    </tr>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.formType.value}</td>
+                                                        <td>${item.applicant.name}</td>
+                                                        <td>${item.operator.name}</td>
+                                                        <td>${item.approver.name}</td>
+                                                        <td>${item.state.value}</td>
+                                                        <td><fmt:formatDate  value="${item.applyTime}"></fmt:formatDate></td>
+                                                        <td><fmt:formatDate  value="${item.processTime}"></fmt:formatDate></td>
+                                                         <c:choose>
+                                                             <c:when test="${item.formType.value=='借用申请'}" >
+                                                                 <td align="center"><a href="/equipment/jsp/dev/borrow/toUpdateApplication?formType=borrow&&application_id=${item.id}">详细</a></td>
+                                                             </c:when>
+                                                             <c:when test="${item.formType.value=='转移申请'}" >
+                                                                 <td align="center"><a href="/equipment/jsp/dev/allot/toUpdateApplication?formType=allot&&application_id=${item.id}">详细</a></td>
+                                                             </c:when>
+                                                             <c:when test="${item.formType.value=='捐赠申请'}" >
+                                                                 <td align="center"><a href="/equipment/jsp/dev/donate/toUpdateApplication?formType=donate&&application_id=${item.id}">详细</a></td>
+                                                             </c:when>
+                                                             <c:when test="${item.formType.value=='维修申请'}" >
+                                                                 <td align="center"><a href="/equipment/jsp/dev/repair/toUpdateApplication?formType=repair&&application_id=${item.id}">详细</a></td>
+                                                             </c:when>
+                                                             <c:when test="${item.formType.value=='报减申请'}" >
+                                                                 <td align="center"><a href="/equipment/jsp/dev/deficit/toUpdateApplication?formType=deficit&&application_id=${item.id}">详细</a></td>
+                                                             </c:when>
+                                                             <c:when test="${item.formType.value=='归还申请'}" >
+                                                                 <td align="center"><a href="/equipment/jsp/dev/return/toUpdateApplication?formType=return&&application_id=${item.id}">详细</a></td>
+                                                             </c:when>
+                                                         </c:choose>
+                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>

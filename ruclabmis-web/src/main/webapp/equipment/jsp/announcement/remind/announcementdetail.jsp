@@ -37,14 +37,15 @@ function displayClass(value){
  			<tr valign="top">
     			<td>
     				<table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce"  >
-                        <tr  align="center"  bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE"><td bgcolor="#E3E9EE"></td></tr>
-                        <tr bgcolor="#E3E9EE" >
+                        <tr  align="center"  bgcolor="#EEF2FB" style=" height: 10px;background-color: #E3E9EE"><td bgcolor="#EEF2FB"></td></tr>
+                        <tr bgcolor="#EEF2FB" >
 
-        					<td  align="center"  bgcolor="#E3E9EE" >
-					  			<table border="0" cellpadding="2" cellspacing="1" style="width:99%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
+        					<td  align="center"  bgcolor="#EEF2FB" >
+					  			<table border="0" cellpadding="2" cellspacing="1" style="width:99%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#EEF2FB">
 					 				<tr>
                                         <td align="center">
-                                            <div class="message" style="border: 1px;background: #FFFFFF ;height: 800px ;width: 95%">
+                                            <div class="message" style="border: 1px;background: #FFFFFF;width: 95%">
+                                                <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="/equipment/images/close_ico.ico"></a></span>
                                                 <p style="height:30px"><p>
                                                 <h1 style="text-align: center;margin: 20px">${announcementDetailFlag.title}</h1>
                                                 <hr style="margin: 30px">
@@ -53,7 +54,7 @@ function displayClass(value){
                                                 <hr style="margin: 30px">
                                                 <div style="margin: 30px;text-align: left">${announcementDetailFlag.content}</div>
                                                 <hr style="margin:30px">
-
+                                                <p style="height:30px"><p>
                                             </div>
                                         </td>
 					    			</tr>
@@ -64,7 +65,7 @@ function displayClass(value){
 							</td>
 
       					</tr>
-                        <tr  align="center"  bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE"><td align="center">
+                        <tr  align="center"  bgcolor="#EEF2FB" style=" height: 10px;background-color: #EEF2FB"><td align="center">
                             <input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/>
                         </td></tr>
     				</table>

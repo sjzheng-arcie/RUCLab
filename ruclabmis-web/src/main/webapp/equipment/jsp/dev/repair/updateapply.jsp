@@ -20,6 +20,9 @@
         window.open("/equipment/jsp/dev/repair/deviceList?application_id="+${apply.applicationId}, "设备信息",
                 "height=400, width=1350, toolbar=no, status=no");
     }
+    function freshWindow(){
+        window.location.reload(true);
+    }
 </script>
 <body>
 <form name="mainForm" method="post">
@@ -33,7 +36,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备基本信息管理 > 实验设备借用</div>
+                    <div class="titlebt">设备基本信息管理 > 实验设备维修</div>
                 </td>
             </tr>
         </table>
@@ -60,7 +63,7 @@
                                                         <div align="center"><img src="../../../images/tb.gif"
                                                                                  width="14" height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备借用申请</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备维修申请</span>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -241,7 +244,7 @@
                                     <td>${item.useDirection}</td>
                                     <c:if test="${formType=='apply'}">
                                         <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                            <td><a href="/equipment/jsp/dev/borrow/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
+                                            <td><a href="/equipment/jsp/dev/repair/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
                                                 <img src="../../../images/del_min.gif" width="10" height="10" border="0"/></a>
                                             </td>
                                         </shiro:hasAnyRoles>

@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.service.ApplyStrategic;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentApplicationFormKey;
@@ -36,6 +37,7 @@ public class ReturnApply extends BaseApply {
     @Override
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
+
         for(Integer id : equipIds){
             //更新设备状态
             Equipment equipment = new Equipment();

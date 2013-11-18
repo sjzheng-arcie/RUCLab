@@ -45,7 +45,11 @@ public class ApplicationFormService {
 		page.setData(data);
 		return page;
 	}
-
+	public ApplicationForm getApplicationFormById(int id){
+		ApplicationForm applicationForm= new ApplicationForm();
+		applicationForm=applicationFormMapper.selectByPrimaryKey(id);
+		return applicationForm;
+	}
 
 
 }
