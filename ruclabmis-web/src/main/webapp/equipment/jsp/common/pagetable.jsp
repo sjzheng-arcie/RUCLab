@@ -17,22 +17,22 @@
                     <tr>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(1, ${pageInfo.totalPage})" style="cursor:pointer"
-                                                     src='/equipment/images/main_54.gif' width='40' height='15'
+                                                     src='../../../images/main_54.gif' width='40' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(${pageInfo.currentPage-1}, ${pageInfo.totalPage})" style="cursor:pointer"
-                                                     src='/equipment/images/main_56.gif' width='45' height='15'
+                                                     src='../../../images/main_56.gif' width='45' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(${pageInfo.currentPage+1}, ${pageInfo.totalPage})" style="cursor:pointer"
-                                                     src='/equipment/images/main_58.gif' width='45' height='15'
+                                                     src='../../../images/main_58.gif' width='45' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='49'>
                             <div align='center'><img onclick="goPage(${pageInfo.totalPage}, ${pageInfo.totalPage})" style="cursor:pointer"
-                                                     src='/equipment/images/main_60.gif' width='40' height='15'
+                                                     src='../../../images/main_60.gif' width='40' height='15'
                                                      border='0'/></div>
                         </td>
                         <td width='37' class='STYLE22'>

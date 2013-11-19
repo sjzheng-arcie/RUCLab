@@ -234,12 +234,12 @@ public class RootController {
 				request.setAttribute("userNameNotExist","* 用户名不存在");
 				request.setAttribute("nonexistUserName",userSn);
 
-				result="/equipment/login";
+				result="redirect:login";
 			}catch (IncorrectCredentialsException e){
 				request.setAttribute("passwordNotMatch","* 密码错误");
 
 				request.setAttribute("nonexistUserName",userSn);
-				result="/equipment/login";
+				result="redirect:login";
 			}
 		}
 		if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
