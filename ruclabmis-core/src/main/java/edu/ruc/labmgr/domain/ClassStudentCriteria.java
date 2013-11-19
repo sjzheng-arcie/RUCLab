@@ -224,63 +224,63 @@ public class ClassStudentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdIsNull() {
-            addCriterion("cs.studend_id is null");
+        public Criteria andStudentIdIsNull() {
+            addCriterion("cs.student_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdIsNotNull() {
-            addCriterion("cs.studend_id is not null");
+        public Criteria andStudentIdIsNotNull() {
+            addCriterion("cs.student_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdEqualTo(Integer value) {
-            addCriterion("cs.studend_id =", value, "studendId");
+        public Criteria andStudentIdEqualTo(Integer value) {
+            addCriterion("cs.student_id =", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdNotEqualTo(Integer value) {
-            addCriterion("cs.studend_id <>", value, "studendId");
+        public Criteria andStudentIdNotEqualTo(Integer value) {
+            addCriterion("cs.student_id <>", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdGreaterThan(Integer value) {
-            addCriterion("cs.studend_id >", value, "studendId");
+        public Criteria andStudentIdGreaterThan(Integer value) {
+            addCriterion("cs.student_id >", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("cs.studend_id >=", value, "studendId");
+        public Criteria andStudentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("cs.student_id >=", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdLessThan(Integer value) {
-            addCriterion("cs.studend_id <", value, "studendId");
+        public Criteria andStudentIdLessThan(Integer value) {
+            addCriterion("cs.student_id <", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdLessThanOrEqualTo(Integer value) {
-            addCriterion("cs.studend_id <=", value, "studendId");
+        public Criteria andStudentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("cs.student_id <=", value, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdIn(List<Integer> values) {
-            addCriterion("cs.studend_id in", values, "studendId");
+        public Criteria andStudentIdIn(List<Integer> values) {
+            addCriterion("cs.student_id in", values, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdNotIn(List<Integer> values) {
-            addCriterion("cs.studend_id not in", values, "studendId");
+        public Criteria andStudentIdNotIn(List<Integer> values) {
+            addCriterion("cs.student_id not in", values, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdBetween(Integer value1, Integer value2) {
-            addCriterion("cs.studend_id between", value1, value2, "studendId");
+        public Criteria andStudentIdBetween(Integer value1, Integer value2) {
+            addCriterion("cs.student_id between", value1, value2, "studentId");
             return (Criteria) this;
         }
 
-        public Criteria andStudendIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("cs.studend_id not between", value1, value2, "studendId");
+        public Criteria andStudentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("cs.student_id not between", value1, value2, "studentId");
             return (Criteria) this;
         }
 
@@ -402,6 +402,51 @@ public class ClassStudentCriteria {
         public Criteria andFinalGradeNotBetween(Short value1, Short value2) {
             addCriterion("cs.final_grade not between", value1, value2, "finalGrade");
             return (Criteria) this;
+        }
+
+        public Criteria andStudentSnEqualTo(String sn){
+            addCriterion("u.sn =",sn,"u.sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentSnLike(String sn){
+            addCriterion("u.sn like",sn,"u.sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andStudentNameEqualTo(String name){
+           addCriterion("u.name =",name,"u.name");
+           return (Criteria)this;
+        }
+
+        public Criteria andStudentNameLike(String name){
+            addCriterion("u.name like",name,"u.name");
+            return (Criteria)this;
+        }
+
+        public Criteria andStudentMajorEqualTo(String major){
+            addCriterion("m.name =",major,"m.name");
+            return (Criteria)this;
+        }
+
+        public Criteria andStudentMajorLike(String major){
+            addCriterion("m.name like",major,"m.name");
+            return (Criteria)this;
+        }
+
+        public Criteria andJoinUser(){
+            addCriterion("cs.student_id = u.id");
+            return (Criteria)this;
+        }
+
+        public Criteria andJoinStudent(){
+            addCriterion("u.id = st.id");
+            return (Criteria)this;
+        }
+
+        public Criteria andJoinMajor(){
+            addCriterion("u.major_id = m.id");
+            return (Criteria)this;
         }
     }
 

@@ -25,13 +25,13 @@ public class StudentService {
         StudentCriteria criteria = new StudentCriteria();
         StudentCriteria.Criteria c = criteria.or();
         if (StringUtils.isNotEmpty(sn)){
-            c.andStudentSnLike(sn);
+            c.andStudentSnLike("%"+sn+"%");
         }
         if (StringUtils.isNotEmpty(name)){
-            c.andStudentNameLike(name);
+            c.andStudentNameLike("%"+name+"%");
         }
         if (StringUtils.isNotEmpty(major)){
-            c.andStudentMajorLike(major);
+            c.andStudentMajorLike("%"+major+"%");
         }
         c.andJoinUser().andJoinMajor();
         return getPageStudentByCriteria(pageNum,criteria);

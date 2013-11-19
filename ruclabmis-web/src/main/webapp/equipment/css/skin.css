@@ -390,3 +390,8 @@ a:visited {
 .top_right_menu li a:hover {
     background: url(../images/hover.gif);
 }
+@media print{
+    .noprint{
+        display:none
+    }
+}

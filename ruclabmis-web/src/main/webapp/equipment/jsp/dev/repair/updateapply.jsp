@@ -27,7 +27,7 @@
 <body>
 <form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
-<tr>
+<tr class="noprint">
     <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
         <img src="../../../images/left-top-right.gif" width="17" height="29"/>
     </td>
@@ -36,7 +36,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备基本信息管理 > 实验设备借用</div>
+                    <div class="titlebt">设备基本信息管理 > 实验设备维修</div>
                 </td>
             </tr>
         </table>
@@ -49,10 +49,10 @@
     <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr>
+            <tr class="noprint">
                 <td height="30">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
+                        <tr class="noprint">
                             <td height="24" bgcolor="#353c44">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
@@ -63,14 +63,18 @@
                                                         <div align="center"><img src="../../../images/tb.gif"
                                                                                  width="14" height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备借用申请</span>
+                                                    <td width="94%" valign="bottom"><span class="STYLE1">实验设备维修申请</span>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </td>
                                         <td>
                                             <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                    class="STYLE1"> &nbsp;</span></div>
+                                                    class="STYLE1"> &nbsp;</span>
+                                                <a href="#" onclick="window.print()"><img src="/equipment/images/del_min.gif" width="10" height="10"
+                                                                                          border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                </span>
+                                            </div>
                                         </td>
                                     </tr>
                                 </table>
@@ -132,7 +136,7 @@
                         </tr>
                     </table>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
+                        <tr class="noprint">
                             <td align="center">
                                 <c:if test="${formType=='apply'}">
                                     <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">

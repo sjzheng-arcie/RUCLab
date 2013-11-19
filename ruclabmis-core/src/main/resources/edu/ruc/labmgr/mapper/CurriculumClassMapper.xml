@@ -94,11 +94,13 @@
             order by ${orderByClause}
         </if>
     </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
+        u.name as teacher_name,
         <include refid="Base_Column_List"/>
-        from curriculum_class cc
-        where cc.id = #{id,jdbcType=INTEGER}
+        from curriculum_class cc,curriculum c, user u
+        where cc.id = #{id,jdbcType=INTEGER} and cc.curriculum_id = c.id and c.teacher_id = u.id
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from curriculum_class
