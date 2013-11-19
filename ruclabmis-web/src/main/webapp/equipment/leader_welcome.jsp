@@ -40,7 +40,7 @@
 <body style="width:100%;">
 <div class="indexMainCon">
     <div class="indexNews">
-        <h3><a href="javascript:void(0)">更多>></a><span>系统公告</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=0&&page=0 "  target="">更多>></a><span>系统公告</span></h3>
 
         <div class="indexNewsCon">
             <ul>
@@ -54,7 +54,7 @@
         </div>
     </div>
     <div class="indexNotice">
-        <h3><span>个人通知</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=1&&page=0 "  target="">更多>></a><span>个人通知</span></h3>
 
         <div class="indexNoticeCon">
             <ul>

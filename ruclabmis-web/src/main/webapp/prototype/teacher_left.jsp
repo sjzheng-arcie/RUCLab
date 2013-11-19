@@ -44,8 +44,6 @@
                     <ul class="MM">
                         <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.html"
                                onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的课程表</a></li>
-                        <li><a href="jsp/experiment/experimentpaper/myexperimentlist" onfocus="toFocus(this)"
-                               target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的实验课程</a></li>
                         <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的短消息</a>
                         </li>
                         <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的通知</a>
@@ -77,7 +75,7 @@
                             &nbsp;&nbsp;&nbsp;&nbsp;实验室预约</a></li>
                         <li><a href="jsp/experiment/report/courselist" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告管理</a>
                         </li>
-                        <li><a href="jsp/experiment/achievement/scorelist" onfocus="toFocus(this)" target="main">
+                        <li><a href="jsp/experiment/achievement/courselist" onfocus="toFocus(this)" target="main">
                             &nbsp;&nbsp;&nbsp;&nbsp;学期成绩评定</a></li>
                     </ul>
                 </div>

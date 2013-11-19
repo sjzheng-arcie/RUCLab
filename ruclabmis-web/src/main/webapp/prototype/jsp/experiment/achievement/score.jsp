@@ -37,16 +37,12 @@
         <td width="16" valign="top" background="../../../images/mail_rightbg.gif"><img
                 src="../../../images/nav-right-bg.gif" width="16" height="29"/></td>
     </tr>
-
-
     <tr>
         <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
         <td valign="top" bgcolor="#F7F8F9">
             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                 <tr>
                     <td valign="top" class="STYLE10">
-
-
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td height="30">
@@ -72,10 +68,9 @@
                                                         </td>
                                                         <td>
                                                             <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                <span class="STYLE1" style="white-space:nowrap">
+
+                                                                </span>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -199,23 +194,27 @@
                                             <td nowrap align="right">平日成绩:</td>
                                             <td nowrap align="left">
                                                 <input name="usualScore" class="text" value="6"/>
-                                                <span style="color:red;">*</span>
                                             </td>
+                                        </tr>
+                                        <tr>
                                             <td nowrap align="right">期末成绩:</td>
                                             <td nowrap align="left">
                                                 <input name="finalScore" class="text" value="7"/>
-                                                <span style="color:red;">*</span>
                                             </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">平日成绩所占比例:</td>
+                                            <td nowrap align="left">
+                                                <input name="proportion" class="text" value="7"/>
+                                            </td>
+                                        </tr>
+                                        <tr>
                                             </td>
                                             <td nowrap align="right">最终成绩:</td>
                                             <td nowrap align="left">
                                                 <input name="totalGrade" class="text" value="8"/>
-                                                <span style="color:red;">*</span>
                                             </td>
-
                                         </tr>
-
-
                                     </table>
 
                                 </td>

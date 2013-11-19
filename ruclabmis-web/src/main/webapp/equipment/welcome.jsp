@@ -60,7 +60,7 @@
         </div>
     </div>
     <div class="indexNotice">
-        <h3><span>个人通知</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=1&&page=0 "  target="">更多>></a><span>个人通知</span></h3>
 
         <div class="indexNoticeCon">
             <ul>

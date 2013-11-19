@@ -11,7 +11,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/prototype/jsp/experiment/achievement/scorelist';
+        var baseHref = '/prototype/jsp/experiment/virtual/list';
     </script>
 
 </head>
@@ -28,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验成绩管理 >学期成绩评定 </div>
+                            <div class="titlebt">实验成绩管理> 实验班级</div>
                         </td>
                     </tr>
                 </table>
@@ -43,16 +43,7 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="studentNo"
-                                                                                     id="studentNo" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;姓名:<input type="text" name="studentName"
-                                                                                     id="studentName" value=""
-                                                                                     style="width:100px;"/></span>
 
-                              <span style="white-space:nowrap">&nbsp;&nbsp;
-                                <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -74,12 +65,15 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">学生列表</span>
+                                                                                style="white-space:nowrap">课程列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
+                                                                <div align="right">
+
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -94,52 +88,34 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="10" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                        <div align="center">
-                                                            <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
-                                                        </div>
+
+                                                    <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
 
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学号</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">学生姓名</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">成绩</span></div>
                                                     </td>
-
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">分数</span></div>
-                                                    </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">评分</span></div>
-                                                    </td>
-
-
 
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
 
-                                                    <td>0101</td>
-                                                    <td>李小白</td>
-                                                    <td>${item.score}</td>
-                                                    <td><a class="button" href="score?studentId=${item.studentId}">评分</a></td>
+                                                    <td title="">软件工程虚拟班级一</td>
+                                                    <td title="">软件工程</td>
 
+
+                                                    <td title=""><a class="button" href="scorelist?courseId=${item.id}">成绩</a></td>
 
                                                 </tr>
-
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
-                                                        </td>
-                                                        <td>${item.sn}</td>
-                                                        <td>${item.name}</td>
-                                                        <td>${item.score}</td>
-                                                        <td><a class="button" href="score?studentId=${item.studentId}">评分</a></td>
+                                                        <td>${item.className}</td>
+                                                        <td>${item.courseName}</td>
+                                                        <td title=""><a class="button" href="scorelist?courseId=${item.id}">成绩</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
