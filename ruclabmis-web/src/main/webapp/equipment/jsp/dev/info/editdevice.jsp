@@ -6,6 +6,11 @@
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
+
+<link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css" />
+<script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
+<script src="../../../../js/autocomplete/jquery-ui.js"></script>
+
 <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
     function update() {
@@ -15,6 +20,29 @@
         document.mainForm.action = "update";
         document.mainForm.submit();
     }
+
+    $().ready(function() {
+        $( "#holderName" ).autocomplete({
+            source: function( request, response ) {
+                $.ajax({
+                    url: "/equipment/jsp/sys/user/autoFillUserName",
+                    dataType: "json",
+                    data:{
+                        param: request.term
+                    },
+                    success: function( userList ) {
+                        response( $.map( userList, function( item ) {
+                            return {
+                                label:item.user.name + "(" +item.user.sn + ")",
+                                value:item.user.name + "(" +item.user.sn + ")"
+                            }
+                        }));
+                    }
+                });
+            },
+            minLength: 1
+
+        });});
 </script>
 <body>
 <form name="mainForm" method="post">
@@ -114,7 +142,9 @@
                                         <td align="center">领用人</td>
                                         <input name="holder" id="holder" type="hidden" value="${equipment.holder}">
                                         <td>
-                                            <input name="holderName" id="holderName" value="${equipment.holderName}" onblur="" class="text"
+                                            <input name="holderName" id="holderName"
+                                                   value="${equipment.holderName}" onblur=""
+                                                   autocomplete="off"   class="autocomplete-suggestion"
                                                    style="width:154px" maxlength="20"/>
                                         </td>
                                         <td align="center">使用人</td>
