@@ -86,9 +86,9 @@
                                                                 <div align="right">
                                                                     <shiro:hasAnyRoles name="administrators,teacher">
                                                                         <span class="STYLE1" style="white-space:nowrap">
-                                                                            <a href="toadd" onclick="toAdd()"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                            <a href="toadd"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span></a>&nbsp;
-                                                                            <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                                            <a href="#" onclick="toDelete('listForm');"><img src="../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                     </shiro:hasAnyRoles>
                                                                 </span>

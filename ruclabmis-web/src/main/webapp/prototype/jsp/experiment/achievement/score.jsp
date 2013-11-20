@@ -12,6 +12,10 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/prototype/jsp/experiment/achievement/score';
+        function save(){
+            document.listForm.action = "score";
+            document.listForm.submit();
+        }
     </script>
 
 </head>
@@ -20,7 +24,7 @@
 
 <form name="listForm" method="post">
 
-
+<input type="hidden" name="studentId" value="${studentId}">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
@@ -193,26 +197,26 @@
                                         <tr>
                                             <td nowrap align="right">平日成绩:</td>
                                             <td nowrap align="left">
-                                                <input name="usualScore" class="text" value="6"/>
+                                                <input name="usualScore" class="text" value="${score.usualScore}"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">期末成绩:</td>
                                             <td nowrap align="left">
-                                                <input name="finalScore" class="text" value="7"/>
+                                                <input name="finalScore" class="text" value="${score.finalScore}"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             <td nowrap align="right">平日成绩所占比例:</td>
                                             <td nowrap align="left">
-                                                <input name="proportion" class="text" value="7"/>
+                                                <input name="proportion" class="text" value="${score.proportion}"/>
                                             </td>
                                         </tr>
                                         <tr>
                                             </td>
                                             <td nowrap align="right">最终成绩:</td>
                                             <td nowrap align="left">
-                                                <input name="totalGrade" class="text" value="8"/>
+                                                <input name="totalScore" class="text" value="${score.totalScore}"/>
                                             </td>
                                         </tr>
                                     </table>

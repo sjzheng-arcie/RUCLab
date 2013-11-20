@@ -92,9 +92,9 @@
                         </li>
                         <li><a href="jsp/res/experimentquestion/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
                         </li>
-                        <li><a href="jsp/res/question/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;考试题库管理</a>
+                        <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;考试题库管理</a>
                         </li>
-                        <li><a href="jsp/res/paper/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;试卷管理</a>
+                        <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;试卷管理</a>
                         </li>
 
                     </ul>

@@ -12,6 +12,14 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/prototype/jsp/res/paper/list';
+        //获得divwidth的宽度
+        function getwidth(){
+            document.getElementById("divwidth").style.width= document.body.offsetWidth-35+"px";
+            if(document.body.scrollWidth>document.body.offsetWidth){
+                document.getElementById("divwidth").style.width=document.body.scrollWidth-35+"px";
+            }
+        }
+
     </script>
 
 </head>
@@ -47,17 +55,17 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;试卷编号:<input type="text" name="paperNo"
                                                                                      id="paperNo" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="text" name="theClass"
-                                                                                     id="theClass" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;考试时间:<input type="text" name="examTime"
-                                                                                     id="examTime" value=""
-                                                                                     style="width:100px;"/></span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:
+                            <select name="theClass">
+                                <option value="0"></option>
+                                <c:forEach items="${courseList}" var="item">
+                                    <option value="${item.id}">"${item.value}"</option>
+                                </c:forEach>
+                            </select>
+                            </span>
+                          <span style="white-space:nowrap">&nbsp;&nbsp;
+                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                     <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -86,16 +94,12 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../images/edit_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                <span class="STYLE1" style="white-space:nowrap">
+                                                                    <a href="add"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">新增</span></a>&nbsp;
+                                                                    <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                                                           border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                        </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -118,9 +122,6 @@
                                                         </div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">试卷编号</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -130,14 +131,9 @@
                                                         <div align="center"><span class="STYLE10">所属科目</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">考试时间</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">出题人</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">用途</span></div>
-                                                    </td>
+
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">查看</span></div>
                                                     </td>
@@ -149,38 +145,24 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
                                                     <td>SJ001</td>
                                                     <td>软件工程06年第二学期期末考试</td>
                                                     <td>软件工程</td>
-                                                    <td>2012-02-12</td>
                                                     <td>赵天华</td>
-                                                    <td>期末考试</td>
-                                                    <td><a href="editpaper.html">查看试卷</a></td>
-                                                    <td><a href="editpaper.html">编辑试卷</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
-                                                    <td>SJ002</td>
-                                                    <td>软件工程09年第一学期补考试卷</td>
-                                                    <td>软件工程</td>
-                                                    <td>2012-05-15</td>
-                                                    <td>洪天锡</td>
-                                                    <td>补考</td>
-                                                    <td><a href="editpaper.html">查看试卷</a></td>
-                                                    <td><a href="editpaper.html">编辑试卷</a></td>
+                                                    <td><a href="paperinfo">查看试卷</a></td>
+                                                    <td><a href="editpaper">编辑试卷</a></td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-
+                                                        <td>${item.course}</td>
+                                                        <td>${item.teacher}</td>
+                                                        <td><a href="paperinfo">查看试卷</a></td>
+                                                        <td><a href="editpaper">编辑试卷</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

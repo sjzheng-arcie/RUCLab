@@ -126,7 +126,7 @@
                                                     <td>0101</td>
                                                     <td>李小白</td>
                                                     <td>${item.score}</td>
-                                                    <td><a class="button" href="score?studentId=${item.studentId}">评分</a></td>
+                                                    <td><a class="button" href="toscore?studentId=${item.studentId}">评分</a></td>
 
 
                                                 </tr>
@@ -139,7 +139,7 @@
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.score}</td>
-                                                        <td><a class="button" href="score?studentId=${item.studentId}">评分</a></td>
+                                                        <td><a class="button" href="toscore?studentId=${item.studentId}">评分</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

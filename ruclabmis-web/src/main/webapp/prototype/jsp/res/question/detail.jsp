@@ -1,15 +1,9 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
         document.form1.action = "listSysint.html";
-        document.form1.submit();
-    }
-    function addtopaper() {
-        document.form1.action = "addtopaper.html";
         document.form1.submit();
     }
 
@@ -26,7 +20,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验管理 > 添加实验</div>
+                            <div class="titlebt">资源管理 > 题目资源管理</div>
                         </td>
                     </tr>
                 </table>
@@ -54,7 +48,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">新建实验</span></td>
+                                                                    class="STYLE1">添加题目资源</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -78,66 +72,124 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验编号:</td>
+                                                <td nowrap align="right">题目编号:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <input name="" id="" class="text" style="width:154px" maxlength="20"
+                                                           valid="required|isAccount" value="ZX0001"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-                                                <td nowrap align="right">实验名称:</td>
+
+                                            </tr>
+                                            <tr>
+
+                                                <td nowrap align="right">所属科目:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <input name="" id="" onblur="" class="text" style="width:154px"
+                                                           maxlength="20" valid="required|isAccount" value="编程语言"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">所属课程:</td>
+                                                <td nowrap align="right">题目类型:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <select>
+                                                        <option value="">--请选择--</option>
+                                                        <option value="0">单项选择</option>
+                                                        <option value="1">多项选择</option>
+                                                        <option value="2">填空</option>
+                                                        <option value="3">简答</option>
+
+                                                        <select/>
 
                                                 </td>
-                                                <td nowrap align="right">指导老师:</td>
+
+
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">题目内容:</td>
                                                 <td nowrap>
                                                     <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword"/>
+                                                           valid="required|isPassword" value="下面属于面向对象的语言有"/>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_spwd"></span>
                                                 </td>
 
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实验指导书:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/><input type="button"
-                                                                                              class="buttom"
-                                                                                              value="浏览"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-
-                                                </td>
-                                                <td nowrap align="right">实验报告书:</td>
+                                                <td nowrap align="right">问题项一:</td>
                                                 <td nowrap>
                                                     <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword"/><input type="button"
-                                                                                               class="buttom"
-                                                                                               value="浏览"/>
+                                                           valid="required|isPassword" value="A、 C语言"/>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_spwd"></span>
                                                 </td>
 
                                             </tr>
+                                            <tr>
+                                                <td nowrap align="right">问题项二:</td>
+                                                <td nowrap>
+                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
+                                                           valid="required|isPassword" value="B、 C++"/>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                </td>
 
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">问题项三:</td>
+                                                <td nowrap>
+                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
+                                                           valid="required|isPassword" value="C、 HTML"/>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">问题项四:</td>
+                                                <td nowrap>
+                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
+                                                           valid="required|isPassword" value="D、 Java"/>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">答案:</td>
+                                                <td nowrap>
+                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
+                                                           valid="required|isPassword" value="D"/>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">难易程度:</td>
+                                                <td nowrap>
+                                                    <select>
+                                                        <option value="">--请选择--</option>
+                                                        <option value="0">难</option>
+                                                        <option selected="selected" value="1">中</option>
+                                                        <option value="2">易</option>
+
+                                                        <select/>
+
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">正确率:</td>
+                                                <td nowrap>
+                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
+                                                           valid="required|isPassword" value="40%"/>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                </td>
+
+                                            </tr>
 
                                         </table>
                                     </td>
@@ -149,8 +201,6 @@
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="Submit3" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="reset" name="Submit3" value="添加试题" class="button"
-                                               onclick="addtopaper();"/>
                                         <input type="button" name="Submit2" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>

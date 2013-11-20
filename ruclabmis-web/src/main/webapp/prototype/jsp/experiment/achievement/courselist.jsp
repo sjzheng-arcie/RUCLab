@@ -90,14 +90,14 @@
                                                 <tr>
 
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
+                                                        <div align="center"><span class="STYLE10">班级名称</span></div>
                                                     </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">成绩</span></div>
+                                                        <div align="center"><span class="STYLE10">查看成绩</span></div>
                                                     </td>
 
 
@@ -108,14 +108,14 @@
                                                     <td title="">软件工程</td>
 
 
-                                                    <td title=""><a class="button" href="scorelist?courseId=${item.id}">成绩</a></td>
+                                                    <td title=""><a class="button" href="scorelist?courseId=${item.id}">查看成绩</a></td>
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td>${item.className}</td>
                                                         <td>${item.courseName}</td>
-                                                        <td title=""><a class="button" href="scorelist?courseId=${item.id}">成绩</a></td>
+                                                        <td title=""><a class="button" href="scorelist?courseId=${item.id}">查看成绩</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
