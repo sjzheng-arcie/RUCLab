@@ -53,7 +53,7 @@
         </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                <img src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                    <img src="/equipment/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -136,7 +136,7 @@
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
-                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="admin" onclick="checkOne(this)"/></td>
 
@@ -148,27 +148,27 @@
                                                         <td>${item.state.value}</td>
                                                         <td><fmt:formatDate  value="${item.applyTime}"></fmt:formatDate></td>
                                                         <td><fmt:formatDate  value="${item.processTime}"></fmt:formatDate></td>
-                                                         <c:choose>
-                                                             <c:when test="${item.formType.value=='借用申请'}" >
-                                                                 <td align="center"><a href="/equipment/jsp/dev/borrow/toUpdateApplication?formType=borrow&&application_id=${item.id}">详细</a></td>
-                                                             </c:when>
-                                                             <c:when test="${item.formType.value=='转移申请'}" >
-                                                                 <td align="center"><a href="/equipment/jsp/dev/allot/toUpdateApplication?formType=allot&&application_id=${item.id}">详细</a></td>
-                                                             </c:when>
-                                                             <c:when test="${item.formType.value=='捐赠申请'}" >
-                                                                 <td align="center"><a href="/equipment/jsp/dev/donate/toUpdateApplication?formType=donate&&application_id=${item.id}">详细</a></td>
-                                                             </c:when>
-                                                             <c:when test="${item.formType.value=='维修申请'}" >
-                                                                 <td align="center"><a href="/equipment/jsp/dev/repair/toUpdateApplication?formType=repair&&application_id=${item.id}">详细</a></td>
-                                                             </c:when>
-                                                             <c:when test="${item.formType.value=='报减申请'}" >
-                                                                 <td align="center"><a href="/equipment/jsp/dev/deficit/toUpdateApplication?formType=deficit&&application_id=${item.id}">详细</a></td>
-                                                             </c:when>
-                                                             <c:when test="${item.formType.value=='归还申请'}" >
-                                                                 <td align="center"><a href="/equipment/jsp/dev/return/toUpdateApplication?formType=return&&application_id=${item.id}">详细</a></td>
-                                                             </c:when>
-                                                         </c:choose>
-                                                     </tr>
+                                                        <c:choose>
+                                                            <c:when test="${item.formType.value=='借用申请'}" >
+                                                                <td align="center"><a href="/equipment/jsp/dev/borrow/toUpdateApplication?formType=borrow&&application_id=${item.id}">详细</a></td>
+                                                            </c:when>
+                                                            <c:when test="${item.formType.value=='转移申请'}" >
+                                                                <td align="center"><a href="/equipment/jsp/dev/allot/toUpdateApplication?formType=allot&&application_id=${item.id}">详细</a></td>
+                                                            </c:when>
+                                                            <c:when test="${item.formType.value=='捐赠申请'}" >
+                                                                <td align="center"><a href="/equipment/jsp/dev/donate/toUpdateApplication?formType=donate&&application_id=${item.id}">详细</a></td>
+                                                            </c:when>
+                                                            <c:when test="${item.formType.value=='维修申请'}" >
+                                                                <td align="center"><a href="/equipment/jsp/dev/repair/toUpdateApplication?formType=repair&&application_id=${item.id}">详细</a></td>
+                                                            </c:when>
+                                                            <c:when test="${item.formType.value=='报减申请'}" >
+                                                                <td align="center"><a href="/equipment/jsp/dev/deficit/toUpdateApplication?formType=deficit&&application_id=${item.id}">详细</a></td>
+                                                            </c:when>
+                                                            <c:when test="${item.formType.value=='归还申请'}" >
+                                                                <td align="center"><a href="/equipment/jsp/dev/return/toUpdateApplication?formType=return&&application_id=${item.id}">详细</a></td>
+                                                            </c:when>
+                                                        </c:choose>
+                                                    </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>
@@ -187,9 +187,9 @@
         </tr>
         <tr>
             <td valign="bottom" background="/equipment/images/mail_leftbg.gif"><img src="/equipment/images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
+                                                                                    width="17" height="17"/></td>
             <td valign="bottom" background="/equipment/images/buttom_bgs.gif"><img src="/equipment/images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+                                                                                   width="100%" height="17"/></td>
             <td valign="bottom" background="/equipment/images/mail_rightbg.gif"><img
                     src="/equipment/images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
