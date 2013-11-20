@@ -3,6 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
+<script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -190,19 +191,19 @@
                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                         </div>
                                     </td>
-                                    <td width="80" bgcolor="d3eaef">
+                                    <td width="70" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">仪器编号</span></div>
                                     </td>
-                                    <td width="100" bgcolor="d3eaef">
+                                    <td width="90" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">名称</span></div>
                                     </td>
-                                    <td width="80" bgcolor="d3eaef">
+                                    <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">领用人</span></div>
                                     </td>
                                     <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">使用人</span></div>
                                     </td>
-                                    <td width="100" bgcolor="d3eaef">
+                                    <td width="90" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">分类</span></div>
                                     </td>
                                     <td width="40" bgcolor="d3eaef">
@@ -220,13 +221,13 @@
                                     <td width="60" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">出厂号</span></div>
                                     </td>
-                                    <td width="60" bgcolor="d3eaef">
+                                    <td width="65" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">出厂日期</span></div>
                                     </td>
-                                    <td width="60" bgcolor="d3eaef">
+                                    <td width="65" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">购置日期</span></div>
                                     </td>
-                                    <td width="60" bgcolor="d3eaef">
+                                    <td width="65" bgcolor="d3eaef">
                                         <div align="center"><span class="STYLE10">报废日期</span></div>
                                     </td>
                                     <td width="60" bgcolor="d3eaef">

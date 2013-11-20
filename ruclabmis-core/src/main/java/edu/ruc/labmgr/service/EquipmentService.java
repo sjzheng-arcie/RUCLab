@@ -181,6 +181,9 @@ public class EquipmentService {
             }
             equipment.setHolder(id);
         }
+        else{
+            equipment.setHolder(null);
+        }
         equipmentMapper.updateByPrimaryKey(equipment);
     }
 
