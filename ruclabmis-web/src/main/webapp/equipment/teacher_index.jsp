@@ -4,7 +4,7 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-    <title>管理中心</title>
+    <title>设备管理系统</title>
     <style>
         body {
             background: #eef2fb;
