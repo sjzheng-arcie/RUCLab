@@ -62,7 +62,7 @@ function displayClass(value){
                                                 <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="/equipment/images/close_ico.ico"></a></span>
                                                 <p style="height:30px"><p>
                                                 <h1 style="text-align: left;margin: 20px">详细信息：</h1>
-                                                <p style="margin: 30px" align="left"><span>接收人 :  </span><span>${messageDetailFlag.sender.name}</span> <span style="float:right"><fmt:formatDate value="${messageDetailFlag.sendtime}"></fmt:formatDate></span>
+                                                <p style="margin: 30px" align="left"><span>接收人 :  </span><span>${messageDetailFlag.receiver.name}</span> <span style="float:right"><fmt:formatDate value="${messageDetailFlag.sendtime}"></fmt:formatDate></span>
                                                     <span style="float:right;">发送时间 :  </span></p>
                                                 <hr style="margin: 30px">
                                                 <div style="margin: 30px;text-align: left">${messageDetailFlag.content}</div>

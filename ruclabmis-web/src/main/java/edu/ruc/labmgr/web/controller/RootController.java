@@ -137,6 +137,8 @@ public class RootController {
 		mav.addObject("announcementList",getAnnouncementList());
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+		criteria2.andReceiverIdEqualTo(user.getId());
 		messageCriteria.setOrderByClause("sendtime desc");
 		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
 		mav.addObject("messageList",messageList);
@@ -173,8 +175,12 @@ public class RootController {
 		//获取通知列表
 		mav.addObject("announcementList",getAnnouncementList() );
 		//获取消息列表
+
 		MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+		criteria2.andReceiverIdEqualTo(user.getId());
 		messageCriteria.setOrderByClause("sendtime desc");
+
 		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
 		mav.addObject("messageList",messageList);
 
@@ -205,6 +211,8 @@ public class RootController {
 		mav.addObject("announcementList",getAnnouncementList() );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+		criteria2.andReceiverIdEqualTo(user.getId());
 		messageCriteria.setOrderByClause("sendtime desc");
 		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
 		mav.addObject("messageList",messageList);
