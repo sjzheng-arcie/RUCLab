@@ -93,7 +93,7 @@ public class EquipmentCheckService {
                 String sn = check.getSn();
                 if (!StringUtils.isEmpty(sn)) {
                     Integer id = equipCheckMapper.selectIdBySn(sn);
-                    if (id > 0) {
+                    if (id != null && id > 0) {
                         check.setId(id);
                         equipCheckMapper.updateByPrimaryKey(check);
                     } else {
