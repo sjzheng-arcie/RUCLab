@@ -565,10 +565,10 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/addtopaper");
 		return mav;
 	}
-	@RequestMapping("jsp/res/paper/add")
+	@RequestMapping("jsp/res/paper/addpaper")
 	public ModelAndView paperAdd(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/add");
+		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/addpaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/paper/paperinfo")

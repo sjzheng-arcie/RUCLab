@@ -56,7 +56,7 @@
                                                                                      id="paperNo" value=""
                                                                                      style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:
-                            <select name="theClass">
+                            <select name="theCourse">
                                 <option value="0"></option>
                                 <c:forEach items="${courseList}" var="item">
                                     <option value="${item.id}">"${item.value}"</option>
@@ -95,7 +95,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="add"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="addpaper"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
                                                                     <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
@@ -149,8 +149,8 @@
                                                     <td>软件工程06年第二学期期末考试</td>
                                                     <td>软件工程</td>
                                                     <td>赵天华</td>
-                                                    <td><a href="paperinfo">查看试卷</a></td>
-                                                    <td><a href="editpaper">编辑试卷</a></td>
+                                                    <td><a class="button" href="paperinfo">查看试卷</a></td>
+                                                    <td><a class="button" href="editpaper">编辑试卷</a></td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -161,8 +161,8 @@
                                                         <td>${item.name}</td>
                                                         <td>${item.course}</td>
                                                         <td>${item.teacher}</td>
-                                                        <td><a href="paperinfo">查看试卷</a></td>
-                                                        <td><a href="editpaper">编辑试卷</a></td>
+                                                        <td><a class="button" href="paperinfo?paper_id=${item.id}">查看试卷</a></td>
+                                                        <td><a class="button" href="editpaper?paper_id=${item.id}">编辑试卷</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

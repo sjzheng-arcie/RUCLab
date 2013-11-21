@@ -53,7 +53,7 @@
             <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                 <tr>
                     <td height="31">
-                        <div class="titlebt">试卷资源管理 > 编辑试卷</div>
+                        <div class="titlebt">试卷资源管理 > 添加试卷</div>
                     </td>
                 </tr>
             </table>
@@ -108,16 +108,14 @@
                                             <td nowrap align="right">试卷编号:</td>
                                             <td nowrap>
                                                 <input name="paperNo" id="paperNo" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.sn}" />
+                                                       style="width:154px" maxlength="20" valid="required|isAccount" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" ></span>
                                             </td>
                                             <td nowrap align="right">试卷名称:</td>
                                             <td nowrap>
                                                 <input name="paperName" id="paperName" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.name}" />
+                                                       style="width:154px" maxlength="20" valid="required|isAccount"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;"></span>
                                             </td>
@@ -126,9 +124,11 @@
                                         <tr>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <input name="theCourse" id="theCourse" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.course}" />
+                                               <select name="theCourse">
+                                                   <c:forEach items="${allCourseList}" var="item">
+                                                       <option value="${item.id}">${item.courseName}</option>
+                                                   </c:forEach>
+                                               </select>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_us_sno"></span>
 
@@ -136,11 +136,15 @@
                                             <td nowrap align="right">命题人:</td>
                                             <td nowrap>
                                                 <input name="proposition" id="proposition" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="${paper.proposition}" />
+                                                       valid="required|isPassword"  />
                                                 <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                 <span style="color:red;" ></span>
                                             </td>
+
                                         </tr>
+
+
+
                                     </table>
                                 </td>
                             </tr>
@@ -150,7 +154,7 @@
                                 <td align="center">
 
 
-                                    <input type="button" name="addEquipmentsToApply" value="添加试题" class="button" onclick="toAddQuestion();"/>
+                                    <input type="button" name="addQuestionToPaper" value="添加试题" class="button" onclick="toAddQuestion();"/>
                                     <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
                                     <input type="reset" name="reset" value="重置" class="button"/>
 
@@ -243,6 +247,9 @@
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">查看详细</span></div>
                                                 </td>
+                                                <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <div align="center"><span class="STYLE10">删除</span></div>
+                                                </td>
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
@@ -255,6 +262,7 @@
 
                                                 <td>D</td>
                                                 <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="">删除</a></td>
                                             </tr>
 
 
@@ -268,6 +276,7 @@
                                                 <td>关于面向对象:(1)什么是面向对象的编程语言(2)请举出几种常见的面向对象的语言。(3)什么是类？什么是对象？</td>
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
                                                 <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="">删除</a></td>
                                             </tr>
                                             <tr height="16px"></tr>
                                         </table>

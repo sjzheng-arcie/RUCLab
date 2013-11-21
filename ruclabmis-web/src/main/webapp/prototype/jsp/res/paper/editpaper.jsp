@@ -154,7 +154,7 @@
                                 <td align="center">
 
 
-                                    <input type="button" name="addEquipmentsToApply" value="添加试题" class="button" onclick="toAddQuestion();"/>
+                                    <input type="button" name="addQuestionToPaper" value="添加试题" class="button" onclick="toAddQuestion();"/>
                                     <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
                                     <input type="reset" name="reset" value="重置" class="button"/>
 
@@ -261,8 +261,8 @@
                                                 <td>下面属于面向对象编程的语言有（）A、 C语言 B、 C++ C、 HTML D、 Java</td>
 
                                                 <td>D</td>
-                                                <td><a>查看详细</a></td>
-                                                <td><a>删除</a></td>
+                                                <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="">删除</a></td>
                                             </tr>
 
 
@@ -275,8 +275,8 @@
                                                 <td>简答题</td>
                                                 <td>关于面向对象:(1)什么是面向对象的编程语言(2)请举出几种常见的面向对象的语言。(3)什么是类？什么是对象？</td>
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
-                                                <td><a>查看详细</a></td>
-                                                <td><a>删除</a></td>
+                                                <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="">删除</a></td>
                                             </tr>
                                             <tr height="16px"></tr>
                                         </table>
