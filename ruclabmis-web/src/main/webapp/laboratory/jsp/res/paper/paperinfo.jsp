@@ -53,7 +53,7 @@
             <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                 <tr>
                     <td height="31">
-                        <div class="titlebt">试卷资源管理 > 编辑试卷</div>
+                        <div class="titlebt">试卷资源管理 > 查看试卷详细</div>
                     </td>
                 </tr>
             </table>
@@ -105,40 +105,32 @@
                                            style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                            bgcolor="#E3E9EE">
                                         <tr>
-                                            <td nowrap align="right">试卷编号:</td>
-                                            <td nowrap>
-                                                <input name="paperNo" id="paperNo" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.sn}" />
-                                                <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" ></span>
-                                            </td>
                                             <td nowrap align="right">试卷名称:</td>
                                             <td nowrap>
                                                 <input name="paperName" id="paperName" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="${paper.name}" />
-                                                <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;"></span>
                                             </td>
-
-                                        </tr>
-                                        <tr>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <input name="theCourse" id="theCourse" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.course}" />
-                                                <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
-
+                                                <select name="theCourse">
+                                                    <option value="0"></option>
+                                                    <c:forEach items="${courseList}" var="item">
+                                                        <c:if test="${item.id==paper.course.id}">
+                                                            <option value="${item.id}" selected>${item.courseName}</option>
+                                                        </c:if>
+                                                        <c:if test="${item.id!=paper.course.id}">
+                                                            <option value="${item.id}" selected>${item.courseName}</option>
+                                                        </c:if>
+                                                    </c:forEach>
+                                                </select>
                                             </td>
+                                        </tr>
+                                        <tr>
                                             <td nowrap align="right">命题人:</td>
                                             <td nowrap>
                                                 <input name="proposition" id="proposition" class="text" style="width:154px"
                                                        valid="required|isPassword" value="${paper.proposition}" />
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" ></span>
                                             </td>
                                         </tr>
                                     </table>
@@ -148,8 +140,6 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td align="center">
-
-
                                     <input type="button" name="addEquipmentsToApply" value="添加试题" class="button" onclick="toAddQuestion();"/>
                                     <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
                                     <input type="reset" name="reset" value="重置" class="button"/>
@@ -160,7 +150,6 @@
                                 </td>
                             </tr>
                         </table>
-
                     </td>
                 </tr>
             </table>
@@ -198,11 +187,9 @@
                                                             </table>
                                                         </td>
                                                         <td>
-
                                                         </td>
                                                     </tr>
                                                 </table>
-
                                             </td>
                                         </tr>
                                     </table>
@@ -220,17 +207,15 @@
                                                                onclick="checkAll(this);"/>
                                                     </div>
                                                 </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">序号</span></div>
-                                                </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">编号</span></div>
-                                                </td>
+
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">所属科目</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">题目类型</span></div>
+                                                </td>
+                                                <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <div align="center"><span class="STYLE10">难易程度</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">题目内容</span></div>
@@ -247,10 +232,10 @@
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
                                                                        onclick="checkOne(this)"/></td>
-                                                <td>1</td>
-                                                <td>XZ001</td>
-                                                <td>编程语言</td>
+
                                                 <td>选择题目</td>
+                                                <td>编程语言</td>
+                                                <td>难易程度</td>
                                                 <td>下面属于面向对象编程的语言有（）A、 C语言 B、 C++ C、 HTML D、 Java</td>
 
                                                 <td>D</td>
@@ -261,14 +246,26 @@
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
                                                                        onclick="checkOne(this)"/></td>
-                                                <td>5</td>
-                                                <td>JD002</td>
-                                                <td>编程语言</td>
                                                 <td>简答题</td>
+                                                <td>编程语言</td>
+                                                <td>难易程度</td>
                                                 <td>关于面向对象:(1)什么是面向对象的编程语言(2)请举出几种常见的面向对象的语言。(3)什么是类？什么是对象？</td>
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
                                                 <td><a class="button" href="../question/detail">查看详细</a></td>
                                             </tr>
+                                            <c:forEach items="${pageInfo.data}" var="item">
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    </td>
+                                                    <td>${item.type}</td>
+                                                    <td>${item.course}</td>
+                                                    <td>${item.difficulty}</td>
+                                                    <td>${item.questionContent}</td>
+                                                    <td>${item.answerContent}</td>
+                                                    <td><a href="../question/detail?question_id=${item.id}">查看详细</a></td>
+                                                </tr>
+                                            </c:forEach>
                                             <tr height="16px"></tr>
                                         </table>
                                     </div>
