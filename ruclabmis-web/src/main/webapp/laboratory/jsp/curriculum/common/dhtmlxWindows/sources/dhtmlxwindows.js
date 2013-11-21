@@ -51,8 +51,8 @@ function dhtmlXWindows() {
     this.pathPrefix = "dhxwins_";
     this.imagePath = dhtmlx.image_path || "codebase/imgs/";
     /**
-     *   @desc: sets path to the directory where used images are located
-     *   @param: path - url to the directory where images are located
+     *   @desc: sets path to the directory where used ../images are located
+     *   @param: path - url to the directory where ../images are located
      *   @type: public
      */
     this.setImagePath = function (path) {

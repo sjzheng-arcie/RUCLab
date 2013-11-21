@@ -11,7 +11,7 @@
     <script src="../js/prototype.lite.js" type="text/javascript"></script>
     <script src="../js/moo.fx.js" type="text/javascript"></script>
     <script src="../js/moo.fx.pack.js" type="text/javascript"></script>
-    <link href="css/left.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/left.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
         //选择中标签变色
         var selectedid = null;

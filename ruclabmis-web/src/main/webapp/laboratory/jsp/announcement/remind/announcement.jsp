@@ -5,7 +5,7 @@
 
 <html>
 <head>
-    <link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="../../../../js/valid.js" type=text/javascript></script>
 
@@ -163,22 +163,22 @@
                                                             <tr>
                                                                 <td width='49'>
                                                                     <div align='center'><img onclick="goPage(1)" style="cursor:hand"
-                                                                                             src='../../../images/main_54.gif' width='40' height='15'
+                                                                                             src='../../../../images/main_54.gif' width='40' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='49'>
                                                                     <div align='center'><img onclick="goPage(${page.currentPage-1})" style="cursor:hand"
-                                                                                             src='../../../images/main_56.gif' width='45' height='15'
+                                                                                             src='../../../../images/main_56.gif' width='45' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='49'>
                                                                     <div align='center'><img onclick="goPage(${page.currentPage+1})" style="cursor:hand"
-                                                                                             src='../../../images/main_58.gif' width='45' height='15'
+                                                                                             src='../../../../images/main_58.gif' width='45' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='49'>
                                                                     <div align='center'><img onclick="goPage(${page.totalPage})" style="cursor:hand"
-                                                                                             src='../../../images/main_60.gif' width='40' height='15'
+                                                                                             src='../../../../images/main_60.gif' width='40' height='15'
                                                                                              border='0'/></div>
                                                                 </td>
                                                                 <td width='37' class='STYLE22'>

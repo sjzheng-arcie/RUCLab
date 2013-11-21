@@ -8,7 +8,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -71,10 +71,10 @@
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <input name="application_id" id="application_id" type="hidden" value="${application_id}">
 <tr class="noprint">
-    <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
-        <img src="../../../images/left-top-right.gif" width="17" height="29"/>
+    <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
+        <img src="../../../../images/left-top-right.gif" width="17" height="29"/>
     </td>
-    <td valign="top" background="../../../images/content-bg.gif">
+    <td valign="top" background="../../../../images/content-bg.gif">
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                id="table2">
             <tr>
@@ -84,13 +84,13 @@
             </tr>
         </table>
     </td>
-    <td width="16" valign="top" background="../../../images/mail_rightbg.gif">
-        <img src="../../../images/nav-right-bg.gif" width="16" height="29"/>
+    <td width="16" valign="top" background="../../../../images/mail_rightbg.gif">
+        <img src="../../../../images/nav-right-bg.gif" width="16" height="29"/>
     </td>
 </tr>
 
 <tr>
-<td valign="middle" background="../../../images/mail_leftbg.gif"></td>
+<td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
 <td valign="top" bgcolor="#F7F8F9">
     <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
         <tr><td valign="top" class="STYLE10">
@@ -112,7 +112,7 @@
                         </span>
                         <span  class="noprint" style="white-space:nowrap">
                             <a href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
-                                <img src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                                <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
                             </a>
                          </span>
             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -129,7 +129,7 @@
                                                     <tr>
                                                         <td width="6%" height="19" valign="bottom">
                                                             <div align="center"><img
-                                                                    src="../../../images/tb.gif"
+                                                                    src="../../../../images/tb.gif"
                                                                     width="14" height="14"/></div>
                                                         </td>
                                                         <td width="94%" valign="bottom"><span
@@ -146,25 +146,25 @@
                               <c:when test="${applyType=='info'}">
                                   <shiro:hasAnyRoles name="administrators,equipment_admin">
                                       <a href="/equipment/jsp/dev/info/importEquipments">
-                                          <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                          <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">设备导入</span>
                                       </a>
                                       <a href="/equipment/jsp/dev/info/toAdd">
-                                          <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                          <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">验收入库</span>
                                       </a>
                                       <a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
-                                          <img src="../../../images/del_min.gif" width="10" height="10"
+                                          <img src="../../../../images/del_min.gif" width="10" height="10"
                                                border="0"/> <span class="STYLE1">删除</span>
                                       </a>
-                                        <a href="#" onclick="window.print()"><img src="../../../images/del_min.gif" width="10" height="10"
+                                        <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                            border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                                 </span>
                                   </shiro:hasAnyRoles>
                               </c:when>
                               <c:otherwise>
                                   <a href="javascript:void(0);" onclick="toApply();return false;">
-                                      <img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                      <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                       <span class="STYLE1">申 请</span>
                                   </a>
                               </c:otherwise>
@@ -270,7 +270,7 @@
                                         <c:if test="${applyType=='info'}">
                                             <shiro:hasAnyRoles name="administrators,equipment_admin">
                                                 <td><a href="toUpdate?id=${item.id}&formType=${formType}">
-                                                    <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                    <img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                 </a></td>
                                             </shiro:hasAnyRoles>
                                         </c:if>
@@ -288,17 +288,17 @@
         </td></tr>
     </table>
 </td>
-<td background="../../../images/mail_rightbg.gif"></td>
+<td background="../../../../images/mail_rightbg.gif"></td>
 </tr>
 <tr>
-    <td valign="bottom" background="../../../images/mail_leftbg.gif">
-        <img src="../../../images/buttom_left2.gif" width="17" height="17"/>
+    <td valign="bottom" background="../../../../images/mail_leftbg.gif">
+        <img src="../../../../images/buttom_left2.gif" width="17" height="17"/>
     </td>
-    <td valign="bottom" background="../../../images/buttom_bgs.gif">
-        <img src="../../../images/buttom_bgs.gif" width="100%" height="17"/>
+    <td valign="bottom" background="../../../../images/buttom_bgs.gif">
+        <img src="../../../../images/buttom_bgs.gif" width="100%" height="17"/>
     </td>
-    <td valign="bottom" background="../../../images/mail_rightbg.gif">
-        <img src="../../../images/buttom_right2.gif" width="16" height="17"/>
+    <td valign="bottom" background="../../../../images/mail_rightbg.gif">
+        <img src="../../../../images/buttom_right2.gif" width="16" height="17"/>
     </td>
 </tr>
 </table>

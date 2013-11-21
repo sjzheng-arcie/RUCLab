@@ -5,7 +5,7 @@
 <html >
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <title>分类号列表</title>
 
@@ -16,9 +16,9 @@
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="17" valign="top" background="../../../images/mail_leftbg.gif"><img
-                    src="../../../images/left-top-right.gif" width="17" height="29"/></td>
-            <td valign="top" background="../../../images/content-bg.gif">
+            <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
+            <td valign="top" background="../../../../images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
                     <tr>
@@ -28,12 +28,12 @@
                     </tr>
                 </table>
             </td>
-            <td width="16" valign="top" background="../../../images/mail_rightbg.gif"><img
-                    src="../../../images/nav-right-bg.gif" width="16" height="29"/></td>
+            <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
+                    src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
 
         <tr>
-            <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
@@ -49,7 +49,7 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:pointer"
                                                                             onclick="toFind('listForm')"><img
-                                    src="../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -66,7 +66,7 @@
                                                                     <tr>
                                                                         <td width="6%" height="19" valign="bottom">
                                                                             <div align="center"><img
-                                                                                    src="../../../images/tb.gif"
+                                                                                    src="../../../../images/tb.gif"
                                                                                     width="14" height="14"/></div>
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
@@ -79,13 +79,13 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
-      					<%--<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../images/edit_min.gif" width="10" height="10"--%>
+      					<%--<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../../images/edit_min.gif" width="10" height="10"--%>
                                                                <%--border="0"/> <span class="STYLE1">修改</span></a>&nbsp;--%>
-      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../images/del_min.gif" width="10" height="10"
+      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                                                        border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-<%--                <a href="#" onclick="toRoom();"><img src="../../../images/del_min.gif" width="10" height="10"
+<%--                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                      border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>--%>
                                                                 </div>
@@ -135,7 +135,7 @@
                                                         <td>${item.description}</td>
                                                         <shiro:hasAnyRoles name="administrators,equipment_admin">
                                                             <td><a href="toUpdate?id=${item.id}">
-                                                                <img src="../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                <img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
                                                             </a></td>
                                                         </shiro:hasAnyRoles>
                                                     </tr>
@@ -151,15 +151,15 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
                                                                                   width="17" height="17"/></td>
-            <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
                                                                                  width="100%" height="17"/></td>
-            <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
-                    src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
+                    src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
 </form>

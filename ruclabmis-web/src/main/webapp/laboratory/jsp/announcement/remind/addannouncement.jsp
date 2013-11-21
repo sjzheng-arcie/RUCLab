@@ -3,7 +3,7 @@
 
 <html>
 <head>
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script> 
@@ -79,7 +79,7 @@ function displayClass(value){
 
                                                 <script type="text/javascript" src="../../../../js/ueditor/ueditor.all.min.js"></script>
 
-                                                <link type="text/css" href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
+                                                <link type="text/css" href="../../../../js/ueditor/themes/default/../css/ueditor.css"/>
 
                                                 <script type="text/javascript" charset="utf-8">
                                                     var editor = new baidu.editor.ui.Editor();

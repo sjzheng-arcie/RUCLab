@@ -163,7 +163,7 @@ function dhtmlXGridObject(id) {
     this.hdrBox.className = "xhdr";
 
 
-    this.preloadImagesAr = new Array(0)
+    this.preload../imagesAr = new Array(0)
 
     this.sortImg = document.createElement("IMG")
     this.sortImg.style.display = "none";
@@ -202,7 +202,7 @@ function dhtmlXGridObject(id) {
     this.imgURL = window.dhx_globalImgPath || "";
     this.isActive = false; //fl to indicate if grid is in work now
     this.isEditable = true;
-    this.useImagesInHeader = false; //use images in header or not
+    this.use../imagesInHeader = false; //use ../images in header or not
     this.pagingOn = false;          //paging on/off
     this.rowsBufferOutSize = 0;     //number of rows rendered at a moment
     /*EVENTS*/
@@ -788,19 +788,19 @@ function dhtmlXGridObject(id) {
     }
 
     /**
-     *   @desc: set path to grid internal images (sort direction, any images used in editors, checkbox, radiobutton)
+     *   @desc: set path to grid internal ../images (sort direction, any ../images used in editors, checkbox, radiobutton)
      *   @type: public
-     *   @param: path - url (or relative path) of images folder with closing "/"
+     *   @param: path - url (or relative path) of ../images folder with closing "/"
      *   @topic: 0,7
      */
     this.setImagePath = function (path) {
         this.imgURL = path;
     }
-    this.setImagesPath = this.setImagePath;
+    this.set../imagesPath = this.setImagePath;
     /**
-     *   @desc: set path to external images used in grid ( tree and img column types )
+     *   @desc: set path to external ../images used in grid ( tree and img column types )
      *   @type: public
-     *   @param: path - url (or relative path) of images folder with closing "/"
+     *   @param: path - url (or relative path) of ../images folder with closing "/"
      *   @topic: 0,7
      */
     this.setIconPath = function (path) {
@@ -1012,7 +1012,7 @@ function dhtmlXGridObject(id) {
             this.sortImg.defLeft = parseInt(this.sortImg.style.left)
             this.sortImg.style.top = Number(pos[1] + 5) + "px";
 
-            if ((!this.useImagesInHeader) && (!mode))
+            if ((!this.use../imagesInHeader) && (!mode))
                 this.sortImg.style.display = "inline";
             this.sortImg.style.left = this.sortImg.defLeft + "px"; //-parseInt(this.hdrBox.scrollLeft)
         }
@@ -2282,7 +2282,7 @@ function dhtmlXGridObject(id) {
         var z = (hdr || this.hdr).rows[ind || 1];
         var col = (z._childIndexes ? z._childIndexes[c] : c);
         if (!z.cells[col]) return;
-        if (!this.useImagesInHeader) {
+        if (!this.use../imagesInHeader) {
             var hdrHTML = "<div class='hdrcell'>"
 
             if (label.indexOf('img:[') != -1) {
@@ -2296,17 +2296,17 @@ function dhtmlXGridObject(id) {
 
             if (this._hstyles[col])
                 z.cells[col].style.cssText = this._hstyles[col];
-        } else { //if images in header header
+        } else { //if ../images in header header
             z.cells[col].style.textAlign = "left";
             z.cells[col].innerHTML = "<img src='" + this.imgURL + "" + label + "' onerror='this.src = \"" + this.imgURL
                 + "imageloaderror.gif\"'>";
             //preload sorting headers (asc/desc)
             var a = new Image();
             a.src = this.imgURL + "" + label.replace(/(\.[a-z]+)/, ".des$1");
-            this.preloadImagesAr[this.preloadImagesAr.length] = a;
+            this.preload../imagesAr[this.preload../imagesAr.length] = a;
             var b = new Image();
             b.src = this.imgURL + "" + label.replace(/(\.[a-z]+)/, ".asc$1");
-            this.preloadImagesAr[this.preloadImagesAr.length] = b;
+            this.preload../imagesAr[this.preload../imagesAr.length] = b;
         }
 
         if ((label || "").indexOf("#") != -1) {
@@ -2455,8 +2455,8 @@ function dhtmlXGridObject(id) {
                 return;
             this.sortImg.src = this.imgURL + "sort_" + (sortType == "asc" ? "asc" : "desc") + ".gif";
 
-            //for header images
-            if (this.useImagesInHeader) {
+            //for header ../images
+            if (this.use../imagesInHeader) {
                 var cel = this.hdr.rows[1].cells[el._cellIndex].firstChild;
 
                 if (this.fldSorted != null) {
@@ -2478,14 +2478,14 @@ function dhtmlXGridObject(id) {
 
 //#}
     /**
-     *   @desc: specify if values passed to Header are images file names
+     *   @desc: specify if values passed to Header are ../images file names
      *   @param: fl - true to treat column header values as image names
      *   @type: public
      *   @before_init: 1
      *   @topic: 0,3
      */
-    this.enableHeaderImages = function (fl) {
-        this.useImagesInHeader = fl;
+    this.enableHeader../images = function (fl) {
+        this.use../imagesInHeader = fl;
     }
 
     /**
@@ -5496,7 +5496,7 @@ dhtmlXGridObject.prototype = {
         drag: "enableDragAndDrop",
         drag_order: "enableDragOrder",
         tabulation: "enableEditTabOnly",
-        header_images: "enableHeaderImages",
+        header_../images: "enableHeader../images",
         header_menu: "enableHeaderMenu",
         keymap: "enableKeyboardSupport",
         mouse_navigation: "enableLightMouseNavigation",

@@ -142,7 +142,7 @@ dhtmlXTreeObject.prototype._serializeItemJSON = function (a) {
     var b = [];
     if (a.unParsed)return a.unParsed.text();
     var d = this._selected.length ? this._selected[0].id : "", f = a.span.innerHTML, f = f.replace(/\"/g, '\\"', f);
-    this._xfullXML ? b.push('{ "id":"' + a.id + '", ' + (this._getOpenState(a) == 1 ? ' "open":"1", ' : "") + (d == a.id ? ' "select":"1",' : "") + ' "text":"' + f + '", "im0":"' + a.images[0] + '", "im1":"' + a.images[1] + '", "im2":"' + a.images[2] + '" ' + (a.acolor ? ', "aCol":"' + a.acolor + '" ' : "") + (a.scolor ? ', "sCol":"' + a.scolor + '" ' : "") + (a.checkstate ==
+    this._xfullXML ? b.push('{ "id":"' + a.id + '", ' + (this._getOpenState(a) == 1 ? ' "open":"1", ' : "") + (d == a.id ? ' "select":"1",' : "") + ' "text":"' + f + '", "im0":"' + a.../images[0] + '", "im1":"' + a.../images[1] + '", "im2":"' + a.../images[2] + '" ' + (a.acolor ? ', "aCol":"' + a.acolor + '" ' : "") + (a.scolor ? ', "sCol":"' + a.scolor + '" ' : "") + (a.checkstate ==
         1 ? ', "checked":"1" ' : a.checkstate == 2 ? ', "checked":"-1"' : "") + (a.closeable ? ', "closeable":"1" ' : "") + (this.XMLsource && a.XMLload == 0 ? ', "child":"1" ' : "")) : b.push('{ "id":"' + a.id + '", ' + (this._getOpenState(a) == 1 ? ' "open":"1", ' : "") + (d == a.id ? ' "select":"1",' : "") + ' "text":"' + f + '"' + (this.XMLsource && a.XMLload == 0 ? ', "child":"1" ' : ""));
     if (this._xuserData && a._userdatalist) {
         b.push(', "userdata":[');

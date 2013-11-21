@@ -178,11 +178,11 @@ function dhtmlXToolbarObject(baseId, skin) {
     this.objPull = {};
     this.anyUsed = "none";
 
-    /* images */
+    /* ../images */
     this.imagePath = "";
     /**
-     *   @desc: set path to used images
-     *   @param: path - path to images on harddisk
+     *   @desc: set path to used ../images
+     *   @param: path - path to ../images on harddisk
      *   @type: public
      */
     this.setIconsPath = function (path) {

@@ -203,7 +203,7 @@ function dhtmlXTreeObject(htmlObject, width, height, rootId) {
         }
     });
 
-    this.setImagesPath = this.setImagePath;
+    this.set../imagesPath = this.setImagePath;
     this.setIconsPath = this.setIconPath;
 
     if (dhtmlx.image_path) this.setImagePath(dhtmlx.image_path);
@@ -295,7 +295,7 @@ dhtmlXTreeObject.prototype._doContClick = function (ev, force) {
 
 
 /**
- *     @desc: replace IMG tag with background images - solve problem with IE image caching , not works for IE6 SP1
+ *     @desc: replace IMG tag with background ../images - solve problem with IE image caching , not works for IE6 SP1
  *     @param: mode - true/false - enable/disable fix
  *     @type: public
  *     @topic: 0
@@ -380,7 +380,7 @@ cObject.prototype.clone = function () {
  *   @param: parentObject - parent item object
  *   @param: treeObject - tree object
  *   @param: actionHandler - onclick event handler(optional)
- *   @param: mode - do not show images
+ *   @param: mode - do not show ../images
  *   @type: private
  *   @topic: 0
  */
@@ -405,7 +405,7 @@ function dhtmlXTreeItemObject(itemId, itemText, parentObject, treeObject, action
     this.label = itemText;
     this.parentObject = parentObject;
     this.actionHandler = actionHandler;
-    this.images = new Array(treeObject.imageArray[0], treeObject.imageArray[1], treeObject.imageArray[2]);
+    this.../images = new Array(treeObject.imageArray[0], treeObject.imageArray[1], treeObject.imageArray[2]);
 
 
     this.id = treeObject._globalIdStorageAdd(itemId, this);
@@ -620,9 +620,9 @@ dhtmlXTreeObject.prototype._attachChildNode = function (parentObject, itemId, it
         n.htmlNode.objBelong = n;
     }
 
-    if (image1) n.images[0] = image1;
-    if (image2) n.images[1] = image2;
-    if (image3) n.images[2] = image3;
+    if (image1) n.../images[0] = image1;
+    if (image2) n.../images[1] = image2;
+    if (image3) n.../images[2] = image3;
 
 
     var tr = this._drawNewTr(n.htmlNode);
@@ -995,7 +995,7 @@ dhtmlXTreeObject.prototype.checkUserData = function (node, parentId) {
 
 
 /**
- *     @desc: reset tree images from selected level
+ *     @desc: reset tree ../images from selected level
  *     @type: private
  *     @param: dhtmlObject - tree
  *     @param: itemObject - current item
@@ -1080,7 +1080,7 @@ dhtmlXTreeObject.prototype._xopenAll = function (itemObject) {
         this._xopenAll(itemObject.childNodes[i]);
 };
 /**
- *     @desc: set correct tree-line and node images
+ *     @desc: set correct tree-line and node ../images
  *     @type: private
  *     @param: itemObject - item object
  *     @topic: 6
@@ -1093,23 +1093,23 @@ dhtmlXTreeObject.prototype._correctPlus = function (itemObject) {
     var workArray = this.lineArray;
     if ((this.XMLsource) && (!itemObject.XMLload)) {
         var workArray = this.plusArray;
-        this._setSrc(imsrc2, this.iconURL + itemObject.images[2]);
+        this._setSrc(imsrc2, this.iconURL + itemObject.../images[2]);
         if (this._txtimg) return (imsrc.innerHTML = "[+]");
     }
     else if ((itemObject.childsCount) || (itemObject.unParsed)) {
         if ((itemObject.htmlNode.childNodes[0].childNodes[1]) && ( itemObject.htmlNode.childNodes[0].childNodes[1].style.display != "none" )) {
             if (!itemObject.wsign) var workArray = this.minusArray;
-            this._setSrc(imsrc2, this.iconURL + itemObject.images[1]);
+            this._setSrc(imsrc2, this.iconURL + itemObject.../images[1]);
             if (this._txtimg) return (imsrc.innerHTML = "[-]");
         }
         else {
             if (!itemObject.wsign) var workArray = this.plusArray;
-            this._setSrc(imsrc2, this.iconURL + itemObject.images[2]);
+            this._setSrc(imsrc2, this.iconURL + itemObject.../images[2]);
             if (this._txtimg) return (imsrc.innerHTML = "[+]");
         }
     }
     else {
-        this._setSrc(imsrc2, this.iconURL + itemObject.images[0]);
+        this._setSrc(imsrc2, this.iconURL + itemObject.../images[0]);
     }
 
 
@@ -1122,7 +1122,7 @@ dhtmlXTreeObject.prototype._correctPlus = function (itemObject) {
 };
 
 /**
- *     @desc: set correct tree-line images
+ *     @desc: set correct tree-line ../images
  *     @type: private
  *     @param: itemObject - item object
  *     @topic: 6
@@ -1609,8 +1609,8 @@ dhtmlXTreeObject.prototype._createItem = function (acheck, itemObject, mode) {
 
 
 /**
- *     @desc: set path to images directory
- *     @param: newPath - path to images directory (related to the page with tree or absolute http url)
+ *     @desc: set path to ../images directory
+ *     @param: newPath - path to ../images directory (related to the page with tree or absolute http url)
  *     @type: public
  *     @topic: 0
  */
@@ -1619,9 +1619,9 @@ dhtmlXTreeObject.prototype.setImagePath = function (newPath) {
     this.iconURL = newPath;
 };
 /**
- *   @desc: set path to external images used as tree icons
+ *   @desc: set path to external ../images used as tree icons
  *   @type: public
- *   @param: path - url (or relative path) of images folder with closing "/"
+ *   @param: path - url (or relative path) of ../images folder with closing "/"
  *   @topic: 0,7
  */
 dhtmlXTreeObject.prototype.setIconPath = function (path) {
@@ -1948,10 +1948,10 @@ dhtmlXTreeObject.prototype.doCut = function () {
     for (var i = 0; i < this.nodeCut.length; i++) {
         var tempa = this.nodeCut[i];
         tempa._cimgs = new Array();
-        tempa._cimgs[0] = tempa.images[0];
-        tempa._cimgs[1] = tempa.images[1];
-        tempa._cimgs[2] = tempa.images[2];
-        tempa.images[0] = tempa.images[1] = tempa.images[2] = this.cutImage;
+        tempa._cimgs[0] = tempa.../images[0];
+        tempa._cimgs[1] = tempa.../images[1];
+        tempa._cimgs[2] = tempa.../images[2];
+        tempa.../images[0] = tempa.../images[1] = tempa.../images[2] = this.cutImage;
         this._correctPlus(tempa);
     }
 };
@@ -1980,9 +1980,9 @@ dhtmlXTreeObject.prototype.doPaste = function (itemId) {
 dhtmlXTreeObject.prototype.clearCut = function () {
     for (var i = 0; i < this.nodeCut.length; i++) {
         var tempa = this.nodeCut[i];
-        tempa.images[0] = tempa._cimgs[0];
-        tempa.images[1] = tempa._cimgs[1];
-        tempa.images[2] = tempa._cimgs[2];
+        tempa.../images[0] = tempa._cimgs[0];
+        tempa.../images[1] = tempa._cimgs[1];
+        tempa.../images[2] = tempa._cimgs[2];
         this._correctPlus(tempa);
     }
     this.nodeCut = new Array();
@@ -2066,7 +2066,7 @@ dhtmlXTreeObject.prototype._recreateBranch = function (itemObject, targetObject,
 
     var t2 = this._onradh;
     this._onradh = null;
-    var newNode = this._attachChildNode(targetObject, itemObject.id, itemObject.label, 0, itemObject.images[0], itemObject.images[1], itemObject.images[2], st, 0, beforeNode);
+    var newNode = this._attachChildNode(targetObject, itemObject.id, itemObject.label, 0, itemObject.../images[0], itemObject.../images[1], itemObject.../images[2], st, 0, beforeNode);
 
     //copy user data
     newNode._userdatalist = itemObject._userdatalist;
@@ -2339,13 +2339,13 @@ dhtmlXTreeObject.prototype.setOnMouseOutHandler = function (func) {
 
 
 /**
- *     @desc: enable tree images
+ *     @desc: enable tree ../images
  *     @beforeInit: 1
  *     @param: mode - 1 - on, 0 - off;
  *     @type: public
  *     @topic: 0
  */
-dhtmlXTreeObject.prototype.enableTreeImages = function (mode) {
+dhtmlXTreeObject.prototype.enableTree../images = function (mode) {
     this.timgen = convertStringToBoolean(mode);
 };
 
@@ -2373,14 +2373,14 @@ dhtmlXTreeObject.prototype.enableCheckBoxes = function (mode, hidden) {
     this.cBROf = (!(this.checkBoxOff || convertStringToBoolean(hidden)));
 };
 /**
- *     @desc: set default images for nodes (must be called before XML loading)
+ *     @desc: set default ../images for nodes (must be called before XML loading)
  *     @type: public
  *     @param: a0 - image for node without children;
  *     @param: a1 - image for closed node;
  *     @param: a2 - image for opened node
  *     @topic: 6
  */
-dhtmlXTreeObject.prototype.setStdImages = function (image1, image2, image3) {
+dhtmlXTreeObject.prototype.setStd../images = function (image1, image2, image3) {
     this.imageArray[0] = image1;
     this.imageArray[1] = image2;
     this.imageArray[2] = image3;
@@ -2397,7 +2397,7 @@ dhtmlXTreeObject.prototype.enableTreeLines = function (mode) {
 }
 
 /**
- *     @desc: set images used for parent-child threads drawing (lines, plus, minus)
+ *     @desc: set ../images used for parent-child threads drawing (lines, plus, minus)
  *     @type: public
  *     @param: arrayName - name of array: plus, minus
  *     @param: image1 - line crossed image
@@ -2598,7 +2598,7 @@ dhtmlXTreeObject.prototype.refreshItem = function (itemId) {
 };
 
 /**
- *     @desc: set item images
+ *     @desc: set item ../images
  *     @param: itemId - id of node
  *     @param: image1 - node without children icon
  *     @param: image2 - closed node icon
@@ -2609,9 +2609,9 @@ dhtmlXTreeObject.prototype.refreshItem = function (itemId) {
 dhtmlXTreeObject.prototype.setItemImage2 = function (itemId, image1, image2, image3) {
     var temp = this._globalIdStorageFind(itemId);
     if (!temp) return 0;
-    temp.images[1] = image2;
-    temp.images[2] = image3;
-    temp.images[0] = image1;
+    temp.../images[1] = image2;
+    temp.../images[2] = image3;
+    temp.../images[0] = image1;
     this._correctPlus(temp);
 };
 /**
@@ -2626,10 +2626,10 @@ dhtmlXTreeObject.prototype.setItemImage = function (itemId, image1, image2) {
     var temp = this._globalIdStorageFind(itemId);
     if (!temp) return 0;
     if (image2) {
-        temp.images[1] = image1;
-        temp.images[2] = image2;
+        temp.../images[1] = image1;
+        temp.../images[2] = image2;
     }
-    else temp.images[0] = image1;
+    else temp.../images[0] = image1;
     this._correctPlus(temp);
 };
 
@@ -3515,13 +3515,13 @@ dhtmlXTreeObject.prototype._itemMouseIn = function () {
 }
 
 /**
- *     @desc: enable active images (clickable and dragable). By default only text part of the node is active
+ *     @desc: enable active ../images (clickable and dragable). By default only text part of the node is active
  *     @beforeInit: 1
  *     @param: mode - 1 - on, 0 - off;
  *     @type: public
  *     @topic: 0
  */
-dhtmlXTreeObject.prototype.enableActiveImages = function (mode) {
+dhtmlXTreeObject.prototype.enableActive../images = function (mode) {
     this._aimgs = convertStringToBoolean(mode);
 };
 
@@ -3780,7 +3780,7 @@ dhtmlXTreeObject.prototype.setSkin = function (name) {
         drag_scroll: "enableDragAndDropScrolling",
         editor: "enableItemEditor",
         hover: "enableHighlighting",
-        images: "enableTreeImages",
+        ../images: "enableTree../images",
         image_fix: "enableIEImageFix",
         image_path: "setImagePath",
         lines: "enableTreeLines",

@@ -1374,7 +1374,7 @@ div.icon_delete {
     border: none !important;
     top: 5px;
     background-repeat: no-repeat;
-    background-image: url(./imgs/images.png);
+    background-image: url(./imgs/../images.png);
 }
 
 .dhx_marked_timespan {
