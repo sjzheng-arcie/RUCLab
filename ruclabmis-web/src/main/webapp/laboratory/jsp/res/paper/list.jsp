@@ -91,9 +91,9 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="add.jsp"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="add.jsp"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                                    <a href="#" onclick="toDelete('listForm');"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                         </span>
                                                                 </div>
@@ -114,7 +114,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
