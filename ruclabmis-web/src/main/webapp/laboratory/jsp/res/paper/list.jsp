@@ -51,10 +51,6 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;试卷编号:<input type="text" name="paperNo"
-                                                                                     id="paperNo" value=""
-                                                                                     style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:
                             <select name="theCourse">
                                 <option value="0"></option>
@@ -95,7 +91,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="addpaper"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="add.jsp"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
                                                                     <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
@@ -121,9 +117,6 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">试卷编号</span></div>
-                                                    </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">试卷名称</span></div>
                                                     </td>
@@ -145,7 +138,6 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>SJ001</td>
                                                     <td>软件工程06年第二学期期末考试</td>
                                                     <td>软件工程</td>
                                                     <td>赵天华</td>
