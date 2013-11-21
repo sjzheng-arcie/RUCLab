@@ -93,9 +93,9 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="toadd"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="add"><img src="../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete();"><img src="../../../images/del_min.gif" width="10" height="10"
+                                                                    <a href="#" onclick="toDelete('listForm');"><img src="../../../images/del_min.gif" width="10" height="10"
                                                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                 </span>
                                                                 </div>
@@ -116,7 +116,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -164,7 +164,7 @@
                                                         <td>${item.question}</td>
                                                         <td>${item.answer}</td>
                                                         <td>${item.difficulty}</td>
-                                                        <td><a href="edit?question_id=${item.id}" class="button" >编辑</a><a href="detailquestion_id=${item.id}" class="button" >查看</a></td>
+                                                        <td><a href="edit?question_id=${item.id}" class="button" >编辑</a><a href="detail?question_id=${item.id}" class="button" >查看</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

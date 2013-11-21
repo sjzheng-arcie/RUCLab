@@ -4,16 +4,16 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html>
 <head>
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
-    }
+    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        function save() {
+            document.form1.action = "listSysint.html";
+            document.form1.submit();
+        }
 
-</script>
+    </script>
 </head>
 <body>
 <form name="form1" method="post">
@@ -27,7 +27,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 题目资源管理</div>
+                            <div class="titlebt">资源管理 > 试题管理</div>
                         </td>
                     </tr>
                 </table>
@@ -82,7 +82,7 @@
                                                 <td nowrap align="right">题目编号:</td>
                                                 <td nowrap>
                                                     <input name="questionSn"  class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" value="ZX0001"/>
+                                                           valid="required|isAccount" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
@@ -93,7 +93,7 @@
                                                 <td nowrap align="right">所属科目:</td>
                                                 <td nowrap>
                                                     <input name="theCourse"  onblur="" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="编程语言"/>
+                                                           maxlength="20" valid="required|isAccount" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" ></span>
                                                 </td>
@@ -102,9 +102,9 @@
                                                 <td nowrap align="right">题目类型:</td>
                                                 <td nowrap>
                                                     <select name="questionType">
-                                                        <option value=""></option>
+                                                        <option value="0"></option>
                                                         <c:forEach items="${typelist}" var="item">
-                                                        <option value="${item.id}">${item.value} </option>
+                                                            <option value="${item.id}">${item.value} </option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
@@ -134,8 +134,8 @@
                                             <tr>
                                                 <td nowrap align="right">答案:</td>
                                                 <td nowrap>
-                                                    <input name="answer"  class="text" style="width:154px"
-                                                           valid="required|isPassword" value="D"/>
+                                                    <textarea name="answerContent" style="width: 50%;height:100px">
+                                                    </textarea>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" ></span>
                                                 </td>

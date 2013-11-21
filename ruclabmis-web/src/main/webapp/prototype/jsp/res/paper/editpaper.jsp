@@ -109,17 +109,17 @@
                                             <td nowrap>
                                                 <input name="paperNo" id="paperNo" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="SJ001" />
+                                                       value="${paper.sn}" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                                <span style="color:red;" ></span>
                                             </td>
                                             <td nowrap align="right">试卷名称:</td>
                                             <td nowrap>
                                                 <input name="paperName" id="paperName" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="软件工程清考试题" />
+                                                       value="${paper.name}" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+                                                <span style="color:red;"></span>
                                             </td>
 
                                         </tr>
@@ -128,53 +128,21 @@
                                             <td nowrap>
                                                 <input name="theCourse" id="theCourse" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="软件工程" />
+                                                       value="${paper.course}" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_us_sno"></span>
 
                                             </td>
-                                            <td nowrap align="right">考试时间:</td>
-                                            <td nowrap>
-                                                <input name="examTime" id="examTime" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="2012-02-12" />
-                                                <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sname"></span>
-                                            </td>
-
-                                        </tr>
-                                        <tr>
                                             <td nowrap align="right">命题人:</td>
                                             <td nowrap>
                                                 <input name="proposition" id="proposition" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="赵天华" />
+                                                       valid="required|isPassword" value="${paper.proposition}" />
                                                 <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                <span style="color:red;" ></span>
                                             </td>
-                                            <td nowrap align="right">是否用过:</td>
-                                            <td nowrap>
-                                                <input name="isUsed" id="isUsed" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="是" />
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
-                                            </td>
+
                                         </tr>
-                                        <tr>
-                                            <td nowrap align="right">用途:</td>
-                                            <td nowrap>
-                                                <input name="theUse" id="theUse" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="清考" />
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
-                                            </td>
-                                            <td nowrap align="right">考试时间长度(min):</td>
-                                            <td nowrap>
-                                                <input name="theTime" id="theTime" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="90" />
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_spwd"></span>
-                                            </td>
-                                        </tr>
+
 
 
                                     </table>
