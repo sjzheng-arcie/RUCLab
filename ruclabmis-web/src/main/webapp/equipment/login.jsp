@@ -82,19 +82,9 @@
                                 <td height="149">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td height="80" align="right" valign="top"><img src="images/logo.png" width="279" height="68"></td>
+                                <td height="160" align="right" valign="top"><img src="images/logo.png" width="279" height="68"></td>
                             </tr>
-                            <tr>
-                                <td height="198" align="right" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
 
-                                    <tr>
-                                        <td>&nbsp;</td>
-                                        <td width="30%" height="40"><img src="images/icon-demo.gif" width="16" height="16"> 使用说明 </td>
-                                    </tr>
-                                </table></td>
-                            </tr>
-                        </table></td>
-                    </tr>
 
                 </table></td>
                 <td width="1%" >&nbsp;</td>
