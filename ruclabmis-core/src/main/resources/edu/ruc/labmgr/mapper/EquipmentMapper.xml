@@ -434,8 +434,20 @@
             order by ${orderByClause}
         </if>
     </select>
-      <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
-      SELECT id FROM equipment WHERE sn = #{sn}
+
+
+    <select id="selectInventoryProfitWithRowbounds" resultMap= "BaseResultMap">
+       SELECT e.* FROM equipment e WHERE e.sn NOT IN (
+        SELECT ec.sn FROM equipment_check ec ) ORDER BY acquisition_date desc
+  </select>
+
+    <select id="countInventoryProfit" resultType="java.lang.Integer">
+      SELECT COUNT(e.id) FROM equipment e WHERE e.sn NOT IN (
+        SELECT ec.sn FROM equipment_check ec )
+  </select>
+
+    <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
+      SELECT id FROM equipment_check WHERE sn = #{sn}
   </select>
 
 </mapper>

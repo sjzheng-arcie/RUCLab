@@ -78,7 +78,7 @@ public class EquipmentCheckController {
             String name = file.getOriginalFilename();
             File local = new File(System.getProperty("java.io.tmpdir")+name);
             file.transferTo(local);
-            edu.ruc.labmgr.excel.EquipmentsImportTask task = new edu.ruc.labmgr.excel.EquipmentsImportTask(local,clean);
+            edu.ruc.labmgr.excel.EquipCheckImportTask task = new edu.ruc.labmgr.excel.EquipCheckImportTask(local,clean);
             Future<Boolean> result = singleTreadPool.submit(task);
             boolean success = result.get();
             local.delete();

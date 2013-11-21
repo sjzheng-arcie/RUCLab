@@ -135,313 +135,311 @@ function LabChange(LabId, ImageName) {
     }
 }
 
-<!-----------------------  lct  -----------------------------!>
-    <!--
-    function MM_reloadPage(init) {  //reloads the window if Nav4 resized
-        if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
+function MM_reloadPage(init) {  //reloads the window if Nav4 resized
+    if (init==true) with (navigator) {if ((appName=="Netscape")&&(parseInt(appVersion)==4)) {
         document.MM_pgW=innerWidth; document.MM_pgH=innerHeight; onresize=MM_reloadPage; }}
     else if (innerWidth!=document.MM_pgW || innerHeight!=document.MM_pgH) location.reload();
-    }
-    MM_reloadPage(true);
-    // -->
-    function MM_findObj(n, d) { //v4.0
-        var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
+}
+MM_reloadPage(true);
+
+function MM_findObj(n, d) { //v4.0
+    var p,i,x;  if(!d) d=document; if((p=n.indexOf("?"))>0&&parent.frames.length) {
         d=parent.frames[n.substring(p+1)].document; n=n.substring(0,p);}
     if(!(x=d[n])&&d.all) x=d.all[n]; for (i=0;!x&&i
         <d.forms.length;i++) x=d.forms[i][n];
-        for(i=0;!x&&d.layers&&i
-            <d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
-            if(!x && document.getElementById) x=document.getElementById(n); return x;
-            }
-            function MM_showHideLayers() { //v3.0
-                var i,p,v,obj,args=MM_showHideLayers.arguments;
-                for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
-                if (obj.style) { obj=obj.style; v=(v=='show')?'block':(v='hide')?'none':v; }
-            obj.display=v; }
-            }
-            //-->
-            function goBack() {
-                location.href = "javascript:history.back()";
-                }
+    for(i=0;!x&&d.layers&&i
+        <d.layers.length;i++) x=MM_findObj(n,d.layers[i].document);
+    if(!x && document.getElementById) x=document.getElementById(n); return x;
+}
+function MM_showHideLayers() { //v3.0
+    var i,p,v,obj,args=MM_showHideLayers.arguments;
+    for (i=0; i<(args.length-2); i+=3) if ((obj=MM_findObj(args[i]))!=null) { v=args[i+2];
+        if (obj.style) { obj=obj.style; v=(v=='show')?'block':(v='hide')?'none':v; }
+        obj.display=v; }
+}
+//-->
+function goBack() {
+    location.href = "javascript:history.back()";
+}
 
-            function checknumber(String)
+function checknumber(String)
 {
     var Letters = "1234567890";
     var i;
     var c;
     for( i = 0; i < String.length; i ++ )
     {
-    c = String.charAt( i );
-    if (Letters.indexOf( c ) ==-1)
-    {
-    return true;
-    break;
+        c = String.charAt( i );
+        if (Letters.indexOf( c ) ==-1)
+        {
+            return true;
+            break;
+        }
     }
-            }
-            return false;
-            }
-            function checkfloat(val_num)
+    return false;
+}
+function checkfloat(val_num)
 {
     if (parseFloat(val_num) == val_num)
     {
-    return false;
+        return false;
     }
-            else
-		{
-            return true ;
-            }
-            }
+    else
+    {
+        return true ;
+    }
+}
 
-            function checkNumABC(val){
-                var Letters = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
-                var i;
-                var c;
-                for( i = 0; i < val.length; i ++ )
-                {
-                c = val.charAt( i );
-                if (Letters.indexOf( c ) ==-1)
-                {
-                return true;
-                break;
-                }
-            }
-            return false;
-            }
+function checkNumABC(val){
+    var Letters = "1234567890abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ_-";
+    var i;
+    var c;
+    for( i = 0; i < val.length; i ++ )
+    {
+        c = val.charAt( i );
+        if (Letters.indexOf( c ) ==-1)
+        {
+            return true;
+            break;
+        }
+    }
+    return false;
+}
 
-            function checkInt(val_num)
+function checkInt(val_num)
 {
     var tmp=parseInt(val_num);
     if ( (tmp== val_num)&&(tmp>=0))
     {
-    return true;
+        return true;
     }
-            return false;
-            }
+    return false;
+}
 
-            function enter2tab()
+function enter2tab()
 {
     var e = document.activeElement;
     var b = (e.tagName == "INPUT"
-    && window.event.keyCode == 13
-    && ( e.type == "text"
-    || e.type == "password"
-    || e.type == "checkbox"
-    || e.type == "radio"
-    || e.type == "select")
-    || e.tagName=="SELECT");
+        && window.event.keyCode == 13
+        && ( e.type == "text"
+        || e.type == "password"
+        || e.type == "checkbox"
+        || e.type == "radio"
+        || e.type == "select")
+        || e.tagName=="SELECT");
 
     var a = document.forms[0].elements, n=-1;
     for(var i=0; i<a.length; i++)
     {
-    if(a[i]==e) n=i;
-    if(n>-1 && b && n+1<a.length)
-    {
-    if(!a[n+1].disabled)
-    {
-    //a[n+1].focus();
-    a[n+1].select();
-    window.event.keyCode    = 0;
-    window.event.returnValue= false;
-    return;
-    }
+        if(a[i]==e) n=i;
+        if(n>-1 && b && n+1<a.length)
+        {
+            if(!a[n+1].disabled)
+            {
+                //a[n+1].focus();
+                a[n+1].select();
+                window.event.keyCode    = 0;
+                window.event.returnValue= false;
+                return;
+            }
             n=i;
-            }
-            }
-            }
-            function verifyDate(str)
+        }
+    }
+}
+function verifyDate(str)
 {
     thePat = /^\d{4}-(0?[1-9]|1[0-2])-(0?[1-9]|[1-2]\d|3[0-1])$||^\d{4}-(0?[1-9]|1[0-2])$/;
-            if(thePat.test(str)){
-                return   true;
-                }else{
-                return   false;
-                }
-            }
+    if(thePat.test(str)){
+        return   true;
+    }else{
+        return   false;
+    }
+}
 
 
-            function isEmpty(fData)
+function isEmpty(fData)
 {
     if(fData==null)
-    return true;
+        return true;
     var qdata=fData.replace(/(^\s*)|(\s*$)/g, "")
     if(qdata=="")
-    return true;
+        return true;
     return false;
+}
+
+function countId(checkId) {
+    var j = 0;
+    var l = 0;
+    var frm=document.forms[0];
+    l = frm.elements.length;
+    for (var i = 0; i < l; i++) {
+        var e = frm.elements[i];
+        if (e.name == checkId && e.checked == true)
+            j++;
     }
+    return j;
+}
+/**-----------------------------------------------------------
+ * 名　　称：isBigStr
+ * 功    能：判断字符串是否超过了额定的长度,汉字按两个字符计算
+ * 入口参数：fData：要检查的数据；maxLen：规定的最大长度
+ * 出口参数：True：超过了最大长度
+ *           False：没有超过最大长度
+ * -------------------------------------------------------------
+ **/
+function isBigStr(fData,maxLen){
+    if(fData!=null && fData.replace(/[^\x00-\xff]/g,"**").length>maxLen){
+        return true;
+    }else{
+        return false;
+    }
+}
 
-            function countId(checkId) {
-                var j = 0;
-                var l = 0;
-                var frm=document.forms[0];
-                l = frm.elements.length;
-                for (var i = 0; i < l; i++) {
-                var e = frm.elements[i];
-                if (e.name == checkId && e.checked == true)
-                j++;
-                }
-            return j;
-            }
-            /**-----------------------------------------------------------
-            * 名　　称：isBigStr
-            * 功    能：判断字符串是否超过了额定的长度,汉字按两个字符计算
-            * 入口参数：fData：要检查的数据；maxLen：规定的最大长度
-            * 出口参数：True：超过了最大长度
-            *           False：没有超过最大长度
-            * -------------------------------------------------------------
-            **/
-            function isBigStr(fData,maxLen){
-                if(fData!=null && fData.replace(/[^\x00-\xff]/g,"**").length>maxLen){
-                return true;
-                }else{
-                return false;
-                }
-            }
+/**-----------------------------------------------------------
+ * 名　　称：isCheckChina
+ * 功    能：判断字符串是否含有汉字
+ * 入口参数：fData：要检查的数据对象；msg：提示字符串
+ * 出口参数：return  返回
+ *
+ * -------------------------------------------------------------
+ **/
+function isCheckChina(fData,msg){
+    obj = document.all(fData);
+    if(obj!=null && obj.value.replace(/[^\x00-\xff]/g,"**").length!=obj.value.length){
+        alert(msg);
+        obj.selected;
+        return;
+    }else{
 
-            /**-----------------------------------------------------------
-            * 名　　称：isCheckChina
-            * 功    能：判断字符串是否含有汉字
-            * 入口参数：fData：要检查的数据对象；msg：提示字符串
-            * 出口参数：return  返回
-            *
-            * -------------------------------------------------------------
-            **/
-            function isCheckChina(fData,msg){
-                obj = document.all(fData);
-                if(obj!=null && obj.value.replace(/[^\x00-\xff]/g,"**").length!=obj.value.length){
-                alert(msg);
-                obj.selected;
-                return;
-                }else{
+    }
+}
 
-                }
-            }
+/**-----------------------------------------------------------
+ * 名　　称：compareDate
+ * 功    能：比较输入日期和当前系统日期的大小
+ * 入口参数：fData：输入的日期 格式 yyyy-mm-dd
+ * 出口参数：True： 输入日期大于当前系统日期
+ *           False：输入日期小于当前系统日期
+ * -------------------------------------------------------------
+ **/
+function compareDate(fDate){
+    var now = new Date();
+    var mm=now.getMonth() + 1;
+    var dd=now.getDate();
+    if(mm<10){
+        mm ="0"+mm;
+    }
+    if(dd
+        <10){
+        dd = "0" + dd;
+    }
+    var today =now.getYear()+"/"+mm+"/"+dd;
+    if (fDate.replace(/-/g,"\/")
+        <=today)
+    {
+        return true;
+    }else{
+        return false;
+    }
+}
+/**-----------------------------------------------------------
+ * 名　　称：CheckAll
+ * 功    能：选中或者非选中所有的检查框
+ * 入口参数：fData：输入的日期 格式 yyyy-mm-dd
+ * 出口参数：True： 输入日期大于当前系统日期
+ *           False：输入日期小于当前系统日期
+ * -------------------------------------------------------------
+ **/
+function CheckAll() {
+    var form=document.forms[0];
+    for (var i = 0; i < form.elements.length; i++) {
+        var e = form.elements[i];
+        if (e.name == "editid" && !e.disabled)
+            e.checked = form.ckAll.checked;
+    }
+}
 
-            /**-----------------------------------------------------------
-            * 名　　称：compareDate
-            * 功    能：比较输入日期和当前系统日期的大小
-            * 入口参数：fData：输入的日期 格式 yyyy-mm-dd
-            * 出口参数：True： 输入日期大于当前系统日期
-            *           False：输入日期小于当前系统日期
-            * -------------------------------------------------------------
-            **/
-            function compareDate(fDate){
-                var now = new Date();
-                var mm=now.getMonth() + 1;
-                var dd=now.getDate();
-                if(mm<10){
-                mm ="0"+mm;
-                }
-            if(dd
-                <10){
-                    dd = "0" + dd;
-                    }
-                var today =now.getYear()+"/"+mm+"/"+dd;
-                if (fDate.replace(/-/g,"\/")
-                    <=today)
-       {
-           return true;
-           }else{
-                        return false;
-                        }
-                    }
-                    /**-----------------------------------------------------------
-                    * 名　　称：CheckAll
-                    * 功    能：选中或者非选中所有的检查框
-                    * 入口参数：fData：输入的日期 格式 yyyy-mm-dd
-                    * 出口参数：True： 输入日期大于当前系统日期
-                    *           False：输入日期小于当前系统日期
-                    * -------------------------------------------------------------
-                    **/
-                    function CheckAll() {
-                        var form=document.forms[0];
-                        for (var i = 0; i < form.elements.length; i++) {
-                        var e = form.elements[i];
-                        if (e.name == "editid" && !e.disabled)
-                        e.checked = form.ckAll.checked;
-                        }
-                    }
+/**-----------------------------------------------------------
+ * 名　　称：CheckAllObj
+ * 功    能：选中或者非选中所有的检查框
+ * 入口参数：fData：输入的日期 格式 yyyy-mm-dd
+ * 出口参数：True： 输入日期大于当前系统日期
+ *           False：输入日期小于当前系统日期
+ * -------------------------------------------------------------
+ **/
+function CheckAllObj(checkname,checkvalue) {
+    var form=document.forms[0];
+    for (var i = 0; i < form.elements.length; i++) {
+        var e = form.elements[i];
+        if (e.name == checkname)
+            e.checked = checkvalue;
+    }
+}
+/**-----------------------------------------------------------
+ * 名　　称：KeyDown
+ * 功    能：在jsp页面上确认提交
+ * -------------------------------------------------------------
+ **/
+function QueryKeyDown(){
+    var form = document.forms[0];
+    if(event.keyCode==13){//Ctrl + Enter 有效
+        Search();
+    }
+}
 
-                    /**-----------------------------------------------------------
-                    * 名　　称：CheckAllObj
-                    * 功    能：选中或者非选中所有的检查框
-                    * 入口参数：fData：输入的日期 格式 yyyy-mm-dd
-                    * 出口参数：True： 输入日期大于当前系统日期
-                    *           False：输入日期小于当前系统日期
-                    * -------------------------------------------------------------
-                    **/
-                    function CheckAllObj(checkname,checkvalue) {
-                        var form=document.forms[0];
-                        for (var i = 0; i < form.elements.length; i++) {
-                        var e = form.elements[i];
-                        if (e.name == checkname)
-                        e.checked = checkvalue;
-                        }
-                    }
-                    /**-----------------------------------------------------------
-                    * 名　　称：KeyDown
-                    * 功    能：在jsp页面上确认提交
-                    * -------------------------------------------------------------
-                    **/
-                    function QueryKeyDown(){
-                        var form = document.forms[0];
-                        if(event.keyCode==13){//Ctrl + Enter 有效
-                        Search();
-                        }
-                    }
-
-                    function KeyDown(){
-                        var form = document.forms[0];
-                        if(event.keyCode==13){//Ctrl + Enter 有效
-                        Save();
-                        }
-                    }
-                    function showWaitMsg(){
-                        var IfrRef = document.getElementById('DivShim');
-                        var DivRef = document.getElementById('waitmsg');
-                        DivRef.style.pixelTop = (document.body.offsetHeight - 120) / 2 + document.body.scrollTop;
-                        DivRef.style.pixelLeft = (document.body.offsetWidth - 360) / 2 + document.body.scrollLeft;
-                        DivRef.style.display = "block";
-                        IfrRef.style.width = DivRef.offsetWidth;
-                        IfrRef.style.height = DivRef.offsetHeight;
-                        IfrRef.style.top = DivRef.style.top;
-                        IfrRef.style.left = DivRef.style.left;
-                        IfrRef.style.zIndex = DivRef.style.zIndex - 1;
-                        IfrRef.style.display = "block";
-                        document.getElementById('sbar').width = 1;
-                        times = setInterval('showloading();',100);
-                        }
-                    function hideWaitMsg(){
-                        var IfrRef = document.getElementById('DivShim');
-                        var DivRef = document.getElementById('waitmsg');
-                        DivRef.style.display = "none";
-                        IfrRef.style.display = "none";
-                        }
-                    function showloading()
+function KeyDown(){
+    var form = document.forms[0];
+    if(event.keyCode==13){//Ctrl + Enter 有效
+        Save();
+    }
+}
+function showWaitMsg(){
+    var IfrRef = document.getElementById('DivShim');
+    var DivRef = document.getElementById('waitmsg');
+    DivRef.style.pixelTop = (document.body.offsetHeight - 120) / 2 + document.body.scrollTop;
+    DivRef.style.pixelLeft = (document.body.offsetWidth - 360) / 2 + document.body.scrollLeft;
+    DivRef.style.display = "block";
+    IfrRef.style.width = DivRef.offsetWidth;
+    IfrRef.style.height = DivRef.offsetHeight;
+    IfrRef.style.top = DivRef.style.top;
+    IfrRef.style.left = DivRef.style.left;
+    IfrRef.style.zIndex = DivRef.style.zIndex - 1;
+    IfrRef.style.display = "block";
+    document.getElementById('sbar').width = 1;
+    times = setInterval('showloading();',100);
+}
+function hideWaitMsg(){
+    var IfrRef = document.getElementById('DivShim');
+    var DivRef = document.getElementById('waitmsg');
+    DivRef.style.display = "none";
+    IfrRef.style.display = "none";
+}
+function showloading()
 {
     if (document.getElementById('sbar').width>356)
     {
-    document.getElementById('sbar').width=1
+        document.getElementById('sbar').width=1
     }
-                    else
-	{
+    else
+    {
         document.getElementById('sbar').width += 2;
-        }
-                    }
+    }
+}
 
-                    /*-------------------------------------------------- nTab begin --------------------------------------------------*/
-                    function nTabs(thisObj,Num){
-                        if(thisObj.className == "active")return;
-                        var tabObj = thisObj.parentNode.id;
-                        var tabList = document.getElementById(tabObj).getElementsByTagName("li");
-                        for(i=0; i <tabList.length; i++)
-                        {
-                        if (i == Num)
-                        {
-                        thisObj.className = "active";
-                        document.getElementById(tabObj+"_Content"+i).style.display = "block";
-                        }else{
-                        tabList[i].className = "normal";
-                        document.getElementById(tabObj+"_Content"+i).style.display = "none";
-                        }
-                    }
-                    }
+/*-------------------------------------------------- nTab begin --------------------------------------------------*/
+function nTabs(thisObj,Num){
+    if(thisObj.className == "active")return;
+    var tabObj = thisObj.parentNode.id;
+    var tabList = document.getElementById(tabObj).getElementsByTagName("li");
+    for(i=0; i <tabList.length; i++)
+    {
+        if (i == Num)
+        {
+            thisObj.className = "active";
+            document.getElementById(tabObj+"_Content"+i).style.display = "block";
+        }else{
+            tabList[i].className = "normal";
+            document.getElementById(tabObj+"_Content"+i).style.display = "none";
+        }
+    }
+}

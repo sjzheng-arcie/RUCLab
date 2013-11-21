@@ -31,9 +31,9 @@ public interface EquipmentMapper {
 
     int updateByPrimaryKey(Equipment record);
 
-    int countInventoryProfit();
-
-    List<Equipment> selectInventoryProfitWithRowbounds(RowBounds RowBounds);
-
     Integer selectIdBySn(@Param("sn")String sn);
+
+    List<Equipment> selectInventoryProfitWithRowbounds(RowBounds rowBounds);
+
+    int countInventoryProfit();
 }
