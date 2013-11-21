@@ -23,9 +23,9 @@
         var version = parseFloat(arVersion[1])
         if ((version >= 5.5) && (document.body.filters))
         {
-            for(var j=0; j<document.images.length; j++)
+            for(var j=0; j<document.../images.length; j++)
             {
-                var img = document.images[j]
+                var img = document.../images[j]
                 var imgName = img.src.toUpperCase()
                 if (imgName.substring(imgName.length-3, imgName.length) == "PNG")
                 {
@@ -59,7 +59,7 @@
 </script>
 
 
-<link href="images/skin.css" rel="stylesheet" type="text/css">
+<link href="../images/skin.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table width="100%" height="166" border="0" cellpadding="0" cellspacing="0">
@@ -82,7 +82,7 @@
                                 <td height="149">&nbsp;</td>
                             </tr>
                             <tr>
-                                <td height="160" align="right" valign="top"><img src="images/logo.png" width="279" height="68"></td>
+                                <td height="160" align="right" valign="top"><img src="../images/logo.png" width="279" height="68"></td>
                             </tr>
 
 
@@ -122,7 +122,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td width="433" height="164" align="right" valign="bottom"><img src="images/login-wel.gif" width="242" height="138"></td>
+                                <td width="433" height="164" align="right" valign="bottom"><img src="../images/login-wel.gif" width="242" height="138"></td>
                                 <td width="57" align="right" valign="bottom">&nbsp;</td>
                             </tr>
                         </table></td>

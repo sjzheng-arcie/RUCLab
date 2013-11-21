@@ -447,7 +447,7 @@
   </select>
 
     <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
-      SELECT id FROM equipment_check WHERE sn = #{sn}
+      SELECT id FROM equipment WHERE sn = #{sn}
   </select>
 
 </mapper>

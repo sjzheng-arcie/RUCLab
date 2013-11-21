@@ -59,7 +59,7 @@ function displayClass(value){
 					 				<tr>
                                         <td align="center">
                                             <div class="message" style="border: 1px;background: #FFFFFF ;height: 600px ;width: 95%">
-                                                <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="/../../../../images/close_ico.ico"></a></span>
+                                                <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="../../../../images/close_ico.ico"></a></span>
                                                 <p style="height:30px"><p>
                                                 <h1 style="text-align: left;margin: 20px">详细信息：</h1>
                                                 <p style="margin: 30px" align="left"><span>接收人 :  </span><span>${messageDetailFlag.receiver.name}</span> <span style="float:right"><fmt:formatDate value="${messageDetailFlag.sendtime}"></fmt:formatDate></span>
