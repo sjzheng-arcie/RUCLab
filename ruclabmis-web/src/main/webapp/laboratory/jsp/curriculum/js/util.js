@@ -59,7 +59,7 @@ function fixImage(img, width, height) {
     var currentSrc = img.src;
 
     var imgStyle = "progid:DXImageTransform.Microsoft.AlphaImageLoader(src='" + currentSrc + "', sizingMethod='scale')";
-    img.src = 'images/clearpixel.gif';
+    img.src = '../images/clearpixel.gif';
     img.style.width = width + "px";
     img.style.height = height + "px";
     img.style.filter = imgStyle;

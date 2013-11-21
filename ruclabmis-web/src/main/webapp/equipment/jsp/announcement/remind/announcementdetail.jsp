@@ -4,7 +4,7 @@
 
 <html>
 <head>
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css" />
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script> 
@@ -45,7 +45,7 @@ function displayClass(value){
 					 				<tr>
                                         <td align="center">
                                             <div class="message" style="border: 1px;background: #FFFFFF;width: 95%">
-                                                <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="/equipment/images/close_ico.ico"></a></span>
+                                                <span style="float: right">&nbsp;&nbsp;<a  value="返回" class="buttson" onclick="window.history.go(-1);"><img src="/../../../../images/close_ico.ico"></a></span>
                                                 <p style="height:30px"><p>
                                                 <h1 style="text-align: center;margin: 20px">${announcementDetailFlag.title}</h1>
                                                 <hr style="margin: 30px">

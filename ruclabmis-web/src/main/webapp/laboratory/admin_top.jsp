@@ -47,11 +47,11 @@
         }
     </script>
     <base target="main">
-    <link href="images/skin.css" rel="stylesheet" type="text/css">
+    <link href="../images/skin.css" rel="stylesheet" type="text/css">
 </head>
 <body leftmargin="0" topmargin="0">
 <div class="top">
-    <div class="top_left"><img src="images/logo.gif" width="305" height="103"></div>
+    <div class="top_left"><img src="../images/logo.gif" width="305" height="103"></div>
     <div class="top_right">
         <div class="top_right_top">
            <span style="float:right;" >您好！<a>${user.name}</a>[${user.role.name}]

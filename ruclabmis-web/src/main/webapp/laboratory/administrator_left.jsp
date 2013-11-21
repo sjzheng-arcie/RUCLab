@@ -10,7 +10,7 @@
     <script src="js/prototype.lite.js" type="text/javascript"></script>
     <script src="js/moo.fx.js" type="text/javascript"></script>
     <script src="js/moo.fx.pack.js" type="text/javascript"></script>
-    <link href="css/left.css" rel="stylesheet" type="text/css"/>
+    <link href="../css/left.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript">
         //选择中标签变色
         var selectedid = null;
@@ -37,7 +37,7 @@
                 <div class="content">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+                            <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
                         </tr>
                     </table>
                     <ul class="MM">
@@ -58,7 +58,7 @@
                 <div class="content">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
-                            <td><img src="images/menu_topline.gif" width="182" height="5"/></td>
+                            <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
                         </tr>
                     </table>
                     <ul class="MM">

@@ -3,7 +3,7 @@
 
 <html>
 <head>
-    <link href="/laboratory/css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="/laboratory/../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript" src="/js/page.js"></script>
     <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
@@ -43,9 +43,9 @@
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="17" valign="top" background="/laboratory/images/mail_leftbg.gif"><img
-                    src="/laboratory/images/left-top-right.gif" width="17" height="29"/></td>
-            <td valign="top" background="/laboratory/images/content-bg.gif">
+            <td width="17" valign="top" background="/laboratory/../images/mail_leftbg.gif"><img
+                    src="/laboratory/../images/left-top-right.gif" width="17" height="29"/></td>
+            <td valign="top" background="/laboratory/../images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
                     <tr>
@@ -55,12 +55,12 @@
                     </tr>
                 </table>
             </td>
-            <td width="16" valign="top" background="/laboratory/images/mail_rightbg.gif"><img
-                    src="/laboratory/images/nav-right-bg.gif" width="16" height="29"/></td>
+            <td width="16" valign="top" background="/laboratory/../images/mail_rightbg.gif"><img
+                    src="/laboratory/../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
 
         <tr>
-            <td valign="middle" background="/laboratory/images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="/laboratory/../images/mail_leftbg.gif">&nbsp;</td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
@@ -76,7 +76,7 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
                                                                             onclick="toFind('listForm')"><img
-                                    src="/laboratory/images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                    src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -93,7 +93,7 @@
                                                                     <tr>
                                                                         <td width="6%" height="19" valign="bottom">
                                                                             <div align="center"><img
-                                                                                    src="/laboratory/images/tb.gif"
+                                                                                    src="/laboratory/../images/tb.gif"
                                                                                     width="14" height="14"/></div>
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
@@ -107,33 +107,33 @@
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
                                                                         <a href="/experiment/virtual/showAdd?page=1"><img
-                                                                                src="/laboratory/images/add_min.gif"
+                                                                                src="/laboratory/../images/add_min.gif"
                                                                                 width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">新增</span></a>&nbsp;
                                                                         <a href="editclass.html"
                                                                            onclick="toUpdate();"><img
-                                                                                src="/laboratory/images/edit_min.gif"
+                                                                                src="/laboratory/../images/edit_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
                                                                                 class="STYLE1">编辑</span></a>&nbsp;
 
                                                                         <a href="#" onclick="deleteClasses();"><img
-                                                                                src="/laboratory/images/del_min.gif"
+                                                                                src="/laboratory/../images/del_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
                                                                                 class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                         <a href="#" onclick="toHouseDy();"><img
-                                                                                src="/laboratory/images/del_min.gif"
+                                                                                src="/laboratory/../images/del_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
                                                                                 class="STYLE1">导入</span></a>&nbsp;&nbsp;
                                                                         <a href="#" onclick="toHouseLay();"><img
-                                                                                src="/laboratory/images/del_min.gif"
+                                                                                src="/laboratory/../images/del_min.gif"
                                                                                 width="10"
                                                                                 height="10" border="0"/> <span
                                                                                 class="STYLE1">导出</span></a>&nbsp;&nbsp;
                                                                         <a href="#" onclick="toRoom();"><img
-                                                                                src="/laboratory/images/del_min.gif"
+                                                                                src="/laboratory/../images/del_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
                                                                                 class="STYLE1">打印</span></a>&nbsp;&nbsp;
@@ -216,17 +216,17 @@
                     </tr>
                 </table>
             </td>
-            <td background="/laboratory/images/mail_rightbg.gif">&nbsp;</td>
+            <td background="/laboratory/../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="/laboratory/images/mail_leftbg.gif"><img
-                    src="/laboratory/images/buttom_left2.gif"
+            <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img
+                    src="/laboratory/../images/buttom_left2.gif"
                     width="17" height="17"/></td>
-            <td valign="bottom" background="/laboratory/images/buttom_bgs.gif"><img
-                    src="/laboratory/images/buttom_bgs.gif"
+            <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img
+                    src="/laboratory/../images/buttom_bgs.gif"
                     width="100%" height="17"/></td>
-            <td valign="bottom" background="/laboratory/images/mail_rightbg.gif"><img
-                    src="/laboratory/images/buttom_right2.gif" width="16" height="17"/></td>
+            <td valign="bottom" background="/laboratory/../images/mail_rightbg.gif"><img
+                    src="/laboratory/../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
 </form>

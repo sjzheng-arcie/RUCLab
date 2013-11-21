@@ -88,7 +88,7 @@ function dhtmlXGridObject(a) {
     this.hdrBox.style.overflow =
         "hidden";
     this.hdrBox.className = "xhdr";
-    this.preloadImagesAr = [];
+    this.preload../imagesAr = [];
     this.sortImg = document.createElement("IMG");
     this.sortImg.style.display = "none";
     this.hdrBox.appendChild(this.sortImg);
@@ -119,7 +119,7 @@ function dhtmlXGridObject(a) {
     this.imgURL = window.dhx_globalImgPath || "";
     this.isActive = !1;
     this.isEditable = !0;
-    this.pagingOn = this.useImagesInHeader = !1;
+    this.pagingOn = this.use../imagesInHeader = !1;
     this.rowsBufferOutSize = 0;
     dhtmlxEvent(window, "unload", function () {
         try {
@@ -374,7 +374,7 @@ function dhtmlXGridObject(a) {
     this.enableMultiselect = function (a) {
         this.selMultiRows = convertStringToBoolean(a)
     };
-    this.setImagesPath = this.setImagePath = function (a) {
+    this.set../imagesPath = this.setImagePath = function (a) {
         this.imgURL = a
     };
     this.setIconsPath = this.setIconPath = function (a) {
@@ -463,7 +463,7 @@ function dhtmlXGridObject(a) {
             this.sortImg.defLeft = parseInt(this.sortImg.style.left);
             this.sortImg.style.top =
                 Number(d[1] + 5) + "px";
-            if (!this.useImagesInHeader && !b)this.sortImg.style.display = "inline";
+            if (!this.use../imagesInHeader && !b)this.sortImg.style.display = "inline";
             this.sortImg.style.left = this.sortImg.defLeft + "px"
         }
     };
@@ -916,15 +916,15 @@ function dhtmlXGridObject(a) {
     this.setColumnLabel = function (a, b, c, d) {
         var g = (d || this.hdr).rows[c || 1], h = g._childIndexes ? g._childIndexes[a] : a;
         if (g.cells[h]) {
-            if (this.useImagesInHeader) {
+            if (this.use../imagesInHeader) {
                 g.cells[h].style.textAlign = "left";
                 g.cells[h].innerHTML = "<img src='" + this.imgURL + "" + b + "' onerror='this.src = \"" + this.imgURL + "imageloaderror.gif\"'>";
                 var l = new Image;
                 l.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".des$1");
-                this.preloadImagesAr[this.preloadImagesAr.length] = l;
+                this.preload../imagesAr[this.preload../imagesAr.length] = l;
                 var k = new Image;
                 k.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".asc$1");
-                this.preloadImagesAr[this.preloadImagesAr.length] = k
+                this.preload../imagesAr[this.preload../imagesAr.length] = k
             } else {
                 var m = "<div class='hdrcell'>";
                 if (b.indexOf("img:[") != -1) {
@@ -1000,7 +1000,7 @@ function dhtmlXGridObject(a) {
             var g = this.getSortingState(), h = g[0] == a && g[1] == "asc" ? "des" : "asc";
             if (this.callEvent("onBeforeSorting", [a, this.fldSort[a], h])) {
                 this.sortImg.src = this.imgURL + "sort_" + (h == "asc" ? "asc" : "desc") + ".gif";
-                if (this.useImagesInHeader) {
+                if (this.use../imagesInHeader) {
                     var l = this.hdr.rows[1].cells[d._cellIndex].firstChild;
                     if (this.fldSorted != null) {
                         var k = this.hdr.rows[1].cells[this.fldSorted._cellIndex].firstChild;
@@ -1016,8 +1016,8 @@ function dhtmlXGridObject(a) {
             }
         }
     };
-    this.enableHeaderImages = function (a) {
-        this.useImagesInHeader = a
+    this.enableHeader../images = function (a) {
+        this.use../imagesInHeader = a
     };
     this.setHeader = function (a, b, c) {
         for (var d = typeof a != "object" ? this._eSplit(a) : [].concat(a), g = [], h = new dhtmlxArray(0), l = [],
@@ -2209,7 +2209,7 @@ dhtmlXGridObject.prototype = {getRowAttribute: function (a, b) {
     dhtmlx.extend_api("dhtmlXGridObject", {_init: function (a) {
         return[a.parent]
     }, image_path: "setImagePath", columns: "columns", rows: "rows", headers: "headers", skin: "setSkin", smart_rendering: "enableSmartRendering", css: "enableAlterCss", auto_height: "enableAutoHeight", save_hidden: "enableAutoHiddenColumnsSaving",
-        save_cookie: "enableAutoSaving", save_size: "enableAutoSizeSaving", auto_width: "enableAutoWidth", block_selection: "enableBlockSelection", csv_id: "enableCSVAutoID", csv_header: "enableCSVHeader", cell_ids: "enableCellIds", colspan: "enableColSpan", column_move: "enableColumnMove", context_menu: "enableContextMenu", distributed: "enableDistributedParsing", drag: "enableDragAndDrop", drag_order: "enableDragOrder", tabulation: "enableEditTabOnly", header_images: "enableHeaderImages", header_menu: "enableHeaderMenu", keymap: "enableKeyboardSupport",
+        save_cookie: "enableAutoSaving", save_size: "enableAutoSizeSaving", auto_width: "enableAutoWidth", block_selection: "enableBlockSelection", csv_id: "enableCSVAutoID", csv_header: "enableCSVHeader", cell_ids: "enableCellIds", colspan: "enableColSpan", column_move: "enableColumnMove", context_menu: "enableContextMenu", distributed: "enableDistributedParsing", drag: "enableDragAndDrop", drag_order: "enableDragOrder", tabulation: "enableEditTabOnly", header_../images: "enableHeader../images", header_menu: "enableHeaderMenu", keymap: "enableKeyboardSupport",
         mouse_navigation: "enableLightMouseNavigation", markers: "enableMarkedCells", math_editing: "enableMathEditing", math_serialization: "enableMathSerialization", drag_copy: "enableMercyDrag", multiline: "enableMultiline", multiselect: "enableMultiselect", save_column_order: "enableOrderSaving", hover: "enableRowsHover", rowspan: "enableRowspan", smart: "enableSmartRendering", save_sorting: "enableSortingSaving", stable_sorting: "enableStableSorting", undo: "enableUndoRedo", csv_cell: "setCSVDelimiter", date_format: "setDateFormat",
         drag_behavior: "setDragBehavior", editable: "setEditable", without_header: "setNoHeader", submit_changed: "submitOnlyChanged", submit_serialization: "submitSerialization", submit_selected: "submitOnlySelected", submit_id: "submitOnlyRowID", xml: "load"}, {columns: function (a) {
         for (var c = 0; c < i.length; c++) {

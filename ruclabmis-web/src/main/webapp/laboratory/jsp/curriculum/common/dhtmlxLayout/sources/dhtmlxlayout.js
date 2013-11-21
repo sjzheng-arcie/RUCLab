@@ -230,7 +230,7 @@ function dhtmlXLayoutObject(base, view, skin) {
     // needed for windows
     this.imagePath = dhtmlx.image_path || "codebase/imgs/";
     /**
-     *    @desc: set path to images
+     *    @desc: set path to ../images
      *    @param: path - path on hard disk
      *    @type: public
      */
@@ -1700,7 +1700,7 @@ function dhtmlXLayoutObject(base, view, skin) {
                     if (this.polyObj[anyExp].className == "dhtmlxLayoutSinglePolyTabbarCollapsed") {
                         this.polyObj[anyExp].className = "dhtmlxLayoutSinglePolyTabbar";
                     }
-                    // show/hide splitter images
+                    // show/hide splitter ../images
                     this._fixSplitters();
                     // check icons
                     this._fixIcons();
@@ -1813,7 +1813,7 @@ function dhtmlXLayoutObject(base, view, skin) {
 
             this.polyObj[obj._idd].childNodes[0].childNodes[0].childNodes[4].title = this.i18n.collapse;
             //
-            // show/hide splitter images
+            // show/hide splitter ../images
             this._fixSplitters();
             // check icons
             this._fixIcons();
@@ -1916,7 +1916,7 @@ function dhtmlXLayoutObject(base, view, skin) {
                 obj.className = "dhtmlxLayoutSinglePolyTabbarCollapsed";
             }
             this.polyObj[obj._idd].childNodes[0].childNodes[0].childNodes[4].title = this.i18n.expand;
-            // show/hide splitter images
+            // show/hide splitter ../images
             this._fixSplitters();
             // check icons
             this._fixIcons();

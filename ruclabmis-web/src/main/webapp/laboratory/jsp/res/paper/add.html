@@ -2,7 +2,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
@@ -30,10 +30,10 @@
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="17" valign="top" background="../../../images/mail_leftbg.gif">
-                <img src="../../../images/left-top-right.gif" width="17" height="29"/>
+            <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
+                <img src="../../../../images/left-top-right.gif" width="17" height="29"/>
             </td>
-            <td valign="top" background="../../../images/content-bg.gif">
+            <td valign="top" background="../../../../images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
                     <tr>
@@ -43,12 +43,12 @@
                     </tr>
                 </table>
             </td>
-            <td width="16" valign="top" background="../../../images/mail_rightbg.gif">
-                <img src="../../../images/nav-right-bg.gif" width="16" height="29"/>
+            <td width="16" valign="top" background="../../../../images/mail_rightbg.gif">
+                <img src="../../../../images/nav-right-bg.gif" width="16" height="29"/>
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -62,7 +62,7 @@
                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                         <tr>
                                                             <td width="6%" height="19" valign="bottom">
-                                                                <div align="center"><img src="../../../images/tb.gif"
+                                                                <div align="center"><img src="../../../../images/tb.gif"
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
@@ -154,15 +154,15 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../images/mail_leftbg.gif"><img src="../../../images/buttom_left2.gif"
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
                                                                                   width="17" height="17"/></td>
-            <td valign="bottom" background="../../../images/buttom_bgs.gif"><img src="../../../images/buttom_bgs.gif"
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
                                                                                  width="100%" height="17"></td>
-            <td valign="bottom" background="../../../images/mail_rightbg.gif"><img
-                    src="../../../images/buttom_right2.gif" width="16" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
+                    src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
     <input type="hidden" name="us_sreplyby" value=""/>

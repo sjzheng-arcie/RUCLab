@@ -23,7 +23,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/prototype")
+@RequestMapping("/laboratory")
 public class PrototypeTest {
 
 	@Autowired
