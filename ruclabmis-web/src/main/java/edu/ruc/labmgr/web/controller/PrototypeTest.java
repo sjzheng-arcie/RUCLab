@@ -39,27 +39,27 @@ public class PrototypeTest {
 	@RequestMapping("/index")
 	public ModelAndView index(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/index");
+		ModelAndView mav = new ModelAndView("/laboratory/index");
 		return mav;
 	}
 
 	@RequestMapping("/left")
 	public ModelAndView left(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/left");
+		ModelAndView mav = new ModelAndView("/laboratory/left");
 		return mav;
 	}
 	@RequestMapping("/admin_top")
 	public ModelAndView top(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/admin_top");
+		ModelAndView mav = new ModelAndView("/laboratory/admin_top");
 		return mav;
 	}
 	private int stateId = 1;
 	@RequestMapping("/welcome")
 	public ModelAndView showWelcome(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/welcome");
+		ModelAndView mav = new ModelAndView("/laboratory/welcome");
 		User user = new User();
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
@@ -99,13 +99,13 @@ public class PrototypeTest {
 	@RequestMapping("/administrator_index")
 	public ModelAndView admin_Index(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/administrator_index");
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_index");
 		return mav;
 	}
 	@RequestMapping("/administrator_left")
 	public ModelAndView admin_Left(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/administrator_left");
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_left");
 		return mav;
 	}
 	@RequestMapping("/administrator_top")
@@ -119,14 +119,14 @@ public class PrototypeTest {
 		criteria.andReceiverIdEqualTo(currentUser.getId());
 		criteria.andIfreadEqualTo(false);
 		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/prototype/administrator_top");
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_top");
 		mav.addObject("unreadCount", count);
 		mav.addObject("user",currentUser);
 		return mav;
 	}
 	@RequestMapping("/administrator_welcome")
 	public ModelAndView showAdminWelcome(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("/prototype/administrator_welcome");
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_welcome");
 		User user = new User();
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
@@ -161,13 +161,13 @@ public class PrototypeTest {
 	@RequestMapping("/teacher_index")
 	public ModelAndView teacher_Index(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/teacher_index");
+		ModelAndView mav = new ModelAndView("/laboratory/teacher_index");
 		return mav;
 	}
 	@RequestMapping("/teacher_left")
 	public ModelAndView teacher_Left(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/teacher_left");
+		ModelAndView mav = new ModelAndView("/laboratory/teacher_left");
 		return mav;
 	}
 	@RequestMapping("/teacher_top")
@@ -182,7 +182,7 @@ public class PrototypeTest {
 		criteria.andReceiverIdEqualTo(currentUser.getId());
 		criteria.andIfreadEqualTo(false);
 		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/prototype/teacher_top");
+		ModelAndView mav = new ModelAndView("/laboratory/teacher_top");
 		mav.addObject("unreadCount", count);
 		mav.addObject("user",currentUser);
 		return mav;
@@ -190,7 +190,7 @@ public class PrototypeTest {
 	@RequestMapping("/teacher_welcome")
 	public ModelAndView showTeacherWelcome(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/teacher_welcome");
+		ModelAndView mav = new ModelAndView("/laboratory/teacher_welcome");
 		User user = new User();
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
@@ -217,13 +217,13 @@ public class PrototypeTest {
 	@RequestMapping("student_index")
 	public ModelAndView student_Index(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/student_index");
+		ModelAndView mav = new ModelAndView("/laboratory/student_index");
 		return mav;
 	}
 	@RequestMapping("/student_left")
 	public ModelAndView student_Left(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/student_left");
+		ModelAndView mav = new ModelAndView("/laboratory/student_left");
 		return mav;
 	}
 
@@ -239,7 +239,7 @@ public class PrototypeTest {
 		criteria.andReceiverIdEqualTo(currentUser.getId());
 		criteria.andIfreadEqualTo(false);
 		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/prototype/student_top");
+		ModelAndView mav = new ModelAndView("/laboratory/student_top");
 		mav.addObject("unreadCount", count);
 		mav.addObject("user",currentUser);
 		return mav;
@@ -247,7 +247,7 @@ public class PrototypeTest {
 
 	@RequestMapping("/student_welcome")
 	public ModelAndView showLeaderWelcome(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("/prototype/student_welcome");
+		ModelAndView mav = new ModelAndView("/laboratory/student_welcome");
 		User user = new User();
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
 		user=userService.getUserByLoginSn(loginName);
@@ -276,7 +276,7 @@ public class PrototypeTest {
 	@RequestMapping("/login")
 	public String toLogin() {
 
-		return "/prototype/login";
+		return "/laboratory/login";
 	}
 	@RequestMapping("/excutelogin")
 	public String login(HttpServletRequest request) {
@@ -296,11 +296,11 @@ public class PrototypeTest {
 				request.setAttribute("userNameNotExist","* 用户名不存在");
 				request.setAttribute("preUserName",userSn);
 
-				result="/prototype/login";
+				result="/laboratory/login";
 			}catch (IncorrectCredentialsException e){
 				request.setAttribute("passwordNotMatch","* 密码错误");
 				request.setAttribute("preUserName",userSn);
-				result="/prototype/login";
+				result="/laboratory/login";
 			}
 		}
 		if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
@@ -323,7 +323,7 @@ public class PrototypeTest {
 
 	@RequestMapping("/logout")
 	public String logout(HttpServletRequest request) {
-		String result = "/prototype/login";
+		String result = "/laboratory/login";
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
 		return result;
@@ -340,7 +340,7 @@ public class PrototypeTest {
 		criteria.andReceiverIdEqualTo(currentUser.getId());
 		criteria.andIfreadEqualTo(false);
 		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/prototype/top");
+		ModelAndView mav = new ModelAndView("/laboratory/top");
 		mav.addObject("unreadCount", count);
 		mav.addObject("user",currentUser);
 		return mav;
@@ -364,7 +364,7 @@ public class PrototypeTest {
 
 
 		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
-		ModelAndView mav = new ModelAndView("/prototype/welcome");
+		ModelAndView mav = new ModelAndView("/laboratory/welcome");
 		mav.addObject("messageLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
 
@@ -386,7 +386,7 @@ public class PrototypeTest {
 		announcementCriteria.or(criteria);
 		ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria);
 		System.out.print(pageInfo .getListObject().size());
-		ModelAndView mav = new ModelAndView("/prototype/welcome");
+		ModelAndView mav = new ModelAndView("/laboratory/welcome");
 		mav.addObject("announcementLists", pageInfo.getListObject());
 		mav.addObject("page", pageInfo.getPageInfo());
 
@@ -397,7 +397,7 @@ public class PrototypeTest {
 		int id = Integer.parseInt(request.getParameter("announcementDetailId"));
 		Announcement announcement = announcementService.getAnnouncementById(id);
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/announcement/remind/announcementdetail");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/announcement/remind/announcementdetail");
 		mav.addObject("announcementDetailFlag",announcement);
 		return mav;
 	}
@@ -407,7 +407,7 @@ public class PrototypeTest {
 		int id = Integer.parseInt(request.getParameter("messageDetailId"));
 		Message message= messageService.selectById(id);
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/announcement/remind/messagedetail");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/announcement/remind/messagedetail");
 		mav.addObject("messageDetailFlag",message);
 		return mav;
 	}
@@ -418,13 +418,13 @@ public class PrototypeTest {
 	@RequestMapping("jsp/experiment/achievement/myscore")
 	public ModelAndView myScore(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/achievement/myscore");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/myscore");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/report/uploadreport")
 	public ModelAndView myCourseList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/report/uploadreport");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/uploadreport");
 		return mav;
 	}
 
@@ -433,7 +433,7 @@ public class PrototypeTest {
 
 		PageInfo<Experiment> pageInfo=null;
 		List<Classif>courseList=null;
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/experiment/myexperimentlist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/myexperimentlist");
 		mav.addObject("pageInfo",pageInfo);
 		mav.addObject("courseList",courseList);
 
@@ -445,25 +445,25 @@ public class PrototypeTest {
 	@RequestMapping("jsp/experiment/experiment/paperinfo")
 	public ModelAndView paperInfo(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("prototype/jsp/experiment/experiment/detail");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/detail");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/experiment/editpaper")
 	public ModelAndView editpaper(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/experiment/editpaper");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/editpaper");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/experiment/update")
 	public ModelAndView updatePaper(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("prototype/jsp/experiment/experiment/update");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/update");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/experiment/toupdate")
 	public ModelAndView updateToUpdate(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("prototype/jsp/experiment/experiment/update");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/update");
 		return mav;
 	}
 
@@ -471,140 +471,140 @@ public class PrototypeTest {
 	public ModelAndView add(HttpServletRequest request) {
 
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/experiment/addtopaper");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/addtopaper");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/experiment/detail")
 	public ModelAndView detail(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/experiment/detail");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/detail");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/experiment/toadd")
 	public ModelAndView addPaper(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("prototype/jsp/experiment/experiment/add");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/add");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/report/courselist")
 	public ModelAndView courseList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/report/courselist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/courselist");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/experiment/courselist")
 	public ModelAndView courseListForExperiment(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/experiment/courselist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/courselist");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/report/list")
 	public ModelAndView reportList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/report/list");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/list");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/report/experimentlist")
 	public ModelAndView markReport(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("prototype/jsp/experiment/report/experimentlist");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/report/experimentlist");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/report/maintain")
 	public ModelAndView maintain(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/report/maintain");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/maintain");
 		return mav;
 	}
 
 	@RequestMapping("jsp/experiment/report/studentlist")
 	public ModelAndView markStudentList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/report/studentlist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/studentlist");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/achievement/scorelist")
 	public ModelAndView scoreList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/achievement/scorelist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/scorelist");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/achievement/score")
 	public ModelAndView achievementScore(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/achievement/score");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/score");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/achievement/courselist")
 	public ModelAndView achievementCourseList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/achievement/courselist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/courselist");
 		return mav;
 	}
 	@RequestMapping("jsp/experiment/achievement/toscore")
 	public ModelAndView toAchievementCourseList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/experiment/achievement/score");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/score");
 		return mav;
 	}
 	@RequestMapping("jsp/res/paper/list")
 	public ModelAndView paperList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/list");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/list");
 		return mav;
 	}
 	@RequestMapping("jsp/res/paper/editpaper")
 	public ModelAndView editPaper(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/editpaper");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/editpaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/paper/addtopaper")
 	public ModelAndView addToPaper(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/addtopaper");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/addtopaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/paper/addpaper")
 	public ModelAndView paperAdd(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/addpaper");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/addpaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/paper/paperinfo")
 	public ModelAndView paperPaperInfo(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/paper/paperinfo");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/paperinfo");
 		return mav;
 	}
 	@RequestMapping("jsp/res/question/list")
 	public ModelAndView questionList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/question/list");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/list");
 		return mav;
 	}
 	@RequestMapping("jsp/res/question/detail")
 	public ModelAndView questionDetail(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/question/detail");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/detail");
 		return mav;
 	}
 	@RequestMapping("jsp/res/question/add")
 	public ModelAndView questionAdd(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/question/add");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/add");
 		return mav;
 	}
 	@RequestMapping("jsp/res/question/toadd")
 	public ModelAndView questionToAdd(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/question/list");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/list");
 		return mav;
 	}
 	@RequestMapping("jsp/res/question/edit")
 	public ModelAndView questionEdit(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/prototype/jsp/res/question/edit");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/edit");
 		return mav;
 	}
 }

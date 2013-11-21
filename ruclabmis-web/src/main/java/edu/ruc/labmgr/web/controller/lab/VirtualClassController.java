@@ -36,7 +36,7 @@ public class VirtualClassController {
     public ModelAndView classList(@RequestParam int page,
                                   @RequestParam(value = "sn", required = false, defaultValue = "") String sn,
                                   @RequestParam(value = "name", required = false, defaultValue = "") String name) {
-        ModelAndView mv = new ModelAndView("prototype/jsp/experiment/virtual/list");
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/list");
         PageInfo<CurriculumClass> pageInfo = classService.getPageClasses(page, sn, name);
         mv.addObject("pageInfo", pageInfo);
         return mv;
@@ -44,7 +44,7 @@ public class VirtualClassController {
 
     @RequestMapping(value = "/showAdd", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView addClass(int page, String sn, String name, String major, CurriculumClass vclass) {
-        ModelAndView mv = new ModelAndView("prototype/jsp/experiment/virtual/addtoclass");
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/addtoclass");
         PageInfo<Student> pageInfo = studentService.getPageStudent(page, sn, name, major);
         mv.addObject("pageInfo", pageInfo);
         if (vclass == null) {
@@ -55,7 +55,7 @@ public class VirtualClassController {
     }
     @RequestMapping(value = "/editClass", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView editClass(int vcId,String sn,String name,String major){
-        ModelAndView mv = new ModelAndView("prototype/jsp/experiment/virtual/editclass");
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/editclass");
         CurriculumClass vClass = classService.getVirtualClass(vcId);
         List<Student> students = classService.getClassStudents(vcId,sn,name,major);
         mv.addObject("vClass",vClass);

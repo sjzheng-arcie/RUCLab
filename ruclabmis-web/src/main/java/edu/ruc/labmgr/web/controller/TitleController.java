@@ -24,7 +24,7 @@ import javax.servlet.http.HttpServletRequest;
  * To change this template use File | Settings | File Templates.
  */
 @Controller
-@RequestMapping("/prototype/jsp/bas/post")
+@RequestMapping("/laboratory/jsp/bas/post")
 public class TitleController {
 	@Autowired
 	TitleService titleService;
@@ -39,7 +39,7 @@ public class TitleController {
 								 @RequestParam("searchRank")String rank,@RequestParam("page")int page) {
 
 
-		ModelAndView mav = new ModelAndView("prototype/jsp/bas/post/list");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/bas/post/list");
 		PageInfo<Title> pageInfo =  titleService.selectListPage(name,rank,page);
 		mav.addObject("pageInfo",pageInfo);
 		return  mav;
@@ -47,7 +47,7 @@ public class TitleController {
 	}
 	@RequestMapping(value = "/toAdd",method = RequestMethod.GET)
 	public ModelAndView toAdd(HttpServletRequest request){
-		ModelAndView mav = new ModelAndView("prototype/jsp/bas/post/add");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/bas/post/add");
 		return mav;
 	}
 	@RequestMapping(value= "/add",method = RequestMethod.POST)
@@ -59,7 +59,7 @@ public class TitleController {
 	@RequestMapping(value = "/toUpdate",method = RequestMethod.POST)
 	public ModelAndView toUpdate(@RequestParam("id")int id){
 		Title title = titleService.selectByPrimerKey(id);
-		ModelAndView mav =  new ModelAndView("/prototype/jsp/bas/post/update");
+		ModelAndView mav =  new ModelAndView("/laboratory/jsp/bas/post/update");
 		mav.addObject("title",title);
 		return mav;
 
