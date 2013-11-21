@@ -71,7 +71,7 @@
                                         <td>
                                             <div align="right"><span class="STYLE1">&nbsp;</span><span
                                                     class="STYLE1"> &nbsp;</span>
-                                                <a href="#" onclick="window.print()"><img src="/../../../../images/del_min.gif" width="10" height="10"
+                                                <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                                                       border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                                 </span>
                                             </div>
