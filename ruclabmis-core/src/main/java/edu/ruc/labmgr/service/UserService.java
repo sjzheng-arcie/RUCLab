@@ -23,11 +23,14 @@ public class UserService {
 
     public User getCurrentUser() {
         Subject currentUser = SecurityUtils.getSubject();
-        String userSn = (String) currentUser.getPrincipal();
-        if (StringUtils.isNullOrEmpty(userSn)) {
+        if (currentUser == null) {
             throw (new org.apache.shiro.authz.UnauthenticatedException("未登录系统，请登录后重试"));
         }
-        return mapperUser.selectUserByLoginSn(userSn);
+        Object userSn = currentUser.getPrincipal();
+        if (userSn == null) {
+            throw (new org.apache.shiro.authz.UnauthenticatedException("未登录系统，请登录后重试"));
+        }
+        return mapperUser.selectUserByLoginSn((String)userSn);
     }
 
     public int getCurrentUserId() {
