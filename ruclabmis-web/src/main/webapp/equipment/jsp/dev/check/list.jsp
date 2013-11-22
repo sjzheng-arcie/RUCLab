@@ -9,7 +9,7 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <script>
-        function toPrint(){
+        function toPrint() {
             window.print();
         }
     </script>
@@ -24,7 +24,7 @@
             <td class="noprint" valign="top" background="../../../../images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
-                    <tr class="noprint" >
+                    <tr class="noprint">
                         <td height="31">
                             <div class="titlebt">设备管理系统 > 仪器设备类资产实盘</div>
                         </td>
@@ -42,10 +42,12 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-<span class="noprint" style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input class="noprint" type="text" name="name" id="name" value=""
-                                                         style="width:100px;"/></span>
+<span class="noprint" style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input class="noprint" type="text" name="name"
+                                                                         id="name" value=""
+                                                                         style="width:100px;"/></span>
 
-<span style="white-space:nowrap">&nbsp;&nbsp;<a class="noprint" href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm')"><img
+<span style="white-space:nowrap">&nbsp;&nbsp;<a class="noprint" href="javascript:void(0);" style="cursor:pointer"
+                                                onclick="toFind('listForm')"><img
         src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
@@ -77,16 +79,18 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-	            			<a href="/equipCheck/profitList?page=1"><img src="../../../../images/add_min.gif" width="10" height="10"
-                                                           border="0"/> <span class="STYLE1">盘盈</span></a>&nbsp;
-      					  <a href="/equipCheck/loseList?page=1"><img src="../../../../images/add_min.gif" width="10" height="10"
-                                                          border="0"/> <span class="STYLE1">盘亏</span></a>&nbsp;
+	            			<a href="/equipCheck/profitList?page=1"><img src="../../../../images/add_min.gif" width="10"
+                                                                         height="10"
+                                                                         border="0"/> <span class="STYLE1">盘盈</span></a>&nbsp;
+      					  <a href="/equipCheck/loseList?page=1"><img src="../../../../images/add_min.gif" width="10"
+                                                                     height="10"
+                                                                     border="0"/> <span class="STYLE1">盘亏</span></a>&nbsp;
                   <a href="/equipCheck/importRealCheck"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                          border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                                                             border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
 <%--                  <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                            border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
                   <a href="#" onclick="toPrint();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                       border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                        border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	              </span>
                                                                 </div>
                                                             </td>
@@ -99,7 +103,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div id="divwidth"  style="overflow:auto;overflow-y:hidden;">
+                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
@@ -166,7 +170,8 @@
                                                         <td>${equip.unitPrice}</td>
                                                         <td>${equip.vender}</td>
                                                         <td>${equip.factoryNumber}</td>
-                                                        <td><fmt:formatDate value="${equip.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
+                                                        <td><fmt:formatDate value="${equip.acquisitionDate}"
+                                                                            pattern="yyyy-MM-dd"/></td>
                                                         <td>${equip.fundingSubject}</td>
                                                         <td>${equip.user}</td>
                                                         <td>${equip.location}</td>

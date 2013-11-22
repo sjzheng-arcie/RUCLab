@@ -3,7 +3,6 @@ package edu.ruc.labmgr.service;
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentCheck;
 import edu.ruc.labmgr.domain.EquipmentCheckCriteria;
-import edu.ruc.labmgr.domain.EquipmentCriteria;
 import edu.ruc.labmgr.mapper.EquipmentCheckMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;

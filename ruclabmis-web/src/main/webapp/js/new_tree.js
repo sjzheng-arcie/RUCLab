@@ -1,17 +1,17 @@
 var path = path == null || path == undefined ? "" : path;
-var rootIcon ="/images/tree_img/root_close.gif"; 	//根目录关起时状态图标
+var rootIcon = "/images/tree_img/root_close.gif"; 	//根目录关起时状态图标
 var openRootIcon = "/images/tree_img/root_open.gif"; 	//根目录展开时状态图标
-var folderIcon ="/images/tree_img/folder_close.gif";	//子文件夹关起时状态图标
-var openFolderIcon ="/images/tree_img/folder_open.gif";	//子文件夹展开时状态图标
-var fileIcon ="/images/iGenericAttribute.gif";	//链接叶子节点图标
-var iIcon ="/images/tree_img/i_line.gif";		//普通的连接线（直的）
-var lIcon ="/images/tree_img/l_line.gif";		//最后一个节点的连接线
-var lMinusIcon ="/images/tree_img/l_point_open.gif";	//最后一个文件夹节点（展开时的）图标
-var lPlusIcon ="/images/tree_img/l_point_close.gif";//最后一个文件夹节点（关起时的）图标
-var tIcon ="/images/tree_img/t_line.gif";		//中间节点的连接线
-var tMinusIcon ="/images/tree_img/t_point_open.gif";	//中间文件夹节点（展开时的）图标
-var tPlusIcon ="/images/tree_img/t_point_close.gif";//中间文件夹节点（关起时的）图标
-var blankIcon ="/images/tree_img/blank.gif";		//中间空白的图标图标
+var folderIcon = "/images/tree_img/folder_close.gif";	//子文件夹关起时状态图标
+var openFolderIcon = "/images/tree_img/folder_open.gif";	//子文件夹展开时状态图标
+var fileIcon = "/images/iGenericAttribute.gif";	//链接叶子节点图标
+var iIcon = "/images/tree_img/i_line.gif";		//普通的连接线（直的）
+var lIcon = "/images/tree_img/l_line.gif";		//最后一个节点的连接线
+var lMinusIcon = "/images/tree_img/l_point_open.gif";	//最后一个文件夹节点（展开时的）图标
+var lPlusIcon = "/images/tree_img/l_point_close.gif";//最后一个文件夹节点（关起时的）图标
+var tIcon = "/images/tree_img/t_line.gif";		//中间节点的连接线
+var tMinusIcon = "/images/tree_img/t_point_open.gif";	//中间文件夹节点（展开时的）图标
+var tPlusIcon = "/images/tree_img/t_point_close.gif";//中间文件夹节点（关起时的）图标
+var blankIcon = "/images/tree_img/blank.gif";		//中间空白的图标图标
 
 var defaultText = "Tree Item";
 var defaultAction = "";	//javascript:void(0);

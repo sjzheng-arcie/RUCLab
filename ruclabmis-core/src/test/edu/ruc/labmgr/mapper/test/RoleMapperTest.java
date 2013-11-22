@@ -5,7 +5,6 @@ import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.mapper.RoleMapper;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -28,9 +27,8 @@ public class RoleMapperTest {
             for (Privilege each : role.getPrivileges()) {
                 System.out.println(each.getName());
             }
-        }
-        else{
-            assert(false);
+        } else {
+            assert (false);
         }
     }
 

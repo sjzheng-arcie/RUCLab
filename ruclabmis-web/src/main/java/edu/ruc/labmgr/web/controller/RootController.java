@@ -5,7 +5,6 @@ import edu.ruc.labmgr.service.AnnouncementService;
 import edu.ruc.labmgr.service.ApplicationFormService;
 import edu.ruc.labmgr.service.MessageService;
 import edu.ruc.labmgr.service.UserService;
-
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.ObjectListPage;
@@ -16,350 +15,354 @@ import org.apache.shiro.authc.UsernamePasswordToken;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
 @RequestMapping("/equipment")
 public class RootController {
 
-	@Autowired
-	private ApplicationFormService applicationFormService;
-	@Autowired
-	private UserService userService;
-	@Autowired
-	private MessageService messageService;
-	@Autowired
-	private AnnouncementService announcementService;
+    @Autowired
+    private ApplicationFormService applicationFormService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private MessageService messageService;
+    @Autowired
+    private AnnouncementService announcementService;
 
 
-	@RequestMapping("/index")
-	public ModelAndView index(HttpServletRequest request) {
+    @RequestMapping("/index")
+    public ModelAndView index(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/equipment/index");
-		return mav;
-	}
-	@RequestMapping("/tops")
-	public ModelAndView top(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("/equipment/index");
+        return mav;
+    }
 
-		ModelAndView mav = new ModelAndView("/equipment/top");
-		return mav;
-	}
-	private int stateId = 1;
-	@RequestMapping("/welcome")
-	public ModelAndView showWelcome(HttpServletRequest request) {
+    @RequestMapping("/tops")
+    public ModelAndView top(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/equipment/welcome");
-		User user = new User();
-		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
-		//获取当前用户的申请列表
-		mav.addObject("myApplyList",getMyApplyList(user) );
-		//获取当前用户需要进行审批的申请列表
-		mav.addObject("pendingApplyList", getPendingApplyList(user) );
+        ModelAndView mav = new ModelAndView("/equipment/top");
+        return mav;
+    }
 
-		//获取通知列表
+    private int stateId = 1;
 
-		mav.addObject("announcementList",getAnnouncementList() );
-		//获取消息列表
-		MessageCriteria messageCriteria = new MessageCriteria();
+    @RequestMapping("/welcome")
+    public ModelAndView showWelcome(HttpServletRequest request) {
 
-		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
-		criteria2.andReceiverIdEqualTo(user.getId());
-		messageCriteria.setOrderByClause("sendtime desc");
-		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
-		mav.addObject("messageList",messageList);
+        ModelAndView mav = new ModelAndView("/equipment/welcome");
+        int currentUserId = userService.getCurrentUserId();
 
-		return mav;
-	}
-	public List<ApplicationForm> getMyApplyList(User user){
-		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApplicantIdEqualTo(user.getId());
-		criteria.andStateIdNotEqualTo(34);
-		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
-		return myApplyList;
-	}
-	public List<ApplicationForm> getPendingApplyList(User user){
-		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
-		criteria02.andApproverIdEqualTo(user.getId());
-		criteria02.andStateIdNotEqualTo(34);
-		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
-		return pendingApplyList;
-	}
-	public List<Announcement> getAnnouncementList(){
-		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
-		announcementCriteria.setOrderByClause("publish_time desc");
-		AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
-		return  announcementList;
-	}
-	@RequestMapping("/admin_index")
-	public ModelAndView admin_Index(HttpServletRequest request) {
+        //获取当前用户的申请列表
+        mav.addObject("myApplyList", getMyApplyList(currentUserId));
+        //获取当前用户需要进行审批的申请列表
+        mav.addObject("pendingApplyList", getPendingApplyList(currentUserId));
 
-		ModelAndView mav = new ModelAndView("/equipment/admin_index");
-		return mav;
-	}
-	@RequestMapping("/admin_top")
-	public ModelAndView adminTop(HttpServletRequest request) {
-		User currentUser = new User();
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		currentUser=userService.getUserByLoginSn(loginName);
-		MessageCriteria messageCriteria=  new MessageCriteria();
-		messageCriteria.setOrderByClause("sendtime desc");
-		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-		criteria.andReceiverIdEqualTo(currentUser.getId());
-		criteria.andIfreadEqualTo(false);
-		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/equipment/admin_top");
-		mav.addObject("unreadCount", count);
-		mav.addObject("user",currentUser);
-		return mav;
-	}
-	@RequestMapping("/admin_welcome")
-	public ModelAndView showAdminWelcome(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("/equipment/admin_welcome");
-		User user = new User();
-		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
-		//获取当前用户的申请列表
-		mav.addObject("myApplyList",getMyApplyList(user) );
-		//获取当前用户需要进行审批的申请列表
-		mav.addObject("pendingApplyList", getPendingApplyList(user));
-		//获取通知列表
+        //获取通知列表
 
-		mav.addObject("announcementList",getAnnouncementList());
-		//获取消息列表
-		MessageCriteria messageCriteria = new MessageCriteria();
-		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
-		criteria2.andReceiverIdEqualTo(user.getId());
-		messageCriteria.setOrderByClause("sendtime desc");
-		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
-		mav.addObject("messageList",messageList);
+        mav.addObject("announcementList", getAnnouncementList());
+        //获取消息列表
+        MessageCriteria messageCriteria = new MessageCriteria();
 
-		return mav;
-	}
-	@RequestMapping("/teacher_index")
-	public ModelAndView teacher_Index(HttpServletRequest request) {
+        MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+        criteria2.andReceiverIdEqualTo(currentUserId);
+        messageCriteria.setOrderByClause("sendtime desc");
+        List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+        mav.addObject("messageList", messageList);
 
-		ModelAndView mav = new ModelAndView("/equipment/teacher_index");
-		return mav;
-	}
-	@RequestMapping("/left")
-	public ModelAndView allLeft(HttpServletRequest request) {
+        return mav;
+    }
 
-		ModelAndView mav = new ModelAndView("/equipment/left");
-		return mav;
-	}
-	@RequestMapping("/teacher_top")
-	public ModelAndView teacher_Top(HttpServletRequest request) {
+    public List<ApplicationForm> getMyApplyList(int userId) {
+        ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+        ApplicationFormCriteria.Criteria criteria = applicationFormCriteria.createCriteria();
+        criteria.andApplicantIdEqualTo(userId);
+        criteria.andStateIdNotEqualTo(34);
+        List<ApplicationForm> myApplyList = applicationFormService.selectListByState(applicationFormCriteria);
+        return myApplyList;
+    }
 
-		ModelAndView mav = new ModelAndView("/equipment/teacher_top");
-		return mav;
-	}
-	@RequestMapping("/teacher_welcome")
-	public ModelAndView showTeacherWelcome(HttpServletRequest request) {
+    public List<ApplicationForm> getPendingApplyList(int userId) {
+        ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
+        ApplicationFormCriteria.Criteria criteria02 = applicationFormCriteria02.createCriteria();
+        criteria02.andApproverIdEqualTo(userId);
+        criteria02.andStateIdNotEqualTo(34);
+        List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
+        return pendingApplyList;
+    }
 
-		ModelAndView mav = new ModelAndView("/equipment/teacher_welcome");
-		User user = new User();
-		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
-		//获取当前用户的申请列表
-		mav.addObject("myApplyList",getMyApplyList(user));
-		//获取通知列表
-		mav.addObject("announcementList",getAnnouncementList() );
-		//获取消息列表
+    public List<Announcement> getAnnouncementList() {
+        AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+        announcementCriteria.setOrderByClause("publish_time desc");
+        AnnouncementCriteria.Criteria criteria1 = announcementCriteria.createCriteria();
+        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+        return announcementList;
+    }
 
-		MessageCriteria messageCriteria = new MessageCriteria();
-		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
-		criteria2.andReceiverIdEqualTo(user.getId());
-		messageCriteria.setOrderByClause("sendtime desc");
+    @RequestMapping("/admin_index")
+    public ModelAndView admin_Index(HttpServletRequest request) {
 
-		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
-		mav.addObject("messageList",messageList);
+        ModelAndView mav = new ModelAndView("/equipment/admin_index");
+        return mav;
+    }
 
-		return mav;
-	}
-	@RequestMapping("/leader_index")
-	public ModelAndView leader_Index(HttpServletRequest request) {
+    @RequestMapping("/admin_top")
+    public ModelAndView adminTop(HttpServletRequest request) {
+        User currentUser = userService.getCurrentUser();
 
-		ModelAndView mav = new ModelAndView("/equipment/leader_index");
-		return mav;
-	}
-	@RequestMapping("/leader_top")
-	public ModelAndView leader_Top(HttpServletRequest request) {
+        MessageCriteria messageCriteria = new MessageCriteria();
+        messageCriteria.setOrderByClause("sendtime desc");
+        MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+        criteria.andReceiverIdEqualTo(currentUser.getId());
+        criteria.andIfreadEqualTo(false);
+        int count = messageService.getCount(messageCriteria);
+        ModelAndView mav = new ModelAndView("/equipment/admin_top");
+        mav.addObject("unreadCount", count);
+        mav.addObject("user", currentUser);
+        return mav;
+    }
 
-		ModelAndView mav = new ModelAndView("/equipment/leader_top");
-		return mav;
-	}
+    @RequestMapping("/admin_welcome")
+    public ModelAndView showAdminWelcome(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("/equipment/admin_welcome");
+        int currentUserId = userService.getCurrentUserId();
 
-	@RequestMapping("/leader_welcome")
-	public ModelAndView showLeaderWelcome(HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView("/equipment/leader_welcome");
-		User user = new User();
-		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
-		//获取当前用户需要进行审批的申请列表
-		mav.addObject("pendingApplyList", getPendingApplyList(user) );
-		//获取通知列表
-		mav.addObject("announcementList",getAnnouncementList() );
-		//获取消息列表
-		MessageCriteria messageCriteria = new MessageCriteria();
-		MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
-		criteria2.andReceiverIdEqualTo(user.getId());
-		messageCriteria.setOrderByClause("sendtime desc");
-		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
-		mav.addObject("messageList",messageList);
+        //获取当前用户的申请列表
+        mav.addObject("myApplyList", getMyApplyList(currentUserId));
+        //获取当前用户需要进行审批的申请列表
+        mav.addObject("pendingApplyList", getPendingApplyList(currentUserId));
+        //获取通知列表
 
-		return mav;
-	}
-	@RequestMapping("/login")
-	public String toLogin() {
+        mav.addObject("announcementList", getAnnouncementList());
+        //获取消息列表
+        MessageCriteria messageCriteria = new MessageCriteria();
+        MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+        criteria2.andReceiverIdEqualTo(currentUserId);
+        messageCriteria.setOrderByClause("sendtime desc");
+        List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+        mav.addObject("messageList", messageList);
 
-		return "/equipment/login";
-	}
-	@RequestMapping("/excutelogin")
-	public String login(HttpServletRequest request) {
-		String result = "/login";
-		String userSn = request.getParameter("username");
-		String password = CipherUtil.generatePassword(request.getParameter("password"));
+        return mav;
+    }
 
-		UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
+    @RequestMapping("/teacher_index")
+    public ModelAndView teacher_Index(HttpServletRequest request) {
 
-		Subject currentUser = SecurityUtils.getSubject();
+        ModelAndView mav = new ModelAndView("/equipment/teacher_index");
+        return mav;
+    }
 
-		if (!currentUser.isAuthenticated()) {
-			token.setRememberMe(false);
-			try {
-				currentUser.login(token);
-			}catch(UnknownAccountException e){
-				request.setAttribute("userNameNotExist","* 用户名不存在");
-				request.setAttribute("nonexistUserName",userSn);
+    @RequestMapping("/left")
+    public ModelAndView allLeft(HttpServletRequest request) {
 
-				result="/equipment/login";
-			}catch (IncorrectCredentialsException e){
-				request.setAttribute("passwordNotMatch","* 密码错误");
+        ModelAndView mav = new ModelAndView("/equipment/left");
+        return mav;
+    }
 
-				request.setAttribute("nonexistUserName",userSn);
-				result="/equipment/login";
-			}
-		}
-		if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
+    @RequestMapping("/teacher_top")
+    public ModelAndView teacher_Top(HttpServletRequest request) {
 
+        ModelAndView mav = new ModelAndView("/equipment/teacher_top");
+        return mav;
+    }
 
-			result = "redirect:index";
-		} else if (currentUser.hasRole("teacher")){
+    @RequestMapping("/teacher_welcome")
+    public ModelAndView showTeacherWelcome(HttpServletRequest request) {
 
-			result = "redirect:teacher_index";
-		}else if (currentUser.hasRole("leader")){
+        ModelAndView mav = new ModelAndView("/equipment/teacher_welcome");
+        int currentUserId = userService.getCurrentUserId();
 
-			result = "redirect:leader_index";
-		}else if (currentUser.hasRole("equipment_admin")){
+        //获取当前用户的申请列表
+        mav.addObject("myApplyList", getMyApplyList(currentUserId));
+        //获取通知列表
+        mav.addObject("announcementList", getAnnouncementList());
+        //获取消息列表
 
-			result = "redirect:admin_index";
-		}
+        MessageCriteria messageCriteria = new MessageCriteria();
+        MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+        criteria2.andReceiverIdEqualTo(currentUserId);
+        messageCriteria.setOrderByClause("sendtime desc");
 
-		return result;
-	}
+        List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+        mav.addObject("messageList", messageList);
 
-	@RequestMapping("/logout")
-	public String logout(HttpServletRequest request) {
-		String result = "/equipment/login";
-		Subject currentUser = SecurityUtils.getSubject();
-		currentUser.logout();
-		return result;
-	}
+        return mav;
+    }
 
-	@RequestMapping("/top")
-	public ModelAndView showUnreadMessage() {
-		User currentUser = new User();
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		currentUser=userService.getUserByLoginSn(loginName);
-		MessageCriteria messageCriteria=  new MessageCriteria();
-		messageCriteria.setOrderByClause("sendtime desc");
-		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-		criteria.andReceiverIdEqualTo(currentUser.getId());
-		criteria.andIfreadEqualTo(false);
-		int count=messageService.getCount(messageCriteria);
-		ModelAndView mav = new ModelAndView("/equipment/top");
-		mav.addObject("unreadCount", count);
-		mav.addObject("user",currentUser);
-		return mav;
-	}
+    @RequestMapping("/leader_index")
+    public ModelAndView leader_Index(HttpServletRequest request) {
 
-	int currPage=0;
+        ModelAndView mav = new ModelAndView("/equipment/leader_index");
+        return mav;
+    }
 
-	@RequestMapping("/welcome_message")
-	public ModelAndView showMessage(HttpServletRequest request) {
-		User user = new User();
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		user=userService.getUserByLoginSn(loginName);
+    @RequestMapping("/leader_top")
+    public ModelAndView leader_Top(HttpServletRequest request) {
 
-		currPage = request.getParameter("page") == null   ?
-				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+        ModelAndView mav = new ModelAndView("/equipment/leader_top");
+        return mav;
+    }
 
-		MessageCriteria messageCriteria=  new MessageCriteria();
-		messageCriteria.setOrderByClause(" sendtime desc");
-		MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-		criteria.andReceiverIdEqualTo(user.getId());
+    @RequestMapping("/leader_welcome")
+    public ModelAndView showLeaderWelcome(HttpServletRequest request) {
+        ModelAndView mav = new ModelAndView("/equipment/leader_welcome");
+        int currentUserId = userService.getCurrentUserId();
+
+        //获取当前用户需要进行审批的申请列表
+        mav.addObject("pendingApplyList", getPendingApplyList(currentUserId));
+        //获取通知列表
+        mav.addObject("announcementList", getAnnouncementList());
+        //获取消息列表
+        MessageCriteria messageCriteria = new MessageCriteria();
+        MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
+        criteria2.andReceiverIdEqualTo(currentUserId);
+        messageCriteria.setOrderByClause("sendtime desc");
+        List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+        mav.addObject("messageList", messageList);
+
+        return mav;
+    }
+
+    @RequestMapping("/login")
+    public String toLogin() {
+
+        return "/equipment/login";
+    }
+
+    @RequestMapping("/excutelogin")
+    public String login(HttpServletRequest request) {
+        String result = "/login";
+        String userSn = request.getParameter("username");
+        String password = CipherUtil.generatePassword(request.getParameter("password"));
+
+        UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
+
+        Subject currentUser = SecurityUtils.getSubject();
+
+        if (!currentUser.isAuthenticated()) {
+            token.setRememberMe(false);
+            try {
+                currentUser.login(token);
+            } catch (UnknownAccountException e) {
+                request.setAttribute("userNameNotExist", "* 用户名不存在");
+                request.setAttribute("nonexistUserName", userSn);
+
+                result = "/equipment/login";
+            } catch (IncorrectCredentialsException e) {
+                request.setAttribute("passwordNotMatch", "* 密码错误");
+
+                request.setAttribute("nonexistUserName", userSn);
+                result = "/equipment/login";
+            }
+        }
+        if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
 
 
-		ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage,messageCriteria );
-		ModelAndView mav = new ModelAndView("/equipment/welcome");
-		mav.addObject("messageLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+            result = "redirect:index";
+        } else if (currentUser.hasRole("teacher")) {
 
-		return mav;
-	}
+            result = "redirect:teacher_index";
+        } else if (currentUser.hasRole("leader")) {
 
-	@RequestMapping("/welcome_announcement")
-	public ModelAndView showAnnouncement(HttpServletRequest request) {
-		String loginName= SecurityUtils.getSubject().getPrincipal().toString();
-		User user = new User();
-		user=userService.getUserByLoginSn(loginName);
-		currPage = request.getParameter("page") == null   ?
-				(currPage > 0 ? currPage:1) : Integer.parseInt(request.getParameter("page"));
+            result = "redirect:leader_index";
+        } else if (currentUser.hasRole("equipment_admin")) {
 
-		AnnouncementCriteria announcementCriteria =  new AnnouncementCriteria();
-		AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
+            result = "redirect:admin_index";
+        }
 
-		criteria.andPublishLimitEqualTo(0);
-		announcementCriteria.or(criteria);
-		ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria);
-		System.out.print(pageInfo .getListObject().size());
-		ModelAndView mav = new ModelAndView("/equipment/welcome");
-		mav.addObject("announcementLists", pageInfo.getListObject());
-		mav.addObject("page", pageInfo.getPageInfo());
+        return result;
+    }
 
-		return mav;
-	}
-	@RequestMapping("/announcementDetail")
-	public ModelAndView getAnnouncement(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("announcementDetailId"));
-		Announcement announcement = announcementService.getAnnouncementById(id);
+    @RequestMapping("/logout")
+    public String logout(HttpServletRequest request) {
+        String result = "/equipment/login";
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        return result;
+    }
 
-		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcementdetail");
-		mav.addObject("announcementDetailFlag",announcement);
-		return mav;
-	}
+    @RequestMapping("/top")
+    public ModelAndView showUnreadMessage() {
+        User currentUser = userService.getCurrentUser();
+        MessageCriteria messageCriteria = new MessageCriteria();
+        messageCriteria.setOrderByClause("sendtime desc");
+        MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+        criteria.andReceiverIdEqualTo(currentUser.getId());
+        criteria.andIfreadEqualTo(false);
+        int count = messageService.getCount(messageCriteria);
+        ModelAndView mav = new ModelAndView("/equipment/top");
+        mav.addObject("unreadCount", count);
+        mav.addObject("user", currentUser);
+        return mav;
+    }
 
-	@RequestMapping("/messageDetail")
-	public ModelAndView getMessage(HttpServletRequest request) {
-		int id = Integer.parseInt(request.getParameter("messageDetailId"));
-		Message message= messageService.selectById(id);
-		message.setIfread(true);
-		messageService.updateByMessage(message);
-		showUnreadMessage();
-		ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
-		mav.addObject("messageDetailFlag",message);
-		return mav;
-	}
+    int currPage = 0;
+
+    @RequestMapping("/welcome_message")
+    public ModelAndView showMessage(HttpServletRequest request) {
+        int currentUserId = userService.getCurrentUserId();
+
+        currPage = request.getParameter("page") == null ?
+                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+
+        MessageCriteria messageCriteria = new MessageCriteria();
+        messageCriteria.setOrderByClause(" sendtime desc");
+        MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+        criteria.andReceiverIdEqualTo(currentUserId);
+
+
+        ObjectListPage<Message> pageInfo = messageService.selectListPage(currPage, messageCriteria);
+        ModelAndView mav = new ModelAndView("/equipment/welcome");
+        mav.addObject("messageLists", pageInfo.getListObject());
+        mav.addObject("page", pageInfo.getPageInfo());
+
+        return mav;
+    }
+
+    @RequestMapping("/welcome_announcement")
+    public ModelAndView showAnnouncement(HttpServletRequest request) {
+        currPage = request.getParameter("page") == null ?
+                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+
+        AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+        AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
+
+        criteria.andPublishLimitEqualTo(0);
+        announcementCriteria.or(criteria);
+        ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria);
+        System.out.print(pageInfo.getListObject().size());
+        ModelAndView mav = new ModelAndView("/equipment/welcome");
+        mav.addObject("announcementLists", pageInfo.getListObject());
+        mav.addObject("page", pageInfo.getPageInfo());
+
+        return mav;
+    }
+
+    @RequestMapping("/announcementDetail")
+    public ModelAndView getAnnouncement(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("announcementDetailId"));
+        Announcement announcement = announcementService.getAnnouncementById(id);
+
+        ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/announcementdetail");
+        mav.addObject("announcementDetailFlag", announcement);
+        return mav;
+    }
+
+    @RequestMapping("/messageDetail")
+    public ModelAndView getMessage(HttpServletRequest request) {
+        int id = Integer.parseInt(request.getParameter("messageDetailId"));
+        Message message = messageService.selectById(id);
+        message.setIfread(true);
+        messageService.updateByMessage(message);
+        showUnreadMessage();
+        ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/messagedetail");
+        mav.addObject("messageDetailFlag", message);
+        return mav;
+    }
 
 
 }

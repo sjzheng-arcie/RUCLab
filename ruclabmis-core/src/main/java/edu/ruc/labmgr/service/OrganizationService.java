@@ -17,7 +17,7 @@ public class OrganizationService {
     @Autowired
     private OrganizationMapper organizationMapper;
 
-    public PageInfo<Organization> selectListPage(String name, String  grade,int PageNum){
+    public PageInfo<Organization> selectListPage(String name, String grade, int PageNum) {
         OrganizationCriteria criteria = new OrganizationCriteria();
         criteria.setOrderByClause("name");
         OrganizationCriteria.Criteria ec = criteria.createCriteria();
@@ -28,34 +28,39 @@ public class OrganizationService {
         return getOrganizationsByCriteria(PageNum, criteria);
 
     }
-    private PageInfo<Organization> getOrganizationsByCriteria(int PageNum,OrganizationCriteria criteria){
+
+    private PageInfo<Organization> getOrganizationsByCriteria(int PageNum, OrganizationCriteria criteria) {
         int totalCount = organizationMapper.countByCriteria(criteria);
-        PageInfo<Organization> page = new PageInfo<>(totalCount,-1,PageNum);
+        PageInfo<Organization> page = new PageInfo<>(totalCount, -1, PageNum);
         List<Organization> data = organizationMapper.selectByCriteriaWithRowbounds(criteria,
-                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+                new RowBounds(page.getCurrentResult(), page.getPageSize()));
         page.setData(data);
         return page;
     }
 
-    public int insert(Organization organization){
+    public int insert(Organization organization) {
         int result = 0;
-        result=organizationMapper.insert(organization);
+        result = organizationMapper.insert(organization);
         return result;
     }
-    public int update(Organization organization){
+
+    public int update(Organization organization) {
         int result = 0;
         result = organizationMapper.updateByPrimaryKey(organization);
         return result;
     }
-    public Organization selectByPrimerKey(int id){
+
+    public Organization selectByPrimerKey(int id) {
         Organization organization = null;
         organization = organizationMapper.selectByPrimaryKey(id);
         return organization;
     }
-    public List<Organization> selectAllOrganizations(){
+
+    public List<Organization> selectAllOrganizations() {
         return organizationMapper.selectByCriteria(null);
     }
-    public int delete(int  id){
+
+    public int delete(int id) {
         int result = 0;
         organizationMapper.deleteByPrimaryKey(id);
         return result;

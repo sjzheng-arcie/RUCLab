@@ -1,5 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -91,7 +91,8 @@
                                                 </td>
                                                 <td nowrap align="right">分类号:</td>
                                                 <td nowrap>
-                                                    <input name= "sn" id="sn" class="text" style="width:154px" maxlength="20"
+                                                    <input name="sn" id="sn" class="text" style="width:154px"
+                                                           maxlength="20"
                                                            valid="required"
                                                            errmsg="分类号不能为空!"
                                                            value="${typecode.sn}"/>
@@ -101,7 +102,7 @@
                                             <tr>
                                                 <td nowrap align="right">描述：</td>
                                                 <td nowrap align="left" colspan="3">
-                                                    <textarea name= "description" id="description"
+                                                    <textarea name="description" id="description"
                                                               style="width:70%;height:100">${typecode.description}</textarea>
                                                 </td>
                                             </tr>
@@ -129,10 +130,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

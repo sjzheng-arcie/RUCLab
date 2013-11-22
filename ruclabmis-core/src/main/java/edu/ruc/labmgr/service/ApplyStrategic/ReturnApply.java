@@ -1,6 +1,5 @@
 package edu.ruc.labmgr.service.ApplyStrategic;
 
-import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentApplicationFormKey;
@@ -38,7 +37,7 @@ public class ReturnApply extends BaseApply {
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
 
-        for(Integer id : equipIds){
+        for (Integer id : equipIds) {
             //更新设备状态
             Equipment equipment = new Equipment();
             equipment.setId(id);
@@ -52,8 +51,7 @@ public class ReturnApply extends BaseApply {
         super.processApply(applicationId);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
-        for(Equipment equipment : applyWithEquipment.getEquipments())
-        {
+        for (Equipment equipment : applyWithEquipment.getEquipments()) {
             equipment.setHolder(applyWithEquipment.getApplicantId());
             equipment.setStateId(Types.EquipState.NORMAL.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
@@ -63,10 +61,9 @@ public class ReturnApply extends BaseApply {
     //删除捐赠申请，更新设备状态为已借用
     @Override
     public void deleteApplys(List<Integer> appIds) {
-        for(Integer id : appIds){
+        for (Integer id : appIds) {
             ApplyWithEquipment applyWithEquipmen = mapperViewStore.selectByApplyId(id);
-            for(Equipment equipment : applyWithEquipmen.getEquipments())
-            {
+            for (Equipment equipment : applyWithEquipmen.getEquipments()) {
                 //删除关联
                 EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
                 key.setApplicationFormId(id);

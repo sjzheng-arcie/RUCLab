@@ -88,7 +88,8 @@ function dhtmlXGridObject(a) {
     this.hdrBox.style.overflow =
         "hidden";
     this.hdrBox.className = "xhdr";
-    this.preload../imagesAr = [];
+    this.preload..
+    /imagesAr = [];
     this.sortImg = document.createElement("IMG");
     this.sortImg.style.display = "none";
     this.hdrBox.appendChild(this.sortImg);
@@ -119,7 +120,8 @@ function dhtmlXGridObject(a) {
     this.imgURL = window.dhx_globalImgPath || "";
     this.isActive = !1;
     this.isEditable = !0;
-    this.pagingOn = this.use../imagesInHeader = !1;
+    this.pagingOn = this.use..
+    /imagesInHeader = !1;
     this.rowsBufferOutSize = 0;
     dhtmlxEvent(window, "unload", function () {
         try {
@@ -374,844 +376,852 @@ function dhtmlXGridObject(a) {
     this.enableMultiselect = function (a) {
         this.selMultiRows = convertStringToBoolean(a)
     };
-    this.set../imagesPath = this.setImagePath = function (a) {
-        this.imgURL = a
-    };
-    this.setIconsPath = this.setIconPath = function (a) {
-        this.iconURL = a
-    };
-    this.changeCursorState = function (a) {
-        var b = a.target || a.srcElement;
-        b.tagName != "TD" && (b = this.getFirstParentOfType(b, "TD"));
-        if (b) {
-            if (b.tagName == "TD" && this._drsclmn && !this._drsclmn[b._cellIndex])return b.style.cursor = "default";
-            var c = (a.layerX || 0) + (!_isIE && a.target.tagName == "DIV" ? b.offsetLeft : 0);
-            b.style.cursor = b.offsetWidth - (a.offsetX || (parseInt(this.getPosition(b, this.hdrBox)) - c) * -1) < (_isOpera ? 20 : 10) ? "E-resize" : "default";
-            if (_isOpera)this.hdrBox.scrollLeft = this.objBox.scrollLeft
-        }
-    };
-    this.startColResize = function (a) {
-        this.resized && this.stopColResize();
-        this.resized = null;
-        var b = a.target || a.srcElement;
-        b.tagName != "TD" && (b = this.getFirstParentOfType(b, "TD"));
-        var j = a.clientX,
-            f = this.hdr.offsetWidth, d = parseInt(b.offsetWidth);
-        if (b.tagName == "TD" && b.style.cursor != "default" && (!this._drsclmn || this._drsclmn[b._cellIndex]))c._old_d_mm = document.body.onmousemove, c._old_d_mu = document.body.onmouseup, document.body.onmousemove = function (a) {
-            c && c.doColResize(a || window.event, b, d, j, f)
-        }, document.body.onmouseup = function () {
-            c && c.stopColResize()
-        }
-    };
-    this.stopColResize = function () {
-        document.body.onmousemove = c._old_d_mm || "";
-        document.body.onmouseup = c._old_d_mu || "";
+    this.set..
+    /imagesPath = this.setImagePath = function (a) {
+    this.imgURL = a
+};
+this.setIconsPath = this.setIconPath = function (a) {
+    this.iconURL = a
+};
+this.changeCursorState = function (a) {
+    var b = a.target || a.srcElement;
+    b.tagName != "TD" && (b = this.getFirstParentOfType(b, "TD"));
+    if (b) {
+        if (b.tagName == "TD" && this._drsclmn && !this._drsclmn[b._cellIndex])return b.style.cursor = "default";
+        var c = (a.layerX || 0) + (!_isIE && a.target.tagName == "DIV" ? b.offsetLeft : 0);
+        b.style.cursor = b.offsetWidth - (a.offsetX || (parseInt(this.getPosition(b, this.hdrBox)) - c) * -1) < (_isOpera ? 20 : 10) ? "E-resize" : "default";
+        if (_isOpera)this.hdrBox.scrollLeft = this.objBox.scrollLeft
+    }
+};
+this.startColResize = function (a) {
+    this.resized && this.stopColResize();
+    this.resized = null;
+    var b = a.target || a.srcElement;
+    b.tagName != "TD" && (b = this.getFirstParentOfType(b, "TD"));
+    var j = a.clientX,
+        f = this.hdr.offsetWidth, d = parseInt(b.offsetWidth);
+    if (b.tagName == "TD" && b.style.cursor != "default" && (!this._drsclmn || this._drsclmn[b._cellIndex]))c._old_d_mm = document.body.onmousemove, c._old_d_mu = document.body.onmouseup, document.body.onmousemove = function (a) {
+        c && c.doColResize(a || window.event, b, d, j, f)
+    }, document.body.onmouseup = function () {
+        c && c.stopColResize()
+    }
+};
+this.stopColResize = function () {
+    document.body.onmousemove = c._old_d_mm || "";
+    document.body.onmouseup = c._old_d_mu || "";
+    this.setSizes();
+    this.doOnScroll(0,
+        1);
+    this.callEvent("onResizeEnd", [this])
+};
+this.doColResize = function (a, b, c, f, d) {
+    b.style.cursor = "E-resize";
+    this.resized = b;
+    var h = c + (a.clientX - f), l = d + (a.clientX - f);
+    if (this.callEvent("onResize", [b._cellIndex, h, this])) {
+        if (_isIE)this.objBox.scrollLeft = this.hdrBox.scrollLeft;
+        if (b.colSpan > 1) {
+            for (var k = [], m = 0; m < b.colSpan; m++)k[m] = Math.round(h * this.hdr.rows[0].childNodes[b._cellIndexS + m].offsetWidth / b.offsetWidth);
+            for (m = 0; m < b.colSpan; m++)this._setColumnSizeR(b._cellIndexS + m * 1, k[m])
+        } else this._setColumnSizeR(b._cellIndex,
+            h);
+        this.doOnScroll(0, 1);
         this.setSizes();
-        this.doOnScroll(0,
-            1);
-        this.callEvent("onResizeEnd", [this])
-    };
-    this.doColResize = function (a, b, c, f, d) {
-        b.style.cursor = "E-resize";
-        this.resized = b;
-        var h = c + (a.clientX - f), l = d + (a.clientX - f);
-        if (this.callEvent("onResize", [b._cellIndex, h, this])) {
-            if (_isIE)this.objBox.scrollLeft = this.hdrBox.scrollLeft;
-            if (b.colSpan > 1) {
-                for (var k = [], m = 0; m < b.colSpan; m++)k[m] = Math.round(h * this.hdr.rows[0].childNodes[b._cellIndexS + m].offsetWidth / b.offsetWidth);
-                for (m = 0; m < b.colSpan; m++)this._setColumnSizeR(b._cellIndexS + m * 1, k[m])
-            } else this._setColumnSizeR(b._cellIndex,
-                h);
-            this.doOnScroll(0, 1);
-            this.setSizes();
-            this._fake && this._awdth && this._fake._correctSplit()
+        this._fake && this._awdth && this._fake._correctSplit()
+    }
+};
+this._setColumnSizeR = function (a, b) {
+    if (b > (this._drsclmW && !this._notresize ? this._drsclmW[a] || 10 : 10)) {
+        this.obj.rows[0].childNodes[a].style.width = b + "px";
+        this.hdr.rows[0].childNodes[a].style.width = b + "px";
+        if (this.ftr)this.ftr.rows[0].childNodes[a].style.width = b + "px";
+        if (this.cellWidthType == "px")this.cellWidthPX[a] = b; else {
+            var c = parseInt(this.entBox.offsetWidth);
+            this.objBox.scrollHeight > this.objBox.offsetHeight &&
+            (c -= 17);
+            var f = Math.round(b / c * 100);
+            this.cellWidthPC[a] = f
         }
-    };
-    this._setColumnSizeR = function (a, b) {
-        if (b > (this._drsclmW && !this._notresize ? this._drsclmW[a] || 10 : 10)) {
-            this.obj.rows[0].childNodes[a].style.width = b + "px";
-            this.hdr.rows[0].childNodes[a].style.width = b + "px";
-            if (this.ftr)this.ftr.rows[0].childNodes[a].style.width = b + "px";
-            if (this.cellWidthType == "px")this.cellWidthPX[a] = b; else {
-                var c = parseInt(this.entBox.offsetWidth);
-                this.objBox.scrollHeight > this.objBox.offsetHeight &&
-                (c -= 17);
-                var f = Math.round(b / c * 100);
-                this.cellWidthPC[a] = f
-            }
-            this.sortImg.style.display != "none" && this.setSortImgPos()
-        }
-    };
-    this.setSortImgState = function (a, b, c, f) {
-        c = (c || "asc").toLowerCase();
-        if (convertStringToBoolean(a)) {
-            this.sortImg.src = c == "asc" ? this.imgURL + "sort_asc.gif" : this.imgURL + "sort_desc.gif";
-            this.sortImg.style.display = "";
-            this.fldSorted = this.hdr.rows[0].childNodes[b];
-            var d = this.hdr.rows[f || 1];
-            if (d) {
-                for (var h = 0; h < d.childNodes.length; h++)if (d.childNodes[h]._cellIndexS == b)return this.r_fldSorted = d.childNodes[h],
-                    this.setSortImgPos();
-                return this.setSortImgState(a, b, c, (f || 1) + 1)
-            }
-        } else this.sortImg.style.display = "none", this.fldSorted = this.r_fldSorted = null
-    };
-    this.setSortImgPos = function (a, b, c, f) {
-        if (!this._hrrar || !this._hrrar[this.r_fldSorted ? this.r_fldSorted._cellIndex : a])if (f || (f = a ? this.hdr.rows[c || 0].cells[a] : this.r_fldSorted), f != null) {
-            var d = this.getPosition(f, this.hdrBox), h = f.offsetWidth;
-            this.sortImg.style.left = Number(d[0] + h - 13) + "px";
-            this.sortImg.defLeft = parseInt(this.sortImg.style.left);
-            this.sortImg.style.top =
-                Number(d[1] + 5) + "px";
-            if (!this.use../imagesInHeader && !b)this.sortImg.style.display = "inline";
-            this.sortImg.style.left = this.sortImg.defLeft + "px"
-        }
-    };
-    this.setActive = function (a) {
-        arguments.length == 0 && (a = !0);
-        a == !0 ? (globalActiveDHTMLGridObject && globalActiveDHTMLGridObject != this && (globalActiveDHTMLGridObject.editStop(), globalActiveDHTMLGridObject.callEvent("onBlur", [globalActiveDHTMLGridObject])), globalActiveDHTMLGridObject = this, this.isActive = !0) : (this.isActive = !1, this.callEvent("onBlur", [this]))
-    };
-    this._doClick =
-        function (a) {
-            var b = 0, c = this.getFirstParentOfType(_isIE ? a.srcElement : a.target, "TD");
-            if (c) {
-                var f = !0;
-                if (this.markedCells) {
-                    var d = 0;
-                    if (a.shiftKey || a.metaKey)d = 1;
-                    a.ctrlKey && (d = 2);
-                    this.doMark(c, d);
-                    return!0
-                }
-                if (this.selMultiRows != !1 && (a.shiftKey && this.row != null && this.selectedRows.length && (b = 1), a.ctrlKey || a.metaKey))b = 2;
-                this.doClick(c, f, b)
-            }
-        };
-    this._doContClick = function (a) {
-        var b = this.getFirstParentOfType(_isIE ? a.srcElement : a.target, "TD");
-        if (!b || typeof b.parentNode.idd == "undefined")return this.callEvent("onEmptyClick",
-            [a]), !0;
-        if (a.button == 2 || _isMacOS && a.ctrlKey) {
-            if (!this.callEvent("onRightClick", [b.parentNode.idd, b._cellIndex, a])) {
-                var c = function (a) {
-                    (a || event).cancelBubble = !0;
-                    return!1
-                };
-                (a.srcElement || a.target).oncontextmenu = c;
-                return c(a)
-            }
-            if (this._ctmndx) {
-                if (!this.callEvent("onBeforeContextMenu", [b.parentNode.idd, b._cellIndex, this]))return!0;
-                if (_isIE)a.srcElement.oncontextmenu = function () {
-                    event.cancelBubble = !0;
-                    return!1
-                };
-                if (this._ctmndx.showContextMenu) {
-                    var f = window.document.documentElement, d = window.document.body,
-                        h = [f.scrollLeft || d.scrollLeft, f.scrollTop || d.scrollTop];
-                    if (_isIE)var l = a.clientX + h[0], k = a.clientY + h[1]; else l = a.pageX, k = a.pageY;
-                    this._ctmndx.showContextMenu(l - 1, k - 1);
-                    this.contextID = this._ctmndx.contextMenuZoneId = b.parentNode.idd + "_" + b._cellIndex;
-                    this._ctmndx._skip_hide = !0
-                } else b.contextMenuId = b.parentNode.idd + "_" + b._cellIndex, b.contextMenu = this._ctmndx, b.a = this._ctmndx._contextStart, b.a(b, a), b.a = null;
-                a.cancelBubble = !0;
-                return!1
-            }
-        } else this._ctmndx && (this._ctmndx.hideContextMenu ? this._ctmndx.hideContextMenu() :
-            this._ctmndx._contextEnd());
-        return!0
-    };
-    this.doClick = function (a, b, d, f) {
-        this.selMultiRows || (d = 0);
-        var g = this.row ? this.row.idd : 0;
-        this.setActive(!0);
-        d || (d = 0);
-        if (this.cell != null)this.cell.className = this.cell.className.replace(/cellselected/g, "");
-        if (a.tagName == "TD") {
-            if (this.checkEvent("onSelectStateChanged"))var h = this.getSelectedId();
-            var l = this.row;
-            if (d == 1) {
-                var k = this.rowsCol._dhx_find(a.parentNode), m = this.rowsCol._dhx_find(this.lastClicked);
-                if (k > m)var n = m, o = k; else n = k, o = m;
-                for (var p = 0; p < this.rowsCol.length; p++)if (p >=
-                    n && p <= o)if (this.rowsCol[p] && !this.rowsCol[p]._sRow)this.rowsCol[p].className.indexOf("rowselected") == -1 && this.callEvent("onBeforeSelect", [this.rowsCol[p].idd, g]) && (this.rowsCol[p].className += " rowselected", this.selectedRows[this.selectedRows.length] = this.rowsCol[p]); else return this.clearSelection(), this.doClick(a, b, 0, f)
-            } else if (d == 2 && a.parentNode.className.indexOf("rowselected") != -1) {
-                a.parentNode.className = a.parentNode.className.replace(/rowselected/g, "");
-                this.selectedRows._dhx_removeAt(this.selectedRows._dhx_find(a.parentNode));
-                var r = !0, f = !1
-            }
-            this.editStop();
-            if (typeof a.parentNode.idd == "undefined")return!0;
-            if (!r && !a.parentNode._sRow)if (this.callEvent("onBeforeSelect", [a.parentNode.idd, g]))if (this.getSelectedRowId() != a.parentNode.idd) {
-                d == 0 && this.clearSelection();
-                this.cell = a;
-                l == a.parentNode && this._chRRS && (b = !1);
-                this.row = a.parentNode;
-                this.row.className += " rowselected";
-                if (this.cell && _isIE && _isIE == 8) {
-                    var s = this.cell.nextSibling, t = this.cell.parentNode;
-                    t.removeChild(this.cell);
-                    t.insertBefore(this.cell, s)
-                }
-                if (this.selectedRows._dhx_find(this.row) == -1)this.selectedRows[this.selectedRows.length] = this.row
-            } else this.cell = a, this.row = a.parentNode; else b = !1;
-            if (this.cell && this.cell.parentNode.className.indexOf("rowselected") != -1)this.cell.className = this.cell.className.replace(/cellselected/g, "") + " cellselected";
-            if (d != 1 && !this.row)return;
-            this.lastClicked = a.parentNode;
-            var u = this.row.idd, q = this.cell;
-            b && typeof u != "undefined" && q && !r ? c.onRowSelectTime = setTimeout(function () {
-                c.callEvent && c.callEvent("onRowSelect", [u, q._cellIndex])
-            }, 100) : this.callEvent("onRowSelectRSOnly",
-                [u]);
-            if (this.checkEvent("onSelectStateChanged")) {
-                var v = this.getSelectedId();
-                h != v && this.callEvent("onSelectStateChanged", [v, h])
-            }
-        }
-        this.isActive = !0;
-        f !== !1 && this.cell && this.cell.parentNode.idd && this.moveToVisible(this.cell)
-    };
-    this.selectAll = function () {
-        this.clearSelection();
-        var a = this.rowsBuffer;
-        if (this.pagingOn)a = this.rowsCol;
-        for (var b = 0; b < a.length; b++)this.render_row(b).className += " rowselected";
-        this.selectedRows = dhtmlxArray([].concat(a));
-        if (this.selectedRows.length)this.row = this.selectedRows[0], this.cell =
-            this.row.cells[0];
-        this._fake && !this._realfake && this._fake.selectAll()
-    };
-    this.selectCell = function (a, b, c, d, g, h) {
-        c || (c = !1);
-        typeof a != "object" && (a = this.render_row(a));
-        if (!a || a == -1)return null;
-        var l = a.childNodes[b];
-        l || (l = a.childNodes[0]);
-        this.markedCells ? this.doMark(l, d ? 2 : 0) : d ? this.doClick(l, c, 3, h) : this.doClick(l, c, 0, h);
-        g && this.editCell()
-    };
-    this.moveToVisible = function (a, b) {
-        if (this.pagingOn) {
-            var c = Math.floor(this.getRowIndex(a.parentNode.idd) / this.rowsBufferOutSize) + 1;
-            c != this.currentPage && this.changePage(c)
-        }
-        try {
-            if (a.offsetHeight) {
-                var d =
-                    a.offsetLeft + a.offsetWidth + 20, g = 0;
-                d > this.objBox.offsetWidth + this.objBox.scrollLeft ? a.offsetLeft > this.objBox.scrollLeft && (g = a.offsetLeft - 5) : a.offsetLeft < this.objBox.scrollLeft && (d -= a.offsetWidth * 2 / 3, d < this.objBox.scrollLeft && (g = a.offsetLeft - 5));
-                if (g && !b)this.objBox.scrollLeft = g
-            }
-            if (a.offsetHeight)d = a.offsetTop; else var h = this._realfake ? this._fake.rowsAr[a.parentNode.idd] : a.parentNode, d = this.rowsBuffer._dhx_find(h) * this._srdh;
-            var l = d + a.offsetHeight + 38;
-            if (l > this.objBox.offsetHeight + this.objBox.scrollTop)var k =
-                l - this.objBox.offsetHeight; else d < this.objBox.scrollTop && (k = d - 5);
-            if (k)this.objBox.scrollTop = k
-        } catch (m) {
-        }
-    };
-    this.editCell = function () {
-        if (!(this.editor && this.cell == this.editor.cell)) {
-            this.editStop();
-            if (this.isEditable != !0 || !this.cell)return!1;
-            var a = this.cell;
-            if (a.parentNode._locked)return!1;
-            this.editor = this.cells4(a);
-            if (this.editor != null) {
-                if (this.editor.isDisabled())return this.editor = null, !1;
-                this.callEvent("onEditCell", [0, this.row.idd, this.cell._cellIndex]) != !1 && this.editor.edit ? (this._Opera_stop = (new Date).valueOf(),
-                    a.className += " editable", this.editor.edit(), this.callEvent("onEditCell", [1, this.row.idd, this.cell._cellIndex])) : this.editor = null
-            }
-        }
-    };
-    this.editStop = function (a) {
-        if (_isOpera && this._Opera_stop) {
-            if (this._Opera_stop * 1 + 50 > (new Date).valueOf())return;
-            this._Opera_stop = null
-        }
-        if (this.editor && this.editor != null)if (this.editor.cell.className = this.editor.cell.className.replace("editable", ""), a) {
-            var b = this.editor.val;
-            this.editor.detach();
-            this.editor.setValue(b);
-            this.editor = null;
-            this.callEvent("onEditCancel", [this.row.idd,
-                this.cell._cellIndex, b])
-        } else {
-            if (this.editor.detach())this.cell.wasChanged = !0;
-            var c = this.editor;
-            this.editor = null;
-            var d = this.callEvent("onEditCell", [2, this.row.idd, this.cell._cellIndex, c.getValue(), c.val]);
-            if (typeof d == "string" || typeof d == "number")c[c.setImage ? "setLabel" : "setValue"](d); else if (!d)c[c.setImage ? "setLabel" : "setValue"](c.val);
-            this._ahgr && this.multiLine && this.setSizes()
-        }
-    };
-    this._nextRowCell = function (a, b, c) {
-        a = this._nextRow((this._groups ? this.rowsCol : this.rowsBuffer)._dhx_find(a), b);
-        return!a ?
-            null : a.childNodes[a._childIndexes ? a._childIndexes[c] : c]
-    };
-    this._getNextCell = function (a, b, c) {
-        var a = a || this.cell, d = a.parentNode;
-        this._tabOrder ? (c = this._tabOrder[a._cellIndex], typeof c != "undefined" && (a = c < 0 ? this._nextRowCell(d, b, Math.abs(c) - 1) : d.childNodes[c])) : (c = a._cellIndex + b, c >= 0 && c < this._cCount ? (d._childIndexes && (c = d._childIndexes[a._cellIndex] + b), a = d.childNodes[c]) : a = this._nextRowCell(d, b, b == 1 ? 0 : this._cCount - 1));
-        return!a ? (b == 1 && this.tabEnd && (this.tabEnd.focus(), this.tabEnd.focus(), this.setActive(!1)),
-            b == -1 && this.tabStart && (this.tabStart.focus(), this.tabStart.focus(), this.setActive(!1)), null) : a.style.display != "none" && (!this.smartTabOrder || !this.cells(a.parentNode.idd, a._cellIndex).isDisabled()) ? a : this._getNextCell(a, b)
-    };
-    this._nextRow = function (a, b) {
-        var c = this.render_row(a + b);
-        return!c || c == -1 ? null : c && c.style.display == "none" ? this._nextRow(a + b, b) : c
-    };
-    this.scrollPage = function (a) {
-        if (this.rowsBuffer.length) {
-            var b = this._realfake ? this._fake : this, c = Math.floor((b._r_select || this.getRowIndex(this.row.idd) ||
-                0) + a * this.objBox.offsetHeight / (this._srdh || 20));
-            c < 0 && (c = 0);
-            c >= this.rowsBuffer.length && (c = this.rowsBuffer.length - 1);
-            if (this._srnd && !this.rowsBuffer[c]) {
-                this.objBox.scrollTop += Math.floor(a * this.objBox.offsetHeight / (this._srdh || 20)) * (this._srdh || 20);
-                if (this._fake)this._fake.objBox.scrollTop = this.objBox.scrollTop;
-                b._r_select = c
-            } else {
-                this.selectCell(c, this.cell._cellIndex, !0, !1, !1, this.multiLine || this._srnd);
-                if (!this.multiLine && !this._srnd && !this._realfake && (this.objBox.scrollTop = this.getRowById(this.getRowId(c)).offsetTop,
-                    this._fake))this._fake.objBox.scrollTop = this.objBox.scrollTop;
-                b._r_select = null
-            }
-        }
-    };
-    this.doKey = function (a) {
-        if (!a)return!0;
-        if ((a.target || a.srcElement).value !== window.undefined) {
-            var b = a.target || a.srcElement;
-            if (!b.parentNode || b.parentNode.className.indexOf("editable") == -1)return!0
-        }
-        if (globalActiveDHTMLGridObject && this != globalActiveDHTMLGridObject)return globalActiveDHTMLGridObject.doKey(a);
-        if (this.isActive == !1)return!0;
-        if (this._htkebl)return!0;
-        if (!this.callEvent("onKeyPress", [a.keyCode, a.ctrlKey, a.shiftKey,
-            a]))return!1;
-        var c = "k" + a.keyCode + "_" + (a.ctrlKey ? 1 : 0) + "_" + (a.shiftKey ? 1 : 0);
-        if (this.cell) {
-            if (this._key_events[c]) {
-                if (!1 === this._key_events[c].call(this))return!0;
-                a.preventDefault && a.preventDefault();
-                a.cancelBubble = !0;
-                return!1
-            }
-            this._key_events.k_other && this._key_events.k_other.call(this, a)
-        }
-        return!0
-    };
-    this.selectRow = function (a, b, c, d) {
-        typeof a != "object" && (a = this.render_row(a));
-        this.selectCell(a, 0, b, c, !1, d)
-    };
-    this.wasDblClicked = function (a) {
-        var b = this.getFirstParentOfType(_isIE ? a.srcElement : a.target, "TD");
-        if (b) {
-            var c = b.parentNode.idd;
-            return this.callEvent("onRowDblClicked", [c, b._cellIndex])
-        }
-    };
-    this._onHeaderClick = function (a, b) {
-        var c = this.grid, b = b || c.getFirstParentOfType(_isIE ? event.srcElement : a.target, "TD");
-        if (this.grid.resized == null) {
-            if (!this.grid.callEvent("onHeaderClick", [b._cellIndexS, a || window.event]))return!1;
-            c.sortField(b._cellIndexS, !1, b)
-        }
-        this.grid.resized = null
-    };
-    this.deleteSelectedRows = function () {
-        var a = this.selectedRows.length;
-        if (a != 0) {
-            var b = this.selectedRows;
-            this.selectedRows = dhtmlxArray();
-            for (var c = a - 1; c >= 0; c--) {
-                var d = b[c];
-                if (this.deleteRow(d.idd, d)) {
-                    if (d == this.row)var g = c
-                } else this.selectedRows[this.selectedRows.length] = d
-            }
-            if (g)try {
-                g + 1 > this.rowsCol.length && g--, this.selectCell(g, 0, !0)
-            } catch (h) {
-                this.cell = this.row = null
-            }
-        }
-    };
-    this.getSelectedRowId = function () {
-        for (var a = [], b = {}, c = 0; c < this.selectedRows.length; c++) {
-            var d = this.selectedRows[c].idd;
-            b[d] || (a[a.length] = d, b[d] = !0)
-        }
-        return a.length == 0 ? null : a.join(this.delim)
-    };
-    this.getSelectedCellIndex = function () {
-        return this.cell != null ? this.cell._cellIndex :
-            -1
-    };
-    this.getColWidth = function (a) {
-        return parseInt(this.cellWidthPX[a])
-    };
-    this.setColWidth = function (a, b) {
-        if (b == "*")this.initCellWidth[a] = "*"; else {
-            if (this._hrrar[a])return;
-            this.cellWidthType == "px" ? this.cellWidthPX[a] = parseInt(b) : this.cellWidthPC[a] = parseInt(b)
-        }
-        this.setSizes()
-    };
-    this.getRowIndex = function (a) {
-        for (var b = 0; b < this.rowsBuffer.length; b++)if (this.rowsBuffer[b] && this.rowsBuffer[b].idd == a)return b;
-        return-1
-    };
-    this.getRowId = function (a) {
-        return this.rowsBuffer[a] ? this.rowsBuffer[a].idd : this.undefined
-    };
-    this.setRowId = function (a, b) {
-        this.changeRowId(this.getRowId(a), b)
-    };
-    this.changeRowId = function (a, b) {
-        if (a != b) {
-            var c = this.rowsAr[a];
-            c.idd = b;
-            this.UserData[a] && (this.UserData[b] = this.UserData[a], this.UserData[a] = null);
-            if (this._h2 && this._h2.get[a])this._h2.get[b] = this._h2.get[a], this._h2.get[b].id = b, delete this._h2.get[a];
-            this.rowsAr[a] = null;
-            this.rowsAr[b] = c;
-            for (var d = 0; d < c.childNodes.length; d++)if (c.childNodes[d]._code)c.childNodes[d]._code = this._compileSCL(c.childNodes[d]._val, c.childNodes[d]);
-            if (this._mat_links &&
-                this._mat_links[a]) {
-                var g = this._mat_links[a];
-                delete this._mat_links[a];
-                for (var h in g)for (d = 0; d < g[h].length; d++)this._compileSCL(g[h][d].original, g[h][d])
-            }
-            this.callEvent("onRowIdChange", [a, b])
-        }
-    };
-    this.setColumnIds = function (a) {
-        this.columnIds = a.split(this.delim)
-    };
-    this.setColumnId = function (a, b) {
-        this.columnIds[a] = b
-    };
-    this.getColIndexById = function (a) {
-        for (var b = 0; b < this.columnIds.length; b++)if (this.columnIds[b] == a)return b
-    };
-    this.getColumnId = function (a) {
-        return this.columnIds[a]
-    };
-    this.getColLabel = this.getColumnLabel =
-        function (a, b, c) {
-            for (var d = (c || this.hdr).rows[(b || 0) + 1], g = 0; g < d.cells.length; g++)if (d.cells[g]._cellIndexS == a)return _isIE ? d.cells[g].innerText : d.cells[g].textContent;
-            return""
-        };
-    this.getFooterLabel = function (a, b) {
-        return this.getColumnLabel(a, b, this.ftr)
-    };
-    this.setRowTextBold = function (a) {
-        var b = this.getRowById(a);
-        if (b)b.style.fontWeight = "bold"
-    };
-    this.setRowTextStyle = function (a, b) {
-        var c = this.getRowById(a);
-        if (c)for (var d = 0; d < c.childNodes.length; d++) {
-            var g = c.childNodes[d]._attrs.style || "";
-            c.childNodes[d].style.cssText =
-                g + "width:" + c.childNodes[d].style.width + ";" + b
-        }
-    };
-    this.setRowColor = function (a, b) {
-        for (var c = this.getRowById(a), d = 0; d < c.childNodes.length; d++)c.childNodes[d].bgColor = b
-    };
-    this.setCellTextStyle = function (a, b, c) {
-        var d = this.getRowById(a);
+        this.sortImg.style.display != "none" && this.setSortImgPos()
+    }
+};
+this.setSortImgState = function (a, b, c, f) {
+    c = (c || "asc").toLowerCase();
+    if (convertStringToBoolean(a)) {
+        this.sortImg.src = c == "asc" ? this.imgURL + "sort_asc.gif" : this.imgURL + "sort_desc.gif";
+        this.sortImg.style.display = "";
+        this.fldSorted = this.hdr.rows[0].childNodes[b];
+        var d = this.hdr.rows[f || 1];
         if (d) {
-            var g = d.childNodes[d._childIndexes ? d._childIndexes[b] : b];
-            if (g) {
-                var h = "";
-                g.style.cssText = h + "width:" + g.style.width + ";" + c
+            for (var h = 0; h < d.childNodes.length; h++)if (d.childNodes[h]._cellIndexS == b)return this.r_fldSorted = d.childNodes[h],
+                this.setSortImgPos();
+            return this.setSortImgState(a, b, c, (f || 1) + 1)
+        }
+    } else this.sortImg.style.display = "none", this.fldSorted = this.r_fldSorted = null
+};
+this.setSortImgPos = function (a, b, c, f) {
+    if (!this._hrrar || !this._hrrar[this.r_fldSorted ? this.r_fldSorted._cellIndex : a])if (f || (f = a ? this.hdr.rows[c || 0].cells[a] : this.r_fldSorted), f != null) {
+        var d = this.getPosition(f, this.hdrBox), h = f.offsetWidth;
+        this.sortImg.style.left = Number(d[0] + h - 13) + "px";
+        this.sortImg.defLeft = parseInt(this.sortImg.style.left);
+        this.sortImg.style.top =
+            Number(d[1] + 5) + "px";
+        if (!this.use../imagesInHeader && !b)this.sortImg.style.display = "inline";
+        this.sortImg.style.left = this.sortImg.defLeft + "px"
+    }
+};
+this.setActive = function (a) {
+    arguments.length == 0 && (a = !0);
+    a == !0 ? (globalActiveDHTMLGridObject && globalActiveDHTMLGridObject != this && (globalActiveDHTMLGridObject.editStop(), globalActiveDHTMLGridObject.callEvent("onBlur", [globalActiveDHTMLGridObject])), globalActiveDHTMLGridObject = this, this.isActive = !0) : (this.isActive = !1, this.callEvent("onBlur", [this]))
+};
+this._doClick =
+    function (a) {
+        var b = 0, c = this.getFirstParentOfType(_isIE ? a.srcElement : a.target, "TD");
+        if (c) {
+            var f = !0;
+            if (this.markedCells) {
+                var d = 0;
+                if (a.shiftKey || a.metaKey)d = 1;
+                a.ctrlKey && (d = 2);
+                this.doMark(c, d);
+                return!0
             }
+            if (this.selMultiRows != !1 && (a.shiftKey && this.row != null && this.selectedRows.length && (b = 1), a.ctrlKey || a.metaKey))b = 2;
+            this.doClick(c, f, b)
         }
     };
-    this.setRowTextNormal = function (a) {
-        var b = this.getRowById(a);
-        if (b)b.style.fontWeight = "normal"
-    };
-    this.doesRowExist = function (a) {
-        return this.getRowById(a) !=
-            null ? !0 : !1
-    };
-    this.getColumnsNum = function () {
-        return this._cCount
-    };
-    this.moveRowUp = function (a) {
-        var b = this.getRowById(a);
-        if (this.isTreeGrid())return this.moveRowUDTG(a, -1);
-        var c = this.rowsCol._dhx_find(b);
-        if (b.previousSibling && c != 0) {
-            b.parentNode.insertBefore(b, b.previousSibling);
-            this.rowsCol._dhx_swapItems(c, c - 1);
-            this.setSizes();
-            var d = this.rowsBuffer._dhx_find(b);
-            this.rowsBuffer._dhx_swapItems(d, d - 1);
-            this._cssEven && this._fixAlterCss(c - 1)
+this._doContClick = function (a) {
+    var b = this.getFirstParentOfType(_isIE ? a.srcElement : a.target, "TD");
+    if (!b || typeof b.parentNode.idd == "undefined")return this.callEvent("onEmptyClick",
+        [a]), !0;
+    if (a.button == 2 || _isMacOS && a.ctrlKey) {
+        if (!this.callEvent("onRightClick", [b.parentNode.idd, b._cellIndex, a])) {
+            var c = function (a) {
+                (a || event).cancelBubble = !0;
+                return!1
+            };
+            (a.srcElement || a.target).oncontextmenu = c;
+            return c(a)
         }
-    };
-    this.moveRowDown = function (a) {
-        var b = this.getRowById(a);
-        if (this.isTreeGrid())return this.moveRowUDTG(a,
-            1);
-        var c = this.rowsCol._dhx_find(b);
-        if (b.nextSibling) {
-            this.rowsCol._dhx_swapItems(c, c + 1);
-            b.nextSibling.nextSibling ? b.parentNode.insertBefore(b, b.nextSibling.nextSibling) : b.parentNode.appendChild(b);
-            this.setSizes();
-            var d = this.rowsBuffer._dhx_find(b);
-            this.rowsBuffer._dhx_swapItems(d, d + 1);
-            this._cssEven && this._fixAlterCss(c)
+        if (this._ctmndx) {
+            if (!this.callEvent("onBeforeContextMenu", [b.parentNode.idd, b._cellIndex, this]))return!0;
+            if (_isIE)a.srcElement.oncontextmenu = function () {
+                event.cancelBubble = !0;
+                return!1
+            };
+            if (this._ctmndx.showContextMenu) {
+                var f = window.document.documentElement, d = window.document.body,
+                    h = [f.scrollLeft || d.scrollLeft, f.scrollTop || d.scrollTop];
+                if (_isIE)var l = a.clientX + h[0], k = a.clientY + h[1]; else l = a.pageX, k = a.pageY;
+                this._ctmndx.showContextMenu(l - 1, k - 1);
+                this.contextID = this._ctmndx.contextMenuZoneId = b.parentNode.idd + "_" + b._cellIndex;
+                this._ctmndx._skip_hide = !0
+            } else b.contextMenuId = b.parentNode.idd + "_" + b._cellIndex, b.contextMenu = this._ctmndx, b.a = this._ctmndx._contextStart, b.a(b, a), b.a = null;
+            a.cancelBubble = !0;
+            return!1
         }
-    };
-    this.getCombo = function (a) {
-        this.combos[a] || (this.combos[a] = new dhtmlXGridComboObject);
-        return this.combos[a]
-    };
-    this.setUserData = function (a, b, c) {
-        a || (a = "gridglobaluserdata");
-        this.UserData[a] ||
-        (this.UserData[a] = new Hashtable);
-        this.UserData[a].put(b, c)
-    };
-    this.getUserData = function (a, b) {
-        a || (a = "gridglobaluserdata");
-        this.getRowById(a);
-        var c = this.UserData[a];
-        return c ? c.get(b) : ""
-    };
-    this.setEditable = function (a) {
-        this.isEditable = convertStringToBoolean(a)
-    };
-    this.selectRowById = function (a, b, c, d) {
-        d || (d = !1);
-        this.selectCell(this.getRowById(a), 0, d, b, !1, c)
-    };
-    this.clearSelection = function () {
+    } else this._ctmndx && (this._ctmndx.hideContextMenu ? this._ctmndx.hideContextMenu() :
+        this._ctmndx._contextEnd());
+    return!0
+};
+this.doClick = function (a, b, d, f) {
+    this.selMultiRows || (d = 0);
+    var g = this.row ? this.row.idd : 0;
+    this.setActive(!0);
+    d || (d = 0);
+    if (this.cell != null)this.cell.className = this.cell.className.replace(/cellselected/g, "");
+    if (a.tagName == "TD") {
+        if (this.checkEvent("onSelectStateChanged"))var h = this.getSelectedId();
+        var l = this.row;
+        if (d == 1) {
+            var k = this.rowsCol._dhx_find(a.parentNode), m = this.rowsCol._dhx_find(this.lastClicked);
+            if (k > m)var n = m, o = k; else n = k, o = m;
+            for (var p = 0; p < this.rowsCol.length; p++)if (p >=
+                n && p <= o)if (this.rowsCol[p] && !this.rowsCol[p]._sRow)this.rowsCol[p].className.indexOf("rowselected") == -1 && this.callEvent("onBeforeSelect", [this.rowsCol[p].idd, g]) && (this.rowsCol[p].className += " rowselected", this.selectedRows[this.selectedRows.length] = this.rowsCol[p]); else return this.clearSelection(), this.doClick(a, b, 0, f)
+        } else if (d == 2 && a.parentNode.className.indexOf("rowselected") != -1) {
+            a.parentNode.className = a.parentNode.className.replace(/rowselected/g, "");
+            this.selectedRows._dhx_removeAt(this.selectedRows._dhx_find(a.parentNode));
+            var r = !0, f = !1
+        }
         this.editStop();
-        for (var a = 0; a < this.selectedRows.length; a++) {
-            var b = this.rowsAr[this.selectedRows[a].idd];
-            if (b)b.className =
-                b.className.replace(/rowselected/g, "")
+        if (typeof a.parentNode.idd == "undefined")return!0;
+        if (!r && !a.parentNode._sRow)if (this.callEvent("onBeforeSelect", [a.parentNode.idd, g]))if (this.getSelectedRowId() != a.parentNode.idd) {
+            d == 0 && this.clearSelection();
+            this.cell = a;
+            l == a.parentNode && this._chRRS && (b = !1);
+            this.row = a.parentNode;
+            this.row.className += " rowselected";
+            if (this.cell && _isIE && _isIE == 8) {
+                var s = this.cell.nextSibling, t = this.cell.parentNode;
+                t.removeChild(this.cell);
+                t.insertBefore(this.cell, s)
+            }
+            if (this.selectedRows._dhx_find(this.row) == -1)this.selectedRows[this.selectedRows.length] = this.row
+        } else this.cell = a, this.row = a.parentNode; else b = !1;
+        if (this.cell && this.cell.parentNode.className.indexOf("rowselected") != -1)this.cell.className = this.cell.className.replace(/cellselected/g, "") + " cellselected";
+        if (d != 1 && !this.row)return;
+        this.lastClicked = a.parentNode;
+        var u = this.row.idd, q = this.cell;
+        b && typeof u != "undefined" && q && !r ? c.onRowSelectTime = setTimeout(function () {
+            c.callEvent && c.callEvent("onRowSelect", [u, q._cellIndex])
+        }, 100) : this.callEvent("onRowSelectRSOnly",
+            [u]);
+        if (this.checkEvent("onSelectStateChanged")) {
+            var v = this.getSelectedId();
+            h != v && this.callEvent("onSelectStateChanged", [v, h])
         }
+    }
+    this.isActive = !0;
+    f !== !1 && this.cell && this.cell.parentNode.idd && this.moveToVisible(this.cell)
+};
+this.selectAll = function () {
+    this.clearSelection();
+    var a = this.rowsBuffer;
+    if (this.pagingOn)a = this.rowsCol;
+    for (var b = 0; b < a.length; b++)this.render_row(b).className += " rowselected";
+    this.selectedRows = dhtmlxArray([].concat(a));
+    if (this.selectedRows.length)this.row = this.selectedRows[0], this.cell =
+        this.row.cells[0];
+    this._fake && !this._realfake && this._fake.selectAll()
+};
+this.selectCell = function (a, b, c, d, g, h) {
+    c || (c = !1);
+    typeof a != "object" && (a = this.render_row(a));
+    if (!a || a == -1)return null;
+    var l = a.childNodes[b];
+    l || (l = a.childNodes[0]);
+    this.markedCells ? this.doMark(l, d ? 2 : 0) : d ? this.doClick(l, c, 3, h) : this.doClick(l, c, 0, h);
+    g && this.editCell()
+};
+this.moveToVisible = function (a, b) {
+    if (this.pagingOn) {
+        var c = Math.floor(this.getRowIndex(a.parentNode.idd) / this.rowsBufferOutSize) + 1;
+        c != this.currentPage && this.changePage(c)
+    }
+    try {
+        if (a.offsetHeight) {
+            var d =
+                a.offsetLeft + a.offsetWidth + 20, g = 0;
+            d > this.objBox.offsetWidth + this.objBox.scrollLeft ? a.offsetLeft > this.objBox.scrollLeft && (g = a.offsetLeft - 5) : a.offsetLeft < this.objBox.scrollLeft && (d -= a.offsetWidth * 2 / 3, d < this.objBox.scrollLeft && (g = a.offsetLeft - 5));
+            if (g && !b)this.objBox.scrollLeft = g
+        }
+        if (a.offsetHeight)d = a.offsetTop; else var h = this._realfake ? this._fake.rowsAr[a.parentNode.idd] : a.parentNode, d = this.rowsBuffer._dhx_find(h) * this._srdh;
+        var l = d + a.offsetHeight + 38;
+        if (l > this.objBox.offsetHeight + this.objBox.scrollTop)var k =
+            l - this.objBox.offsetHeight; else d < this.objBox.scrollTop && (k = d - 5);
+        if (k)this.objBox.scrollTop = k
+    } catch (m) {
+    }
+};
+this.editCell = function () {
+    if (!(this.editor && this.cell == this.editor.cell)) {
+        this.editStop();
+        if (this.isEditable != !0 || !this.cell)return!1;
+        var a = this.cell;
+        if (a.parentNode._locked)return!1;
+        this.editor = this.cells4(a);
+        if (this.editor != null) {
+            if (this.editor.isDisabled())return this.editor = null, !1;
+            this.callEvent("onEditCell", [0, this.row.idd, this.cell._cellIndex]) != !1 && this.editor.edit ? (this._Opera_stop = (new Date).valueOf(),
+                a.className += " editable", this.editor.edit(), this.callEvent("onEditCell", [1, this.row.idd, this.cell._cellIndex])) : this.editor = null
+        }
+    }
+};
+this.editStop = function (a) {
+    if (_isOpera && this._Opera_stop) {
+        if (this._Opera_stop * 1 + 50 > (new Date).valueOf())return;
+        this._Opera_stop = null
+    }
+    if (this.editor && this.editor != null)if (this.editor.cell.className = this.editor.cell.className.replace("editable", ""), a) {
+        var b = this.editor.val;
+        this.editor.detach();
+        this.editor.setValue(b);
+        this.editor = null;
+        this.callEvent("onEditCancel", [this.row.idd,
+            this.cell._cellIndex, b])
+    } else {
+        if (this.editor.detach())this.cell.wasChanged = !0;
+        var c = this.editor;
+        this.editor = null;
+        var d = this.callEvent("onEditCell", [2, this.row.idd, this.cell._cellIndex, c.getValue(), c.val]);
+        if (typeof d == "string" || typeof d == "number")c[c.setImage ? "setLabel" : "setValue"](d); else if (!d)c[c.setImage ? "setLabel" : "setValue"](c.val);
+        this._ahgr && this.multiLine && this.setSizes()
+    }
+};
+this._nextRowCell = function (a, b, c) {
+    a = this._nextRow((this._groups ? this.rowsCol : this.rowsBuffer)._dhx_find(a), b);
+    return!a ?
+        null : a.childNodes[a._childIndexes ? a._childIndexes[c] : c]
+};
+this._getNextCell = function (a, b, c) {
+    var a = a || this.cell, d = a.parentNode;
+    this._tabOrder ? (c = this._tabOrder[a._cellIndex], typeof c != "undefined" && (a = c < 0 ? this._nextRowCell(d, b, Math.abs(c) - 1) : d.childNodes[c])) : (c = a._cellIndex + b, c >= 0 && c < this._cCount ? (d._childIndexes && (c = d._childIndexes[a._cellIndex] + b), a = d.childNodes[c]) : a = this._nextRowCell(d, b, b == 1 ? 0 : this._cCount - 1));
+    return!a ? (b == 1 && this.tabEnd && (this.tabEnd.focus(), this.tabEnd.focus(), this.setActive(!1)),
+        b == -1 && this.tabStart && (this.tabStart.focus(), this.tabStart.focus(), this.setActive(!1)), null) : a.style.display != "none" && (!this.smartTabOrder || !this.cells(a.parentNode.idd, a._cellIndex).isDisabled()) ? a : this._getNextCell(a, b)
+};
+this._nextRow = function (a, b) {
+    var c = this.render_row(a + b);
+    return!c || c == -1 ? null : c && c.style.display == "none" ? this._nextRow(a + b, b) : c
+};
+this.scrollPage = function (a) {
+    if (this.rowsBuffer.length) {
+        var b = this._realfake ? this._fake : this, c = Math.floor((b._r_select || this.getRowIndex(this.row.idd) ||
+            0) + a * this.objBox.offsetHeight / (this._srdh || 20));
+        c < 0 && (c = 0);
+        c >= this.rowsBuffer.length && (c = this.rowsBuffer.length - 1);
+        if (this._srnd && !this.rowsBuffer[c]) {
+            this.objBox.scrollTop += Math.floor(a * this.objBox.offsetHeight / (this._srdh || 20)) * (this._srdh || 20);
+            if (this._fake)this._fake.objBox.scrollTop = this.objBox.scrollTop;
+            b._r_select = c
+        } else {
+            this.selectCell(c, this.cell._cellIndex, !0, !1, !1, this.multiLine || this._srnd);
+            if (!this.multiLine && !this._srnd && !this._realfake && (this.objBox.scrollTop = this.getRowById(this.getRowId(c)).offsetTop,
+                this._fake))this._fake.objBox.scrollTop = this.objBox.scrollTop;
+            b._r_select = null
+        }
+    }
+};
+this.doKey = function (a) {
+    if (!a)return!0;
+    if ((a.target || a.srcElement).value !== window.undefined) {
+        var b = a.target || a.srcElement;
+        if (!b.parentNode || b.parentNode.className.indexOf("editable") == -1)return!0
+    }
+    if (globalActiveDHTMLGridObject && this != globalActiveDHTMLGridObject)return globalActiveDHTMLGridObject.doKey(a);
+    if (this.isActive == !1)return!0;
+    if (this._htkebl)return!0;
+    if (!this.callEvent("onKeyPress", [a.keyCode, a.ctrlKey, a.shiftKey,
+        a]))return!1;
+    var c = "k" + a.keyCode + "_" + (a.ctrlKey ? 1 : 0) + "_" + (a.shiftKey ? 1 : 0);
+    if (this.cell) {
+        if (this._key_events[c]) {
+            if (!1 === this._key_events[c].call(this))return!0;
+            a.preventDefault && a.preventDefault();
+            a.cancelBubble = !0;
+            return!1
+        }
+        this._key_events.k_other && this._key_events.k_other.call(this, a)
+    }
+    return!0
+};
+this.selectRow = function (a, b, c, d) {
+    typeof a != "object" && (a = this.render_row(a));
+    this.selectCell(a, 0, b, c, !1, d)
+};
+this.wasDblClicked = function (a) {
+    var b = this.getFirstParentOfType(_isIE ? a.srcElement : a.target, "TD");
+    if (b) {
+        var c = b.parentNode.idd;
+        return this.callEvent("onRowDblClicked", [c, b._cellIndex])
+    }
+};
+this._onHeaderClick = function (a, b) {
+    var c = this.grid, b = b || c.getFirstParentOfType(_isIE ? event.srcElement : a.target, "TD");
+    if (this.grid.resized == null) {
+        if (!this.grid.callEvent("onHeaderClick", [b._cellIndexS, a || window.event]))return!1;
+        c.sortField(b._cellIndexS, !1, b)
+    }
+    this.grid.resized = null
+};
+this.deleteSelectedRows = function () {
+    var a = this.selectedRows.length;
+    if (a != 0) {
+        var b = this.selectedRows;
         this.selectedRows = dhtmlxArray();
-        this.row = null;
-        if (this.cell != null)this.cell.className = this.cell.className.replace(/cellselected/g, ""), this.cell = null;
-        this.callEvent("onSelectionCleared", [])
+        for (var c = a - 1; c >= 0; c--) {
+            var d = b[c];
+            if (this.deleteRow(d.idd, d)) {
+                if (d == this.row)var g = c
+            } else this.selectedRows[this.selectedRows.length] = d
+        }
+        if (g)try {
+            g + 1 > this.rowsCol.length && g--, this.selectCell(g, 0, !0)
+        } catch (h) {
+            this.cell = this.row = null
+        }
+    }
+};
+this.getSelectedRowId = function () {
+    for (var a = [], b = {}, c = 0; c < this.selectedRows.length; c++) {
+        var d = this.selectedRows[c].idd;
+        b[d] || (a[a.length] = d, b[d] = !0)
+    }
+    return a.length == 0 ? null : a.join(this.delim)
+};
+this.getSelectedCellIndex = function () {
+    return this.cell != null ? this.cell._cellIndex :
+        -1
+};
+this.getColWidth = function (a) {
+    return parseInt(this.cellWidthPX[a])
+};
+this.setColWidth = function (a, b) {
+    if (b == "*")this.initCellWidth[a] = "*"; else {
+        if (this._hrrar[a])return;
+        this.cellWidthType == "px" ? this.cellWidthPX[a] = parseInt(b) : this.cellWidthPC[a] = parseInt(b)
+    }
+    this.setSizes()
+};
+this.getRowIndex = function (a) {
+    for (var b = 0; b < this.rowsBuffer.length; b++)if (this.rowsBuffer[b] && this.rowsBuffer[b].idd == a)return b;
+    return-1
+};
+this.getRowId = function (a) {
+    return this.rowsBuffer[a] ? this.rowsBuffer[a].idd : this.undefined
+};
+this.setRowId = function (a, b) {
+    this.changeRowId(this.getRowId(a), b)
+};
+this.changeRowId = function (a, b) {
+    if (a != b) {
+        var c = this.rowsAr[a];
+        c.idd = b;
+        this.UserData[a] && (this.UserData[b] = this.UserData[a], this.UserData[a] = null);
+        if (this._h2 && this._h2.get[a])this._h2.get[b] = this._h2.get[a], this._h2.get[b].id = b, delete this._h2.get[a];
+        this.rowsAr[a] = null;
+        this.rowsAr[b] = c;
+        for (var d = 0; d < c.childNodes.length; d++)if (c.childNodes[d]._code)c.childNodes[d]._code = this._compileSCL(c.childNodes[d]._val, c.childNodes[d]);
+        if (this._mat_links &&
+            this._mat_links[a]) {
+            var g = this._mat_links[a];
+            delete this._mat_links[a];
+            for (var h in g)for (d = 0; d < g[h].length; d++)this._compileSCL(g[h][d].original, g[h][d])
+        }
+        this.callEvent("onRowIdChange", [a, b])
+    }
+};
+this.setColumnIds = function (a) {
+    this.columnIds = a.split(this.delim)
+};
+this.setColumnId = function (a, b) {
+    this.columnIds[a] = b
+};
+this.getColIndexById = function (a) {
+    for (var b = 0; b < this.columnIds.length; b++)if (this.columnIds[b] == a)return b
+};
+this.getColumnId = function (a) {
+    return this.columnIds[a]
+};
+this.getColLabel = this.getColumnLabel =
+    function (a, b, c) {
+        for (var d = (c || this.hdr).rows[(b || 0) + 1], g = 0; g < d.cells.length; g++)if (d.cells[g]._cellIndexS == a)return _isIE ? d.cells[g].innerText : d.cells[g].textContent;
+        return""
     };
-    this.copyRowContent = function (a, b) {
-        var c = this.getRowById(a);
-        if (this.isTreeGrid())this._copyTreeGridRowContent(c, a, b); else for (var d = 0; d < c.cells.length; d++)this.cells(b, d).setValue(this.cells(a, d).getValue());
-        if (!_isIE)this.getRowById(a).cells[0].height = c.cells[0].offsetHeight
-    };
-    this.setFooterLabel = function (a, b, c) {
-        return this.setColumnLabel(a, b, c, this.ftr)
-    };
-    this.setColumnLabel = function (a, b, c, d) {
-        var g = (d || this.hdr).rows[c || 1], h = g._childIndexes ? g._childIndexes[a] : a;
-        if (g.cells[h]) {
+this.getFooterLabel = function (a, b) {
+    return this.getColumnLabel(a, b, this.ftr)
+};
+this.setRowTextBold = function (a) {
+    var b = this.getRowById(a);
+    if (b)b.style.fontWeight = "bold"
+};
+this.setRowTextStyle = function (a, b) {
+    var c = this.getRowById(a);
+    if (c)for (var d = 0; d < c.childNodes.length; d++) {
+        var g = c.childNodes[d]._attrs.style || "";
+        c.childNodes[d].style.cssText =
+            g + "width:" + c.childNodes[d].style.width + ";" + b
+    }
+};
+this.setRowColor = function (a, b) {
+    for (var c = this.getRowById(a), d = 0; d < c.childNodes.length; d++)c.childNodes[d].bgColor = b
+};
+this.setCellTextStyle = function (a, b, c) {
+    var d = this.getRowById(a);
+    if (d) {
+        var g = d.childNodes[d._childIndexes ? d._childIndexes[b] : b];
+        if (g) {
+            var h = "";
+            g.style.cssText = h + "width:" + g.style.width + ";" + c
+        }
+    }
+};
+this.setRowTextNormal = function (a) {
+    var b = this.getRowById(a);
+    if (b)b.style.fontWeight = "normal"
+};
+this.doesRowExist = function (a) {
+    return this.getRowById(a) !=
+        null ? !0 : !1
+};
+this.getColumnsNum = function () {
+    return this._cCount
+};
+this.moveRowUp = function (a) {
+    var b = this.getRowById(a);
+    if (this.isTreeGrid())return this.moveRowUDTG(a, -1);
+    var c = this.rowsCol._dhx_find(b);
+    if (b.previousSibling && c != 0) {
+        b.parentNode.insertBefore(b, b.previousSibling);
+        this.rowsCol._dhx_swapItems(c, c - 1);
+        this.setSizes();
+        var d = this.rowsBuffer._dhx_find(b);
+        this.rowsBuffer._dhx_swapItems(d, d - 1);
+        this._cssEven && this._fixAlterCss(c - 1)
+    }
+};
+this.moveRowDown = function (a) {
+    var b = this.getRowById(a);
+    if (this.isTreeGrid())return this.moveRowUDTG(a,
+        1);
+    var c = this.rowsCol._dhx_find(b);
+    if (b.nextSibling) {
+        this.rowsCol._dhx_swapItems(c, c + 1);
+        b.nextSibling.nextSibling ? b.parentNode.insertBefore(b, b.nextSibling.nextSibling) : b.parentNode.appendChild(b);
+        this.setSizes();
+        var d = this.rowsBuffer._dhx_find(b);
+        this.rowsBuffer._dhx_swapItems(d, d + 1);
+        this._cssEven && this._fixAlterCss(c)
+    }
+};
+this.getCombo = function (a) {
+    this.combos[a] || (this.combos[a] = new dhtmlXGridComboObject);
+    return this.combos[a]
+};
+this.setUserData = function (a, b, c) {
+    a || (a = "gridglobaluserdata");
+    this.UserData[a] ||
+    (this.UserData[a] = new Hashtable);
+    this.UserData[a].put(b, c)
+};
+this.getUserData = function (a, b) {
+    a || (a = "gridglobaluserdata");
+    this.getRowById(a);
+    var c = this.UserData[a];
+    return c ? c.get(b) : ""
+};
+this.setEditable = function (a) {
+    this.isEditable = convertStringToBoolean(a)
+};
+this.selectRowById = function (a, b, c, d) {
+    d || (d = !1);
+    this.selectCell(this.getRowById(a), 0, d, b, !1, c)
+};
+this.clearSelection = function () {
+    this.editStop();
+    for (var a = 0; a < this.selectedRows.length; a++) {
+        var b = this.rowsAr[this.selectedRows[a].idd];
+        if (b)b.className =
+            b.className.replace(/rowselected/g, "")
+    }
+    this.selectedRows = dhtmlxArray();
+    this.row = null;
+    if (this.cell != null)this.cell.className = this.cell.className.replace(/cellselected/g, ""), this.cell = null;
+    this.callEvent("onSelectionCleared", [])
+};
+this.copyRowContent = function (a, b) {
+    var c = this.getRowById(a);
+    if (this.isTreeGrid())this._copyTreeGridRowContent(c, a, b); else for (var d = 0; d < c.cells.length; d++)this.cells(b, d).setValue(this.cells(a, d).getValue());
+    if (!_isIE)this.getRowById(a).cells[0].height = c.cells[0].offsetHeight
+};
+this.setFooterLabel = function (a, b, c) {
+    return this.setColumnLabel(a, b, c, this.ftr)
+};
+this.setColumnLabel = function (a, b, c, d) {
+    var g = (d || this.hdr).rows[c || 1], h = g._childIndexes ? g._childIndexes[a] : a;
+    if (g.cells[h]) {
+        if (this.use../imagesInHeader) {
+        g.cells[h].style.textAlign = "left";
+        g.cells[h].innerHTML = "<img src='" + this.imgURL + "" + b + "' onerror='this.src = \"" + this.imgURL + "imageloaderror.gif\"'>";
+        var l = new Image;
+        l.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".des$1");
+        this.preload..
+        /imagesAr[this.preload../imagesAr.length] = l;
+        var k = new Image;
+        k.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".asc$1");
+        this.preload..
+        /imagesAr[this.preload../imagesAr.length] = k
+    } else {
+        var m = "<div class='hdrcell'>";
+        if (b.indexOf("img:[") != -1) {
+            var n = b.replace(/.*\[([^>]+)\].*/, "$1"), b = b.substr(b.indexOf("]") + 1, b.length);
+            m += "<img width='18px' height='18px' align='absmiddle' src='" + n + "' hspace='2'>"
+        }
+        m += b;
+        m += "</div>";
+        g.cells[h].innerHTML = m;
+        if (this._hstyles[h])g.cells[h].style.cssText = this._hstyles[h]
+    }
+    if ((b || "").indexOf("#") != -1) {
+        var o = b.match(/(^|{)#([^}]+)(}|$)/);
+        if (o) {
+            var p = "_in_header_" + o[2];
+            if (this[p])this[p](this.forceDivInHeader ? g.cells[h].firstChild : g.cells[h], h, b.split(o[0]))
+        }
+    }
+}
+}
+;
+this.setColLabel = function (a, b, c, d) {
+    return this.setColumnLabel(a, b, (c || 0) + 1, d)
+};
+this.clearAll = function (a) {
+    if (this.obj.rows[0]) {
+        if (this._h2 && (this._h2 = new dhtmlxHierarchy, this._fake))this._realfake ? this._h2 = this._fake._h2 : this._fake._h2 = this._h2;
+        this.limit = this._limitC = 0;
+        this.editStop(!0);
+        this._dLoadTimer && window.clearTimeout(this._dLoadTimer);
+        if (this._dload)this.objBox.scrollTop =
+            0, this.limit = this._limitC || 0, this._initDrF = !0;
+        for (var b = this.rowsCol.length, b = this.obj.rows.length, c = b - 1; c > 0; c--) {
+            var d = this.obj.rows[c];
+            d.parentNode.removeChild(d)
+        }
+        if (a) {
+            this._master_row = null;
+            this.obj.rows[0].parentNode.removeChild(this.obj.rows[0]);
+            for (c = this.hdr.rows.length - 1; c >= 0; c--)d = this.hdr.rows[c], d.parentNode.removeChild(d);
+            if (this.ftr)this.ftr.parentNode.removeChild(this.ftr), this.ftr = null;
+            this._aHead = this.ftr = this.cellWidth = this._aFoot = null;
+            this.cellType = dhtmlxArray();
+            this._hrrar = [];
+            this.columnIds =
+                [];
+            this.combos = [];
+            this._strangeParams = [];
+            this.defVal = [];
+            this._ivizcol = null
+        }
+        this.cell = this.row = null;
+        this.rowsCol = dhtmlxArray();
+        this.rowsAr = {};
+        this._RaSeCol = [];
+        this.rowsBuffer = dhtmlxArray();
+        this.UserData = [];
+        this.selectedRows = dhtmlxArray();
+        if (this.pagingOn || this._srnd)this.xmlFileUrl = "";
+        this.pagingOn && this.changePage(1);
+        this._contextCallTimer && window.clearTimeout(this._contextCallTimer);
+        this._sst && this.enableStableSorting(!0);
+        this._fillers = this.undefined;
+        this.setSortImgState(!1);
+        this.setSizes();
+        this.callEvent("onClearAll",
+            [])
+    }
+};
+this.sortField = function (a, b, c) {
+    if (this.getRowsNum() == 0)return!1;
+    var d = this.hdr.rows[0].cells[a];
+    if (d && d.tagName == "TH" && this.fldSort.length - 1 >= d._cellIndex && this.fldSort[d._cellIndex] != "na") {
+        var g = this.getSortingState(), h = g[0] == a && g[1] == "asc" ? "des" : "asc";
+        if (this.callEvent("onBeforeSorting", [a, this.fldSort[a], h])) {
+            this.sortImg.src = this.imgURL + "sort_" + (h == "asc" ? "asc" : "desc") + ".gif";
             if (this.use../imagesInHeader) {
-                g.cells[h].style.textAlign = "left";
-                g.cells[h].innerHTML = "<img src='" + this.imgURL + "" + b + "' onerror='this.src = \"" + this.imgURL + "imageloaderror.gif\"'>";
-                var l = new Image;
-                l.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".des$1");
-                this.preload../imagesAr[this.preload../imagesAr.length] = l;
-                var k = new Image;
-                k.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".asc$1");
-                this.preload../imagesAr[this.preload../imagesAr.length] = k
-            } else {
-                var m = "<div class='hdrcell'>";
-                if (b.indexOf("img:[") != -1) {
-                    var n = b.replace(/.*\[([^>]+)\].*/, "$1"), b = b.substr(b.indexOf("]") + 1, b.length);
-                    m += "<img width='18px' height='18px' align='absmiddle' src='" + n + "' hspace='2'>"
-                }
-                m += b;
-                m += "</div>";
-                g.cells[h].innerHTML = m;
-                if (this._hstyles[h])g.cells[h].style.cssText = this._hstyles[h]
+            var l = this.hdr.rows[1].cells[d._cellIndex].firstChild;
+            if (this.fldSorted != null) {
+                var k = this.hdr.rows[1].cells[this.fldSorted._cellIndex].firstChild;
+                k.src = k.src.replace(/(\.asc\.)|(\.des\.)/, ".")
             }
-            if ((b || "").indexOf("#") != -1) {
-                var o = b.match(/(^|{)#([^}]+)(}|$)/);
-                if (o) {
-                    var p = "_in_header_" + o[2];
-                    if (this[p])this[p](this.forceDivInHeader ? g.cells[h].firstChild : g.cells[h], h, b.split(o[0]))
-                }
-            }
+            l.src = l.src.replace(/(\.[a-z]+)$/, "." + h + "$1")
         }
-    };
-    this.setColLabel = function (a, b, c, d) {
-        return this.setColumnLabel(a, b, (c || 0) + 1, d)
-    };
-    this.clearAll = function (a) {
-        if (this.obj.rows[0]) {
-            if (this._h2 && (this._h2 = new dhtmlxHierarchy, this._fake))this._realfake ? this._h2 = this._fake._h2 : this._fake._h2 = this._h2;
-            this.limit = this._limitC = 0;
-            this.editStop(!0);
-            this._dLoadTimer && window.clearTimeout(this._dLoadTimer);
-            if (this._dload)this.objBox.scrollTop =
-                0, this.limit = this._limitC || 0, this._initDrF = !0;
-            for (var b = this.rowsCol.length, b = this.obj.rows.length, c = b - 1; c > 0; c--) {
-                var d = this.obj.rows[c];
-                d.parentNode.removeChild(d)
-            }
-            if (a) {
-                this._master_row = null;
-                this.obj.rows[0].parentNode.removeChild(this.obj.rows[0]);
-                for (c = this.hdr.rows.length - 1; c >= 0; c--)d = this.hdr.rows[c], d.parentNode.removeChild(d);
-                if (this.ftr)this.ftr.parentNode.removeChild(this.ftr), this.ftr = null;
-                this._aHead = this.ftr = this.cellWidth = this._aFoot = null;
-                this.cellType = dhtmlxArray();
-                this._hrrar = [];
-                this.columnIds =
-                    [];
-                this.combos = [];
-                this._strangeParams = [];
-                this.defVal = [];
-                this._ivizcol = null
-            }
-            this.cell = this.row = null;
-            this.rowsCol = dhtmlxArray();
-            this.rowsAr = {};
-            this._RaSeCol = [];
-            this.rowsBuffer = dhtmlxArray();
-            this.UserData = [];
-            this.selectedRows = dhtmlxArray();
-            if (this.pagingOn || this._srnd)this.xmlFileUrl = "";
-            this.pagingOn && this.changePage(1);
-            this._contextCallTimer && window.clearTimeout(this._contextCallTimer);
-            this._sst && this.enableStableSorting(!0);
-            this._fillers = this.undefined;
-            this.setSortImgState(!1);
-            this.setSizes();
-            this.callEvent("onClearAll",
-                [])
+        this.sortRows(d._cellIndex, this.fldSort[d._cellIndex], h);
+        this.fldSorted = d;
+        this.r_fldSorted = c;
+        var m = this.hdr.rows[1], m = c.parentNode, n = m._childIndexes ? m._childIndexes[d._cellIndex] : d._cellIndex;
+        this.setSortImgPos(!1, !1, !1, c)
+    }
+}
+}
+;
+this.enableHeader..
+/images = function (a) {
+this.use..
+/imagesInHeader = a
+}
+;
+this.setHeader = function (a, b, c) {
+    for (var d = typeof a != "object" ? this._eSplit(a) : [].concat(a), g = [], h = new dhtmlxArray(0), l = [],
+             k = [], m = [], n = 0; n < d.length; n++)g[g.length] = Math.round(100 / d.length), h[h.length] = "ed", l[l.length] = "left", k[k.length] = "middle", m[m.length] = "na";
+    this.splitSign = b || "#cspan";
+    this.hdrLabels = d;
+    this.cellWidth = g;
+    this.initCellWidth.length || this.setInitWidthsP(g.join(this.delim), !0);
+    this.cellType = h;
+    this.cellAlign = l;
+    this.cellVAlign = k;
+    this.fldSort = m;
+    this._hstyles = c || []
+};
+this._eSplit = function (a) {
+    if (![].push)return a.split(this.delim);
+    var b = "r" + (new Date).valueOf(), c = this.delim.replace(/([\|\+\*\^])/g, "\\$1");
+    return(a ||
+        "").replace(RegExp(c, "g"), b).replace(RegExp("\\\\" + b, "g"), this.delim).split(b)
+};
+this.getColType = function (a) {
+    return this.cellType[a]
+};
+this.getColTypeById = function (a) {
+    return this.cellType[this.getColIndexById(a)]
+};
+this.setColTypes = function (a) {
+    this.cellType = dhtmlxArray(a.split(this.delim));
+    this._strangeParams = [];
+    for (var b = 0; b < this.cellType.length; b++) {
+        if (this.cellType[b].indexOf("[") != -1) {
+            var c = this.cellType[b].split(/[\[\]]+/g);
+            this.cellType[b] = c[0];
+            this.defVal[b] = c[1];
+            c[1].indexOf("=") == 0 && (this.cellType[b] =
+                "math", this._strangeParams[b] = c[0])
         }
-    };
-    this.sortField = function (a, b, c) {
-        if (this.getRowsNum() == 0)return!1;
-        var d = this.hdr.rows[0].cells[a];
-        if (d && d.tagName == "TH" && this.fldSort.length - 1 >= d._cellIndex && this.fldSort[d._cellIndex] != "na") {
-            var g = this.getSortingState(), h = g[0] == a && g[1] == "asc" ? "des" : "asc";
-            if (this.callEvent("onBeforeSorting", [a, this.fldSort[a], h])) {
-                this.sortImg.src = this.imgURL + "sort_" + (h == "asc" ? "asc" : "desc") + ".gif";
-                if (this.use../imagesInHeader) {
-                    var l = this.hdr.rows[1].cells[d._cellIndex].firstChild;
-                    if (this.fldSorted != null) {
-                        var k = this.hdr.rows[1].cells[this.fldSorted._cellIndex].firstChild;
-                        k.src = k.src.replace(/(\.asc\.)|(\.des\.)/, ".")
-                    }
-                    l.src = l.src.replace(/(\.[a-z]+)$/, "." + h + "$1")
-                }
-                this.sortRows(d._cellIndex, this.fldSort[d._cellIndex], h);
-                this.fldSorted = d;
-                this.r_fldSorted = c;
-                var m = this.hdr.rows[1], m = c.parentNode, n = m._childIndexes ? m._childIndexes[d._cellIndex] : d._cellIndex;
-                this.setSortImgPos(!1, !1, !1, c)
-            }
+        window["eXcell_" + this.cellType[b]] || dhtmlxError.throwError("Configuration", "Incorrect cell type: " + this.cellType[b], [this, this.cellType[b]])
+    }
+};
+this.setColSorting = function (a) {
+    this.fldSort = a.split(this.delim)
+};
+this.setColAlign = function (a) {
+    this.cellAlign = a.split(this.delim);
+    for (var b = 0; b < this.cellAlign.length; b++)this.cellAlign[b] = this.cellAlign[b]._dhx_trim()
+};
+this.setColVAlign = function (a) {
+    this.cellVAlign = a.split(this.delim)
+};
+this.setNoHeader = function (a) {
+    this.noHeader =
+        convertStringToBoolean(a)
+};
+this.showRow = function (a) {
+    this.getRowById(a);
+    this._h2 && this.openItem(this._h2.get[a].parent.id);
+    for (var b = this.getRowById(a).childNodes[0]; b && b.style.display == "none";)b = b.nextSibling;
+    b && this.moveToVisible(b, !0)
+};
+this.setStyle = function (a, b, c, d) {
+    this.ssModifier = [a, b, c, c, d];
+    for (var g = ["#" + this.entBox.id + " table.hdr td", "#" + this.entBox.id + " table.obj td", "#" + this.entBox.id + " table.obj tr.rowselected td.cellselected", "#" + this.entBox.id + " table.obj td.cellselected", "#" + this.entBox.id +
+        " table.obj tr.rowselected td"], h = 0; !_isIE;) {
+        try {
+            var l = document.styleSheets[h].cssRules.length
+        } catch (k) {
+            h++;
+            continue
         }
-    };
-    this.enableHeader../images = function (a) {
-        this.use../imagesInHeader = a
-    };
-    this.setHeader = function (a, b, c) {
-        for (var d = typeof a != "object" ? this._eSplit(a) : [].concat(a), g = [], h = new dhtmlxArray(0), l = [],
-                 k = [], m = [], n = 0; n < d.length; n++)g[g.length] = Math.round(100 / d.length), h[h.length] = "ed", l[l.length] = "left", k[k.length] = "middle", m[m.length] = "na";
-        this.splitSign = b || "#cspan";
-        this.hdrLabels = d;
-        this.cellWidth = g;
-        this.initCellWidth.length || this.setInitWidthsP(g.join(this.delim), !0);
-        this.cellType = h;
-        this.cellAlign = l;
-        this.cellVAlign = k;
-        this.fldSort = m;
-        this._hstyles = c || []
-    };
-    this._eSplit = function (a) {
-        if (![].push)return a.split(this.delim);
-        var b = "r" + (new Date).valueOf(), c = this.delim.replace(/([\|\+\*\^])/g, "\\$1");
-        return(a ||
-            "").replace(RegExp(c, "g"), b).replace(RegExp("\\\\" + b, "g"), this.delim).split(b)
-    };
-    this.getColType = function (a) {
-        return this.cellType[a]
-    };
-    this.getColTypeById = function (a) {
-        return this.cellType[this.getColIndexById(a)]
-    };
-    this.setColTypes = function (a) {
-        this.cellType = dhtmlxArray(a.split(this.delim));
-        this._strangeParams = [];
-        for (var b = 0; b < this.cellType.length; b++) {
-            if (this.cellType[b].indexOf("[") != -1) {
-                var c = this.cellType[b].split(/[\[\]]+/g);
-                this.cellType[b] = c[0];
-                this.defVal[b] = c[1];
-                c[1].indexOf("=") == 0 && (this.cellType[b] =
-                    "math", this._strangeParams[b] = c[0])
-            }
-            window["eXcell_" + this.cellType[b]] || dhtmlxError.throwError("Configuration", "Incorrect cell type: " + this.cellType[b], [this, this.cellType[b]])
-        }
-    };
-    this.setColSorting = function (a) {
-        this.fldSort = a.split(this.delim)
-    };
-    this.setColAlign = function (a) {
-        this.cellAlign = a.split(this.delim);
-        for (var b = 0; b < this.cellAlign.length; b++)this.cellAlign[b] = this.cellAlign[b]._dhx_trim()
-    };
-    this.setColVAlign = function (a) {
-        this.cellVAlign = a.split(this.delim)
-    };
-    this.setNoHeader = function (a) {
-        this.noHeader =
-            convertStringToBoolean(a)
-    };
-    this.showRow = function (a) {
-        this.getRowById(a);
-        this._h2 && this.openItem(this._h2.get[a].parent.id);
-        for (var b = this.getRowById(a).childNodes[0]; b && b.style.display == "none";)b = b.nextSibling;
-        b && this.moveToVisible(b, !0)
-    };
-    this.setStyle = function (a, b, c, d) {
-        this.ssModifier = [a, b, c, c, d];
-        for (var g = ["#" + this.entBox.id + " table.hdr td", "#" + this.entBox.id + " table.obj td", "#" + this.entBox.id + " table.obj tr.rowselected td.cellselected", "#" + this.entBox.id + " table.obj td.cellselected", "#" + this.entBox.id +
-            " table.obj tr.rowselected td"], h = 0; !_isIE;) {
-            try {
-                var l = document.styleSheets[h].cssRules.length
-            } catch (k) {
-                h++;
-                continue
-            }
-            break
-        }
-        for (var m = 0; m < g.length; m++)this.ssModifier[m] && (_isIE ? document.styleSheets[0].addRule(g[m], this.ssModifier[m]) : document.styleSheets[h].insertRule(g[m] + (" { " + this.ssModifier[m] + " }"), document.styleSheets[h].cssRules.length))
-    };
-    this.setColumnColor = function (a) {
-        this.columnColor = a.split(this.delim)
-    };
-    this.enableAlterCss = function (a, b, c, d) {
-        (a || b) && this.attachEvent("onGridReconstructed",
-            function () {
-                this._fixAlterCss();
-                this._fake && this._fake._fixAlterCss()
-            });
-        this._cssSP = c;
-        this._cssSU = d;
-        this._cssEven = a;
-        this._cssUnEven = b
-    };
-    this._fixAlterCss = function (a) {
-        if (this._h2 && (this._cssSP || this._cssSU))return this._fixAlterCssTGR(a);
-        if (this._cssEven || this._cssUnEven)for (var b = a = a || 0, c = a; c < this.rowsCol.length; c++)if (this.rowsCol[c] && this.rowsCol[c].style.display != "none")this.rowsCol[c]._cntr ? b = 1 : (this.rowsCol[c].className = this.rowsCol[c].className.indexOf("rowselected") != -1 ? b % 2 == 1 ? this._cssUnEven +
-            " rowselected " + (this.rowsCol[c]._css || "") : this._cssEven + " rowselected " + (this.rowsCol[c]._css || "") : b % 2 == 1 ? this._cssUnEven + " " + (this.rowsCol[c]._css || "") : this._cssEven + " " + (this.rowsCol[c]._css || ""), b++)
-    };
-    this.getPosition = function (a, b) {
-        if (!b && !_isChrome) {
-            var c = getOffset(a);
-            return[c.left, c.top]
-        }
-        for (var b = b || document.body, d = a, g = 0, h = 0; d && d != b;)g += d.offsetLeft - d.scrollLeft, h += d.offsetTop - d.scrollTop, d = d.offsetParent;
-        b == document.body && (_isIE ? (h += document.body.offsetTop || document.documentElement.offsetTop,
-            g += document.body.offsetLeft || document.documentElement.offsetLeft) : _isFF || (g += document.body.offsetLeft, h += document.body.offsetTop));
-        return[g, h]
-    };
-    this.getFirstParentOfType = function (a, b) {
-        for (; a && a.tagName != b && a.tagName != "BODY";)a = a.parentNode;
-        return a
-    };
-    this.objBox.onscroll = function () {
-        this.grid._doOnScroll()
-    };
-    this.hdrBox.onscroll = function () {
-        if (!this._try_header_sync) {
-            this._try_header_sync = !0;
-            if (this.grid.objBox.scrollLeft != this.scrollLeft)this.grid.objBox.scrollLeft = this.scrollLeft;
-            this._try_header_sync = !1
-        }
-    };
-    if (!_isOpera || _OperaRv > 8.5)this.hdr.onmousemove = function (a) {
-        this.grid.changeCursorState(a || window.event)
-    }, this.hdr.onmousedown = function (a) {
-        return this.grid.startColResize(a || window.event)
-    };
-    this.obj.onmousemove = this._drawTooltip;
-    this.objBox.onclick = function (a) {
-        (a || event).cancelBubble = !0
-    };
-    this.obj.onclick = function (a) {
-        this.grid._doClick(a || window.event);
-        this.grid._sclE ? this.grid.editCell(a || window.event) : this.grid.editStop();
-        (a || event).cancelBubble = !0
-    };
-    _isMacOS ? this.entBox.oncontextmenu = function (a) {
-        a.cancelBubble = !0;
-        a.returnValue = !1;
-        return this.grid._doContClick(a || window.event)
-    } : (this.entBox.onmousedown = function (a) {
-        return this.grid._doContClick(a || window.event)
-    }, this.entBox.oncontextmenu = function (a) {
-        if (this.grid._ctmndx)(a || event).cancelBubble = !0;
-        return!this.grid._ctmndx
-    });
-    this.obj.ondblclick = function (a) {
-        if (!this.grid.wasDblClicked(a || window.event))return!1;
-        if (this.grid._dclE) {
-            var b = this.grid.getFirstParentOfType(_isIE ? event.srcElement : a.target, "TR");
-            b == this.grid.row && this.grid.editCell(a || window.event)
-        }
-        (a ||
-            event).cancelBubble = !0;
-        if (_isOpera)return!1
-    };
-    this.hdr.onclick = this._onHeaderClick;
-    this.sortImg.onclick = function () {
-        c._onHeaderClick.apply({grid: c}, [null, c.r_fldSorted])
-    };
-    this.hdr.ondblclick = this._onHeaderDblClick;
-    if (!document.body._dhtmlxgrid_onkeydown)dhtmlxEvent(document, "keydown", function (a) {
-        if (globalActiveDHTMLGridObject)return globalActiveDHTMLGridObject.doKey(a || window.event)
-    }), document.body._dhtmlxgrid_onkeydown = !0;
-    dhtmlxEvent(document.body, "click", function () {
-        c.editStop && c.editStop();
-        c.isActive &&
-        c.setActive(!1)
-    });
-    this.entBox.onbeforeactivate = function () {
-        this._still_active = null;
-        this.grid.setActive();
-        event.cancelBubble = !0
-    };
-    this.entBox.onbeforedeactivate = function () {
-        this.grid._still_active ? this.grid._still_active = null : this.grid.isActive = !1;
-        event.cancelBubble = !0
-    };
-    if (this.entBox.style.height.toString().indexOf("%") != -1)this._delta_y = this.entBox.style.height;
-    if (this.entBox.style.width.toString().indexOf("%") != -1)this._delta_x = this.entBox.style.width;
-    (this._delta_x || this._delta_y) && this._setAutoResize();
-    this.setColHidden = this.setColumnsVisibility;
-    this.enableCollSpan = this.enableColSpan;
-    this.setMultiselect = this.enableMultiselect;
-    this.setMultiLine = this.enableMultiline;
-    this.deleteSelectedItem = this.deleteSelectedRows;
-    this.getSelectedId = this.getSelectedRowId;
-    this.getHeaderCol = this.getColumnLabel;
-    this.isItemExists = this.doesRowExist;
-    this.getColumnCount = this.getColumnsNum;
-    this.setSelectedRow = this.selectRowById;
-    this.setHeaderCol = this.setColumnLabel;
-    this.preventIECashing = this.preventIECaching;
-    this.enableAutoHeigth =
-        this.enableAutoHeight;
-    this.getUID = this.uid;
-    dhtmlx.image_path && this.setImagePath(dhtmlx.image_path);
-    dhtmlx.skin && this.setSkin(dhtmlx.skin);
-    return this
+        break
+    }
+    for (var m = 0; m < g.length; m++)this.ssModifier[m] && (_isIE ? document.styleSheets[0].addRule(g[m], this.ssModifier[m]) : document.styleSheets[h].insertRule(g[m] + (" { " + this.ssModifier[m] + " }"), document.styleSheets[h].cssRules.length))
+};
+this.setColumnColor = function (a) {
+    this.columnColor = a.split(this.delim)
+};
+this.enableAlterCss = function (a, b, c, d) {
+    (a || b) && this.attachEvent("onGridReconstructed",
+        function () {
+            this._fixAlterCss();
+            this._fake && this._fake._fixAlterCss()
+        });
+    this._cssSP = c;
+    this._cssSU = d;
+    this._cssEven = a;
+    this._cssUnEven = b
+};
+this._fixAlterCss = function (a) {
+    if (this._h2 && (this._cssSP || this._cssSU))return this._fixAlterCssTGR(a);
+    if (this._cssEven || this._cssUnEven)for (var b = a = a || 0, c = a; c < this.rowsCol.length; c++)if (this.rowsCol[c] && this.rowsCol[c].style.display != "none")this.rowsCol[c]._cntr ? b = 1 : (this.rowsCol[c].className = this.rowsCol[c].className.indexOf("rowselected") != -1 ? b % 2 == 1 ? this._cssUnEven +
+        " rowselected " + (this.rowsCol[c]._css || "") : this._cssEven + " rowselected " + (this.rowsCol[c]._css || "") : b % 2 == 1 ? this._cssUnEven + " " + (this.rowsCol[c]._css || "") : this._cssEven + " " + (this.rowsCol[c]._css || ""), b++)
+};
+this.getPosition = function (a, b) {
+    if (!b && !_isChrome) {
+        var c = getOffset(a);
+        return[c.left, c.top]
+    }
+    for (var b = b || document.body, d = a, g = 0, h = 0; d && d != b;)g += d.offsetLeft - d.scrollLeft, h += d.offsetTop - d.scrollTop, d = d.offsetParent;
+    b == document.body && (_isIE ? (h += document.body.offsetTop || document.documentElement.offsetTop,
+        g += document.body.offsetLeft || document.documentElement.offsetLeft) : _isFF || (g += document.body.offsetLeft, h += document.body.offsetTop));
+    return[g, h]
+};
+this.getFirstParentOfType = function (a, b) {
+    for (; a && a.tagName != b && a.tagName != "BODY";)a = a.parentNode;
+    return a
+};
+this.objBox.onscroll = function () {
+    this.grid._doOnScroll()
+};
+this.hdrBox.onscroll = function () {
+    if (!this._try_header_sync) {
+        this._try_header_sync = !0;
+        if (this.grid.objBox.scrollLeft != this.scrollLeft)this.grid.objBox.scrollLeft = this.scrollLeft;
+        this._try_header_sync = !1
+    }
+};
+if (!_isOpera || _OperaRv > 8.5)this.hdr.onmousemove = function (a) {
+    this.grid.changeCursorState(a || window.event)
+}, this.hdr.onmousedown = function (a) {
+    return this.grid.startColResize(a || window.event)
+};
+this.obj.onmousemove = this._drawTooltip;
+this.objBox.onclick = function (a) {
+    (a || event).cancelBubble = !0
+};
+this.obj.onclick = function (a) {
+    this.grid._doClick(a || window.event);
+    this.grid._sclE ? this.grid.editCell(a || window.event) : this.grid.editStop();
+    (a || event).cancelBubble = !0
+};
+_isMacOS ? this.entBox.oncontextmenu = function (a) {
+    a.cancelBubble = !0;
+    a.returnValue = !1;
+    return this.grid._doContClick(a || window.event)
+} : (this.entBox.onmousedown = function (a) {
+    return this.grid._doContClick(a || window.event)
+}, this.entBox.oncontextmenu = function (a) {
+    if (this.grid._ctmndx)(a || event).cancelBubble = !0;
+    return!this.grid._ctmndx
+});
+this.obj.ondblclick = function (a) {
+    if (!this.grid.wasDblClicked(a || window.event))return!1;
+    if (this.grid._dclE) {
+        var b = this.grid.getFirstParentOfType(_isIE ? event.srcElement : a.target, "TR");
+        b == this.grid.row && this.grid.editCell(a || window.event)
+    }
+    (a ||
+        event).cancelBubble = !0;
+    if (_isOpera)return!1
+};
+this.hdr.onclick = this._onHeaderClick;
+this.sortImg.onclick = function () {
+    c._onHeaderClick.apply({grid: c}, [null, c.r_fldSorted])
+};
+this.hdr.ondblclick = this._onHeaderDblClick;
+if (!document.body._dhtmlxgrid_onkeydown)dhtmlxEvent(document, "keydown", function (a) {
+    if (globalActiveDHTMLGridObject)return globalActiveDHTMLGridObject.doKey(a || window.event)
+}), document.body._dhtmlxgrid_onkeydown = !0;
+dhtmlxEvent(document.body, "click", function () {
+    c.editStop && c.editStop();
+    c.isActive &&
+    c.setActive(!1)
+});
+this.entBox.onbeforeactivate = function () {
+    this._still_active = null;
+    this.grid.setActive();
+    event.cancelBubble = !0
+};
+this.entBox.onbeforedeactivate = function () {
+    this.grid._still_active ? this.grid._still_active = null : this.grid.isActive = !1;
+    event.cancelBubble = !0
+};
+if (this.entBox.style.height.toString().indexOf("%") != -1)this._delta_y = this.entBox.style.height;
+if (this.entBox.style.width.toString().indexOf("%") != -1)this._delta_x = this.entBox.style.width;
+(this._delta_x || this._delta_y) && this._setAutoResize();
+this.setColHidden = this.setColumnsVisibility;
+this.enableCollSpan = this.enableColSpan;
+this.setMultiselect = this.enableMultiselect;
+this.setMultiLine = this.enableMultiline;
+this.deleteSelectedItem = this.deleteSelectedRows;
+this.getSelectedId = this.getSelectedRowId;
+this.getHeaderCol = this.getColumnLabel;
+this.isItemExists = this.doesRowExist;
+this.getColumnCount = this.getColumnsNum;
+this.setSelectedRow = this.selectRowById;
+this.setHeaderCol = this.setColumnLabel;
+this.preventIECashing = this.preventIECaching;
+this.enableAutoHeigth =
+    this.enableAutoHeight;
+this.getUID = this.uid;
+dhtmlx.image_path && this.setImagePath(dhtmlx.image_path);
+dhtmlx.skin && this.setSkin(dhtmlx.skin);
+return this
 }
 dhtmlXGridObject.prototype = {getRowAttribute: function (a, b) {
     return this.getRowById(a)._attrs[b]
@@ -2209,20 +2219,75 @@ dhtmlXGridObject.prototype = {getRowAttribute: function (a, b) {
     dhtmlx.extend_api("dhtmlXGridObject", {_init: function (a) {
         return[a.parent]
     }, image_path: "setImagePath", columns: "columns", rows: "rows", headers: "headers", skin: "setSkin", smart_rendering: "enableSmartRendering", css: "enableAlterCss", auto_height: "enableAutoHeight", save_hidden: "enableAutoHiddenColumnsSaving",
-        save_cookie: "enableAutoSaving", save_size: "enableAutoSizeSaving", auto_width: "enableAutoWidth", block_selection: "enableBlockSelection", csv_id: "enableCSVAutoID", csv_header: "enableCSVHeader", cell_ids: "enableCellIds", colspan: "enableColSpan", column_move: "enableColumnMove", context_menu: "enableContextMenu", distributed: "enableDistributedParsing", drag: "enableDragAndDrop", drag_order: "enableDragOrder", tabulation: "enableEditTabOnly", header_../images: "enableHeader../images", header_menu: "enableHeaderMenu", keymap: "enableKeyboardSupport",
-        mouse_navigation: "enableLightMouseNavigation", markers: "enableMarkedCells", math_editing: "enableMathEditing", math_serialization: "enableMathSerialization", drag_copy: "enableMercyDrag", multiline: "enableMultiline", multiselect: "enableMultiselect", save_column_order: "enableOrderSaving", hover: "enableRowsHover", rowspan: "enableRowspan", smart: "enableSmartRendering", save_sorting: "enableSortingSaving", stable_sorting: "enableStableSorting", undo: "enableUndoRedo", csv_cell: "setCSVDelimiter", date_format: "setDateFormat",
-        drag_behavior: "setDragBehavior", editable: "setEditable", without_header: "setNoHeader", submit_changed: "submitOnlyChanged", submit_serialization: "submitSerialization", submit_selected: "submitOnlySelected", submit_id: "submitOnlyRowID", xml: "load"}, {columns: function (a) {
-        for (var c = 0; c < i.length; c++) {
-            for (var d = [], e = 0; e < a.length; e++)d[e] = a[e][i[c].name] || i[c].def;
-            var l = i[c].type || b;
-            l.call(this, i[c].operation, d, a)
-        }
-        this.init()
-    }, rows: function () {
-    }, headers: function (a) {
-        for (var b = 0; b < a.length; b++)this.attachHeader(a[b])
-    }})
-})();
+        save_cookie: "enableAutoSaving", save_size: "enableAutoSizeSaving", auto_width: "enableAutoWidth", block_selection: "enableBlockSelection", csv_id: "enableCSVAutoID", csv_header: "enableCSVHeader", cell_ids: "enableCellIds", colspan: "enableColSpan", column_move: "enableColumnMove", context_menu: "enableContextMenu", distributed: "enableDistributedParsing", drag: "enableDragAndDrop", drag_order: "enableDragOrder", tabulation: "enableEditTabOnly", header_..
+    /images: "enableHeader../im
+    ages
+    ", header_menu: "
+    enableHeaderMenu
+    ", keymap: "
+    enableKeyboardSupport
+    ",
+    mouse_navigation: "enableLightMouseNavigation", markers
+    :
+    "enableMarkedCells", math_editing
+    :
+    "enableMathEditing", math_serialization
+    :
+    "enableMathSerialization", drag_copy
+    :
+    "enableMercyDrag", multiline
+    :
+    "enableMultiline", multiselect
+    :
+    "enableMultiselect", save_column_order
+    :
+    "enableOrderSaving", hover
+    :
+    "enableRowsHover", rowspan
+    :
+    "enableRowspan", smart
+    :
+    "enableSmartRendering", save_sorting
+    :
+    "enableSortingSaving", stable_sorting
+    :
+    "enableStableSorting", undo
+    :
+    "enableUndoRedo", csv_cell
+    :
+    "setCSVDelimiter", date_format
+    :
+    "setDateFormat",
+        drag_behavior
+    :
+    "setDragBehavior", editable
+    :
+    "setEditable", without_header
+    :
+    "setNoHeader", submit_changed
+    :
+    "submitOnlyChanged", submit_serialization
+    :
+    "submitSerialization", submit_selected
+    :
+    "submitOnlySelected", submit_id
+    :
+    "submitOnlyRowID", xml
+    :
+    "load"
+}, {columns: function (a) {
+    for (var c = 0; c < i.length; c++) {
+        for (var d = [], e = 0; e < a.length; e++)d[e] = a[e][i[c].name] || i[c].def;
+        var l = i[c].type || b;
+        l.call(this, i[c].operation, d, a)
+    }
+    this.init()
+}, rows: function () {
+}, headers: function (a) {
+    for (var b = 0; b < a.length; b++)this.attachHeader(a[b])
+}})
+})
+();
 dhtmlXGridObject.prototype._dp_init = function (a) {
     a.attachEvent("insertCallback", function (a, c) {
         this.obj._h2 ? this.obj.addRow(c, d, null, parent) : this.obj.addRow(c, [], 0);

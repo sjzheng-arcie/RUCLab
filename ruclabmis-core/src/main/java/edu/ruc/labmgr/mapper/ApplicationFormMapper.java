@@ -2,9 +2,10 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ApplicationFormCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface ApplicationFormMapper {
     int countByCriteria(ApplicationFormCriteria criteria);

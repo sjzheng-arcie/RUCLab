@@ -2,9 +2,10 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface EquipmentMapper {
     int countByCriteria(EquipmentCriteria criteria);
@@ -31,7 +32,7 @@ public interface EquipmentMapper {
 
     int updateByPrimaryKey(Equipment record);
 
-    Integer selectIdBySn(@Param("sn")String sn);
+    Integer selectIdBySn(@Param("sn") String sn);
 
     List<Equipment> selectInventoryProfitWithRowbounds(RowBounds rowBounds);
 

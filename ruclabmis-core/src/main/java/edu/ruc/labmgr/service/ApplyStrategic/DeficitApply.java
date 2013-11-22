@@ -22,7 +22,7 @@ public class DeficitApply extends BaseApply {
     @Override
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
-        for(Integer id : equipIds){
+        for (Integer id : equipIds) {
             //更新设备状态
             Equipment equipment = new Equipment();
             equipment.setId(id);
@@ -37,8 +37,7 @@ public class DeficitApply extends BaseApply {
         super.processApply(applicationId);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
-        for(Equipment equipment : applyWithEquipment.getEquipments())
-        {
+        for (Equipment equipment : applyWithEquipment.getEquipments()) {
             equipment.setHolder(null);
             equipment.setStateId(Types.EquipState.DEFICITED.getValue());
             mapperEquipment.updateByPrimaryKey(equipment);

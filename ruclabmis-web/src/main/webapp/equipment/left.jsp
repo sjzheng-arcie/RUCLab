@@ -36,6 +36,7 @@
 
 <shiro:hasAnyRoles name="administrators,equipment_admin">
     <h1 class="type"><a href="javascript:void(0)">系统管理</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -55,6 +56,7 @@
 
 <shiro:hasAnyRoles name="administrators,equipment_admin">
     <h1 class="type"><a href="javascript:void(0)">设备库管理</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -69,6 +71,7 @@
 </shiro:hasAnyRoles>
 
 <h1 class="type"><a href="javascript:void(0)">设备借用管理</a></h1>
+
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -98,6 +101,7 @@
 </div>
 
 <h1 class="type"><a href="javascript:void(0)">设备归还管理</a></h1>
+
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -119,6 +123,7 @@
 </div>
 
 <h1 class="type"><a href="javascript:void(0)">设备转移管理</a></h1>
+
 <div class="content">
     <table width="100%" border="0" cellspacing="0" cellpadding="0">
         <tr>
@@ -149,6 +154,7 @@
 
 <shiro:hasAnyRoles name="administrators,equipment_admin,leader">
     <h1 class="type"><a href="javascript:void(0)">设备捐赠管理</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -180,6 +186,7 @@
 
 <shiro:hasAnyRoles name="administrators,equipment_admin,leader">
     <h1 class="type"><a href="javascript:void(0)">设备维修保养</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -211,6 +218,7 @@
 
 <shiro:hasAnyRoles name="administrators,equipment_admin,leader">
     <h1 class="type"><a href="javascript:void(0)">设备报减销账</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -231,7 +239,8 @@
                 </li>
             </shiro:hasAnyRoles>
             <shiro:hasAnyRoles name="administrators,equipment_admin">
-                <li><a href="jsp/dev/deficit/applyList?formType=process" onfocus="toFocus(this)" target="main">设备报减执行</a>
+                <li><a href="jsp/dev/deficit/applyList?formType=process" onfocus="toFocus(this)"
+                       target="main">设备报减执行</a>
                 </li>
             </shiro:hasAnyRoles>
             <li><a href="jsp/dev/deficit/applyList?formType=history" onfocus="toFocus(this)" target="main">设备报减历史</a>
@@ -242,6 +251,7 @@
 
 <shiro:hasAnyRoles name="administrators, equipment_admin">
     <h1 class="type"><a href="javascript:void(0)">固定资产盘点</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -257,6 +267,7 @@
 
 <shiro:hasAnyRoles name="administrators, equipment_admin, leader">
     <h1 class="type"><a href="javascript:void(0)">信息查询</a></h1>
+
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>

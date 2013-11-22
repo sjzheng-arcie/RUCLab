@@ -2,26 +2,26 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    var baseHref = '/laboratory/jsp/experiment/paper/addtopaper';
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script>
+        var baseHref = '/laboratory/jsp/experiment/paper/addtopaper';
 
 
-    function update() {
-        if(!validator(document.listForm)){
-            return;
+        function update() {
+            if (!validator(document.listForm)) {
+                return;
+            }
+
+            document.form1.action = "addPaper";
+            document.form1.submit();
         }
-
-        document.form1.action = "addPaper";
-        document.form1.submit();
-    }
-    function addToPaper(){
-        document.form1.action = "addpaper";
-        document.form1.submit();
-    }
-</script>
+        function addToPaper() {
+            document.form1.action = "addpaper";
+            document.form1.submit();
+        }
+    </script>
 </head>
 <body>
 <form name="form1" method="post">
@@ -131,10 +131,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

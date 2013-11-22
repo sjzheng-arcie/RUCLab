@@ -45,7 +45,6 @@
                         <td valign="top" class="STYLE10">
 
 
-
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -108,14 +107,17 @@
                                                     <td title="">软件工程</td>
 
 
-                                                    <td title=""><a class="button" href="scorelist?courseId=${item.id}">查看成绩</a></td>
+                                                    <td title=""><a class="button" href="scorelist?courseId=${item.id}">查看成绩</a>
+                                                    </td>
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td>${item.className}</td>
                                                         <td>${item.courseName}</td>
-                                                        <td title=""><a class="button" href="scorelist?courseId=${item.id}">查看成绩</a></td>
+                                                        <td title=""><a class="button"
+                                                                        href="scorelist?courseId=${item.id}">查看成绩</a>
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -123,7 +125,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
@@ -132,10 +134,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

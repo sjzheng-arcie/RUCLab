@@ -76,10 +76,10 @@
                     <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                         <tr bgcolor="#FFFFFF">
                             <td bgcolor="#FFFFFF">
-                                <table  cellpadding="10" cellspacing="0"
-                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
-                                        border="1px" bgcolor="#E3E9EE">
-                                    <tr  height="">
+                                <table cellpadding="10" cellspacing="0"
+                                       style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
+                                       border="1px" bgcolor="#E3E9EE">
+                                    <tr height="">
                                         <td nowrap align="right">任务编号:</td>
                                         <td nowrap>
                                             任务2012
@@ -248,11 +248,11 @@
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                          width="17" height="17"/></td>
+                                                                             width="17" height="17"/></td>
     <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                         width="100%" height="17"></td>
+                                                                            width="100%" height="17"></td>
     <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img src="../../../../images/buttom_right2.gif"
-                                                                           width="16" height="17"/></td>
+                                                                              width="16" height="17"/></td>
 </tr>
 </table>
 </form>

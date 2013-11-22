@@ -38,16 +38,15 @@
         }
         function rs(object) {
             var x = document.getElementsByTagName("li");
-            for (var i=0;i<x.length;i++)
-            {
-                x[i].className="";
+            for (var i = 0; i < x.length; i++) {
+                x[i].className = "";
 
             }
-            object.className="active";
-            if(object.name="homePage")
-                parent.main.location.href="teacher_welcome";
-            else{
-                parent.main.location.href="/bbs/index.html";
+            object.className = "active";
+            if (object.name = "homePage")
+                parent.main.location.href = "teacher_welcome";
+            else {
+                parent.main.location.href = "/bbs/index.html";
             }
         }
     </script>
@@ -59,7 +58,7 @@
     <div class="top_left"><img src="../images/logo.gif" width="305" height="103"></div>
     <div class="top_right">
         <div class="top_right_top">
-           <span style="float:right;" >您好！<a>${user.name}</a>[${user.role.name}]
+           <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
             <a href="jsp/announcement/remind/remind?id=1" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
             [<a href="/laboratory/logout" target="_top">退出</a>]
@@ -68,8 +67,9 @@
 
         </div>
         <ul class="top_right_menu">
-            <li id="homePage" name="homePage" onclick="rs(this)" class="active"><a href="teacher_left.html" target="leftFrame" >首页</a></li>
-            <li id="bbs" name="bbs" onclick="rs(this)" class=""><a href="bbs/left.html" target="leftFrame" >论坛</a></li>
+            <li id="homePage" name="homePage" onclick="rs(this)" class="active"><a href="teacher_left.html"
+                                                                                   target="leftFrame">首页</a></li>
+            <li id="bbs" name="bbs" onclick="rs(this)" class=""><a href="bbs/left.html" target="leftFrame">论坛</a></li>
         </ul>
     </div>
 </div>

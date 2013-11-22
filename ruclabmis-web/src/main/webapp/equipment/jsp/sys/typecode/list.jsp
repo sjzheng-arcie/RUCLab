@@ -1,8 +1,8 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8"%>
+<%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<html >
+<html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -79,12 +79,14 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../../images/add_min.gif" width="10"
+                                                                         height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
       					<%--<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../../images/edit_min.gif" width="10" height="10"--%>
                                                                <%--border="0"/> <span class="STYLE1">修改</span></a>&nbsp;--%>
-      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                                       border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img
+                                src="../../../../images/del_min.gif" width="10" height="10"
+                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
 <%--                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                      border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>--%>
@@ -128,14 +130,17 @@
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/></td>
+                                                                               value="${item.id}"
+                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        </td>
                                                         <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.description}</td>
                                                         <shiro:hasAnyRoles name="administrators,equipment_admin">
                                                             <td><a href="toUpdate?id=${item.id}">
-                                                                <img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                <img src="../../../../images/edit_min.gif" width="10"
+                                                                     height="10" border="0"/>
                                                             </a></td>
                                                         </shiro:hasAnyRoles>
                                                     </tr>
@@ -145,7 +150,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
@@ -154,10 +159,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

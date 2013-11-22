@@ -4,7 +4,7 @@
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -17,7 +17,7 @@
         var indexMainCon_height = pageHeight();
         $(".indexMainCon").height(indexMainCon_height);
         $(".indexNews").height(indexMainCon_height / 2 - 12);
-        $(".indexteacherapply").height(indexMainCon_height/2-12);
+        $(".indexteacherapply").height(indexMainCon_height / 2 - 12);
         $(".indexNotice").height(indexMainCon_height / 2 - 12);
         $(window).resize(function () {
             $(".indexMainCon").height(pageHeight());
@@ -40,12 +40,14 @@
 <body style="width:100%;">
 <div class="indexMainCon">
     <div class="indexNews">
-        <h3><a href="jsp/announcement/remind/remind?id=0&&page=0 "  target="">更多>></a><span>系统公告</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=0&&page=0 " target="">更多>></a><span>系统公告</span></h3>
 
         <div class="indexNewsCon">
             <ul>
                 <c:forEach items="${announcementList}" var="item">
-                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span><a href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a></li>
+                    <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span><a
+                            href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
+                    </li>
 
                 </c:forEach>
 
@@ -54,14 +56,15 @@
         </div>
     </div>
     <div class="indexNotice">
-        <h3><a href="jsp/announcement/remind/remind?id=1&&page=0 "  target="">更多>></a><span>个人通知</span></h3>
+        <h3><a href="jsp/announcement/remind/remind?id=1&&page=0 " target="">更多>></a><span>个人通知</span></h3>
 
         <div class="indexNoticeCon">
             <ul>
                 <c:forEach items="${messageList}" var="item">
                     <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
                         <c:if test="${item.ifread==false}">
-                            <a style="font-weight: bold " href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                            <a style="font-weight: bold "
+                               href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
                         </c:if>
                         <c:if test="${item.ifread==true}">
                             <a href="/equipment/jsp/announcement/remind/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
@@ -85,36 +88,49 @@
                 <td align="center">详细</td>
             </tr>
             <%
-                int temp=0;
+                int temp = 0;
             %>
             <c:forEach items="${pendingApplyList}" var="item">
                 <tr>
                     <%
                         temp++;
                     %>
-                    <td height="24" align="center"><%=temp%></td>
+                    <td height="24" align="center"><%=temp%>
+                    </td>
                     <td align="center">${item.formType.value}</td>
 
                     <td align="center">${item.state.value}</td>
                     <td align="center"><fmt:formatDate value="${item.applyTime}"></fmt:formatDate></td>
                     <c:choose>
-                        <c:when test="${item.formType.value=='借用申请'}" >
-                            <td align="center"><a href="/equipment/jsp/dev/borrow/toUpdateApplication?formType=borrow&&application_id=${item.id}">详细</a></td>
+                        <c:when test="${item.formType.value=='借用申请'}">
+                            <td align="center"><a
+                                    href="/equipment/jsp/dev/borrow/toUpdateApplication?formType=borrow&&application_id=${item.id}">详细</a>
+                            </td>
                         </c:when>
-                        <c:when test="${item.formType.value=='转移申请'}" >
-                            <td align="center"><a href="/equipment/jsp/dev/allot/toUpdateApplication?formType=allot&&application_id=${item.id}">详细</a></td>
+                        <c:when test="${item.formType.value=='转移申请'}">
+                            <td align="center"><a
+                                    href="/equipment/jsp/dev/allot/toUpdateApplication?formType=allot&&application_id=${item.id}">详细</a>
+                            </td>
                         </c:when>
-                        <c:when test="${item.formType.value=='捐赠申请'}" >
-                            <td align="center"><a href="/equipment/jsp/dev/donate/toUpdateApplication?formType=donate&&application_id=${item.id}">详细</a></td>
+                        <c:when test="${item.formType.value=='捐赠申请'}">
+                            <td align="center"><a
+                                    href="/equipment/jsp/dev/donate/toUpdateApplication?formType=donate&&application_id=${item.id}">详细</a>
+                            </td>
                         </c:when>
-                        <c:when test="${item.formType.value=='维修申请'}" >
-                            <td align="center"><a href="/equipment/jsp/dev/repair/toUpdateApplication?formType=repair&&application_id=${item.id}">详细</a></td>
+                        <c:when test="${item.formType.value=='维修申请'}">
+                            <td align="center"><a
+                                    href="/equipment/jsp/dev/repair/toUpdateApplication?formType=repair&&application_id=${item.id}">详细</a>
+                            </td>
                         </c:when>
-                        <c:when test="${item.formType.value=='报减申请'}" >
-                            <td align="center"><a href="/equipment/jsp/dev/deficit/toUpdateApplication?formType=deficit&&application_id=${item.id}">详细</a></td>
+                        <c:when test="${item.formType.value=='报减申请'}">
+                            <td align="center"><a
+                                    href="/equipment/jsp/dev/deficit/toUpdateApplication?formType=deficit&&application_id=${item.id}">详细</a>
+                            </td>
                         </c:when>
-                        <c:when test="${item.formType.value=='归还申请'}" >
-                            <td align="center"><a href="/equipment/jsp/dev/return/toUpdateApplication?formType=return&&application_id=${item.id}">详细</a></td>
+                        <c:when test="${item.formType.value=='归还申请'}">
+                            <td align="center"><a
+                                    href="/equipment/jsp/dev/return/toUpdateApplication?formType=return&&application_id=${item.id}">详细</a>
+                            </td>
                         </c:when>
 
                     </c:choose>

@@ -14,57 +14,57 @@
     <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
     <script>
         var classId = "${vclass.curriculumId}";
-        function createCurriculumOption(target,item){
-           if(classId && classId == item.id.toString()){
-               $("<option>").html(item.name).attr('value',item.id).attr('selected','selected')
-                       .attr('teacher',item.teacherName).attr('teacherId',item.teacherId).appendTo("#"+target);
-           }else{
-               $("<option>").html(item.name).attr('value',item.id).attr('teacher',item.teacherName)
-                       .attr('teacherId',item.teacherId).appendTo("#"+target);
-           }
+        function createCurriculumOption(target, item) {
+            if (classId && classId == item.id.toString()) {
+                $("<option>").html(item.name).attr('value', item.id).attr('selected', 'selected')
+                        .attr('teacher', item.teacherName).attr('teacherId', item.teacherId).appendTo("#" + target);
+            } else {
+                $("<option>").html(item.name).attr('value', item.id).attr('teacher', item.teacherName)
+                        .attr('teacherId', item.teacherId).appendTo("#" + target);
+            }
         }
-        function initCurriculumSelect(){
-            $.getJSON("/curriculum/list",{name:""},function(data){
-                $.each(data,function(idx,item){
-                    createCurriculumOption("curriculumId",item);
+        function initCurriculumSelect() {
+            $.getJSON("/curriculum/list", {name: ""}, function (data) {
+                $.each(data, function (idx, item) {
+                    createCurriculumOption("curriculumId", item);
                 });
 
                 $("#curriculumId").chosen({
-                    no_results_text:"没有找到!",
-                    disable_search_threshold:10
+                    no_results_text: "没有找到!",
+                    disable_search_threshold: 10
                 });
             });
 
-            $("#curriculumId").on("change",function(evn,params){
-                var t = $("#curriculumId option:selected").attr('teacher') ;
+            $("#curriculumId").on("change", function (evn, params) {
+                var t = $("#curriculumId option:selected").attr('teacher');
                 $("#teacherName").val(t);
             });
         }
 
-        function addNewClass(){
+        function addNewClass() {
             var classId = $("#curriculumId").val(),
-                classSn = $("#classSn").val(),
-                className=$("#className").val(),
-                classYear= $("#classYear").val(),
-                teacherId = $("#curriculum option:selected").attr('teacherId');
+                    classSn = $("#classSn").val(),
+                    className = $("#className").val(),
+                    classYear = $("#classYear").val(),
+                    teacherId = $("#curriculum option:selected").attr('teacherId');
             var sids = new Array();
-            $.each($("input[name='stCheckbox']:checked"),function(idx,data){
+            $.each($("input[name='stCheckbox']:checked"), function (idx, data) {
                 sids.push($(data).val());
-            } );
+            });
 
             $.ajax({
                 url: "/experiment/virtual/addClass",
-                type:"POST",
-                data:{'classSn' : classSn,
-                    'className' : className,
-                    'classYear' : classYear,
-                    'curriculumId' : classId,
-                    'sidStr':sids.join(",")
+                type: "POST",
+                data: {'classSn': classSn,
+                    'className': className,
+                    'classYear': classYear,
+                    'curriculumId': classId,
+                    'sidStr': sids.join(",")
                 },
-                dataType:"json",
-                success:function(data){
+                dataType: "json",
+                success: function (data) {
                     alert(data.message);
-                    if(data.success){
+                    if (data.success) {
                         window.location.href = "/experiment/virtual/list?page=1";
                     }
                 }
@@ -72,7 +72,7 @@
 
         }
 
-        $(document).ready(function(){
+        $(document).ready(function () {
             initCurriculumSelect();
         });
     </script>
@@ -147,13 +147,15 @@
                                         <tr>
                                             <td nowrap align="right">班级编号:</td>
                                             <td nowrap>
-                                                <input id="classSn" name="classSn" class="text" value="${vclass.classSn}"/>
+                                                <input id="classSn" name="classSn" class="text"
+                                                       value="${vclass.classSn}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_sn"></span>
                                             </td>
                                             <td nowrap align="right">班级名称:</td>
                                             <td nowrap>
-                                                <input id="className" name="className" class="text" value="${vclass.className}"/>
+                                                <input id="className" name="className" class="text"
+                                                       value="${vclass.className}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_name"></span>
                                             </td>
@@ -162,7 +164,8 @@
                                         <tr>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <select id="curriculumId" name="curriculumId" style="width: 152px;height: 22px"
+                                                <select id="curriculumId" name="curriculumId"
+                                                        style="width: 152px;height: 22px"
                                                         data-placeholder="请选择课程...">
                                                     <option value="-1"></option>
                                                 </select>
@@ -172,7 +175,8 @@
                                             </td>
                                             <td nowrap align="right">任课老师:</td>
                                             <td nowrap>
-                                                <input id="teacherName" name="teacherName" class="text" value="${vclass.teacherName}"/>
+                                                <input id="teacherName" name="teacherName" class="text"
+                                                       value="${vclass.teacherName}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_teacher"></span>
                                             </td>
@@ -180,7 +184,8 @@
                                         <tr>
                                             <td nowrap align="right">学年:</td>
                                             <td nowrap>
-                                                <input id="classYear" name="classYear" class="text" value="${vclass.classYear}"/>
+                                                <input id="classYear" name="classYear" class="text"
+                                                       value="${vclass.classYear}"/>
                                                 <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_year"></span>
                                             </td>
@@ -196,7 +201,8 @@
                                 <td align="center">
                                     <input type="button" name="Submit" value="添加课程和学生" class="button"
                                            onclick="addNewClass();"/>
-                                    <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);">
+                                    <input type="button" name="return" value="返回" class="button"
+                                           onclick="window.history.go(-1);">
                                 </td>
                             </tr>
                         </table>
@@ -207,10 +213,12 @@
         <td background="/laboratory/../images/mail_rightbg.gif">&nbsp;</td>
     </tr>
     <tr>
-        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img src="/laboratory/../images/buttom_left2.gif"
-                                                                                width="17" height="17"/></td>
-        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img src="/laboratory/../images/buttom_bgs.gif"
-                                                                               width="100%" height="17"></td>
+        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img
+                src="/laboratory/../images/buttom_left2.gif"
+                width="17" height="17"/></td>
+        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img
+                src="/laboratory/../images/buttom_bgs.gif"
+                width="100%" height="17"></td>
         <td valign="bottom" background="/laboratory/../images/mail_rightbg.gif"><img
                 src="/laboratory/../images/buttom_right2.gif"
                 width="16" height="17"/></td>
@@ -322,14 +330,16 @@
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item" varStatus="st">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="stCheckbox" type="checkbox" value="${item.id}"
+                                                    <td height="20"><input name="stCheckbox" type="checkbox"
+                                                                           value="${item.id}"
                                                                            onclick="checkOne('listForm', 'stCheckbox')"/>
                                                     </td>
                                                     <td>${st.index+1}</td>
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
                                                     <td>${item.majorName}</td>
-                                                    <td><fmt:formatDate value="${item.admissionDate}" pattern="yyyy-MM-dd"/></td>
+                                                    <td><fmt:formatDate value="${item.admissionDate}"
+                                                                        pattern="yyyy-MM-dd"/></td>
                                                     <td>${item.originPlace}</td>
                                                 </tr>
                                             </c:forEach>
@@ -347,10 +357,12 @@
         <td background="/laboratory/../images/mail_rightbg.gif">&nbsp;</td>
     </tr>
     <tr>
-        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img src="/laboratory/../images/buttom_left2.gif"
-                                                                                width="17" height="17"/></td>
-        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img src="/laboratory/../images/buttom_bgs.gif"
-                                                                               width="100%" height="17"/></td>
+        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img
+                src="/laboratory/../images/buttom_left2.gif"
+                width="17" height="17"/></td>
+        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img
+                src="/laboratory/../images/buttom_bgs.gif"
+                width="100%" height="17"/></td>
         <td valign="bottom" background="/laboratory/../images/mail_rightbg.gif"><img
                 src="/laboratory/../images/buttom_right2.gif" width="16" height="17"/></td>
     </tr>

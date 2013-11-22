@@ -9,7 +9,7 @@
     <script src="../../../../../js/valid.js" type=text/javascript></script>
     <script>
         function commit() {
-            if(!validator(document.mainForm)){
+            if (!validator(document.mainForm)) {
                 return;
             }
 
@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
-                                                    <input name="user.sn" id="user.sn"onblur="" class="text"
+                                                    <input name="user.sn" id="user.sn" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"
                                                            errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
@@ -103,7 +103,8 @@
                                             <tr>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
-                                                    <input name="user.password" id="user.password" value="" onblur="" class="text"
+                                                    <input name="user.password" id="user.password" value="" onblur=""
+                                                           class="text"
                                                            style="width:154px" maxlength="16"
                                                            valid="required|isPassword" type="password"
                                                            errmsg="账号密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
@@ -201,10 +202,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

@@ -1,13 +1,9 @@
 package edu.ruc.labmgr.mapper.test;
 
-import edu.ruc.labmgr.domain.Privilege;
-import edu.ruc.labmgr.domain.Role;
 import edu.ruc.labmgr.domain.Teacher;
-import edu.ruc.labmgr.mapper.RoleMapper;
 import edu.ruc.labmgr.mapper.TeacherMapper;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 

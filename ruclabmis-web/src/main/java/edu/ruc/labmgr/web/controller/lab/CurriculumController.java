@@ -22,7 +22,9 @@ public class CurriculumController {
     private CurriculumService curriculumService;
 
     @RequestMapping(value = "/list", produces = "application/json")
-    public @ResponseBody List<Curriculum> list(String name) {
+    public
+    @ResponseBody
+    List<Curriculum> list(String name) {
         return curriculumService.getCurriculum(name);
     }
 }

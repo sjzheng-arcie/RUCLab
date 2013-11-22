@@ -46,8 +46,8 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;职务名称:<input type="text" name="searchName"
                                                                                      id="searchName" value=""
                                                                                      style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;职务级别:<input type = "text" id="searchRank" name="searchRank"
-                value ="" style="width:100px;"/>
+		<span style="white-space:nowrap">&nbsp;&nbsp;职务级别:<input type="text" id="searchRank" name="searchRank"
+                                                                 value="" style="width:100px;"/>
             </span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
@@ -82,12 +82,15 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/laboratory/jsp/bas/post/toAdd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+						<a href="/laboratory/jsp/bas/post/toAdd"><img src="../../../../images/add_min.gif" width="10"
+                                                                      height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate('listForm','idcheckbox');"><img src="../../../../images/edit_min.gif" width="10"
-                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete('listForm','idcheckbox');"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+      					<a href="#" onclick="toUpdate('listForm','idcheckbox');"><img
+                                src="../../../../images/edit_min.gif" width="10"
+                                height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+      					<a href="#" onclick="toDelete('listForm','idcheckbox');"><img
+                                src="../../../../images/del_min.gif" width="10" height="10"
+                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
 
 	                </span>
                                                                 </div>
@@ -111,7 +114,7 @@
                                                                    onclick="checkAll(this,'listForm','idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef"  class="STYLE6">
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">职务编号</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -156,10 +159,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

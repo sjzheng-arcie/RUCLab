@@ -25,31 +25,31 @@ public class BaseApply {
     protected TeacherService serviceTeacher;
 
     //默认返回所有可用设备列表
-    public PageInfo<Equipment> pageDeviceList(String sn,String name, int useDirect, int page){
+    public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
         return serviceEquipment.getPageAvaiableEquipments(sn, name, useDirect, page);
     }
 
     //默认返回申请人下所有未关闭表单
-    public  PageInfo<ApplicationForm> pageApplicationList(String sn,int stateId, int pageNum, Types.ApplyType type){
+    public PageInfo<ApplicationForm> pageApplicationList(String sn, int stateId, int pageNum, Types.ApplyType type) {
         Subject currentUser = SecurityUtils.getSubject();
         int currUserId = serviceTeacher.getCurrentUserId();
-        return   serviceApply.selectPageUserApplyNotClosed(sn, stateId, pageNum, type, currUserId);
+        return serviceApply.selectPageUserApplyNotClosed(sn, stateId, pageNum, type, currUserId);
     }
 
     //默认返回所有未关闭表单
-    public PageInfo<ApplicationForm> pageApplicationProcessList(String sn,int stateId, int pageNum, Types.ApplyType type){
-        return   serviceApply.selectPageApplyNotClosed(sn, stateId, pageNum, type);
+    public PageInfo<ApplicationForm> pageApplicationProcessList(String sn, int stateId, int pageNum, Types.ApplyType type) {
+        return serviceApply.selectPageApplyNotClosed(sn, stateId, pageNum, type);
     }
 
-    public PageInfo<ApplicationForm> pageApplicationHistoryList(String sn,int stateId, int pageNum, Types.ApplyType type){
+    public PageInfo<ApplicationForm> pageApplicationHistoryList(String sn, int stateId, int pageNum, Types.ApplyType type) {
         Subject currentUser = SecurityUtils.getSubject();
         //教师只看到自己的历史
-        if(currentUser.hasRole(Types.Role.TEACHER.getName())) {
+        if (currentUser.hasRole(Types.Role.TEACHER.getName())) {
             int currUserId = serviceTeacher.getCurrentUserId();
-            return   serviceApply.selectPageUserHistoryApply(sn, stateId, pageNum, type, currUserId);
+            return serviceApply.selectPageUserHistoryApply(sn, stateId, pageNum, type, currUserId);
         }//其他角色看到所有人的历史
         else
-            return   serviceApply.selectPageHistoryApply(sn, stateId, pageNum, type);
+            return serviceApply.selectPageHistoryApply(sn, stateId, pageNum, type);
     }
 
     public void updateApplication(ApplicationForm applyForm) throws Exception {
@@ -57,18 +57,18 @@ public class BaseApply {
     }
 
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
-        serviceApply.addEquipmentsToApply(applicationId,equipIds);
+        serviceApply.addEquipmentsToApply(applicationId, equipIds);
     }
 
     public void processApply(int applicationId) {
         serviceApply.processApply(applicationId);
     }
 
-    public void processApply(int applicationId, Types.EquipState state){
+    public void processApply(int applicationId, Types.EquipState state) {
         serviceApply.processApply(applicationId, state);
     }
 
-    public void deleteApplys( List<Integer> appIds){
+    public void deleteApplys(List<Integer> appIds) {
         serviceApply.deleteApplys(appIds);
     }
 }

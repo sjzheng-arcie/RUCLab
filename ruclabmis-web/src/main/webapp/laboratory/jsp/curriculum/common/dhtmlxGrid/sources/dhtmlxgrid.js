@@ -163,7 +163,8 @@ function dhtmlXGridObject(id) {
     this.hdrBox.className = "xhdr";
 
 
-    this.preload../imagesAr = new Array(0)
+    this.preload..
+    /imagesAr = new Array(0)
 
     this.sortImg = document.createElement("IMG")
     this.sortImg.style.display = "none";
@@ -202,7 +203,12 @@ function dhtmlXGridObject(id) {
     this.imgURL = window.dhx_globalImgPath || "";
     this.isActive = false; //fl to indicate if grid is in work now
     this.isEditable = true;
-    this.use../imagesInHeader = false; //use ../images in header or not
+    this.use..
+    /imagesInHeader = false; /
+    /use ../im
+    ages in header
+    or
+    not
     this.pagingOn = false;          //paging on/off
     this.rowsBufferOutSize = 0;     //number of rows rendered at a moment
     /*EVENTS*/
@@ -796,7 +802,8 @@ function dhtmlXGridObject(id) {
     this.setImagePath = function (path) {
         this.imgURL = path;
     }
-    this.set../imagesPath = this.setImagePath;
+    this.set..
+    /imagesPath = this.setImagePath;
     /**
      *   @desc: set path to external ../images used in grid ( tree and img column types )
      *   @type: public
@@ -1013,7 +1020,7 @@ function dhtmlXGridObject(id) {
             this.sortImg.style.top = Number(pos[1] + 5) + "px";
 
             if ((!this.use../imagesInHeader) && (!mode))
-                this.sortImg.style.display = "inline";
+            this.sortImg.style.display = "inline";
             this.sortImg.style.left = this.sortImg.defLeft + "px"; //-parseInt(this.hdrBox.scrollLeft)
         }
     }
@@ -2283,680 +2290,686 @@ function dhtmlXGridObject(id) {
         var col = (z._childIndexes ? z._childIndexes[c] : c);
         if (!z.cells[col]) return;
         if (!this.use../imagesInHeader) {
-            var hdrHTML = "<div class='hdrcell'>"
+        var hdrHTML = "<div class='hdrcell'>"
 
-            if (label.indexOf('img:[') != -1) {
-                var imUrl = label.replace(/.*\[([^>]+)\].*/, "$1");
-                label = label.substr(label.indexOf("]") + 1, label.length)
-                hdrHTML += "<img width='18px' height='18px' align='absmiddle' src='" + imUrl + "' hspace='2'>"
-            }
-            hdrHTML += label;
-            hdrHTML += "</div>";
-            z.cells[col].innerHTML = hdrHTML;
-
-            if (this._hstyles[col])
-                z.cells[col].style.cssText = this._hstyles[col];
-        } else { //if ../images in header header
-            z.cells[col].style.textAlign = "left";
-            z.cells[col].innerHTML = "<img src='" + this.imgURL + "" + label + "' onerror='this.src = \"" + this.imgURL
-                + "imageloaderror.gif\"'>";
-            //preload sorting headers (asc/desc)
-            var a = new Image();
-            a.src = this.imgURL + "" + label.replace(/(\.[a-z]+)/, ".des$1");
-            this.preload../imagesAr[this.preload../imagesAr.length] = a;
-            var b = new Image();
-            b.src = this.imgURL + "" + label.replace(/(\.[a-z]+)/, ".asc$1");
-            this.preload../imagesAr[this.preload../imagesAr.length] = b;
+        if (label.indexOf('img:[') != -1) {
+            var imUrl = label.replace(/.*\[([^>]+)\].*/, "$1");
+            label = label.substr(label.indexOf("]") + 1, label.length)
+            hdrHTML += "<img width='18px' height='18px' align='absmiddle' src='" + imUrl + "' hspace='2'>"
         }
+        hdrHTML += label;
+        hdrHTML += "</div>";
+        z.cells[col].innerHTML = hdrHTML;
 
-        if ((label || "").indexOf("#") != -1) {
-            var t = label.match(/(^|{)#([^}]+)(}|$)/);
+        if (this._hstyles[col])
+            z.cells[col].style.cssText = this._hstyles[col];
+    }
+else
+    { //if ../images in header header
+        z.cells[col].style.textAlign = "left";
+        z.cells[col].innerHTML = "<img src='" + this.imgURL + "" + label + "' onerror='this.src = \"" + this.imgURL
+            + "imageloaderror.gif\"'>";
+        //preload sorting headers (asc/desc)
+        var a = new Image();
+        a.src = this.imgURL + "" + label.replace(/(\.[a-z]+)/, ".des$1");
+        this.preload..
+        /imagesAr[this.preload../imagesAr.length] = a;
+        var b = new Image();
+        b.src = this.imgURL + "" + label.replace(/(\.[a-z]+)/, ".asc$1");
+        this.preload..
+        /imagesAr[this.preload../imagesAr.length] = b;
+    }
 
-            if (t) {
-                var tn = "_in_header_" + t[2];
+    if ((label || "").indexOf("#") != -1) {
+        var t = label.match(/(^|{)#([^}]+)(}|$)/);
 
-                if (this[tn])
-                    this[tn]((this.forceDivInHeader ? z.cells[col].firstChild : z.cells[col]), col, label.split(t[0]));
-            }
+        if (t) {
+            var tn = "_in_header_" + t[2];
+
+            if (this[tn])
+                this[tn]((this.forceDivInHeader ? z.cells[col].firstChild : z.cells[col]), col, label.split(t[0]));
         }
-    };
-    this.setColLabel = function (a, b, ind, c) {
-        return this.setColumnLabel(a, b, (ind || 0) + 1, c);
-    };
-    /**
-     *   @desc: deletes all rows in grid
-     *   @param: header - (boolean) enable/disable cleaning header
-     *   @type: public
-     *   @topic: 5,7,9
-     */
-    this.clearAll = function (header) {
-        if (!this.obj.rows[0]) return; //call before initilization
-        if (this._h2) {
-            this._h2 = new dhtmlxHierarchy();
+    }
+};
+this.setColLabel = function (a, b, ind, c) {
+    return this.setColumnLabel(a, b, (ind || 0) + 1, c);
+};
+/**
+ *   @desc: deletes all rows in grid
+ *   @param: header - (boolean) enable/disable cleaning header
+ *   @type: public
+ *   @topic: 5,7,9
+ */
+this.clearAll = function (header) {
+    if (!this.obj.rows[0]) return; //call before initilization
+    if (this._h2) {
+        this._h2 = new dhtmlxHierarchy();
 
-            if (this._fake) {
-                if (this._realfake)
-                    this._h2 = this._fake._h2;
-                else
-                    this._fake._h2 = this._h2;
-            }
+        if (this._fake) {
+            if (this._realfake)
+                this._h2 = this._fake._h2;
+            else
+                this._fake._h2 = this._h2;
         }
+    }
 
-        this.limit = this._limitC = 0;
-        this.editStop(true);
+    this.limit = this._limitC = 0;
+    this.editStop(true);
 
-        if (this._dLoadTimer)
-            window.clearTimeout(this._dLoadTimer);
+    if (this._dLoadTimer)
+        window.clearTimeout(this._dLoadTimer);
 
-        if (this._dload) {
-            this.objBox.scrollTop = 0;
-            this.limit = this._limitC || 0;
-            this._initDrF = true;
-        }
+    if (this._dload) {
+        this.objBox.scrollTop = 0;
+        this.limit = this._limitC || 0;
+        this._initDrF = true;
+    }
 
-        var len = this.rowsCol.length;
+    var len = this.rowsCol.length;
 
-        //for some case
-        len = this.obj.rows.length;
+    //for some case
+    len = this.obj.rows.length;
 
-        for (var i = len - 1; i > 0; i--) {
-            var t_r = this.obj.rows[i];
+    for (var i = len - 1; i > 0; i--) {
+        var t_r = this.obj.rows[i];
+        t_r.parentNode.removeChild(t_r);
+    }
+
+    if (header) {
+        this._master_row = null;
+        this.obj.rows[0].parentNode.removeChild(this.obj.rows[0]);
+
+        for (var i = this.hdr.rows.length - 1; i >= 0; i--) {
+            var t_r = this.hdr.rows[i];
             t_r.parentNode.removeChild(t_r);
         }
 
-        if (header) {
-            this._master_row = null;
-            this.obj.rows[0].parentNode.removeChild(this.obj.rows[0]);
-
-            for (var i = this.hdr.rows.length - 1; i >= 0; i--) {
-                var t_r = this.hdr.rows[i];
-                t_r.parentNode.removeChild(t_r);
-            }
-
-            if (this.ftr) {
-                this.ftr.parentNode.removeChild(this.ftr);
-                this.ftr = null;
-            }
-            this._aHead = this.ftr = this.cellWidth = this._aFoot = null;
-            this.cellType = dhtmlxArray();
-            this._hrrar = [];
-            this.columnIds = [];
-            this.combos = [];
-            this._strangeParams = [];
-            this.defVal = [];
-            this._ivizcol = null;
+        if (this.ftr) {
+            this.ftr.parentNode.removeChild(this.ftr);
+            this.ftr = null;
         }
-
-        //..
-        this.row = null;
-        this.cell = null;
-
-        this.rowsCol = dhtmlxArray()
-        this.rowsAr = {}; //array of rows by idd
-        this._RaSeCol = [];
-        this.rowsBuffer = dhtmlxArray()
-        this.UserData = []
-        this.selectedRows = dhtmlxArray();
-
-        if (this.pagingOn || this._srnd)
-            this.xmlFileUrl = "";
-        if (this.pagingOn)
-            this.changePage(1);
-
-        //  if (!this._fake){
-        /*
-         if ((this._hideShowColumn)&&(this.hdr.rows[0]))
-         for (var i=0; i<this.hdr.rows[0].cells.length; i++)
-         this._hideShowColumn(i,"");
-         this._hrrar=new Array();*/
-        //}
-        if (this._contextCallTimer)
-            window.clearTimeout(this._contextCallTimer);
-
-        if (this._sst)
-            this.enableStableSorting(true);
-        this._fillers = this.undefined;
-        this.setSortImgState(false);
-        this.setSizes();
-        //this.obj.scrollTop = 0;
-
-        this.callEvent("onClearAll", []);
+        this._aHead = this.ftr = this.cellWidth = this._aFoot = null;
+        this.cellType = dhtmlxArray();
+        this._hrrar = [];
+        this.columnIds = [];
+        this.combos = [];
+        this._strangeParams = [];
+        this.defVal = [];
+        this._ivizcol = null;
     }
+
+    //..
+    this.row = null;
+    this.cell = null;
+
+    this.rowsCol = dhtmlxArray()
+    this.rowsAr = {}; //array of rows by idd
+    this._RaSeCol = [];
+    this.rowsBuffer = dhtmlxArray()
+    this.UserData = []
+    this.selectedRows = dhtmlxArray();
+
+    if (this.pagingOn || this._srnd)
+        this.xmlFileUrl = "";
+    if (this.pagingOn)
+        this.changePage(1);
+
+    //  if (!this._fake){
+    /*
+     if ((this._hideShowColumn)&&(this.hdr.rows[0]))
+     for (var i=0; i<this.hdr.rows[0].cells.length; i++)
+     this._hideShowColumn(i,"");
+     this._hrrar=new Array();*/
+    //}
+    if (this._contextCallTimer)
+        window.clearTimeout(this._contextCallTimer);
+
+    if (this._sst)
+        this.enableStableSorting(true);
+    this._fillers = this.undefined;
+    this.setSortImgState(false);
+    this.setSizes();
+    //this.obj.scrollTop = 0;
+
+    this.callEvent("onClearAll", []);
+}
 
 //#sorting:06042008{
-    /**
-     *   @desc: sorts grid by specified field
-     *    @invoke: header click
-     *   @param: [ind] - index of the field
-     *   @param: [repeatFl] - if to repeat last sorting
-     *   @type: private
-     *   @topic: 3
-     */
-    this.sortField = function (ind, repeatFl, r_el) {
-        if (this.getRowsNum() == 0)
-            return false;
+/**
+ *   @desc: sorts grid by specified field
+ *    @invoke: header click
+ *   @param: [ind] - index of the field
+ *   @param: [repeatFl] - if to repeat last sorting
+ *   @type: private
+ *   @topic: 3
+ */
+this.sortField = function (ind, repeatFl, r_el) {
+    if (this.getRowsNum() == 0)
+        return false;
 
-        var el = this.hdr.rows[0].cells[ind];
+    var el = this.hdr.rows[0].cells[ind];
 
-        if (!el)
-            return; //somehow
-        // if (this._dload  && !this.callEvent("onBeforeSorting",[ind,this]) ) return true;
+    if (!el)
+        return; //somehow
+    // if (this._dload  && !this.callEvent("onBeforeSorting",[ind,this]) ) return true;
 
-        if (el.tagName == "TH" && (this.fldSort.length - 1) >= el._cellIndex
-            && this.fldSort[el._cellIndex] != 'na') { //this.entBox.fieldstosort!="" &&
-            var data = this.getSortingState();
-            var sortType = ( data[0] == ind && data[1] == "asc" ) ? "des" : "asc";
+    if (el.tagName == "TH" && (this.fldSort.length - 1) >= el._cellIndex
+        && this.fldSort[el._cellIndex] != 'na') { //this.entBox.fieldstosort!="" &&
+        var data = this.getSortingState();
+        var sortType = ( data[0] == ind && data[1] == "asc" ) ? "des" : "asc";
 
-            if (!this.callEvent("onBeforeSorting", [
-                ind,
-                this.fldSort[ind],
-                sortType
-            ]))
-                return;
-            this.sortImg.src = this.imgURL + "sort_" + (sortType == "asc" ? "asc" : "desc") + ".gif";
+        if (!this.callEvent("onBeforeSorting", [
+            ind,
+            this.fldSort[ind],
+            sortType
+        ]))
+            return;
+        this.sortImg.src = this.imgURL + "sort_" + (sortType == "asc" ? "asc" : "desc") + ".gif";
 
-            //for header ../images
-            if (this.use../imagesInHeader) {
-                var cel = this.hdr.rows[1].cells[el._cellIndex].firstChild;
+        //for header ../images
+        if (this.use../imagesInHeader) {
+        var cel = this.hdr.rows[1].cells[el._cellIndex].firstChild;
 
-                if (this.fldSorted != null) {
-                    var celT = this.hdr.rows[1].cells[this.fldSorted._cellIndex].firstChild;
-                    celT.src = celT.src.replace(/(\.asc\.)|(\.des\.)/, ".");
-                }
-                cel.src = cel.src.replace(/(\.[a-z]+)$/, "." + sortType + "$1")
-            }
-            //.
-            this.sortRows(el._cellIndex, this.fldSort[el._cellIndex], sortType)
-            this.fldSorted = el;
-            this.r_fldSorted = r_el;
-            var c = this.hdr.rows[1];
-            var c = r_el.parentNode;
-            var real_el = c._childIndexes ? c._childIndexes[el._cellIndex] : el._cellIndex;
-            this.setSortImgPos(false, false, false, r_el);
+        if (this.fldSorted != null) {
+            var celT = this.hdr.rows[1].cells[this.fldSorted._cellIndex].firstChild;
+            celT.src = celT.src.replace(/(\.asc\.)|(\.des\.)/, ".");
         }
+        cel.src = cel.src.replace(/(\.[a-z]+)$/, "." + sortType + "$1")
     }
+    //.
+    this.sortRows(el._cellIndex, this.fldSort[el._cellIndex], sortType)
+    this.fldSorted = el;
+    this.r_fldSorted = r_el;
+    var c = this.hdr.rows[1];
+    var c = r_el.parentNode;
+    var real_el = c._childIndexes ? c._childIndexes[el._cellIndex] : el._cellIndex;
+    this.setSortImgPos(false, false, false, r_el);
+}
+}
 
 //#}
-    /**
-     *   @desc: specify if values passed to Header are ../images file names
-     *   @param: fl - true to treat column header values as image names
-     *   @type: public
-     *   @before_init: 1
-     *   @topic: 0,3
-     */
-    this.enableHeader../images = function (fl) {
-        this.use../imagesInHeader = fl;
+/**
+ *   @desc: specify if values passed to Header are ../images file names
+ *   @param: fl - true to treat column header values as image names
+ *   @type: public
+ *   @before_init: 1
+ *   @topic: 0,3
+ */
+this.enableHeader..
+/images = function (fl) {
+this.use..
+/imagesInHeader = fl;
+}
+
+/**
+ *   @desc: set header label and default params for new headers
+ *   @param: hdrStr - header string with delimiters
+ *   @param: splitSign - string used as a split marker, optional. Default is "#cspan"
+ *   @param: styles - array of header styles
+ *   @type: public
+ *   @before_init: 1
+ *   @topic: 0,3
+ */
+this.setHeader = function (hdrStr, splitSign, styles) {
+    if (typeof (hdrStr) != "object")
+        var arLab = this._eSplit(hdrStr);
+    else
+        arLab = [].concat(hdrStr);
+
+    var arWdth = new Array(0);
+    var arTyp = new dhtmlxArray(0);
+    var arAlg = new Array(0);
+    var arVAlg = new Array(0);
+    var arSrt = new Array(0);
+
+    for (var i = 0; i < arLab.length; i++) {
+        arWdth[arWdth.length] = Math.round(100 / arLab.length);
+        arTyp[arTyp.length] = "ed";
+        arAlg[arAlg.length] = "left";
+        arVAlg[arVAlg.length] = "middle"; //top
+        arSrt[arSrt.length] = "na";
     }
 
-    /**
-     *   @desc: set header label and default params for new headers
-     *   @param: hdrStr - header string with delimiters
-     *   @param: splitSign - string used as a split marker, optional. Default is "#cspan"
-     *   @param: styles - array of header styles
-     *   @type: public
-     *   @before_init: 1
-     *   @topic: 0,3
-     */
-    this.setHeader = function (hdrStr, splitSign, styles) {
-        if (typeof (hdrStr) != "object")
-            var arLab = this._eSplit(hdrStr);
-        else
-            arLab = [].concat(hdrStr);
+    this.splitSign = splitSign || "#cspan";
+    this.hdrLabels = arLab;
+    this.cellWidth = arWdth;
+    if (!this.initCellWidth.length) this.setInitWidthsP(arWdth.join(this.delim), true);
+    this.cellType = arTyp;
+    this.cellAlign = arAlg;
+    this.cellVAlign = arVAlg;
+    this.fldSort = arSrt;
+    this._hstyles = styles || [];
+}
+/**
+ *   @desc:
+ *   @param: str - ...
+ *   @type: private
+ */
+this._eSplit = function (str) {
+    if (![].push)
+        return str.split(this.delim);
 
-        var arWdth = new Array(0);
-        var arTyp = new dhtmlxArray(0);
-        var arAlg = new Array(0);
-        var arVAlg = new Array(0);
-        var arSrt = new Array(0);
+    var a = "r" + (new Date()).valueOf();
+    var z = this.delim.replace(/([\|\+\*\^])/g, "\\$1")
+    return (str || "").replace(RegExp(z, "g"), a).replace(RegExp("\\\\" + a, "g"), this.delim).split(a);
+}
 
-        for (var i = 0; i < arLab.length; i++) {
-            arWdth[arWdth.length] = Math.round(100 / arLab.length);
-            arTyp[arTyp.length] = "ed";
-            arAlg[arAlg.length] = "left";
-            arVAlg[arVAlg.length] = "middle"; //top
-            arSrt[arSrt.length] = "na";
-        }
+/**
+ *   @desc: get column type by column index
+ *   @param: cInd - column index
+ *   @returns:  type code
+ *   @type: public
+ *   @topic: 0,3,4
+ */
+this.getColType = function (cInd) {
+    return this.cellType[cInd];
+}
 
-        this.splitSign = splitSign || "#cspan";
-        this.hdrLabels = arLab;
-        this.cellWidth = arWdth;
-        if (!this.initCellWidth.length) this.setInitWidthsP(arWdth.join(this.delim), true);
-        this.cellType = arTyp;
-        this.cellAlign = arAlg;
-        this.cellVAlign = arVAlg;
-        this.fldSort = arSrt;
-        this._hstyles = styles || [];
-    }
-    /**
-     *   @desc:
-     *   @param: str - ...
-     *   @type: private
-     */
-    this._eSplit = function (str) {
-        if (![].push)
-            return str.split(this.delim);
+/**
+ *   @desc: get column type by column ID
+ *   @param: cID - column id
+ *   @returns:  type code
+ *   @type: public
+ *   @topic: 0,3,4
+ */
+this.getColTypeById = function (cID) {
+    return this.cellType[this.getColIndexById(cID)];
+}
 
-        var a = "r" + (new Date()).valueOf();
-        var z = this.delim.replace(/([\|\+\*\^])/g, "\\$1")
-        return (str || "").replace(RegExp(z, "g"), a).replace(RegExp("\\\\" + a, "g"), this.delim).split(a);
-    }
+/**
+ *   @desc: set column types
+ *   @param: typeStr - type codes list (default delimiter is ",")
+ *   @before_init: 2
+ *   @type: public
+ *   @topic: 0,3,4
+ */
+this.setColTypes = function (typeStr) {
+    this.cellType = dhtmlxArray(typeStr.split(this.delim));
+    this._strangeParams = new Array();
 
-    /**
-     *   @desc: get column type by column index
-     *   @param: cInd - column index
-     *   @returns:  type code
-     *   @type: public
-     *   @topic: 0,3,4
-     */
-    this.getColType = function (cInd) {
-        return this.cellType[cInd];
-    }
+    for (var i = 0; i < this.cellType.length; i++) {
+        if ((this.cellType[i].indexOf("[") != -1)) {
+            var z = this.cellType[i].split(/[\[\]]+/g);
+            this.cellType[i] = z[0];
+            this.defVal[i] = z[1];
 
-    /**
-     *   @desc: get column type by column ID
-     *   @param: cID - column id
-     *   @returns:  type code
-     *   @type: public
-     *   @topic: 0,3,4
-     */
-    this.getColTypeById = function (cID) {
-        return this.cellType[this.getColIndexById(cID)];
-    }
-
-    /**
-     *   @desc: set column types
-     *   @param: typeStr - type codes list (default delimiter is ",")
-     *   @before_init: 2
-     *   @type: public
-     *   @topic: 0,3,4
-     */
-    this.setColTypes = function (typeStr) {
-        this.cellType = dhtmlxArray(typeStr.split(this.delim));
-        this._strangeParams = new Array();
-
-        for (var i = 0; i < this.cellType.length; i++) {
-            if ((this.cellType[i].indexOf("[") != -1)) {
-                var z = this.cellType[i].split(/[\[\]]+/g);
-                this.cellType[i] = z[0];
-                this.defVal[i] = z[1];
-
-                if (z[1].indexOf("=") == 0) {
-                    this.cellType[i] = "math";
-                    this._strangeParams[i] = z[0];
-                }
+            if (z[1].indexOf("=") == 0) {
+                this.cellType[i] = "math";
+                this._strangeParams[i] = z[0];
             }
-            if (!window["eXcell_" + this.cellType[i]]) dhtmlxError.throwError("Configuration", "Incorrect cell type: " + this.cellType[i], [this, this.cellType[i]]);
         }
+        if (!window["eXcell_" + this.cellType[i]]) dhtmlxError.throwError("Configuration", "Incorrect cell type: " + this.cellType[i], [this, this.cellType[i]]);
     }
-    /**
-     *   @desc: set column sort types (avaialble: str, int, date, na or function object for custom sorting)
-     *   @param: sortStr - sort codes list with default delimiter
-     *   @before_init: 1
-     *   @type: public
-     *   @topic: 0,3,4
-     */
-    this.setColSorting = function (sortStr) {
-        this.fldSort = sortStr.split(this.delim)
+}
+/**
+ *   @desc: set column sort types (avaialble: str, int, date, na or function object for custom sorting)
+ *   @param: sortStr - sort codes list with default delimiter
+ *   @before_init: 1
+ *   @type: public
+ *   @topic: 0,3,4
+ */
+this.setColSorting = function (sortStr) {
+    this.fldSort = sortStr.split(this.delim)
 
-    }
-    /**
-     *   @desc: set align of values in columns
-     *   @param: alStr - list of align values (possible values are: right,left,center,justify). Default delimiter is ","
-     *   @before_init: 1
-     *   @type: public
-     *   @topic: 0,3
-     */
-    this.setColAlign = function (alStr) {
-        this.cellAlign = alStr.split(this.delim)
-        for (var i = 0; i < this.cellAlign.length; i++)
-            this.cellAlign[i] = this.cellAlign[i]._dhx_trim();
-    }
-    /**
-     *   @desc: set vertical align of columns
-     *   @param: valStr - vertical align values list for columns (possible values are: baseline,sub,super,top,text-top,middle,bottom,text-bottom)
-     *   @before_init: 1
-     *   @type: public
-     *   @topic: 0,3
-     */
-    this.setColVAlign = function (valStr) {
-        this.cellVAlign = valStr.split(this.delim)
-    }
+}
+/**
+ *   @desc: set align of values in columns
+ *   @param: alStr - list of align values (possible values are: right,left,center,justify). Default delimiter is ","
+ *   @before_init: 1
+ *   @type: public
+ *   @topic: 0,3
+ */
+this.setColAlign = function (alStr) {
+    this.cellAlign = alStr.split(this.delim)
+    for (var i = 0; i < this.cellAlign.length; i++)
+        this.cellAlign[i] = this.cellAlign[i]._dhx_trim();
+}
+/**
+ *   @desc: set vertical align of columns
+ *   @param: valStr - vertical align values list for columns (possible values are: baseline,sub,super,top,text-top,middle,bottom,text-bottom)
+ *   @before_init: 1
+ *   @type: public
+ *   @topic: 0,3
+ */
+this.setColVAlign = function (valStr) {
+    this.cellVAlign = valStr.split(this.delim)
+}
 
-    /**
-     *    @desc: create grid with no header. Call before initialization, but after setHeader. setHeader have to be called in any way as it defines number of columns
-     *   @param: fl - true to use no header in the grid
-     *   @type: public
-     *   @before_init: 1
-     *   @topic: 0,7
-     */
-    this.setNoHeader = function (fl) {
-        this.noHeader = convertStringToBoolean(fl);
-    }
-    /**
-     *   @desc: scrolls row to the visible area
-     *   @param: rowID - row id
-     *   @type: public
-     *   @topic: 2,7
-     */
-    this.showRow = function (rowID) {
-        this.getRowById(rowID)
+/**
+ *    @desc: create grid with no header. Call before initialization, but after setHeader. setHeader have to be called in any way as it defines number of columns
+ *   @param: fl - true to use no header in the grid
+ *   @type: public
+ *   @before_init: 1
+ *   @topic: 0,7
+ */
+this.setNoHeader = function (fl) {
+    this.noHeader = convertStringToBoolean(fl);
+}
+/**
+ *   @desc: scrolls row to the visible area
+ *   @param: rowID - row id
+ *   @type: public
+ *   @topic: 2,7
+ */
+this.showRow = function (rowID) {
+    this.getRowById(rowID)
 
-        if (this._h2) this.openItem(this._h2.get[rowID].parent.id);
-        var c = this.getRowById(rowID).childNodes[0];
+    if (this._h2) this.openItem(this._h2.get[rowID].parent.id);
+    var c = this.getRowById(rowID).childNodes[0];
 
-        while (c && c.style.display == "none")
-            c = c.nextSibling;
+    while (c && c.style.display == "none")
+        c = c.nextSibling;
 
-        if (c)
-            this.moveToVisible(c, true)
-    }
+    if (c)
+        this.moveToVisible(c, true)
+}
 
-    /**
-     *   @desc: modify default style of grid and its elements. Call before or after Init
-     *   @param: ss_header - style def. expression for header
-     *   @param: ss_grid - style def. expression for grid cells
-     *   @param: ss_selCell - style def. expression for selected cell
-     *   @param: ss_selRow - style def. expression for selected Row
-     *   @type: public
-     *   @before_init: 2
-     *   @topic: 0,6
-     */
-    this.setStyle = function (ss_header, ss_grid, ss_selCell, ss_selRow) {
-        this.ssModifier = [
-            ss_header,
-            ss_grid,
-            ss_selCell,
-            ss_selCell,
-            ss_selRow
-        ];
+/**
+ *   @desc: modify default style of grid and its elements. Call before or after Init
+ *   @param: ss_header - style def. expression for header
+ *   @param: ss_grid - style def. expression for grid cells
+ *   @param: ss_selCell - style def. expression for selected cell
+ *   @param: ss_selRow - style def. expression for selected Row
+ *   @type: public
+ *   @before_init: 2
+ *   @topic: 0,6
+ */
+this.setStyle = function (ss_header, ss_grid, ss_selCell, ss_selRow) {
+    this.ssModifier = [
+        ss_header,
+        ss_grid,
+        ss_selCell,
+        ss_selCell,
+        ss_selRow
+    ];
 
-        var prefs = ["#" + this.entBox.id + " table.hdr td", "#" + this.entBox.id + " table.obj td",
-            "#" + this.entBox.id + " table.obj tr.rowselected td.cellselected",
-            "#" + this.entBox.id + " table.obj td.cellselected", "#" + this.entBox.id + " table.obj tr.rowselected td"];
+    var prefs = ["#" + this.entBox.id + " table.hdr td", "#" + this.entBox.id + " table.obj td",
+        "#" + this.entBox.id + " table.obj tr.rowselected td.cellselected",
+        "#" + this.entBox.id + " table.obj td.cellselected", "#" + this.entBox.id + " table.obj tr.rowselected td"];
 
-        var index = 0;
-        while (!_isIE) {
-            try {
-                var temp = document.styleSheets[index].cssRules.length;
-            } catch (e) {
-                index++;
-                continue;
-            }
-            break;
+    var index = 0;
+    while (!_isIE) {
+        try {
+            var temp = document.styleSheets[index].cssRules.length;
+        } catch (e) {
+            index++;
+            continue;
         }
+        break;
+    }
 
-        for (var i = 0; i < prefs.length; i++)
-            if (this.ssModifier[i]) {
-                if (_isIE)
-                    document.styleSheets[0].addRule(prefs[i], this.ssModifier[i]);
-                else
-                    document.styleSheets[index].insertRule(prefs[i] + (" { " + this.ssModifier[i] + " }"), document.styleSheets[index].cssRules.length);
-            }
-    }
-    /**
-     *   @desc: colorize columns  background.
-     *   @param: clr - colors list
-     *   @type: public
-     *   @before_init: 1
-     *   @topic: 3,6
-     */
-    this.setColumnColor = function (clr) {
-        this.columnColor = clr.split(this.delim)
-    }
+    for (var i = 0; i < prefs.length; i++)
+        if (this.ssModifier[i]) {
+            if (_isIE)
+                document.styleSheets[0].addRule(prefs[i], this.ssModifier[i]);
+            else
+                document.styleSheets[index].insertRule(prefs[i] + (" { " + this.ssModifier[i] + " }"), document.styleSheets[index].cssRules.length);
+        }
+}
+/**
+ *   @desc: colorize columns  background.
+ *   @param: clr - colors list
+ *   @type: public
+ *   @before_init: 1
+ *   @topic: 3,6
+ */
+this.setColumnColor = function (clr) {
+    this.columnColor = clr.split(this.delim)
+}
 //#alter_css:06042008{
-    /**
-     *   @desc: set even/odd css styles
-     *   @param: cssE - name of css class for even rows
-     *   @param: cssU - name of css class for odd rows
-     *   @param: perLevel - true/false - mark rows not by order, but by level in treegrid
-     *   @param: levelUnique - true/false - creates additional unique css class based on row level
-     *   @type: public
-     *   @before_init: 1
-     *   @topic: 3,6
-     */
-    this.enableAlterCss = function (cssE, cssU, perLevel, levelUnique) {
-        if (cssE || cssU)
-            this.attachEvent("onGridReconstructed", function () {
-                this._fixAlterCss();
-                if (this._fake)
-                    this._fake._fixAlterCss();
-            });
+/**
+ *   @desc: set even/odd css styles
+ *   @param: cssE - name of css class for even rows
+ *   @param: cssU - name of css class for odd rows
+ *   @param: perLevel - true/false - mark rows not by order, but by level in treegrid
+ *   @param: levelUnique - true/false - creates additional unique css class based on row level
+ *   @type: public
+ *   @before_init: 1
+ *   @topic: 3,6
+ */
+this.enableAlterCss = function (cssE, cssU, perLevel, levelUnique) {
+    if (cssE || cssU)
+        this.attachEvent("onGridReconstructed", function () {
+            this._fixAlterCss();
+            if (this._fake)
+                this._fake._fixAlterCss();
+        });
 
-        this._cssSP = perLevel;
-        this._cssSU = levelUnique;
-        this._cssEven = cssE;
-        this._cssUnEven = cssU;
-    }
+    this._cssSP = perLevel;
+    this._cssSU = levelUnique;
+    this._cssEven = cssE;
+    this._cssUnEven = cssU;
+}
 //#}
-    /**
-     *   @desc: recolor grid from defined point
-     *   @type: private
-     *   @before_init: 1
-     *   @topic: 3,6
-     */
-    this._fixAlterCss = function (ind) {
+/**
+ *   @desc: recolor grid from defined point
+ *   @type: private
+ *   @before_init: 1
+ *   @topic: 3,6
+ */
+this._fixAlterCss = function (ind) {
 //#alter_css:06042008{		
-        if (this._h2 && (this._cssSP || this._cssSU))
-            return this._fixAlterCssTGR(ind);
-        if (!this._cssEven && !this._cssUnEven) return;
-        ind = ind || 0;
-        var j = ind;
+    if (this._h2 && (this._cssSP || this._cssSU))
+        return this._fixAlterCssTGR(ind);
+    if (!this._cssEven && !this._cssUnEven) return;
+    ind = ind || 0;
+    var j = ind;
 
-        for (var i = ind; i < this.rowsCol.length; i++) {
-            if (!this.rowsCol[i])
+    for (var i = ind; i < this.rowsCol.length; i++) {
+        if (!this.rowsCol[i])
+            continue;
+
+        if (this.rowsCol[i].style.display != "none") {
+            if (this.rowsCol[i]._cntr) {
+                j = 1;
                 continue;
-
-            if (this.rowsCol[i].style.display != "none") {
-                if (this.rowsCol[i]._cntr) {
-                    j = 1;
-                    continue;
-                }
-                if (this.rowsCol[i].className.indexOf("rowselected") != -1) {
-                    if (j % 2 == 1)
-                        this.rowsCol[i].className = this._cssUnEven + " rowselected " + (this.rowsCol[i]._css || "");
-                    else
-                        this.rowsCol[i].className = this._cssEven + " rowselected " + (this.rowsCol[i]._css || "");
-                } else {
-                    if (j % 2 == 1)
-                        this.rowsCol[i].className = this._cssUnEven + " " + (this.rowsCol[i]._css || "");
-                    else
-                        this.rowsCol[i].className = this._cssEven + " " + (this.rowsCol[i]._css || "");
-                }
-                j++;
             }
+            if (this.rowsCol[i].className.indexOf("rowselected") != -1) {
+                if (j % 2 == 1)
+                    this.rowsCol[i].className = this._cssUnEven + " rowselected " + (this.rowsCol[i]._css || "");
+                else
+                    this.rowsCol[i].className = this._cssEven + " rowselected " + (this.rowsCol[i]._css || "");
+            } else {
+                if (j % 2 == 1)
+                    this.rowsCol[i].className = this._cssUnEven + " " + (this.rowsCol[i]._css || "");
+                else
+                    this.rowsCol[i].className = this._cssEven + " " + (this.rowsCol[i]._css || "");
+            }
+            j++;
         }
+    }
 //#}		
+}
+
+
+/**
+ *    @desc: returns absolute left and top position of specified element
+ *    @returns: array of two values: absolute Left and absolute Top positions
+ *    @param: oNode - element to get position of
+ *   @type: private
+ *   @topic: 8
+ */
+this.getPosition = function (oNode, pNode) {
+    if (!pNode && !_isChrome) {
+        var pos = getOffset(oNode);
+        return [pos.left, pos.top];
+    }
+    pNode = pNode || document.body;
+
+    var oCurrentNode = oNode;
+    var iLeft = 0;
+    var iTop = 0;
+
+    while ((oCurrentNode) && (oCurrentNode != pNode)) { //.tagName!="BODY"){
+        iLeft += oCurrentNode.offsetLeft - oCurrentNode.scrollLeft;
+        iTop += oCurrentNode.offsetTop - oCurrentNode.scrollTop;
+        oCurrentNode = oCurrentNode.offsetParent;
     }
 
-
-    /**
-     *    @desc: returns absolute left and top position of specified element
-     *    @returns: array of two values: absolute Left and absolute Top positions
-     *    @param: oNode - element to get position of
-     *   @type: private
-     *   @topic: 8
-     */
-    this.getPosition = function (oNode, pNode) {
-        if (!pNode && !_isChrome) {
-            var pos = getOffset(oNode);
-            return [pos.left, pos.top];
+    if (pNode == document.body) {
+        if (_isIE) {
+            iTop += document.body.offsetTop || document.documentElement.offsetTop;
+            iLeft += document.body.offsetLeft || document.documentElement.offsetLeft;
+        } else if (!_isFF) {
+            iLeft += document.body.offsetLeft;
+            iTop += document.body.offsetTop;
         }
-        pNode = pNode || document.body;
-
-        var oCurrentNode = oNode;
-        var iLeft = 0;
-        var iTop = 0;
-
-        while ((oCurrentNode) && (oCurrentNode != pNode)) { //.tagName!="BODY"){
-            iLeft += oCurrentNode.offsetLeft - oCurrentNode.scrollLeft;
-            iTop += oCurrentNode.offsetTop - oCurrentNode.scrollTop;
-            oCurrentNode = oCurrentNode.offsetParent;
-        }
-
-        if (pNode == document.body) {
-            if (_isIE) {
-                iTop += document.body.offsetTop || document.documentElement.offsetTop;
-                iLeft += document.body.offsetLeft || document.documentElement.offsetLeft;
-            } else if (!_isFF) {
-                iLeft += document.body.offsetLeft;
-                iTop += document.body.offsetTop;
-            }
-        }
-        return [iLeft, iTop];
     }
-    /**
-     *   @desc: gets nearest parent of specified type
-     *   @param: obj - input object
-     *   @param: tag - string. tag to find as parent
-     *   @returns: object. nearest paraent object (including spec. obj) of specified type.
-     *   @type: private
-     *   @topic: 8
-     */
-    this.getFirstParentOfType = function (obj, tag) {
-        while (obj && obj.tagName != tag && obj.tagName != "BODY") {
-            obj = obj.parentNode;
-        }
-        return obj;
+    return [iLeft, iTop];
+}
+/**
+ *   @desc: gets nearest parent of specified type
+ *   @param: obj - input object
+ *   @param: tag - string. tag to find as parent
+ *   @returns: object. nearest paraent object (including spec. obj) of specified type.
+ *   @type: private
+ *   @topic: 8
+ */
+this.getFirstParentOfType = function (obj, tag) {
+    while (obj && obj.tagName != tag && obj.tagName != "BODY") {
+        obj = obj.parentNode;
     }
+    return obj;
+}
 
 
-    /*INTERNAL EVENT HANDLERS*/
-    this.objBox.onscroll = function () {
-        this.grid._doOnScroll();
-    };
-    this.hdrBox.onscroll = function () {
-        if (this._try_header_sync) return;
-        this._try_header_sync = true;
-        if (this.grid.objBox.scrollLeft != this.scrollLeft) {
-            this.grid.objBox.scrollLeft = this.scrollLeft;
-        }
-        this._try_header_sync = false;
+/*INTERNAL EVENT HANDLERS*/
+this.objBox.onscroll = function () {
+    this.grid._doOnScroll();
+};
+this.hdrBox.onscroll = function () {
+    if (this._try_header_sync) return;
+    this._try_header_sync = true;
+    if (this.grid.objBox.scrollLeft != this.scrollLeft) {
+        this.grid.objBox.scrollLeft = this.scrollLeft;
     }
+    this._try_header_sync = false;
+}
 //#column_resize:06042008{
-    if ((!_isOpera) || (_OperaRv > 8.5)) {
-        this.hdr.onmousemove = function (e) {
-            this.grid.changeCursorState(e || window.event);
-        };
-        this.hdr.onmousedown = function (e) {
-            return this.grid.startColResize(e || window.event);
-        };
-    }
+if ((!_isOpera) || (_OperaRv > 8.5)) {
+    this.hdr.onmousemove = function (e) {
+        this.grid.changeCursorState(e || window.event);
+    };
+    this.hdr.onmousedown = function (e) {
+        return this.grid.startColResize(e || window.event);
+    };
+}
 //#}
 //#tooltips:06042008{
-    this.obj.onmousemove = this._drawTooltip;
+this.obj.onmousemove = this._drawTooltip;
 //#}
-    this.objBox.onclick = function (e) {
-        (e || event).cancelBubble = true;
-    };
-    this.obj.onclick = function (e) {
-        this.grid._doClick(e || window.event);
-        if (this.grid._sclE)
-            this.grid.editCell(e || window.event);
-        else
-            this.grid.editStop();
+this.objBox.onclick = function (e) {
+    (e || event).cancelBubble = true;
+};
+this.obj.onclick = function (e) {
+    this.grid._doClick(e || window.event);
+    if (this.grid._sclE)
+        this.grid.editCell(e || window.event);
+    else
+        this.grid.editStop();
 
-        (e || event).cancelBubble = true;
-    };
+    (e || event).cancelBubble = true;
+};
 //#context_menu:06042008{
-    if (_isMacOS) {
-        this.entBox.oncontextmenu = function (e) {
-            e.cancelBubble = true;
-            e.returnValue = false;
-            return this.grid._doContClick(e || window.event);
-        };
-    } else {
-        this.entBox.onmousedown = function (e) {
-            return this.grid._doContClick(e || window.event);
-        };
-        this.entBox.oncontextmenu = function (e) {
-            if (this.grid._ctmndx)
-                (e || event).cancelBubble = true;
-            return !this.grid._ctmndx;
-        };
-    }
+if (_isMacOS) {
+    this.entBox.oncontextmenu = function (e) {
+        e.cancelBubble = true;
+        e.returnValue = false;
+        return this.grid._doContClick(e || window.event);
+    };
+} else {
+    this.entBox.onmousedown = function (e) {
+        return this.grid._doContClick(e || window.event);
+    };
+    this.entBox.oncontextmenu = function (e) {
+        if (this.grid._ctmndx)
+            (e || event).cancelBubble = true;
+        return !this.grid._ctmndx;
+    };
+}
 
 //#}		
-    this.obj.ondblclick = function (e) {
-        if (!this.grid.wasDblClicked(e || window.event))
-            return false;
-        if (this.grid._dclE) {
-            var row = this.grid.getFirstParentOfType((_isIE ? event.srcElement : e.target), "TR");
-            if (row == this.grid.row)
-                this.grid.editCell(e || window.event);
-        }
-        (e || event).cancelBubble = true;
-        if (_isOpera) return false; //block context menu for Opera 9+
-    };
-    this.hdr.onclick = this._onHeaderClick;
-    this.sortImg.onclick = function () {
-        self._onHeaderClick.apply({
-            grid: self
-        }, [
-            null,
-            self.r_fldSorted
-        ]);
-    };
-
-    this.hdr.ondblclick = this._onHeaderDblClick;
-
-
-    if (!document.body._dhtmlxgrid_onkeydown) {
-        dhtmlxEvent(document, "keydown", function (e) {
-            if (globalActiveDHTMLGridObject)
-                return globalActiveDHTMLGridObject.doKey(e || window.event);
-        });
-        document.body._dhtmlxgrid_onkeydown = true;
+this.obj.ondblclick = function (e) {
+    if (!this.grid.wasDblClicked(e || window.event))
+        return false;
+    if (this.grid._dclE) {
+        var row = this.grid.getFirstParentOfType((_isIE ? event.srcElement : e.target), "TR");
+        if (row == this.grid.row)
+            this.grid.editCell(e || window.event);
     }
+    (e || event).cancelBubble = true;
+    if (_isOpera) return false; //block context menu for Opera 9+
+};
+this.hdr.onclick = this._onHeaderClick;
+this.sortImg.onclick = function () {
+    self._onHeaderClick.apply({
+        grid: self
+    }, [
+        null,
+        self.r_fldSorted
+    ]);
+};
 
-    dhtmlxEvent(document.body, "click", function () {
-        if (self.editStop) self.editStop();
-        if (self.isActive) self.setActive(false);
+this.hdr.ondblclick = this._onHeaderDblClick;
+
+
+if (!document.body._dhtmlxgrid_onkeydown) {
+    dhtmlxEvent(document, "keydown", function (e) {
+        if (globalActiveDHTMLGridObject)
+            return globalActiveDHTMLGridObject.doKey(e || window.event);
     });
+    document.body._dhtmlxgrid_onkeydown = true;
+}
 
-    //activity management
-    this.entBox.onbeforeactivate = function () {
-        this._still_active = null;
-        this.grid.setActive();
-        event.cancelBubble = true;
-    };
+dhtmlxEvent(document.body, "click", function () {
+    if (self.editStop) self.editStop();
+    if (self.isActive) self.setActive(false);
+});
 
-    this.entBox.onbeforedeactivate = function () {
-        if (this.grid._still_active)
-            this.grid._still_active = null;
-        else
-            this.grid.isActive = false;
-        event.cancelBubble = true;
-    };
+//activity management
+this.entBox.onbeforeactivate = function () {
+    this._still_active = null;
+    this.grid.setActive();
+    event.cancelBubble = true;
+};
 
-    if (this.entBox.style.height.toString().indexOf("%") != -1)
-        this._delta_y = this.entBox.style.height;
-    if (this.entBox.style.width.toString().indexOf("%") != -1)
-        this._delta_x = this.entBox.style.width;
+this.entBox.onbeforedeactivate = function () {
+    if (this.grid._still_active)
+        this.grid._still_active = null;
+    else
+        this.grid.isActive = false;
+    event.cancelBubble = true;
+};
 
-    if (this._delta_x || this._delta_y)
-        this._setAutoResize();
+if (this.entBox.style.height.toString().indexOf("%") != -1)
+    this._delta_y = this.entBox.style.height;
+if (this.entBox.style.width.toString().indexOf("%") != -1)
+    this._delta_x = this.entBox.style.width;
+
+if (this._delta_x || this._delta_y)
+    this._setAutoResize();
 
 
-    /* deprecated names */
-    this.setColHidden = this.setColumnsVisibility
-    this.enableCollSpan = this.enableColSpan
-    this.setMultiselect = this.enableMultiselect;
-    this.setMultiLine = this.enableMultiline;
-    this.deleteSelectedItem = this.deleteSelectedRows;
-    this.getSelectedId = this.getSelectedRowId;
-    this.getHeaderCol = this.getColumnLabel;
-    this.isItemExists = this.doesRowExist;
-    this.getColumnCount = this.getColumnsNum;
-    this.setSelectedRow = this.selectRowById;
-    this.setHeaderCol = this.setColumnLabel;
-    this.preventIECashing = this.preventIECaching;
-    this.enableAutoHeigth = this.enableAutoHeight;
-    this.getUID = this.uid;
+/* deprecated names */
+this.setColHidden = this.setColumnsVisibility
+this.enableCollSpan = this.enableColSpan
+this.setMultiselect = this.enableMultiselect;
+this.setMultiLine = this.enableMultiline;
+this.deleteSelectedItem = this.deleteSelectedRows;
+this.getSelectedId = this.getSelectedRowId;
+this.getHeaderCol = this.getColumnLabel;
+this.isItemExists = this.doesRowExist;
+this.getColumnCount = this.getColumnsNum;
+this.setSelectedRow = this.selectRowById;
+this.setHeaderCol = this.setColumnLabel;
+this.preventIECashing = this.preventIECaching;
+this.enableAutoHeigth = this.enableAutoHeight;
+this.getUID = this.uid;
 
-    if (dhtmlx.image_path) this.setImagePath(dhtmlx.image_path);
-    if (dhtmlx.skin) this.setSkin(dhtmlx.skin);
+if (dhtmlx.image_path) this.setImagePath(dhtmlx.image_path);
+if (dhtmlx.skin) this.setSkin(dhtmlx.skin);
 
-    return this;
+return this;
 }
 
 dhtmlXGridObject.prototype = {
@@ -5496,54 +5509,108 @@ dhtmlXGridObject.prototype = {
         drag: "enableDragAndDrop",
         drag_order: "enableDragOrder",
         tabulation: "enableEditTabOnly",
-        header_../images: "enableHeader../images",
-        header_menu: "enableHeaderMenu",
-        keymap: "enableKeyboardSupport",
-        mouse_navigation: "enableLightMouseNavigation",
-        markers: "enableMarkedCells",
-        math_editing: "enableMathEditing",
-        math_serialization: "enableMathSerialization",
-        drag_copy: "enableMercyDrag",
-        multiline: "enableMultiline",
-        multiselect: "enableMultiselect",
-        save_column_order: "enableOrderSaving",
-        hover: "enableRowsHover",
-        rowspan: "enableRowspan",
-        smart: "enableSmartRendering",
-        save_sorting: "enableSortingSaving",
-        stable_sorting: "enableStableSorting",
-        undo: "enableUndoRedo",
-        csv_cell: "setCSVDelimiter",
-        date_format: "setDateFormat",
-        drag_behavior: "setDragBehavior",
-        editable: "setEditable",
-        without_header: "setNoHeader",
-        submit_changed: "submitOnlyChanged",
-        submit_serialization: "submitSerialization",
-        submit_selected: "submitOnlySelected",
-        submit_id: "submitOnlyRowID",
-        xml: "load"
-    }, {
-        columns: function (obj) {
-            for (var j = 0; j < columns_map.length; j++) {
-                var settings = [];
-                for (var i = 0; i < obj.length; i++)
-                    settings[i] = obj[i][columns_map[j].name] || columns_map[j].def;
-                var type = columns_map[j].type || direct_call;
-                type.call(this, columns_map[j].operation, settings, obj);
-            }
-            this.init();
-        },
-        rows: function (obj) {
-
-        },
-        headers: function (obj) {
+        header_..
+    /images: "enableHeader../im
+    ages
+    ",
+    header_menu: "enableHeaderMenu",
+        keymap
+    :
+    "enableKeyboardSupport",
+        mouse_navigation
+    :
+    "enableLightMouseNavigation",
+        markers
+    :
+    "enableMarkedCells",
+        math_editing
+    :
+    "enableMathEditing",
+        math_serialization
+    :
+    "enableMathSerialization",
+        drag_copy
+    :
+    "enableMercyDrag",
+        multiline
+    :
+    "enableMultiline",
+        multiselect
+    :
+    "enableMultiselect",
+        save_column_order
+    :
+    "enableOrderSaving",
+        hover
+    :
+    "enableRowsHover",
+        rowspan
+    :
+    "enableRowspan",
+        smart
+    :
+    "enableSmartRendering",
+        save_sorting
+    :
+    "enableSortingSaving",
+        stable_sorting
+    :
+    "enableStableSorting",
+        undo
+    :
+    "enableUndoRedo",
+        csv_cell
+    :
+    "setCSVDelimiter",
+        date_format
+    :
+    "setDateFormat",
+        drag_behavior
+    :
+    "setDragBehavior",
+        editable
+    :
+    "setEditable",
+        without_header
+    :
+    "setNoHeader",
+        submit_changed
+    :
+    "submitOnlyChanged",
+        submit_serialization
+    :
+    "submitSerialization",
+        submit_selected
+    :
+    "submitOnlySelected",
+        submit_id
+    :
+    "submitOnlyRowID",
+        xml
+    :
+    "load"
+}, {
+    columns: function (obj) {
+        for (var j = 0; j < columns_map.length; j++) {
+            var settings = [];
             for (var i = 0; i < obj.length; i++)
-                this.attachHeader(obj[i]);
+                settings[i] = obj[i][columns_map[j].name] || columns_map[j].def;
+            var type = columns_map[j].type || direct_call;
+            type.call(this, columns_map[j].operation, settings, obj);
         }
-    });
+        this.init();
+    },
+    rows: function (obj) {
 
-})();
+    },
+    headers: function (obj) {
+        for (var i = 0; i < obj.length; i++)
+            this.attachHeader(obj[i]);
+    }
+});
+
+})
+();
 
 
 dhtmlXGridObject.prototype._dp_init = function (dp) {

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
@@ -198,9 +198,11 @@
 	            	<span class="STYLE1" style="white-space:nowrap">
 						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10" height="10"
+      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
+                                                               height="10"
                                                                border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10" height="10"
+      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
+                                                               height="10"
                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                 <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                      border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
@@ -249,18 +251,19 @@
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo}" var="item">
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
-                                                    <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
-                                                    <td>${item.detail}</td>
-                                                    <td>${item.privilige}</td>
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="admin" onclick="checkOne(this)"/>
+                                                        </td>
+                                                        <td>1</td>
+                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
+                                                        <td>${item.detail}</td>
+                                                        <td>${item.privilige}</td>
 
-                                                    <td>备注</td>
+                                                        <td>备注</td>
 
-                                                </tr>
+                                                    </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>
@@ -317,10 +320,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

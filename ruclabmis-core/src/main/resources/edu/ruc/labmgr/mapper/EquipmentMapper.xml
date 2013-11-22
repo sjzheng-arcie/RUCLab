@@ -1,51 +1,52 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.ruc.labmgr.mapper.EquipmentMapper" >
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Equipment" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="category_id" property="categoryId" jdbcType="INTEGER" />
-        <result column="category_sn" property="categorySn" jdbcType="VARCHAR" />
-        <result column="category_name" property="categoryName" jdbcType="VARCHAR" />
-        <result column="sn" property="sn" jdbcType="VARCHAR" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="holder" property="holder" jdbcType="INTEGER" />
-        <result column="holder_name" property="holderName" jdbcType="INTEGER" />
-        <result column="user" property="user" jdbcType="VARCHAR" />
-        <result column="model_number" property="modelNumber" jdbcType="VARCHAR" />
-        <result column="specifications" property="specifications" jdbcType="VARCHAR" />
-        <result column="unit_price" property="unitPrice" jdbcType="REAL" />
-        <result column="vender" property="vender" jdbcType="VARCHAR" />
-        <result column="factory_number" property="factoryNumber" jdbcType="VARCHAR" />
-        <result column="manufacture_date" property="manufactureDate" jdbcType="DATE" />
-        <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE" />
-        <result column="scrap_date" property="scrapDate" jdbcType="DATE" />
-        <result column="country" property="country" jdbcType="VARCHAR" />
-        <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId" />
-        <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
-        <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId" />
-        <result column="use_direction" jdbcType="VARCHAR" property="useDirection" />
-        <result column="state_id" jdbcType="INTEGER" property="stateId" />
-        <result column="state" jdbcType="VARCHAR" property="state" />
+<mapper namespace="edu.ruc.labmgr.mapper.EquipmentMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Equipment">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="category_id" property="categoryId" jdbcType="INTEGER"/>
+        <result column="category_sn" property="categorySn" jdbcType="VARCHAR"/>
+        <result column="category_name" property="categoryName" jdbcType="VARCHAR"/>
+        <result column="sn" property="sn" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="holder" property="holder" jdbcType="INTEGER"/>
+        <result column="holder_name" property="holderName" jdbcType="INTEGER"/>
+        <result column="user" property="user" jdbcType="VARCHAR"/>
+        <result column="model_number" property="modelNumber" jdbcType="VARCHAR"/>
+        <result column="specifications" property="specifications" jdbcType="VARCHAR"/>
+        <result column="unit_price" property="unitPrice" jdbcType="REAL"/>
+        <result column="vender" property="vender" jdbcType="VARCHAR"/>
+        <result column="factory_number" property="factoryNumber" jdbcType="VARCHAR"/>
+        <result column="manufacture_date" property="manufactureDate" jdbcType="DATE"/>
+        <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE"/>
+        <result column="scrap_date" property="scrapDate" jdbcType="DATE"/>
+        <result column="country" property="country" jdbcType="VARCHAR"/>
+        <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId"/>
+        <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject"/>
+        <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId"/>
+        <result column="use_direction" jdbcType="VARCHAR" property="useDirection"/>
+        <result column="state_id" jdbcType="INTEGER" property="stateId"/>
+        <result column="state" jdbcType="VARCHAR" property="state"/>
     </resultMap>
-    <sql id="Criteria_Where_Clause" >
-        <where >
-            <foreach collection="oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -56,25 +57,26 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Update_By_Criteria_Where_Clause" >
-        <where >
-            <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -85,44 +87,44 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
     id, category_id,category_sn, category_name, sn, name, holder, holder_name, user,
     model_number, specifications, unit_price,
     vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, 
     funding_subject_id, funding_subject, use_direction_id, use_direction,  state_id, state
   </sql>
-    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
+    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from view_equipment
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from view_equipment
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from equipment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" >
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria">
         delete from equipment
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="edu.ruc.labmgr.domain.Equipment" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.Equipment">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into equipment (category_id, sn, name,
@@ -138,187 +140,187 @@
         #{scrapDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, #{fundingSubjectId,jdbcType=INTEGER},
         #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER})
     </insert>
-    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into equipment
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="categoryId != null" >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
                 category_id,
             </if>
-            <if test="sn != null" >
+            <if test="sn != null">
                 sn,
             </if>
-            <if test="name != null" >
+            <if test="name != null">
                 name,
             </if>
-            <if test="holder != null" >
+            <if test="holder != null">
                 holder,
             </if>
-            <if test="user != null" >
+            <if test="user != null">
                 user,
             </if>
-            <if test="modelNumber != null" >
+            <if test="modelNumber != null">
                 model_number,
             </if>
-            <if test="specifications != null" >
+            <if test="specifications != null">
                 specifications,
             </if>
-            <if test="unitPrice != null" >
+            <if test="unitPrice != null">
                 unit_price,
             </if>
-            <if test="vender != null" >
+            <if test="vender != null">
                 vender,
             </if>
-            <if test="factoryNumber != null" >
+            <if test="factoryNumber != null">
                 factory_number,
             </if>
-            <if test="manufactureDate != null" >
+            <if test="manufactureDate != null">
                 manufacture_date,
             </if>
-            <if test="acquisitionDate != null" >
+            <if test="acquisitionDate != null">
                 acquisition_date,
             </if>
-            <if test="scrapDate != null" >
+            <if test="scrapDate != null">
                 scrap_date,
             </if>
-            <if test="country != null" >
+            <if test="country != null">
                 country,
             </if>
-            <if test="fundingSubjectId != null" >
+            <if test="fundingSubjectId != null">
                 funding_subject_id,
             </if>
-            <if test="useDirectionId != null" >
+            <if test="useDirectionId != null">
                 use_direction_id,
             </if>
-            <if test="stateId != null" >
+            <if test="stateId != null">
                 state_id,
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="categoryId != null" >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="categoryId != null">
                 #{categoryId,jdbcType=INTEGER},
             </if>
-            <if test="sn != null" >
+            <if test="sn != null">
                 #{sn,jdbcType=VARCHAR},
             </if>
-            <if test="name != null" >
+            <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
-            <if test="holder != null" >
+            <if test="holder != null">
                 #{holder,jdbcType=INTEGER},
             </if>
-            <if test="user != null" >
+            <if test="user != null">
                 #{user,jdbcType=VARCHAR},
             </if>
-            <if test="modelNumber != null" >
+            <if test="modelNumber != null">
                 #{modelNumber,jdbcType=VARCHAR},
             </if>
-            <if test="specifications != null" >
+            <if test="specifications != null">
                 #{specifications,jdbcType=VARCHAR},
             </if>
-            <if test="unitPrice != null" >
+            <if test="unitPrice != null">
                 #{unitPrice,jdbcType=REAL},
             </if>
-            <if test="vender != null" >
+            <if test="vender != null">
                 #{vender,jdbcType=VARCHAR},
             </if>
-            <if test="factoryNumber != null" >
+            <if test="factoryNumber != null">
                 #{factoryNumber,jdbcType=VARCHAR},
             </if>
-            <if test="manufactureDate != null" >
+            <if test="manufactureDate != null">
                 #{manufactureDate,jdbcType=DATE},
             </if>
-            <if test="acquisitionDate != null" >
+            <if test="acquisitionDate != null">
                 #{acquisitionDate,jdbcType=DATE},
             </if>
-            <if test="scrapDate != null" >
+            <if test="scrapDate != null">
                 #{scrapDate,jdbcType=DATE},
             </if>
-            <if test="country != null" >
+            <if test="country != null">
                 #{country,jdbcType=VARCHAR},
             </if>
-            <if test="fundingSubjectId != null" >
+            <if test="fundingSubjectId != null">
                 #{fundingSubjectId,jdbcType=INTEGER},
             </if>
-            <if test="useDirectionId != null" >
+            <if test="useDirectionId != null">
                 #{useDirectionId,jdbcType=INTEGER},
             </if>
-            <if test="stateId != null" >
+            <if test="stateId != null">
                 #{stateId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer" >
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" resultType="java.lang.Integer">
         select count(*) from view_equipment
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </select>
-    <update id="updateByCriteriaSelective" parameterType="map" >
+    <update id="updateByCriteriaSelective" parameterType="map">
         update equipment
-        <set >
-            <if test="record.id != null" >
+        <set>
+            <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
             </if>
-            <if test="record.categoryId != null" >
+            <if test="record.categoryId != null">
                 category_id = #{record.categoryId,jdbcType=INTEGER},
             </if>
-            <if test="record.sn != null" >
+            <if test="record.sn != null">
                 sn = #{record.sn,jdbcType=VARCHAR},
             </if>
-            <if test="record.name != null" >
+            <if test="record.name != null">
                 name = #{record.name,jdbcType=VARCHAR},
             </if>
-            <if test="record.holder != null" >
+            <if test="record.holder != null">
                 holder = #{record.holder,jdbcType=INTEGER},
             </if>
-            <if test="record.user != null" >
+            <if test="record.user != null">
                 user = #{record.user,jdbcType=VARCHAR},
             </if>
-            <if test="record.modelNumber != null" >
+            <if test="record.modelNumber != null">
                 model_number = #{record.modelNumber,jdbcType=VARCHAR},
             </if>
-            <if test="record.specifications != null" >
+            <if test="record.specifications != null">
                 specifications = #{record.specifications,jdbcType=VARCHAR},
             </if>
-            <if test="record.unitPrice != null" >
+            <if test="record.unitPrice != null">
                 unit_price = #{record.unitPrice,jdbcType=REAL},
             </if>
-            <if test="record.vender != null" >
+            <if test="record.vender != null">
                 vender = #{record.vender,jdbcType=VARCHAR},
             </if>
-            <if test="record.factoryNumber != null" >
+            <if test="record.factoryNumber != null">
                 factory_number = #{record.factoryNumber,jdbcType=VARCHAR},
             </if>
-            <if test="record.manufactureDate != null" >
+            <if test="record.manufactureDate != null">
                 manufacture_date = #{record.manufactureDate,jdbcType=DATE},
             </if>
-            <if test="record.acquisitionDate != null" >
+            <if test="record.acquisitionDate != null">
                 acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
             </if>
-            <if test="record.scrapDate != null" >
+            <if test="record.scrapDate != null">
                 scrap_date = #{record.scrapDate,jdbcType=DATE},
             </if>
-            <if test="record.country != null" >
+            <if test="record.country != null">
                 country = #{record.country,jdbcType=VARCHAR},
             </if>
-            <if test="record.fundingSubjectId != null" >
+            <if test="record.fundingSubjectId != null">
                 funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
             </if>
-            <if test="record.useDirectionId != null" >
+            <if test="record.useDirectionId != null">
                 use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
             </if>
-            <if test="record.stateId != null" >
+            <if test="record.stateId != null">
                 state_id = #{record.stateId,jdbcType=INTEGER},
             </if>
         </set>
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByCriteria" parameterType="map" >
+    <update id="updateByCriteria" parameterType="map">
         update equipment
         set id = #{record.id,jdbcType=INTEGER},
         category_id = #{record.categoryId,jdbcType=INTEGER},
@@ -338,68 +340,68 @@
         funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
         use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
         state_id = #{record.stateId,jdbcType=INTEGER}
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Equipment">
         update equipment
-        <set >
-            <if test="categoryId != null" >
+        <set>
+            <if test="categoryId != null">
                 category_id = #{categoryId,jdbcType=INTEGER},
             </if>
-            <if test="sn != null" >
+            <if test="sn != null">
                 sn = #{sn,jdbcType=VARCHAR},
             </if>
-            <if test="name != null" >
+            <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="holder != null" >
+            <if test="holder != null">
                 holder = #{holder,jdbcType=INTEGER},
             </if>
-            <if test="user != null" >
+            <if test="user != null">
                 user = #{user,jdbcType=VARCHAR},
             </if>
-            <if test="modelNumber != null" >
+            <if test="modelNumber != null">
                 model_number = #{modelNumber,jdbcType=VARCHAR},
             </if>
-            <if test="specifications != null" >
+            <if test="specifications != null">
                 specifications = #{specifications,jdbcType=VARCHAR},
             </if>
-            <if test="unitPrice != null" >
+            <if test="unitPrice != null">
                 unit_price = #{unitPrice,jdbcType=REAL},
             </if>
-            <if test="vender != null" >
+            <if test="vender != null">
                 vender = #{vender,jdbcType=VARCHAR},
             </if>
-            <if test="factoryNumber != null" >
+            <if test="factoryNumber != null">
                 factory_number = #{factoryNumber,jdbcType=VARCHAR},
             </if>
-            <if test="manufactureDate != null" >
+            <if test="manufactureDate != null">
                 manufacture_date = #{manufactureDate,jdbcType=DATE},
             </if>
-            <if test="acquisitionDate != null" >
+            <if test="acquisitionDate != null">
                 acquisition_date = #{acquisitionDate,jdbcType=DATE},
             </if>
-            <if test="scrapDate != null" >
+            <if test="scrapDate != null">
                 scrap_date = #{scrapDate,jdbcType=DATE},
             </if>
-            <if test="country != null" >
+            <if test="country != null">
                 country = #{country,jdbcType=VARCHAR},
             </if>
-            <if test="fundingSubjectId != null" >
+            <if test="fundingSubjectId != null">
                 funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
             </if>
-            <if test="useDirectionId != null" >
+            <if test="useDirectionId != null">
                 use_direction_id = #{useDirectionId,jdbcType=INTEGER},
             </if>
-            <if test="stateId != null" >
+            <if test="stateId != null">
                 state_id = #{stateId,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Equipment" >
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Equipment">
     update equipment
     set category_id = #{categoryId,jdbcType=INTEGER},
       sn = #{sn,jdbcType=VARCHAR},
@@ -420,23 +422,24 @@
       state_id = #{stateId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria" id="selectByCriteriaWithRowbounds" >
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria"
+            id="selectByCriteriaWithRowbounds">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from view_equipment
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
 
 
-    <select id="selectInventoryProfitWithRowbounds" resultMap= "BaseResultMap">
+    <select id="selectInventoryProfitWithRowbounds" resultMap="BaseResultMap">
        SELECT e.* FROM equipment e WHERE e.sn NOT IN (
         SELECT ec.sn FROM equipment_check ec ) ORDER BY acquisition_date desc
   </select>

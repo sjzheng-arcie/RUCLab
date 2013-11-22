@@ -1,15 +1,17 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.*;
+import com.mysql.jdbc.StringUtils;
+import edu.ruc.labmgr.domain.Teacher;
+import edu.ruc.labmgr.domain.TeacherCriteria;
+import edu.ruc.labmgr.domain.User;
+import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.TeacherMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import com.mysql.jdbc.StringUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.apache.shiro.SecurityUtils;
-import org.apache.shiro.authc.AuthenticationException;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +36,7 @@ public class TeacherService extends UserService {
         return mapperTeacher.selectByPrimaryKey(user.getId());
     }
 
-    public PageInfo<Teacher> selectListPage(String sn,String name, int pageNum){
+    public PageInfo<Teacher> selectListPage(String sn, String name, int pageNum) {
         UserCriteria userCriteria = new UserCriteria();
         UserCriteria.Criteria ecu = userCriteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
@@ -43,7 +45,7 @@ public class TeacherService extends UserService {
             ecu.andNameLike("%" + name + "%");
         List<User> users = mapperUser.selectByCriteria(userCriteria);
         List<Integer> teacherIds = new ArrayList<Integer>();
-        for(User user : users){
+        for (User user : users) {
             teacherIds.add(user.getId());
         }
 
@@ -55,11 +57,11 @@ public class TeacherService extends UserService {
         return getPageTeacherByCriteria(pageNum, teacherCriteriaCriteria);
     }
 
-    private PageInfo<Teacher> getPageTeacherByCriteria(int pageNum,TeacherCriteria criteria){
+    private PageInfo<Teacher> getPageTeacherByCriteria(int pageNum, TeacherCriteria criteria) {
         int totalCount = mapperTeacher.countByCriteria(criteria);
-        PageInfo<Teacher> page = new PageInfo<>(totalCount,-1,pageNum);
+        PageInfo<Teacher> page = new PageInfo<>(totalCount, -1, pageNum);
         List<Teacher> data = mapperTeacher.selectByCriteriaWithRowbounds(criteria,
-                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+                new RowBounds(page.getCurrentResult(), page.getPageSize()));
         page.setData(data);
         return page;
     }
@@ -74,11 +76,11 @@ public class TeacherService extends UserService {
         ecu.andNameLike("%" + name + "%");
 
         List<User> users = mapperUser.selectByCriteria(userCriteria);
-        if(users.size() <= 0)
+        if (users.size() <= 0)
             return new ArrayList<Teacher>();
 
         List<Integer> teacherIds = new ArrayList<Integer>();
-        for(User user : users){
+        for (User user : users) {
             teacherIds.add(user.getId());
         }
 
@@ -101,11 +103,11 @@ public class TeacherService extends UserService {
         ecu.andRoleIdEqualTo(role.getValue());
 
         List<User> users = mapperUser.selectByCriteria(userCriteria);
-        if(users.size() <= 0)
+        if (users.size() <= 0)
             return new ArrayList<Teacher>();
 
         List<Integer> teacherIds = new ArrayList<Integer>();
-        for(User user : users){
+        for (User user : users) {
             teacherIds.add(user.getId());
         }
 
@@ -125,7 +127,7 @@ public class TeacherService extends UserService {
     }
 
     public void update(Teacher teacher) {
-        if(StringUtils.isNullOrEmpty(teacher.getUser().getPassword())){
+        if (StringUtils.isNullOrEmpty(teacher.getUser().getPassword())) {
             Teacher tmpTeacher = mapperTeacher.selectByPrimaryKey(teacher.getId());
             teacher.getUser().setPassword(tmpTeacher.getUser().getPassword());
         }
@@ -138,10 +140,11 @@ public class TeacherService extends UserService {
 
         //没有管理员权限则需要验证当前密码
         Subject subject = SecurityUtils.getSubject();
-        if(!subject.hasRole(Types.Role.ADMIN.getName())) {
-            if(!CipherUtil.validatePassword(teacher.getUser().getPassword(), oriPassword)){
-                throw(new Exception("用户原密码不匹配，请重新输入"));
-            };
+        if (!subject.hasRole(Types.Role.ADMIN.getName())) {
+            if (!CipherUtil.validatePassword(teacher.getUser().getPassword(), oriPassword)) {
+                throw (new Exception("用户原密码不匹配，请重新输入"));
+            }
+            ;
         }
 
         teacher.getUser().setPassword(CipherUtil.generatePassword(newPassword));
@@ -156,4 +159,5 @@ public class TeacherService extends UserService {
     public int countAllTeachers() {
         return mapperTeacher.countByCriteria(null);
     }
+
 }

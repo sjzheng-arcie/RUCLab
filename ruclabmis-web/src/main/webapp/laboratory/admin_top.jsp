@@ -38,12 +38,11 @@
         }
         function rs(object) {
             var x = document.getElementsByTagName("li");
-            for (var i=0;i<x.length;i++)
-            {
-                x[i].className="";
+            for (var i = 0; i < x.length; i++) {
+                x[i].className = "";
 
             }
-            object.className="active";
+            object.className = "active";
         }
     </script>
     <base target="main">
@@ -54,7 +53,7 @@
     <div class="top_left"><img src="../images/logo.gif" width="305" height="103"></div>
     <div class="top_right">
         <div class="top_right_top">
-           <span style="float:right;" >您好！<a>${user.name}</a>[${user.role.name}]
+           <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
             <a href="/equipment/jsp/announcement/remind/remind?id=1" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
             [<a href="/laboratory/logout" target="_top">退出</a>]
@@ -64,8 +63,8 @@
         </div>
         <ul class="top_right_menu">
             <li class="active" onclick="rs(this)"><a href="left.html" target="leftFrame">首页</a></li>
-            <li onclick=rs(this)><a href="leftmenusys.html" target="leftFrame" >系统管理</a></li>
-            <li onclick=rs(this)><a href="leftmenubasinfo.html" target="leftFrame" >基础信息管理</a></li>
+            <li onclick=rs(this)><a href="leftmenusys.html" target="leftFrame">系统管理</a></li>
+            <li onclick=rs(this)><a href="leftmenubasinfo.html" target="leftFrame">基础信息管理</a></li>
             <li onclick=rs(this)><a href="leftmenulab.html" target="leftFrame">实验室管理</a></li>
             <li onclick=rs(this)><a href="leftmenu.html" target="leftFrame">教学资源管理</a></li>
             <li onclick=rs(this)><a href="leftmenuteach.html" target="leftFrame">实验教学管理</a></li>

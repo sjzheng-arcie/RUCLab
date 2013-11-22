@@ -37,8 +37,8 @@ public class AllotApply extends BaseApply {
 
     private void setAllotTarget(PageInfo<ApplicationForm> pageInfo) {
         //转移申请时，取出接受者名字
-        for(ApplicationForm apply : pageInfo.getData()){
-            if(!StringUtils.isNullOrEmpty(apply.getAnnex())){
+        for (ApplicationForm apply : pageInfo.getData()) {
+            if (!StringUtils.isNullOrEmpty(apply.getAnnex())) {
                 String target = serviceTeacher.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getUser().getName();
                 apply.setTarget(target);
             }
@@ -54,7 +54,7 @@ public class AllotApply extends BaseApply {
 
     @Override
     public PageInfo<ApplicationForm> pageApplicationHistoryList(String sn, int stateId, int pageNum, Types.ApplyType type) {
-        PageInfo<ApplicationForm> pageInfo =  super.pageApplicationHistoryList(sn, stateId, pageNum, type);
+        PageInfo<ApplicationForm> pageInfo = super.pageApplicationHistoryList(sn, stateId, pageNum, type);
 
         setAllotTarget(pageInfo);
         return pageInfo;
@@ -62,7 +62,7 @@ public class AllotApply extends BaseApply {
 
     @Override
     public PageInfo<ApplicationForm> pageApplicationProcessList(String sn, int stateId, int pageNum, Types.ApplyType type) {
-        PageInfo<ApplicationForm> pageInfo =  super.pageApplicationProcessList(sn, stateId, pageNum, type);
+        PageInfo<ApplicationForm> pageInfo = super.pageApplicationProcessList(sn, stateId, pageNum, type);
 
         setAllotTarget(pageInfo);
         return pageInfo;
@@ -71,10 +71,10 @@ public class AllotApply extends BaseApply {
     @Override
     public void updateApplication(ApplicationForm applyForm) throws Exception {
         String targetName = applyForm.getTarget();
-        String userSn =  targetName.substring(targetName.indexOf('(')+1, targetName.indexOf(')'));
+        String userSn = targetName.substring(targetName.indexOf('(') + 1, targetName.indexOf(')'));
         int id = serviceTeacher.getUserIdBySn(userSn);
-        if(id < 0) {
-            throw(new Exception("接收人不存在，请检查后重新输入"));
+        if (id < 0) {
+            throw (new Exception("接收人不存在，请检查后重新输入"));
         }
 
         applyForm.setAnnex(Integer.toString(id));
@@ -85,7 +85,7 @@ public class AllotApply extends BaseApply {
     @Override
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
-        for(Integer id : equipIds){
+        for (Integer id : equipIds) {
             //更新设备状态
             Equipment equipment = new Equipment();
             equipment.setId(id);
@@ -102,8 +102,7 @@ public class AllotApply extends BaseApply {
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
 
-        for(Equipment equipment : applyWithEquipment.getEquipments())
-        {
+        for (Equipment equipment : applyWithEquipment.getEquipments()) {
             equipment.setHolder(Integer.parseInt(applyWithEquipment.getAnnex()));
             equipment.setStateId(Types.EquipState.USED.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
@@ -113,10 +112,9 @@ public class AllotApply extends BaseApply {
     //删除捐赠申请，更新设备状态为已借用
     @Override
     public void deleteApplys(List<Integer> appIds) {
-        for(Integer id : appIds){
+        for (Integer id : appIds) {
             ApplyWithEquipment applyWithEquipmen = mapperViewStore.selectByApplyId(id);
-            for(Equipment equipment : applyWithEquipmen.getEquipments())
-            {
+            for (Equipment equipment : applyWithEquipmen.getEquipments()) {
                 //删除关联
                 EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
                 key.setApplicationFormId(id);

@@ -29,12 +29,13 @@ public interface Types {
 
 
     }
+
     /**
      * 设备状态枚举类
      */
     enum EquipState {
         //可用   待分配 已分配 待归还 待转移  待捐赠  已捐赠
-        NORMAL(101), TOUSE(102), USED(103), TOREURN(104), TOALLOT(105),  TODONATE(106), DONATED(107),
+        NORMAL(101), TOUSE(102), USED(103), TOREURN(104), TOALLOT(105), TODONATE(106), DONATED(107),
         //待维修  维修中  已损坏  待报减   已销账
         TOREPAIR(108), REPAIRING(109), BROKEN(110), TODEFICIT(111), DEFICITED(112);
 
@@ -88,26 +89,26 @@ public interface Types {
             return title;
         }
 
-        public static ApplyType getApplyTypeFromStr(String name){
-            if( ApplyType.BORROW.getName().equals(name))
+        public static ApplyType getApplyTypeFromStr(String name) {
+            if (ApplyType.BORROW.getName().equals(name))
                 return ApplyType.BORROW;
 
-            if( ApplyType.ALLOT.getName().equals(name))
+            if (ApplyType.ALLOT.getName().equals(name))
                 return ApplyType.ALLOT;
 
-            if( ApplyType.DONATE.getName().equals(name))
+            if (ApplyType.DONATE.getName().equals(name))
                 return ApplyType.DONATE;
 
-            if( ApplyType.REPAIR.getName().equals(name))
+            if (ApplyType.REPAIR.getName().equals(name))
                 return ApplyType.REPAIR;
 
-            if( ApplyType.DEFICIT.getName().equals(name))
+            if (ApplyType.DEFICIT.getName().equals(name))
                 return ApplyType.DEFICIT;
 
-            if( ApplyType.RETURN.getName().equals(name))
+            if (ApplyType.RETURN.getName().equals(name))
                 return ApplyType.RETURN;
 
-            if( ApplyType.INFO.getName().equals(name))
+            if (ApplyType.INFO.getName().equals(name))
                 return ApplyType.INFO;
 
             return null;

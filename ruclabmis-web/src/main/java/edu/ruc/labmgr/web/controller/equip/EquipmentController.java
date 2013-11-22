@@ -41,12 +41,12 @@ public class EquipmentController {
     private ExecutorService singleTreadPool;
 
     //备选设备列表
-    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList",  method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView pageDeviceList(@RequestParam(value="searchSN", required = false)String sn,
-                                       @RequestParam(value="searchName", required = false)String name,
-                                       @RequestParam(value="searchDirect", required = false, defaultValue = "0")int useDirect,
-                                       @RequestParam(value="page", required = false, defaultValue = "1")int page,
-                                       @PathVariable("applyType")String applyType ) {
+    @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deviceList", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView pageDeviceList(@RequestParam(value = "searchSN", required = false) String sn,
+                                       @RequestParam(value = "searchName", required = false) String name,
+                                       @RequestParam(value = "searchDirect", required = false, defaultValue = "0") int useDirect,
+                                       @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+                                       @PathVariable("applyType") String applyType) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/common/devicelist");
 
@@ -63,16 +63,16 @@ public class EquipmentController {
     }
 
     //设备信息统计
-    @RequestMapping(value = "/equipment/jsp/dev/inquery/querydevice",  method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/equipment/jsp/dev/inquery/querydevice", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView queryDevice(Equipment equipment,
-                                    @RequestParam(value="page", required = false, defaultValue = "1")int page ) {
+                                    @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/equipment/jsp/dev/inquery/querydevice");
 
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
-        List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
+        List<Typecode> typecodes = serviceTypecode.selectAllTypecode();
 
         PageInfo<Equipment> pageInfo = serviceEquipment.queryPageEquipments(equipment, page);
         result.addObject("searchEquipment", equipment);
@@ -86,9 +86,9 @@ public class EquipmentController {
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/returnEquipments", method = RequestMethod.POST)
     public String returnEquipments(@RequestParam("items") List<Integer> items,
-                                   @PathVariable("applyType")String applyType) {
+                                   @PathVariable("applyType") String applyType) {
         serviceEquipment.returnEquipments(items);
-        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
+        return "redirect:/equipment/jsp/dev/" + applyType + "/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/toAdd", method = RequestMethod.GET)
@@ -96,7 +96,7 @@ public class EquipmentController {
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
-        List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
+        List<Typecode> typecodes = serviceTypecode.selectAllTypecode();
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/info/adddevice");
         mav.addObject("useDirections", useDirections);
@@ -107,19 +107,19 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/insert", method = RequestMethod.POST)
-    public String insert(Equipment equipment, @PathVariable("applyType")String applyType) {
+    public String insert(Equipment equipment, @PathVariable("applyType") String applyType) {
         serviceEquipment.insertEquipment(equipment);
-        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
+        return "redirect:/equipment/jsp/dev/" + applyType + "/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/toUpdate", method = RequestMethod.GET)
-    public ModelAndView toUpdate(@RequestParam("id") int id, @PathVariable("applyType")String applyType) {
+    public ModelAndView toUpdate(@RequestParam("id") int id, @PathVariable("applyType") String applyType) {
         Equipment equipment = serviceEquipment.selectByPrimaryKey(id);
 
         List<Classif> fundingSubjects = serviceClassif.getItemsByParentID(Types.ClassifType.FUNDING_SUBJECT.getValue());
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
-        List<Typecode> typecodes =  serviceTypecode.selectAllTypecode();
+        List<Typecode> typecodes = serviceTypecode.selectAllTypecode();
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/info/editdevice");
         mav.addObject("equipment", equipment);
@@ -131,43 +131,43 @@ public class EquipmentController {
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/update", method = RequestMethod.POST)
-    public String update(Equipment equipment, @PathVariable("applyType")String applyType) throws Exception {
+    public String update(Equipment equipment, @PathVariable("applyType") String applyType) throws Exception {
         serviceEquipment.updateEquipment(equipment);
-        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
+        return "redirect:/equipment/jsp/dev/" + applyType + "/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/deleteEquipments", method = RequestMethod.POST)
-    public String delete( @RequestParam("items") List<Integer> items, @PathVariable("applyType")String applyType) {
+    public String delete(@RequestParam("items") List<Integer> items, @PathVariable("applyType") String applyType) {
         serviceEquipment.deleteEquipments(items);
-        return "redirect:/equipment/jsp/dev/"+applyType+"/deviceList";
+        return "redirect:/equipment/jsp/dev/" + applyType + "/deviceList";
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/info/importEquipments", method = RequestMethod.GET)
     public ModelAndView importEquipments(RedirectAttributes redirectAttributes) {
         ModelAndView mv = new ModelAndView("equipment/jsp/dev/info/importEquipments");
-        Map<String,?> flashMap = redirectAttributes.getFlashAttributes();
-        if (flashMap!=null&&flashMap.get("error")!=null){
-            mv.addObject("error",flashMap.get("error"));
+        Map<String, ?> flashMap = redirectAttributes.getFlashAttributes();
+        if (flashMap != null && flashMap.get("error") != null) {
+            mv.addObject("error", flashMap.get("error"));
         }
         return mv;
     }
 
     @RequestMapping(value = "/equipment/jsp/dev/info/importEquipments", method = RequestMethod.POST)
-    public String importEquipments(boolean clean, MultipartFile file,RedirectAttributes redirectAttributes)
+    public String importEquipments(boolean clean, MultipartFile file, RedirectAttributes redirectAttributes)
             throws IOException, ExecutionException, InterruptedException {
-        if (!file.isEmpty()){
+        if (!file.isEmpty()) {
             String name = file.getOriginalFilename();
-            File local = new File(System.getProperty("java.io.tmpdir")+name);
+            File local = new File(System.getProperty("java.io.tmpdir") + name);
             file.transferTo(local);
-            edu.ruc.labmgr.excel.EquipmentsImportTask task = new edu.ruc.labmgr.excel.EquipmentsImportTask(local,clean);
+            edu.ruc.labmgr.excel.EquipmentsImportTask task = new edu.ruc.labmgr.excel.EquipmentsImportTask(local, clean);
             Future<Boolean> result = singleTreadPool.submit(task);
             boolean success = result.get();
             local.delete();
-            if (success){
+            if (success) {
                 return "redirect:/equipment/jsp/dev/info/deviceList";
             }
         }
-        redirectAttributes.addFlashAttribute("error","数据文件上传错误或数据导入出错!");
+        redirectAttributes.addFlashAttribute("error", "数据文件上传错误或数据导入出错!");
         return "redirect:/equipment/jsp/dev/info/importEquipments";
     }
 }

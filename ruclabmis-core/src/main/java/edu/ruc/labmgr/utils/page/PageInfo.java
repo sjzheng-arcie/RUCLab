@@ -25,19 +25,20 @@ public class PageInfo<T> implements Serializable {
     public PageInfo() {
     }
 
-    public PageInfo(int totalCount, int pageSize,int currentPage) {
+    public PageInfo(int totalCount, int pageSize, int currentPage) {
         this.totalResult = totalCount;
-        this.pageSize = (pageSize <=0) ? Integer.valueOf(SysUtil.getConfigValue("showCount", "10")) : pageSize ;
+        this.pageSize = (pageSize <= 0) ? Integer.valueOf(SysUtil.getConfigValue("showCount", "10")) : pageSize;
         this.currentPage = currentPage;
     }
 
     public int getTotalPage() {
-        if(this.pageSize <=0){
-           this.pageSize = Integer.valueOf(SysUtil.getConfigValue("showCount", "10"));
+        if (this.pageSize <= 0) {
+            this.pageSize = Integer.valueOf(SysUtil.getConfigValue("showCount", "10"));
         }
         this.totalPage = (totalResult % pageSize == 0) ? (totalResult / pageSize) : (1 + totalResult / pageSize);
         return this.totalPage;
     }
+
     //应该将该方法废掉
     @Deprecated
     public void setTotalPage(int totalPage) {

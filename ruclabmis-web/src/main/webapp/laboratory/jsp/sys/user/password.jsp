@@ -9,7 +9,7 @@
     <script src="../../../../../js/valid.js" type=text/javascript></script>
     <script>
         function commit() {
-            if(!validator(document.mainForm)){
+            if (!validator(document.mainForm)) {
                 return;
             }
 
@@ -19,7 +19,7 @@
 
         function checkErrMag() {
             var errMsg = "${errMsg}";
-            if(errMsg.length <= 0 || errMsg.length == ""){
+            if (errMsg.length <= 0 || errMsg.length == "") {
                 return;
             }
             alert(errMsg);
@@ -97,7 +97,8 @@
                                             <tr>
                                                 <td nowrap align="right">原密码:</td>
                                                 <td nowrap>
-                                                    <input name="oriPassword" id="oriPassword" class="text" type="password"/>
+                                                    <input name="oriPassword" id="oriPassword" class="text"
+                                                           type="password"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 
@@ -106,7 +107,8 @@
                                             <tr>
                                                 <td nowrap align="right">新密码:</td>
                                                 <td nowrap>
-                                                    <input type="password" name="newPassword" id="newPassword" class="text"
+                                                    <input type="password" name="newPassword" id="newPassword"
+                                                           class="text"
                                                            valid="required|isPassword"
                                                            errmsg="密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -116,7 +118,8 @@
                                             <tr>
                                                 <td nowrap align="right">确认新密码:</td>
                                                 <td nowrap>
-                                                    <input type="password"  name="checkPassword" id="checkPassword" class="text"
+                                                    <input type="password" name="checkPassword" id="checkPassword"
+                                                           class="text"
                                                            valid="required|equal"
                                                            equalName="newPassword" errmsg="确认密码不能为空!|两次密码不同!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -145,10 +148,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

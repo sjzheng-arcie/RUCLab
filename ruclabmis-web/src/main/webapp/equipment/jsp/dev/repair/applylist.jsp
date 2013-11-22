@@ -93,18 +93,24 @@
 	            	            	<span class="STYLE1" style="white-space:nowrap">
                                        <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
-                                               <a href="javascript:void(0);" onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
-                                                   <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                               <a href="javascript:void(0);"
+                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                                   <img src="../../../../images/add_min.gif" width="10" height="10"
+                                                        border="0"/>
                                                    <span class="STYLE1">批准申请</span></a>&nbsp;
-                                               <a href="javascript:void(0);" onclick="toReject('listForm', 'idcheckbox');return false;">
-                                                   <img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                               <a href="javascript:void(0);"
+                                                  onclick="toReject('listForm', 'idcheckbox');return false;">
+                                                   <img src="../../../../images/edit_min.gif" width="10" height="10"
+                                                        border="0"/>
                                                    <span class="STYLE1">驳回申请</span></a>&nbsp;
                                            </shiro:hasAnyRoles>
                                        </c:if>
                                         <c:if test="${formType=='apply'}">
                                             <shiro:hasAnyRoles name="administrators,teacher,leader">
-                                                <a href="javascript:void(0);" onclick="toDelete('listForm', 'idcheckbox');return false;">
-                                                    <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                <a href="javascript:void(0);"
+                                                   onclick="toDelete('listForm', 'idcheckbox');return false;">
+                                                    <img src="../../../../images/del_min.gif" width="10" height="10"
+                                                         border="0"/>
                                                     <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
                                             </shiro:hasAnyRoles>
                                         </c:if>
@@ -175,7 +181,8 @@
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <c:if test="${formType!='process' && formType!='history'}">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
                                                 </c:if>
                                                 <td>${item.sn}</td>
@@ -187,22 +194,26 @@
                                                 <td>${item.operator.name}</td>
                                                 <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                 <td>${item.state.value}</td>
-                                                <td><a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
-                                                    <img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
-                                                </a></td>
+                                                <td>
+                                                    <a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
 
                                                 <c:if test="${formType=='process'}">
                                                     <td>
                                                         <c:if test="${item.state.id==31}">
                                                             <a href="process?application_id=${item.id}">
-                                                                <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                <img src="../../../../images/add_min.gif" width="10"
+                                                                     height="10" border="0"/>
                                                             </a>
                                                         </c:if>
                                                     </td>
                                                     <td>
                                                         <c:if test="${item.state.id==31}">
                                                             <a href="scrap?application_id=${item.id}">
-                                                                <img src="../../../../images/X.gif" width="10" height="10" border="0"/>
+                                                                <img src="../../../../images/X.gif" width="10"
+                                                                     height="10" border="0"/>
                                                             </a>
                                                         </c:if>
                                                     </td>
@@ -215,7 +226,7 @@
                             </td>
                         </tr>
 
-                        <%@ include file="../../common/pagetable.jsp"%>
+                        <%@ include file="../../common/pagetable.jsp" %>
 
                     </table>
                 </td>
@@ -226,9 +237,9 @@
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                          width="17" height="17"/></td>
+                                                                             width="17" height="17"/></td>
     <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                         width="100%" height="17"/></td>
+                                                                            width="100%" height="17"/></td>
     <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
             src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>

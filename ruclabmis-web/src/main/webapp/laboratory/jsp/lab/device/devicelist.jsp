@@ -86,9 +86,11 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-      					<a href="update.html" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
+      					<a href="update.html" onclick="toUpdate();"><img src="../../../../images/edit_min.gif"
+                                                                         width="10"
                                                                          height="10" border="0"/> <span class="STYLE1">修改设备归属位置</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10" height="10"
+      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
+                                                               height="10"
                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                         <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                              border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
@@ -162,7 +164,8 @@
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               value="${item.id}"
+                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.id}</td>
                                                         <td>${item.sn}</td>
@@ -175,7 +178,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
@@ -184,10 +187,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

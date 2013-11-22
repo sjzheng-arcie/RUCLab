@@ -2,7 +2,6 @@ package edu.ruc.labmgr.service.ApplyStrategic;
 
 import edu.ruc.labmgr.domain.ApplyWithEquipment;
 import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.EquipmentApplicationFormKey;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.Types;
@@ -14,7 +13,7 @@ import java.util.List;
 //捐赠申请
 @SuppressWarnings("ALL")
 @Component
-public class DonateApply  extends BaseApply{
+public class DonateApply extends BaseApply {
     @Autowired
     private ApplyWithEquipmentMapper mapperViewStore;
     @Autowired
@@ -23,7 +22,7 @@ public class DonateApply  extends BaseApply{
     @Override
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
-        for(Integer id : equipIds){
+        for (Integer id : equipIds) {
             //更新设备状态
             Equipment equipment = new Equipment();
             equipment.setId(id);
@@ -39,8 +38,7 @@ public class DonateApply  extends BaseApply{
         super.processApply(applicationId);
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
-        for(Equipment equipment : applyWithEquipment.getEquipments())
-        {
+        for (Equipment equipment : applyWithEquipment.getEquipments()) {
             equipment.setStateId(Types.EquipState.DONATED.getValue());
             mapperEquipment.updateByPrimaryKeySelective(equipment);
         }

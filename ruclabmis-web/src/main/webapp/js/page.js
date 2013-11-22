@@ -1,7 +1,7 @@
-function checkAll(box,formName,checkBoxName) {  //全选或全不选
+function checkAll(box, formName, checkBoxName) {  //全选或全不选
     document.forms[formName].checkbox.checked = box.checked;
     var temp = document.forms[formName].elements[checkBoxName];
-    if(temp==null)
+    if (temp == null)
         return;
     var numRow = temp.length;
     if (numRow == null) {
@@ -20,9 +20,9 @@ function checkAll(box,formName,checkBoxName) {  //全选或全不选
     }
 }
 
-function checkOne(formName,checkBoxName) {  //选一个时全选或全不选
+function checkOne(formName, checkBoxName) {  //选一个时全选或全不选
     var form_temp = document.forms[formName];
-    if(form_temp==null)
+    if (form_temp == null)
         return;
     var temp = document.forms[formName].elements[checkBoxName];
     if (temp == null)
@@ -46,11 +46,10 @@ function checkOne(formName,checkBoxName) {  //选一个时全选或全不选
     }
 }
 
-function getAllSelected(formName,checkBoxName)
-{
+function getAllSelected(formName, checkBoxName) {
     var selectedItems = new Array();
     var form_temp = document.forms[formName];
-    if(form_temp==null)
+    if (form_temp == null)
         return -1;
 
     var temp = document.forms[formName].elements[checkBoxName];
@@ -67,16 +66,15 @@ function getAllSelected(formName,checkBoxName)
         }
     } else {
         if (temp.checked) {
-            selectedItems.push( temp.value);
+            selectedItems.push(temp.value);
         }
     }
 
     return selectedItems;
 }
-function getSelectIndex(formName,checkBoxName)
-{
+function getSelectIndex(formName, checkBoxName) {
     var form_temp = document.forms[formName];
-    if(form_temp==null)
+    if (form_temp == null)
         return -1;
     var selectedItem;
     var temp = document.forms[formName].elements[checkBoxName];
@@ -109,26 +107,26 @@ function getSelectIndex(formName,checkBoxName)
     return selectedItem;
 }
 
-function toUpdate(formName,checkBoxName) {
-    selectedItem = getSelectIndex(formName,checkBoxName);
-    if( selectedItem <= 0)
+function toUpdate(formName, checkBoxName) {
+    selectedItem = getSelectIndex(formName, checkBoxName);
+    if (selectedItem <= 0)
         return;
 
     document.forms[formName].action = "toUpdate?id=" + selectedItem;
     document.forms[formName].submit();
 }
 
-function toUpdatePassword(formName,checkBoxName) {
-    selectedItem = getSelectIndex(formName,checkBoxName);
-    if( selectedItem <= 0)
+function toUpdatePassword(formName, checkBoxName) {
+    selectedItem = getSelectIndex(formName, checkBoxName);
+    if (selectedItem <= 0)
         return;
 
     document.forms[formName].action = "toUpdatePassword?id=" + selectedItem;
     document.forms[formName].submit();
 }
 
-function toDelete(formName,checkBoxName) {
-    var selectedItems = getAllSelected(formName,checkBoxName);
+function toDelete(formName, checkBoxName) {
+    var selectedItems = getAllSelected(formName, checkBoxName);
 
     if (confirm("是否删除所选记录？")) {
         document.forms[formName].action = "delete?items=" + selectedItems;
@@ -136,36 +134,33 @@ function toDelete(formName,checkBoxName) {
     }
 }
 
-function toApprove(formName,checkBoxName)
-{
-    var selectedItems = getAllSelected(formName,checkBoxName);
+function toApprove(formName, checkBoxName) {
+    var selectedItems = getAllSelected(formName, checkBoxName);
 
     document.forms[formName].action = "approve?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
-function toReject(formName,checkBoxName)
-{
-    var selectedItems = getAllSelected(formName,checkBoxName);
+function toReject(formName, checkBoxName) {
+    var selectedItems = getAllSelected(formName, checkBoxName);
 
     document.forms[formName].action = "reject?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
-function toDispose(formName,checkBoxName)
-{
-    var selectedItems = getAllSelected(formName,checkBoxName);
+function toDispose(formName, checkBoxName) {
+    var selectedItems = getAllSelected(formName, checkBoxName);
 
     document.forms[formName].action = "process?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
-function toFind(formName){
+function toFind(formName) {
     var curUrl = window.location.href;
     var flag = curUrl.indexOf('?'),
         pageFlag = curUrl.indexOf("page=");
-    curUrl = (flag==-1) ? (curUrl+"?page=1") :
-        ((pageFlag==-1) ? (curUrl+"&page=1"):(curUrl.replace(/page=\d+/,'page=1')));
+    curUrl = (flag == -1) ? (curUrl + "?page=1") :
+        ((pageFlag == -1) ? (curUrl + "&page=1") : (curUrl.replace(/page=\d+/, 'page=1')));
 
     document.forms[formName].action = curUrl;
     document.forms[formName].submit();
@@ -183,8 +178,8 @@ function goPage(pageIndex, maxPage) {
     var curUrl = window.location.href;
     var flag = curUrl.indexOf('?'),
         pageFlag = curUrl.indexOf("page=");
-    curUrl = (flag==-1) ? (curUrl+"?page="+pageIndex) :
-        ((pageFlag==-1) ? (curUrl+"&page="+pageIndex):(curUrl.replace(/page=\d+/,'page='+pageIndex)));
+    curUrl = (flag == -1) ? (curUrl + "?page=" + pageIndex) :
+        ((pageFlag == -1) ? (curUrl + "&page=" + pageIndex) : (curUrl.replace(/page=\d+/, 'page=' + pageIndex)));
 
     document.forms[0].action = curUrl;
     document.forms[0].submit();

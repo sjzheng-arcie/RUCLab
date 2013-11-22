@@ -2,7 +2,10 @@ package edu.ruc.labmgr.service;
 
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
-import edu.ruc.labmgr.mapper.*;
+import edu.ruc.labmgr.mapper.ApplicationFormMapper;
+import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
+import edu.ruc.labmgr.mapper.EquipmentApplicationFormMapper;
+import edu.ruc.labmgr.mapper.EquipmentMapper;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -27,7 +30,7 @@ public class ApplyWithEquipmentService {
     private TeacherService teacherService;
 
     //按类型取得所有已关闭的表单
-    public PageInfo<ApplicationForm> selectPageHistoryApply(String sn,int stateId, int pageNum, Types.ApplyType type){
+    public PageInfo<ApplicationForm> selectPageHistoryApply(String sn, int stateId, int pageNum, Types.ApplyType type) {
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
 
@@ -36,16 +39,16 @@ public class ApplyWithEquipmentService {
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
-        if(type != null)
+        if (type != null)
             ec.andTypeEqualTo(type.getValue());
         ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
 
-        return getPageUserByCriteria(pageNum,criteria);
+        return getPageUserByCriteria(pageNum, criteria);
     }
 
     //按申请人和类型取得所有已关闭的表单
-    public PageInfo<ApplicationForm> selectPageUserHistoryApply(String sn,int stateId, int pageNum,
-                                                                     Types.ApplyType type, int userId){
+    public PageInfo<ApplicationForm> selectPageUserHistoryApply(String sn, int stateId, int pageNum,
+                                                                Types.ApplyType type, int userId) {
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
 
@@ -54,18 +57,18 @@ public class ApplyWithEquipmentService {
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
-        if(userId > 0)
+        if (userId > 0)
             ec.andApplicantIdEqualTo(userId);
-        if(type != null)
+        if (type != null)
             ec.andTypeEqualTo(type.getValue());
         ec.andStateIdEqualTo(Types.ApplyState.CLOSE.getValue());
 
-        return getPageUserByCriteria(pageNum,criteria);
+        return getPageUserByCriteria(pageNum, criteria);
     }
 
     //得到所有未关闭的订单
-    public PageInfo<ApplicationForm> selectPageApplyNotClosed(String sn,int stateId, int pageNum,
-                                                                  Types.ApplyType type){
+    public PageInfo<ApplicationForm> selectPageApplyNotClosed(String sn, int stateId, int pageNum,
+                                                              Types.ApplyType type) {
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
 
@@ -74,16 +77,16 @@ public class ApplyWithEquipmentService {
             ec.andSnLike("%" + sn + "%");
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
-        if(type != null)
+        if (type != null)
             ec.andTypeEqualTo(type.getValue());
         ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
-        return getPageUserByCriteria(pageNum,criteria);
+        return getPageUserByCriteria(pageNum, criteria);
     }
 
     //按申请人得到未关闭的表单
-    public PageInfo<ApplicationForm> selectPageUserApplyNotClosed(String sn,int stateId, int pageNum,
-                                                               Types.ApplyType type, int userId){
+    public PageInfo<ApplicationForm> selectPageUserApplyNotClosed(String sn, int stateId, int pageNum,
+                                                                  Types.ApplyType type, int userId) {
         ApplicationFormCriteria criteria = new ApplicationFormCriteria();
         criteria.setOrderByClause("apply_time desc");
 
@@ -93,22 +96,22 @@ public class ApplyWithEquipmentService {
         if (stateId > 0)
             ec.andStateIdEqualTo(stateId);
 
-        if(type != null)
+        if (type != null)
             ec.andTypeEqualTo(type.getValue());
 
-        if(userId > 0)
+        if (userId > 0)
             ec.andApplicantIdEqualTo(userId);
 
         ec.andStateIdNotEqualTo(Types.ApplyState.CLOSE.getValue());
 
-        return getPageUserByCriteria(pageNum,criteria);
+        return getPageUserByCriteria(pageNum, criteria);
     }
 
-    private PageInfo<ApplicationForm> getPageUserByCriteria(int pageNum,ApplicationFormCriteria criteria){
+    private PageInfo<ApplicationForm> getPageUserByCriteria(int pageNum, ApplicationFormCriteria criteria) {
         int totalCount = mapperApply.countByCriteria(criteria);
-        PageInfo<ApplicationForm> page = new PageInfo<>(totalCount,-1,pageNum);
+        PageInfo<ApplicationForm> page = new PageInfo<>(totalCount, -1, pageNum);
         List<ApplicationForm> data = mapperApply.selectByCriteriaWithRowbounds(criteria,
-                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+                new RowBounds(page.getCurrentResult(), page.getPageSize()));
         page.setData(data);
         return page;
     }
@@ -133,10 +136,9 @@ public class ApplyWithEquipmentService {
     }
 
     public void deleteApplys(List<Integer> appIds) {
-        for(Integer id : appIds){
+        for (Integer id : appIds) {
             ApplyWithEquipment applyWithEquipmen = mapperViewStore.selectByApplyId(id);
-            for(Equipment equipment : applyWithEquipmen.getEquipments())
-            {
+            for (Equipment equipment : applyWithEquipmen.getEquipments()) {
                 //删除关联
                 EquipmentApplicationFormKey key = new EquipmentApplicationFormKey();
                 key.setApplicationFormId(id);
@@ -165,7 +167,8 @@ public class ApplyWithEquipmentService {
 
         return retVal;
     }
-    public void insertEquipmentWithApply( int applicationId, Equipment equipment) {
+
+    public void insertEquipmentWithApply(int applicationId, Equipment equipment) {
         mapperEquipment.insert(equipment);
 
         EquipmentApplicationFormKey record = new EquipmentApplicationFormKey();
@@ -175,7 +178,7 @@ public class ApplyWithEquipmentService {
     }
 
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
-        for(Integer id : equipIds){
+        for (Integer id : equipIds) {
             //关联设备与申请单
             EquipmentApplicationFormKey record = new EquipmentApplicationFormKey();
             record.setEquipmentId(id);
@@ -221,7 +224,7 @@ public class ApplyWithEquipmentService {
 
     //批准表单
     public void approveApplys(List<Integer> appIds) {
-        for(Integer id : appIds){
+        for (Integer id : appIds) {
             //更新表单状态
             ApplicationForm form = new ApplicationForm();
             form.setId(id);
@@ -235,7 +238,7 @@ public class ApplyWithEquipmentService {
 
     //驳回表单
     public void rejectApplys(List<Integer> appIds) {
-        for(Integer id : appIds){
+        for (Integer id : appIds) {
             //更新表单状态
             ApplicationForm form = new ApplicationForm();
             form.setId(id);

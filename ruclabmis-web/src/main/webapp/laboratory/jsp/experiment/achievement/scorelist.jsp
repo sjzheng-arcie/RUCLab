@@ -28,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验成绩管理 >学期成绩评定 </div>
+                            <div class="titlebt">实验成绩管理 >学期成绩评定</div>
                         </td>
                     </tr>
                 </table>
@@ -44,15 +44,16 @@
                     <tr>
                         <td valign="top" class="STYLE10">
                             <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="studentNo"
-                                                                                     id="studentNo" value=""
-                                                                                     style="width:100px;"/></span>
+                                                                                   id="studentNo" value=""
+                                                                                   style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;姓名:<input type="text" name="studentName"
-                                                                                     id="studentName" value=""
-                                                                                     style="width:100px;"/></span>
+                                                                                   id="studentName" value=""
+                                                                                   style="width:100px;"/></span>
 
                               <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
+                                    查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -116,8 +117,6 @@
                                                     </td>
 
 
-
-
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
@@ -126,7 +125,8 @@
                                                     <td>0101</td>
                                                     <td>李小白</td>
                                                     <td>${item.score}</td>
-                                                    <td><a class="button" href="toscore?studentId=${item.studentId}">评分</a></td>
+                                                    <td><a class="button"
+                                                           href="toscore?studentId=${item.studentId}">评分</a></td>
 
 
                                                 </tr>
@@ -134,12 +134,14 @@
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               value="${item.id}"
+                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.score}</td>
-                                                        <td><a class="button" href="toscore?studentId=${item.studentId}">评分</a></td>
+                                                        <td><a class="button"
+                                                               href="toscore?studentId=${item.studentId}">评分</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -147,7 +149,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
@@ -156,10 +158,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

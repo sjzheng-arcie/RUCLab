@@ -2,48 +2,48 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper">
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplyWithEquipment">
-        <result column="application_id" jdbcType="INTEGER" property="applicationId" />
-        <result column="application_sn" jdbcType="VARCHAR" property="applicationSn" />
-        <result column="application_type_id" jdbcType="INTEGER" property="applicationTypeId" />
-        <result column="application_type" jdbcType="VARCHAR" property="applicationType" />
-        <result column="applicant_id" jdbcType="INTEGER" property="applicantId" />
-        <result column="applicant_name" jdbcType="VARCHAR" property="applicantName" />
-        <result column="annex" property="annex" jdbcType="VARCHAR" />
-        <result column="comments" property="comments" jdbcType="VARCHAR" />
-        <result column="operator_id" jdbcType="INTEGER" property="operatorId" />
-        <result column="operator_name" jdbcType="VARCHAR" property="operatorName" />
-        <result column="approver_id" jdbcType="INTEGER" property="approverId" />
-        <result column="approver_name" jdbcType="VARCHAR" property="approverName" />
-        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
-        <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
-        <result column="approve_time" property="approveTime" jdbcType="TIMESTAMP" />
-        <result column="application_state_id" jdbcType="INTEGER" property="applicationStateId" />
-        <result column="application_state" jdbcType="VARCHAR" property="applicationState" />
+        <result column="application_id" jdbcType="INTEGER" property="applicationId"/>
+        <result column="application_sn" jdbcType="VARCHAR" property="applicationSn"/>
+        <result column="application_type_id" jdbcType="INTEGER" property="applicationTypeId"/>
+        <result column="application_type" jdbcType="VARCHAR" property="applicationType"/>
+        <result column="applicant_id" jdbcType="INTEGER" property="applicantId"/>
+        <result column="applicant_name" jdbcType="VARCHAR" property="applicantName"/>
+        <result column="annex" property="annex" jdbcType="VARCHAR"/>
+        <result column="comments" property="comments" jdbcType="VARCHAR"/>
+        <result column="operator_id" jdbcType="INTEGER" property="operatorId"/>
+        <result column="operator_name" jdbcType="VARCHAR" property="operatorName"/>
+        <result column="approver_id" jdbcType="INTEGER" property="approverId"/>
+        <result column="approver_name" jdbcType="VARCHAR" property="approverName"/>
+        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP"/>
+        <result column="process_time" property="processTime" jdbcType="TIMESTAMP"/>
+        <result column="approve_time" property="approveTime" jdbcType="TIMESTAMP"/>
+        <result column="application_state_id" jdbcType="INTEGER" property="applicationStateId"/>
+        <result column="application_state" jdbcType="VARCHAR" property="applicationState"/>
         <collection ofType="edu.ruc.labmgr.domain.Equipment" property="equipments">
-            <id column="equipment_id" jdbcType="INTEGER" property="id" />
-            <result column="equipment_sn" jdbcType="VARCHAR" property="sn" />
-            <result column="equipment_name" jdbcType="VARCHAR" property="name" />
-            <result column="holder" jdbcType="INTEGER" property="holder" />
-            <result column="holder_name" jdbcType="VARCHAR" property="holderName" />
-            <result column="user" jdbcType="VARCHAR" property="user" />
-            <result column="category_id" jdbcType="INTEGER" property="categoryId" />
-            <result column="category_sn" jdbcType="VARCHAR" property="categorySn" />
-            <result column="category_name" jdbcType="VARCHAR" property="categoryName" />
-            <result column="model_number" jdbcType="VARCHAR" property="modelNumber" />
-            <result column="specifications" jdbcType="VARCHAR" property="specifications" />
-            <result column="unit_price" jdbcType="REAL" property="unitPrice" />
-            <result column="vender" jdbcType="VARCHAR" property="vender" />
-            <result column="factory_number" jdbcType="VARCHAR" property="factoryNumber" />
-            <result column="manufacture_date" jdbcType="DATE" property="manufactureDate" />
-            <result column="acquisition_date" jdbcType="DATE" property="acquisitionDate" />
-            <result column="scrap_date" jdbcType="DATE" property="scrapDate" />
-            <result column="country" jdbcType="VARCHAR" property="country" />
-            <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId" />
-            <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject" />
-            <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId" />
-            <result column="use_direction" jdbcType="VARCHAR" property="useDirection" />
-            <result column="equipment_state_id" jdbcType="INTEGER" property="stateId" />
-            <result column="equipment_state" jdbcType="VARCHAR" property="state" />
+            <id column="equipment_id" jdbcType="INTEGER" property="id"/>
+            <result column="equipment_sn" jdbcType="VARCHAR" property="sn"/>
+            <result column="equipment_name" jdbcType="VARCHAR" property="name"/>
+            <result column="holder" jdbcType="INTEGER" property="holder"/>
+            <result column="holder_name" jdbcType="VARCHAR" property="holderName"/>
+            <result column="user" jdbcType="VARCHAR" property="user"/>
+            <result column="category_id" jdbcType="INTEGER" property="categoryId"/>
+            <result column="category_sn" jdbcType="VARCHAR" property="categorySn"/>
+            <result column="category_name" jdbcType="VARCHAR" property="categoryName"/>
+            <result column="model_number" jdbcType="VARCHAR" property="modelNumber"/>
+            <result column="specifications" jdbcType="VARCHAR" property="specifications"/>
+            <result column="unit_price" jdbcType="REAL" property="unitPrice"/>
+            <result column="vender" jdbcType="VARCHAR" property="vender"/>
+            <result column="factory_number" jdbcType="VARCHAR" property="factoryNumber"/>
+            <result column="manufacture_date" jdbcType="DATE" property="manufactureDate"/>
+            <result column="acquisition_date" jdbcType="DATE" property="acquisitionDate"/>
+            <result column="scrap_date" jdbcType="DATE" property="scrapDate"/>
+            <result column="country" jdbcType="VARCHAR" property="country"/>
+            <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId"/>
+            <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject"/>
+            <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId"/>
+            <result column="use_direction" jdbcType="VARCHAR" property="useDirection"/>
+            <result column="equipment_state_id" jdbcType="INTEGER" property="stateId"/>
+            <result column="equipment_state" jdbcType="VARCHAR" property="state"/>
         </collection>
     </resultMap>
 
@@ -65,7 +65,8 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="("
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -86,29 +87,31 @@
     funding_subject, use_direction_id, use_direction, equipment_state_id, equipment_state
   </sql>
 
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ApplyWithEquipmentCriteria" resultType="java.lang.Integer">
-        select count(distinct application_id)  id from view_apply_equipment
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ApplyWithEquipmentCriteria"
+            resultType="java.lang.Integer">
+        select count(distinct application_id) id from view_apply_equipment
         <if test="_parameter != null">
-            <include refid="Criteria_Where_Clause" />
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </select>
 
-    <select id="selectByApplyId"  resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByApplyId" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from view_apply_equipment
         where application_id = #{id,jdbcType=INTEGER}
     </select>
 
-    <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.ApplyWithEquipmentCriteria" resultMap="BaseResultMap">
+    <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.ApplyWithEquipmentCriteria"
+            resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from view_apply_equipment
         <if test="_parameter != null">
-            <include refid="Criteria_Where_Clause" />
+            <include refid="Criteria_Where_Clause"/>
         </if>
         <if test="orderByClause != null">
             order by ${orderByClause}

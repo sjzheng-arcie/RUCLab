@@ -17,7 +17,7 @@ div.gridbox_dhx_web table.obj tr td {
 div.gridbox_dhx_web table.hdr td div.hdrcell {
     width: auto;
     padding-left: 10px;
-    width: 100%  !ie;
+    width: 100%   !ie;
 }
 
 div.gridbox_dhx_web table.hdr td {

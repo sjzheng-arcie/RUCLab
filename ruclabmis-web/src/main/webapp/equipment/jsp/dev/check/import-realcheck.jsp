@@ -10,17 +10,16 @@
     <script>
         function importSubmit() {
             var file = document.getElementById("file").value;
-            if(file){
+            if (file) {
                 var fix = /[^\.]+$/.exec(file)[0];
-                if(!(fix=='xls'||fix=='xlsx')){
-                   alert("请选择Excel文件!");
-                }else{
+                if (!(fix == 'xls' || fix == 'xlsx')) {
+                    alert("请选择Excel文件!");
+                } else {
                     document.forms[0].submit();
                 }
-            }else{
+            } else {
                 alert("请选择要上传的文件!");
             }
-
 
 
         }
@@ -115,7 +114,8 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="提交" class="button" onclick="importSubmit()"/>
+                                        <input type="button" name="Submit" value="提交" class="button"
+                                               onclick="importSubmit()"/>
                                         <input type="reset" name="Submit3" value="重置" class="button"
                                                onclick="reset();"/>
                                         <input type="button" name="Submit2" value="返回" class="button"

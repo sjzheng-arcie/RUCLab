@@ -2,7 +2,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<jsp:useBean id="now" class="java.util.Date" />
+<jsp:useBean id="now" class="java.util.Date"/>
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -11,10 +11,10 @@
 <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
     function saveEquipment() {
-        if(!validator(document.mainForm)){
+        if (!validator(document.mainForm)) {
             return;
         }
-        document.mainForm.action = "addEquipmentsToApply?application_id="+${applicationId};
+        document.mainForm.action = "addEquipmentsToApply?application_id=" +${applicationId};
         document.mainForm.submit();
     }
 
@@ -30,7 +30,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备信息管理 > 设备资产报增 > 添加设备 </div>
+                    <div class="titlebt">设备信息管理 > 设备资产报增 > 添加设备</div>
                 </td>
             </tr>
         </table>
@@ -54,16 +54,19 @@
                                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                 <tr>
                                                     <td width="6%" height="19" valign="bottom">
-                                                        <div align="center"><img src="../../../../images/tb.gif" width="14"
+                                                        <div align="center"><img src="../../../../images/tb.gif"
+                                                                                 width="14"
                                                                                  height="14"/></div>
                                                     </td>
-                                                    <td width="94%" valign="bottom"><span class="STYLE1">固定资产报增单 > 添加设备</span>
+                                                    <td width="94%" valign="bottom"><span
+                                                            class="STYLE1">固定资产报增单 > 添加设备</span>
                                                     </td>
                                                 </tr>
                                             </table>
                                         </td>
                                         <td>
-                                            <div align="right"><span class="STYLE1">&nbsp;</span><span class="STYLE1"></span>
+                                            <div align="right"><span class="STYLE1">&nbsp;</span><span
+                                                    class="STYLE1"></span>
                                             </div>
                                         </td>
                                     </tr>
@@ -132,7 +135,7 @@
                                                    valid="required|isNumber"
                                                    errmsg="单价不能为空|单价只能为数字"/>
                                             <span style="color:red;">*</span>
-                                            </td>
+                                        </td>
                                     </tr>
                                     <tr style="height: 30px;">
                                         <td align="center">厂家</td>
@@ -168,7 +171,8 @@
                                         </td>
                                         <td align="center">报废日期</td>
                                         <td>
-                                            <c:set var="scrapDateVal" value="<%=new Date(now.getYear()+3,now.getMonth(),now.getDate())%>"></c:set>
+                                            <c:set var="scrapDateVal"
+                                                   value="<%=new Date(now.getYear()+3,now.getMonth(),now.getDate())%>"></c:set>
                                             <input name="scrapDate" id="scrapDate"
                                                    value="<fmt:formatDate value="${scrapDateVal}" pattern="yyyy-MM-dd"/>"
                                                    onblur="" class="Mdate" style="width:154px" maxlength="10"
@@ -206,7 +210,8 @@
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
                                         <td align="center">
-                                            <input type="button" name="save" value="保存并提交" class="button" onclick="saveEquipment();"/>
+                                            <input type="button" name="save" value="保存并提交" class="button"
+                                                   onclick="saveEquipment();"/>
                                             <input type="reset" name="reset" value="重置" class="button"/>
                                             <input type="button" name="return" value="返回" class="button"
                                                    onclick="window.history.go(-1);"/>
@@ -225,9 +230,9 @@
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                          width="17" height="17"/></td>
+                                                                             width="17" height="17"/></td>
     <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                         width="100%" height="17"></td>
+                                                                            width="100%" height="17"></td>
     <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
             src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>

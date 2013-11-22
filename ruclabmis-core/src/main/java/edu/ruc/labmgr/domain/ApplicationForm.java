@@ -33,7 +33,7 @@ public class ApplicationForm {
 
     private User approver;
 
-    private User  operator;
+    private User operator;
 
     private Classif formType;
 

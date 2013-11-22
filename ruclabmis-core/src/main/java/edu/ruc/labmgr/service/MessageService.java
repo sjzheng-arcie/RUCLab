@@ -31,7 +31,7 @@ public class MessageService {
     @Autowired
     private ApplyWithEquipmentService serviceApply;
 
-    public ObjectListPage<Message> selectListPage(int currentPage, MessageCriteria criteria){
+    public ObjectListPage<Message> selectListPage(int currentPage, MessageCriteria criteria) {
 
 
         ObjectListPage<Message> retList = null;
@@ -49,7 +49,7 @@ public class MessageService {
             pageInfo.setCurrentPage(currentPage);
 
             RowBounds bounds = new RowBounds(currentResult, limit);
-            List<Message> messageList= messageMapper.selectByCriteriaWithRowbounds(criteria, bounds);
+            List<Message> messageList = messageMapper.selectByCriteriaWithRowbounds(criteria, bounds);
 
             retList = new ObjectListPage(pageInfo, messageList);
         } catch (Exception e) {
@@ -59,12 +59,13 @@ public class MessageService {
         return retList;
     }
 
-    public  int getCount(MessageCriteria criteria){
+    public int getCount(MessageCriteria criteria) {
 
         int count = messageMapper.countByCriteria(criteria);
 
         return count;
     }
+
     public int insert(Message message) {
         int result = 0;
         try {
@@ -74,6 +75,7 @@ public class MessageService {
         }
         return result;
     }
+
     public int deleteById(int id) {
         int result = 0;
         try {
@@ -83,22 +85,25 @@ public class MessageService {
         }
         return result;
     }
-    public void updateByMessage(Message message){
+
+    public void updateByMessage(Message message) {
         try {
             messageMapper.updateByPrimaryKey(message);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
     }
-	public PageInfo<Message> selectListPage(MessageCriteria criteria, int pageNum){
-		int totalCount = messageMapper.countByCriteria(criteria);
-		PageInfo<Message> page = new PageInfo<>(totalCount,-1,pageNum);
-		List<Message> data = messageMapper.selectByCriteriaWithRowbounds(criteria,
-				new RowBounds(page.getCurrentResult(),page.getPageSize()));
-		page.setData(data);
-		return page;
-	}
+
+    public PageInfo<Message> selectListPage(MessageCriteria criteria, int pageNum) {
+        int totalCount = messageMapper.countByCriteria(criteria);
+        PageInfo<Message> page = new PageInfo<>(totalCount, -1, pageNum);
+        List<Message> data = messageMapper.selectByCriteriaWithRowbounds(criteria,
+                new RowBounds(page.getCurrentResult(), page.getPageSize()));
+        page.setData(data);
+        return page;
+    }
+
     public Message selectById(int id) {
         Message message = null;
         try {
@@ -108,30 +113,31 @@ public class MessageService {
         }
         return message;
     }
-    public List<Message> getMessageListByCriteia(MessageCriteria messageCriteria){
-        List<Message> messageList= null;
-        try{
-            RowBounds bounds = new RowBounds(0, 6);
-            messageList= messageMapper.selectByCriteriaWithRowbounds(messageCriteria,bounds);
-            for (int i=0;i<messageList.size();i++){
-                String content="空";
-                if(messageList.get(i).getContent().length()>30){
-                    content=messageList.get(i).getContent().substring(0,30)+"......";
 
-                }else{
-                    content=messageList.get(i).getContent();
+    public List<Message> getMessageListByCriteia(MessageCriteria messageCriteria) {
+        List<Message> messageList = null;
+        try {
+            RowBounds bounds = new RowBounds(0, 6);
+            messageList = messageMapper.selectByCriteriaWithRowbounds(messageCriteria, bounds);
+            for (int i = 0; i < messageList.size(); i++) {
+                String content = "空";
+                if (messageList.get(i).getContent().length() > 30) {
+                    content = messageList.get(i).getContent().substring(0, 30) + "......";
+
+                } else {
+                    content = messageList.get(i).getContent();
                 }
                 messageList.get(i).setContent(content);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
 
-        return  messageList;
+        return messageList;
     }
 
     //提交申请时，向设备管理员和领导发送消息
-    public void sendUpdateApplyMessage(ApplicationForm applicationForm,  Types.ApplyType type, String path){
+    public void sendUpdateApplyMessage(ApplicationForm applicationForm, Types.ApplyType type, String path) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Message message = new Message();
         message.setIfread(false);
@@ -140,39 +146,39 @@ public class MessageService {
 
         Teacher applicant = serviceTeacher.selectByPrimaryKey(applicationForm.getApplicantId());
 
-        if(type != Types.ApplyType.RETURN){
-        //归还设备不通知领导
+        if (type != Types.ApplyType.RETURN) {
+            //归还设备不通知领导
             List<Teacher> leaders = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
-            for(Teacher leader : leaders){
-                if(leader.getId() == applicant.getId())
+            for (Teacher leader : leaders) {
+                if (leader.getId() == applicant.getId())
                     continue;
                 message.setReceiverId(leader.getId());
                 String content = "";
-                content +=  applicant.getUser().getName()+" 于"+format.format(applicationForm.getApplyTime())+
-                        " 提出 "+ type.getTitle() +" 申请，表单号 " + Integer.toString(applicationForm.getId()) + " : ";
+                content += applicant.getUser().getName() + " 于" + format.format(applicationForm.getApplyTime()) +
+                        " 提出 " + type.getTitle() + " 申请，表单号 " + Integer.toString(applicationForm.getId()) + " : ";
 
                 String listPath = path.substring(0, path.lastIndexOf("/"));
                 listPath += "/applyList?formType=review";
 
-                content += " <a href='"+listPath+"'>查看申请</a>" ;
+                content += " <a href='" + listPath + "'>查看申请</a>";
                 message.setContent(content);
                 insert(message);
             }
         }
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
-        for(Teacher equpiAdmin : equpiAdmins){
-            if(equpiAdmin.getId() == applicant.getId())
+        for (Teacher equpiAdmin : equpiAdmins) {
+            if (equpiAdmin.getId() == applicant.getId())
                 continue;
             message.setReceiverId(equpiAdmin.getId());
             String content = "";
-            content +=  applicant.getUser().getName()+" 于"+format.format(applicationForm.getApplyTime())+" 提出 "+
-                    type.getTitle() +" 申请，表单号 " + Integer.toString(applicationForm.getId()) + " : ";
+            content += applicant.getUser().getName() + " 于" + format.format(applicationForm.getApplyTime()) + " 提出 " +
+                    type.getTitle() + " 申请，表单号 " + Integer.toString(applicationForm.getId()) + " : ";
 
             String listPath = path.substring(0, path.lastIndexOf("/"));
             listPath += "/applyList?formType=process";
 
-            content += " <a href='" + listPath + "'>查看申请</a>" ;
+            content += " <a href='" + listPath + "'>查看申请</a>";
 
             message.setContent(content);
             insert(message);
@@ -180,7 +186,7 @@ public class MessageService {
     }
 
     //审批 通过/拒绝 申请时，向申请提交人和设备管理员发送消息
-    public void sendApproveApplyMessage(int appId,  Types.ApplyType type, String path, boolean isPassed) {
+    public void sendApproveApplyMessage(int appId, Types.ApplyType type, String path, boolean isPassed) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Message message = new Message();
         message.setIfread(false);
@@ -192,31 +198,31 @@ public class MessageService {
         Teacher applicant = serviceTeacher.selectByPrimaryKey(apply.getApplicantId());
         message.setReceiverId(applicant.getId());
         String content = "";
-        content +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+        content += apply.getApproverName() + " 于" + format.format(apply.getApproveTime());
         content += isPassed ? " 批准 " : "拒绝";
-        content += "了您的 "+ type.getTitle() +" 申请，表单号 " + Integer.toString(appId) + " : ";
+        content += "了您的 " + type.getTitle() + " 申请，表单号 " + Integer.toString(appId) + " : ";
 
         String listPath = path.substring(0, path.lastIndexOf("/"));
         listPath += "/applyList?formType=apply";
-        content += " <a href='" + listPath + "'>查看申请</a>" ;
+        content += " <a href='" + listPath + "'>查看申请</a>";
 
         message.setContent(content);
         insert(message);
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
-        for(Teacher equpiAdmin : equpiAdmins){
-            if(equpiAdmin.getId() == applicant.getId())
+        for (Teacher equpiAdmin : equpiAdmins) {
+            if (equpiAdmin.getId() == applicant.getId())
                 continue;
 
             message.setReceiverId(equpiAdmin.getId());
             String adminContent = "";
-            adminContent +=  apply.getApproverName()+" 于"+format.format(apply.getApproveTime());
+            adminContent += apply.getApproverName() + " 于" + format.format(apply.getApproveTime());
             adminContent += isPassed ? " 批准 " : "拒绝";
-            adminContent += "了 " + apply.getApplicantName() + " 的 "+ type.getTitle() +" 申请，表单号 " + Integer.toString(appId) + " : ";
+            adminContent += "了 " + apply.getApplicantName() + " 的 " + type.getTitle() + " 申请，表单号 " + Integer.toString(appId) + " : ";
 
             String listAdminPath = path.substring(0, path.lastIndexOf("/"));
             listAdminPath += "/applyList?formType=process";
-            adminContent += " <a href='" + listAdminPath + "'>查看申请</a>" ;
+            adminContent += " <a href='" + listAdminPath + "'>查看申请</a>";
 
             message.setContent(adminContent);
             insert(message);
@@ -224,7 +230,7 @@ public class MessageService {
     }
 
     //处理表单申请时，向申请提交人和领导发送消息
-    public void sendProcessApplyMessage(int appId,  Types.ApplyType type, String path){
+    public void sendProcessApplyMessage(int appId, Types.ApplyType type, String path) {
         SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Message message = new Message();
         message.setIfread(false);
@@ -236,26 +242,26 @@ public class MessageService {
         Teacher applicant = serviceTeacher.selectByPrimaryKey(apply.getApplicantId());
         message.setReceiverId(applicant.getId());
         String content = "";
-        content +=  apply.getOperatorName()+" 于"+format.format(apply.getProcessTime());
-        content += "处理了您的 "+ type.getTitle() +" 申请，表单号 " + Integer.toString(appId) + " : ";
+        content += apply.getOperatorName() + " 于" + format.format(apply.getProcessTime());
+        content += "处理了您的 " + type.getTitle() + " 申请，表单号 " + Integer.toString(appId) + " : ";
 
         String listPath = path.substring(0, path.lastIndexOf("/"));
         listPath += "/applyList?formType=history";
-        content += " <a href='"+listPath+"'>查看申请</a>" ;
+        content += " <a href='" + listPath + "'>查看申请</a>";
 
         message.setContent(content);
         insert(message);
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
-        for(Teacher equpiAdmin : equpiAdmins){
-            if(equpiAdmin.getId() == applicant.getId())
+        for (Teacher equpiAdmin : equpiAdmins) {
+            if (equpiAdmin.getId() == applicant.getId())
                 continue;
 
             message.setReceiverId(equpiAdmin.getId());
             String adminContent = "";
-            adminContent +=  apply.getOperatorName()+" 于"+format.format(apply.getProcessTime());
-            adminContent += "处理了 " + apply.getApplicantName() + " 的 "+ type.getTitle() +" 申请，表单号 " + Integer.toString(appId) + " : ";
-            adminContent += " <a href='" + listPath + "'>查看申请</a>" ;
+            adminContent += apply.getOperatorName() + " 于" + format.format(apply.getProcessTime());
+            adminContent += "处理了 " + apply.getApplicantName() + " 的 " + type.getTitle() + " 申请，表单号 " + Integer.toString(appId) + " : ";
+            adminContent += " <a href='" + listPath + "'>查看申请</a>";
             message.setContent(adminContent);
             insert(message);
         }

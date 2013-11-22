@@ -53,7 +53,7 @@ public class EquipmentCheckController {
     }
 
     @RequestMapping(value = "/loseList", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView lostList(@RequestParam("page") int page,RedirectAttributes redirectAttributes) {
+    public ModelAndView lostList(@RequestParam("page") int page, RedirectAttributes redirectAttributes) {
         PageInfo<EquipmentCheck> pageInfo = equipCheckService.getPageInventoryLose(page);
         ModelAndView mv = new ModelAndView("equipment/jsp/dev/check/lost-list");
         mv.addObject("pageInfo", pageInfo);
@@ -63,30 +63,30 @@ public class EquipmentCheckController {
     @RequestMapping(value = "/importRealCheck", method = RequestMethod.GET)
     public ModelAndView importRealCheck(RedirectAttributes redirectAttributes) {
         ModelAndView mv = new ModelAndView("equipment/jsp/dev/check/import-realcheck");
-        Map<String,?> flashMap = redirectAttributes.getFlashAttributes();
-        if (flashMap!=null&&flashMap.get("error")!=null){
-            mv.addObject("error",flashMap.get("error"));
+        Map<String, ?> flashMap = redirectAttributes.getFlashAttributes();
+        if (flashMap != null && flashMap.get("error") != null) {
+            mv.addObject("error", flashMap.get("error"));
         }
         return mv;
     }
 
     @RequestMapping(value = "/importRealCheck", method = RequestMethod.POST)
-    public String importRealCheck(boolean clean, MultipartFile file,RedirectAttributes redirectAttributes)
+    public String importRealCheck(boolean clean, MultipartFile file, RedirectAttributes redirectAttributes)
             throws IOException, ExecutionException,
             InterruptedException {
-        if (!file.isEmpty()){
+        if (!file.isEmpty()) {
             String name = file.getOriginalFilename();
-            File local = new File(System.getProperty("java.io.tmpdir")+name);
+            File local = new File(System.getProperty("java.io.tmpdir") + name);
             file.transferTo(local);
-            edu.ruc.labmgr.excel.EquipCheckImportTask task = new edu.ruc.labmgr.excel.EquipCheckImportTask(local,clean);
+            edu.ruc.labmgr.excel.EquipCheckImportTask task = new edu.ruc.labmgr.excel.EquipCheckImportTask(local, clean);
             Future<Boolean> result = singleTreadPool.submit(task);
             boolean success = result.get();
             local.delete();
-            if (success){
-               return "redirect:/equipCheck/list?page=1";
+            if (success) {
+                return "redirect:/equipCheck/list?page=1";
             }
         }
-        redirectAttributes.addFlashAttribute("error","数据文件上传错误或数据导入出错!");
+        redirectAttributes.addFlashAttribute("error", "数据文件上传错误或数据导入出错!");
         return "redirect:/importRealCheck";
     }
 }

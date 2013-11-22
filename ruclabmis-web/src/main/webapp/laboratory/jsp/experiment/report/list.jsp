@@ -48,17 +48,20 @@
                                                                                    id="studentNoForSearch" value=""
                                                                                    style="width:100px;"/></span>
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text" name="studentNameForSearch"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text"
+                                                                                     name="studentNameForSearch"
                                                                                      id="studentNameForSearch" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;是否已提交:<select id="ifUploaded" name="ifUploadedForSearch">
+                            <span style="white-space:nowrap">&nbsp;&nbsp;是否已提交:<select id="ifUploaded"
+                                                                                       name="ifUploadedForSearch">
                                 <option></option>
                                 <option value="0">是</option>
                                 <option value="1">否</option>
                             </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
+                                    查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -88,7 +91,9 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href=""><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                        <a href=""><img
+                                                                                src="../../../../images/add_min.gif"
+                                                                                width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">保存</span></a>&nbsp;
                                                                     </span>
                                                                 </div>
@@ -124,14 +129,15 @@
                                                     <td>0901051803</td>
                                                     <td>鲍尔默</td>
                                                     <td><a href="">单频通讯实验报告书.doc</a></td>
-                                                    <td><input type="text" style="width: 30px" ></td>
+                                                    <td><input type="text" style="width: 30px"></td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.report}</td>
-                                                        <td><input type="text" name="score['${item.id}']" value="${item.score}" style="width: 30px" ></td>
+                                                        <td><input type="text" name="score['${item.id}']"
+                                                                   value="${item.score}" style="width: 30px"></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -139,7 +145,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
@@ -148,10 +154,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

@@ -203,7 +203,8 @@ function dhtmlXTreeObject(htmlObject, width, height, rootId) {
         }
     });
 
-    this.set../imagesPath = this.setImagePath;
+    this.set..
+    /imagesPath = this.setImagePath;
     this.setIconsPath = this.setIconPath;
 
     if (dhtmlx.image_path) this.setImagePath(dhtmlx.image_path);
@@ -405,7 +406,8 @@ function dhtmlXTreeItemObject(itemId, itemText, parentObject, treeObject, action
     this.label = itemText;
     this.parentObject = parentObject;
     this.actionHandler = actionHandler;
-    this.../images = new Array(treeObject.imageArray[0], treeObject.imageArray[1], treeObject.imageArray[2]);
+    this...
+    /images = new Array(treeObject.imageArray[0], treeObject.imageArray[1], treeObject.imageArray[2]);
 
 
     this.id = treeObject._globalIdStorageAdd(itemId, this);
@@ -620,9 +622,12 @@ dhtmlXTreeObject.prototype._attachChildNode = function (parentObject, itemId, it
         n.htmlNode.objBelong = n;
     }
 
-    if (image1) n.../images[0] = image1;
-    if (image2) n.../images[1] = image2;
-    if (image3) n.../images[2] = image3;
+    if (image1) n...
+    /images[0] = image1;
+    if (image2) n...
+    /images[1] = image2;
+    if (image3) n...
+    /images[2] = image3;
 
 
     var tr = this._drawNewTr(n.htmlNode);
@@ -1093,23 +1098,27 @@ dhtmlXTreeObject.prototype._correctPlus = function (itemObject) {
     var workArray = this.lineArray;
     if ((this.XMLsource) && (!itemObject.XMLload)) {
         var workArray = this.plusArray;
-        this._setSrc(imsrc2, this.iconURL + itemObject.../images[2]);
+        this._setSrc(imsrc2, this.iconURL + itemObject...
+        /images[2]);
         if (this._txtimg) return (imsrc.innerHTML = "[+]");
     }
     else if ((itemObject.childsCount) || (itemObject.unParsed)) {
         if ((itemObject.htmlNode.childNodes[0].childNodes[1]) && ( itemObject.htmlNode.childNodes[0].childNodes[1].style.display != "none" )) {
             if (!itemObject.wsign) var workArray = this.minusArray;
-            this._setSrc(imsrc2, this.iconURL + itemObject.../images[1]);
+            this._setSrc(imsrc2, this.iconURL + itemObject...
+            /images[1]);
             if (this._txtimg) return (imsrc.innerHTML = "[-]");
         }
         else {
             if (!itemObject.wsign) var workArray = this.plusArray;
-            this._setSrc(imsrc2, this.iconURL + itemObject.../images[2]);
+            this._setSrc(imsrc2, this.iconURL + itemObject...
+            /images[2]);
             if (this._txtimg) return (imsrc.innerHTML = "[+]");
         }
     }
     else {
-        this._setSrc(imsrc2, this.iconURL + itemObject.../images[0]);
+        this._setSrc(imsrc2, this.iconURL + itemObject...
+        /images[0]);
     }
 
 
@@ -1948,10 +1957,16 @@ dhtmlXTreeObject.prototype.doCut = function () {
     for (var i = 0; i < this.nodeCut.length; i++) {
         var tempa = this.nodeCut[i];
         tempa._cimgs = new Array();
-        tempa._cimgs[0] = tempa.../images[0];
-        tempa._cimgs[1] = tempa.../images[1];
-        tempa._cimgs[2] = tempa.../images[2];
-        tempa.../images[0] = tempa.../images[1] = tempa.../images[2] = this.cutImage;
+        tempa._cimgs[0] = tempa...
+        /images[0];
+        tempa._cimgs[1] = tempa...
+        /images[1];
+        tempa._cimgs[2] = tempa...
+        /images[2];
+        tempa...
+        /images[0] = tempa.../im
+        ages[1] = tempa...
+        /images[2] = this.cutImage;
         this._correctPlus(tempa);
     }
 };
@@ -1980,9 +1995,12 @@ dhtmlXTreeObject.prototype.doPaste = function (itemId) {
 dhtmlXTreeObject.prototype.clearCut = function () {
     for (var i = 0; i < this.nodeCut.length; i++) {
         var tempa = this.nodeCut[i];
-        tempa.../images[0] = tempa._cimgs[0];
-        tempa.../images[1] = tempa._cimgs[1];
-        tempa.../images[2] = tempa._cimgs[2];
+        tempa...
+        /images[0] = tempa._cimgs[0];
+        tempa...
+        /images[1] = tempa._cimgs[1];
+        tempa...
+        /images[2] = tempa._cimgs[2];
         this._correctPlus(tempa);
     }
     this.nodeCut = new Array();
@@ -2066,7 +2084,10 @@ dhtmlXTreeObject.prototype._recreateBranch = function (itemObject, targetObject,
 
     var t2 = this._onradh;
     this._onradh = null;
-    var newNode = this._attachChildNode(targetObject, itemObject.id, itemObject.label, 0, itemObject.../images[0], itemObject.../images[1], itemObject.../images[2], st, 0, beforeNode);
+    var newNode = this._attachChildNode(targetObject, itemObject.id, itemObject.label, 0, itemObject...
+    /images[0], itemObject.../im
+    ages[1], itemObject...
+    /images[2], st, 0, beforeNode);
 
     //copy user data
     newNode._userdatalist = itemObject._userdatalist;
@@ -2345,9 +2366,11 @@ dhtmlXTreeObject.prototype.setOnMouseOutHandler = function (func) {
  *     @type: public
  *     @topic: 0
  */
-dhtmlXTreeObject.prototype.enableTree../images = function (mode) {
-    this.timgen = convertStringToBoolean(mode);
-};
+dhtmlXTreeObject.prototype.enableTree..
+/images = function (mode) {
+this.timgen = convertStringToBoolean(mode);
+}
+;
 
 
 /**
@@ -2380,11 +2403,13 @@ dhtmlXTreeObject.prototype.enableCheckBoxes = function (mode, hidden) {
  *     @param: a2 - image for opened node
  *     @topic: 6
  */
-dhtmlXTreeObject.prototype.setStd../images = function (image1, image2, image3) {
-    this.imageArray[0] = image1;
-    this.imageArray[1] = image2;
-    this.imageArray[2] = image3;
-};
+dhtmlXTreeObject.prototype.setStd..
+/images = function (image1, image2, image3) {
+this.imageArray[0] = image1;
+this.imageArray[1] = image2;
+this.imageArray[2] = image3;
+}
+;
 
 /**
  *     @desc: enable/disable tree lines (parent-child threads)
@@ -2609,9 +2634,12 @@ dhtmlXTreeObject.prototype.refreshItem = function (itemId) {
 dhtmlXTreeObject.prototype.setItemImage2 = function (itemId, image1, image2, image3) {
     var temp = this._globalIdStorageFind(itemId);
     if (!temp) return 0;
-    temp.../images[1] = image2;
-    temp.../images[2] = image3;
-    temp.../images[0] = image1;
+    temp...
+    /images[1] = image2;
+    temp...
+    /images[2] = image3;
+    temp...
+    /images[0] = image1;
     this._correctPlus(temp);
 };
 /**
@@ -2626,10 +2654,13 @@ dhtmlXTreeObject.prototype.setItemImage = function (itemId, image1, image2) {
     var temp = this._globalIdStorageFind(itemId);
     if (!temp) return 0;
     if (image2) {
-        temp.../images[1] = image1;
-        temp.../images[2] = image2;
+        temp...
+        /images[1] = image1;
+        temp...
+        /images[2] = image2;
     }
-    else temp.../images[0] = image1;
+    else temp...
+    /images[0] = image1;
     this._correctPlus(temp);
 };
 
@@ -3521,9 +3552,11 @@ dhtmlXTreeObject.prototype._itemMouseIn = function () {
  *     @type: public
  *     @topic: 0
  */
-dhtmlXTreeObject.prototype.enableActive../images = function (mode) {
-    this._aimgs = convertStringToBoolean(mode);
-};
+dhtmlXTreeObject.prototype.enableActive..
+/images = function (mode) {
+this._aimgs = convertStringToBoolean(mode);
+}
+;
 
 /**
  *     @desc: focus item in tree (scroll to it if necessary)
@@ -3780,26 +3813,60 @@ dhtmlXTreeObject.prototype.setSkin = function (name) {
         drag_scroll: "enableDragAndDropScrolling",
         editor: "enableItemEditor",
         hover: "enableHighlighting",
-        ../images: "enableTree../images",
-        image_fix: "enableIEImageFix",
-        image_path: "setImagePath",
-        lines: "enableTreeLines",
-        loading_item: "enableLoadingItem",
-        multiline: "enableMultiLineItems",
-        multiselect: "enableMultiselection",
-        navigation: "enableKeyboardNavigation",
-        radio: "enableRadioButtons",
-        radio_single: "enableSingleRadioMode",
-        rtl: "enableRTL",
-        search: "enableKeySearch",
-        smart_parsing: "enableSmartXMLParsing",
-        smart_rendering: "enableSmartRendering",
-        text_icons: "enableTextSigns",
-        xml: "loadXML",
-        skin: "setSkin"
-    }, {});
+        ..
+    /images: "enableTree../im
+    ages
+    ",
+    image_fix: "enableIEImageFix",
+        image_path
+    :
+    "setImagePath",
+        lines
+    :
+    "enableTreeLines",
+        loading_item
+    :
+    "enableLoadingItem",
+        multiline
+    :
+    "enableMultiLineItems",
+        multiselect
+    :
+    "enableMultiselection",
+        navigation
+    :
+    "enableKeyboardNavigation",
+        radio
+    :
+    "enableRadioButtons",
+        radio_single
+    :
+    "enableSingleRadioMode",
+        rtl
+    :
+    "enableRTL",
+        search
+    :
+    "enableKeySearch",
+        smart_parsing
+    :
+    "enableSmartXMLParsing",
+        smart_rendering
+    :
+    "enableSmartRendering",
+        text_icons
+    :
+    "enableTextSigns",
+        xml
+    :
+    "loadXML",
+        skin
+    :
+    "setSkin"
+}, {});
 
-})();
+})
+();
 
 dhtmlXTreeObject.prototype._dp_init = function (dp) {
     dp.attachEvent("insertCallback", function (upd, id, parent) {

@@ -2,9 +2,10 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.LaboratoryRoomCriteria;
 import edu.ruc.labmgr.domain.LaboratoryRoomKey;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface LaboratoryRoomMapper {
     int countByCriteria(LaboratoryRoomCriteria criteria);

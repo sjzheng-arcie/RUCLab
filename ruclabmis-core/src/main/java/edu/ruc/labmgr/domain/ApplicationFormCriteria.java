@@ -294,6 +294,7 @@ public class ApplicationFormCriteria {
             addCriterion("type not between", value1, value2, "type");
             return (Criteria) this;
         }
+
         public Criteria andAnnexIsNull() {
             addCriterion("annex is null");
             return (Criteria) this;
@@ -723,6 +724,7 @@ public class ApplicationFormCriteria {
             addCriterion("process_time not between", value1, value2, "processTime");
             return (Criteria) this;
         }
+
         public Criteria andApproveTimeIsNull() {
             addCriterion("approve_time is null");
             return (Criteria) this;

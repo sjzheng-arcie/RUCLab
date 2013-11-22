@@ -50,7 +50,7 @@
                 });
                 idStr = idArr.join(",");
             }
-            if(idStr.length>0 && window.confirm("您确定要删除该学生吗?")){
+            if (idStr.length > 0 && window.confirm("您确定要删除该学生吗?")) {
                 $.post("/experiment/virtual/removeStudent", {
                     'vcId': $("#vcId").val(),
                     'stIds': idStr
@@ -96,7 +96,7 @@
             <img src="/laboratory/../images/left-top-right.gif" width="17" height="29"/>
         </td>
         <td valign="top" background="/laboratory/../images/content-bg.gif">
-            <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" >
+            <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg">
                 <tr>
                     <td height="31">
                         <div class="titlebt">教学实验管理 > 修改虚拟班级信息</div>
@@ -217,10 +217,12 @@
         <td background="/laboratory/../images/mail_rightbg.gif">&nbsp;</td>
     </tr>
     <tr>
-        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img src="/laboratory/../images/buttom_left2.gif"
-                                                                                width="17" height="17"/></td>
-        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img src="/laboratory/../images/buttom_bgs.gif"
-                                                                               width="100%" height="17"></td>
+        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img
+                src="/laboratory/../images/buttom_left2.gif"
+                width="17" height="17"/></td>
+        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img
+                src="/laboratory/../images/buttom_bgs.gif"
+                width="100%" height="17"></td>
         <td valign="bottom" background="/laboratory/../images/mail_rightbg.gif"><img
                 src="/laboratory/../images/buttom_right2.gif"
                 width="16" height="17"/></td>
@@ -267,10 +269,12 @@
                                 src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
                                                                         onclick="deleteStudents()"><img
-                                src="/laboratory/../images/del_min.gif" width="15" height="15" border="0"/> 删除选课学生</a></span>
+                                src="/laboratory/../images/del_min.gif" width="15" height="15" border="0"/>
+                            删除选课学生</a></span>
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
                                                                         onclick="addStudents()"><img
-                                src="/laboratory/../images/add_min.gif" width="15" height="15" border="0"/> 添加学生</a></span>
+                                src="/laboratory/../images/add_min.gif" width="15" height="15" border="0"/>
+                            添加学生</a></span>
 
 
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -349,10 +353,12 @@
         <td background="/laboratory/../images/mail_rightbg.gif">&nbsp;</td>
     </tr>
     <tr>
-        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img src="/laboratory/../images/buttom_left2.gif"
-                                                                                width="17" height="17"/></td>
-        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img src="/laboratory/../images/buttom_bgs.gif"
-                                                                               width="100%" height="17"/></td>
+        <td valign="bottom" background="/laboratory/../images/mail_leftbg.gif"><img
+                src="/laboratory/../images/buttom_left2.gif"
+                width="17" height="17"/></td>
+        <td valign="bottom" background="/laboratory/../images/buttom_bgs.gif"><img
+                src="/laboratory/../images/buttom_bgs.gif"
+                width="100%" height="17"/></td>
         <td valign="bottom" background="/laboratory/../images/mail_rightbg.gif"><img
                 src="/laboratory/../images/buttom_right2.gif" width="16" height="17"/></td>
     </tr>

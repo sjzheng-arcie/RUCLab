@@ -17,73 +17,65 @@ import java.util.List;
 @RequestMapping("/equipment/jsp/welcomelink/myapplyinfo")
 public class HomeLinkController {
 
-	@Autowired
-	private ApplicationFormService applicationFormService;
-	@Autowired
-	private TeacherService teacherService;
-	@Autowired
-	private MessageService messageService;
-	@Autowired
-	private AnnouncementService announcementService;
-	@Autowired
-	private ClassifService classifService;
-	@Autowired
-	private EquipmentService equipmentService;
+    @Autowired
+    private ApplicationFormService applicationFormService;
+    @Autowired
+    private TeacherService teacherService;
+    @Autowired
+    private UserService userService;
+    @Autowired
+    private ClassifService classifService;
 
 
+    @RequestMapping(value = "/myapplylist",method = {RequestMethod.POST,RequestMethod.GET})
+    public ModelAndView searchAllMyApplyList(@RequestParam(value="page",required = false,defaultValue = "1") int page,
+                                             @RequestParam(value="applyNo",required = false,defaultValue = "") String applyNo,
+                                             @RequestParam(value="formType",required = false,defaultValue = "0") int formType) {
+        ModelAndView mav = new ModelAndView("equipment/jsp/welcomelink/applyinfo/myapplylist");
+        int currentUserId = userService.getCurrentUserId();
+        ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+        ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+        criteria.andApplicantIdEqualTo(currentUserId);
 
-	@RequestMapping(value = "/myapplylist",method = {RequestMethod.POST,RequestMethod.GET})
-	public ModelAndView searchAllMyApplyList(@RequestParam(value="page",required = false,defaultValue = "1") int page,
-											 @RequestParam(value="applyNo",required = false,defaultValue = "") String applyNo,
-											 @RequestParam(value="formType",required = false,defaultValue = "0") int formType) {
-		ModelAndView mav = new ModelAndView("equipment/jsp/welcomelink/applyinfo/myapplylist");
-		//	User user = new User();
-		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		//user= teacherService.getUserByLoginSn(loginName);
-		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApplicantIdEqualTo(teacherService.getUserByLoginSn(loginName).getId());
+        if(applyNo!=null&&applyNo!=""){
+            criteria.andSnLike("%"+applyNo+"%");
+        }
+        if(formType!=0){
+            criteria.andTypeEqualTo(formType);
+        }
+        applicationFormCriteria.setOrderByClause(" apply_time desc");
+        List<Classif> classifList= classifService.getItemsByParentID(2);
+        PageInfo<ApplicationForm> pageInfo =  applicationFormService.selectListPage( applicationFormCriteria,page);
+        mav.addObject("pageInfo",pageInfo);
+        mav.addObject("classifList",classifList);
+        return mav;
+    }
 
-		if(applyNo!=null&&applyNo!=""){
-			criteria.andSnLike("%"+applyNo+"%");
-		}
-		if(formType!=0){
-			criteria.andTypeEqualTo(formType);
-		}
-		applicationFormCriteria.setOrderByClause(" apply_time desc");
-		List<Classif> classifList= classifService.getItemsByParentID(2);
-		PageInfo<ApplicationForm> pageInfo =  applicationFormService.selectListPage( applicationFormCriteria,page);
-		mav.addObject("pageInfo",pageInfo);
-		mav.addObject("classifList",classifList);
-		return mav;
-	}
+    @RequestMapping(value = "/pendinglist",method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView showAllPendingList(@RequestParam(value="page",required = false,defaultValue = "1") int page,
+                                           @RequestParam(value="applyNo",required = false,defaultValue = "") String applyNo,
+                                           @RequestParam(value="formType",required = false,defaultValue = "0") int formType) {
 
-	@RequestMapping(value = "/pendinglist",method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView showAllPendingList(@RequestParam(value="page",required = false,defaultValue = "1") int page,
-										   @RequestParam(value="applyNo",required = false,defaultValue = "") String applyNo,
-										   @RequestParam(value="formType",required = false,defaultValue = "0") int formType) {
+        ModelAndView mav = new ModelAndView("/equipment/jsp/welcomelink/applyinfo/pendinglist");
+        int currentUserId = userService.getCurrentUserId();
 
-		ModelAndView mav = new ModelAndView("/equipment/jsp/welcomelink/applyinfo/pendinglist");
-		User user = new User();
-		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		user= teacherService.getUserByLoginSn(loginName);
-		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
-		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApproverIdEqualTo(user.getId());
-		criteria.andStateIdNotEqualTo(34);
-		if(applyNo!=null&&applyNo!=""&&!applyNo.equals("")){
-			criteria.andSnLike("%"+applyNo+"%");
-		}
-		if(formType!=0){
-			criteria.andTypeEqualTo(formType);
-		}
-		applicationFormCriteria.setOrderByClause(" apply_time desc");
-		PageInfo<ApplicationForm> pageInfo =  applicationFormService.selectListPage( applicationFormCriteria,page);
-		List<Classif> classifList= classifService.getItemsByParentID(2);
-		mav.addObject("classifList",classifList);
-		mav.addObject("pageInfo",pageInfo);
-		return mav;
-	}
+        ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+        ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+        criteria.andApproverIdEqualTo(currentUserId);
+        criteria.andStateIdNotEqualTo(34);
+        if(applyNo!=null&&applyNo!=""&&!applyNo.equals("")){
+            criteria.andSnLike("%"+applyNo+"%");
+        }
+        if(formType!=0){
+            criteria.andTypeEqualTo(formType);
+        }
+        applicationFormCriteria.setOrderByClause(" apply_time desc");
+        PageInfo<ApplicationForm> pageInfo =  applicationFormService.selectListPage( applicationFormCriteria,page);
+        List<Classif> classifList= classifService.getItemsByParentID(2);
+        mav.addObject("classifList",classifList);
+        mav.addObject("pageInfo",pageInfo);
+        return mav;
+    }
 
 
 

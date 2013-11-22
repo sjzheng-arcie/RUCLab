@@ -14,8 +14,8 @@
     <script>
         var baseHref = '/laboratory/jsp/experiment/report/courselist';
         function toPublic() {
-            selectedItem = getSelectIndex("listForm","idCheckBox");
-            if( selectedItem <= 0)
+            selectedItem = getSelectIndex("listForm", "idCheckBox");
+            if (selectedItem <= 0)
                 return;
 
             document.listForm.action = "toPublic?id=" + selectedItem;
@@ -30,46 +30,52 @@
 <form name="listForm" method="post">
 
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
-        <tr>
-            <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
-                    src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
-            <td valign="top" background="../../../../images/content-bg.gif">
-                <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
-                       id="table2">
-                    <tr>
-                        <td height="31">
-                            <div class="titlebt">实验报告管理 > 课程实验</div>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
-                    src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
-        </tr>
+<tr>
+    <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
+            src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
+    <td valign="top" background="../../../../images/content-bg.gif">
+        <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
+               id="table2">
+            <tr>
+                <td height="31">
+                    <div class="titlebt">实验报告管理 > 课程实验</div>
+                </td>
+            </tr>
+        </table>
+    </td>
+    <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
+            src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
+</tr>
 
-        <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
-            <td valign="top" bgcolor="#F7F8F9">
-                <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
-                    <tr>
-                        <td valign="top" class="STYLE10">
+<tr>
+    <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+    <td valign="top" bgcolor="#F7F8F9">
+        <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
+            <tr>
+                <td valign="top" class="STYLE10">
 
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text" name="nameForSearch"
                                                                                      id="experimentName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;是否提交实验报告:<select id="ifReport" name="ifReportForSearch">
+                            <span style="white-space:nowrap">&nbsp;&nbsp;是否提交实验报告:<select id="ifReport"
+                                                                                          name="ifReportForSearch">
                                 <option></option>
                                 <option value="0">是</option>
                                 <option value="1">否</option>
                             </select></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告提交期限: <input name="limitTimeForSearch" id="manufactureDate"
-                                                                                          onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                                                          valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验报告提交期限: <input name="limitTimeForSearch"
+                                                                                          id="manufactureDate"
+                                                                                          onblur="" class="Mdate"
+                                                                                          style="width:154px"
+                                                                                          maxlength="10"
+                                                                                          valid="isDate"
+                                                                                          errmsg="日期只能为：XXXX-XX-XX"
                                                                                           onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                               <span style="white-space:nowrap">&nbsp;&nbsp;
                                             <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                                <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                                <img src="../../../../images/zoom.png" width="15" height="15"
+                                                     border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -99,9 +105,13 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="maintain"><img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="maintain"><img
+                                                                            src="../../../../images/edit_min.gif"
+                                                                            width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">维护</span></a>&nbsp;
-                                                                    <a href="" onclick="toPublic()"><img src="../../../../images/edit_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="" onclick="toPublic()"><img
+                                                                            src="../../../../images/edit_min.gif"
+                                                                            width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;
 
                                                                 </span>
@@ -154,12 +164,13 @@
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     <td>KC001</td>
                                                     <td>编程语言基础实验课</td>
                                                     <td>09年第一学期第2周第5节</td>
-                                                        <td>待发布</td>
+                                                    <td>待发布</td>
                                                     <td>是</td>
                                                     <td>2012-02-12</td>
                                                     <td><a href="list">查看</a>
@@ -167,7 +178,8 @@
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     <td>KC001</td>
                                                     <td>编程语言基础实验课</td>
                                                     <td>09年第一学期第2周第5节</td>
@@ -179,7 +191,8 @@
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     <td>KC001</td>
                                                     <td>编程语言基础实验课</td>
                                                     <td>09年第一学期第2周第5节</td>
@@ -190,7 +203,8 @@
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     <td>KC001</td>
                                                     <td>编程语言基础实验课</td>
                                                     <td>09年第一学期第2周第5节</td>
@@ -202,7 +216,8 @@
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               value="${item.id}"
+                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
@@ -218,23 +233,23 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
-                        </td>
-                    </tr>
-                </table>
-            </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
-        </tr>
-        <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
-            <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
-                    src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
-        </tr>
-    </table>
+                </td>
+            </tr>
+        </table>
+    </td>
+    <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+</tr>
+<tr>
+    <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
+                                                                             width="17" height="17"/></td>
+    <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
+                                                                            width="100%" height="17"/></td>
+    <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
+            src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
+</tr>
+</table>
 </form>
 </body>
 </html>

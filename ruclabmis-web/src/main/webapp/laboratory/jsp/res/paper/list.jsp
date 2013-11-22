@@ -13,10 +13,10 @@
     <script>
         var baseHref = '/laboratory/jsp/res/paper/list';
         //获得divwidth的宽度
-        function getwidth(){
-            document.getElementById("divwidth").style.width= document.body.offsetWidth-35+"px";
-            if(document.body.scrollWidth>document.body.offsetWidth){
-                document.getElementById("divwidth").style.width=document.body.scrollWidth-35+"px";
+        function getwidth() {
+            document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
+            if (document.body.scrollWidth > document.body.offsetWidth) {
+                document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
             }
         }
 
@@ -61,7 +61,8 @@
                             </span>
                           <span style="white-space:nowrap">&nbsp;&nbsp;
                                  <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
+                                     查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -91,10 +92,14 @@
                                                             <td>
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="add.jsp"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="add.jsp"><img
+                                                                            src="../../../../images/add_min.gif"
+                                                                            width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete('listForm');"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                                                           border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                    <a href="#" onclick="toDelete('listForm');"><img
+                                                                            src="../../../../images/del_min.gif"
+                                                                            width="10" height="10"
+                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                         </span>
                                                                 </div>
                                                             </td>
@@ -147,14 +152,17 @@
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               value="${item.id}"
+                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.course}</td>
                                                         <td>${item.teacher}</td>
-                                                        <td><a class="button" href="paperinfo?paper_id=${item.id}">查看试卷</a></td>
-                                                        <td><a class="button" href="editpaper?paper_id=${item.id}">编辑试卷</a></td>
+                                                        <td><a class="button"
+                                                               href="paperinfo?paper_id=${item.id}">查看试卷</a></td>
+                                                        <td><a class="button"
+                                                               href="editpaper?paper_id=${item.id}">编辑试卷</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -162,7 +170,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp"%>
+                                <%@ include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
@@ -171,10 +179,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

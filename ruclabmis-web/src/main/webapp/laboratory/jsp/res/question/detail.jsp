@@ -76,35 +76,41 @@
                                             <tr>
                                                 <td nowrap align="right">题目编号:</td>
                                                 <td nowrap>
-                                                    <input name="questionSn"  class="text" style="width:154px" maxlength="20"
+                                                    <input name="questionSn" class="text" style="width:154px"
+                                                           maxlength="20"
                                                            valid="required|isAccount" value="${question.sn}" readonly/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">所属科目:</td>
                                                 <td nowrap>
-                                                    <input name="theCourse"  onblur="" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="${question.course}"readonly/>
+                                                    <input name="theCourse" onblur="" class="text" style="width:154px"
+                                                           maxlength="20" valid="required|isAccount"
+                                                           value="${question.course}" readonly/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">题目类型:</td>
                                                 <td nowrap>
-                                                    <input name="quesitonType"  onblur="" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="${question.Type}"readonly/>
+                                                    <input name="quesitonType" onblur="" class="text"
+                                                           style="width:154px"
+                                                           maxlength="20" valid="required|isAccount"
+                                                           value="${question.Type}" readonly/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">难易程度:</td>
                                                 <td nowrap>
-                                                    <input name="difficulty"  onblur="" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="${question.difficulty}"readonly/>
+                                                    <input name="difficulty" onblur="" class="text" style="width:154px"
+                                                           maxlength="20" valid="required|isAccount"
+                                                           value="${question.difficulty}" readonly/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">题目内容:</td>
                                                 <td nowrap>
-                                                    <textarea name="questionContent"style="width: 50%;height:100px"readonly>
+                                                    <textarea name="questionContent" style="width: 50%;height:100px"
+                                                              readonly>
                                                         ${question.questionContent}
                                                     </textarea>
                                                 </td>
@@ -113,13 +119,13 @@
                                             <tr>
                                                 <td nowrap align="right">答案:</td>
                                                 <td nowrap>
-                                                    <textarea name="questionAnswer"style="width: 50%;height:100px"readonly>
+                                                    <textarea name="questionAnswer" style="width: 50%;height:100px"
+                                                              readonly>
                                                         ${question.answer}dasdsada
                                                     </textarea>
                                                 </td>
 
                                             </tr>
-
 
 
                                         </table>
@@ -142,10 +148,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

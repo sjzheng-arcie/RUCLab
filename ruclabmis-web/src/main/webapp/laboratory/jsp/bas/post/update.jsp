@@ -81,13 +81,15 @@
                                             <tr>
                                                 <td nowrap align="right">职务名称:</td>
                                                 <td nowrap>
-                                                    <input name="name" id="name" value="${title.name}" onblur="" class="text"
+                                                    <input name="name" id="name" value="${title.name}" onblur=""
+                                                           class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">职务级别:</td>
                                                 <td nowrap>
-                                                    <input name="grade" id="grade" value="${title.grade}" onblur="" class="text"
+                                                    <input name="grade" id="grade" value="${title.grade}" onblur=""
+                                                           class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
@@ -96,14 +98,16 @@
 
                                                 <td nowrap align="right">职务简称:</td>
                                                 <td nowrap>
-                                                    <input name="shortName" id="shortName" value="${title.shortName}" onblur="" class="text"
+                                                    <input name="shortName" id="shortName" value="${title.shortName}"
+                                                           onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">职务描述:</td>
                                                 <td nowrap>
-                                                    <input  name="description" id="description" value="${title.description}" class="text"
-                                                            style="width:154px"/>
+                                                    <input name="description" id="description"
+                                                           value="${title.description}" class="text"
+                                                           style="width:154px"/>
                                                 </td>
                                             </tr>
                                         </table>
@@ -128,10 +132,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

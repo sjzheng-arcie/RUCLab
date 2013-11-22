@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.ruc.labmgr.mapper.ApplicationFormMapper" >
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplicationForm" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="sn" property="sn" jdbcType="VARCHAR" />
-        <result column="type" property="type" jdbcType="INTEGER" />
-        <result column="annex" property="annex" jdbcType="VARCHAR" />
-        <result column="comments" property="comments" jdbcType="VARCHAR" />
-        <result column="applicant_id" property="applicantId" jdbcType="INTEGER" />
-        <result column="operator_id" property="operatorId" jdbcType="INTEGER" />
-        <result column="approver_id" property="approverId" jdbcType="INTEGER" />
-        <result column="state_id" property="stateId" jdbcType="INTEGER" />
-        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP" />
-        <result column="process_time" property="processTime" jdbcType="TIMESTAMP" />
-        <result column="approve_time" property="approveTime" jdbcType="TIMESTAMP" />
+<mapper namespace="edu.ruc.labmgr.mapper.ApplicationFormMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ApplicationForm">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="sn" property="sn" jdbcType="VARCHAR"/>
+        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="annex" property="annex" jdbcType="VARCHAR"/>
+        <result column="comments" property="comments" jdbcType="VARCHAR"/>
+        <result column="applicant_id" property="applicantId" jdbcType="INTEGER"/>
+        <result column="operator_id" property="operatorId" jdbcType="INTEGER"/>
+        <result column="approver_id" property="approverId" jdbcType="INTEGER"/>
+        <result column="state_id" property="stateId" jdbcType="INTEGER"/>
+        <result column="apply_time" property="applyTime" jdbcType="TIMESTAMP"/>
+        <result column="process_time" property="processTime" jdbcType="TIMESTAMP"/>
+        <result column="approve_time" property="approveTime" jdbcType="TIMESTAMP"/>
         <association property="applicant" column="applicant_Id" javaType="User"
                      select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
         <association property="operator" column="operator_Id" javaType="User"
@@ -25,25 +25,26 @@
         <association property="state" column="state_id" javaType="Classif"
                      select="edu.ruc.labmgr.mapper.ClassifMapper.selectByPrimaryKey"/>
     </resultMap>
-    <sql id="Criteria_Where_Clause" >
-        <where >
-            <foreach collection="oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -54,25 +55,26 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Update_By_Criteria_Where_Clause" >
-        <where >
-            <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -83,41 +85,42 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
     id, sn, type, annex, comments, applicant_id, operator_id, approver_id, state_id, apply_time, process_time, approve_time
   </sql>
-    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
+    <select id="selectByCriteria" resultMap="BaseResultMap"
+            parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from application_form
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from application_form
         where id = #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from application_form
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" >
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria">
         delete from application_form
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.ApplicationForm">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into application_form (sn, type, annex,comments, applicant_id,
@@ -128,133 +131,134 @@
         #{operatorId,jdbcType=INTEGER}, #{approverId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER},
         #{applyTime,jdbcType=TIMESTAMP}, #{processTime,jdbcType=TIMESTAMP}, #{approveTime,jdbcType=TIMESTAMP})
     </insert>
-    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into application_form
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="sn != null" >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="sn != null">
                 sn,
             </if>
-            <if test="type != null" >
+            <if test="type != null">
                 type,
             </if>
-            <if test="annex != null" >
+            <if test="annex != null">
                 annex,
             </if>
-            <if test="comments != null" >
+            <if test="comments != null">
                 comments,
             </if>
-            <if test="applicantId != null" >
+            <if test="applicantId != null">
                 applicant_id,
             </if>
-            <if test="operatorId != null" >
+            <if test="operatorId != null">
                 operator_id,
             </if>
-            <if test="approverId != null" >
+            <if test="approverId != null">
                 approver_id,
             </if>
-            <if test="stateId != null" >
+            <if test="stateId != null">
                 state_id,
             </if>
-            <if test="applyTime != null" >
+            <if test="applyTime != null">
                 apply_time,
             </if>
-            <if test="processTime != null" >
+            <if test="processTime != null">
                 process_time,
             </if>
-            <if test="approveTime != null" >
+            <if test="approveTime != null">
                 approve_time,
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="sn != null" >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="sn != null">
                 #{sn,jdbcType=VARCHAR},
             </if>
-            <if test="type != null" >
+            <if test="type != null">
                 #{type,jdbcType=INTEGER},
             </if>
-            <if test="annex != null" >
+            <if test="annex != null">
                 #{annex,jdbcType=VARCHAR},
             </if>
-            <if test="comments != null" >
+            <if test="comments != null">
                 #{comments,jdbcType=VARCHAR},
             </if>
-            <if test="applicantId != null" >
+            <if test="applicantId != null">
                 #{applicantId,jdbcType=INTEGER},
             </if>
-            <if test="operatorId != null" >
+            <if test="operatorId != null">
                 #{operatorId,jdbcType=INTEGER},
             </if>
-            <if test="approverId != null" >
+            <if test="approverId != null">
                 #{approverId,jdbcType=INTEGER},
             </if>
-            <if test="stateId != null" >
+            <if test="stateId != null">
                 #{stateId,jdbcType=INTEGER},
             </if>
-            <if test="applyTime != null" >
+            <if test="applyTime != null">
                 #{applyTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="processTime != null" >
+            <if test="processTime != null">
                 #{processTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="approveTime != null" >
+            <if test="approveTime != null">
                 #{approveTime,jdbcType=TIMESTAMP},
             </if>
         </trim>
     </insert>
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" resultType="java.lang.Integer" >
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria"
+            resultType="java.lang.Integer">
         select count(*) from application_form
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </select>
-    <update id="updateByCriteriaSelective" parameterType="map" >
+    <update id="updateByCriteriaSelective" parameterType="map">
         update application_form
-        <set >
-            <if test="record.id != null" >
+        <set>
+            <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
             </if>
-            <if test="record.sn != null" >
+            <if test="record.sn != null">
                 sn = #{record.sn,jdbcType=VARCHAR},
             </if>
-            <if test="record.type != null" >
+            <if test="record.type != null">
                 type = #{record.type,jdbcType=INTEGER},
             </if>
-            <if test="record.annex != null" >
+            <if test="record.annex != null">
                 annex = #{record.annex,jdbcType=VARCHAR},
             </if>
-            <if test="record.comments != null" >
+            <if test="record.comments != null">
                 comments = #{record.comments,jdbcType=VARCHAR},
             </if>
-            <if test="record.applicantId != null" >
+            <if test="record.applicantId != null">
                 applicant_id = #{record.applicantId,jdbcType=INTEGER},
             </if>
-            <if test="record.operatorId != null" >
+            <if test="record.operatorId != null">
                 operator_id = #{record.operatorId,jdbcType=INTEGER},
             </if>
-            <if test="record.approverId != null" >
+            <if test="record.approverId != null">
                 approver_id = #{record.approverId,jdbcType=INTEGER},
             </if>
-            <if test="record.stateId != null" >
+            <if test="record.stateId != null">
                 state_id = #{record.stateId,jdbcType=INTEGER},
             </if>
-            <if test="record.applyTime != null" >
+            <if test="record.applyTime != null">
                 apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.processTime != null" >
+            <if test="record.processTime != null">
                 process_time = #{record.processTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="record.approveTime != null" >
+            <if test="record.approveTime != null">
                 approve_time = #{record.approveTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByCriteria" parameterType="map" >
+    <update id="updateByCriteria" parameterType="map">
         update application_form
         set id = #{record.id,jdbcType=INTEGER},
         sn = #{record.sn,jdbcType=VARCHAR},
@@ -268,50 +272,50 @@
         apply_time = #{record.applyTime,jdbcType=TIMESTAMP},
         process_time = #{record.processTime,jdbcType=TIMESTAMP},
         approve_time = #{record.approveTime,jdbcType=TIMESTAMP}
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ApplicationForm">
         update application_form
-        <set >
-            <if test="sn != null" >
+        <set>
+            <if test="sn != null">
                 sn = #{sn,jdbcType=VARCHAR},
             </if>
-            <if test="type != null" >
+            <if test="type != null">
                 type = #{type,jdbcType=INTEGER},
             </if>
-            <if test="annex != null" >
+            <if test="annex != null">
                 annex = #{annex,jdbcType=VARCHAR},
             </if>
-            <if test="comments != null" >
+            <if test="comments != null">
                 comments = #{comments,jdbcType=VARCHAR},
             </if>
-            <if test="applicantId != null" >
+            <if test="applicantId != null">
                 applicant_id = #{applicantId,jdbcType=INTEGER},
             </if>
-            <if test="operatorId != null" >
+            <if test="operatorId != null">
                 operator_id = #{operatorId,jdbcType=INTEGER},
             </if>
-            <if test="approverId != null" >
+            <if test="approverId != null">
                 approver_id = #{approverId,jdbcType=INTEGER},
             </if>
-            <if test="stateId != null" >
+            <if test="stateId != null">
                 state_id = #{stateId,jdbcType=INTEGER},
             </if>
-            <if test="applyTime != null" >
+            <if test="applyTime != null">
                 apply_time = #{applyTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="processTime != null" >
+            <if test="processTime != null">
                 process_time = #{processTime,jdbcType=TIMESTAMP},
             </if>
-            <if test="approveTime != null" >
+            <if test="approveTime != null">
                 approve_time = #{approveTime,jdbcType=TIMESTAMP},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ApplicationForm" >
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ApplicationForm">
     update application_form
     set sn = #{sn,jdbcType=VARCHAR},
       type = #{type,jdbcType=INTEGER},
@@ -326,17 +330,18 @@
       approve_time = #{approveTime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria" id="selectByCriteriaWithRowbounds" >
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ApplicationFormCriteria"
+            id="selectByCriteriaWithRowbounds">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from application_form
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>

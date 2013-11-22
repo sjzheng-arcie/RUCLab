@@ -53,29 +53,35 @@ public class VirtualClassController {
         mv.addObject("vclass", vclass);
         return mv;
     }
+
     @RequestMapping(value = "/editClass", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView editClass(int vcId,String sn,String name,String major){
+    public ModelAndView editClass(int vcId, String sn, String name, String major) {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/editclass");
         CurriculumClass vClass = classService.getVirtualClass(vcId);
-        List<Student> students = classService.getClassStudents(vcId,sn,name,major);
-        mv.addObject("vClass",vClass);
-        mv.addObject("students",students);
+        List<Student> students = classService.getClassStudents(vcId, sn, name, major);
+        mv.addObject("vClass", vClass);
+        mv.addObject("students", students);
         return mv;
     }
+
     @RequestMapping(value = "/updateClass", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Result updateClass(CurriculumClass clazz){
+    public
+    @ResponseBody
+    Result updateClass(CurriculumClass clazz) {
         Result result = null;
-        try{
+        try {
             classService.updateCurriculumClass(clazz);
             result = new Result(true, "更新班级信息成功!");
-        }catch (Exception e){
+        } catch (Exception e) {
             result = new Result(false, "更新班级失败!");
         }
         return result;
     }
 
     @RequestMapping(value = "/removeClass", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Result removeClass(String ids) {
+    public
+    @ResponseBody
+    Result removeClass(String ids) {
         Result result = null;
         if (StringUtils.isNotEmpty(ids)) {
             String[] idArr = ids.split(",");
@@ -96,7 +102,9 @@ public class VirtualClassController {
     }
 
     @RequestMapping(value = "/addClass", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Result addClass(CurriculumClass newClass, String sidStr) {
+    public
+    @ResponseBody
+    Result addClass(CurriculumClass newClass, String sidStr) {
         Result r = null;
         try {
             List<Integer> sids = null;
@@ -116,18 +124,20 @@ public class VirtualClassController {
     }
 
     @RequestMapping(value = "/removeStudent", method = RequestMethod.POST, produces = "application/json")
-    public @ResponseBody Result removeStudents(Integer vcId,String stIds){
+    public
+    @ResponseBody
+    Result removeStudents(Integer vcId, String stIds) {
         String[] stIdArr = stIds.split(",");
         int[] stiArr = new int[stIdArr.length];
-        for (int i=0;i<stIdArr.length;i++){
-            stiArr[i] =Integer.valueOf(stIdArr[i]);
+        for (int i = 0; i < stIdArr.length; i++) {
+            stiArr[i] = Integer.valueOf(stIdArr[i]);
         }
         Result r = null;
-        try{
-            classService.deleteClassStudent(vcId,stiArr);
-            r = new Result(true,"删除班级学生成功!");
-        }catch (Exception e){
-            r = new Result(true,"删除班级学生失败!");
+        try {
+            classService.deleteClassStudent(vcId, stiArr);
+            r = new Result(true, "删除班级学生成功!");
+        } catch (Exception e) {
+            r = new Result(true, "删除班级学生失败!");
             e.printStackTrace();
         }
         return r;

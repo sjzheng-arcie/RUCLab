@@ -1,6 +1,8 @@
 package edu.ruc.labmgr.mapper.test;
 
-import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.domain.ApplicationForm;
+import edu.ruc.labmgr.domain.ApplyWithEquipment;
+import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
@@ -9,7 +11,6 @@ import edu.ruc.labmgr.utils.Types;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.FileSystemXmlApplicationContext;
 
@@ -55,7 +56,7 @@ public class ApplyWithEquipmentMapperTest {
         form.setStateId(Types.ApplyState.PASS.getValue());
         form.setApproveTime(new Date());
 
-        assert(mapperApply.updateByPrimaryKeySelective(form) > 0 );
+        assert (mapperApply.updateByPrimaryKeySelective(form) > 0);
     }
 
     @Ignore

@@ -8,7 +8,7 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function update() {
-            if(!validator(document.mainForm)){
+            if (!validator(document.mainForm)) {
                 return;
             }
 
@@ -94,7 +94,8 @@
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
-                                                    <input name="user.name" id="user.name" class="text" style="width:154px"
+                                                    <input name="user.name" id="user.name" class="text"
+                                                           style="width:154px"
                                                            maxlength="20"
                                                            valid="required|isEnglishChinese"
                                                            errmsg="用户名不能为空!|用户名只能为中英文字符"
@@ -173,7 +174,8 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="user.comment" id="user.comment">${teacher.user.comment}</textarea>
+                                                    <textarea name="user.comment"
+                                                              id="user.comment">${teacher.user.comment}</textarea>
                                                 </td>
                                             </tr>
                                         </table>
@@ -197,10 +199,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

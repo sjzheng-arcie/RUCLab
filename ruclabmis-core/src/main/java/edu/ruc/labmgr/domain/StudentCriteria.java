@@ -382,42 +382,42 @@ public class StudentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStudentSnEqualTo(String value){
-           addCriterion("u.sn=",value,"u.sn");
-           return (Criteria) this;
+        public Criteria andStudentSnEqualTo(String value) {
+            addCriterion("u.sn=", value, "u.sn");
+            return (Criteria) this;
         }
 
-        public Criteria andStudentSnLike(String value){
+        public Criteria andStudentSnLike(String value) {
             addCriterion("u.sn like", value, "u.sn");
             return (Criteria) this;
         }
 
-        public Criteria andStudentNameEqualTo(String value){
-            addCriterion("u.name=",value,"u.name");
+        public Criteria andStudentNameEqualTo(String value) {
+            addCriterion("u.name=", value, "u.name");
             return (Criteria) this;
         }
 
-        public Criteria andStudentNameLike(String value){
-            addCriterion("u.name like ",value,"u.name");
+        public Criteria andStudentNameLike(String value) {
+            addCriterion("u.name like ", value, "u.name");
             return (Criteria) this;
         }
 
-        public Criteria andStudentMajorEqualTo(String value){
-            addCriterion("m.name = ",value,"m.name");
+        public Criteria andStudentMajorEqualTo(String value) {
+            addCriterion("m.name = ", value, "m.name");
             return (Criteria) this;
         }
 
-        public Criteria andStudentMajorLike(String value){
-            addCriterion("m.name like ",value,"m.name");
+        public Criteria andStudentMajorLike(String value) {
+            addCriterion("m.name like ", value, "m.name");
             return (Criteria) this;
         }
 
-        public Criteria andJoinUser(){
+        public Criteria andJoinUser() {
             addCriterion("st.id = u.id");
             return (Criteria) this;
         }
 
-        public Criteria andJoinMajor(){
+        public Criteria andJoinMajor() {
             addCriterion("u.major_id = m.id");
             return (Criteria) this;
         }

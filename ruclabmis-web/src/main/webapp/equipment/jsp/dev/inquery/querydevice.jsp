@@ -40,7 +40,7 @@
 <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
 <td valign="top" bgcolor="#F7F8F9">
 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
-<tr >
+<tr>
 <td valign="top" class="STYLE10">
 <div class="noprint" style="border: 1px solid;width:99%;">
     <table width="100%" border="0" cellpadding="0">
@@ -75,7 +75,8 @@
             </td>
             <td align="center">设备规格</td>
             <td>
-                <input name="specifications" id="specifications" value="${searchEquipment.specifications}" onblur="" class="text"
+                <input name="specifications" id="specifications" value="${searchEquipment.specifications}" onblur=""
+                       class="text"
                        style="width:154px" maxlength="20"
                        valid="isNumber"
                        errmsg="设备规格只能为数字"/>
@@ -96,7 +97,8 @@
             </td>
             <td align="center">出厂号</td>
             <td>
-                <input name="factoryNumber" id="factoryNumber" value="${searchEquipment.factoryNumber}" onblur="" class="text"
+                <input name="factoryNumber" id="factoryNumber" value="${searchEquipment.factoryNumber}" onblur=""
+                       class="text"
                        style="width:154px" maxlength="20"/>
             </td>
             <td align="center">国别</td>
@@ -108,7 +110,7 @@
             <td nowrap align="center">设备状态</td>
             <td nowrap>
                 <select name="stateId" id="stateId">
-                    <option value="-1"> 所有 </option>
+                    <option value="-1"> 所有</option>
                     <c:forEach items="${states}" var="state">
                         <option value="${state.id}"
                                 <c:if test="${state.id == searchEquipment.stateId}"> selected</c:if>>${state.value}
@@ -120,7 +122,7 @@
             <td nowrap align="center">经费科目</td>
             <td nowrap>
                 <select name="fundingSubjectId" id="fundingSubjectId">
-                    <option value="-1"> 所有 </option>
+                    <option value="-1"> 所有</option>
                     <c:forEach items="${fundingSubjects}" var="fundingSubject">
                         <option value="${fundingSubject.id}"
                                 <c:if test="${fundingSubject.id == searchEquipment.fundingSubjectId}"> selected</c:if>>${fundingSubject.value}
@@ -131,7 +133,7 @@
             <td nowrap align="center">使用方向</td>
             <td nowrap>
                 <select name="useDirectionId" id="useDirectionId">
-                    <option value="-1"> 所有 </option>
+                    <option value="-1"> 所有</option>
                     <c:forEach items="${useDirections}" var="direction">
                         <option value="${direction.id}"
                                 <c:if test="${direction.id == searchEquipment.useDirectionId}"> selected</c:if>>${direction.value}
@@ -187,8 +189,9 @@
 	            	<span class="STYLE1" style="white-space:nowrap">
 <%--                        <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10"
                                                                  height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
-                        <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                        <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10"
+                                                                  height="10"
+                                                                  border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	                </span>
                                     </div>
                                 </td>
@@ -280,7 +283,7 @@
         </td>
     </tr>
 
-    <%@ include file="../../common/pagetable.jsp"%>
+    <%@ include file="../../common/pagetable.jsp" %>
 
 </table>
 
@@ -292,11 +295,11 @@
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                          width="17" height="17"/></td>
+                                                                             width="17" height="17"/></td>
     <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                         width="100%" height="17"/></td>
+                                                                            width="100%" height="17"/></td>
     <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img src="../../../../images/buttom_right2.gif"
-                                                                           width="16" height="17"/></td>
+                                                                              width="16" height="17"/></td>
 </tr>
 </table>
 </form>

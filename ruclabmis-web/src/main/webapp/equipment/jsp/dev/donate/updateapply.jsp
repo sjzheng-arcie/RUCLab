@@ -8,7 +8,7 @@
 
 <script>
     function update() {
-        if(!validator(document.mainForm)){
+        if (!validator(document.mainForm)) {
             return;
         }
 
@@ -16,11 +16,11 @@
         document.mainForm.submit();
     }
 
-    function toAddEquipment(){
-        window.open("/equipment/jsp/dev/donate/deviceList?application_id="+${apply.applicationId}, "设备信息",
+    function toAddEquipment() {
+        window.open("/equipment/jsp/dev/donate/deviceList?application_id=" +${apply.applicationId}, "设备信息",
                 "height=400, width=1350, toolbar=no, status=no");
     }
-    function freshWindow(){
+    function freshWindow() {
         window.location.reload(true);
     }
 </script>
@@ -49,10 +49,10 @@
 <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
 <td valign="top" bgcolor="#F7F8F9">
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-<tr  class="noprint" >
+<tr class="noprint">
     <td height="30">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr  class="noprint">
+            <tr class="noprint">
                 <td height="24" bgcolor="#353c44">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
@@ -71,8 +71,10 @@
                             <td>
                                 <div align="right"><span class="STYLE1">&nbsp;</span><span
                                         class="STYLE1"> &nbsp;</span>
-                                    <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                              border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                    <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif"
+                                                                              width="10" height="10"
+                                                                              border="0"/> <span
+                                            class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                     </span>
                                 </div>
                             </td>
@@ -136,11 +138,12 @@
             </tr>
         </table>
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr  class="noprint">
+            <tr class="noprint">
                 <td align="center">
                     <c:if test="${formType=='apply'}">
                         <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                            <input type="button" name="addEquipmentsToApply" value="添加设备" class="button" onclick="toAddEquipment();"/>
+                            <input type="button" name="addEquipmentsToApply" value="添加设备" class="button"
+                                   onclick="toAddEquipment();"/>
                             <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
                             <input type="reset" name="reset" value="重置" class="button"/>
                         </shiro:hasAnyRoles>
@@ -248,8 +251,10 @@
                         <td>${item.useDirection}</td>
                         <c:if test="${formType=='apply'}">
                             <shiro:hasAnyRoles name="administrators,teacher,equipment_admin">
-                                <td><a href="/equipment/jsp/dev/donate/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
-                                    <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/></a>
+                                <td>
+                                    <a href="/equipment/jsp/dev/donate/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
+                                        <img src="../../../../images/del_min.gif" width="10" height="10"
+                                             border="0"/></a>
                                 </td>
                             </shiro:hasAnyRoles>
                         </c:if>
@@ -269,9 +274,9 @@
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                          width="17" height="17"/></td>
+                                                                             width="17" height="17"/></td>
     <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                         width="100%" height="17"></td>
+                                                                            width="100%" height="17"></td>
     <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
             src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>

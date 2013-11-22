@@ -13,61 +13,62 @@ public class ApplyContext {
     private BaseApply apply;
     Types.ApplyType applyType;
 
-    private ApplyContext(){}
+    private ApplyContext() {
+    }
 
     public ApplyContext(BaseApply apply) {
         this.apply = apply;
     }
 
-    public ApplyContext(Types.ApplyType applyType){
+    public ApplyContext(Types.ApplyType applyType) {
         this.applyType = applyType;
         BaseApply apply;
-        switch (applyType){
+        switch (applyType) {
             case BORROW:
-                apply = SysUtil.getBean("borrowApply",BorrowApply.class);
+                apply = SysUtil.getBean("borrowApply", BorrowApply.class);
                 break;
             case RETURN:
-                apply = SysUtil.getBean("returnApply",ReturnApply.class);
+                apply = SysUtil.getBean("returnApply", ReturnApply.class);
                 break;
             case ALLOT:
-                apply = SysUtil.getBean("allotApply",AllotApply.class);
+                apply = SysUtil.getBean("allotApply", AllotApply.class);
                 break;
             case DONATE:
-                apply = SysUtil.getBean("donateApply",DonateApply.class);
+                apply = SysUtil.getBean("donateApply", DonateApply.class);
                 break;
             case REPAIR:
-                apply = SysUtil.getBean("repairApply",RepairApply.class);
+                apply = SysUtil.getBean("repairApply", RepairApply.class);
                 break;
             case DEFICIT:
-                apply = SysUtil.getBean("deficitApply",DeficitApply.class);
+                apply = SysUtil.getBean("deficitApply", DeficitApply.class);
                 break;
             case INFO:
-                apply = SysUtil.getBean("infoApply",InfoApply.class);
+                apply = SysUtil.getBean("infoApply", InfoApply.class);
                 break;
             default:
-                apply = SysUtil.getBean("baseApply",BaseApply.class);
+                apply = SysUtil.getBean("baseApply", BaseApply.class);
                 break;
 
         }
         this.apply = apply;
     }
 
-    public PageInfo<Equipment> pageDeviceList(String sn,String name, int useDirect,int page){
+    public PageInfo<Equipment> pageDeviceList(String sn, String name, int useDirect, int page) {
         return apply.pageDeviceList(sn, name, useDirect, page);
     }
 
     //申请表单列表
-    public PageInfo<ApplicationForm> pageApplicationList(String sn,int stateId, int pageNum){
+    public PageInfo<ApplicationForm> pageApplicationList(String sn, int stateId, int pageNum) {
         return apply.pageApplicationList(sn, stateId, pageNum, applyType);
     }
 
     //审批/执行表单列表
-    public PageInfo<ApplicationForm> pageApplicationProcessList(String sn,int stateId, int pageNum){
+    public PageInfo<ApplicationForm> pageApplicationProcessList(String sn, int stateId, int pageNum) {
         return apply.pageApplicationProcessList(sn, stateId, pageNum, applyType);
     }
 
     //历史表单列表
-    public PageInfo<ApplicationForm> pageApplicationHistoryList(String sn,int stateId, int pageNum){
+    public PageInfo<ApplicationForm> pageApplicationHistoryList(String sn, int stateId, int pageNum) {
         return apply.pageApplicationHistoryList(sn, stateId, pageNum, applyType);
     }
 
@@ -87,7 +88,7 @@ public class ApplyContext {
         apply.processApply(applicationId, state);
     }
 
-    public void deleteApplys( List<Integer> appIds){
+    public void deleteApplys(List<Integer> appIds) {
         apply.deleteApplys(appIds);
     }
 }

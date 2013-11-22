@@ -20,106 +20,110 @@
 
 <form name="listForm" method="post">
 
-<table width="98%" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
-                src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
-        <td valign="top" background="../../../../images/content-bg.gif">
-            <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
-                <tr>
-                    <td height="31">
-                        <div class="titlebt">实验管理 > 查看实验</div>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
-                src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
-    </tr>
-    <tr>
-        <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
-        <td valign="top" bgcolor="#F7F8F9">
-            <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-                <tr>
-                    <td height="30">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td height="24" bgcolor="#353c44">
-                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                        <tr>
-                                            <td>
-                                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                    <tr>
-                                                        <td width="6%" height="19" valign="bottom">
-                                                            <div align="center"><img src="../../../../images/tb.gif"
-                                                                                     width="14" height="14"/></div>
-                                                        </td>
-                                                        <td width="94%" valign="bottom"><span
-                                                                class="STYLE1">实验信息</span></td>
-                                                    </tr>
-                                                </table>
-                                            </td>
-                                            <td>
-                                                <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                        class="STYLE1"> &nbsp;</span></div>
-                                            </td>
-                                        </tr>
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-                <tr valign="top">
-                    <td>
-                        <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
-                            <tr bgcolor="#FFFFFF">
-                                <td bgcolor="#FFFFFF">
-                                    <table border="0" cellpadding="2" cellspacing="1"
-                                           style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
-                                           bgcolor="#E3E9EE">
-                                        <tr>
-                                            <td nowrap align="right">实验编号:</td>
-                                            <td nowrap>${experiment.sn}</td>
-                                            <td nowrap align="right">实验名称:</td>
-                                            <td nowrap>${experiment.name}</td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap align="right">实验指导书:</td>
-                                            <td nowrap>${experiment.instructor}<input type="button" value="下载"/></td>
-                                            <td nowrap align="right">实验报告书:</td>
-                                            <td nowrap>${experiment.report}<input type="button"  value="下载"/></td>
-                                        </tr>
+    <table width="98%" border="0" cellpadding="0" cellspacing="0">
+        <tr>
+            <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
+            <td valign="top" background="../../../../images/content-bg.gif">
+                <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
+                       id="table2">
+                    <tr>
+                        <td height="31">
+                            <div class="titlebt">实验管理 > 查看实验</div>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
+                    src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
+        </tr>
+        <tr>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="top" bgcolor="#F7F8F9">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                    <tr>
+                        <td height="30">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td height="24" bgcolor="#353c44">
+                                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                            <tr>
+                                                <td>
+                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                        <tr>
+                                                            <td width="6%" height="19" valign="bottom">
+                                                                <div align="center"><img src="../../../../images/tb.gif"
+                                                                                         width="14" height="14"/></div>
+                                                            </td>
+                                                            <td width="94%" valign="bottom"><span
+                                                                    class="STYLE1">实验信息</span></td>
+                                                        </tr>
+                                                    </table>
+                                                </td>
+                                                <td>
+                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
+                                                            class="STYLE1"> &nbsp;</span></div>
+                                                </td>
+                                            </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr valign="top">
+                        <td>
+                            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+                                <tr bgcolor="#FFFFFF">
+                                    <td bgcolor="#FFFFFF">
+                                        <table border="0" cellpadding="2" cellspacing="1"
+                                               style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
+                                               bgcolor="#E3E9EE">
+                                            <tr>
+                                                <td nowrap align="right">实验编号:</td>
+                                                <td nowrap>${experiment.sn}</td>
+                                                <td nowrap align="right">实验名称:</td>
+                                                <td nowrap>${experiment.name}</td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验指导书:</td>
+                                                <td nowrap>${experiment.instructor}<input type="button" value="下载"/>
+                                                </td>
+                                                <td nowrap align="right">实验报告书:</td>
+                                                <td nowrap>${experiment.report}<input type="button" value="下载"/></td>
+                                            </tr>
 
 
-                                    </table>
-                                </td>
-                            </tr>
-                        </table>
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td align="center">
-                                    <input type="button" name="Submit2" value="返回" class="button"
-                                           onclick="window.history.go(-1);"/>
-                                </td>
-                            </tr>
-                        </table>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
-    </tr>
+                                        </table>
+                                    </td>
+                                </tr>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center">
+                                        <input type="button" name="Submit2" value="返回" class="button"
+                                               onclick="window.history.go(-1);"/>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+        </tr>
 
-    <tr>
-        <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                              width="17" height="17"/></td>
-        <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                             width="100%" height="17"/></td>
-        <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
-                src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
-    </tr>
-</table>
+        <tr>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
+                    src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
+        </tr>
+    </table>
 </form>
 </body>
 </html>

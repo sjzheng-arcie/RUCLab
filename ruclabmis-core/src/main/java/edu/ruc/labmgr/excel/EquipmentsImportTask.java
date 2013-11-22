@@ -18,7 +18,7 @@ public class EquipmentsImportTask implements Callable<Boolean> {
     private File excelFile;
     private boolean clean;
 
-    public EquipmentsImportTask(File excelFile, boolean clean){
+    public EquipmentsImportTask(File excelFile, boolean clean) {
         this.excelFile = excelFile;
         this.clean = clean;
     }
@@ -26,24 +26,24 @@ public class EquipmentsImportTask implements Callable<Boolean> {
     @Override
     public Boolean call() throws Exception {
         InputStream is = null;
-        try{
+        try {
             is = new FileInputStream(excelFile);
             Workbook wb = null;
-            if(excelFile.getName().endsWith("xls")){
+            if (excelFile.getName().endsWith("xls")) {
                 wb = new HSSFWorkbook(is);
-            }else{
+            } else {
                 wb = new XSSFWorkbook(is);
             }
             EquipmentsExcelParser parser = new EquipmentsExcelParser();
-            List<Equipment> equips =  parser.parseFromWorkBook(wb);
-            EquipmentService service = SysUtil.getBean("equipmentService",EquipmentService.class);
+            List<Equipment> equips = parser.parseFromWorkBook(wb);
+            EquipmentService service = SysUtil.getBean("equipmentService", EquipmentService.class);
             service.saveOrUpdateEquipments(equips);
             return true;
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
             return false;
-        }finally {
-            if (is!=null){
+        } finally {
+            if (is != null) {
                 is.close();
             }
         }

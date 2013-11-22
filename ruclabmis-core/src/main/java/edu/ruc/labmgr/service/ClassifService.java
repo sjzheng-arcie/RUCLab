@@ -3,7 +3,6 @@ package edu.ruc.labmgr.service;
 import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.domain.ClassifCriteria;
 import edu.ruc.labmgr.mapper.ClassifMapper;
-import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,11 +21,11 @@ public class ClassifService {
     }
 
     public Integer getIdByName(String name) {
-        ClassifCriteria criteria = new  ClassifCriteria();
-        ClassifCriteria.Criteria ec =  criteria.createCriteria();
+        ClassifCriteria criteria = new ClassifCriteria();
+        ClassifCriteria.Criteria ec = criteria.createCriteria();
         ec.andValueEqualTo(name);
         List<Classif> codes = mapper.selectByCriteria(criteria);
-        if(codes.size() > 0)
+        if (codes.size() > 0)
             return codes.get(0).getId();
         else
             return null;

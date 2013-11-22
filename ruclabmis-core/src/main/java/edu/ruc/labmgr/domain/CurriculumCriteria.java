@@ -924,14 +924,14 @@ public class CurriculumCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andJoinMajor(){
+        public Criteria andJoinMajor() {
             addCriterion("c.major_id=m.id");
-            return (Criteria)this;
+            return (Criteria) this;
         }
 
-        public Criteria andJoinTeacher(){
+        public Criteria andJoinTeacher() {
             addCriterion("c.teacher_id = u.id");
-            return (Criteria)this;
+            return (Criteria) this;
         }
     }
 

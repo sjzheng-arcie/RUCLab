@@ -1,7 +1,6 @@
 package edu.ruc.labmgr.domain;
 
 import java.util.Date;
-import edu.ruc.labmgr.domain.User;
 
 public class Announcement {
     private Integer id;
@@ -16,7 +15,7 @@ public class Announcement {
 
     private Integer publishLimit;
 
-	private User user;
+    private User user;
 
     public Integer getId() {
         return id;
@@ -67,12 +66,12 @@ public class Announcement {
     }
 
 
-	public User getUser() {
-		return user;
-	}
+    public User getUser() {
+        return user;
+    }
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    public void setUser(User user) {
+        this.user = user;
+    }
 
 }

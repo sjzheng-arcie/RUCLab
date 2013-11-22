@@ -404,49 +404,49 @@ public class ClassStudentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStudentSnEqualTo(String sn){
-            addCriterion("u.sn =",sn,"u.sn");
+        public Criteria andStudentSnEqualTo(String sn) {
+            addCriterion("u.sn =", sn, "u.sn");
             return (Criteria) this;
         }
 
-        public Criteria andStudentSnLike(String sn){
-            addCriterion("u.sn like",sn,"u.sn");
+        public Criteria andStudentSnLike(String sn) {
+            addCriterion("u.sn like", sn, "u.sn");
             return (Criteria) this;
         }
 
-        public Criteria andStudentNameEqualTo(String name){
-           addCriterion("u.name =",name,"u.name");
-           return (Criteria)this;
+        public Criteria andStudentNameEqualTo(String name) {
+            addCriterion("u.name =", name, "u.name");
+            return (Criteria) this;
         }
 
-        public Criteria andStudentNameLike(String name){
-            addCriterion("u.name like",name,"u.name");
-            return (Criteria)this;
+        public Criteria andStudentNameLike(String name) {
+            addCriterion("u.name like", name, "u.name");
+            return (Criteria) this;
         }
 
-        public Criteria andStudentMajorEqualTo(String major){
-            addCriterion("m.name =",major,"m.name");
-            return (Criteria)this;
+        public Criteria andStudentMajorEqualTo(String major) {
+            addCriterion("m.name =", major, "m.name");
+            return (Criteria) this;
         }
 
-        public Criteria andStudentMajorLike(String major){
-            addCriterion("m.name like",major,"m.name");
-            return (Criteria)this;
+        public Criteria andStudentMajorLike(String major) {
+            addCriterion("m.name like", major, "m.name");
+            return (Criteria) this;
         }
 
-        public Criteria andJoinUser(){
+        public Criteria andJoinUser() {
             addCriterion("cs.student_id = u.id");
-            return (Criteria)this;
+            return (Criteria) this;
         }
 
-        public Criteria andJoinStudent(){
+        public Criteria andJoinStudent() {
             addCriterion("u.id = st.id");
-            return (Criteria)this;
+            return (Criteria) this;
         }
 
-        public Criteria andJoinMajor(){
+        public Criteria andJoinMajor() {
             addCriterion("u.major_id = m.id");
-            return (Criteria)this;
+            return (Criteria) this;
         }
     }
 

@@ -19,7 +19,7 @@
      * 因此，UEditor提供了针对不同页面的编辑器可单独配置的根路径，具体来说，在需要实例化编辑器的页面最顶部写上如下代码即可。当然，需要令此处的URL等于对应的配置。
      * window.UEDITOR_HOME_URL = "/xxxx/xxxx/";
      */
-    var URL = window.UEDITOR_HOME_URL || (function(){
+    var URL = window.UEDITOR_HOME_URL || (function () {
 
         function PathStack() {
 
@@ -33,83 +33,83 @@
             this.path = this.documentURL;
             this.stack = [];
 
-            this.push( this.documentURL );
+            this.push(this.documentURL);
 
         }
 
-        PathStack.isParentPath = function( path ){
+        PathStack.isParentPath = function (path) {
             return path === '..';
         };
 
-        PathStack.hasProtocol = function( path ){
-            return !!PathStack.getProtocol( path );
+        PathStack.hasProtocol = function (path) {
+            return !!PathStack.getProtocol(path);
         };
 
-        PathStack.getProtocol = function( path ){
+        PathStack.getProtocol = function (path) {
 
-            var protocol = /^[^:]*:\/*/.exec( path );
+            var protocol = /^[^:]*:\/*/.exec(path);
 
             return protocol ? protocol[0] : null;
 
         };
 
         PathStack.prototype = {
-            push: function( path ){
+            push: function (path) {
 
                 this.path = path;
 
-                update.call( this );
-                parse.call( this );
+                update.call(this);
+                parse.call(this);
 
                 return this;
 
             },
-            getPath: function(){
+            getPath: function () {
                 return this + "";
             },
-            toString: function(){
-                return this.protocol + ( this.stack.concat( [''] ) ).join( this.separator );
+            toString: function () {
+                return this.protocol + ( this.stack.concat(['']) ).join(this.separator);
             }
         };
 
         function update() {
 
-            var protocol = PathStack.getProtocol( this.path || '' );
+            var protocol = PathStack.getProtocol(this.path || '');
 
-            if( protocol ) {
+            if (protocol) {
 
                 //根协议
                 this.protocol = protocol;
 
                 //local
-                this.localSeparator = /\\|\//.exec( this.path.replace( protocol, '' ) )[0];
+                this.localSeparator = /\\|\//.exec(this.path.replace(protocol, ''))[0];
 
                 this.stack = [];
             } else {
-                protocol = /\\|\//.exec( this.path );
+                protocol = /\\|\//.exec(this.path);
                 protocol && (this.localSeparator = protocol[0]);
             }
 
         }
 
-        function parse(){
+        function parse() {
 
-            var parsedStack = this.path.replace( this.currentDirPattern, '' );
+            var parsedStack = this.path.replace(this.currentDirPattern, '');
 
-            if( PathStack.hasProtocol( this.path ) ) {
-                parsedStack = parsedStack.replace( this.protocol , '');
+            if (PathStack.hasProtocol(this.path)) {
+                parsedStack = parsedStack.replace(this.protocol, '');
             }
 
-            parsedStack = parsedStack.split( this.localSeparator );
+            parsedStack = parsedStack.split(this.localSeparator);
             parsedStack.length = parsedStack.length - 1;
 
-            for(var i= 0,tempPath,l=parsedStack.length,root = this.stack;i<l;i++){
+            for (var i = 0, tempPath, l = parsedStack.length, root = this.stack; i < l; i++) {
                 tempPath = parsedStack[i];
-                if(tempPath){
-                    if( PathStack.isParentPath( tempPath ) ) {
+                if (tempPath) {
+                    if (PathStack.isParentPath(tempPath)) {
                         root.pop();
                     } else {
-                        root.push( tempPath );
+                        root.push(tempPath);
                     }
                 }
 
@@ -120,9 +120,9 @@
 
         var currentPath = document.getElementsByTagName('script');
 
-        currentPath = currentPath[ currentPath.length -1 ].src;
+        currentPath = currentPath[ currentPath.length - 1 ].src;
 
-        return new PathStack().push( currentPath ) + "";
+        return new PathStack().push(currentPath) + "";
 
 
     })();
@@ -133,53 +133,52 @@
     window.UEDITOR_CONFIG = {
 
         //为编辑器实例添加一个路径，这个不能被注释
-        UEDITOR_HOME_URL : URL
+        UEDITOR_HOME_URL: URL
 
         //图片上传配置区
-        ,imageUrl:URL+"jsp/imageUp.jsp"             //图片上传提交地址
-        ,imagePath:URL + "jsp/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
+        , imageUrl: URL + "jsp/imageUp.jsp"             //图片上传提交地址
+        , imagePath: URL + "jsp/"                     //图片修正地址，引用了fixedImagePath,如有特殊需求，可自行配置
         //,imageFieldName:"upfile"                   //图片数据的key,若此处修改，需要在后台对应文件修改对应参数
         //,compressSide:0                            //等比压缩的基准，确定maxImageSideLength参数的参照对象。0为按照最长边，1为按照宽度，2为按照高度
         //,maxImageSideLength:900                    //上传图片最大允许的边长，超过会自动等比缩放,不缩放就设置一个比较大的值，更多设置在image.html中
 
         //涂鸦图片配置区
-        ,scrawlUrl:URL+"jsp/scrawlUp.jsp"           //涂鸦上传地址
-        ,scrawlPath:URL+"jsp/"                            //图片修正地址，同imagePath
+        , scrawlUrl: URL + "jsp/scrawlUp.jsp"           //涂鸦上传地址
+        , scrawlPath: URL + "jsp/"                            //图片修正地址，同imagePath
 
         //附件上传配置区
-        ,fileUrl:URL+"jsp/fileUp.jsp"               //附件上传提交地址
-        ,filePath:URL + "jsp/"                   //附件修正地址，同imagePath
+        , fileUrl: URL + "jsp/fileUp.jsp"               //附件上传提交地址
+        , filePath: URL + "jsp/"                   //附件修正地址，同imagePath
         //,fileFieldName:"upfile"                    //附件提交的表单名，若此处修改，需要在后台对应文件修改对应参数
 
         //远程抓取配置区
         //,catchRemoteImageEnable:true               //是否开启远程图片抓取,默认开启
-        ,catcherUrl:URL +"jsp/getRemoteImage.jsp"   //处理远程图片抓取的地址
-        ,catcherPath:URL + "jsp/"                  //图片修正地址，同imagePath
+        , catcherUrl: URL + "jsp/getRemoteImage.jsp"   //处理远程图片抓取的地址
+        , catcherPath: URL + "jsp/"                  //图片修正地址，同imagePath
         //,catchFieldName:"upfile"                   //提交到后台远程图片uri合集，若此处修改，需要在后台对应文件修改对应参数
         //,separater:'ue_separate_ue'               //提交至后台的远程图片地址字符串分隔符
         //,localDomain:[]                            //本地顶级域名，当开启远程图片抓取时，除此之外的所有其它域名下的图片都将被抓取到本地,默认不抓取127.0.0.1和localhost
 
         //图片在线管理配置区
-        ,imageManagerUrl:URL + "jsp/imageManager.jsp"       //图片在线管理的处理地址
-        ,imageManagerPath:URL + "jsp/"                                    //图片修正地址，同imagePath
+        , imageManagerUrl: URL + "jsp/imageManager.jsp"       //图片在线管理的处理地址
+        , imageManagerPath: URL + "jsp/"                                    //图片修正地址，同imagePath
 
         //屏幕截图配置区
-        ,snapscreenHost: location.hostname                                 //屏幕截图的server端文件所在的网站地址或者ip，请不要加http://
-        ,snapscreenServerUrl: URL +"jsp/imageUp.jsp" //屏幕截图的server端保存程序，UEditor的范例代码为“URL +"server/upload/jsp/snapImgUp.jsp"”
-        ,snapscreenPath: URL + "jsp/"
-        ,snapscreenServerPort: location.port                                   //屏幕截图的server端端口
+        , snapscreenHost: location.hostname                                 //屏幕截图的server端文件所在的网站地址或者ip，请不要加http://
+        , snapscreenServerUrl: URL + "jsp/imageUp.jsp" //屏幕截图的server端保存程序，UEditor的范例代码为“URL +"server/upload/jsp/snapImgUp.jsp"”
+        , snapscreenPath: URL + "jsp/", snapscreenServerPort: location.port                                   //屏幕截图的server端端口
         //,snapscreenImgAlign: ''                                //截图的图片默认的排版方式
 
         //word转存配置区
-        ,wordImageUrl:URL + "jsp/imageUp.jsp"             //word转存提交地址
-        ,wordImagePath:URL + "jsp/"                       //
+        , wordImageUrl: URL + "jsp/imageUp.jsp"             //word转存提交地址
+        , wordImagePath: URL + "jsp/"                       //
         //,wordImageFieldName:"upfile"                     //word转存表单名若此处修改，需要在后台对应文件修改对应参数
 
         //获取视频数据的地址
-        ,getMovieUrl:URL+"jsp/getMovie.jsp"                   //视频数据获取地址
+        , getMovieUrl: URL + "jsp/getMovie.jsp"                   //视频数据获取地址
 
         //工具栏上的所有的功能按钮和下拉框，可以在new编辑器的实例时选择自己需要的从新定义
-        , toolbars:[
+        , toolbars: [
             ['fullscreen', 'source', '|', 'undo', 'redo', '|',
                 'bold', 'italic', 'underline', 'fontborder', 'strikethrough', 'superscript', 'subscript', 'removeformat', 'formatmatch', 'autotypeset', 'blockquote', 'pasteplain', '|', 'forecolor', 'backcolor', 'insertorderedlist', 'insertunorderedlist', 'selectall', 'cleardoc', '|',
                 'rowspacingtop', 'rowspacingbottom', 'lineheight', '|',
@@ -187,7 +186,7 @@
                 'directionalityltr', 'directionalityrtl', 'indent', '|',
                 'justifyleft', 'justifycenter', 'justifyright', 'justifyjustify', '|', 'touppercase', 'tolowercase', '|',
                 'link', 'unlink', 'anchor', '|', 'imagenone', 'imageleft', 'imageright', 'imagecenter', '|',
-                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe','insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
+                'insertimage', 'emotion', 'scrawl', 'insertvideo', 'music', 'attachment', 'map', 'gmap', 'insertframe', 'insertcode', 'webapp', 'pagebreak', 'template', 'background', '|',
                 'horizontal', 'date', 'time', 'spechars', 'snapscreen', 'wordimage', '|',
                 'inserttable', 'deletetable', 'insertparagraphbeforetable', 'insertrow', 'deleterow', 'insertcol', 'deletecol', 'mergecells', 'mergeright', 'mergedown', 'splittocells', 'splittorows', 'splittocols', '|',
                 'print', 'preview', 'searchreplace', 'help']

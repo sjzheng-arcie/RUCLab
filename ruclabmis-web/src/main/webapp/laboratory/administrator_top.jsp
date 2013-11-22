@@ -50,7 +50,7 @@
 <div class="top">
     <div class="top_left"><img src="../images/logo.gif" width="305" height="103"></div>
     <div class="top_right_top">
-           <span style="float:right;" >您好！<a>${user.name}</a>[${user.role.name}]
+           <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
             <a href="jsp/announcement/remind/remind?id=1" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
             [<a href="/laboratory/logout" target="_top">退出</a>]
@@ -58,18 +58,18 @@
             </span>
 
     </div>
-        <ul class="top_right_menu">
-            <li class="active"><a href="administrator_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-            <li><a href="administrator_leftmenusys.html" target="leftFrame">系统管理</a></li>
-            <li><a href="administrator_leftmenubasinfo.html" target="leftFrame">基础信息管理</a></li>
-            <li><a href="administrator_leftmenulab.html" target="leftFrame">实验室管理</a></li>
-            <li><a href="administrator_leftmenu.html" target="leftFrame">教学资源管理</a></li>
-            <li><a href="administrator_leftmenuteach.html" target="leftFrame">实验教学管理</a></li>
-            <li><a href="new/left.html" target="leftFrame">预约管理</a></li>
-            <li><a href="administrator_leftmenutask.html" target="leftFrame">考核管理</a></li>
-            <li><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
-        </ul>
-    </div>
+    <ul class="top_right_menu">
+        <li class="active"><a href="administrator_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
+        <li><a href="administrator_leftmenusys.html" target="leftFrame">系统管理</a></li>
+        <li><a href="administrator_leftmenubasinfo.html" target="leftFrame">基础信息管理</a></li>
+        <li><a href="administrator_leftmenulab.html" target="leftFrame">实验室管理</a></li>
+        <li><a href="administrator_leftmenu.html" target="leftFrame">教学资源管理</a></li>
+        <li><a href="administrator_leftmenuteach.html" target="leftFrame">实验教学管理</a></li>
+        <li><a href="new/left.html" target="leftFrame">预约管理</a></li>
+        <li><a href="administrator_leftmenutask.html" target="leftFrame">考核管理</a></li>
+        <li><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
+    </ul>
+</div>
 </div>
 
 </body>

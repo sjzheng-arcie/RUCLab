@@ -30,7 +30,7 @@ div.gridbox_dhx_terrace table.hdr td div.hdrcell {
     padding-left: 20px;
     line-height: 37px;
     text-transform: uppercase;
-    width: 100%  !ie;
+    width: 100%   !ie;
 }
 
 div.gridbox_dhx_terrace .ftr table td {
@@ -42,7 +42,7 @@ div.gridbox_dhx_terrace .ftr table td {
     border-color: #cecece;
     padding-left: 20px;
     line-height: 41px;
-    width: 100%  !ie;
+    width: 100%   !ie;
 }
 
 div.gridbox_dhx_terrace table.hdr td {

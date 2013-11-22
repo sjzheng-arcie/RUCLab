@@ -10,8 +10,8 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        function editorClass(vcid){
-           window.location.href = "/experiment/virtual/editClass?vcId="+vcid;
+        function editorClass(vcid) {
+            window.location.href = "/experiment/virtual/editClass?vcId=" + vcid;
         }
         function deleteClasses(id) {
             var idsStr = "";
@@ -25,7 +25,7 @@
                 idsStr = ids.join(",");
                 console.log(idsStr);
             }
-            if (idsStr && idsStr.length > 0 &&  window.confirm("您确定要删除指定的班级吗?")) {
+            if (idsStr && idsStr.length > 0 && window.confirm("您确定要删除指定的班级吗?")) {
                 $.post("/experiment/virtual/removeClass", {
                     'ids': idsStr
                 }, function (data) {
@@ -76,7 +76,8 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"
                                                                             onclick="toFind('listForm')"><img
-                                    src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                    src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/>
+                                查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -197,7 +198,8 @@
                                                         <td>${item.teacherName}</td>
 
                                                         <td>
-                                                            <input type="button" onClick="editorClass(${item.id})" class="button"
+                                                            <input type="button" onClick="editorClass(${item.id})"
+                                                                   class="button"
                                                                    value="编辑"/>
                                                             <input type="button" onClick="deleteClasses('${item.id}')"
                                                                    class="button" value="删除"/>

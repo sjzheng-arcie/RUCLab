@@ -1,7 +1,6 @@
 package edu.ruc.labmgr.web.controller;
 
 import edu.ruc.labmgr.domain.User;
-import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.MD5.CipherUtil;
 import org.apache.shiro.SecurityUtils;

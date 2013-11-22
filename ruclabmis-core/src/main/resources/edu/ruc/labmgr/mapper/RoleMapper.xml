@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="edu.ruc.labmgr.mapper.RoleMapper" >
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Role" >
-        <id column="id" property="id" jdbcType="INTEGER" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="display_name" property="displayName" jdbcType="VARCHAR" />
+<mapper namespace="edu.ruc.labmgr.mapper.RoleMapper">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Role">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="display_name" property="displayName" jdbcType="VARCHAR"/>
     </resultMap>
 
 
@@ -15,25 +15,26 @@
         </collection>
     </resultMap>
 
-    <sql id="Criteria_Where_Clause" >
-        <where >
-            <foreach collection="oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -44,25 +45,26 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Update_By_Criteria_Where_Clause" >
-        <where >
-            <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
-                <if test="criteria.valid" >
-                    <trim prefix="(" suffix=")" prefixOverrides="and" >
-                        <foreach collection="criteria.criteria" item="criterion" >
-                            <choose >
-                                <when test="criterion.noValue" >
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
                                     and ${criterion.condition}
                                 </when>
-                                <when test="criterion.singleValue" >
+                                <when test="criterion.singleValue">
                                     and ${criterion.condition} #{criterion.value}
                                 </when>
-                                <when test="criterion.betweenValue" >
+                                <when test="criterion.betweenValue">
                                     and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
                                 </when>
-                                <when test="criterion.listValue" >
+                                <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
+                                             separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -73,136 +75,137 @@
             </foreach>
         </where>
     </sql>
-    <sql id="Base_Column_List" >
+    <sql id="Base_Column_List">
     id, name, display_name
   </sql>
-    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RoleCriteria" >
+    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RoleCriteria">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from role
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="RolePrivilegesMap" parameterType="java.lang.Integer" >
+    <select id="selectByPrimaryKey" resultMap="RolePrivilegesMap" parameterType="java.lang.Integer">
         select r.id, r.name,r.display_name, p.id as privilege_id, p.name as privilege_name
         from role r
         left join role_privilege rp on r.id=rp.role_id
         left join privilege p on rp.privilege_id=p.id
         where r.id =  #{id,jdbcType=INTEGER}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from role
     where id = #{id,jdbcType=INTEGER}
   </delete>
-    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.RoleCriteria" >
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.RoleCriteria">
         delete from role
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </delete>
-    <insert id="insert" parameterType="edu.ruc.labmgr.domain.Role" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.Role">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into role (id, name, display_name)
-        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}),  #{displayName,jdbcType=VARCHAR})
+        values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}), #{displayName,jdbcType=VARCHAR})
     </insert>
-    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Role" >
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Role">
+        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into role
-        <trim prefix="(" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
                 id,
             </if>
-            <if test="name != null" >
+            <if test="name != null">
                 name,
             </if>
-            <if test="displayName != null" >
+            <if test="displayName != null">
                 display_name,
             </if>
         </trim>
-        <trim prefix="values (" suffix=")" suffixOverrides="," >
-            <if test="id != null" >
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
                 #{id,jdbcType=INTEGER},
             </if>
-            <if test="name != null" >
+            <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
-            <if test="displayName != null" >
+            <if test="displayName != null">
                 #{displayName,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.RoleCriteria" resultType="java.lang.Integer" >
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.RoleCriteria" resultType="java.lang.Integer">
         select count(*) from role
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
     </select>
-    <update id="updateByCriteriaSelective" parameterType="map" >
+    <update id="updateByCriteriaSelective" parameterType="map">
         update role
-        <set >
-            <if test="record.id != null" >
+        <set>
+            <if test="record.id != null">
                 id = #{record.id,jdbcType=INTEGER},
             </if>
-            <if test="record.name != null" >
+            <if test="record.name != null">
                 name = #{record.name,jdbcType=VARCHAR},
             </if>
-            <if test="record.displayName != null" >
+            <if test="record.displayName != null">
                 display_name = #{record.displayName,jdbcType=VARCHAR},
             </if>
         </set>
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByCriteria" parameterType="map" >
+    <update id="updateByCriteria" parameterType="map">
         update role
         set id = #{record.id,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         display_name = #{record.displayName,jdbcType=VARCHAR}
-        <if test="_parameter != null" >
-            <include refid="Update_By_Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
     </update>
-    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Role" >
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Role">
         update role
-        <set >
-            <if test="name != null" >
+        <set>
+            <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="displayName != null" >
+            <if test="displayName != null">
                 display_name = #{displayName,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
-    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Role" >
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Role">
     update role
     set name = #{name,jdbcType=VARCHAR},
     display_name = #{displayName,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RoleCriteria" id="selectByCriteriaWithRowbounds" >
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.RoleCriteria"
+            id="selectByCriteriaWithRowbounds">
         select
-        <if test="distinct" >
+        <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List" />
+        <include refid="Base_Column_List"/>
         from role
-        <if test="_parameter != null" >
-            <include refid="Criteria_Where_Clause" />
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
         </if>
-        <if test="orderByClause != null" >
+        <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>

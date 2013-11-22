@@ -1,11 +1,11 @@
 package edu.ruc.labmgr.mapper;
 
-import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.domain.EquipmentCheck;
 import edu.ruc.labmgr.domain.EquipmentCheckCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface EquipmentCheckMapper {
     int countByCriteria(EquipmentCheckCriteria criteria);
@@ -36,5 +36,5 @@ public interface EquipmentCheckMapper {
 
     int updateByPrimaryKey(EquipmentCheck record);
 
-    Integer selectIdBySn(@Param("sn")String sn);
+    Integer selectIdBySn(@Param("sn") String sn);
 }

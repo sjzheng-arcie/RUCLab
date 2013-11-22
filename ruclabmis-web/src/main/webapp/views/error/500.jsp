@@ -27,6 +27,7 @@
 <h2>500 - 系统发生内部错误.</h2>
 
 <p><a href="<c:url value="/index.jsp"/>">返回首页</a></p>
+
 <p><a href="#" onclick="window.history.go(-1);">返回</a></p>
 </body>
 </html>

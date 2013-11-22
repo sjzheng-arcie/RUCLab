@@ -81,8 +81,9 @@
                                             <tr>
                                                 <td nowrap align="right">题目名字:</td>
                                                 <td nowrap>
-                                                    <input name="questionName"  class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" />
+                                                    <input name="questionName" class="text" style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
@@ -92,10 +93,10 @@
 
                                                 <td nowrap align="right">所属科目:</td>
                                                 <td nowrap>
-                                                    <input name="theCourse"  onblur="" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" />
+                                                    <input name="theCourse" onblur="" class="text" style="width:154px"
+                                                           maxlength="20" valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" ></span>
+                                                    <span style="color:red;"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -124,10 +125,10 @@
                                             <tr>
                                                 <td nowrap align="right">题目内容:</td>
                                                 <td nowrap>
-                                                    <textarea name="questionContent"style="width: 50%;height:100px">
+                                                    <textarea name="questionContent" style="width: 50%;height:100px">
                                                     </textarea>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" ></span>
+                                                    <span style="color:red;"></span>
                                                 </td>
 
                                             </tr>
@@ -137,11 +138,10 @@
                                                     <textarea name="answerContent" style="width: 50%;height:100px">
                                                     </textarea>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" ></span>
+                                                    <span style="color:red;"></span>
                                                 </td>
 
                                             </tr>
-
 
 
                                         </table>
@@ -166,10 +166,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

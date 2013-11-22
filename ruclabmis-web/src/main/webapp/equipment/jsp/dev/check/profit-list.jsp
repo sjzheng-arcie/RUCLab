@@ -150,7 +150,8 @@
                                                         <td>${equip.unitPrice}</td>
                                                         <td>${equip.vender}</td>
                                                         <td>${equip.factoryNumber}</td>
-                                                        <td><fmt:formatDate value="${equip.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
+                                                        <td><fmt:formatDate value="${equip.acquisitionDate}"
+                                                                            pattern="yyyy-MM-dd"/></td>
                                                         <td>${equip.fundingSubject}</td>
                                                         <td></td>
                                                         <td></td>

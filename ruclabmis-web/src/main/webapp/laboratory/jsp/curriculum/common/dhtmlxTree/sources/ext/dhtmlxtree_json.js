@@ -260,7 +260,10 @@ dhtmlXTreeObject.prototype._serializeItemJSON = function (itemNode) {
     if (!this._xfullXML)
         out.push('{ "id":"' + itemNode.id + '", ' + (this._getOpenState(itemNode) == 1 ? ' "open":"1", ' : '') + (lid == itemNode.id ? ' "select":"1",' : '') + ' "text":"' + text + '"' + ( ((this.XMLsource) && (itemNode.XMLload == 0)) ? ', "child":"1" ' : ''));
     else
-        out.push('{ "id":"' + itemNode.id + '", ' + (this._getOpenState(itemNode) == 1 ? ' "open":"1", ' : '') + (lid == itemNode.id ? ' "select":"1",' : '') + ' "text":"' + text + '", "im0":"' + itemNode.../images[0] + '", "im1":"' + itemNode.../images[1] + '", "im2":"' + itemNode.../images[2] + '" ' + (itemNode.acolor ? (', "aCol":"' + itemNode.acolor + '" ') : '') + (itemNode.scolor ? (', "sCol":"' + itemNode.scolor + '" ') : '') + (itemNode.checkstate == 1 ? ', "checked":"1" ' : (itemNode.checkstate == 2 ? ', "checked":"-1"' : '')) + (itemNode.closeable ? ', "closeable":"1" ' : '') + ( ((this.XMLsource) && (itemNode.XMLload == 0)) ? ', "child":"1" ' : ''));
+        out.push('{ "id":"' + itemNode.id + '", ' + (this._getOpenState(itemNode) == 1 ? ' "open":"1", ' : '') + (lid == itemNode.id ? ' "select":"1",' : '') + ' "text":"' + text + '", "im0":"' + itemNode...
+    /images[0] + '", "im1":"' + itemNode.../im
+    ages[1] + '", "im2":"' + itemNode...
+    /images[2] + '" ' + (itemNode.acolor ? (', "aCol":"' + itemNode.acolor + '" ') : '') + (itemNode.scolor ? (', "sCol":"' + itemNode.scolor + '" ') : '') + (itemNode.checkstate == 1 ? ', "checked":"1" ' : (itemNode.checkstate == 2 ? ', "checked":"-1"' : '')) + (itemNode.closeable ? ', "closeable":"1" ' : '') + ( ((this.XMLsource) && (itemNode.XMLload == 0)) ? ', "child":"1" ' : ''));
 
     if ((this._xuserData) && (itemNode._userdatalist)) {
         out.push(', "userdata":[');

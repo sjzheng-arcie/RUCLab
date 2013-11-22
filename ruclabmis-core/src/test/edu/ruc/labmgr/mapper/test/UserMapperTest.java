@@ -6,7 +6,6 @@ import edu.ruc.labmgr.mapper.UserMapper;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
 import org.junit.Ignore;
-import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Parameterized;
 import org.springframework.context.ApplicationContext;

@@ -51,9 +51,9 @@ public abstract class POIEntityParser<T> {
                         map.put(m.getPropName(), c.getStringCellValue());
                         break;
                     case Cell.CELL_TYPE_NUMERIC:
-                        if (DateUtil.isCellDateFormatted(c)){
-                            map.put(m.getPropName(),c.getDateCellValue());
-                        }else{
+                        if (DateUtil.isCellDateFormatted(c)) {
+                            map.put(m.getPropName(), c.getDateCellValue());
+                        } else {
                             map.put(m.getPropName(), c.getNumericCellValue());
                         }
                         break;

@@ -2,11 +2,11 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.ClassStudent;
 import edu.ruc.labmgr.domain.ClassStudentCriteria;
-import java.util.List;
-
 import edu.ruc.labmgr.domain.Student;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface ClassStudentMapper {
     int countByCriteria(ClassStudentCriteria example);

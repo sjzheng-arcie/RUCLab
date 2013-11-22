@@ -425,12 +425,12 @@ public class CurriculumClassCriteria {
         }
 
         //以下为连表查询
-        public Criteria andJoinCurriculum(){
+        public Criteria andJoinCurriculum() {
             addCriterion("cc.curriculum_id = c.id ");
             return (Criteria) this;
         }
 
-        public Criteria andJoinUser(){
+        public Criteria andJoinUser() {
             addCriterion("c.teacher_id = u.id ");
             return (Criteria) this;
         }

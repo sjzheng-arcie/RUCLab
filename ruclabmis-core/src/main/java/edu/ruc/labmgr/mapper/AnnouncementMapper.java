@@ -2,9 +2,10 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Announcement;
 import edu.ruc.labmgr.domain.AnnouncementCriteria;
-import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
+
+import java.util.List;
 
 public interface AnnouncementMapper {
     int countByCriteria(AnnouncementCriteria Criteria);

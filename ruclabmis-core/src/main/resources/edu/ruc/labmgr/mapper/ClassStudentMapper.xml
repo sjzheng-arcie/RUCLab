@@ -11,14 +11,14 @@
 
     <resultMap id="ClassStudentResultMap" type="edu.ruc.labmgr.domain.Student">
         <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="sn" property="sn" jdbcType="VARCHAR" />
-        <result column="name" property="name" jdbcType="VARCHAR" />
-        <result column="password" property="password" jdbcType="VARCHAR" />
-        <result column="sex" property="sex" jdbcType="BIT" />
-        <result column="email" property="email" jdbcType="VARCHAR" />
-        <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
-        <result column="comment" property="comment" jdbcType="VARCHAR" />
-        <result column="major_id" property="majorId" jdbcType="INTEGER" />
+        <result column="sn" property="sn" jdbcType="VARCHAR"/>
+        <result column="name" property="name" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="sex" property="sex" jdbcType="BIT"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="phone_num" property="phoneNum" jdbcType="VARCHAR"/>
+        <result column="comment" property="comment" jdbcType="VARCHAR"/>
+        <result column="major_id" property="majorId" jdbcType="INTEGER"/>
         <result column="st_birthday" property="birthday" jdbcType="DATE"/>
         <result column="st_origin_place" property="originPlace" jdbcType="VARCHAR"/>
         <result column="st_major_name" property="majorName" jdbcType="VARCHAR"/>

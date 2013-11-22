@@ -136,7 +136,8 @@ function dhtmlXTreeObject(a, b, c, d) {
         } catch (a) {
         }
     });
-    this.set../imagesPath = this.setImagePath;
+    this.set..
+    /imagesPath = this.setImagePath;
     this.setIconsPath = this.setIconPath;
     dhtmlx.image_path && this.setImagePath(dhtmlx.image_path);
     dhtmlx.skin && this.setSkin(dhtmlx.skin);
@@ -230,7 +231,8 @@ function dhtmlXTreeItemObject(a, b, c, d, f, e) {
     this.label = b;
     this.parentObject = c;
     this.actionHandler = f;
-    this.../images = [d.imageArray[0], d.imageArray[1], d.imageArray[2]];
+    this...
+    /images = [d.imageArray[0], d.imageArray[1], d.imageArray[2]];
     this.id = d._globalIdStorageAdd(a, this);
     this.htmlNode = this.treeNod.checkBoxOff ? this.treeNod._createItem(1, this, e) : this.treeNod._createItem(0,
         this, e);
@@ -312,9 +314,12 @@ dhtmlXTreeObject.prototype._attachChildNode = function (a, b, c, d, f, e, g, h, 
     var n;
     if (!(n = this._idpull[b]) || n.span != -1)n = k[l] = new dhtmlXTreeItemObject(b, c, a, this, d, 1), b = k[l].id, a.childsCount++;
     if (!n.htmlNode)n.label = c, n.htmlNode = this._createItem(this.checkBoxOff ? 1 : 0, n), n.htmlNode.objBelong = n;
-    f && (n.../images[0] = f);
-    e && (n.../images[1] = e);
-    g && (n.../images[2] = g);
+    f && (n...
+    /images[0] = f);
+    e && (n...
+    /images[1] = e);
+    g && (n...
+    /images[2] = g);
     var q = this._drawNewTr(n.htmlNode);
     if (this.XMLloadingWarning || this._hAdI)n.htmlNode.parentNode.parentNode.style.display = "none";
     i && i.tr &&
@@ -537,13 +542,16 @@ dhtmlXTreeObject.prototype._correctPlus = function (a) {
         } else if (a.childsCount || a.unParsed)if (a.htmlNode.childNodes[0].childNodes[1] && a.htmlNode.childNodes[0].childNodes[1].style.display != "none") {
             if (!a.wsign)d =
                 this.minusArray;
-            this._setSrc(c, this.iconURL + a.../images[1]);
+            this._setSrc(c, this.iconURL + a...
+            /images[1]);
             if (this._txtimg)return b.innerHTML = "[-]"
         } else {
             if (!a.wsign)d = this.plusArray;
-            this._setSrc(c, this.iconURL + a.../images[2]);
+            this._setSrc(c, this.iconURL + a...
+            /images[2]);
             if (this._txtimg)return b.innerHTML = "[+]"
-        } else this._setSrc(c, this.iconURL + a.../images[0]);
+        } else this._setSrc(c, this.iconURL + a...
+        /images[0]);
         var f = 2;
         a.treeNod.treeLinesOn ? (a.parentObject && (f = this._getCountStatus(a.id, a.parentObject)), this._setSrc(b, this.imPath + d[f])) : this._setSrc(b, this.imPath + d[3])
     }
@@ -874,10 +882,16 @@ dhtmlXTreeObject.prototype.doCut = function () {
     for (var a = 0; a < this.nodeCut.length; a++) {
         var b = this.nodeCut[a];
         b._cimgs = [];
-        b._cimgs[0] = b.../images[0];
-        b._cimgs[1] = b.../images[1];
-        b._cimgs[2] = b.../images[2];
-        b.../images[0] = b.../images[1] = b.../images[2] = this.cutImage;
+        b._cimgs[0] = b...
+        /images[0];
+        b._cimgs[1] = b...
+        /images[1];
+        b._cimgs[2] = b...
+        /images[2];
+        b...
+        /images[0] = b.../im
+        ages[1] = b...
+        /images[2] = this.cutImage;
         this._correctPlus(b)
     }
 };
@@ -890,9 +904,12 @@ dhtmlXTreeObject.prototype.doPaste = function (a) {
 dhtmlXTreeObject.prototype.clearCut = function () {
     for (var a = 0; a < this.nodeCut.length; a++) {
         var b = this.nodeCut[a];
-        b.../images[0] = b._cimgs[0];
-        b.../images[1] = b._cimgs[1];
-        b.../images[2] = b._cimgs[2];
+        b...
+        /images[0] = b._cimgs[0];
+        b...
+        /images[1] = b._cimgs[1];
+        b...
+        /images[2] = b._cimgs[2];
         this._correctPlus(b)
     }
     this.nodeCut = []
@@ -919,7 +936,10 @@ dhtmlXTreeObject.prototype._recreateBranch = function (a, b, c) {
     }
     var e = this._onradh;
     this._onradh = null;
-    var g = this._attachChildNode(b, a.id, a.label, 0, a.../images[0], a.../images[1], a.../images[2], f, 0, c);
+    var g = this._attachChildNode(b, a.id, a.label, 0, a...
+    /images[0], a.../im
+    ages[1], a...
+    /images[2], f, 0, c);
     g._userdatalist = a._userdatalist;
     g.userData = a.userData.clone();
     if (a._attrs) {
@@ -1032,9 +1052,11 @@ dhtmlXTreeObject.prototype.setOnMouseOutHandler = function (a) {
     this.ehlt = !0;
     this.attachEvent("onMouseOut", a)
 };
-dhtmlXTreeObject.prototype.enableTree../images = function (a) {
-    this.timgen = convertStringToBoolean(a)
-};
+dhtmlXTreeObject.prototype.enableTree..
+/images = function (a) {
+this.timgen = convertStringToBoolean(a)
+}
+;
 dhtmlXTreeObject.prototype.enableFixedMode = function (a) {
     this.hfMode = convertStringToBoolean(a)
 };
@@ -1042,11 +1064,13 @@ dhtmlXTreeObject.prototype.enableCheckBoxes = function (a, b) {
     this.checkBoxOff = convertStringToBoolean(a);
     this.cBROf = !(this.checkBoxOff || convertStringToBoolean(b))
 };
-dhtmlXTreeObject.prototype.setStd../images = function (a, b, c) {
-    this.imageArray[0] = a;
-    this.imageArray[1] = b;
-    this.imageArray[2] = c
-};
+dhtmlXTreeObject.prototype.setStd..
+/images = function (a, b, c) {
+this.imageArray[0] = a;
+this.imageArray[1] = b;
+this.imageArray[2] = c
+}
+;
 dhtmlXTreeObject.prototype.enableTreeLines = function (a) {
     this.treeLinesOn = convertStringToBoolean(a)
 };
@@ -1122,15 +1146,22 @@ dhtmlXTreeObject.prototype.refreshItem = function (a) {
 dhtmlXTreeObject.prototype.setItemImage2 = function (a, b, c, d) {
     var f = this._globalIdStorageFind(a);
     if (!f)return 0;
-    f.../images[1] = c;
-    f.../images[2] = d;
-    f.../images[0] = b;
+    f...
+    /images[1] = c;
+    f...
+    /images[2] = d;
+    f...
+    /images[0] = b;
     this._correctPlus(f)
 };
 dhtmlXTreeObject.prototype.setItemImage = function (a, b, c) {
     var d = this._globalIdStorageFind(a);
     if (!d)return 0;
-    c ? (d.../images[1] = b, d.../images[2] = c) : d.../images[0] = b;
+    c ? (d.../images[1] = b, d.../im
+    ages[2] = c
+    ) :
+    d...
+    /images[0] = b;
     this._correctPlus(d)
 };
 dhtmlXTreeObject.prototype.getSubItems = function (a) {
@@ -1454,9 +1485,11 @@ dhtmlXTreeObject.prototype._itemMouseIn = function () {
     b._l_onMSI = a.id;
     if (b.ehlta)a.span.className = a.span.className.replace("_lor", ""), a.span.className = a.span.className.replace(/((standart|selected)TreeRow)/, "$1_lor")
 };
-dhtmlXTreeObject.prototype.enableActive../images = function (a) {
-    this._aimgs = convertStringToBoolean(a)
-};
+dhtmlXTreeObject.prototype.enableActive..
+/images = function (a) {
+this._aimgs = convertStringToBoolean(a)
+}
+;
 dhtmlXTreeObject.prototype.focusItem = function (a) {
     var b = this._globalIdStorageFind(a);
     if (!b)return 0;
@@ -1532,9 +1565,44 @@ dhtmlXTreeObject.prototype.setSkin = function (a) {
     dhtmlx.extend_api("dhtmlXTreeObject", {_init: function (a) {
         return[a.parent, a.width || "100%", a.height || "100%", a.root_id || 0]
     }, auto_save_selection: "enableAutoSavingSelected", auto_tooltip: "enableAutoTooltips", checkbox: "enableCheckBoxes", checkbox_3_state: "enableThreeStateCheckboxes", checkbox_smart: "enableSmartCheckboxes", context_menu: "enableContextMenu", distributed_parsing: "enableDistributedParsing", drag: "enableDragAndDrop", drag_copy: "enableMercyDrag", drag_image: "enableImageDrag", drag_scroll: "enableDragAndDropScrolling",
-        editor: "enableItemEditor", hover: "enableHighlighting", ../images: "enableTree../images", image_fix: "enableIEImageFix", image_path: "setImagePath", lines: "enableTreeLines", loading_item: "enableLoadingItem", multiline: "enableMultiLineItems", multiselect: "enableMultiselection", navigation: "enableKeyboardNavigation", radio: "enableRadioButtons", radio_single: "enableSingleRadioMode", rtl: "enableRTL", search: "enableKeySearch", smart_parsing: "enableSmartXMLParsing", smart_rendering: "enableSmartRendering", text_icons: "enableTextSigns",
-        xml: "loadXML", skin: "setSkin"}, {})
-})();
+        editor: "enableItemEditor", hover: "enableHighlighting",..
+    /images: "enableTree../im
+    ages
+    ", image_fix: "
+    enableIEImageFix
+    ", image_path: "
+    setImagePath
+    ", lines: "
+    enableTreeLines
+    ", loading_item: "
+    enableLoadingItem
+    ", multiline: "
+    enableMultiLineItems
+    ", multiselect: "
+    enableMultiselection
+    ", navigation: "
+    enableKeyboardNavigation
+    ", radio: "
+    enableRadioButtons
+    ", radio_single: "
+    enableSingleRadioMode
+    ", rtl: "
+    enableRTL
+    ", search: "
+    enableKeySearch
+    ", smart_parsing: "
+    enableSmartXMLParsing
+    ", smart_rendering: "
+    enableSmartRendering
+    ", text_icons: "
+    enableTextSigns
+    ",
+    xml: "loadXML", skin
+    :
+    "setSkin"
+}, {})
+})
+();
 dhtmlXTreeObject.prototype._dp_init = function (a) {
     a.attachEvent("insertCallback", function (a, c, d) {
         var f = this._loader.doXPath(".//item", a), e = f[0].getAttribute("text");
