@@ -1,13 +1,28 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
-    function save() {
-        document.form1.action = "listSysint.html";
+    var baseHref = '/laboratory/jsp/experiment/paper/addtopaper';
+
+
+    function update() {
+        if(!validator(document.listForm)){
+            return;
+        }
+
+        document.form1.action = "addPaper";
         document.form1.submit();
     }
-
+    function addToPaper(){
+        document.form1.action = "addpaper";
+        document.form1.submit();
+    }
 </script>
+</head>
 <body>
 <form name="form1" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -72,78 +87,26 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">试卷编号:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="SJ001"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
                                                 <td nowrap align="right">试卷名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="软件工程清考试题"/>
+                                                    <input name="paperName" id="us_sno" value="" onblur="" class="text"
+                                                           style="width:154px" maxlength="20"
+                                                           valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">所属课程:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="软件工程"/>
+                                                    <select name="theCourse">
+                                                        <option value="0"></option>
+                                                        <c:forEach items="${courseList}" var="item">
+                                                            <option value="${item.id}">${item.courseName}</option>
+                                                        </c:forEach>
+                                                    </select>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-
-                                                </td>
-                                                <td nowrap align="right">考试时间:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="2012-02-12"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">命题人:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword" value="赵天华"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-                                                <td nowrap align="right">是否用过:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword" value="是"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                    <span style="color:red;" id="s"></span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">用途:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword" value="清考"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-                                                <td nowrap align="right">时间跨度(min):</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword" value="90"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-                                            </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -154,6 +117,8 @@
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="Submit3" value="重置" class="button"
                                                onclick="reset();"/>
+                                        <input type="reset" name="Submit3" value="添加试题" class="button"
+                                               onclick="addToPaper();"/>
                                         <input type="button" name="Submit2" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>

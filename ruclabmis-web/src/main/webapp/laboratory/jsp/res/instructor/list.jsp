@@ -11,7 +11,15 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/res/instructor/list';
+        var baseHref = '/laboratory/jsp/res/paper/list';
+        //获得divwidth的宽度
+        function getwidth(){
+            document.getElementById("divwidth").style.width= document.body.offsetWidth-35+"px";
+            if(document.body.scrollWidth>document.body.offsetWidth){
+                document.getElementById("divwidth").style.width=document.body.scrollWidth-35+"px";
+            }
+        }
+
     </script>
 
 </head>
@@ -28,7 +36,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 试卷资源管理</div>
+                            <div class="titlebt">资源管理 > 实验指导书管理</div>
                         </td>
                     </tr>
                 </table>
@@ -43,21 +51,17 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;试卷编号:<input type="text" name="paperNo"
-                                                                                     id="paperNo" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="text" name="theCourse"
-                                                                                     id="theCourse" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;考试时间:<input type="text" name="examTime"
-                                                                                     id="examTime" value=""
-                                                                                     style="width:100px;"/></span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:
+                            <select name="theCourse">
+                                <option value="0"></option>
+                                <c:forEach items="${courseList}" var="item">
+                                    <option value="${item.id}">"${item.value}"</option>
+                                </c:forEach>
+                            </select>
+                            </span>
+                          <span style="white-space:nowrap">&nbsp;&nbsp;
+                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -79,25 +83,19 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">试卷列表</span>
+                                                                                style="white-space:nowrap">指导书列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                <span class="STYLE1" style="white-space:nowrap">
+                                                                    <a href="add.jsp"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">新增</span></a>&nbsp;
+                                                                    <a href="#" onclick="toDelete('listForm');"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                                                                           border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                        </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -116,74 +114,49 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">试卷编号</span></div>
-                                                    </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">试卷名称</span></div>
+                                                        <div align="center"><span class="STYLE10">指导书名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">所属科目</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">考试时间</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">出题人</span></div>
                                                     </td>
+
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">用途</span></div>
+                                                        <div align="center"><span class="STYLE10">操作</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">查看</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">编辑</span></div>
-                                                    </td>
+
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
-                                                    <td>SJ001</td>
                                                     <td>软件工程06年第二学期期末考试</td>
                                                     <td>软件工程</td>
-                                                    <td>2012-02-12</td>
                                                     <td>赵天华</td>
-                                                    <td>期末考试</td>
-                                                    <td><a href="">查看试卷</a></td>
-                                                    <td><a href="editpaper.html">编辑试卷</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
-                                                    <td>SJ002</td>
-                                                    <td>软件工程06年第一学期补考试卷</td>
-                                                    <td>软件工程</td>
-                                                    <td>2012-02-12</td>
-                                                    <td>赵天华</td>
-                                                    <td>补考</td>
-                                                    <td><a href="">查看试卷</a></td>
-                                                    <td><a href="editpaper.html">编辑试卷</a></td>
+                                                    <td><a class="button" href="paperinfo">查看试卷</a>
+                                                        <a class="button" href="editpaper">编辑试卷</a>
+                                                        <a class="button" href="printpaper?paper_id=${item.id}">打印试卷</a>
+                                                    </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-
+                                                        <td>${item.course}</td>
+                                                        <td>${item.teacher}</td>
+                                                        <td><a class="button" href="paperinfo?paper_id=${item.id}">查看试卷</a>
+                                                            <a class="button" href="editpaper?paper_id=${item.id}">编辑试卷</a>
+                                                            <a class="button" href="printpaper?paper_id=${item.id}">打印试卷</a>
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -191,7 +164,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp" %>
+                                <%@ include file="../../common/pagetable.jsp"%>
                             </table>
                         </td>
                     </tr>
@@ -200,12 +173,10 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
-                    src="../../../../images/buttom_left2.gif"
-                    width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
-                    src="../../../../images/buttom_bgs.gif"
-                    width="100%" height="17"/></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
+                                                                                  width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
+                                                                                 width="100%" height="17"/></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
