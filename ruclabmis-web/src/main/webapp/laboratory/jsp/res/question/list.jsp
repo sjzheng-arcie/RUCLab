@@ -44,8 +44,8 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;题目编号:<input type="text" name="questionNo"
-                                                                                     id="questionNo" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;题目名称:<input type="text" name="questionName"
+                                                                                     id="questionName" value=""
                                                                                      style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;题目类型:<select id="questionType" name="questionType">
                                 <option value="0"></option>

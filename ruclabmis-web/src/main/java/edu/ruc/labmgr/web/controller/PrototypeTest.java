@@ -607,4 +607,34 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/edit");
 		return mav;
 	}
+	@RequestMapping("jsp/res/experimentquestion/list")
+	public ModelAndView experimentQuestionList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/list");
+		return mav;
+	}
+	@RequestMapping("jsp/res/experimentquestion/detail")
+	public ModelAndView experimentQuestionDetail(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/detail");
+		return mav;
+	}
+	@RequestMapping("jsp/res/experimentquestion/add")
+	public ModelAndView experimentQuestionAdd(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/add");
+		return mav;
+	}
+	@RequestMapping("jsp/res/experimentquestion/toadd")
+	public ModelAndView experimentQuestionToAdd(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/list");
+		return mav;
+	}
+	@RequestMapping("jsp/res/experimentquestion/edit")
+	public ModelAndView experimentQuestionEdit(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/edit");
+		return mav;
+	}
 }

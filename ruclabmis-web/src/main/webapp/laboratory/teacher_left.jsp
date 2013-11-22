@@ -90,7 +90,9 @@
                     <ul class="MM">
                         <li><a href="jsp/res/book/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;教学资源下载</a>
                         </li>
-                        <li><a href="jsp/res/experimentquestion/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
+                        <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
+                        </li>
+                        <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
                         </li>
                         <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;考试题库管理</a>
                         </li>

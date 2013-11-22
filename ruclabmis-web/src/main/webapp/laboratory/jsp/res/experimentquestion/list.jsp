@@ -11,7 +11,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/res/experimentquestion/list';
+        var baseHref = '/laboratory/jsp/res/question/list';
     </script>
 
 </head>
@@ -28,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 实验题目管理</div>
+                            <div class="titlebt">资源管理 > 实验试题管理</div>
                         </td>
                     </tr>
                 </table>
@@ -44,23 +44,18 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;题目编号.:<input type="text" name="questionNo"
-                                                                                        id="questionNo" value=""
-                                                                                        style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;题目类型:<select id="questionType" name="questionType">
-            <option value="">请选择</option>
-            <option value="0">单选</option>
-            <option value="1">多选</option>
-            <option value="2">填空</option>
-            <option value="3">简答</option>
-        </select></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:<input type="text" name="theCourse"
-                                                                                     id="theCourse" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;题目名称:<input type="text" name="questionName"
+                                                                                     id="questionName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;题目类型:<select id="questionType" name="questionType">
+                                <option value="0"></option>
+                                <c:forEach items="${typeList}" var="item">
+                                    <option value="${item.id}">${item.value}</option>
+                                </c:forEach>
+                            </select></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;
+                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -89,16 +84,12 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                <span class="STYLE1" style="white-space:nowrap">
+                                                                    <a href="add"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">新增</span></a>&nbsp;
+                                                                    <a href="#" onclick="toDelete('listForm');"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                                                                           border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -117,87 +108,29 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">编号</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所属科目</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">题目类型</span></div>
+                                                        <div align="center"><span class="STYLE10">名字</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">题目内容</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">难易程度</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">答案</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">正确率</span></div>
-                                                    </td>
-
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">查看详细</span></div>
+                                                        <div align="center"><span class="STYLE10">查看/编辑</span></div>
                                                     </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
-                                                    <td>XZ001</td>
-                                                    <td>编程语言</td>
-                                                    <td>选择题目</td>
-                                                    <td>下面属于面向对象编程的语言有（）</td>
-                                                    <td>中</td>
-                                                    <td>40%</td>
-
-                                                    <td><a href="detial.html">查看详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>2</td>
-                                                    <td>XZ002</td>
-                                                    <td>编程语言</td>
-                                                    <td>选择题目</td>
-                                                    <td>下面属于面向对象编程的语言有（）</td>
-                                                    <td>中</td>
-                                                    <td>40%</td>
-
-                                                    <td><a href="detial.html">查看详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>3</td>
-                                                    <td>XZ003</td>
-                                                    <td>编程语言</td>
-                                                    <td>选择题目</td>
-                                                    <td>下面属于面向对象编程的语言有（）</td>
-                                                    <td>中</td>
-                                                    <td>40%</td>
-
-                                                    <td><a href="detial.html">查看详细</a></td>
-                                                </tr>
-
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>4</td>
-                                                    <td>JD001</td>
-                                                    <td>编程语言</td>
-                                                    <td>简答题</td>
-                                                    <td>关于面向对象</td>
-                                                    <td>中</td>
-                                                    <td>40%</td>
-
-                                                    <td><a href="detial.html">查看详细</a></td>
+                                                    <td>基础编程题</td>
+                                                    <td>MFC的全拼是什么</td>
+                                                    <td>我只知道KFC</td>
+                                                    <td><a href="edit" class="button" >编辑</a><a href="detail" class="button" >查看</a></td>
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -205,10 +138,10 @@
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
-                                                        <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-
+                                                        <td>${item.question}</td>
+                                                        <td>${item.answer}</td>
+                                                        <td><a href="edit?question_id=${item.id}" class="button" >编辑</a><a href="detail?question_id=${item.id}" class="button" >查看</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

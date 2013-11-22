@@ -37,12 +37,12 @@ public class HomeLinkController {
 											 @RequestParam(value="applyNo",required = false,defaultValue = "") String applyNo,
 											 @RequestParam(value="formType",required = false,defaultValue = "0") int formType) {
 		ModelAndView mav = new ModelAndView("equipment/jsp/welcomelink/applyinfo/myapplylist");
-		User user = new User();
+		//	User user = new User();
 		String loginName=SecurityUtils.getSubject().getPrincipal().toString();
-		user= teacherService.getUserByLoginSn(loginName);
+		//user= teacherService.getUserByLoginSn(loginName);
 		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
 		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
-		criteria.andApplicantIdEqualTo(user.getId());
+		criteria.andApplicantIdEqualTo(teacherService.getUserByLoginSn(loginName).getId());
 
 		if(applyNo!=null&&applyNo!=""){
 			criteria.andSnLike("%"+applyNo+"%");
