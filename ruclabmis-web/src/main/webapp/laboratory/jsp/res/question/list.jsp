@@ -120,7 +120,7 @@
                                                         </div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">编号</span></div>
+                                                        <div align="center"><span class="STYLE10">名字</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">所属科目</span></div>
@@ -144,7 +144,7 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>JD001</td>
+                                                    <td>基础编程题</td>
                                                     <td>MFC编程</td>
                                                     <td>简答题</td>
                                                     <td>MFC的全拼是什么</td>
@@ -158,7 +158,7 @@
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.sn}</td>
+                                                        <td>${item.name}</td>
                                                         <td>${item.theCourse}</td>
                                                         <td>${item.type}</td>
                                                         <td>${item.question}</td>

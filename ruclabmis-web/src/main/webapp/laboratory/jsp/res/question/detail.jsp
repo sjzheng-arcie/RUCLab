@@ -8,11 +8,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
-        function save() {
-            document.form1.action = "";
-            document.form1.submit();
-        }
-
     </script>
 </head>
 <body>

@@ -9,7 +9,7 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-            document.form1.action = "listSysint.html";
+            document.form1.action = "edit";
             document.form1.submit();
         }
 
@@ -79,10 +79,10 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">题目编号:</td>
+                                                <td nowrap align="right">题目名称:</td>
                                                 <td nowrap>
-                                                    <input name="questionSn"  class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" value="${question.sn}"/>
+                                                    <input name="questionName"  class="text" style="width:154px" maxlength="20"
+                                                           valid="required|isAccount" value="${question.name}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
