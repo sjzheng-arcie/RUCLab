@@ -16,19 +16,19 @@
 <form name="listForm" method="get">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
+            <td  class="noprint" width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
                     src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
             <td valign="top" background="../../../../images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
-                    <tr>
+                    <tr  class="noprint">
                         <td height="31">
                             <div class="titlebt">设备管理系统 > 仪器设备类资产盘亏</div>
                         </td>
                     </tr>
                 </table>
             </td>
-            <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
+            <td  class="noprint" width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
 
@@ -46,11 +46,11 @@
                                             <tr>
                                                 <td height="24" bgcolor="#353c44">
                                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                        <tr>
+                                                        <tr  class="noprint">
                                                             <td>
                                                                 <table width="100%" border="0" cellspacing="0"
                                                                        cellpadding="0">
-                                                                    <tr>
+                                                                    <tr >
                                                                         <td width="6%" height="19" valign="bottom">
                                                                             <div align="center"><img
                                                                                     src="../../../../images/tb.gif"
@@ -68,9 +68,9 @@
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
 
-                  <a href="#" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                          border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                  <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
+<%--                  <a href="#" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                          border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
+                  <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                            border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	              </span>
                                                                 </div>

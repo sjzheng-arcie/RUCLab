@@ -15,19 +15,19 @@
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
-            <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
+            <td  class="noprint" width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
                     src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
             <td valign="top" background="../../../../images/content-bg.gif">
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                        id="table2">
-                    <tr>
+                    <tr  class="noprint">
                         <td height="31">
                             <div class="titlebt">设备管理系统 > 仪器设备类资产盘盈</div>
                         </td>
                     </tr>
                 </table>
             </td>
-            <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
+            <td  class="noprint" width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
 
@@ -39,7 +39,7 @@
                         <td valign="top" class="STYLE10">
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-                                <tr>
+                                <tr  class="noprint">
                                     <td height="30">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                             <tr>
@@ -67,9 +67,9 @@
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
 
-                  <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                           border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                  <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
+<%--                  <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                           border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
+                  <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                        border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
 	              </span>
                                                                 </div>
@@ -171,7 +171,7 @@
             </td>
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
-        <tr>
+        <tr  class="noprint">
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
                     src="../../../../images/buttom_left2.gif"
                     width="17" height="17"/></td>

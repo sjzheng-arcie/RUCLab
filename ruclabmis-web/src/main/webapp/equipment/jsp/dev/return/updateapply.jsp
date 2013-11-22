@@ -49,13 +49,13 @@
     <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-            <tr  class="noprint">
+            <tr  >
                 <td height="30">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td height="24" bgcolor="#353c44">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                    <tr >
+                                    <tr class="noprint">
                                         <td>
                                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                                 <tr>
@@ -122,7 +122,7 @@
                         </tr>
                     </table>
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
+                        <tr class="noprint" >
                             <td align="center">
                                 <c:if test="${formType=='apply'}">
                                     <shiro:hasAnyRoles name="administrators,teacher,leader">
@@ -131,7 +131,7 @@
                                         <input type="reset" name="reset" value="重置" class="button"/>
                                     </shiro:hasAnyRoles>
                                 </c:if>
-                                <input  class="noprint" type="button" name="return" value="返回" class="button"
+                                <input  type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
                             </td>
                         </tr>
