@@ -11,7 +11,7 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/res/paper/editpaper';
+        var baseHref = '/laboratory/jsp/res/instructor/addpaper';
         //获得divwidth的宽度
         function getwidth(){
             document.getElementById("divwidth").style.width= document.body.offsetWidth-35+"px";
@@ -29,7 +29,7 @@
         }
 
         function toAddQuestion(){
-            window.open("/laboratory/jsp/res/paper/addtopaper?question_id="+236, "试题库",
+            window.open("/laboratory/jsp/res/instructor/addtopaper?question_id=${instructor.id}", "试题库",
                     "height=400, width=1000, toolbar=no, status=no");
         }
         function freshWindow(){
@@ -107,7 +107,7 @@
 
                                             <td nowrap align="right">指导书名称:</td>
                                             <td nowrap>
-                                                <input name="paperName" id="paperName" onblur="" class="text"
+                                                <input name="instructorName" id="instructorName" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="${paper.name}" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -121,17 +121,6 @@
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_us_sno"></span>
                                             </td>
-                                        </tr>
-                                        <tr>
-                                            <td nowrap align="right">命题人:</td>
-                                            <td nowrap>
-                                                <input name="proposition" id="proposition" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="${paper.proposition}" />
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" ></span>
-                                            </td>
-                                            <td nowrap></td>
-                                            <td nowrap></td>
                                         </tr>
                                     </table>
                                 </td>
@@ -180,7 +169,7 @@
                                                                     </td>
                                                                     <td width="94%" valign="bottom"><span
                                                                             class="STYLE1"
-                                                                            style="white-space:nowrap">试题列表</span>
+                                                                            style="white-space:nowrap">题目列表</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
@@ -216,10 +205,7 @@
                                                     <div align="center"><span class="STYLE10">答案</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">查看详细</span></div>
-                                                </td>
-                                                <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">删除</span></div>
+                                                    <div align="center"><span class="STYLE10">操作</span></div>
                                                 </td>
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -233,33 +219,26 @@
                                                 <td>下面属于面向对象编程的语言有（）A、 C语言 B、 C++ C、 HTML D、 Java</td>
 
                                                 <td>D</td>
-                                                <td><a class="button" href="../question/detail">查看详细</a></td>
-                                                <td><a class="button" href="">删除</a></td>
+                                                <td><a class="button" href="../experimentquestion/detail">查看详细</a><a class="button" href="">删除</a></td>
                                             </tr>
-
-
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="" type="checkbox" value="admin"
                                                                        onclick="checkOne(this)"/></td>
-
                                                 <td>题目名称</td>
-
                                                 <td>关于面向对象:(1)什么是面向对象的编程语言(2)请举出几种常见的面向对象的语言。(3)什么是类？什么是对象？</td>
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
-                                                <td><a class="button" href="../question/detail">查看详细</a></td>
-                                                <td><a class="button" href="">删除</a></td>
+                                                <td><a class="button" href="../experimentquestion/detail">查看详细</a><a class="button" href="">删除</a></td>
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.type}</td>
-                                                    <td>${item.course}</td>
-                                                    <td>${item.difficulty}</td>
+                                                    <td>${item.name}</td>
                                                     <td>${item.questionContent}</td>
                                                     <td>${item.answerContent}</td>
-                                                    <td><a href="../question/detail?question_id=${item.id}">查看详细</a></td>
+                                                    <td><a href="../experimentquestion/detail?question_id=${item.id}">查看详细</a>
+                                                        <a href="../experimentquestion/delete?question_id=${item.id}">删除</a></td>
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>

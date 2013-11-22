@@ -35,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">试卷资源管理 > 添加试卷</div>
+                            <div class="titlebt">指导书管理 > 添加指导书</div>
                         </td>
                     </tr>
                 </table>
@@ -63,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加试卷资源</span></td>
+                                                                    class="STYLE1">添加指导书</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -87,7 +87,7 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">试卷名称:</td>
+                                                <td nowrap align="right">指导书名称:</td>
                                                 <td nowrap>
                                                     <input name="paperName" id="us_sno" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
@@ -117,7 +117,7 @@
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="Submit3" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="reset" name="Submit3" value="添加试题" class="button"
+                                        <input type="reset" name="Submit3" value="添加实验题目" class="button"
                                                onclick="addToPaper();"/>
                                         <input type="button" name="Submit2" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>

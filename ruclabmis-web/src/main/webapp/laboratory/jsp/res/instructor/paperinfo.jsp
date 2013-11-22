@@ -126,13 +126,6 @@
                                                 </select>
                                             </td>
                                         </tr>
-                                        <tr>
-                                            <td nowrap align="right">命题人:</td>
-                                            <td nowrap>
-                                                <input name="proposition" id="proposition" class="text" style="width:154px"
-                                                       valid="required|isPassword" value="${paper.proposition}" />
-                                            </td>
-                                        </tr>
                                     </table>
                                 </td>
                             </tr>
@@ -234,7 +227,7 @@
                                                 <td>下面属于面向对象编程的语言有（）A、 C语言 B、 C++ C、 HTML D、 Java</td>
 
                                                 <td>D</td>
-                                                <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="../experimentquestion/detail">查看详细</a></td>
                                             </tr>
 
 
@@ -246,7 +239,7 @@
 
                                                 <td>关于面向对象:(1)什么是面向对象的编程语言(2)请举出几种常见的面向对象的语言。(3)什么是类？什么是对象？</td>
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
-                                                <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="../experimentquestion/detail">查看详细</a></td>
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -257,7 +250,7 @@
 
                                                     <td>${item.questionContent}</td>
                                                     <td>${item.answerContent}</td>
-                                                    <td><a href="../question/detail?question_id=${item.id}">查看详细</a></td>
+                                                    <td><a href="../experimentquestion/detail?question_id=${item.id}">查看详细</a></td>
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>

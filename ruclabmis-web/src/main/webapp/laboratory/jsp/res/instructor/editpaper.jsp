@@ -203,14 +203,7 @@
                                                     </div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">题目类型</span></div>
-                                                </td>
-
-                                                <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">所属科目</span></div>
-                                                </td>
-                                                <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">难易程度</span></div>
+                                                    <div align="center"><span class="STYLE10">题目名称</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">题目内容</span></div>
@@ -229,13 +222,12 @@
                                                 <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
                                                                        onclick="checkOne(this)"/></td>
 
-                                                <td>编程语言</td>
-                                                <td>选择题目</td>
-                                                <td>难易程度</td>
+                                                <td>题目名称</td>
+
                                                 <td>下面属于面向对象编程的语言有（）A、 C语言 B、 C++ C、 HTML D、 Java</td>
 
                                                 <td>D</td>
-                                                <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="../experimentquestion/detail">查看详细</a></td>
                                                 <td><a class="button" href="">删除</a></td>
                                             </tr>
 
@@ -244,12 +236,11 @@
                                                 <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
                                                                        onclick="checkOne(this)"/></td>
 
-                                                <td>编程语言</td>
-                                                <td>简答题</td>
-                                                <td>难易程度</td>
+                                                <td>题目名称</td>
+
                                                 <td>关于面向对象:(1)什么是面向对象的编程语言(2)请举出几种常见的面向对象的语言。(3)什么是类？什么是对象？</td>
                                                 <td>(1)面向对象的语言就是……(2)Java、C#……(3)类就是……</td>
-                                                <td><a class="button" href="../question/detail">查看详细</a></td>
+                                                <td><a class="button" href="../experimentquestion/detail">查看详细</a></td>
                                                 <td><a class="button" href="">删除</a></td>
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
@@ -257,12 +248,10 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.type}</td>
-                                                    <td>${item.course}</td>
-                                                    <td>${item.difficulty}</td>
+                                                    <td>${item.name}</td>
                                                     <td>${item.questionContent}</td>
                                                     <td>${item.answerContent}</td>
-                                                    <td><a href="../question/detail?question_id=${item.id}">查看详细</a></td>
+                                                    <td><a href="../experimentquestion/detail?question_id=${item.id}">查看详细</a></td>
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>
