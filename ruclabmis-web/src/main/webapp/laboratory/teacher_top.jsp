@@ -43,10 +43,10 @@
 
             }
             object.className = "active";
-            if (object.name = "homePage")
+            if (object.name == "homePage")
                 parent.main.location.href = "teacher_welcome";
             else {
-                parent.main.location.href = "/bbs/index.html";
+                parent.main.location.href = "/bbs/index";
             }
         }
     </script>
@@ -67,9 +67,12 @@
 
         </div>
         <ul class="top_right_menu">
-            <li id="homePage" name="homePage" onclick="rs(this)" class="active"><a href="teacher_left.html"
-                                                                                   target="leftFrame">首页</a></li>
-            <li id="bbs" name="bbs" onclick="rs(this)" class=""><a href="bbs/left.html" target="leftFrame">论坛</a></li>
+            <li id="homePage" name="homePage" onclick="rs(this)" class="active">
+                <a href="teacher_left.html" target="leftFrame">首页</a>
+            </li>
+            <li id="bbs" name="bbs" onclick="rs(this)" class="">
+                <a href="bbs/left.html" target="leftFrame">论坛</a>
+            </li>
         </ul>
     </div>
 </div>
