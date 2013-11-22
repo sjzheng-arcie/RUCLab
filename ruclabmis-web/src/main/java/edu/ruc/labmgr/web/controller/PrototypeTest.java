@@ -619,4 +619,77 @@ public class PrototypeTest {
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/edit");
         return mav;
     }
+	@RequestMapping("bbs/index")
+	public ModelAndView indexInIndex(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/index");
+		return mav;
+	}
+	@RequestMapping("bbs/left")
+	public ModelAndView bbsLeft(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/left");
+		return mav;
+	}
+	@RequestMapping("bbs/frame")
+	public ModelAndView bbsWelcome(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/frame");
+		return mav;
+	}
+	@RequestMapping("bbs/list")
+	public ModelAndView bbsList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/list");
+		return mav;
+	}
+	@RequestMapping("bbs/answer")
+	public ModelAndView bbsAnswer(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/answwer");
+		return mav;
+	}
+	@RequestMapping("bbs/detail")
+	public ModelAndView bbsDetail(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/detail");
+		return mav;
+	}
+
+	@RequestMapping("bbs/list-cad")
+	public ModelAndView bbsListCad(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-cad");
+		return mav;
+	}
+	@RequestMapping("bbs/list-dl")
+	public ModelAndView bbsListDl(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-dl");
+		return mav;
+	}
+	@RequestMapping("bbs/list-gswl")
+	public ModelAndView bbsListGswl(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-gswl");
+		return mav;
+	}
+	@RequestMapping("bbs/list-mndl")
+	public ModelAndView bbsListMndl(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-mndl");
+		return mav;
+	}
+	@RequestMapping("bbs/post")
+	public ModelAndView bbsListPost(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/post");
+		return mav;
+	}
+	@RequestMapping("bbs/update")
+	public ModelAndView bbsListUpdate(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/bbs/update");
+		return mav;
+	}
 }

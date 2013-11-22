@@ -27,28 +27,22 @@
     <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
     <meta http-equiv="refresh" content="60">
     <script language=JavaScript1.2>
-        function showsubmenu(sid) {
-            var whichEl = eval("submenu" + sid);
-            var menuTitle = eval("menuTitle" + sid);
-            if (whichEl.style.display == "none") {
-                eval("submenu" + sid + ".style.display=\"\";");
-            } else {
-                eval("submenu" + sid + ".style.display=\"none\";");
-            }
-        }
-        function rs(object) {
+        function rs(flag) {
             var x = document.getElementsByTagName("li");
             for (var i = 0; i < x.length; i++) {
                 x[i].className = "";
 
             }
-            object.className = "active";
-            if (object.name == "homePage")
+            document.getElementById(flag).className = "active";
+
+            if (flag=="homePage"){
                 parent.main.location.href = "teacher_welcome";
-            else {
-                parent.main.location.href = "/bbs/index";
+            }else {
+                parent.main.location.href = "bbs/frame";
             }
         }
+
+
     </script>
     <base target="main">
     <link href="../images/skin.css" rel="stylesheet" type="text/css">
@@ -67,12 +61,15 @@
 
         </div>
         <ul class="top_right_menu">
-            <li id="homePage" name="homePage" onclick="rs(this)" class="active">
-                <a href="teacher_left.html" target="leftFrame">首页</a>
+            <li id="homePage" name="homePage" onclick="rs('homePage')">
+                <a href="teacher_left" target="leftFrame">首页</a>
             </li>
-            <li id="bbs" name="bbs" onclick="rs(this)" class="">
-                <a href="bbs/left.html" target="leftFrame">论坛</a>
+            <li id="bbs" name="bbs"  class="">
+                <a href="bbs/left" target="leftFrame" onclick="rs('bbs')">论坛</a>
             </li>
+            <script>
+                rs('homePage');
+            </script>
         </ul>
     </div>
 </div>

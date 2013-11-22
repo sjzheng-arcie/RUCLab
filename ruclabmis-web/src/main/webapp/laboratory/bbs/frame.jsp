@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -50,9 +52,9 @@
         <div style="position:absolute; right:0px; top:0px; z-index:100px;"><img
                 src="images/default/banner_mole_right.jpg" border="0" usemap="#Map"/>
             <map name="Map" id="Map">
-                <area shape="rect" coords="196,64,276,98" href="http://blog.11.com/mole/" target="_blank"/>
-                <area shape="rect" coords="106,64,191,98" href="http://mole.11.com/main/" target="_blank"/>
-                <area shape="rect" coords="17,64,99,97" href="http://mole.11.com/" target="_blank"/>
+                <area shape="rect" coords="196,64,276,98" href="http://blog.11.com/mole/" target="main"/>
+                <area shape="rect" coords="106,64,191,98" href="http://mole.11.com/main/" target="main"/>
+                <area shape="rect" coords="17,64,99,97" href="http://mole.11.com/" target="main"/>
             </map>
         </div>
     </div>
@@ -227,7 +229,7 @@
                 <a href="forumdisplay.php?fid=8"><img style="margin-right: 10px" src="images/default/class_mole_1.jpg"
                                                       align="left" alt="" border="0"/></a>
 
-                <h2><a href="list.html">信息公告区</a></h2>
+                <h2><a href="list">信息公告区</a></h2>
                 <span class="dropmenu" id="mod8" onmouseover="showMenu(this.id)">版主</span>
                 <ul class="moderators popupmenu_popup" id="mod8_menu" style="display: none">
                     <li><a href="space.php?username=599586">599586</a></li>
@@ -236,7 +238,7 @@
             <td class="nums">96</td>
             <td class="nums">34111</td>
             <td class="lastpost">
-                <a href="detail.html">[大调查]C语言实验课大调查</a>
+                <a href="detail">[大调查]C语言实验课大调查</a>
                 <cite>by <a href="space.php?username=admin">admin</a> - 2010-5-15 16:07</cite>
             </td>
         </tr>
@@ -247,12 +249,12 @@
                 <a href="forumdisplay.php?fid=9"><img style="margin-right: 10px" src="images/default/class_mole_2.jpg"
                                                       align="left" alt="" border="0"/></a>
 
-                <h2><a href="list-dl.html">综合讨论区</a></h2>
+                <h2><a href="list-dl">综合讨论区</a></h2>
             </th>
             <td class="nums">172663</td>
             <td class="nums">2159115</td>
             <td class="lastpost">
-                <a href="detail.html">问题：有谁知道XX实验室什么时候开放呢? ...</a>
+                <a href="detail">问题：有谁知道XX实验室什么时候开放呢? ...</a>
                 <cite>by <a href="space.php?username=13293919">13293919</a> - 2010-6-20 20:27</cite>
             </td>
         </tr>
@@ -263,12 +265,12 @@
                 <a href="forumdisplay.php?fid=10"><img style="margin-right: 10px" src="images/default/class_mole_3.jpg"
                                                        align="left" alt="" border="0"/></a>
 
-                <h2><a href="list.html">原创资源上传区</a></h2>
+                <h2><a href="list">原创资源上传区</a></h2>
             </th>
             <td class="nums">34031</td>
             <td class="nums">470076</td>
             <td class="lastpost">
-                <a href="detail.html">C语言课程表源代码实例</a>
+                <a href="detail">C语言课程表源代码实例</a>
                 <cite>by <a href="space.php?username=12641086">12641086</a> - 2010-6-20 20:27</cite>
             </td>
         </tr>
@@ -287,52 +289,52 @@
             <ul>
                 <li>
                     <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="C语言上机实验报告可以下载了 ...">C语言上机实验报告可以下载了）
+                    <div class="text"><a href="detail" target="main" title="C语言上机实验报告可以下载了 ...">C语言上机实验报告可以下载了）
                         ...</a></div>
                     <div class="num">941</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="谁知道怎么做一个指纹识别程序？">谁知道怎么做一个指纹识别程序？</a>
+                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序？">谁知道怎么做一个指纹识别程序？</a>
                     </div>
                     <div class="num">891</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_3.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="JAVA语言上机实验报告可以下载了 ...">JAVA语言上机实验报告可以下载了
+                    <div class="text"><a href="detail" target="main" title="JAVA语言上机实验报告可以下载了 ...">JAVA语言上机实验报告可以下载了
                         ...</a></div>
                     <div class="num">478</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_4.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="电教室开放预约了">电教室开放预约了</a></div>
+                    <div class="text"><a href="detail" target="main" title="电教室开放预约了">电教室开放预约了</a></div>
                     <div class="num">335</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_5.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank"
+                    <div class="text"><a href="detail" target="main"
                                          title="有人知道本周的电路实验课取消了吗？">有人知道本周的电路实验课取消了吗？</a></div>
                     <div class="num">303</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_6.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="和大家共享一个虚拟现实视频">和大家共享一个虚拟现实视频</a>
+                    <div class="text"><a href="detail" target="main" title="和大家共享一个虚拟现实视频">和大家共享一个虚拟现实视频</a>
                     </div>
                     <div class="num">301</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_7.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="JAVA实验课本周开课">JAVA实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="JAVA实验课本周开课">JAVA实验课本周开课</a></div>
                     <div class="num">187</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_8.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
                     <div class="num">138</div>
                 </li>
                 <li style="border-bottom:0;">
                     <div class="ico"><img src="images/default/num_9.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="JS实验课本周开课">JS实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="JS实验课本周开课">JS实验课本周开课</a></div>
                     <div class="num">129</div>
                 </li>
             </ul>
@@ -344,49 +346,49 @@
             <ul>
                 <li>
                     <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
+                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
                     </div>
                     <div class="num">10033</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="欢迎加入实验交流论坛 ...">欢迎加入实验交流论坛 ...</a>
+                    <div class="text"><a href="detail" target="main" title="欢迎加入实验交流论坛 ...">欢迎加入实验交流论坛 ...</a>
                     </div>
                     <div class="num">9701</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_3.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="JS实验课本周开课">JS实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="JS实验课本周开课">JS实验课本周开课</a></div>
                     <div class="num">5763</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_4.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
                     <div class="num">4731</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_5.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
                     <div class="num">4637</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_6.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
                     <div class="num">4238</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_7.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
                     <div class="num">4074</div>
                 </li>
                 <li>
                     <div class="ico"><img src="images/default/num_8.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail.html" target="_blank" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
                     <div class="num">3931</div>
                 </li>
                 <li style="border-bottom:0;">
                     <div class="ico"><img src="images/default/num_9.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="vdetail.html" target="_blank" title="PHP实验课本周开课">]PHP实验课本周开课</a></div>
+                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">]PHP实验课本周开课</a></div>
                     <div class="num">2605</div>
                 </li>
             </ul>

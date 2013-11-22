@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -126,22 +128,22 @@
                     <script type="text/javascript">
                         var tree = new dzTree('tree');
                         //tree.addNode(0, -1, '论坛首页', 'index.php', 'main', true);
-                        tree.addNode(0, -1, '实验交流论坛', 'frame.html', 'main', true);
+                        tree.addNode(0, -1, '实验交流论坛', 'frame', 'main', true);
                         tree.addNode(4, 0, 'C语言实验课', '', 'main', false);
                         tree.addNode(5, 0, '电路实验课', '', 'main', false);
                         tree.addNode(7, 0, 'CAD实验室', '', 'main', false);
                         tree.addNode(19, 0, '高速网络实验室', '', 'main', false);
                         tree.addNode(24, 0, '模拟电路实验课', '', 'main', false);
-                        tree.addNode(25, 24, '公告区', 'list-mndl.html', 'main', false);
-                        tree.addNode(21, 19, '公告区', 'list-gswl.html', 'main', false);
-                        tree.addNode(14, 7, '公告区', 'list-cad.html', 'main', false);
-                        tree.addNode(11, 5, '公告区', 'list-dl.html', 'main', false);
-                        tree.addNode(8, 4, '公告区', 'list.html', 'main', false);
-                        tree.addNode(22, 19, '综合讨论区', 'list-gswl.html', 'main', false);
-                        tree.addNode(12, 5, '综合讨论区', 'list-dl.html', 'main', false);
-                        tree.addNode(15, 7, '综合讨论区', 'list-cad.html', 'main', false);
-                        tree.addNode(26, 24, '综合讨论区', 'list-mndl.html', 'main', false);
-                        tree.addNode(9, 4, '综合讨论区', 'list.html', 'main', false);
+                        tree.addNode(25, 24, '公告区', 'list-mndl', 'main', false);
+                        tree.addNode(21, 19, '公告区', 'list-gswl', 'main', false);
+                        tree.addNode(14, 7, '公告区', 'list-cad', 'main', false);
+                        tree.addNode(11, 5, '公告区', 'list-dl', 'main', false);
+                        tree.addNode(8, 4, '公告区', 'list', 'main', false);
+                        tree.addNode(22, 19, '综合讨论区', 'list-gswl', 'main', false);
+                        tree.addNode(12, 5, '综合讨论区', 'list-dl', 'main', false);
+                        tree.addNode(15, 7, '综合讨论区', 'list-cad', 'main', false);
+                        tree.addNode(26, 24, '综合讨论区', 'list-mndl', 'main', false);
+                        tree.addNode(9, 4, '综合讨论区', 'list', 'main', false);
                         tree.show();
 
                         document.getElementById('left_list_tree').style.height = (top.document.body.clientHeight - 281) + 'px';

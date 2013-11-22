@@ -1,9 +1,9 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 <HEAD>
-    <TITLE>й╣яИ╫╩аВбшлЁ--лШвсап╠М</TITLE>
-    <META http-equiv=Content-Type content="text/html; charset=gbk">
+    <TITLE>Е╝·И╙▄Д╨╓Ф╣│Х╝╨Е²⌡--Е╦√Е╜░Е┬≈Х║╗</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
     <Link rel="stylesheet" type="text/css" href="style/style.css"/>
 </HEAD>
 
@@ -13,32 +13,32 @@
         <div left:0px
         ; top:0px; z-index:99px;"><img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/></div>
 </DIV>
-<!--      сц╩╖пео╒║╒╣гб╪║╒в╒╡А        -->
+<!--      Г■╗Ф┬╥Д©║Ф│╞Ц─│Г≥╩Е╫∙Ц─│ФЁ╗Е├▄        -->
 
 <DIV class="h">
-    дЗипн╢║║<a href="">╣гб╪</a>
-    &nbsp;| &nbsp; <A href="">в╒╡А</A> |
+    Ф┌╗Е╟ Ф°╙Ц──<a href="">Г≥╩Е╫∙</a>
+    &nbsp;| &nbsp; <A href="">ФЁ╗Е├▄</A> |
 </DIV>
 
 
-<!--      жВлЕ        -->
+<!--      Д╦╩Д╫⌠        -->
 <DIV>
-    <!--      ╣╪╨╫        -->
+    <!--      Е╞╪Х┬╙        -->
     <br/>
 
     <DIV>
-        &gt;&gt;<B><a href="index.html">бшлЁйврЁ</a></B>&gt;&gt;
-        <B><a href="list.html">╣Гб╥й╣яИ©н</a></B>
+        &gt;&gt;<B><a href="index.html">Х╝╨Е²⌡И╕√И║╣</a></B>&gt;&gt;
+        <B><a href="list.html">Г■╣Х╥╞Е╝·И╙▄Х╞╬</a></B>
     </DIV>
     <br/>
-    <!--      пблШ        -->
+    <!--      Ф√╟Е╦√        -->
     <DIV>
         <A href="post.html"><IMG src="images/post.gif" name="td_post" border="0" id=td_post></A>
     </DIV>
-    <!--         ╥╜ рЁ         -->
+    <!--         Г©╩ И║╣         -->
     <DIV>
-        <a href="list.html">иор╩рЁ</a>|
-        <a href="list.html">обр╩рЁ</a>
+        <a href="list.html">Д╦┼Д╦─И║╣</a>|
+        <a href="list.html">Д╦▀Д╦─И║╣</a>
     </DIV>
 
     <DIV class="t">
@@ -46,19 +46,19 @@
             <TR>
                 <TH class="h" style="WIDTH: 100%" colSpan="4"><SPAN>&nbsp;</SPAN></TH>
             </TR>
-            <!--       ╠М м╥           -->
+            <!--       Х║╗ Е╓╢           -->
             <TR class="tr2">
                 <TD>&nbsp;</TD>
-                <TD style="WIDTH: 80%" align="center">ндуб</TD>
-                <TD style="WIDTH: 10%" align="center">вВуъ</TD>
-                <TD style="WIDTH: 10%" align="center">╩ь╦╢</TD>
+                <TD style="WIDTH: 80%" align="center">Ф√┤Г╚═</TD>
+                <TD style="WIDTH: 10%" align="center">Д╫°Х─┘</TD>
+                <TD style="WIDTH: 10%" align="center">Е⌡·Е╓█</TD>
             </TR>
-            <!--         жВ лБ ап ╠М        -->
+            <!--         Д╦╩ И╒≤ Е┬≈ Х║╗        -->
 
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">╧Юк╝</A>
+                    <A href="detail.html">Г│▄Ф╟╢</A>
                 </TD>
                 <TD align="center">t</TD>
                 <TD align="center">2</TD>
@@ -67,7 +67,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">╧Ч╧Ч</A>
+                    <A href="detail.html">Е⌠┬Е⌠┬</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">1</TD>
@@ -76,7 +76,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">╥╒к╝ак</A>
+                    <A href="detail.html">Е▐▒Ф╟╢Д╨├</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">0</TD>
@@ -85,7 +85,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">╥╒к╝</A>
+                    <A href="detail.html">Е▐▒Ф╟╢</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">0</TD>
@@ -94,7 +94,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">п╕╩╟5тР</A>
+                    <A href="detail.html">Г╛▒Х╞²5Е┬≥</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">0</TD>
@@ -103,7 +103,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">вНпб╢Сф╛</A>
+                    <A href="detail.html">Ф°─Ф√╟Е╓╖Г┴┤</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">0</TD>
@@ -112,7 +112,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">╢©╬╩к╝</A>
+                    <A href="detail.html">Г╨╞Е┤─Ф╟╢</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">0</TD>
@@ -121,7 +121,7 @@
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
-                    <A href="detail.html">уБ╠ъ╥Г╬╟╨ц</A>
+                    <A href="detail.html">Х©≥Х╬╧Иё▌Ф≥╞Е╔╫</A>
                 </TD>
                 <TD align="center">abc</TD>
                 <TD align="center">0</TD>
@@ -129,13 +129,13 @@
 
         </TABLE>
     </DIV>
-    <!--            ╥╜ рЁ          -->
+    <!--            Г©╩ И║╣          -->
     <DIV>
-        <a href="list.html">иор╩рЁ</a>|
-        <a href="list.html">обр╩рЁ</a>
+        <a href="list.html">Д╦┼Д╦─И║╣</a>|
+        <a href="list.html">Д╦▀Д╦─И║╣</a>
     </DIV>
 </DIV>
-<!--             иЫ цВ          -->
+<!--             Её╟ Ф≤▌          -->
 
 </BODY>
 </HTML>

@@ -1,9 +1,11 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <HTML>
 <HEAD>
-    <TITLE>ʵ�齻����̳--����</TITLE>
-    <META http-equiv=Content-Type content="text/html; charset=utf-8">
+    <TITLE>实验交流论坛--看贴</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
     <Link rel="stylesheet" type="text/css" href="style/style.css"/>
 </HEAD>
 
@@ -15,38 +17,38 @@
         ; top:0px; z-index:99px;"><img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/></div>
 </DIV>
 
-<!--      �û���Ϣ����¼��ע��        -->
+<!--      用户信息、登录、注册        -->
 
 <DIV class="h">
-    ����δ��<a href="">��¼</a>
-    &nbsp;| &nbsp; <A href="">ע��</A> |
+    您尚未　<a href="">登录</a>
+    &nbsp;| &nbsp; <A href="">注册</A> |
 </DIV>
 
-<!--      ����        -->
+<!--      主体        -->
 <DIV><br/>
-    <!--      ����        -->
+    <!--      导航        -->
     <DIV>
-        &gt;&gt;<B><a href="index.html">��̳��ҳ</a></B>&gt;&gt;
-        <B><a href="list.html">C����ʵ���</a></B>
+        &gt;&gt;<B><a href="index.html">论坛首页</a></B>&gt;&gt;
+        <B><a href="list.html">C语言实验课</a></B>
     </DIV>
     <br/>
-    <!--      �ظ�������        -->
+    <!--      回复、新帖        -->
     <DIV>
         <A href="post.jsp"><IMG src="images/reply.gif" border="0" id=td_post></A>
         <A href="post.jsp"><IMG src="images/post.gif" border="0" id=td_post></A>
         <A href="post.jsp"><IMG src="images/uptop.gif" border="0" id=td_uptop></A>
         <A href="post.jsp"><IMG src="images/del.gif" border="0" id=td_del></A>
     </DIV>
-    <!--         �� ҳ         -->
+    <!--         翻 页         -->
     <DIV>
-        <a href="detail.html">��һҳ</a>|
-        <a href="detail.html">��һҳ</a>
+        <a href="detail.html">上一页</a>|
+        <a href="detail.html">下一页</a>
     </DIV>
-    <!--      ��ҳ����ı���        -->
+    <!--      本页主题的标题        -->
     <DIV>
         <TABLE cellSpacing="0" cellPadding="0" width="100%">
             <TR>
-                <TH class="h">��ҳ����: C����ʵ��ο���֪ͨ</TH>
+                <TH class="h">本页主题: C语言实验课开课通知</TH>
             </TR>
             <TR class="tr2">
                 <TD>&nbsp;</TD>
@@ -54,7 +56,7 @@
         </TABLE>
     </DIV>
 
-    <!--      ����        -->
+    <!--      主题        -->
 
     <DIV class="t">
         <TABLE style="BORDER-TOP-WIDTH: 0px; TABLE-LAYOUT: fixed" cellSpacing="0" cellPadding="0" width="100%">
@@ -62,22 +64,22 @@
                 <TH style="WIDTH: 20%">
                     <B>t</B><BR/>
                     <img src="images/head/2.gif"/><BR/>
-                    ע��:2007-07-27<BR/>
+                    注册:2007-07-27<BR/>
                 </TH>
                 <TH>
-                    <H4>���ư������� ��ͨ��</H4>
+                    <H4>鼓掌啊，终于 开通了</H4>
 
                     <DIV>rt</DIV>
                     <DIV class="tipad gray">
-                        ���?[2007-07-30 08:37] &nbsp;
-                        ����޸�:[2007-07-30 08:37]
+                        发表：[2007-07-30 08:37] &nbsp;
+                        最后修改:[2007-07-30 08:37]
                     </DIV>
                 </TH>
             </TR>
         </TABLE>
     </DIV>
 
-    <!--      �ظ�        -->
+    <!--      回复        -->
 
     <DIV class="t">
         <TABLE style="BORDER-TOP-WIDTH: 0px; TABLE-LAYOUT: fixed" cellSpacing="0" cellPadding="0" width="100%">
@@ -85,17 +87,17 @@
                 <TH style="WIDTH: 20%">
                     <B>t</B><BR/><BR/>
                     <img src="images/head/2.gif"/><BR/>
-                    ע��:2007-07-27<BR/>
+                    注册:2007-07-27<BR/>
                 </TH>
                 <TH>
-                    <H4>���ư������� ��ͨ��</H4>
+                    <H4>鼓掌啊，终于 开通了</H4>
 
-                    <DIV>���ư������� ��ͨ��</DIV>
+                    <DIV>鼓掌啊，终于 开通了</DIV>
                     <DIV class="tipad gray">
-                        ���?[2007-07-30 10:32] &nbsp;
-                        ����޸�:[2007-07-30 08:37]
-                        <A href="manage/doDeleteReply.jsp">[ɾ��]</A>
-                        <A href="update.html">[�޸�]</A>
+                        发表：[2007-07-30 10:32] &nbsp;
+                        最后修改:[2007-07-30 08:37]
+                        <A href="manage/doDeleteReply.jsp">[删除]</A>
+                        <A href="update.html">[修改]</A>
                     </DIV>
                 </TH>
             </TR>
@@ -108,17 +110,17 @@
                 <TH style="WIDTH: 20%">
                     <B>t</B><BR/><BR/>
                     <img src="images/head/2.gif"/><BR/>
-                    ע��:2007-07-27<BR/>
+                    注册:2007-07-27<BR/>
                 </TH>
                 <TH>
-                    <H4>���ư������� ��ͨ��</H4>
+                    <H4>鼓掌啊，终于 开通了</H4>
 
-                    <DIV>���ư������� ��ͨ��</DIV>
+                    <DIV>鼓掌啊，终于 开通了</DIV>
                     <DIV class="tipad gray">
-                        ���?[2007-07-30 10:32] &nbsp;
-                        ����޸�:[2007-07-30 08:37]
-                        <A href="manage/doDeleteReply.jsp">[ɾ��]</A>
-                        <A href="update.html">[�޸�]</A>
+                        发表：[2007-07-30 10:32] &nbsp;
+                        最后修改:[2007-07-30 08:37]
+                        <A href="manage/doDeleteReply.jsp">[删除]</A>
+                        <A href="update.html">[修改]</A>
                     </DIV>
                 </TH>
             </TR>
@@ -127,6 +129,6 @@
 
 </DIV>
 
-<!--      ����        -->
+<!--      声明        -->
 </BODY>
 </HTML>
