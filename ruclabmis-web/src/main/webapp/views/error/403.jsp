@@ -1,31 +1,22 @@
-<%@ page language="java" pageEncoding="UTF-8" %>
-<!DOCTYPE HTML >
-<html>
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
-    <title>My JSP 'index.jsp' starting page</title>
-    <meta http-equiv=Content-Type content="text/html;charset=UTF-8">
-    <!--
-<link rel="stylesheet" type="text/css" href="styles.css">
--->
+
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <link href="../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <title>权限错误</title>
 </head>
 
 <body>
-你无权访问该页面
 <ul>
     <li>
-        <h2>
-            <a target="_self" href="user.do?myjsp">myjsp</a>
-        </h2>
-    </li>
-    <li>
-        <h2>
-            <a target="_self" href="login.jsp">登录</a>
-        </h2>
-    </li>
-    <li>
-        <h2>
-            <a target="_self" href="login.do?logout">注销</a>
-        </h2>
+        <h1>您无权访问该页面</h1>
+        <h1>
+            <p><a target="_top" href="/equipment/login">登录 设备管理系统</a></p>
+            <p><a target="_top" href="/laboratory/login">登录 实验室管理平台</a></p>
+        </h1>
     </li>
 </ul>
 </body>
