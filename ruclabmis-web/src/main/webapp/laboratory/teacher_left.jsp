@@ -92,7 +92,7 @@
                         </li>
                         <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
                         </li>
-                        <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
+                        <li><a href="jsp/res/instructor/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验指导书管理</a>
                         </li>
                         <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;考试题库管理</a>
                         </li>
