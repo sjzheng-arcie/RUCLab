@@ -10,7 +10,6 @@
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
-    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
     <script>

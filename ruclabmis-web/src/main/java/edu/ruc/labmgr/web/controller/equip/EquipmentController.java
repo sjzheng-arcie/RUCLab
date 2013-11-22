@@ -2,10 +2,12 @@ package edu.ruc.labmgr.web.controller.equip;
 
 import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.domain.Equipment;
+import edu.ruc.labmgr.domain.Teacher;
 import edu.ruc.labmgr.domain.Typecode;
 import edu.ruc.labmgr.service.ApplyStrategic.ApplyContext;
 import edu.ruc.labmgr.service.ClassifService;
 import edu.ruc.labmgr.service.EquipmentService;
+import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.service.TypeCodeService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -36,6 +38,8 @@ public class EquipmentController {
     private ClassifService serviceClassif;
     @Autowired
     private TypeCodeService serviceTypecode;
+    @Autowired
+    private TeacherService serviceTeacher;
     @Autowired
     @Qualifier(value = "singleThreadPool")
     private ExecutorService singleTreadPool;
@@ -120,8 +124,11 @@ public class EquipmentController {
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
         List<Classif> states = serviceClassif.getItemsByParentID(Types.ClassifType.EQUIPMENT_STATE.getValue());
         List<Typecode> typecodes = serviceTypecode.selectAllTypecode();
+        List<Teacher> teacherList = serviceTeacher.getAllTeacherList();
+
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/info/editdevice");
+        mav.addObject("teacherList", teacherList);
         mav.addObject("equipment", equipment);
         mav.addObject("useDirections", useDirections);
         mav.addObject("states", states);

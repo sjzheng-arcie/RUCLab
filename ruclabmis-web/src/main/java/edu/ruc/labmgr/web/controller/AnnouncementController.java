@@ -13,6 +13,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Date;
+import java.util.List;
 
 @Controller
 @RequestMapping("/equipment/jsp/announcement/remind")
@@ -162,11 +163,12 @@ public class AnnouncementController {
 
     @RequestMapping("/sendmessage")
     public ModelAndView sendMessage(HttpServletRequest request) {
-
         String replySn = request.getParameter("replyFlag");
         ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/sendmessage");
         if (replySn != null && replySn != "")
             mav.addObject("replySn", replySn);
+        List<Teacher> teacherList = userService.getAllTeacherList();
+        mav.addObject("teacherList", teacherList);
         return mav;
     }
 
@@ -242,16 +244,14 @@ public class AnnouncementController {
     private Message insertMessageIntoDB(HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
 
-        String targetName = request.getParameter("target");
-        String userSn = targetName.substring(targetName.indexOf('(') + 1, targetName.indexOf(')'));
-        User receiverUser = userService.getUserByLoginSn(userSn);
+        int targetId = Integer.parseInt(request.getParameter("target"));
 
         Message message = new Message();
         if (!StringUtils.isNullOrEmpty(request.getParameter("id")))
             message.setId(Integer.parseInt(request.getParameter("id")));
         message.setContent(request.getParameter("content"));
         message.setIfread(false);
-        message.setReceiverId(receiverUser.getId());
+        message.setReceiverId(targetId);
         message.setSenderId(currentUserId);
         message.setSendtime(new Date());
         return message;

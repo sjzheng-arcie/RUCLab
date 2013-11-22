@@ -69,20 +69,6 @@ public class AllotApply extends BaseApply {
     }
 
     @Override
-    public void updateApplication(ApplicationForm applyForm) throws Exception {
-        String targetName = applyForm.getTarget();
-        String userSn = targetName.substring(targetName.indexOf('(') + 1, targetName.indexOf(')'));
-        int id = serviceTeacher.getUserIdBySn(userSn);
-        if (id < 0) {
-            throw (new Exception("接收人不存在，请检查后重新输入"));
-        }
-
-        applyForm.setAnnex(Integer.toString(id));
-
-        super.updateApplication(applyForm);
-    }
-
-    @Override
     public void addEquipmentsToApply(int applicationId, List<Integer> equipIds) {
         super.addEquipmentsToApply(applicationId, equipIds);
         for (Integer id : equipIds) {

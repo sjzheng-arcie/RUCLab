@@ -4,12 +4,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
+<link href="../../../../js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
 
-<link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css"/>
-<script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
-<script src="../../../../js/autocomplete/jquery-ui.js"></script>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+
+<script src="../../../../js/valid.js" type=text/javascript></script>
+<script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
 
 <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
@@ -21,29 +22,12 @@
         document.mainForm.submit();
     }
 
-    $().ready(function () {
-        $("#holderName").autocomplete({
-            source: function (request, response) {
-                $.ajax({
-                    url: "/equipment/jsp/sys/user/autoFillUserName",
-                    dataType: "json",
-                    data: {
-                        param: request.term
-                    },
-                    success: function (userList) {
-                        response($.map(userList, function (item) {
-                            return {
-                                label: item.user.name + "(" + item.user.sn + ")",
-                                value: item.user.name + "(" + item.user.sn + ")"
-                            }
-                        }));
-                    }
-                });
-            },
-            minLength: 1
-
+    $(document).ready(function () {
+        $("#holder").chosen({
+            no_results_text: "没有找到"
         });
     });
+
 </script>
 <body>
 <form name="mainForm" method="post">
@@ -141,12 +125,15 @@
                         </tr>
                         <tr style="height: 30px;">
                             <td align="center">领用人</td>
-                            <input name="holder" id="holder" type="hidden" value="${equipment.holder}">
                             <td>
-                                <input name="holderName" id="holderName"
-                                       value="${equipment.holderName}" onblur=""
-                                       autocomplete="off" class="autocomplete-suggestion"
-                                       style="width:154px" maxlength="20"/>
+                                <select id="holder" name="holder"
+                                        style="width: 204px;height: 22px"
+                                        data-placeholder="选择对象...">
+                                    <option value="-1">未分配</option>
+                                    <c:forEach items="${teacherList}" var="teacher">
+                                        <option value="${teacher.id}">${teacher.user.name}(${teacher.user.sn})</option>
+                                    </c:forEach>
+                                </select>
                             </td>
                             <td align="center">使用人</td>
                             <td>

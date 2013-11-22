@@ -120,13 +120,4 @@ public class TeacherController {
         return "redirect:/equipment/jsp/sys/user/list";
     }
 
-    @RequestMapping(value = "/autoFillUserName", produces = "application/json")
-    public
-    @ResponseBody
-    List<Teacher> getUsersByName(
-            HttpServletRequest request, HttpServletResponse response)
-            throws Exception {
-        String name = request.getParameter("param");
-        return serviceTeacher.getTeacherListNameLike(name);
-    }
 }

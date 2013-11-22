@@ -2,13 +2,15 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
 
-<link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css" />
-<script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
-<script src="../../../../js/autocomplete/jquery-ui.js"></script>
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+<link href="../../../../js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+
+<script src="../../../../js/valid.js" type=text/javascript></script>
+<script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
 
 <script>
     function update() {
@@ -25,28 +27,11 @@
                 "height=400, width=1350, toolbar=no, status=no");
     }
 
-    $().ready(function() {
-        $( "#target" ).autocomplete({
-            source: function( request, response ) {
-                $.ajax({
-                    url: "/equipment/jsp/sys/user/autoFillUserName",
-                    dataType: "json",
-                    data:{
-                        param: request.term
-                    },
-                    success: function( userList ) {
-                        response( $.map( userList, function( item ) {
-                            return {
-                                label:item.user.name + "(" +item.user.sn + ")",
-                                value:item.user.name + "(" +item.user.sn + ")"
-                            }
-                        }));
-                    }
-                });
-            },
-            minLength: 1
-
-        });});
+    $(document).ready(function () {
+        $("#annex").chosen({
+            no_results_text: "没有找到"
+        });
+    });
 
     function freshWindow(){
         window.location.reload(true);
@@ -146,13 +131,16 @@
                                         </td>
                                     </tr>
                                     <tr>
+
                                         <td align="center">接收人</td>
                                         <td>
-                                            <input name="target" id="target" value="${target}" onblur=""
-                                                   style="width:154px" maxlength="20"  valid="required"
-                                                   autocomplete="off"   class="autocomplete-suggestion"
-                                                   errmsg="接收人不能为空!"/>
-                                            <span style="color:red;">*</span>
+                                            <select id="annex" name="annex"
+                                                    style="width: 202px;height: 22px"
+                                                    data-placeholder="选择对象...">
+                                                <c:forEach items="${teacherList}" var="teacher">
+                                                    <option value="${teacher.id}">${teacher.user.name}(${teacher.user.sn})</option>
+                                                </c:forEach>
+                                            </select>
                                         </td>
                                         <td align="center" class="identifier">备注</td>
                                         <td align="left">

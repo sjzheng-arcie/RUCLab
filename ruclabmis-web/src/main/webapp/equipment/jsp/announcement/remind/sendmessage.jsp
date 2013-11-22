@@ -4,41 +4,14 @@
 <html>
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+
     <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
 
-    <link rel="stylesheet" href="../../../../js/autocomplete/jquery-ui.css"/>
-    <link rel="stylesheet" href="../../../../js/autocomplete/autocomplete.styles.css"/>
-
-    <script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
-    <script src="../../../../js/autocomplete/jquery-ui.js"></script>
-
-    <script>
-        $().ready(function () {
-            $("#target").autocomplete({
-                source: function (request, response) {
-                    $.ajax({
-                        url: "/equipment/jsp/sys/user/autoFillUserName",
-                        dataType: "json",
-                        data: {
-                            param: request.term
-                        },
-                        success: function (userList) {
-                            response($.map(userList, function (item) {
-                                return {
-                                    label: item.user.name + "(" + item.user.sn + ")",
-                                    value: item.user.name + "(" + item.user.sn + ")"
-                                }
-                            }));
-                        }
-                    });
-                },
-                minLength: 1
-
-            });
-        });
-
-    </script>
     <script>
         function save() {
             if (!validator(document.mainForm)) {
@@ -58,6 +31,12 @@
             }
 
         }
+
+        $(document).ready(function () {
+            $("#target").chosen({
+                no_results_text: "没有找到"
+            });
+        });
 
     </script>
 
@@ -82,10 +61,13 @@
                                                     <tr>
                                                         <td align="right">接收对象</td>
                                                         <td align="left">
-                                                            <input id="target" name="target" value="${replySn}"
-                                                                   autocomplete="off" valid="required"
-                                                                   class="autocomplete-suggestion"
-                                                                   errmsg="接收对象不能为空!"/>
+                                                            <select id="target" name="target"
+                                                                    style="width: 252px;height: 22px"
+                                                                    data-placeholder="选择对象...">
+                                                                <c:forEach items="${teacherList}" var="teacher">
+                                                                    <option value="${teacher.id}">${teacher.user.name}(${teacher.user.sn})</option>
+                                                                </c:forEach>
+                                                            </select>
                                                         </td>
                                                     </tr>
                                                     <tr>
