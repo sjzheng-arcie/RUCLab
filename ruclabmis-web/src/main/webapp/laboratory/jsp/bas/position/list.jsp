@@ -35,22 +35,24 @@
         </tr>
 
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;职务名称:<input type="text" name="searchName"
-                                                                                     id="searchName" value=""
-                                                                                     style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;职务级别:<input type="text" id="searchRank" name="searchRank"
-                                                                 value="" style="width:100px;"/>
-            </span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="toFind('listForm')"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">职务名称:
+                                <input type="text" name="searchName" id="searchName"
+                                       value="" style="width:100px;"/>
+                            </span>
+		                    <span style="white-space:nowrap">职务级别:
+                                <input type="text" id="searchRank" name="searchRank"
+                                       value="" style="width:100px;"/>
+                            </span>
+                            <span style="white-space:nowrap">
+                                <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
+                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                                </a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -155,7 +157,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

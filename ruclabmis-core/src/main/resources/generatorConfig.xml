@@ -67,7 +67,7 @@
         <!--<table tableName="curriculum" alias="c">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <table tableName="class_student" alias="cs"></table>
+        <!--<table tableName="class_student" alias="cs"></table>-->
         <!--<table tableName="curriculum_class" alias="cc">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
@@ -102,9 +102,9 @@
         <!--<table tableName="major">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="organization">-->
-        <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
+        <table tableName="organization">
+        <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
         <!--<table tableName="position">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->

@@ -17,25 +17,10 @@ public class OrganizationService {
     @Autowired
     private OrganizationMapper organizationMapper;
 
-    public PageInfo<Organization> selectListPage(String name, String grade, int PageNum) {
+    public List<Organization> selectListPage() {
         OrganizationCriteria criteria = new OrganizationCriteria();
-        criteria.setOrderByClause("name");
-        OrganizationCriteria.Criteria ec = criteria.createCriteria();
-        if (!StringUtils.isNullOrEmpty(name))
-            ec.andNameLike("%" + name + "%");
-        if (!StringUtils.isNullOrEmpty(grade))
-            ec.andGradeLike("%" + grade + "%");
-        return getOrganizationsByCriteria(PageNum, criteria);
-
-    }
-
-    private PageInfo<Organization> getOrganizationsByCriteria(int PageNum, OrganizationCriteria criteria) {
-        int totalCount = organizationMapper.countByCriteria(criteria);
-        PageInfo<Organization> page = new PageInfo<>(totalCount, -1, PageNum);
-        List<Organization> data = organizationMapper.selectByCriteriaWithRowbounds(criteria,
-                new RowBounds(page.getCurrentResult(), page.getPageSize()));
-        page.setData(data);
-        return page;
+        criteria.setOrderByClause("sn");
+        return organizationMapper.selectByCriteria(criteria);
     }
 
     public int insert(Organization organization) {
@@ -60,9 +45,8 @@ public class OrganizationService {
         return organizationMapper.selectByCriteria(null);
     }
 
-    public int delete(int id) {
-        int result = 0;
-        organizationMapper.deleteByPrimaryKey(id);
-        return result;
+    public void delete(List<Integer> equipmentIds) {
+        for (int id : equipmentIds)
+            organizationMapper.deleteByPrimaryKey(id);
     }
 }

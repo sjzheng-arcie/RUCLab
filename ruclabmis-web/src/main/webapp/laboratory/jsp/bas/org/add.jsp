@@ -1,3 +1,9 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
@@ -9,7 +15,7 @@
 
 </script>
 <body>
-<form name="form1" method="post">
+<form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
@@ -48,7 +54,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改组织机构</span></td>
+                                                                    class="STYLE1">添加组织机构</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
