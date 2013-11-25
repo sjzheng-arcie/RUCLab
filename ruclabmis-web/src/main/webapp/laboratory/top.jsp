@@ -47,7 +47,7 @@
 </head>
 <body leftmargin="0" topmargin="0">
 <div class="top">
-    <div class="top_left"><img src="../images/logo_lab.gif.gif" width="305" height="103"></div>
+    <div class="top_left"><img src="../images/logo_lab.gif" width="305" height="103"></div>
     <div class="top_right_top">
            <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
             <a href="jsp/announcement/remind/remind?id=1" target="">短消息(${unreadCount})</a>

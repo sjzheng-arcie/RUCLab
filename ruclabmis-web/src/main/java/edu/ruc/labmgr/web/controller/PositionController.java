@@ -2,7 +2,7 @@ package edu.ruc.labmgr.web.controller;
 
 
 import edu.ruc.labmgr.domain.Position;
-import edu.ruc.labmgr.service.PositionService;
+import edu.ruc.labmgr.domain.Position;
 import edu.ruc.labmgr.service.PositionService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,24 +13,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 @RequestMapping("/laboratory/jsp/bas/position")
 public class PositionController {
     @Autowired
     PositionService positionService;
-    private int currPage = 0;
 
-    @RequestMapping(value = "/list")
-    public ModelAndView list() {
-        return pageList(null, null, 1);
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public ModelAndView pageList(@RequestParam("searchName") String name,
-                                 @RequestParam("searchRank") String rank, @RequestParam("page") int page) {
-
-
+    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView pageList(@RequestParam(value = "searchName", required = false) String name,
+                                 @RequestParam(value = "searchRank", required = false) String rank,
+                                 @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/position/list");
         PageInfo<Position> pageInfo = positionService.selectListPage(name, rank, page);
         mav.addObject("pageInfo", pageInfo);
@@ -45,31 +39,28 @@ public class PositionController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView Add(Position Position) {
-        positionService.insert(Position);
-        return pageList(null, null, 1);
-
+    public String add(Position position) {
+        positionService.insert(position);
+        return "redirect:/laboratory/jsp/bas/position/list";
     }
 
-    @RequestMapping(value = "/toUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Position Position = positionService.selectByPrimerKey(id);
+        Position position = positionService.selectByPrimerKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/position/update");
-        mav.addObject("Position", Position);
+        mav.addObject("position", position);
         return mav;
-
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView Update(Position Position) {
-        positionService.update(Position);
-        return pageList(null, null, 1);
+    public String update(Position position) {
+        positionService.update(position);
+        return "redirect:/laboratory/jsp/bas/position/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam("id") int id) {
-        positionService.delete(id);
-        return pageList(null, null, 1);
-
+    public String delete(@RequestParam("items") List<Integer> items) {
+        positionService.delete(items);
+        return "redirect:/laboratory/jsp/bas/position/list";
     }
 }

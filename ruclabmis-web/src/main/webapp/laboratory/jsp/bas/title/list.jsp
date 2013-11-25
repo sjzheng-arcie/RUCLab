@@ -80,16 +80,14 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/laboratory/jsp/bas/position/toAdd"><img src="../../../../images/add_min.gif" width="10"
-                                                                      height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate('listForm','idcheckbox');"><img
-                                src="../../../../images/edit_min.gif" width="10"
-                                height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete('listForm','idcheckbox');"><img
-                                src="../../../../images/del_min.gif" width="10" height="10"
-                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-
+						<a href="/laboratory/jsp/bas/title/toAdd">
+                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span>
+                        </a>
+      					<a href="#" onclick="toDelete('listForm','idcheckbox');">
+                            <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">删除</span>
+                        </a>
 	                </span>
                                                                 </div>
                                                             </td>
@@ -113,9 +111,6 @@
                                                         </div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">职称编号</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">职称名称</span></div>
                                                     </td>
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -127,7 +122,9 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">职责说明</span></div>
                                                     </td>
-
+                                                    <td width="50" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                                    </td>
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -136,11 +133,14 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm','idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.grade}</td>
                                                         <td>${item.shortName}</td>
                                                         <td>${item.description}</td>
+                                                        <td><a href="toUpdate?id=${item.id}">
+                                                            <img src="../../../../images/edit_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

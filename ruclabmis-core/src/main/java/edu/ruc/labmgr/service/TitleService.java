@@ -60,10 +60,10 @@ public class TitleService {
         return titleMapper.selectByCriteria(null);
     }
 
-    public int delete(int id) {
-        int result = 0;
-        titleMapper.deleteByPrimaryKey(id);
-        return result;
+    public void delete(List<Integer> ids) {
+        for(int id : ids){
+            titleMapper.deleteByPrimaryKey(id);
+        }
     }
 
 }
