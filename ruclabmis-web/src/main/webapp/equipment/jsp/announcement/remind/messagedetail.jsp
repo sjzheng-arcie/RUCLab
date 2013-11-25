@@ -13,8 +13,8 @@
 
             var pageFather = "${fatherPage}";
             if (pageFather != "welcome") {
-                document.form1.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=${page}&&fatherPage=${fatherPage}";
-                document.form1.submit();
+                document.mainForm.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=${page}&&fatherPage=${fatherPage}";
+                document.mainForm.submit();
             } else {
                 window.history.go(-1);
             }

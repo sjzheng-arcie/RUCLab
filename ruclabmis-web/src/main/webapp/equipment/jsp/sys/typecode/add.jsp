@@ -14,11 +14,11 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-            if (!validator(document.form1)) {
+            if (!validator(document.mainForm)) {
                 return;
             }
-            document.form1.action = "/equipment/jsp/sys/typecode/add";
-            document.form1.submit();
+            document.mainForm.action = "/equipment/jsp/sys/typecode/add";
+            document.mainForm.submit();
         }
 
     </script>

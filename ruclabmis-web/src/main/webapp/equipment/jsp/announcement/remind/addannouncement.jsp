@@ -9,12 +9,12 @@
     <script>
         function save() {
 
-            document.form1.action = "addAnnouncement";
-            document.form1.submit();
+            document.mainForm.action = "addAnnouncement";
+            document.mainForm.submit();
         }
         function reset() {
 
-            document.form1.content.value = "";
+            document.mainForm.content.value = "";
         }
         function displayClass(value) {
 

@@ -14,12 +14,12 @@
             return;
         }
 
-        document.form1.action = "addPaper";
-        document.form1.submit();
+        document.mainForm.action = "addPaper";
+        document.mainForm.submit();
     }
     function addToPaper(){
-        document.form1.action = "addpaper";
-        document.form1.submit();
+        document.mainForm.action = "addpaper";
+        document.mainForm.submit();
     }
 </script>
 </head>

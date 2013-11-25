@@ -5,12 +5,12 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        document.mainForm.action = "listSysint.html";
+        document.mainForm.submit();
     }
     function addtopaper() {
-        document.form1.action = "addtopaper.html";
-        document.form1.submit();
+        document.mainForm.action = "addtopaper.html";
+        document.mainForm.submit();
     }
 
 </script>

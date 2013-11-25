@@ -9,10 +9,12 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        if (!validator(document.mainForm)) {
+            return;
+        }
+        document.mainForm.action = "add";
+        document.mainForm.submit();
     }
-
 </script>
 <body>
 <form name="mainForm" method="post">
@@ -80,7 +82,7 @@
                                             <tr>
                                                 <td nowrap align="right">组织编号:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
+                                                    <input name="sn" id="sn" class="text" style="width:154px"
                                                            maxlength="20" valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>

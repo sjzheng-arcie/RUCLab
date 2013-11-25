@@ -9,8 +9,8 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-            document.form1.action = "edit";
-            document.form1.submit();
+            document.mainForm.action = "edit";
+            document.mainForm.submit();
         }
 
     </script>

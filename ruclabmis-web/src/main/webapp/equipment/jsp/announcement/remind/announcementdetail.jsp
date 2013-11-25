@@ -10,8 +10,8 @@
     <script>
         function save() {
 
-            document.form1.action = "addAnnouncement";
-            document.form1.submit();
+            document.mainForm.action = "addAnnouncement";
+            document.mainForm.submit();
         }
         function displayClass(value) {
 

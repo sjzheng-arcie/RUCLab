@@ -10,8 +10,8 @@
     <script>
         function save() {
 
-            document.form1.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
-            document.form1.submit();
+            document.mainForm.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
+            document.mainForm.submit();
         }
         function displayClass(value) {
 

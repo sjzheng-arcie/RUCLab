@@ -108,7 +108,7 @@
                                                     <td width="15" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this,'form1','checkbox')"/>
+                                                                   onclick="checkAll(this,'mainForm','checkbox')"/>
                                                         </div>
                                                     </td>
                                                     <td width="20" height="20" bgcolor="d3eaef" class="STYLE6">
