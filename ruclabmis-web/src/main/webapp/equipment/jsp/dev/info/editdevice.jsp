@@ -252,7 +252,7 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <input type="button" name="save" value="保存" class="button" onclick="update();"/>
+                                <input type="button" name="Submit" value="保存" class="button" onclick="update();"/>
                                 <input type="reset" name="reset" value="重置" class="button"/>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>

@@ -38,7 +38,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -61,8 +61,8 @@
                                                     </table>
                                                 </td>
                                                 <td>
-                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                            class="STYLE1"> &nbsp;</span></div>
+                                                    <div align="right"><span class="STYLE1"></span><span
+                                                            class="STYLE1"> </span></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -84,54 +84,30 @@
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
                                                            maxlength="20"   valid="required"
-                                                           errmsg="设备编号不能为空!"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_sn"></span>
+                                                           errmsg="组织编号不能为空!"/>
+                                                    <span style="color:red;">*</span>
                                                 </td>
-                                                <td nowrap align="right">组织名称名称:</td>
+                                                <td nowrap align="right">组织名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
                                                            valid="required"
                                                            errmsg="组织名称不能为空!"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">级别:</td>
+                                                <td nowrap align="right">上级:</td>
                                                 <td nowrap>
                                                     <select>
-                                                        <option value="">--请选择--</option>
                                                         <option value="0">院处级</option>
                                                         <option value="1">系科级</option>
-
                                                     </select>
-
                                                 </td>
                                                 <td nowrap align="right">负责人:</td>
-
-                                                <td nowrap align="left"><input class="text" style="width:154px"
-                                                                               maxlength="20"
-                                                                               valid="required"
-                                                                               errmsg="负责人不能为空!"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-
-
-                                                    </select>
+                                                <td nowrap align="left">
+                                                    <input class="text" style="width:154px" maxlength="20"/>
                                                 </td>
-
                                             </tr>
-
-
-                                            <tr>
-
-
-                                                <td nowrap align="right">备注：</td>
-                                                <td nowrap colspan="3" align="left"><textarea
-                                                        style="width:70%;height:100"></textarea></td>
-                                            </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -151,7 +127,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
@@ -164,6 +140,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

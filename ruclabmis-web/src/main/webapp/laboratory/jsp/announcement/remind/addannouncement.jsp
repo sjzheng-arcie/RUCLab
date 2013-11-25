@@ -8,16 +8,11 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-
             document.mainForm.action = "addAnnouncement";
             document.mainForm.submit();
         }
-        function reset() {
 
-            document.mainForm.content.value = "";
-        }
         function displayClass(value) {
-
             if (value == "2") {
                 document.getElementById('scopeDiv').style.display = '';
             } else {
@@ -102,9 +97,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" align="center">
-                                                    <input type="button" name="Submit" value="发布" class="button"
-                                                           onclick="save();"/>
-
+                                                    <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                                 </td>
                                             </tr>
 
@@ -123,6 +116,6 @@
         </tr>
 
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

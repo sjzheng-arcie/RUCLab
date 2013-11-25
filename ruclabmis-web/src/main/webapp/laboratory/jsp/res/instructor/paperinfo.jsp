@@ -134,7 +134,7 @@
                             <tr>
                                 <td align="center">
                                     <input type="button" name="addEquipmentsToApply" value="添加试题" class="button" onclick="toAddQuestion();"/>
-                                    <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
+                                    <input type="button" name="Submit" value="保存并提交" class="button" onclick="update();"/>
                                     <input type="reset" name="reset" value="重置" class="button"/>
 
 
