@@ -79,11 +79,11 @@
         </tr>
     </table>
     <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
+        <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
             <li><a href="jsp/dev/borrow/deviceList" onfocus="toFocus(this)" target="main">可借用设备</a>
             </li>
         </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
+        <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
             <li><a href="jsp/dev/borrow/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备借用申请</a>
             </li>
         </shiro:hasAnyRoles>
@@ -109,7 +109,7 @@
         </tr>
     </table>
     <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
+        <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
             <li><a href="jsp/dev/return/deviceList" onfocus="toFocus(this)" target="main">我使用中的设备</a>
             </li>
             <li><a href="jsp/dev/return/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备归还申请</a>
@@ -131,11 +131,11 @@
         </tr>
     </table>
     <ul class="MM">
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
+        <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
             <li><a href="jsp/dev/allot/deviceList" onfocus="toFocus(this)" target="main">可转移设备</a>
             </li>
         </shiro:hasAnyRoles>
-        <shiro:hasAnyRoles name="administrators,teacher,leader">
+        <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
             <li><a href="jsp/dev/allot/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备转移申请</a>
             </li>
         </shiro:hasAnyRoles>

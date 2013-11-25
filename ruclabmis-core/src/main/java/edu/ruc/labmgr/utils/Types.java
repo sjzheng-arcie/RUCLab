@@ -2,9 +2,11 @@ package edu.ruc.labmgr.utils;
 
 public interface Types {
     enum Role {
-        ADMIN(1, "administrators", "系统管理员"), LEADER(3, "leader", "领导"),
-        EQUIPMENT_ADMIN(4, "equipment_admin", "设备管理员"), TEACHER(2, "teacher", "教师"),
-        STUDENT(5, "student", "学生");
+        ADMIN(1, "administrators", "系统管理员"), TEACHER(2, "teacher", "教师"),
+        LEADER(3, "leader", "领导"),
+        EQUIPMENT_ADMIN(4, "equipment_admin", "设备管理员"),
+        LAB_ADMIN(5, "lab_admin", "实验室管理员"),
+        STUDENT(6, "student", "学生");
         private int id;
         private String name;
         private String title;

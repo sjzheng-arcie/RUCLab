@@ -42,12 +42,12 @@
                     </table>
                     <ul class="MM">
 
-                        <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的短消息</a>
+                        <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">我的短消息</a>
                         </li>
-                        <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的通知</a>
+                        <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">我的通知</a>
                         </li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/datelist.html" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;待审核预约</a></li>
+                            待审核预约</a></li>
 
 
                     </ul>
@@ -62,25 +62,17 @@
                         </tr>
                     </table>
                     <ul class="MM">
-                        <li><a href="remind.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;发布公告</a>
+                        <li><a href="remind.html" onfocus="toFocus(this)" target="main">发布公告</a>
                         </li>
-                        <li><a href="jsp/sys/user/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;用户管理</a>
+                        <li><a href="jsp/bas/emp/main.html" onfocus="toFocus(this)" target="main">教职工信息管理</a>
                         </li>
-                        <li><a href="new/pages_miyl/miyl01_ylsj/page01_ylya_new.html" onfocus="toFocus(this)"
-                               target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验室预约</a></li>
-                        <li><a href="jsp/bas/course/main.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;课程管理</a>
+                        <li><a href="jsp/bas/student/main.html" onfocus="toFocus(this)" target="main">学生信息管理</a>
                         </li>
-                        <li><a href="jsp/curriculum/experiment/curriculum/curriculum.html" onfocus="toFocus(this)"
-                               target="main">&nbsp;&nbsp;&nbsp;&nbsp;课程表管理</a></li>
-                        <li><a href="jsp/experiment/report/main.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;论坛管理</a>
+                        <li><a href="jsp/experiment/report/main.html" onfocus="toFocus(this)" target="main">论坛管理</a>
                         </li>
-
                     </ul>
                 </div>
-
-
             </div>
-
         </td>
     </tr>
 </table>

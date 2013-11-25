@@ -21,10 +21,14 @@ public class RoleService {
         return Role;
     }
 
-    public List<Role> listAllWithoutStudent() {
+    public List<Role> listAllInEquipment() {
         List<Role> roles = mapperRole.selectByCriteria(null);
         for (int i = 0; i < roles.size(); i++) {
             if (roles.get(i).getName().equals(Types.Role.STUDENT.getName())) {
+                roles.remove(i);
+                continue;
+            }
+            if (roles.get(i).getName().equals(Types.Role.LAB_ADMIN.getName())) {
                 roles.remove(i);
             }
         }

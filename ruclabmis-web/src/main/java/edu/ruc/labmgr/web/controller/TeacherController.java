@@ -45,7 +45,7 @@ public class TeacherController {
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
-        List<Role> roles = serviceRole.listAllWithoutStudent();
+        List<Role> roles = serviceRole.listAllInEquipment();
         List<Major> majors = serviceMajor.listAll();
         List<Title> titles = serviceTitle.selectAllTitles();
         List<Position> positions = servicePosition.selectAllPositions();
@@ -70,7 +70,7 @@ public class TeacherController {
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Teacher teacher = serviceTeacher.selectByPrimaryKey(id);
-        List<Role> roles = serviceRole.listAllWithoutStudent();
+        List<Role> roles = serviceRole.listAllInEquipment();
         List<Major> majors = serviceMajor.listAll();
         List<Title> titles = serviceTitle.selectAllTitles();
         List<Position> positions = servicePosition.selectAllPositions();

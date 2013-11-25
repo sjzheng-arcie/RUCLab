@@ -155,7 +155,7 @@
                         <tr class="noprint" >
                             <td  align="center">
                                 <c:if test="${formType=='apply'}">
-                                    <shiro:hasAnyRoles name="administrators,teacher,leader">
+                                    <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
                                         <input type="button" name="addEquipmentsToApply" value="添加设备" class="button" onclick="toAddEquipment();"/>
                                         <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
                                         <input type="reset" name="reset" value="重置" class="button"/>
@@ -240,7 +240,7 @@
                                     <div align="center"><span class="STYLE10">使用方向</span></div>
                                 </td>
                                 <c:if test="${formType=='apply'}">
-                                    <shiro:hasAnyRoles name="administrators,teacher,leader">
+                                    <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
                                         <td width="80" bgcolor="d3eaef">
                                             <div align="center"><span class="STYLE10">移除设备</span></div>
                                         </td>
@@ -263,7 +263,7 @@
                                     <td>${item.fundingSubject}</td>
                                     <td>${item.useDirection}</td>
                                     <c:if test="${formType=='apply'}">
-                                        <shiro:hasAnyRoles name="administrators,teacher,leader">
+                                        <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
                                             <td><a href="/equipment/jsp/dev/allot/removeEquipmentFromApply?application_id=${apply.applicationId}&equipment_id=${item.id}">
                                                 <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/></a>
                                             </td>

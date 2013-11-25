@@ -60,7 +60,6 @@
     </div>
     <ul class="top_right_menu">
         <li class="active"><a href="administrator_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-        <li><a href="administrator_leftmenusys.html" target="leftFrame">系统管理</a></li>
         <li><a href="administrator_leftmenubasinfo.html" target="leftFrame">基础信息管理</a></li>
         <li><a href="administrator_leftmenulab.html" target="leftFrame">实验室管理</a></li>
         <li><a href="administrator_leftmenu.html" target="leftFrame">教学资源管理</a></li>

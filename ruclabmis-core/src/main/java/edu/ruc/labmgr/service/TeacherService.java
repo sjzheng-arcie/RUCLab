@@ -152,8 +152,8 @@ public class TeacherService extends UserService {
     }
 
     public void delete(int id) {
-        mapperUser.deleteByPrimaryKey(id);
         mapperTeacher.deleteByPrimaryKey(id);
+        mapperUser.deleteByPrimaryKey(id);
     }
 
     public int countAllTeachers() {

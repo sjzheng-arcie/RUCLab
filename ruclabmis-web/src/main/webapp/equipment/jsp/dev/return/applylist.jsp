@@ -105,7 +105,7 @@
                                            </shiro:hasAnyRoles>
                                        </c:if>
                                         <c:if test="${formType=='apply'}">
-                                            <shiro:hasAnyRoles name="administrators,teacher,leader">
+                                            <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
                                                 <a href="javascript:void(0);"
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
