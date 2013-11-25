@@ -26,7 +26,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 职称信息管理</div>
+                            <div class="titlebt">系统管理 > 职务信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -54,7 +54,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">职称信息修改</span></td>
+                                                                    class="STYLE1">职务信息修改</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>

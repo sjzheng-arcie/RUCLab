@@ -190,7 +190,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp" %>
+                                <%@ include file="../../../../include/pagetable.jsp" %>
 
                                 </tr>
                             </table>
