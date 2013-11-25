@@ -128,22 +128,17 @@
                     <script type="text/javascript">
                         var tree = new dzTree('tree');
                         //tree.addNode(0, -1, '论坛首页', 'index.php', 'main', true);
+
                         tree.addNode(0, -1, '实验交流论坛', 'frame', 'main', true);
-                        tree.addNode(4, 0, 'C语言实验课', '', 'main', false);
-                        tree.addNode(5, 0, '电路实验课', '', 'main', false);
-                        tree.addNode(7, 0, 'CAD实验室', '', 'main', false);
-                        tree.addNode(19, 0, '高速网络实验室', '', 'main', false);
-                        tree.addNode(24, 0, '模拟电路实验课', '', 'main', false);
-                        tree.addNode(25, 24, '公告区', 'list-mndl', 'main', false);
-                        tree.addNode(21, 19, '公告区', 'list-gswl', 'main', false);
-                        tree.addNode(14, 7, '公告区', 'list-cad', 'main', false);
-                        tree.addNode(11, 5, '公告区', 'list-dl', 'main', false);
-                        tree.addNode(8, 4, '公告区', 'list', 'main', false);
-                        tree.addNode(22, 19, '综合讨论区', 'list-gswl', 'main', false);
-                        tree.addNode(12, 5, '综合讨论区', 'list-dl', 'main', false);
-                        tree.addNode(15, 7, '综合讨论区', 'list-cad', 'main', false);
-                        tree.addNode(26, 24, '综合讨论区', 'list-mndl', 'main', false);
-                        tree.addNode(9, 4, '综合讨论区', 'list', 'main', false);
+                        <c:forEach items="${courseList}" var="item">
+                            tree.addNode(4, 0, '${item.courseName}', 'list?courseId=${item.courseId}', 'main', false);
+                        </c:forEach>
+                        tree.addNode(4, 0, 'C语言实验课', 'list', 'main', false);
+                        tree.addNode(5, 0, '电路实验课', 'list', 'main', false);
+                        tree.addNode(7, 0, 'CAD实验室', 'list', 'main', false);
+                        tree.addNode(19, 0, '高速网络实验室', 'list', 'main', false);
+                        tree.addNode(24, 0, '模拟电路实验课', 'list', 'main', false);
+
                         tree.show();
 
                         document.getElementById('left_list_tree').style.height = (top.document.body.clientHeight - 281) + 'px';

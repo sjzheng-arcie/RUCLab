@@ -22,7 +22,4 @@
                target="_self"/>
     </frameset>
 </frameset>
-<script type="text/javascript">
-
-</script>
 </html>

@@ -3,27 +3,8 @@
 <html>
 <head>
     <style>
-
     </style>
     <title>管理页面</title>
-    <script language=JavaScript>
-        function logout() {
-            if (confirm("您确定要退出控制面板吗？"))
-                top.location = "out.asp";
-            return false;
-        }
-    </script>
-    <script language=JavaScript1.2>
-        function showsubmenu(sid) {
-            var whichEl = eval("submenu" + sid);
-            var menuTitle = eval("menuTitle" + sid);
-            if (whichEl.style.display == "none") {
-                eval("submenu" + sid + ".style.display=\"\";");
-            } else {
-                eval("submenu" + sid + ".style.display=\"none\";");
-            }
-        }
-    </script>
     <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
     <script language=JavaScript1.2>
         function rs(flag) {
@@ -48,7 +29,7 @@
 </head>
 <body leftmargin="0" topmargin="0">
 <div class="top">
-    <div class="top_left"><img src="../images/logo_lab.gif" width="305" height="103"></div>
+    <div class="top_left"><img src="../images/logo.gif" width="305" height="103"></div>
     <div class="top_right">
         <div class="top_right_top">
            <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
