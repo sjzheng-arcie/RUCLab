@@ -12,31 +12,18 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sjzheng
- * Date: 13-10-25
- * Time: 下午3:58
- * To change this template use File | Settings | File Templates.
- */
 @Controller
 @RequestMapping("/laboratory/jsp/bas/title")
 public class TitleController {
     @Autowired
     TitleService titleService;
-    private int currPage = 0;
 
-    @RequestMapping(value = "/list")
-    public ModelAndView list() {
-        return pageList(null, null, 1);
-    }
-
-    @RequestMapping(value = "/list", method = RequestMethod.POST)
-    public ModelAndView pageList(@RequestParam("searchName") String name,
-                                 @RequestParam("searchRank") String rank, @RequestParam("page") int page) {
-
-
+    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView pageList(@RequestParam(value = "searchName", required = false) String name,
+                                 @RequestParam(value = "searchRank", required = false) String rank,
+                                 @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/list");
         PageInfo<Title> pageInfo = titleService.selectListPage(name, rank, page);
         mav.addObject("pageInfo", pageInfo);
@@ -51,31 +38,28 @@ public class TitleController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView Add(Title title) {
+    public String add(Title title) {
         titleService.insert(title);
-        return pageList(null, null, 1);
-
+        return "redirect:/laboratory/jsp/bas/title/list";
     }
 
-    @RequestMapping(value = "/toUpdate", method = RequestMethod.POST)
+    @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Title title = titleService.selectByPrimerKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/title/update");
         mav.addObject("title", title);
         return mav;
-
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView Update(Title title) {
+    public String update(Title title) {
         titleService.update(title);
-        return pageList(null, null, 1);
+        return "redirect:/laboratory/jsp/bas/title/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public ModelAndView delete(@RequestParam("id") int id) {
-        titleService.delete(id);
-        return pageList(null, null, 1);
-
+    public String delete(@RequestParam("items") List<Integer> items) {
+        titleService.delete(items);
+        return "redirect:/laboratory/jsp/bas/title/list";
     }
 }

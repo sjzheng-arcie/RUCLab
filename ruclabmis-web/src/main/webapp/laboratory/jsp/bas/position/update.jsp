@@ -26,7 +26,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 职务信息管理</div>
+                            <div class="positionbt">系统管理 > 职务信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -77,18 +77,18 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <input name="id" id="id" type="hidden" value="${title.id}">
+                                            <input name="id" id="id" type="hidden" value="${position.id}">
                                             <tr>
                                                 <td nowrap align="right">职务名称:</td>
                                                 <td nowrap>
-                                                    <input name="name" id="name" value="${title.name}" onblur=""
+                                                    <input name="name" id="name" value="${position.name}" onblur=""
                                                            class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">职务级别:</td>
                                                 <td nowrap>
-                                                    <input name="grade" id="grade" value="${title.grade}" onblur=""
+                                                    <input name="grade" id="grade" value="${position.grade}" onblur=""
                                                            class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -98,7 +98,7 @@
 
                                                 <td nowrap align="right">职务简称:</td>
                                                 <td nowrap>
-                                                    <input name="shortName" id="shortName" value="${title.shortName}"
+                                                    <input name="shortName" id="shortName" value="${position.shortName}"
                                                            onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -106,7 +106,7 @@
                                                 <td nowrap align="right">职务描述:</td>
                                                 <td nowrap>
                                                     <input name="description" id="description"
-                                                           value="${title.description}" class="text"
+                                                           value="${position.description}" class="text"
                                                            style="width:154px"/>
                                                 </td>
                                             </tr>
@@ -118,9 +118,9 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
+                                        <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
