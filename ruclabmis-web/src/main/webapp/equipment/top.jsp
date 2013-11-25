@@ -7,7 +7,6 @@
     </style>
     <title>设备管理系统</title>
     <meta http-equiv=Content-Type content=text/html;charset=UTF-8>
-    <meta http-equiv="refresh" content="60">
     <base target="main">
     <link href="../images/skin.css" rel="stylesheet" type="text/css">
 
