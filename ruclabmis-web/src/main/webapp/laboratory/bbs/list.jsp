@@ -6,56 +6,35 @@
     <META http-equiv=Content-Type content="text/html; charset=UTF-8">
     <Link rel="stylesheet" type="text/css" href="style/style.css"/>
 </HEAD>
-
 <BODY>
 <DIV>
     <div id="banner" style="background-image:url('images/default/banner_mole_bg.jpg');border:0;position:relative;">
         <div style="left:0px ; top:0px; z-index:99px;">
             <img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/>
         </div>
+    </div>
 </DIV>
-<!--      用户信息、登录、注册        -->
-
 <DIV class="h">
-    您尚未　<a href="">登录</a>
-    &nbsp;| &nbsp; <A href="">注册</A> |
+    <p style="font-size: 26px;margin-top: 0px;margin-bottom: 0px">
+        &gt;&gt;<B><a href="frame">论坛首页</a></B>&gt;&gt;
+        <B><a href="list?courseId=${courseId}">C语言实验课</a></B>
+        <span style="float:right">
+            <A href="post?courseId=${courseId}"><IMG src="images/post.gif" name="td_post" border="0" id=td_post></A>
+        </span>
+    </p>
 </DIV>
-
-
-<!--      主体        -->
 <DIV>
-    <!--      导航        -->
-    <br/>
-
-    <DIV>
-        &gt;&gt;<B><a href="index.html">论坛首页</a></B>&gt;&gt;
-        <B><a href="list">C语言实验课</a></B>
-    </DIV>
-    <br/>
-    <!--      新帖        -->
-    <DIV>
-        <A href="post.html"><IMG src="images/post.gif" name="td_post" border="0" id=td_post></A>
-    </DIV>
-    <!--         翻 页         -->
-    <DIV>
-        <a href="list">上一页</a>|
-        <a href="list">下一页</a>
-    </DIV>
-
+    <%@ include file="../jsp/common/toppagetable.jsp" %>
     <DIV class="t">
+
         <TABLE cellSpacing="0" cellPadding="0" width="100%">
-            <TR>
-                <TH class="h" style="WIDTH: 100%" colSpan="4"><SPAN>&nbsp;</SPAN></TH>
-            </TR>
-            <!--       表 头           -->
+
             <TR class="tr2">
                 <TD>&nbsp;</TD>
-                <TD style="WIDTH: 80%" align="center">文章</TD>
+                <TD style="WIDTH: 80%" align="center">标题</TD>
                 <TD style="WIDTH: 10%" align="center">作者</TD>
                 <TD style="WIDTH: 10%" align="center">回复</TD>
             </TR>
-            <!--         主 题 列 表        -->
-
             <TR class="tr3">
                 <TD><IMG src="images/topic.gif" border=0></TD>
                 <TD style="FONT-SIZE: 15px">
@@ -64,79 +43,19 @@
                 <TD align="center">t</TD>
                 <TD align="center">2</TD>
             </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">谁能提供个课件下载啊？</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">1</TD>
-            </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">有人周末去上机吗？</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">0</TD>
-            </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">老师上课讲的有的没听明白啊!</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">0</TD>
-            </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">本学期课程最新安排</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">0</TD>
-            </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">C语言上机成绩已经可以查了</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">0</TD>
-            </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">C语言上机成绩已经可以查了</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">0</TD>
-            </TR>
-
-            <TR class="tr3">
-                <TD><IMG src="images/topic.gif" border=0></TD>
-                <TD style="FONT-SIZE: 15px">
-                    <A href="detail">C语言上机成绩已经可以查了</A>
-                </TD>
-                <TD align="center">abc</TD>
-                <TD align="center">0</TD>
-            </TR>
-
+            <c:forEach items="${pageInfo.data}" var="item">
+                <TR class="tr3">
+                    <TD><IMG src="images/topic.gif" border=0></TD>
+                    <TD style="FONT-SIZE: 15px">
+                        <A href="detail?postId=${item.id}">${item.title}</A>
+                    </TD>
+                    <TD align="center">${item.publisher.name}</TD>
+                    <TD align="center">${item.replyNum}</TD>
+                </TR>
+            </c:forEach>
         </TABLE>
     </DIV>
-    <!--            翻 页          -->
-    <DIV>
-        <a href="list">上一页</a>|
-        <a href="list">下一页</a>
-    </DIV>
+    <%@ include file="../jsp/common/toppagetable.jsp" %>
 </DIV>
-<!--             声 明          -->
-
 </BODY>
 </HTML>

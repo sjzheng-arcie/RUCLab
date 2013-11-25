@@ -60,31 +60,10 @@
     </div>
     <div id="topNav">
         <div id="topNav_tree">
-            <a href="index.html">实验交流论坛</a> &raquo; 实验交流论坛
-        </div>
-        <div id="topNav_search">
-            本论坛为审核制，9:00-21:00开放发帖，其余时间只能浏览&nbsp;
-            <!--
 
-            -->
         </div>
     </div>
     <div id="ad_headerbanner"></div>
-</div>
-
-<div id="menu" class="hidden">
-    <ul>
-        >>>>>>>
-        <li><a href="register.php" class="notabs">注册</a></li>
-        >>>>>>>
-        <li><a href="logging.php?action=login">登录</a></li>
-
-        >>>>>>>
-        <li><a href="tag.php">标签</a></li>
-        <li><a href="stats.php">统计</a></li>
-        >>>>>>>
-        <li><a href="faq.php">帮助</a></li>
-    </ul>
 </div>
 <style type="text/css">
     <!--
@@ -213,7 +192,7 @@
                              onclick="toggle_collapse('category_4');"/>
 			</span>
 
-    <h3 style="background-image:url('images/default/header_bg.gif')"><a href="index.php?gid=4">实验交流论坛</a></h3>
+    <h3 style="background-image:url('images/default/header_bg.gif')">实验交流论坛</h3>
     <table id="category_4" summary="category4" cellspacing="0" cellpadding="0" style="">
         <thead class="category">
         <tr>
@@ -226,62 +205,50 @@
         <tbody id="forum8">
         <tr>
             <th>
-                <a href="forumdisplay.php?fid=8"><img style="margin-right: 10px" src="images/default/class_mole_1.jpg"
+                <a href="list?fid=8"><img style="margin-right: 10px" src="images/default/class_mole_1.jpg"
                                                       align="left" alt="" border="0"/></a>
-
                 <h2><a href="list">信息公告区</a></h2>
-                <span class="dropmenu" id="mod8" onmouseover="showMenu(this.id)">版主</span>
-                <ul class="moderators popupmenu_popup" id="mod8_menu" style="display: none">
-                    <li><a href="space.php?username=599586">599586</a></li>
-                </ul>
             </th>
-            <td class="nums">96</td>
-            <td class="nums">34111</td>
+            <td class="nums">${AnnouncementTopicNum}</td>
+            <td class="nums">${AnnouncementPostNum}</td>
             <td class="lastpost">
-                <a href="detail">[大调查]C语言实验课大调查</a>
-                <cite>by <a href="space.php?username=admin">admin</a> - 2010-5-15 16:07</cite>
+                <a href="detail?id=${homePageAnnouncement.id}">${homePageAnnouncement.title}</a>
+                <cite>by ${homePageAnnouncement.publiser.name} - ${homePageAnnouncement.publishTime}</cite>
             </td>
         </tr>
         </tbody>
         <tbody id="forum9">
         <tr>
             <th class="new">
-                <a href="forumdisplay.php?fid=9"><img style="margin-right: 10px" src="images/default/class_mole_2.jpg"
+                <a href="list?id=9"><img style="margin-right: 10px" src="images/default/class_mole_2.jpg"
                                                       align="left" alt="" border="0"/></a>
-
                 <h2><a href="list-dl">综合讨论区</a></h2>
             </th>
-            <td class="nums">172663</td>
-            <td class="nums">2159115</td>
+            <td class="nums">${DiscussTopicNum}</td>
+            <td class="nums">${DiscussPostNum}</td>
             <td class="lastpost">
-                <a href="detail">问题：有谁知道XX实验室什么时候开放呢? ...</a>
-                <cite>by <a href="space.php?username=13293919">13293919</a> - 2010-6-20 20:27</cite>
+                <a href="detail?id=${homePageDiscuss.id}">${homePageDiscuss.title}</a>
+                <cite>by ${homePageDiscuss.publisher.name} - ${homePageDiscuss.publishTime}</cite>
             </td>
         </tr>
         </tbody>
         <tbody id="forum10">
         <tr>
             <th class="new">
-                <a href="forumdisplay.php?fid=10"><img style="margin-right: 10px" src="images/default/class_mole_3.jpg"
+                <a href="list?fid=10"><img style="margin-right: 10px" src="images/default/class_mole_3.jpg"
                                                        align="left" alt="" border="0"/></a>
-
                 <h2><a href="list">原创资源上传区</a></h2>
             </th>
-            <td class="nums">34031</td>
-            <td class="nums">470076</td>
+            <td class="nums">${ResourceTopicNum}</td>
+            <td class="nums">${ResourcePostNum}</td>
             <td class="lastpost">
-                <a href="detail">C语言课程表源代码实例</a>
-                <cite>by <a href="space.php?username=12641086">12641086</a> - 2010-6-20 20:27</cite>
+                <a href="detail?id=${homePageResource.id}">${homePageResource.title}</a>
+                <cite>by ${homePageResource.publisher.name} - ${homePageResource.publishTime}</cite>
             </td>
         </tr>
         </tbody>
     </table>
 </div>
-<div id="ad_intercat_4"></div>
-<ul class="popupmenu_popup" id="creditlist_menu" style="display: none">
-    <li>积分: 0</li>
-</ul>
-
 <div style="width:100%; margin:auto; overflow:hidden;">
     <div class="index_box_left">
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">今日热帖</div>
@@ -293,50 +260,15 @@
                         ...</a></div>
                     <div class="num">941</div>
                 </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序？">谁知道怎么做一个指纹识别程序？</a>
-                    </div>
-                    <div class="num">891</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_3.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="JAVA语言上机实验报告可以下载了 ...">JAVA语言上机实验报告可以下载了
-                        ...</a></div>
-                    <div class="num">478</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_4.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="电教室开放预约了">电教室开放预约了</a></div>
-                    <div class="num">335</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_5.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main"
-                                         title="有人知道本周的电路实验课取消了吗？">有人知道本周的电路实验课取消了吗？</a></div>
-                    <div class="num">303</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_6.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="和大家共享一个虚拟现实视频">和大家共享一个虚拟现实视频</a>
-                    </div>
-                    <div class="num">301</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_7.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="JAVA实验课本周开课">JAVA实验课本周开课</a></div>
-                    <div class="num">187</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_8.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
-                    <div class="num">138</div>
-                </li>
-                <li style="border-bottom:0;">
-                    <div class="ico"><img src="images/default/num_9.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="JS实验课本周开课">JS实验课本周开课</a></div>
-                    <div class="num">129</div>
-                </li>
+                <c:forEach items="${daylyHotPostList}" var="item">
+                    <li>
+                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="text">
+                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                        </div>
+                        <div class="num">${item.replyNum}</div>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
     </div>
@@ -350,47 +282,15 @@
                     </div>
                     <div class="num">10033</div>
                 </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="欢迎加入实验交流论坛 ...">欢迎加入实验交流论坛 ...</a>
-                    </div>
-                    <div class="num">9701</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_3.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="JS实验课本周开课">JS实验课本周开课</a></div>
-                    <div class="num">5763</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_4.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
-                    <div class="num">4731</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_5.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
-                    <div class="num">4637</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_6.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
-                    <div class="num">4238</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_7.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
-                    <div class="num">4074</div>
-                </li>
-                <li>
-                    <div class="ico"><img src="images/default/num_8.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">PHP实验课本周开课</a></div>
-                    <div class="num">3931</div>
-                </li>
-                <li style="border-bottom:0;">
-                    <div class="ico"><img src="images/default/num_9.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="PHP实验课本周开课">]PHP实验课本周开课</a></div>
-                    <div class="num">2605</div>
-                </li>
+                <c:forEach items="${weeklyHotPostList}" var="item">
+                    <li>
+                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="text">
+                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                        </div>
+                        <div class="num">${item.replyNum}</div>
+                    </li>
+                </c:forEach>
             </ul>
         </div>
     </div>

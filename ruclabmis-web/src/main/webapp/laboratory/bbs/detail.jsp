@@ -12,52 +12,34 @@
 <BODY>
 <DIV>
     <div id="banner" style="background-image:url('images/default/banner_mole_bg.jpg');border:0;position:relative;">
-        <div
-                left:0px
-        ; top:0px; z-index:99px;"><img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/></div>
+        <div style=" left:0px; top:0px; z-index:99px;"><img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/>
+        </div>
+    </div>
 </DIV>
-
-<!--      用户信息、登录、注册        -->
-
-<DIV class="h">
-    您尚未　<a href="">登录</a>
-    &nbsp;| &nbsp; <A href="">注册</A> |
-</DIV>
-
-<!--      主体        -->
-<DIV><br/>
-    <!--      导航        -->
     <DIV>
-        &gt;&gt;<B><a href="index.html">论坛首页</a></B>&gt;&gt;
-        <B><a href="list.html">C语言实验课</a></B>
+    <DIV class="h">
+        <p style="font-size: 26px">&gt;&gt;<B><a href="frame">论坛首页</a></B>&gt;&gt;<B><a href="list">C语言实验课</a></B>
+            <span style="float:right">
+                <A href="post.jsp"><IMG src="images/reply.gif" border="0" id=td_reply></A>
+                <A href="post.jsp"><IMG src="images/post.gif" border="0" id=td_post></A>
+                <A href="post.jsp"><IMG src="images/uptop.gif" border="0" id=td_uptop></A>
+                <A href="post.jsp"><IMG src="images/del.gif" border="0" id=td_del></A>
+            </span>
+        </p>
     </DIV>
-    <br/>
-    <!--      回复、新帖        -->
-    <DIV>
-        <A href="post.jsp"><IMG src="images/reply.gif" border="0" id=td_post></A>
-        <A href="post.jsp"><IMG src="images/post.gif" border="0" id=td_post></A>
-        <A href="post.jsp"><IMG src="images/uptop.gif" border="0" id=td_uptop></A>
-        <A href="post.jsp"><IMG src="images/del.gif" border="0" id=td_del></A>
-    </DIV>
-    <!--         翻 页         -->
-    <DIV>
-        <a href="detail.html">上一页</a>|
-        <a href="detail.html">下一页</a>
-    </DIV>
-    <!--      本页主题的标题        -->
     <DIV>
         <TABLE cellSpacing="0" cellPadding="0" width="100%">
+            <TR class="tr2">
+                <TD>
+                    <a href="detail">上一页</a>|<a href="detail">下一页</a>
+                </TD>
+            </TR>
             <TR>
                 <TH class="h">本页主题: C语言实验课开课通知</TH>
             </TR>
-            <TR class="tr2">
-                <TD>&nbsp;</TD>
-            </TR>
+
         </TABLE>
     </DIV>
-
-    <!--      主题        -->
-
     <DIV class="t">
         <TABLE style="BORDER-TOP-WIDTH: 0px; TABLE-LAYOUT: fixed" cellSpacing="0" cellPadding="0" width="100%">
             <TR class="tr1">
@@ -78,57 +60,53 @@
             </TR>
         </TABLE>
     </DIV>
-
-    <!--      回复        -->
-
-    <DIV class="t">
-        <TABLE style="BORDER-TOP-WIDTH: 0px; TABLE-LAYOUT: fixed" cellSpacing="0" cellPadding="0" width="100%">
-            <TR class="tr1">
-                <TH style="WIDTH: 20%">
-                    <B>t</B><BR/><BR/>
-                    <img src="images/head/2.gif"/><BR/>
-                    注册:2007-07-27<BR/>
-                </TH>
-                <TH>
-                    <H4>鼓掌啊，终于 开通了</H4>
-
-                    <DIV>鼓掌啊，终于 开通了</DIV>
-                    <DIV class="tipad gray">
-                        发表：[2007-07-30 10:32] &nbsp;
-                        最后修改:[2007-07-30 08:37]
-                        <A href="manage/doDeleteReply.jsp">[删除]</A>
-                        <A href="update.html">[修改]</A>
-                    </DIV>
-                </TH>
+    <DIV>
+        <TABLE cellSpacing="0" cellPadding="0" width="100%">
+            <TR class="tr2">
+                <TD>
+                    <a href="detail">上一页</a>|<a href="detail">下一页</a>
+                </TD>
             </TR>
         </TABLE>
     </DIV>
-
-    <DIV class="t">
-        <TABLE style="BORDER-TOP-WIDTH: 0px; TABLE-LAYOUT: fixed" cellSpacing="0" cellPadding="0" width="100%">
-            <TR class="tr1">
-                <TH style="WIDTH: 20%">
-                    <B>t</B><BR/><BR/>
-                    <img src="images/head/2.gif"/><BR/>
-                    注册:2007-07-27<BR/>
-                </TH>
-                <TH>
-                    <H4>鼓掌啊，终于 开通了</H4>
-
-                    <DIV>鼓掌啊，终于 开通了</DIV>
-                    <DIV class="tipad gray">
-                        发表：[2007-07-30 10:32] &nbsp;
-                        最后修改:[2007-07-30 08:37]
-                        <A href="manage/doDeleteReply.jsp">[删除]</A>
-                        <A href="update.html">[修改]</A>
-                    </DIV>
-                </TH>
-            </TR>
-        </TABLE>
-    </DIV>
-
 </DIV>
+<DIV>
+    <FORM name="postForm" onsubmit="return check()" action="manage/doPost.jsp" method="POST">
+        <INPUT type="hidden" name="boardId" value="4"/>
+        <INPUT type="hidden" name="topicId" value=""/>
 
-<!--      声明        -->
+        <DIV class="t">
+            <TABLE cellSpacing="0" cellPadding="0" align="center">
+                <TR>
+                    <TD class="h" colSpan="3"><B>回复</B></TD>
+                </TR>
+                <TR class="tr3">
+                    <TH vAlign=top>
+                        <DIV><B>内容</B></DIV>
+                    </TH>
+                    <TH colSpan=2>
+                        <DIV>
+                                <span><textarea style="WIDTH: 500px;" name="content" rows="10" cols="90"
+                                                tabIndex="2"></textarea></span>
+                        </DIV>
+                    </TH>
+                </TR>
+                <TR class="tr3">
+                    <TH vAlign=top>
+
+                    </TH>
+                    <TH colSpan=2>
+                        <DIV style="MARGIN: 15px 0px; TEXT-ALIGN: left">
+                            <INPUT class="btn" tabIndex="3" type="submit" value="提 交">
+                            <INPUT class="btn" tabIndex="4" type="reset" value="重 置">
+                        </DIV>
+                    </TH>
+                </TR>
+
+            </TABLE>
+        </DIV>
+
+    </FORM>
+</DIV>
 </BODY>
 </HTML>
