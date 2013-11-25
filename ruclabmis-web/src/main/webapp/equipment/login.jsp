@@ -22,10 +22,9 @@
             var arVersion = navigator.appVersion.split("MSIE")
             var version = parseFloat(arVersion[1])
             if ((version >= 5.5) && (document.body.filters)) {
-                for (var j = 0; j < document.../images.length; j++)
+                for (var j = 0; j <document.images.length; j++)
                 {
-                    var img = document...
-                    /images[j]
+                    var img = document.images[j]
                     var imgName = img.src.toUpperCase()
                     if (imgName.substring(imgName.length - 3, imgName.length) == "PNG") {
                         var imgID = (img.id) ? "id='" + img.id + "' " : ""
@@ -84,7 +83,7 @@
                                             <td height="149">&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td height="160" align="right" valign="top"><img src="../images/logo.png"
+                                            <td height="190" align="right" valign="top"><img src="../images/logo.png"
                                                                                              width="279" height="68">
                                             </td>
                                         </tr>
@@ -183,3 +182,4 @@
                     </td>
                 </tr>
             </table>
+</table>
