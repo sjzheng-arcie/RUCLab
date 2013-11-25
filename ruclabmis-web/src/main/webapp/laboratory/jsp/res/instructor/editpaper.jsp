@@ -126,7 +126,7 @@
                                                     </c:forEach>
                                                 </select>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+
                                             </td>
                                         </tr>
                                     </table>

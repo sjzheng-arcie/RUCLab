@@ -83,16 +83,18 @@
                                                 <td nowrap align="right">组织编号:</td>
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
+                                                           maxlength="20"   valid="required"
+                                                           errmsg="设备编号不能为空!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <span style="color:red;" id="errMsg_sn"></span>
                                                 </td>
                                                 <td nowrap align="right">组织名称名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                           valid="required"
+                                                           errmsg="组织名称不能为空!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
                                             </tr>
                                             <tr>
@@ -110,9 +112,10 @@
 
                                                 <td nowrap align="left"><input class="text" style="width:154px"
                                                                                maxlength="20"
-                                                                               valid="required|isAccount"/>
+                                                                               valid="required"
+                                                                               errmsg="负责人不能为空!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
 
                                                     </select>
                                                 </td>
@@ -137,9 +140,9 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
+                                        <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>

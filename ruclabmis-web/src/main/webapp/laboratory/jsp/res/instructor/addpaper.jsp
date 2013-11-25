@@ -119,7 +119,7 @@
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="${paper.course}" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+
                                             </td>
                                         </tr>
                                     </table>

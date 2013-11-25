@@ -247,7 +247,7 @@
                             </tr>
                             <tr align="center" bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE">
                                 <td align="center">
-                                    <input type="button" name="Submit2" value="返回" class="button"
+                                    <input type="button" name="return" value="返回" class="button"
                                            onclick="window.history.go(-1);"/>
                                 </td>
                             </tr>

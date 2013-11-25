@@ -102,7 +102,7 @@
                                                            style="width:154px" maxlength="20" valid="required|isAccount"
                                                            value="${experiment.sn}" readonly/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
                                                 <td nowrap align="right">实验名称:</td>
                                                 <td nowrap>
@@ -111,7 +111,7 @@
                                                            style="width:154px" maxlength="20" valid="required|isAccount"
                                                            value="${experiment.name}" readonly/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
 
                                             </tr>
@@ -122,7 +122,7 @@
                                                            style="width:154px" maxlength="20" valid="required|isAccount"
                                                            value="" readonly/>${experiment.instructor}
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
 
                                                 </td>
                                                 <td nowrap align="right">实验报告书:</td>
@@ -144,7 +144,7 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                         <input type="button" name="Submit" value="保存" class="button"
                                                onclick="addend();"/>

@@ -177,14 +177,14 @@
                                             <input name="completeness" id="completeness" onblur="" class="text"
                                                    style="width:154px" maxlength="20" value="6" readonly/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sno"></span>
+
                                         </td>
                                         <td nowrap align="right">即时度评分:</td>
                                         <td nowrap>
                                             <input name="instantDegree" id="instantDegree" onblur="" class="text"
                                                    style="width:154px" maxlength="20" value="7" readonly/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sno"></span>
+
                                         </td>
 
                                     </tr>
@@ -194,7 +194,7 @@
                                             <input name="quality" id="quality" onblur="" class="text"
                                                    style="width:154px" maxlength="20" value="8" readonly/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sno"></span>
+
 
                                         </td>
                                         <td nowrap align="right">花费资源评分:</td>
@@ -234,8 +234,8 @@
                         <tr>
                             <td align="center">
                                 <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                <input type="reset" name="Submit3" value="重置" class="button" onclick="reset();"/>
-                                <input type="button" name="Submit2" value="返回" class="button"
+                                <input type="reset" name="reset" value="重置" class="button" onclick="reset();"/>
+                                <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
                             </td>
                         </tr>

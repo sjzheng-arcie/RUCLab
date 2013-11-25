@@ -84,7 +84,7 @@
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
                                                 <td nowrap align="right">实验名称:</td>
                                                 <td nowrap>
@@ -92,7 +92,7 @@
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
                                             </tr>
                                             <tr>
@@ -102,7 +102,7 @@
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
 
                                                 </td>
                                                 <td nowrap align="right">指导老师:</td>
@@ -123,7 +123,7 @@
                                                                                               class="buttom"
                                                                                               value="浏览"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
 
                                                 </td>
                                                 <td nowrap align="right">实验报告书:</td>
@@ -147,11 +147,11 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
+                                        <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="reset" name="Submit3" value="添加试题" class="button"
+                                        <input type="reset" name="reset" value="添加试题" class="button"
                                                onclick="addtopaper();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>

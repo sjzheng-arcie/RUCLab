@@ -195,7 +195,7 @@
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="SJ001" readonly/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+
                                             </td>
                                             <td nowrap align="right">实验名称:</td>
                                             <td nowrap>
@@ -203,7 +203,7 @@
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="P128码单频实验" readonly/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+
                                             </td>
 
                                         </tr>
@@ -214,7 +214,7 @@
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="单品实验指导书" readonly/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_us_sno"></span>
+
 
                                             </td>
                                             <td nowrap align="right">实验报告格式:</td>

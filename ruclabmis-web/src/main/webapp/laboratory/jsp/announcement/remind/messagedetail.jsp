@@ -88,7 +88,7 @@
 
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit2" value="返回" class="button" onclick="save()"/>
+                                        <input type="button" name="return" value="返回" class="button" onclick="save()"/>
                                     </td>
                                 </tr>
                             </table>
