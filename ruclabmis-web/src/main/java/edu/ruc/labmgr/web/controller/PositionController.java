@@ -13,18 +13,11 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- * Created with IntelliJ IDEA.
- * User: sjzheng
- * Date: 13-10-25
- * Time: 下午3:58
- * To change this template use File | Settings | File Templates.
- */
 @Controller
-@RequestMapping("/laboratory/jsp/bas/title")
-public class TitleController {
+@RequestMapping("/laboratory/jsp/bas/position")
+public class PositionController {
     @Autowired
-    TitleService titleService;
+    TitleService positionService;
     private int currPage = 0;
 
     @RequestMapping(value = "/list")
@@ -37,8 +30,8 @@ public class TitleController {
                                  @RequestParam("searchRank") String rank, @RequestParam("page") int page) {
 
 
-        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/list");
-        PageInfo<Title> pageInfo = titleService.selectListPage(name, rank, page);
+        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/position/list");
+        PageInfo<Title> pageInfo = positionService.selectListPage(name, rank, page);
         mav.addObject("pageInfo", pageInfo);
         return mav;
 
@@ -46,21 +39,21 @@ public class TitleController {
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd(HttpServletRequest request) {
-        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/add");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/position/add");
         return mav;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public ModelAndView Add(Title title) {
-        titleService.insert(title);
+        positionService.insert(title);
         return pageList(null, null, 1);
 
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.POST)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Title title = titleService.selectByPrimerKey(id);
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/title/update");
+        Title title = positionService.selectByPrimerKey(id);
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/position/update");
         mav.addObject("title", title);
         return mav;
 
@@ -68,13 +61,13 @@ public class TitleController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public ModelAndView Update(Title title) {
-        titleService.update(title);
+        positionService.update(title);
         return pageList(null, null, 1);
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public ModelAndView delete(@RequestParam("id") int id) {
-        titleService.delete(id);
+        positionService.delete(id);
         return pageList(null, null, 1);
 
     }

@@ -1,15 +1,24 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        if (!validator(document.mainForm)) {
+            return;
+        }
+        document.mainForm.action = "add";
+        document.mainForm.submit();
     }
 
 </script>
 <body>
-<form name="form1" method="post">
+<form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
@@ -20,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 职称信息管理</div>
+                            <div class="titlebt">系统管理 > 职务信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -48,7 +57,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">职称信息添加</span></td>
+                                                                    class="STYLE1">职务信息添加</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -72,49 +81,34 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">职务编号:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" v/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
                                                 <td nowrap align="right">职务名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
+                                                    <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">职务级别:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
+                                                    <input name="grade" id="grade" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
                                                 </td>
-                                                <td nowrap align="right">职务简称:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-
                                             </tr>
                                             <tr>
+
+                                                <td nowrap align="right">职务简称:</td>
+                                                <td nowrap>
+                                                    <input name="shortName" id="shortName" value="" onblur=""
+                                                           class="text"
+                                                           style="width:154px" maxlength="20"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
                                                 <td nowrap align="right">职务描述:</td>
                                                 <td nowrap>
-                                                    <input type="Password" name="us_spwd" id="us_spwd" class="text"
+                                                    <input name="description" id="description" class="text"
                                                            style="width:154px"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
                                                 </td>
-
                                             </tr>
-
                                         </table>
                                     </td>
                                 </tr>
