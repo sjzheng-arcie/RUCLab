@@ -8,9 +8,9 @@ import org.apache.ibatis.session.RowBounds;
 import java.util.List;
 
 public interface CurriculumMapper {
-    int countByCriteria(CurriculumCriteria example);
+    int countByCriteria(CurriculumCriteria criteria);
 
-    int deleteByCriteria(CurriculumCriteria example);
+    int deleteByCriteria(CurriculumCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,15 +18,15 @@ public interface CurriculumMapper {
 
     int insertSelective(Curriculum record);
 
-    List<Curriculum> selectByCriteriaWithRowbounds(CurriculumCriteria example, RowBounds rowBounds);
+    List<Curriculum> selectByCriteriaWithRowbounds(CurriculumCriteria criteria, RowBounds rowBounds);
 
-    List<Curriculum> selectByCriteria(CurriculumCriteria example);
+    List<Curriculum> selectByCriteria(CurriculumCriteria criteria);
 
     Curriculum selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Curriculum record, @Param("example") CurriculumCriteria example);
+    int updateByCriteriaSelective(@Param("record") Curriculum record, @Param("criteria") CurriculumCriteria criteria);
 
-    int updateByCriteria(@Param("record") Curriculum record, @Param("example") CurriculumCriteria example);
+    int updateByCriteria(@Param("record") Curriculum record, @Param("criteria") CurriculumCriteria criteria);
 
     int updateByPrimaryKeySelective(Curriculum record);
 

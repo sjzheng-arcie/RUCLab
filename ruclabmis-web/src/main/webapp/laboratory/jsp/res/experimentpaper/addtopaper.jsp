@@ -77,7 +77,7 @@
                 return;
             }
             if (confirm("是否修改？")) {
-                document.form1.action = "update.html";
+                document.form1.action = "update.jsp";
                 document.form1.submit();
             }
 
@@ -127,7 +127,7 @@
 
 <body onload="getWidth()()" onresize="getWidth()()">
 
-<form name="form1" method="post">
+<form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">

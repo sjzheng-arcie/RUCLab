@@ -8,9 +8,9 @@ import org.apache.ibatis.session.RowBounds;
 import java.util.List;
 
 public interface StudentMapper {
-    int countByCriteria(StudentCriteria example);
+    int countByCriteria(StudentCriteria criteria);
 
-    int deleteByCriteria(StudentCriteria example);
+    int deleteByCriteria(StudentCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,15 +18,15 @@ public interface StudentMapper {
 
     int insertSelective(Student record);
 
-    List<Student> selectByCriteriaWithRowbounds(StudentCriteria example, RowBounds rowBounds);
+    List<Student> selectByCriteriaWithRowbounds(StudentCriteria criteria, RowBounds rowBounds);
 
-    List<Student> selectByCriteria(StudentCriteria example);
+    List<Student> selectByCriteria(StudentCriteria criteria);
 
     Student selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Student record, @Param("example") StudentCriteria example);
+    int updateByCriteriaSelective(@Param("record") Student record, @Param("criteria") StudentCriteria criteria);
 
-    int updateByCriteria(@Param("record") Student record, @Param("example") StudentCriteria example);
+    int updateByCriteria(@Param("record") Student record, @Param("criteria") StudentCriteria criteria);
 
     int updateByPrimaryKeySelective(Student record);
 

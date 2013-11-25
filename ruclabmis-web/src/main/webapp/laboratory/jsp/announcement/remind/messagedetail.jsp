@@ -27,7 +27,7 @@
 
 </head>
 <body style="background-color: #ffffff">
-<form name="form1" method="post" target="_self"
+<form name="mainForm" method="post" target="_self"
       action="/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>

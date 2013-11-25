@@ -221,7 +221,6 @@ public class EquipmentService {
         }
     }
 
-
     public void deleteEquipments(List<Integer> equipmentIds) {
         for (int id : equipmentIds)
             equipmentMapper.deleteByPrimaryKey(id);
