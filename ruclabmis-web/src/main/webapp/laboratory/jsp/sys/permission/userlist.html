@@ -113,7 +113,7 @@
 
         }
         //获得divwidth的宽度
-        function getwidth() {
+        function getWidth()() {
             document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
             if (document.body.scrollWidth > document.body.offsetWidth) {
                 document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
@@ -127,7 +127,7 @@
 
 </head>
 
-<body onload="getwidth()" onresize="getwidth()">
+<body onload="getWidth()()" onresize="getWidth()()">
 
 <form name="form1" method="post">
 

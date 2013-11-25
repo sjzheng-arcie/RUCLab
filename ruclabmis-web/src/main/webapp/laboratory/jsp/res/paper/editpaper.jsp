@@ -13,7 +13,7 @@
     <script>
         var baseHref = '/laboratory/jsp/res/paper/editpaper';
         //获得divwidth的宽度
-        function getwidth() {
+        function getWidth()() {
             document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
             if (document.body.scrollWidth > document.body.offsetWidth) {
                 document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
@@ -40,7 +40,7 @@
 
 </head>
 
-<body onload="getwidth()" onresize="getwidth()">
+<body onload="getWidth()()" onresize="getWidth()()">
 
 <form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
