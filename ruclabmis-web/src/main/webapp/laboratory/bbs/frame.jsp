@@ -410,6 +410,7 @@
         var pageTracker = _gat._getTracker("UA-12104138-11");
         pageTracker._trackPageview();
     } catch (err) {
-    }</script>
+    }
+</script>
 </body>
 </html>
