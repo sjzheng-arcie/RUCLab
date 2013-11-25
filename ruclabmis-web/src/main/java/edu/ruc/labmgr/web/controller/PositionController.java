@@ -1,8 +1,9 @@
 package edu.ruc.labmgr.web.controller;
 
 
-import edu.ruc.labmgr.domain.Title;
-import edu.ruc.labmgr.service.TitleService;
+import edu.ruc.labmgr.domain.Position;
+import edu.ruc.labmgr.service.PositionService;
+import edu.ruc.labmgr.service.PositionService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -17,7 +18,7 @@ import javax.servlet.http.HttpServletRequest;
 @RequestMapping("/laboratory/jsp/bas/position")
 public class PositionController {
     @Autowired
-    TitleService positionService;
+    PositionService positionService;
     private int currPage = 0;
 
     @RequestMapping(value = "/list")
@@ -31,7 +32,7 @@ public class PositionController {
 
 
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/position/list");
-        PageInfo<Title> pageInfo = positionService.selectListPage(name, rank, page);
+        PageInfo<Position> pageInfo = positionService.selectListPage(name, rank, page);
         mav.addObject("pageInfo", pageInfo);
         return mav;
 
@@ -44,24 +45,24 @@ public class PositionController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public ModelAndView Add(Title title) {
-        positionService.insert(title);
+    public ModelAndView Add(Position Position) {
+        positionService.insert(Position);
         return pageList(null, null, 1);
 
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.POST)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Title title = positionService.selectByPrimerKey(id);
+        Position Position = positionService.selectByPrimerKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/position/update");
-        mav.addObject("title", title);
+        mav.addObject("Position", Position);
         return mav;
 
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public ModelAndView Update(Title title) {
-        positionService.update(title);
+    public ModelAndView Update(Position Position) {
+        positionService.update(Position);
         return pageList(null, null, 1);
     }
 

@@ -52,7 +52,7 @@ public class EquipmentController {
                                        @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                        @PathVariable("applyType") String applyType) {
         ModelAndView result = new ModelAndView();
-        result.setViewName("/equipment/jsp/common/devicelist");
+        result.setViewName("equipment/jsp/dev/devicelist");
 
         List<Classif> useDirections = serviceClassif.getItemsByParentID(Types.ClassifType.USE_DIRECTION.getValue());
 

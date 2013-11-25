@@ -9,10 +9,8 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <title>职务数据列表</title>
-    <script>
-        var baseHref = '/laboratory/jsp/bas/post/list';
-    </script>
+    <title>职称数据列表</title>
+
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
@@ -27,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 职务信息管理</div>
+                            <div class="titlebt">实验室管理 > 职称信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -43,10 +41,10 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;职务名称:<input type="text" name="searchName"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;职称名称:<input type="text" name="searchName"
                                                                                      id="searchName" value=""
                                                                                      style="width:100px;"/></span>
-		<span style="white-space:nowrap">&nbsp;&nbsp;职务级别:<input type="text" id="searchRank" name="searchRank"
+		<span style="white-space:nowrap">&nbsp;&nbsp;职称级别:<input type="text" id="searchRank" name="searchRank"
                                                                  value="" style="width:100px;"/>
             </span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
@@ -74,7 +72,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">职务信息列表</span>
+                                                                                style="white-space:nowrap">职称信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -82,7 +80,7 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/laboratory/jsp/bas/post/toAdd"><img src="../../../../images/add_min.gif" width="10"
+						<a href="/laboratory/jsp/bas/position/toAdd"><img src="../../../../images/add_min.gif" width="10"
                                                                       height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
       					<a href="#" onclick="toUpdate('listForm','idcheckbox');"><img
@@ -115,16 +113,16 @@
                                                         </div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">职务编号</span></div>
+                                                        <div align="center"><span class="STYLE10">职称编号</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">职务名称</span></div>
+                                                        <div align="center"><span class="STYLE10">职称名称</span></div>
                                                     </td>
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">职务级别</span></div>
+                                                        <div align="center"><span class="STYLE10">职称级别</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">职务简称</span></div>
+                                                        <div align="center"><span class="STYLE10">职称简称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">职责说明</span></div>

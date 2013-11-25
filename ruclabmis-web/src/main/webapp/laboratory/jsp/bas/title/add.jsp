@@ -29,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 职务信息管理</div>
+                            <div class="titlebt">系统管理 > 职称信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -57,7 +57,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">职务信息添加</span></td>
+                                                                    class="STYLE1">职称信息添加</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -81,13 +81,13 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">职务名称:</td>
+                                                <td nowrap align="right">职称名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-                                                <td nowrap align="right">职务级别:</td>
+                                                <td nowrap align="right">职称级别:</td>
                                                 <td nowrap>
                                                     <input name="grade" id="grade" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
@@ -96,14 +96,14 @@
                                             </tr>
                                             <tr>
 
-                                                <td nowrap align="right">职务简称:</td>
+                                                <td nowrap align="right">职称简称:</td>
                                                 <td nowrap>
                                                     <input name="shortName" id="shortName" value="" onblur=""
                                                            class="text"
                                                            style="width:154px" maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-                                                <td nowrap align="right">职务描述:</td>
+                                                <td nowrap align="right">职称描述:</td>
                                                 <td nowrap>
                                                     <input name="description" id="description" class="text"
                                                            style="width:154px"/>
