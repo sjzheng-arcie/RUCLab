@@ -10,9 +10,6 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/sys/user/list';
-    </script>
 
 </head>
 
@@ -89,7 +86,7 @@
                             <img src="../../../../images/set2.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">修改密码</span>
                         </a>&nbsp;
-                        <a href="/equipment/jsp/sys/user/toAdd">
+                        <a href="/common/user/toAdd">
                             <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>&nbsp;

@@ -16,7 +16,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 
 @Controller
-@RequestMapping("/equipment/jsp/sys/user")
+@RequestMapping("/common/user")
 public class TeacherController {
     @Autowired
     TeacherService serviceTeacher;
@@ -34,12 +34,19 @@ public class TeacherController {
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchSN", required = false, defaultValue = "") String sn,
                                  @RequestParam(value = "searchName", required = false, defaultValue = "") String name,
+                                 @RequestParam(value = "searchMajor", required = false, defaultValue = "") Integer major,
+                                 @RequestParam(value = "searchOrg", required = false, defaultValue = "") Integer org,
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView result = new ModelAndView();
-        result.setViewName("/equipment/jsp/sys/user/list");
+        result.setViewName("/common/user/list");
+        List<Major> majors = serviceMajor.listAll();
+        List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
-        PageInfo<Teacher> pageInfo = serviceTeacher.selectListPage(sn, name, page);
+        PageInfo<Teacher> pageInfo = serviceTeacher.selectListPage(sn, name, major, org, page);
+
         result.addObject("pageInfo", pageInfo);
+        result.addObject("majors", majors);
+        result.addObject("organizations", organizations);
         return result;
     }
 
@@ -51,7 +58,7 @@ public class TeacherController {
         List<Position> positions = servicePosition.selectAllPositions();
         List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
-        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/add");
+        ModelAndView mav = new ModelAndView("/common/user/add");
         mav.addObject("roles", roles);
         mav.addObject("majors", majors);
         mav.addObject("titles", titles);
@@ -64,7 +71,7 @@ public class TeacherController {
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Teacher teacher) {
         serviceTeacher.insert(teacher);
-        return "redirect:/equipment/jsp/sys/user/list";
+        return "redirect:/common/user/list";
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
@@ -76,7 +83,7 @@ public class TeacherController {
         List<Position> positions = servicePosition.selectAllPositions();
         List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
-        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/update");
+        ModelAndView mav = new ModelAndView("/common/user/update");
         mav.addObject("teacher", teacher);
         mav.addObject("roles", roles);
         mav.addObject("majors", majors);
@@ -90,7 +97,7 @@ public class TeacherController {
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(Teacher teacher) {
         serviceTeacher.update(teacher);
-        return "redirect:/equipment/jsp/sys/user/list";
+        return "redirect:/common/user/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
@@ -98,7 +105,7 @@ public class TeacherController {
         for (int id : items) {
             serviceTeacher.delete(id);
         }
-        return "redirect:/equipment/jsp/sys/user/list";
+        return "redirect:/common/user/list";
     }
 
     @RequestMapping(value = "/toUpdatePassword", method = RequestMethod.GET)
@@ -107,7 +114,7 @@ public class TeacherController {
         if (id == -1) {
             id = serviceTeacher.getCurrentUserId();
         }
-        ModelAndView mav = new ModelAndView("/equipment/jsp/sys/user/password");
+        ModelAndView mav = new ModelAndView("/common/user/password");
         mav.addObject("id", id);
         return mav;
     }
@@ -117,7 +124,7 @@ public class TeacherController {
                                  @RequestParam(value = "oriPassword", required = false) String oriPassword,
                                  @RequestParam("newPassword") String newPassword) throws Exception {
         serviceTeacher.updatePassword(id, oriPassword, newPassword);
-        return "redirect:/equipment/jsp/sys/user/list";
+        return "redirect:/common/user/list";
     }
 
 }

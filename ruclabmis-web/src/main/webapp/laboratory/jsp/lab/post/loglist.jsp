@@ -10,9 +10,6 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/bas/emp/list';
-    </script>
 
 </head>
 

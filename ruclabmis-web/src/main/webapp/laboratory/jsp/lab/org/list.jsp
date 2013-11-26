@@ -10,10 +10,6 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/sys/user/list';
-    </script>
-
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
