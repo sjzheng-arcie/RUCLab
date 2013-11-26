@@ -10,10 +10,14 @@
 
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="jquery.min.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 
+    <script>
+
+    </script>
 </head>
 
 <body onload="getWidth()"  onresize="getWidth()">
@@ -104,11 +108,12 @@
                                             </table>
 
                                             <link rel="stylesheet" href="jquery.treetable.css" />
-                                            <script src="jquery.min.js"></script>
+
 
                                             <script src="jquery.treetable.js"></script>
                                             <script>
-                                                $("#treeTable").treetable({ expandable: true });
+                                                $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
+
                                             </script>
                                         </div>
                                     </td>

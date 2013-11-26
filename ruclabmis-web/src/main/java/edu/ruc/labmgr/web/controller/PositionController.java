@@ -33,7 +33,7 @@ public class PositionController {
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
-    public ModelAndView toAdd(HttpServletRequest request) {
+    public ModelAndView toAdd() {
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/position/add");
         return mav;
     }

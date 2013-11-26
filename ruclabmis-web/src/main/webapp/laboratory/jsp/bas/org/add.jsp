@@ -89,23 +89,25 @@
                                                 </td>
                                                 <td nowrap align="right">组织名称:</td>
                                                 <td nowrap>
-                                                    <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required"
-                                                           errmsg="组织名称不能为空!"/>
+                                                    <input name="name" id="name" class="text"
+                                                            style="width:154px" maxlength="20"
+                                                           valid="required" errmsg="组织名称不能为空!"/>
                                                     <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">上级:</td>
                                                 <td nowrap>
-                                                    <select>
-                                                        <option value="0">院处级</option>
-                                                        <option value="1">系科级</option>
+                                                    <select  name="parentId" id="parentId">
+                                                        <c:forEach items="${organizations}" var="item">
+                                                            <option value="${item.id}">${item.name}</option>
+                                                        </c:forEach>
                                                     </select>
                                                 </td>
                                                 <td nowrap align="right">负责人:</td>
                                                 <td nowrap align="left">
-                                                    <input class="text" style="width:154px" maxlength="20"/>
+                                                    <input  name="director" id="director"
+                                                            class="text" style="width:154px" maxlength="20"/>
                                                 </td>
                                             </tr>
                                         </table>

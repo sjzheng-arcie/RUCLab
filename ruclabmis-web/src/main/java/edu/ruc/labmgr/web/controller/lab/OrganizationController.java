@@ -30,8 +30,10 @@ public class OrganizationController {
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
-    public ModelAndView toAdd(HttpServletRequest request) {
+    public ModelAndView toAdd() {
+        List<Organization> organizations = organizationService.selectAllOrganizations();
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/org/add");
+        mav.addObject("organizations", organizations);
         return mav;
     }
 
@@ -43,9 +45,11 @@ public class OrganizationController {
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
+        List<Organization> organizations = organizationService.selectAllOrganizations();
         Organization organization = organizationService.selectByPrimerKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/org/update");
         mav.addObject("organization", organization);
+        mav.addObject("organizations", organizations);
         return mav;
     }
 
