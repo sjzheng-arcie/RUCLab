@@ -38,16 +38,6 @@
     </style>
     <script>
 
-
-
-
-        function toFind() {
-            var href = '/equipment/jsp/announcement/remind/announcement';
-
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
         function goPage(page) {
             if (page <= 0) {
                 alert("已到达首页！");
@@ -61,53 +51,6 @@
             document.listForm.page.value = page;
             document.listForm.action = href;
             document.listForm.submit();
-        }
-
-    </script>
-
-
-    <script>
-
-
-
-
-        function toFind() {
-            var href = '/equipment/jsp/announcement/remind/sendmessage';
-
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
-        function goPage(page) {
-            if (page <= 0) {
-                alert("已到达首页！");
-                return;
-            }
-            if (page > ${page.totalPage}) {
-                alert("已到达尾页！");
-                return;
-            }
-            var href = '/equipment/jsp/announcement/remind/message?page=' +page;
-            document.listForm.page.value = page;
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
-    </script>
-    <script>
-        function save(){
-
-            document.form1.action="addAnnouncement";
-            document.form1.submit();
-        }
-        function displayClass(value){
-
-            if(value=="2"){
-                document.getElementById('scopeDiv').style.display='';
-            }else{
-                document.getElementById('scopeDiv').style.display= 'none';
-            }
-
         }
 
     </script>
@@ -149,11 +92,6 @@
                             </span>
                                                         </div>
                                                     </c:forEach>
-
-
-
-
-
                                                     <form name="listForm">
                                                         <input type="hidden" id="page" name = "page"/>
                                                         <table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>

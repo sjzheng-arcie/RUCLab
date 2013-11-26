@@ -8,14 +8,14 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save(){
-            document.form1.action="addAnnouncement";
-            document.form1.submit();
+            document.mainForm.action="addAnnouncement";
+            document.mainForm.submit();
         }
     </script>
 
 </head>
 <body style="background-color: #EEF2FB">
-<form name="form1" method="post" target="_parent">
+<form name="mainForm" method="post" target="_parent">
     <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
 
         <tr>

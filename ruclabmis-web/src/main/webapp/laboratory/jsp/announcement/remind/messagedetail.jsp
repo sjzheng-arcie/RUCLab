@@ -13,15 +13,6 @@
             document.mainForm.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
             document.mainForm.submit();
         }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-
-        }
 
     </script>
 

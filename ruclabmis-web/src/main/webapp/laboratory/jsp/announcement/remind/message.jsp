@@ -56,36 +56,6 @@
     </style>
     <script>
 
-        function goPage(page) {
-            if (page <= 0) {
-                alert("已到达首页！");
-                return;
-            }
-            if (page > ${page.totalPage}) {
-                alert("已到达尾页！");
-                return;
-            }
-            var theFatherPage = '${fatherPage}';
-            var href = "/equipment/jsp/announcement/remind/" + theFatherPage + "?page" + page + "&&fatherPage=" + theFatherPage;
-            document.listForm.page.value = page;
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-        function save() {
-
-            document.listForm.action = "addAnnouncement";
-            document.listForm.submit();
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-
-        }
-
     </script>
 
 </head>

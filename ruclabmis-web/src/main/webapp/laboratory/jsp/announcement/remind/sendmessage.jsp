@@ -21,17 +21,6 @@
             document.mainForm.submit();
         }
 
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-                ;
-            }
-
-        }
-
         $(document).ready(function () {
             $("#target").chosen({
                 no_results_text: "没有找到"
