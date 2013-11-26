@@ -42,16 +42,16 @@
                     </table>
                     <ul class="MM">
                         <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
-                               onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的课程表</a></li>
+                               onfocus="toFocus(this)" target="main">我的课程表</a></li>
                         <li><a href="jsp/experiment/experimentpaper/myexperimentlist" onfocus="toFocus(this)"
-                               target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的实验课程</a></li>
+                               target="main">我的实验课程</a></li>
                         <li><a href="remind?id=0" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;我的短消息</a>
+                            我的短消息</a>
                         </li>
-                        <li><a href="remind?id=1" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的通知</a>
+                        <li><a href="remind?id=1" onfocus="toFocus(this)" target="main">我的通知</a>
                         </li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;我的预约申请</a></li>
+                            我的预约申请</a></li>
 
                     </ul>
                 </div>
@@ -65,12 +65,12 @@
                         </tr>
                     </table>
                     <ul class="MM">
-                        <li><a href="jsp/res/book/downloadlist " onfocus="(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;教学资源下载</a>
+                        <li><a href="jsp/res/book/downloadlist " onfocus="(this)" target="main">教学资源下载</a>
                         </li>
-                        <li><a href="jsp/experiment/report/uploadreport" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告提交</a>
+                        <li><a href="jsp/experiment/report/uploadreport" onfocus="toFocus(this)" target="main">实验报告提交</a>
                         </li>
                         <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;分数查看</a></li>
+                            分数查看</a></li>
 
                     </ul>
                 </div>
