@@ -103,7 +103,18 @@
                 </div>
 
             </div>
+            <script type="text/javascript">
+                var contents = document.getElementsByClassName('content');
+                var toggles = document.getElementsByClassName('type');
 
+                var myAccordion = new fx.Accordion(
+                        toggles, contents, {opacity: true, duration: 400}
+                );
+                myAccordion.showThisHideOpen(contents[0]);
+                var windowHeight = document.documentElement.clientHeight;
+                window.parent.document.getElementById("frame").rows = "2000,*";
+
+            </script>
         </td>
     </tr>
 </table>
