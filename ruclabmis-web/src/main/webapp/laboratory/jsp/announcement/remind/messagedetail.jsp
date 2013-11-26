@@ -10,17 +10,8 @@
     <script>
         function save() {
 
-            document.form1.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
-            document.form1.submit();
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-
+            document.mainForm.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
+            document.mainForm.submit();
         }
 
     </script>
@@ -88,7 +79,7 @@
 
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit2" value="返回" class="button" onclick="save()"/>
+                                        <input type="button" name="return" value="返回" class="button" onclick="save()"/>
                                     </td>
                                 </tr>
                             </table>
@@ -107,6 +98,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

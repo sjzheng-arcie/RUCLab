@@ -9,6 +9,10 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
+        if (!validator(document.mainForm)) {
+            return;
+        }
+
         document.mainForm.action = "update";
         document.mainForm.submit();
     }
@@ -35,7 +39,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -53,13 +57,13 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改组织机构</span></td>
+                                                                    class="STYLE1">添加组织机构</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
                                                 <td>
-                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                            class="STYLE1"> &nbsp;</span></div>
+                                                    <div align="right"><span class="STYLE1"></span><span
+                                                            class="STYLE1"> </span></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -76,56 +80,40 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
+                                            <input type="hidden" name="id" id="id" value="${organization.id}" />
                                             <tr>
                                                 <td nowrap align="right">组织编号:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <input name="sn" id="sn" class="text" style="width:154px"
+                                                           value="${organization.sn}" maxlength="20"   valid="required"
+                                                           errmsg="组织编号不能为空!"/>
+                                                    <span style="color:red;">*</span>
                                                 </td>
-                                                <td nowrap align="right">组织名称名称:</td>
+                                                <td nowrap align="right">组织名称:</td>
                                                 <td nowrap>
-                                                    <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <input name="name" id="name" class="text"
+                                                           value="${organization.name}" style="width:154px" maxlength="20"
+                                                           valid="required" errmsg="组织名称不能为空!"/>
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">级别:</td>
+                                                <td nowrap align="right">上级:</td>
                                                 <td nowrap>
-                                                    <select>
-                                                        <option value="">--请选择--</option>
-                                                        <option value="0">院处级</option>
-                                                        <option value="1">系科级</option>
-
+                                                    <select  name="parentId" id="parentId">
+                                                        <c:forEach items="${organizations}" var="item">
+                                                            <option value="${item.id}"
+                                                                    <c:if test="${item.id==organization.parentId}"> selected</c:if>
+                                                                    >${item.name}</option>
+                                                        </c:forEach>
                                                     </select>
-
                                                 </td>
                                                 <td nowrap align="right">负责人:</td>
-
-                                                <td nowrap align="left"><input class="text" style="width:154px"
-                                                                               maxlength="20"
-                                                                               valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-
-                                                    </select>
+                                                <td nowrap align="left">
+                                                    <input  name="director" id="director" value="${organization.director}"
+                                                            class="text" style="width:154px" maxlength="20"/>
                                                 </td>
-
                                             </tr>
-
-
-                                            <tr>
-
-
-                                                <td nowrap align="right">备注：</td>
-                                                <td nowrap colspan="3" align="left"><textarea
-                                                        style="width:70%;height:100"></textarea></td>
-                                            </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -134,9 +122,9 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
+                                        <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
@@ -145,7 +133,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
@@ -158,6 +146,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

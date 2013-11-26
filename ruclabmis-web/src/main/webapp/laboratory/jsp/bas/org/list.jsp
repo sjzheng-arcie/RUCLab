@@ -10,13 +10,17 @@
 
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="jquery.min.js"></script>
 
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
 
+    <script>
+
+    </script>
 </head>
 
-<body onload="getwidth()"  onresize="getwidth()">
+<body onload="getWidth()"  onresize="getWidth()">
 
 <form name="listForm" method="post">
     <table width="98%"   border="0" cellpadding="0" cellspacing="0" >
@@ -77,8 +81,6 @@
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6"><div align="left"><span class="STYLE10">组织编号</span></div></td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6"><div align="left"><span class="STYLE10">组织名称</span></div></td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6"><div align="left"><span class="STYLE10">级别</span></div></td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6"><div align="left"><span class="STYLE10">类别</span></div></td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6"><div align="left"><span class="STYLE10">负责人</span></div></td>
                                                     <td width="90" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">详细信息</span></div></td>
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6"><div align="center"><span class="STYLE10">删除</span></div></td>
@@ -91,8 +93,6 @@
                                                         <td height="20" align="left" >${item.name}</td>
                                                         <td >${item.sn}</td>
                                                         <td >${item.name}</td>
-                                                        <td >${item.grade}</td>
-                                                        <td >${item.type}</td>
                                                         <td >${item.director}</td>
                                                         <td><a href="toUpdate?id=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
@@ -108,11 +108,12 @@
                                             </table>
 
                                             <link rel="stylesheet" href="jquery.treetable.css" />
-                                            <script src="jquery.min.js"></script>
+
 
                                             <script src="jquery.treetable.js"></script>
                                             <script>
-                                                $("#treeTable").treetable({ expandable: true });
+                                                $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
+
                                             </script>
                                         </div>
                                     </td>

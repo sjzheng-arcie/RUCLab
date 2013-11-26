@@ -156,7 +156,7 @@
                                                 <input id="classSn" name="classSn" class="text"
                                                        value="${vClass.classSn}"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_sn"></span>
+
                                             </td>
                                             <td nowrap align="right">班级名称:</td>
                                             <td nowrap>

@@ -156,7 +156,6 @@ public class AnnouncementController {
 
     @RequestMapping("/toaddannouncement")
     public ModelAndView toaddAnnouncement(HttpServletRequest request) {
-
         ModelAndView mav = new ModelAndView("/equipment/jsp/announcement/remind/addannouncement");
         return mav;
     }

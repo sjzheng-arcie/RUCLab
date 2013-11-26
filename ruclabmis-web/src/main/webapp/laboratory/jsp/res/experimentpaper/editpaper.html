@@ -111,7 +111,7 @@
 
         }
         //获得divwidth的宽度
-        function getWidth()() {
+        function getWidth() {
             document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
             if (document.body.scrollWidth > document.body.offsetWidth) {
                 document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
@@ -125,7 +125,7 @@
 
 </head>
 
-<body onload="getWidth()()" onresize="getWidth()()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="mainForm" method="post">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -497,8 +497,8 @@
     <tr>
         <td align="center">
             <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-            <input type="reset" name="Submit3" value="重置" class="button" onclick="reset();"/>
-            <input type="button" name="Submit2" value="返回" class="button"
+            <input type="reset" name="reset" value="重置" class="button" onclick="reset();"/>
+            <input type="button" name="return" value="返回" class="button"
                    onclick="window.history.go(-1);"/>
         </td>
     </tr>

@@ -944,7 +944,6 @@ baidu.flash.fileUploader = baidu.flash.fileUploader || function (options) {
      * @public
      * @param {Number|Array} [index] 要删除的index，不传则全部删除
      * @param {Function} callBack
-     * @param
      * */
     me.deleteFile = function (index, callBack) {
 
@@ -955,8 +954,7 @@ baidu.flash.fileUploader = baidu.flash.fileUploader || function (options) {
         if (typeof index === 'undefined') {
             _flash.call('deleteFilesAll', [], callBackAll);
             return;
-        }
-        ;
+        };
 
         if (typeof index === 'Number') index = [index];
         index.sort(function (a, b) {

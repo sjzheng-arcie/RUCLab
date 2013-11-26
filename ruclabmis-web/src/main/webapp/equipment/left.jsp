@@ -45,7 +45,7 @@
         </table>
         <ul class="MM">
             <shiro:hasRole name="administrators">
-                <li><a href="jsp/sys/user/list" onfocus="toFocus(this)" target="main">用户管理</a>
+                <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">用户管理</a>
                 </li>
             </shiro:hasRole>
             <li><a href="jsp/sys/typecode/list" onfocus="toFocus(this)" target="main">分类及分类号</a>
@@ -260,7 +260,7 @@
         </table>
         <ul class="MM">
             <li><a href="/equipCheck/list?page=1" onfocus="toFocus(this)" target="main">
-                &nbsp;&nbsp;&nbsp;&nbsp;固定资产盘点</a></li>
+                固定资产盘点</a></li>
         </ul>
     </div>
 </shiro:hasAnyRoles>

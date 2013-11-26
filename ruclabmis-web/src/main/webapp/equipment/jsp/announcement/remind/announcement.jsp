@@ -53,48 +53,6 @@
             color: #000000;
         }
     </style>
-    <script>
-
-
-        function toFind() {
-            var href = '/equipment/jsp/announcement/remind/announcement';
-
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
-        function goPage(page) {
-            if (page <= 0) {
-                alert("已到达首页！");
-                return;
-            }
-            if (page > ${page.totalPage}) {
-                alert("已到达尾页！");
-                return;
-            }
-            var href = '/equipment/jsp/announcement/remind/announcement?page=' + page;
-            document.listForm.page.value = page;
-            document.listForm.action = href;
-            document.listForm.submit();
-        }
-
-
-        function save() {
-
-            document.form1.action = "addAnnouncement";
-            document.form1.submit();
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-
-        }
-
-    </script>
 
 </head>
 <body style="background-color: #EEF2FB">

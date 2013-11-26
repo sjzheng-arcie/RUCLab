@@ -43,16 +43,16 @@
                     </table>
                     <ul class="MM">
                         <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.html"
-                               onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的课程表</a></li>
-                        <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的短消息</a>
+                               onfocus="toFocus(this)" target="main">我的课程表</a></li>
+                        <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">我的短消息</a>
                         </li>
-                        <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的通知</a>
+                        <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">我的通知</a>
                         </li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;我的预约申请</a></li>
-                        <li><a href="jsp/task/task/mytasklist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的任务</a>
+                            我的预约申请</a></li>
+                        <li><a href="jsp/task/task/mytasklist.html" onfocus="toFocus(this)" target="main">我的任务</a>
                         </li>
-                        <li><a href="jsp/task/task/myworklist.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;我的工作</a>
+                        <li><a href="jsp/task/task/myworklist.html" onfocus="toFocus(this)" target="main">我的工作</a>
                         </li>
 
                     </ul>
@@ -67,16 +67,16 @@
                         </tr>
                     </table>
                     <ul class="MM">
-                        <li><a href="jsp/experiment/virtual/main.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;虚拟班级管理</a>
+                        <li><a href="jsp/experiment/virtual/main.html" onfocus="toFocus(this)" target="main">虚拟班级管理</a>
                         </li>
                         <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;实验信息管理</a></li>
+                            实验信息管理</a></li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;实验室预约</a></li>
-                        <li><a href="jsp/experiment/report/courselist" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验报告管理</a>
+                            实验室预约</a></li>
+                        <li><a href="jsp/experiment/report/courselist" onfocus="toFocus(this)" target="main">实验报告管理</a>
                         </li>
                         <li><a href="jsp/experiment/achievement/courselist" onfocus="toFocus(this)" target="main">
-                            &nbsp;&nbsp;&nbsp;&nbsp;学期成绩评定</a></li>
+                            学期成绩评定</a></li>
                     </ul>
                 </div>
                 <h1 class="type"><a href="javascript:void(0)">教学资源管理</a></h1>
@@ -88,22 +88,33 @@
                         </tr>
                     </table>
                     <ul class="MM">
-                        <li><a href="jsp/res/book/list.html" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;教学资源下载</a>
+                        <li><a href="jsp/res/book/list.html" onfocus="toFocus(this)" target="main">教学资源下载</a>
                         </li>
-                        <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验题库管理</a>
+                        <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
                         </li>
-                        <li><a href="jsp/res/instructor/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;实验指导书管理</a>
+                        <li><a href="jsp/res/instructor/list" onfocus="toFocus(this)" target="main">实验指导书管理</a>
                         </li>
-                        <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;考试题库管理</a>
+                        <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">考试题库管理</a>
                         </li>
-                        <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">&nbsp;&nbsp;&nbsp;&nbsp;试卷管理</a>
+                        <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">试卷管理</a>
                         </li>
 
                     </ul>
                 </div>
 
             </div>
+            <script type="text/javascript">
+                var contents = document.getElementsByClassName('content');
+                var toggles = document.getElementsByClassName('type');
 
+                var myAccordion = new fx.Accordion(
+                        toggles, contents, {opacity: true, duration: 400}
+                );
+                myAccordion.showThisHideOpen(contents[0]);
+                var windowHeight = document.documentElement.clientHeight;
+                window.parent.document.getElementById("frame").rows = "2000,*";
+
+            </script>
         </td>
     </tr>
 </table>

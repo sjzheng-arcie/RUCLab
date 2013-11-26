@@ -13,7 +13,7 @@
     <script>
         var baseHref = '/laboratory/jsp/res/paper/editpaper';
         //获得divwidth的宽度
-        function getWidth()() {
+        function getWidth() {
             document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
             if (document.body.scrollWidth > document.body.offsetWidth) {
                 document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
@@ -40,7 +40,7 @@
 
 </head>
 
-<body onload="getWidth()()" onresize="getWidth()()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
@@ -126,7 +126,7 @@
                                                 </c:forEach>
                                             </select>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sno"></span>
+
                                         </td>
                                     </tr>
                                 </table>
@@ -138,7 +138,7 @@
                             <td align="center">
                                 <input type="button" name="addQuestionToPaper" value="添加试题" class="button"
                                        onclick="toAddQuestion();"/>
-                                <input type="button" name="save" value="保存并提交" class="button" onclick="update();"/>
+                                <input type="button" name="Submit" value="保存并提交" class="button" onclick="update();"/>
                                 <input type="reset" name="reset" value="重置" class="button"/>
                                 <input class="button" type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>

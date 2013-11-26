@@ -32,7 +32,7 @@ public class TitleController {
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
-    public ModelAndView toAdd(HttpServletRequest request) {
+    public ModelAndView toAdd() {
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/add");
         return mav;
     }

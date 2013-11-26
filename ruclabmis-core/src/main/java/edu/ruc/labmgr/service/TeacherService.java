@@ -36,13 +36,16 @@ public class TeacherService extends UserService {
         return mapperTeacher.selectByPrimaryKey(user.getId());
     }
 
-    public PageInfo<Teacher> selectListPage(String sn, String name, int pageNum) {
+    public PageInfo<Teacher> selectListPage(String sn, String name, Integer major, Integer org, int pageNum) {
         UserCriteria userCriteria = new UserCriteria();
         UserCriteria.Criteria ecu = userCriteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
             ecu.andSnLike("%" + sn + "%");
         if (!StringUtils.isNullOrEmpty(name))
             ecu.andNameLike("%" + name + "%");
+        if (major != null && major > 0)
+            ecu.andMajorIdEqualTo(major);
+
         List<User> users = mapperUser.selectByCriteria(userCriteria);
         List<Integer> teacherIds = new ArrayList<Integer>();
         for (User user : users) {
@@ -52,7 +55,10 @@ public class TeacherService extends UserService {
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
         TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
-        ect.andIdIn(teacherIds);
+        if(!teacherIds.isEmpty())
+            ect.andIdIn(teacherIds);
+        if (org != null && org >= 0)
+            ect.andOrganizationIdEqualTo(org);
 
         return getPageTeacherByCriteria(pageNum, teacherCriteriaCriteria);
     }
@@ -87,7 +93,8 @@ public class TeacherService extends UserService {
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
         TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
-        ect.andIdIn(teacherIds);
+        if(!teacherIds.isEmpty())
+            ect.andIdIn(teacherIds);
 
         List<Teacher> teachers = mapperTeacher.selectByCriteria(teacherCriteriaCriteria);
         return mapperTeacher.selectByCriteria(teacherCriteriaCriteria);
@@ -114,7 +121,8 @@ public class TeacherService extends UserService {
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
         TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
-        ect.andIdIn(teacherIds);
+        if(!teacherIds.isEmpty())
+            ect.andIdIn(teacherIds);
 
         return mapperTeacher.selectByCriteria(teacherCriteriaCriteria);
     }

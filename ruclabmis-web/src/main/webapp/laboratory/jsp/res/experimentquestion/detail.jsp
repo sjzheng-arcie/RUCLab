@@ -104,7 +104,7 @@
                                 <tr>
                                     <td align="center">
 
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
@@ -124,6 +124,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

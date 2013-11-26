@@ -39,7 +39,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -62,8 +62,8 @@
                                                     </table>
                                                 </td>
                                                 <td>
-                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                            class="STYLE1"> &nbsp;</span></div>
+                                                    <div align="right"><span class="STYLE1"></span><span
+                                                            class="STYLE1"> </span></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -85,13 +85,13 @@
                                                 <td nowrap>
                                                     <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                                 <td nowrap align="right">职务级别:</td>
                                                 <td nowrap>
                                                     <input name="grade" id="grade" value="" onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -101,7 +101,7 @@
                                                     <input name="shortName" id="shortName" value="" onblur=""
                                                            class="text"
                                                            style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                                 <td nowrap align="right">职务描述:</td>
                                                 <td nowrap>
@@ -117,9 +117,9 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
+                                        <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
@@ -128,7 +128,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
@@ -141,6 +141,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

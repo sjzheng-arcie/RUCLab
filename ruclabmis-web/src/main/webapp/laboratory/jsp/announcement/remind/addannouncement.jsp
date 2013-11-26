@@ -8,16 +8,11 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-
-            document.form1.action = "addAnnouncement";
-            document.form1.submit();
+            document.mainForm.action = "addAnnouncement";
+            document.mainForm.submit();
         }
-        function reset() {
 
-            document.form1.content.value = "";
-        }
         function displayClass(value) {
-
             if (value == "2") {
                 document.getElementById('scopeDiv').style.display = '';
             } else {
@@ -51,7 +46,7 @@
                                                     <input id="title" name="title" class="text" style="width:154px"
                                                            maxlength="20"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
 
 
@@ -86,7 +81,7 @@
                                                                 src="../../../../js/ueditor/ueditor.config.js"></script>
 
                                                         <script type="text/javascript"
-                                                                src="../../../../js/ueditor/ueditor.all.min.js"></script>
+                                                                src="../../../../js/ueditor/ueditor.all.js"></script>
 
                                                         <link type="text/css"
                                                               href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
@@ -102,9 +97,7 @@
                                             </tr>
                                             <tr>
                                                 <td colspan="2" align="center">
-                                                    <input type="button" name="Submit" value="发布" class="button"
-                                                           onclick="save();"/>
-
+                                                    <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                                 </td>
                                             </tr>
 
@@ -123,6 +116,6 @@
         </tr>
 
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

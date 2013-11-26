@@ -9,24 +9,6 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         window.top.frames["topFrame"].location.reload();
-        function save() {
-
-            var pageFather = "${fatherPage}";
-            if (pageFather != "welcome") {
-                document.form1.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=${page}&&fatherPage=${fatherPage}";
-                document.form1.submit();
-            } else {
-                window.history.go(-1);
-            }
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-        }
 
     </script>
 
@@ -114,6 +96,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

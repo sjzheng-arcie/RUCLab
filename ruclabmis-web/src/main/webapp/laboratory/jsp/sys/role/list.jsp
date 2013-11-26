@@ -12,61 +12,61 @@
     <script>
 
         function checkAll(box) {  //全选或全不选
-            form1.checkbox.checked = box.checked;
-            if (form1.idcheckbox == null)
+            mainForm.checkbox.checked = box.checked;
+            if (mainForm.idcheckbox == null)
                 return;
-            var numRow = form1.idcheckbox.length;
+            var numRow = mainForm.idcheckbox.length;
             if (numRow == null) {
-                form1.idcheckbox.checked = box.checked;
+                mainForm.idcheckbox.checked = box.checked;
                 return;
             }
             if (box.checked) {
                 for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = true;
+                    mainForm.idcheckbox[i].checked = true;
                 }
             } else {
                 for (var i = 0; i < numRow; i++) {
-                    form1.idcheckbox[i].checked = false;
+                    mainForm.idcheckbox[i].checked = false;
                 }
             }
         }
 
         function checkOne() {  //选一个时全选或全不选
 
-            if (form1.idcheckbox == null)
+            if (mainForm.idcheckbox == null)
                 return;
-            var numRow = form1.idcheckbox.length;
+            var numRow = mainForm.idcheckbox.length;
             if (numRow == null) {
-                form1.checkbox.checked = form1.idcheckbox.checked;
+                mainForm.checkbox.checked = mainForm.idcheckbox.checked;
                 return;
             }
             var numBox = 0;
             for (var i = 0; i < numRow; i++) {
-                if (form1.idcheckbox[i].checked) {
+                if (mainForm.idcheckbox[i].checked) {
                     numBox++;
                 }
             }
             if (numBox == numRow) {
-                form1.checkbox.checked = true;
+                mainForm.checkbox.checked = true;
             } else {
-                form1.checkbox.checked = false;
+                mainForm.checkbox.checked = false;
             }
         }
 
         function toUpdate() {
-            if (document.form1.idcheckbox == null) {
+            if (document.mainForm.idcheckbox == null) {
                 return;
             }
-            var len = document.form1.idcheckbox.length;
+            var len = document.mainForm.idcheckbox.length;
             var flag = 0;
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
+                    if (eval(document.mainForm.idcheckbox[i].checked)) {
                         flag++;
                     }
                 }
             } else {
-                if (document.form1.idcheckbox.checked) {
+                if (document.mainForm.idcheckbox.checked) {
                     flag++;
                 }
             }
@@ -79,25 +79,25 @@
                 return;
             }
             if (confirm("是否修改？")) {
-                document.form1.action = "update.jsp";
-                document.form1.submit();
+                document.mainForm.action = "update.jsp";
+                document.mainForm.submit();
             }
 
         }
         function toDelete() {
-            if (document.form1.idcheckbox == null) {
+            if (document.mainForm.idcheckbox == null) {
                 return;
             }
-            var len = document.form1.idcheckbox.length;
+            var len = document.mainForm.idcheckbox.length;
             var flag = 0;
             if (len != undefined) {
                 for (var i = 0; i < len; i++) {
-                    if (eval(document.form1.idcheckbox[i].checked)) {
+                    if (eval(document.mainForm.idcheckbox[i].checked)) {
                         flag++;
                     }
                 }
             } else {
-                if (document.form1.idcheckbox.checked) {
+                if (document.mainForm.idcheckbox.checked) {
                     flag++;
                 }
             }
@@ -107,13 +107,13 @@
                 return;
             }
             if (confirm("是否删除所选记录？")) {
-                document.form1.action = "";
-                document.form1.submit();
+                document.mainForm.action = "";
+                document.mainForm.submit();
             }
 
         }
         //获得divwidth的宽度
-        function getWidth()() {
+        function getWidth() {
             document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
             if (document.body.scrollWidth > document.body.offsetWidth) {
                 document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
@@ -123,7 +123,7 @@
 
 </head>
 
-<body onload="getWidth()()" onresize="getWidth()()">
+<body onload="getWidth()" onresize="getWidth()">
 
 <form name="mainForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">

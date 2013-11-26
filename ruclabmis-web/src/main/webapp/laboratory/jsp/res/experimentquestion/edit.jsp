@@ -9,8 +9,8 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         function save() {
-            document.form1.action = "edit";
-            document.form1.submit();
+            document.mainForm.action = "edit";
+            document.mainForm.submit();
         }
 
     </script>
@@ -84,7 +84,7 @@
                                                     <input name="questionName"  class="text" style="width:154px" maxlength="20"
                                                            valid="required|isAccount" value="${question.name}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+
                                                 </td>
 
                                             </tr>
@@ -122,9 +122,9 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="Submit3" value="重置" class="button"
+                                        <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
@@ -144,6 +144,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>

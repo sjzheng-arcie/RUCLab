@@ -7,23 +7,6 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="../../../../js/valid.js" type=text/javascript></script>
-    <script>
-        function save() {
-
-            document.form1.action = "addAnnouncement";
-            document.form1.submit();
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-
-        }
-
-    </script>
 
 </head>
 <body style="background-color: #EEF2FB">
@@ -83,7 +66,7 @@
                                 </tr>
                                 <tr align="center" bgcolor="#EEF2FB" style=" height: 10px;background-color: #EEF2FB">
                                     <td align="center">
-                                        <input type="button" name="Submit2" value="返回" class="button"
+                                        <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
@@ -96,6 +79,6 @@
         </tr>
 
     </table>
-    <input type="hidden" name="us_sreplyby" value=""/>
+
 </form>
 </body>
