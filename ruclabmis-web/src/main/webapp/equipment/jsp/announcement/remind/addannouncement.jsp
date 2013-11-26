@@ -6,37 +6,40 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script type="text/javascript"
+            src="../../../../js/ueditor/ueditor.config.js"></script>
+
+    <script type="text/javascript"
+            src="../../../../js/ueditor/ueditor.all.js"></script>
+
+    <link type="text/css"
+          href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
+
     <script>
         function save() {
 
-            document.form1.action = "addAnnouncement";
-            document.form1.submit();
+            document.mainForm.action = "addAnnouncement";
+            document.mainForm.submit();
         }
         function reset() {
 
-            document.form1.content.value = "";
+            document.mainForm.content.value = "";
         }
         function displayClass(value) {
-
             if (value == "2") {
                 document.getElementById('scopeDiv').style.display = '';
             } else {
                 document.getElementById('scopeDiv').style.display = 'none';
             }
-
         }
-
     </script>
-
 </head>
 <body style="background-color: #EEF2FB">
 <form name="mainForm" method="post" target="_parent">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
         <tr>
             <td valign="top" bgcolor="#EEF2FB">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
-
                     <tr valign="top">
                         <td>
                             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
@@ -53,8 +56,6 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-
-
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">通知内容:</td>
@@ -63,45 +64,28 @@
                                                 <span><textarea id="content" style="WIDTH: 500px; height: 300px"
                                                                 name="content" rows="20" cols="90"
                                                                 tabIndex="2"></textarea></span>
-                                                        <script type="text/javascript"
-                                                                src="../../../../js/ueditor/ueditor.config.js"></script>
-
-                                                        <script type="text/javascript"
-                                                                src="../../../../js/ueditor/ueditor.all.min.js"></script>
-
-                                                        <link type="text/css"
-                                                              href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
-
                                                         <script type="text/javascript" charset="utf-8">
                                                             var editor = new baidu.editor.ui.Editor();
                                                             editor.render('content');
                                                         </script>
                                                     </div>
-
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td colspan="2" align="center">
                                                     <input type="button" name="Submit" value="发布" class="button"
                                                            onclick="save();"/>
-
                                                 </td>
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
-
                             </table>
-
                         </td>
                     </tr>
                 </table>
             </td>
-
         </tr>
-
     </table>
     <input type="hidden" name="us_sreplyby" value=""/>
 </form>

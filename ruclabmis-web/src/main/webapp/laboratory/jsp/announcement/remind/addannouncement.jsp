@@ -89,7 +89,7 @@
                                                                 src="../../../../js/ueditor/ueditor.all.min.js"></script>
 
                                                         <link type="text/css"
-                                                              href="../../../../js/ueditor/themes/default/../css/ueditor.css"/>
+                                                              href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
 
                                                         <script type="text/javascript" charset="utf-8">
                                                             var editor = new baidu.editor.ui.Editor();

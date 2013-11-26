@@ -4,7 +4,7 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <script type="text/javascript" src="../../../../js/page.js"></script>
-<tr>
+<tr class="">
     <td height="30">
         <table width='100%' border='0' cellspacing='0' cellpadding='0'
                style='font-size:13px;'>
@@ -36,6 +36,20 @@
                                                      style="cursor:hand"
                                                      src='/equipment/../images/main_60.gif' width='40' height='15'
                                                      border='0'/></div>
+                        </td>
+                        <td width='37' class='STYLE22'>
+                            <div align='center' style="white-space:nowrap">转到</div>
+                        </td>
+                        <td>
+                            <div align='left'>
+                                <select onchange="goPage(this.options[this.selectedIndex].value, ${pageInfo.totalPage})">
+                                    <c:forEach var="i" begin="1" end="${pageInfo.totalPage}" step="1">
+                                        <option class='STYLE22' value='${i}'
+                                                <c:if test="${pageInfo.currentPage == i}">selected</c:if> > 第${i}页
+                                        </option>
+                                    </c:forEach>
+                                </select>
+                            </div>
                         </td>
 
                     </tr>
