@@ -81,7 +81,7 @@
                                                                 src="../../../../js/ueditor/ueditor.config.js"></script>
 
                                                         <script type="text/javascript"
-                                                                src="../../../../js/ueditor/ueditor.all.min.js"></script>
+                                                                src="../../../../js/ueditor/ueditor.all.js"></script>
 
                                                         <link type="text/css"
                                                               href="../../../../js/ueditor/themes/default/../css/ueditor.css"/>
