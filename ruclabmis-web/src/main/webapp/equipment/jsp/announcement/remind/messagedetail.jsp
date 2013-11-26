@@ -9,24 +9,6 @@
     <script src="../../../../js/valid.js" type=text/javascript></script>
     <script>
         window.top.frames["topFrame"].location.reload();
-        function save() {
-
-            var pageFather = "${fatherPage}";
-            if (pageFather != "welcome") {
-                document.mainForm.action = "/equipment/jsp/announcement/remind/${fatherPage}?page=${page}&&fatherPage=${fatherPage}";
-                document.mainForm.submit();
-            } else {
-                window.history.go(-1);
-            }
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-        }
 
     </script>
 

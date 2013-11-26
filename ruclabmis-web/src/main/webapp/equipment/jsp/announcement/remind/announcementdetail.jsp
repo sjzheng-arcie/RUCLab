@@ -7,23 +7,6 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="../../../../js/valid.js" type=text/javascript></script>
-    <script>
-        function save() {
-
-            document.mainForm.action = "addAnnouncement";
-            document.mainForm.submit();
-        }
-        function displayClass(value) {
-
-            if (value == "2") {
-                document.getElementById('scopeDiv').style.display = '';
-            } else {
-                document.getElementById('scopeDiv').style.display = 'none';
-            }
-
-        }
-
-    </script>
 
 </head>
 <body style="background-color: #EEF2FB">
