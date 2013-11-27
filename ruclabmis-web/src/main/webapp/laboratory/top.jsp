@@ -35,13 +35,9 @@
             document.getElementById(flag).className = "active";
 
             if (flag=="homePage"){
-                parent.main.location.href = "teacher_welcome";
+                parent.main.location.href = "welcome";
             }else {
                 parent.main.location.href = "bbs/frame";
-            }
-            switch(flag){
-                case 'administrator_left':
-                    parent.main.location.href = "welcome";
             }
         }
     </script>
@@ -61,14 +57,14 @@
 
     </div>
     <ul class="top_right_menu">
-        <li class="active"><a href="administrator_left" target="leftFrame" onclick="rs('administrator_left')">首页</a></li>
-        <li><a href="administrator_leftmenubasinfo" target="leftFrame"onclick="rs('administrator_leftmenubasinfo')">基础信息管理</a></li>
-        <li><a href="administrator_leftmenulab" target="leftFrame"onclick="rs('administrator_leftmenulab')">实验室管理</a></li>
-        <li><a href="administrator_leftmenu" target="leftFrame"onclick="rs('administrator_leftmenu')">教学资源管理</a></li>
-        <li><a href="administrator_leftmenuteach" target="leftFrame"onclick="rs('administrator_leftmenuteach')">实验教学管理</a></li>
-        <li><a href="new/left" target="leftFrame"onclick="rs('left')">预约管理</a></li>
-        <li><a href="administrator_leftmenutask" target="leftFrame"onclick="rs('administrator_leftmenutask')">考核管理</a></li>
-        <li><a href="bbs/left" target="leftFrame" onclick="rs('left')">论坛</a></li>
+        <li id="administrator_left" class="active"><a href="administrator_left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
+        <li id="administrator_leftmenubasinfo"><a href="administrator_leftmenubasinfo" target="leftFrame"onclick="rs('administrator_leftmenubasinfo')">基础信息管理</a></li>
+        <li id="administrator_leftmenulab"><a href="administrator_leftmenulab" target="leftFrame"onclick="rs('administrator_leftmenulab')">实验室管理</a></li>
+        <li id="administrator_leftmenu"><a href="administrator_leftmenu" target="leftFrame"onclick="rs('administrator_leftmenu')">教学资源管理</a></li>
+        <li id="administrator_leftmenuteach"><a href="administrator_leftmenuteach" target="leftFrame"onclick="rs('administrator_leftmenuteach')">实验教学管理</a></li>
+        <li id="left"><a href="new/left" target="leftFrame"onclick="rs('left')">预约管理</a></li>
+        <li id="administrator_leftmenutask"><a href="administrator_leftmenutask" target="leftFrame"onclick="rs('administrator_leftmenutask')">考核管理</a></li>
+        <li id="bbs"><a href="bbs/left" target="leftFrame" onclick="rs('bbs')">论坛</a></li>
     </ul>
 </div>
 </div>
