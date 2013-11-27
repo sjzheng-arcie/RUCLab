@@ -49,8 +49,6 @@
                         </li>
                         <li><a href="jsp/bas/position/list" onfocus="toFocus(this)" target="main">职务信息管理</a>
                         </li>
-                        <li><img src="../images/menu_topline.gif" width="182" height="5"/></li>
-
                         <li><a href="jsp/bas/student/list" onfocus="toFocus(this)" target="main">学生信息管理</a>
                         </li>
                         <li><a href="jsp/bas/class/list" onfocus="toFocus(this)" target="main">班级信息管理</a>
@@ -61,9 +59,7 @@
                         </li>
                         <li><a href="jsp/bas/majorcourse/list" onfocus="toFocus(this)" target="main">专业课程信息管理</a>
                         </li>
-                        <li><img src="../images/menu_topline.gif" width="182" height="5"/></li>
-
-                        <li><a href="jsp/bas/teachingmetiral/list" onfocus="toFocus(this)" target="main">教材信息管理</a>
+                        <li><a href="jsp/bas/teachingmaterial/list" onfocus="toFocus(this)" target="main">教材信息管理</a>
                         </li>
                         <li><a href="jsp/bas/calendar/list" onfocus="toFocus(this)" target="main">学期校历信息管理</a>
                         </li>

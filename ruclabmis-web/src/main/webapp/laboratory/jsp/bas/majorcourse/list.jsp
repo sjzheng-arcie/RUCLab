@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -168,7 +170,7 @@
 
                                                     <td title="">卢志胜</td>
                                                     <td title="">2012-09-01至2012-12-31</td>
-                                                    <td title="">计算机学科导论</td
+                                                    <td title="">计算机学科导论</td>
 
 
                                                 </tr>

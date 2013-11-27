@@ -42,9 +42,9 @@
                     </table>
                     <ul class="MM">
 
-                        <li><a href="remind.html?id=0" onfocus="toFocus(this)" target="main">我的短消息</a>
+                        <li><a href="remind?id=0" onfocus="toFocus(this)" target="main">我的短消息</a>
                         </li>
-                        <li><a href="remind.html?id=1" onfocus="toFocus(this)" target="main">我的通知</a>
+                        <li><a href="remind?id=1" onfocus="toFocus(this)" target="main">我的通知</a>
                         </li>
                         <li><a href="new/pages_miyl/miyl01_ylsj/datelist.html" onfocus="toFocus(this)" target="main">
                             待审核预约</a></li>
