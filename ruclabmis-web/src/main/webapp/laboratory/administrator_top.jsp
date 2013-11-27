@@ -36,10 +36,10 @@
             }
         }
         function rs() {
-            parent.main.location.href = "bbs/frame.html";
+            parent.main.location.href = "bbs/frame";
         }
         function rs1() {
-            parent.main.location.href = "administrator_welcome.html";
+            parent.main.location.href = "administrator_welcome";
         }
     </script>
     <base target="main">

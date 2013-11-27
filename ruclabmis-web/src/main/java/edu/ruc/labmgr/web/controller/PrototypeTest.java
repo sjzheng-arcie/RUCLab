@@ -506,7 +506,7 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("jsp/experiment/report/courselist")
-    public ModelAndView courseList(HttpServletRequest request) {
+    public ModelAndView courseListOfReport(HttpServletRequest request) {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/courselist");
         return mav;
@@ -692,31 +692,6 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/detail");
 		return mav;
 	}
-
-	@RequestMapping("bbs/list-cad")
-	public ModelAndView bbsListCad(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-cad");
-		return mav;
-	}
-	@RequestMapping("bbs/list-dl")
-	public ModelAndView bbsListDl(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-dl");
-		return mav;
-	}
-	@RequestMapping("bbs/list-gswl")
-	public ModelAndView bbsListGswl(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-gswl");
-		return mav;
-	}
-	@RequestMapping("bbs/list-mndl")
-	public ModelAndView bbsListMndl(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/bbs/list-mndl");
-		return mav;
-	}
 	@RequestMapping("bbs/post")
 	public ModelAndView bbsListPost(HttpServletRequest request) {
 
@@ -729,10 +704,53 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/update");
 		return mav;
 	}
-	@RequestMapping("jsp/bas/teachingmetarial/list")
+	@RequestMapping("jsp/bas/teachingmaterial/list")
 	public ModelAndView teachingMaterialList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/teachingmetarial/list");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/teachingmaterial/list");
+		return mav;
+	}
+	@RequestMapping("jsp/new/left")
+	public ModelAndView newLeft(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/new/left");
+		return mav;
+	}
+	@RequestMapping("jsp/bas/student/list")
+	public ModelAndView studentList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/student/list");
+		return mav;
+	}
+	@RequestMapping("jsp/bas/class/list")
+	public ModelAndView classList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/class/list");
+		return mav;
+	}
+	@RequestMapping("jsp/bas/course/list")
+	public ModelAndView courseList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/course/list");
+		return mav;
+	}
+	@RequestMapping("jsp/bas/majorcourse/list")
+	public ModelAndView majorCourseList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/majorcourse/list");
+		return mav;
+	}
+
+	@RequestMapping("jsp/bas/major/list")
+	public ModelAndView majorList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/major/list");
+		return mav;
+	}
+	@RequestMapping("jsp/bas/calendar/list")
+	public ModelAndView calenderList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/calendar/list");
 		return mav;
 	}
 
