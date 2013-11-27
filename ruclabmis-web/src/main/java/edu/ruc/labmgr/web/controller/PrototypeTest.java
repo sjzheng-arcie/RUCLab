@@ -106,7 +106,44 @@ public class PrototypeTest {
         ModelAndView mav = new ModelAndView("/laboratory/administrator_left");
         return mav;
     }
-    @RequestMapping("/administrator_top")
+	@RequestMapping("/administrator_leftmenu")
+	public ModelAndView admin_leftmenu(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenu");
+		return mav;
+	}
+	@RequestMapping("/administrator_leftmenubasinfo")
+	public ModelAndView admin_Leftmenubasinfo(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenubasinfo");
+		return mav;
+	}
+	@RequestMapping("/administrator_leftmenulab")
+	public ModelAndView admin_Leftmenulab(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenulab");
+		return mav;
+	}
+	@RequestMapping("/administrator_leftmenusys")
+	public ModelAndView admin_Leftmenusys(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenusys");
+		return mav;
+	}
+	@RequestMapping("/administrator_leftmenutask")
+	public ModelAndView admin_Leftmenutask(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenutask");
+		return mav;
+	}
+	@RequestMapping("/administrator_leftmenuteach")
+	public ModelAndView admin_Leftmenuteach(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenuteach");
+		return mav;
+	}
+
+	@RequestMapping("/administrator_top")
     public ModelAndView adminTop(HttpServletRequest request) {
         User currentUser = userService.getCurrentUser();
 
@@ -692,4 +729,11 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/update");
 		return mav;
 	}
+	@RequestMapping("jsp/bas/teachingmetarial/list")
+	public ModelAndView teachingMaterialList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/teachingmetarial/list");
+		return mav;
+	}
+
 }

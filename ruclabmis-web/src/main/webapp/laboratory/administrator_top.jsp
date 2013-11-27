@@ -57,14 +57,14 @@
 
     </div>
     <ul class="top_right_menu">
-        <li class="active"><a href="administrator_left.html" target="leftFrame" onclick=rs1();>首页</a></li>
-        <li><a href="administrator_leftmenubasinfo.html" target="leftFrame">基础信息管理</a></li>
-        <li><a href="administrator_leftmenulab.html" target="leftFrame">实验室管理</a></li>
-        <li><a href="administrator_leftmenu.html" target="leftFrame">教学资源管理</a></li>
-        <li><a href="administrator_leftmenuteach.html" target="leftFrame">实验教学管理</a></li>
-        <li><a href="new/left.html" target="leftFrame">预约管理</a></li>
-        <li><a href="administrator_leftmenutask.html" target="leftFrame">考核管理</a></li>
-        <li><a href="bbs/left.html" target="leftFrame" onclick=rs();>论坛</a></li>
+        <li class="active"><a href="administrator_left" target="leftFrame" onclick=rs1();>首页</a></li>
+        <li><a href="administrator_leftmenubasinfo" target="leftFrame">基础信息管理</a></li>
+        <li><a href="administrator_leftmenulab" target="leftFrame">实验室管理</a></li>
+        <li><a href="administrator_leftmenu" target="leftFrame">教学资源管理</a></li>
+        <li><a href="administrator_leftmenuteach" target="leftFrame">实验教学管理</a></li>
+        <li><a href="new/left" target="leftFrame">预约管理</a></li>
+        <li><a href="administrator_leftmenutask" target="leftFrame">考核管理</a></li>
+        <li><a href="bbs/left" target="leftFrame" onclick=rs();>论坛</a></li>
     </ul>
 </div>
 </div>

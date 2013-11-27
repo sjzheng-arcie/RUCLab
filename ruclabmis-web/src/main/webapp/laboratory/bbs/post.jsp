@@ -5,6 +5,7 @@
     <TITLE>实验交流论坛--发布帖子</TITLE>
     <META http-equiv=Content-Type content="text/html; charset=UTF-8">
     <Link rel="stylesheet" type="text/css" href="style/style.css"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
     <script type="text/javascript">
         function check() {
             if (document.postForm.title.value == "") {
@@ -47,10 +48,24 @@
                             <DIV><B>内容</B></DIV>
                         </TH>
                         <TH colSpan=2>
-                            <DIV>
-                                <span><textarea style="WIDTH: 500px;" name="content" rows="20" cols="90"
-                                                tabIndex="2"></textarea></span>
-                            </DIV>
+                            <div id="innerId">
+                                                <span><textarea id="content" style="WIDTH: 500px; height: 300px"
+                                                                name="content" rows="20" cols="90"
+                                                                tabIndex="2"></textarea></span>
+                                <script type="text/javascript"
+                                        src="../../js/ueditor/ueditor.config.js"></script>
+
+                                <script type="text/javascript"
+                                        src="../../js/ueditor/ueditor.all.js"></script>
+
+                                <link type="text/css"
+                                      href="../../js/ueditor/themes/default/css/ueditor.css"/>
+
+                                <script type="text/javascript" charset="utf-8">
+                                    var editor = new baidu.editor.ui.Editor();
+                                    editor.render('content');
+                                </script>
+                            </div>
                         </TH>
                     </TR>
                 </TABLE>
