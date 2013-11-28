@@ -329,19 +329,19 @@ public class PrototypeTest {
                 result="/laboratory/login";
             }
         }
-        if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
+       	if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
 
 
             result = "redirect:index";
         } else if (currentUser.hasRole("teacher")){
 
-            result = "redirect:teacher_index";
+            result = "redirect:index";
         }else if (currentUser.hasRole("student")){
 
-            result = "redirect:student_index";
+            result = "redirect:index";
         }else if (currentUser.hasRole("equipment_admin")){
 
-            result = "redirect:admin_index";
+            result = "redirect:index";
         }
 
         return result;
@@ -608,6 +608,44 @@ public class PrototypeTest {
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/detail");
         return mav;
     }
+	@RequestMapping("jsp/res/instructor/list")
+	public ModelAndView instructorList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/list");
+		return mav;
+	}
+	@RequestMapping("jsp/res/instructor/add")
+	public ModelAndView instructorAdd(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/add");
+		return mav;
+	}
+	@RequestMapping("jsp/res/instructor/addpaper")
+	public ModelAndView instructorAddPaperList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/addpaper");
+		return mav;
+	}
+	@RequestMapping("jsp/res/instructor/addtopaper")
+	public ModelAndView instructorAddToPaper(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/addtopaper");
+		return mav;
+	}
+	@RequestMapping("jsp/res/instructor/editpaper")
+	public ModelAndView instructorEditPaper(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/editpaper");
+		return mav;
+	}
+	@RequestMapping("jsp/res/instructor/paperinfo")
+	public ModelAndView instructorPaperInfo(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/paperinfo");
+		return mav;
+	}
+
+
     @RequestMapping("jsp/res/question/add")
     public ModelAndView questionAdd(HttpServletRequest request) {
 
@@ -734,6 +772,12 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/course/list");
 		return mav;
 	}
+	@RequestMapping("jsp/bas/course/add")
+	public ModelAndView courseAdd(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/course/add");
+		return mav;
+	}
 	@RequestMapping("jsp/bas/majorcourse/list")
 	public ModelAndView majorCourseList(HttpServletRequest request) {
 
@@ -747,11 +791,30 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/major/list");
 		return mav;
 	}
+	@RequestMapping("jsp/bas/major/add")
+	public ModelAndView addList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/major/add");
+		return mav;
+	}
 	@RequestMapping("jsp/bas/calendar/list")
 	public ModelAndView calenderList(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/calendar/list");
 		return mav;
 	}
+	@RequestMapping("jsp/task/task/mytasklist")
+	public ModelAndView taskList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/mytasklist");
+		return mav;
+	}
+	@RequestMapping("jsp/task/task/myworklist")
+	public ModelAndView workList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/myworklist");
+		return mav;
+	}
+
 
 }

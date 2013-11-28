@@ -82,23 +82,10 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="update.html" onclick="toUpdate();"><img src="../../../../images/edit_min.gif"
-                                                                         width="10"
-                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                        <a href="#" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10"
-                                                                height="10"
-                                                                border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
-                        <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10"
-                                                                 height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                        <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                                        <a href="add"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                            <span class="STYLE1">新增</span></a>&nbsp;
+                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -120,38 +107,33 @@
                                                                    onclick="checkAll(this);"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">专业编号</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">专业名称</span></div>
                                                     </td>
-
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">所属学部</span></div>
+                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">所属院系</span></div>
+                                                        <div align="center"><span class="STYLE10">删除</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">所属系科</span></div>
-                                                    </td>
-
-
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>1</td>
                                                     <td title="">00001</td>
                                                     <td title="">计算机科学与技术</td>
+                                                    <td><a href="toUpdate?id=17">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
+                                                    <td><a href="toDelete?id=17">
+                                                        <img src="../../../../images/del_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
 
-                                                    <td title="">教学部</td>
-                                                    <td title="">信息学院</td>
-                                                    <td title="">计算机系</td>
 
 
                                                 </tr>
@@ -161,9 +143,19 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
+
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+                                                        <td><a href="toUpdate?id=17">
+                                                            <img src="../../../../images/edit_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
+                                                        <td><a href="toDelete?id=17">
+                                                            <img src="../../../../images/del_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
+
+
 
                                                     </tr>
                                                 </c:forEach>

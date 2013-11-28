@@ -59,7 +59,7 @@
             <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                 <tr>
                     <td height="31">
-                        <div class="titlebt">试卷修改 > 添加题目到试卷</div>
+                        <div class="titlebt">指导书修改 > 添加题目到指导书</div>
                     </td>
                 </tr>
             </table>

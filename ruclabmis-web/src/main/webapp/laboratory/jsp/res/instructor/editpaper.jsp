@@ -52,7 +52,7 @@
             <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                 <tr>
                     <td height="31">
-                        <div class="titlebt">试卷资源管理 > 编辑试卷</div>
+                        <div class="titlebt">指导书管理 > 编辑指导书</div>
                     </td>
                 </tr>
             </table>
@@ -80,7 +80,7 @@
                                                                                      width="14" height="14"/></div>
                                                         </td>
                                                         <td width="94%" valign="bottom"><span
-                                                                class="STYLE1">添加试卷资源</span></td>
+                                                                class="STYLE1">编辑指导书</span></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -104,7 +104,7 @@
                                            style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                            bgcolor="#E3E9EE">
                                         <tr>
-                                            <td nowrap align="right">试卷名称:</td>
+                                            <td nowrap align="right">指导书名称:</td>
                                             <td nowrap>
                                                 <input name="paperName" id="paperName" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
