@@ -298,63 +298,6 @@ public class PrototypeTest {
 
         return mav;
     }
-
-    @RequestMapping("/login")
-    public String toLogin() {
-
-        return "/laboratory/login";
-    }
-    @RequestMapping("/excutelogin")
-    public String login(HttpServletRequest request) {
-        String result = "/login";
-        String userSn = request.getParameter("username");
-        String password = CipherUtil.generatePassword(request.getParameter("password"));
-
-        UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
-
-        Subject currentUser = SecurityUtils.getSubject();
-
-        if (!currentUser.isAuthenticated()) {
-            token.setRememberMe(false);
-            try {
-                currentUser.login(token);
-            }catch(UnknownAccountException e){
-                request.setAttribute("userNameNotExist","* 用户名不存在");
-                request.setAttribute("preUserName",userSn);
-
-                result="/laboratory/login";
-            }catch (IncorrectCredentialsException e){
-                request.setAttribute("passwordNotMatch","* 密码错误");
-                request.setAttribute("preUserName",userSn);
-                result="/laboratory/login";
-            }
-        }
-       	if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
-
-
-            result = "redirect:index";
-        } else if (currentUser.hasRole("teacher")){
-
-            result = "redirect:index";
-        }else if (currentUser.hasRole("student")){
-
-            result = "redirect:index";
-        }else if (currentUser.hasRole("equipment_admin")){
-
-            result = "redirect:index";
-        }
-
-        return result;
-    }
-
-    @RequestMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        String result = "/laboratory/login";
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.logout();
-        return result;
-    }
-
     @RequestMapping("/top")
     public ModelAndView showUnreadMessage(HttpServletRequest request) {
         User currentUser = userService.getCurrentUser();

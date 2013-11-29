@@ -226,65 +226,6 @@ public class RootController {
 
         return mav;
     }
-
-    @RequestMapping("/login")
-    public String toLogin() {
-
-        return "/equipment/login";
-    }
-
-    @RequestMapping("/excutelogin")
-    public String login(HttpServletRequest request) {
-        String result = "/login";
-        String userSn = request.getParameter("username");
-        String password = CipherUtil.generatePassword(request.getParameter("password"));
-
-        UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
-
-        Subject currentUser = SecurityUtils.getSubject();
-
-        if (!currentUser.isAuthenticated()) {
-            token.setRememberMe(false);
-            try {
-                currentUser.login(token);
-            } catch (UnknownAccountException e) {
-                request.setAttribute("userNameNotExist", "* 用户名不存在");
-                request.setAttribute("nonexistUserName", userSn);
-
-                result = "/equipment/login";
-            } catch (IncorrectCredentialsException e) {
-                request.setAttribute("passwordNotMatch", "* 密码错误");
-
-                request.setAttribute("nonexistUserName", userSn);
-                result = "/equipment/login";
-            }
-        }
-        if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
-
-
-            result = "redirect:index";
-        } else if (currentUser.hasRole("teacher")) {
-
-            result = "redirect:teacher_index";
-        } else if (currentUser.hasRole("leader")) {
-
-            result = "redirect:leader_index";
-        } else if (currentUser.hasRole("equipment_admin")) {
-
-            result = "redirect:admin_index";
-        }
-
-        return result;
-    }
-
-    @RequestMapping("/logout")
-    public String logout(HttpServletRequest request) {
-        String result = "/equipment/login";
-        Subject currentUser = SecurityUtils.getSubject();
-        currentUser.logout();
-        return result;
-    }
-
     @RequestMapping("/top")
     public ModelAndView showUnreadMessage() {
         User currentUser = userService.getCurrentUser();

@@ -154,18 +154,13 @@
                             <tr bgcolor="#ffffff" align="center" data-tt-id="jby" data-tt-parent-id="rjgc">
                                 <td height="20" align="left">姜伯约<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
                                 </td>
-
-
                                 <td colspan="7"></td>
-
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="1" data-tt-parent-id="jby">
                                 <td height="20">任务一</td>
                                 <td>实验设备部署</td>
                                 <td>2012-01-12</td>
-
                                 <td>将新购入的设备部署在实验室</td>
-
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
@@ -176,12 +171,9 @@
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="2" data-tt-parent-id="jby">
                                 <td height="20">任务二</td>
-
                                 <td>实验设备部署</td>
                                 <td>2012-01-12</td>
-
                                 <td>将新购入的设备部署在实验室</td>
-
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
@@ -193,18 +185,13 @@
                             <tr bgcolor="#ffffff" align="center" data-tt-id="gfx" data-tt-parent-id="rjgc">
                                 <td height="20" align="left">郭奉孝<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
                                 </td>
-
                                 <td colspan="7"></td>
-
                             </tr>
-
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="7" data-tt-parent-id="gfx">
                                 <td height="20">任务一</td>
                                 <td>实验设备部署</td>
                                 <td>2012-01-12</td>
-
                                 <td>将新购入的设备部署在实验室</td>
-
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
@@ -212,16 +199,12 @@
                                     <input type="button" value="编辑" class="button" onclick="update();"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
-
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="8" data-tt-parent-id="gfx">
                                 <td height="20">任务二</td>
-
                                 <td>实验设备部署</td>
                                 <td>2012-01-12</td>
-
                                 <td>将新购入的设备部署在实验室</td>
-
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
@@ -234,9 +217,7 @@
                                 <td height="20">任务三</td>
                                 <td>实验设备部署</td>
                                 <td>2012-01-12</td>
-
                                 <td>将新购入的设备部署在实验室</td>
-
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
@@ -245,23 +226,15 @@
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
-
                             <tr bgcolor="#ffffff" align="center" data-tt-id="wlgc">
                                 <td height="20" align="left">网络工程</td>
-
-
                                 <td colspan="7"></td>
                             </tr>
-
-
                             <tr bgcolor="#ffffff" align="center" data-tt-id="cmd" data-tt-parent-id="wlgc">
                                 <td height="20" align="left">曹孟德<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
                                 </td>
-
-
                                 <td colspan="7"></td>
                             </tr>
-
                             <tr bgcolor="#ffffff" align="center" data-tt-id="250" data-tt-parent-id="cmd">
                                 <td height="20">任务一</td>
                                 <td>实验设备部署</td>
@@ -282,17 +255,12 @@
                             <tr bgcolor="#ffffff" align="center" data-tt-id="zwy" data-tt-parent-id="wlgc">
                                 <td height="20" align="left">张文远<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
                                 </td>
-
-
                                 <td colspan="7"></td>
-
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="91" data-tt-parent-id="zwy">
                                 <td height="20">任务一</td>
-
                                 <td>实验设备部署</td>
                                 <td>2012-01-12</td>
-
                                 <td>将新购入的设备部署在实验室</td>
 
                                 <td>设备部署帮助手册</td>
@@ -373,16 +341,17 @@
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
-
                             <c:forEach items="${organizations}" var="item">
-
                                 <c:if test="${item.id!=item.parentId}">
                                     <tr bgcolor="#ffffff" align="center" data-tt-id="id${item.id}"
                                         data-tt-parent-id="id${item.parentId}">
                                         <td height="20" align="left" >${item.name}</td>
                                         <td >${item.sn}</td>
                                         <td >${item.name}</td>
+                                        <td >${item.limitedTime}</td>
+                                        <td >${item.content}</td>
                                         <td >${item.director}</td>
+                                        <td >${item.note}</td>
                                         <td><a href="toUpdate?id=${item.id}">
                                             <img src="../../../../images/edit_min.gif" width="10"
                                                  height="10" border="0"/>
@@ -393,9 +362,15 @@
                                         </a></td>
                                     </tr>
                                 </c:if>
+                                <c:if test="${item.id==item.parentId}">
+                                    <tr bgcolor="#ffffff" align="center" data-tt-id="id${item.id}" colspan="7">
+                                        <td height="20" align="left" >
+                                            <input name="idcheckbox" type="checkbox"
+                                                value="${item.id}"onclick="checkOne('listForm', 'idcheckbox')"/>${item.name}</td>
+                                        <td ></td>
+                                    </tr>
+                                </c:if>
                             </c:forEach>
-
-
                             <tr height="16px"></tr>
                             </table>
 
