@@ -1,21 +1,30 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
-    function save() {
-        document.mainForm.action = "jsp/experiment/experiment/add";
-        document.mainForm.submit();
-    }
-    function addtopaper() {
-        document.mainForm.action = "jsp/experiment/experiment/addtopaper";
-        document.mainForm.submit();
-    }
 
-</script>
-<body>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <title></title>
+
+    <script>
+        function save(){
+            document.mainForm.href="jsp/task/task/add";
+            document.mainForm.submit();
+        }
+
+    </script>
+</head>
+
+<body onload="getWidth()" onresize="getWidth()">
+
 <form name="mainForm" method="post">
+
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
@@ -26,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验管理 > 添加实验</div>
+                            <div class="titlebt">考核管理 > 工作内容考核</div>
                         </td>
                     </tr>
                 </table>
@@ -54,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">新建实验</span></td>
+                                                                    class="STYLE1">工作内容</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -78,67 +87,52 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验编号:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
 
+                                                <td nowrap align="right">任务名称:</td>
+                                                <td nowrap>
+                                                    <input name="taskName" id="taskName" onblur="" class="text"
+                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
-                                                <td nowrap align="right">实验名称:</td>
+                                                <td nowrap align="right">附件:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <input name="annex" id="annex" onblur="" class="text"
+                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-
+                                                    <span style="color:red;" id="errMsg_work_annex"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">所属课程:</td>
+                                                <td nowrap align="right">完成度:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <input name="completeness" id="completeness" onblur="" class="text"
+                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-
-
+                                                    <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-                                                <td nowrap align="right">指导老师:</td>
+                                                <td nowrap align="right">完成时间:</td>
                                                 <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                    <input name="limiteTime" id="limitTime" onblur="" class="text"
+                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_limit_time"></span>
                                                 </td>
-
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实验指导书:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/><input type="button"
-                                                                                              class="buttom"
-                                                                                              value="浏览"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-
-
-                                                </td>
-                                                <td nowrap align="right">实验报告书:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword"/><input type="button"
-                                                                                               class="buttom"
-                                                                                               value="浏览"/>
+                                                <td nowrap align="right">任务内容:</td>
+                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px"></textarea>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
                                                 </td>
-
                                             </tr>
-
-
+                                            <tr>
+                                                <td nowrap align="right">备注:</td>
+                                                <td colspan="3"><textarea name="note" style="width:70%;height:100px"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_note"></span>
+                                                </td>
+                                            </tr>
                                         </table>
                                     </td>
                                 </tr>
@@ -147,12 +141,8 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="reset" value="重置" class="button"
-                                               onclick="reset();"/>
-                                        <input type="reset" name="reset" value="添加试题" class="button"
-                                               onclick="addtopaper();"/>
-                                        <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
+                                        <input type="reset" name="reset" value="重置" class="button"  onclick="reset();"/>
+                                        <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
                             </table>
@@ -164,15 +154,15 @@
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
-                    src="../../../../images/buttom_left2.gif"
-                    width="17" height="17"/></td>
+                    src="../../../../images/buttom_left2.gif" width="17" height="17"/></td>
             <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
-                    src="../../../../images/buttom_bgs.gif"
-                    width="100%" height="17"></td>
+                    src="../../../../images/buttom_bgs.gif" width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
 
+
 </form>
 </body>
+</html>

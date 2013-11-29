@@ -803,18 +803,46 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/calendar/list");
 		return mav;
 	}
-	@RequestMapping("jsp/task/task/mytasklist")
+	@RequestMapping("jsp/task/mytask/mytasklist")
 	public ModelAndView taskList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/mytasklist");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/mytask/mytasklist");
 		return mav;
 	}
-	@RequestMapping("jsp/task/task/myworklist")
+	@RequestMapping("jsp/task/mytask/toUpdate")
+	public ModelAndView toUpdateTask(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/mytask/update");
+		return mav;
+	}
+	@RequestMapping("jsp/task/mytask/toAdd")
+	public ModelAndView toAddTask(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/mytask/add");
+		return mav;
+	}
+	@RequestMapping("jsp/task/work/myworklist")
 	public ModelAndView workList(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/myworklist");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/task/work/myworklist");
 		return mav;
 	}
+	@RequestMapping("jsp/task/work/toUpdate")
+	 public ModelAndView toUpdateWork(HttpServletRequest request) {
 
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/work/update");
+		return mav;
+	}
+	@RequestMapping("jsp/task/work/toAdd")
+	public ModelAndView toAddWork(HttpServletRequest request) {
 
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/work/add");
+		return mav;
+	}
+	@RequestMapping("jsp/task/task/leaderlist")
+	public ModelAndView leaderTaskList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
+		return mav;
+	}
 }

@@ -55,9 +55,11 @@
                                     我的预约申请</a></li>
                             </shiro:hasRole>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,administrators">
-                                <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+                                <li><a href="jsp/task/mytask/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
                                 </li>
-                                <li><a href="jsp/task/task/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
+                                <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
+                                </li>
+                                <li><a href="jsp/task/task/leaderlist" onfocus="toFocus(this)" target="main">工作任务分配</a>
                                 </li>
                             </shiro:hasAnyRoles>
                             <shiro:hasRole name="administrators">
@@ -110,19 +112,21 @@
 
                             <li><a href="jsp/res/book/list" onfocus="toFocus(this)" target="main">教学资源下载</a>
                             </li>
-                            <li><a href="jsp/experiment/report/uploadreport" onfocus="toFocus(this)" target="main">实验报告提交</a>
-                            </li>
-                            <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
-                                实验成绩</a></li>
+                            <shiro:hasRole name="student">
+                                <li><a href="jsp/experiment/report/uploadreport" onfocus="toFocus(this)" target="main">实验报告提交</a>
+                                </li>
+                                <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
+                                    实验成绩</a></li>
+                            </shiro:hasRole>
                             <shiro:hasRole name="teacher">
-                            <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
-                            </li>
-                            <li><a href="jsp/res/instructor/list" onfocus="toFocus(this)" target="main">实验指导书管理</a>
-                            </li>
-                            <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">考试题库管理</a>
-                            </li>
-                            <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">试卷管理</a>
-                            </li>
+                                <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
+                                </li>
+                                <li><a href="jsp/res/instructor/list" onfocus="toFocus(this)" target="main">实验指导书管理</a>
+                                </li>
+                                <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">考试题库管理</a>
+                                </li>
+                                <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">试卷管理</a>
+                                </li>
                             </shiro:hasRole>
                         </ul>
                     </div>

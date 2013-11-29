@@ -44,13 +44,12 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-<span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
-                                                         style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;任务完成时间:<input type="text" name="endTime" id="endTime" value=""
-                                                           style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
-        src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
+                        <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
+                                                                                 style="width:100px;"/></span>
+                        <span style="white-space:nowrap">&nbsp;&nbsp;任务完成时间:<input type="text" name="endTime" id="endTime" value=""
+                                                                                   style="width:100px;"/></span>
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
+                                src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -79,18 +78,10 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                                        <a href="toAdd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                            <span class="STYLE1">新增</span></a>&nbsp;
+                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -131,25 +122,33 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">评分</span></div>
                                                     </td>
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">详细</span></div>
+                                                    </td>
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">删除</span></div>
+                                                    </td>
                                                 </tr>
-
-
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20">11</td>
 
                                                     <td>实验设备部署</td>
                                                     <td>2012-01-12</td>
                                                     <td>将新购入的设备部署在实验室</td>
-
                                                     <td>设备部署帮助手册</td>
                                                     <td>设备易损，注意安全</td>
-                                                    <td><input type="text" value="20" style="width:20px">%<input
-                                                            type="button" value="保存" class="button"
-                                                            onclick="score();"/></td>
-                                                    <td><input type="button" value="详细" class="button"
-                                                               onclick="score();"/></td>
-                                                </tr>
 
+                                                    <td>80%</td>
+                                                    <td>8.4</td>
+                                                    <td><a href="toUpdate?id=6">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
+                                                    <td><a href="toDelete?id=6">
+                                                        <img src="../../../../images/del_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
+                                                </tr>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -157,9 +156,24 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
-                                                        <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+                                                        <td>${item.limitTime}</td>
+                                                        <td>${item.content}</td>
+                                                        <td>${item.annex}</td>
+                                                        <td>${item.note}</td>
+                                                        <td>${item.score}</td>
+                                                        <td><input type="text" value="20" style="width:20px">%<input
+                                                                type="button" value="保存" class="button"
+                                                                onclick="score();"/></td>
+                                                        <td><a href="toUpdate?id=6">
+                                                            <img src="../../../../images/edit_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
+                                                        <td><a href="toDelete?id=6">
+                                                            <img src="../../../../images/del_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

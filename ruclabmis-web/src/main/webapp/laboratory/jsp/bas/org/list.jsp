@@ -55,16 +55,16 @@
                                                     </table></td>
                                                     <td>
                                                         <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/laboratory/jsp/bas/org/toAdd" >
-                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span>
-                        </a>
-      					<a href="#" onclick="toDelete('listForm','idcheckbox')">
-                            <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">删除</span>
-                        </a>
-	                </span>
+                                                            <span class="STYLE1" style="white-space:nowrap">
+                                                                <a href="/laboratory/jsp/bas/org/toAdd" >
+                                                                    <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <span class="STYLE1">新增</span>
+                                                                </a>
+                                                                <a href="#" onclick="toDelete('listForm','idcheckbox')">
+                                                                    <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                                    <span class="STYLE1">删除</span>
+                                                                </a>
+                                                            </span>
                                                         </div>
                                                     </td>
                                                 </tr>

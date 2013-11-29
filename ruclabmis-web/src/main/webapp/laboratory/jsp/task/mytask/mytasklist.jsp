@@ -44,12 +44,12 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-<span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
-                                                         style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;任务完成时间:<input type="text" name="endTIme" id="endTime" value=""
-                                                           style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
-        src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
+                                                                                     style="width:100px;"/></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;任务完成时间:<input type="text" name="endTIme" id="endTime" value=""
+                                                                                       style="width:100px;"/></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
+                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -70,19 +70,16 @@
                                                                                     width="14"
                                                                                     height="14"/></div>
                                                                         </td>
-                                                                        <td width="94%" valign="bottom"><span
-                                                                                class="STYLE1"
-                                                                                style="white-space:nowrap">任务列表</span>
+                                                                        <td width="94%" valign="bottom">
+                                                                            <span class="STYLE1" style="white-space:nowrap">任务列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -99,9 +96,6 @@
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
 
-                                                    <td width="20" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任务名称</span></div>
                                                     </td>
@@ -123,11 +117,14 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">评分</span></div>
                                                     </td>
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">详细</span></div>
+                                                    </td>
+
                                                 </tr>
 
 
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20">12</td>
                                                     <td>实验设备部署</td>
                                                     <td>2012-01-12</td>
 
@@ -135,11 +132,13 @@
 
                                                     <td>设备部署帮助手册</td>
                                                     <td>设备易损，注意安全</td>
-                                                    <td><input type="text" value="20" style="width:20px">%<input
-                                                            type="button" value="保存" class="button"
-                                                            onclick="score();"/></td>
-                                                    <td><input type="button" value="详细" class="button"
-                                                               onclick="score();"/></td>
+                                                    <td>80%</td>
+                                                    <td>未完成</td>
+                                                    <td><a href="toUpdate?id=6">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
+
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -148,9 +147,17 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
-                                                        <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+                                                        <td>${item.limitTime}</td>
+                                                        <td>${item.content}</td>
+                                                        <td>${item.annex}</td>
+                                                        <td>${item.completeness}</td>
+                                                        <td>${item.score}</td>
+                                                        <td><a href="toUpdate?id=6">
+                                                            <img src="../../../../images/edit_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
+
 
                                                     </tr>
                                                 </c:forEach>
