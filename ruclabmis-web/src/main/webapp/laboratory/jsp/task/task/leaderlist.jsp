@@ -22,6 +22,10 @@
             document.listForm.action="/laboratory/jsp/task/task/deleteTask?taskId="+taskId;
             document.listForm.submit();
         }
+        function score(taskId){
+            document.listForm.action="/laboratory/jsp/task/task/toScore?taskId="+taskId;
+            document.listForm.submit();
+        }
     </script>
 
 </head>
@@ -159,7 +163,7 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
@@ -178,9 +182,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="2" data-tt-parent-id="jby">
@@ -191,9 +195,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center" data-tt-id="gfx" data-tt-parent-id="rjgc">
@@ -209,9 +213,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="8" data-tt-parent-id="gfx">
@@ -222,9 +226,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9" data-tt-parent-id="gfx">
@@ -235,9 +239,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center" data-tt-id="wlgc">
@@ -259,9 +263,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
 
                             </tr>
@@ -280,9 +284,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
 
                             </tr>
@@ -297,9 +301,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center" data-tt-id="xwr" data-tt-parent-id="wlgc">
@@ -320,9 +324,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center"  data-tt-id="99" data-tt-parent-id="xwr">
@@ -335,9 +339,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <tr bgcolor="#ffffff" align="center" data-tt-id="100" data-tt-parent-id="xwr">
@@ -350,9 +354,9 @@
                                 <td>设备部署帮助手册</td>
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
-                                <td><input type="button" value="评分" class="button" onclick="score();"/>
+                                <td><input type="button" value="评分" class="button" onclick="score('');"/>
                                     <input type="button" value="编辑" class="button" onclick="update('');"/>
-                                    <input type="button" value="删除" class="button" onclick="delete('');"/>
+                                    <input type="button" value="删除" class="button" onclick="deleteTask('');"/>
                                 </td>
                             </tr>
                             <c:forEach items="${organizations}" var="item">

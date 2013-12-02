@@ -790,7 +790,13 @@ public class PrototypeTest {
 	@RequestMapping("jsp/task/task/deleteTask")
 	public ModelAndView toDeleteTask(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/list");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
+		return mav;
+	}
+	@RequestMapping("jsp/task/task/toScore")
+	public ModelAndView toScore(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderscore");
 		return mav;
 	}
 }

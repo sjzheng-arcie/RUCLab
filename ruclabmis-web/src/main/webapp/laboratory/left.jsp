@@ -69,9 +69,10 @@
                             <shiro:hasRole name="student">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
-                                <li><a href="jsp/experiment/experimentpaper/myexperimentlist" onfocus="toFocus(this)"
-                                       target="main">我的实验课程</a></li>
+
                             </shiro:hasRole>
+                                <li><a href="jsp/experiment/experiment/myexperimentlist" onfocus="toFocus(this)"
+                                   target="main">我的实验课程</a></li>
 
                         </ul>
                     </div>

@@ -25,7 +25,7 @@
         <img src="../../../../images/left-top-right.gif" width="17" height="29"/>
     </td>
     <td valign="top" background="../../../../images/content-bg.gif">
-        <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
+        <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg">
             <tr>
                 <td height="31">
                     <div class="titlebt">考核管理 > 任务评分</div>
@@ -202,7 +202,7 @@
                                             <input name="rsourceSpent" id="rsourceSpent" onblur="" class="text"
                                                    style="width:154px" maxlength="20" value="9" readonly/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span>
+                                            <span style="color:red;" id="errMsg_resource_spent"></span>
                                         </td>
 
                                     </tr>
@@ -213,7 +213,7 @@
                                             <input name="integrity" id="integrity" onblur="" class="text"
                                                    style="width:154px" maxlength="20" value="8" readonly/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
-                                            <span style="color:red;" id="errMsg_us_sname"></span>
+                                            <span style="color:red;" id="errMsg_totaly_score"></span>
                                         </td>
                                         <td nowrap align="right">评分人姓名:</td>
                                         <td nowrap>
@@ -280,14 +280,6 @@
                 <tr>
                     <td valign="top" class="STYLE10">
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;评分人:<input type="text" name="searchB1"
-                                                                                id="searchB1" value=""
-                                                                                style="width:100px;"/></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
-                                                                        onclick="findInfo()"><img
-                                src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
-
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
                                 <td height="30">
@@ -303,30 +295,15 @@
                                                                     <td width="6%" height="19" valign="bottom">
                                                                         <div align="center"><img
                                                                                 src="../../../../images/tb.gif"
-                                                                                width="14"
-                                                                                height="14"/></div>
+                                                                                width="14"height="14"/></div>
                                                                     </td>
-                                                                    <td width="94%" valign="bottom"><span class="STYLE1"
-                                                                                                          style="white-space:nowrap">组织结构</span>
+                                                                    <td width="94%" valign="bottom">
+                                                                        <span class="STYLE1"style="white-space:nowrap">组织结构</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
                                                         </td>
                                                         <td>
-                                                            <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
-                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -341,12 +318,6 @@
                                         <table width="100%" border="0" cellpadding="0" cellspacing="1"
                                                bgcolor="#a8c7ce">
                                             <tr>
-                                                <td width="200" height="20" bgcolor="d3eaef">
-
-                                                </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                    <div align="center"><span class="STYLE10">序号</span></div>
-                                                </td>
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">评分人</span></div>
                                                 </td>
@@ -365,32 +336,23 @@
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">整体评分</span></div>
                                                 </td>
-
-
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>1</td>
                                                 <td>张翼德</td>
-
                                                 <td>6</td>
                                                 <td>7</td>
                                                 <td>8</td>
                                                 <td>9</td>
                                                 <td>8</td>
-
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="${item.id}"
-                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"value="${item.id}"
+                                                        onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
                                                     <td>${item.id}</td>
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
-
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>
