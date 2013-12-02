@@ -6,13 +6,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script src="jquery.min.js"></script>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <script src="jquery.min.js"></script>
+
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/laboratory/jsp/task/task/leaderlist';
+        function update(taskId){
+            document.listForm.action="/laboratory/jsp/task/task/update?taskId="+taskId;
+            document.listForm.submit();
+        }
+        function deleteTask(taskId){
+            document.listForm.action="/laboratory/jsp/task/task/deleteTask?taskId="+taskId;
+            document.listForm.submit();
+        }
     </script>
 
 </head>
@@ -67,18 +76,23 @@
                                             </td>
                                             <td>
                                                 <div align="right">
-                                    <span class="STYLE1" style="white-space:nowrap">
-                                        <a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                        <a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
-                                                                               height="10"
-                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                        <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                                               height="10"
-                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                    </span>
+                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                        <a href="add.html">
+                                                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                <span class="STYLE1">新增</span>
+                                                        </a>
+                                                        &nbsp;
+                                                        <a href="#" onclick="toUpdate();">
+                                                            <img src="../../../../images/edit_min.gif" width="10"height="10" border="0"/>
+                                                                <span class="STYLE1">修改</span>
+                                                        </a>
+                                                        &nbsp;
+                                                        <a href="#" onclick="toDelete();">
+                                                            <img src="../../../../images/del_min.gif" width="10"height="10"border="0"/>
+                                                            <span class="STYLE1">删除</span>
+                                                        </a>
+                                                        &nbsp;&nbsp;
+                                                    </span>
                                                 </div>
                                             </td>
                                         </tr>
@@ -146,7 +160,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -165,7 +179,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -178,7 +192,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -196,7 +210,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -209,7 +223,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -222,7 +236,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -246,7 +260,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
 
@@ -267,7 +281,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
 
@@ -284,7 +298,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -307,7 +321,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -322,7 +336,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>
@@ -337,7 +351,7 @@
                                 <td>设备易损，注意安全</td>
                                 <td>30%</td>
                                 <td><input type="button" value="评分" class="button" onclick="score();"/>
-                                    <input type="button" value="编辑" class="button" onclick="update();"/>
+                                    <input type="button" value="编辑" class="button" onclick="update('');"/>
                                     <input type="button" value="删除" class="button" onclick="delete('');"/>
                                 </td>
                             </tr>

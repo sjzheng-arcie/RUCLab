@@ -30,11 +30,8 @@ public class LoginController {
 	public String login(@PathVariable String system,HttpServletRequest request) {
 		String result = "/login";
 		String userSn = request.getParameter("username");
-
 		String password = CipherUtil.generatePassword(request.getParameter("password"));
-
 		UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
-
 		Subject currentUser = SecurityUtils.getSubject();
 		if(system.equals("equipment")){
 			if (!currentUser.isAuthenticated()) {
@@ -44,27 +41,20 @@ public class LoginController {
 				} catch (UnknownAccountException e) {
 					request.setAttribute("userNameNotExist", "* 用户名不存在");
 					request.setAttribute("nonexistUserName", userSn);
-
 					result = "equipment/login";
 				} catch (IncorrectCredentialsException e) {
 					request.setAttribute("passwordNotMatch", "* 密码错误");
-
 					request.setAttribute("nonexistUserName", userSn);
 					result = "equipment/login";
 				}
 			}
 			if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
-
-
 				result = "redirect:/equipment/index";
 			} else if (currentUser.hasRole("teacher")) {
-
 				result = "redirect:/equipment/teacher_index";
 			} else if (currentUser.hasRole("leader")) {
-
 				result = "redirect:/equipment/leader_index";
 			} else if (currentUser.hasRole("equipment_admin")) {
-
 				result = "redirect:/equipment/admin_index";
 			}
 		}else {
@@ -100,7 +90,6 @@ public class LoginController {
 		}
 		return result;
 	}
-
 	@RequestMapping("/{system}/logout")
 	public String logout(@PathVariable String system,HttpServletRequest request) {
 		String result = "redirect:/"+system+"/login";

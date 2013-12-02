@@ -35,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">考核管理 > 添加工作任务</div>
+                            <div class="titlebt">考核管理 > 修改工作任务</div>
                         </td>
                     </tr>
                 </table>
@@ -63,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加任务</span></td>
+                                                                    class="STYLE1">修改任务</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>

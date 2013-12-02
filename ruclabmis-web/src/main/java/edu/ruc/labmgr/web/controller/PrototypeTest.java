@@ -746,7 +746,7 @@ public class PrototypeTest {
 		return mav;
 	}
 	@RequestMapping("jsp/task/mytask/toUpdate")
-	public ModelAndView toUpdateTask(HttpServletRequest request) {
+	public ModelAndView toUpdateMyTask(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/mytask/update");
 		return mav;
@@ -779,6 +779,18 @@ public class PrototypeTest {
 	public ModelAndView leaderTaskList(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
+		return mav;
+	}
+	@RequestMapping("jsp/task/task/update")
+	public ModelAndView toUpdateTask(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/update");
+		return mav;
+	}
+	@RequestMapping("jsp/task/task/deleteTask")
+	public ModelAndView toDeleteTask(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/list");
 		return mav;
 	}
 }
