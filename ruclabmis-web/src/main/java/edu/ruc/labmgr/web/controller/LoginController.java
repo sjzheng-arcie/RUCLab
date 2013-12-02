@@ -17,7 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import javax.servlet.http.HttpServletRequest;
 
 @Controller
-@RequestMapping("/")
+@RequestMapping("/login")
 public class LoginController {
     private static Logger logger = LoggerFactory.getLogger(LoginController.class);
     @Autowired
@@ -92,7 +92,7 @@ public class LoginController {
 	}
 	@RequestMapping("/{system}/logout")
 	public String logout(@PathVariable String system,HttpServletRequest request) {
-		String result = "redirect:/"+system+"/login";
+		String result = "redirect:/login/"+system+"/login";
 		Subject currentUser = SecurityUtils.getSubject();
 		currentUser.logout();
 		return result;

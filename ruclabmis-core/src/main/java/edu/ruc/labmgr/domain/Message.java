@@ -17,6 +17,26 @@ public class Message {
 
     private Boolean type;
 
+	public User getSender() {
+		return sender;
+	}
+
+	public void setSender(User sender) {
+		this.sender = sender;
+	}
+
+	private User sender;
+
+	public User getReceiver() {
+		return receiver;
+	}
+
+	public void setReceiver(User receiver) {
+		this.receiver = receiver;
+	}
+
+	private User receiver;
+
     public Integer getId() {
         return id;
     }

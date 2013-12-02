@@ -17,6 +17,17 @@ public class Announcement {
 
     private Boolean type;
 
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+
+	private User user;
+
     public Integer getId() {
         return id;
     }

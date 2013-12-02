@@ -9,6 +9,10 @@
     <result column="sendtime" jdbcType="TIMESTAMP" property="sendtime" />
     <result column="ifread" jdbcType="BIT" property="ifread" />
     <result column="type" jdbcType="BIT" property="type" />
+      <association property="sender" column="sender_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
+      <association property="receiver" column="receiver_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

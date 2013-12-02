@@ -9,6 +9,8 @@
     <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
     <result column="publish_limit" jdbcType="INTEGER" property="publishLimit" />
     <result column="type" jdbcType="BIT" property="type" />
+      <association property="user" column="publisher_Id" javaType="User"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

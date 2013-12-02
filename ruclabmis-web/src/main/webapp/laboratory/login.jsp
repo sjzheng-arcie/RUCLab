@@ -55,7 +55,7 @@
     </script>
 
 
-    <link href="../images/skin.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/images/skin.css" rel="stylesheet" type="text/css">
 </head>
 
 
@@ -85,7 +85,7 @@
                                             <td height="149">&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td height="200" align="right" valign="top"><img src="../images/logo_lab.png"
+                                            <td height="200" align="right" valign="top"><img src="${pageContext.request.contextPath}/images/logo_lab.png"
                                                                                             width="279" height="68">
                                             </td>
                                     </table>
@@ -108,7 +108,7 @@
                                            height="328">
                                         <tr>
                                             <td height="164" colspan="2" align="middle">
-                                                <form name="myform" action="/laboratory/excutelogin" method="post">
+                                                <form name="myform" action="/login/laboratory/excutelogin" method="post">
                                                     <table cellSpacing="0" cellPadding="0" width="100%" border="0"
                                                            height="143" id="table212">
                                                         <tr>
@@ -152,7 +152,7 @@
                                         </tr>
                                         <tr>
                                             <td width="433" height="164" align="right" valign="bottom"><img
-                                                    src="../images/login-wel.gif" width="242" height="138"></td>
+                                                    src="${pageContext.request.contextPath}/images/login-wel.gif" width="242" height="138"></td>
                                             <td width="57" align="right" valign="bottom">&nbsp;</td>
                                         </tr>
                                     </table>

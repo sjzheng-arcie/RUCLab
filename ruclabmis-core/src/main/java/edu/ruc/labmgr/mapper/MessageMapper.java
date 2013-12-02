@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface MessageMapper {
-    int countByExample(MessageCriteria example);
+    int countByCriteria(MessageCriteria example);
 
     int deleteByExample(MessageCriteria example);
 
@@ -17,7 +17,7 @@ public interface MessageMapper {
 
     int insertSelective(Message record);
 
-    List<Message> selectByExampleWithRowbounds(MessageCriteria example, RowBounds rowBounds);
+    List<Message> selectByCriteriaWithRowbounds(MessageCriteria example, RowBounds rowBounds);
 
     List<Message> selectByExample(MessageCriteria example);
 

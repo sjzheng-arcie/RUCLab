@@ -14,8 +14,8 @@
     <li>
         <h1>您无权访问该页面</h1>
         <h1>
-            <p><a target="_top" href="/equipment/login">登录 设备管理系统</a></p>
-            <p><a target="_top" href="/laboratory/login">登录 实验室管理平台</a></p>
+            <p><a target="_top" href="/login/equipment/login">登录 设备管理系统</a></p>
+            <p><a target="_top" href="/login/laboratory/login">登录 实验室管理平台</a></p>
         </h1>
     </li>
 </ul>

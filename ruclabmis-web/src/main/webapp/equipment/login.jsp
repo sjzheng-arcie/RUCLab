@@ -55,7 +55,7 @@
     </script>
 
 
-    <link href="../images/skin.css" rel="stylesheet" type="text/css">
+    <link href="${pageContext.request.contextPath}/images/skin.css" rel="stylesheet" type="text/css">
 </head>
 <body>
 <table width="100%" height="166" border="0" cellpadding="0" cellspacing="0">
@@ -83,7 +83,7 @@
                                             <td height="149">&nbsp;</td>
                                         </tr>
                                         <tr>
-                                            <td height="190" align="right" valign="top"><img src="../images/logo.png"
+                                            <td height="190" align="right" valign="top"><img src="${pageContext.request.contextPath}/images/logo.png"
                                                                                              width="279" height="68">
                                             </td>
                                         </tr>
@@ -107,7 +107,7 @@
                                                        id="table211" height="328">
                                                     <tr>
                                                         <td height="164" colspan="2" align="middle">
-                                                            <form name="myform" action="/equipment/excutelogin"
+                                                            <form name="myform" action="/login/equipment/excutelogin"
                                                                   method="post">
                                                                 <table cellSpacing="0" cellPadding="0" width="100%"
                                                                        border="0" height="143" id="table212">
@@ -158,7 +158,7 @@
                                                     </tr>
                                                     <tr>
                                                         <td width="433" height="164" align="right" valign="bottom"><img
-                                                                src="../images/login-wel.gif" width="242" height="138">
+                                                                src="${pageContext.request.contextPath}/images/login-wel.gif" width="242" height="138">
                                                         </td>
                                                         <td width="57" align="right" valign="bottom">&nbsp;</td>
                                                     </tr>
