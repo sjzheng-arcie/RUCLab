@@ -1,21 +1,273 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.ruc.labmgr.mapper.AnnouncementMapper">
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Announcement">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="publisher_id" jdbcType="INTEGER" property="publisherId" />
+    <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+    <result column="publish_limit" jdbcType="INTEGER" property="publishLimit" />
+    <result column="type" jdbcType="BIT" property="type" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, title, content, publisher_id, publish_time, publish_limit, type
+  </sql>
+  <select id="selectByExample" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from announcement
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from announcement
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria">
+    delete from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.Announcement">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into announcement (title, content, publisher_id, 
+      publish_time, publish_limit, type
+      )
+    values (#{title,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{publisherId,jdbcType=INTEGER}, 
+      #{publishTime,jdbcType=TIMESTAMP}, #{publishLimit,jdbcType=INTEGER}, #{type,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Announcement">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into announcement
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        title,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="publisherId != null">
+        publisher_id,
+      </if>
+      <if test="publishTime != null">
+        publish_time,
+      </if>
+      <if test="publishLimit != null">
+        publish_limit,
+      </if>
+      <if test="type != null">
+        type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="title != null">
+        #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null">
+        #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishLimit != null">
+        #{publishLimit,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        #{type,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultType="java.lang.Integer">
+    select count(*) from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update announcement
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null">
+        title = #{record.title,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.publisherId != null">
+        publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="record.publishTime != null">
+        publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.publishLimit != null">
+        publish_limit = #{record.publishLimit,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null">
+        type = #{record.type,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update announcement
+    set id = #{record.id,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      publisher_id = #{record.publisherId,jdbcType=INTEGER},
+      publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
+      publish_limit = #{record.publishLimit,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Announcement">
+    update announcement
+    <set>
+      <if test="title != null">
+        title = #{title,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="publisherId != null">
+        publisher_id = #{publisherId,jdbcType=INTEGER},
+      </if>
+      <if test="publishTime != null">
+        publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="publishLimit != null">
+        publish_limit = #{publishLimit,jdbcType=INTEGER},
+      </if>
+      <if test="type != null">
+        type = #{type,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Announcement">
+    update announcement
+    set title = #{title,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      publisher_id = #{publisherId,jdbcType=INTEGER},
+      publish_time = #{publishTime,jdbcType=TIMESTAMP},
+      publish_limit = #{publishLimit,jdbcType=INTEGER},
+      type = #{type,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from announcement
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Announcement">
-        <id column="id" property="id" jdbcType="INTEGER"/>
-        <result column="title" property="title" jdbcType="VARCHAR"/>
-        <result column="content" property="content" jdbcType="VARCHAR"/>
-        <result column="publisher_id" property="publisherId" jdbcType="INTEGER"/>
-        <result column="publish_time" property="publishTime" jdbcType="TIMESTAMP"/>
-        <result column="publish_limit" property="publishLimit" jdbcType="INTEGER"/>
-        <association property="user" column="publisher_Id" javaType="User"
-                     select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="title" jdbcType="VARCHAR" property="title" />
+        <result column="content" jdbcType="VARCHAR" property="content" />
+        <result column="publisher_id" jdbcType="INTEGER" property="publisherId" />
+        <result column="publish_time" jdbcType="TIMESTAMP" property="publishTime" />
+        <result column="publish_limit" jdbcType="INTEGER" property="publishLimit" />
+        <association column="publisher_Id" javaType="User" property="user" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>
             <foreach collection="oredCriteria" item="criteria" separator="or">
                 <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
                         <foreach collection="criteria.criteria" item="criterion">
                             <choose>
                                 <when test="criterion.noValue">
@@ -29,8 +281,7 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
-                                             separator=",">
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -45,7 +296,7 @@
         <where>
             <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
                 <if test="criteria.valid">
-                    <trim prefix="(" suffix=")" prefixOverrides="and">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
                         <foreach collection="criteria.criteria" item="criterion">
                             <choose>
                                 <when test="criterion.noValue">
@@ -59,8 +310,7 @@
                                 </when>
                                 <when test="criterion.listValue">
                                     and ${criterion.condition}
-                                    <foreach collection="criterion.value" item="listItem" open="(" close=")"
-                                             separator=",">
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
                                         #{listItem}
                                     </foreach>
                                 </when>
@@ -74,23 +324,23 @@
     <sql id="Base_Column_List">
     id, title, content, publisher_id, publish_time, publish_limit
   </sql>
-    <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria">
+    <select id="selectByCriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from announcement
         <if test="_parameter != null">
-            <include refid="Criteria_Where_Clause"/>
+            <include refid="Criteria_Where_Clause" />
         </if>
         <if test="orderByClause != null">
             order by ${orderByClause}
         </if>
     </select>
-    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
         select
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from announcement
         where id = #{id,jdbcType=INTEGER}
     </select>
@@ -101,11 +351,11 @@
     <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria">
         delete from announcement
         <if test="_parameter != null">
-            <include refid="Criteria_Where_Clause"/>
+            <include refid="Criteria_Where_Clause" />
         </if>
     </delete>
     <insert id="insert" parameterType="edu.ruc.labmgr.domain.Announcement">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into announcement (id, title, content,
@@ -116,7 +366,7 @@
         )
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Announcement">
-        <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into announcement
@@ -161,11 +411,10 @@
             </if>
         </trim>
     </insert>
-    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria"
-            resultType="java.lang.Integer">
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultType="java.lang.Integer">
         select count(*) from announcement
         <if test="_parameter != null">
-            <include refid="Criteria_Where_Clause"/>
+            <include refid="Criteria_Where_Clause" />
         </if>
     </select>
     <update id="updateByCriteriaSelective" parameterType="map">
@@ -191,7 +440,7 @@
             </if>
         </set>
         <if test="_parameter != null">
-            <include refid="Update_By_Criteria_Where_Clause"/>
+            <include refid="Update_By_Criteria_Where_Clause" />
         </if>
     </update>
     <update id="updateByCriteria" parameterType="map">
@@ -203,7 +452,7 @@
         publish_time = #{record.publishTime,jdbcType=TIMESTAMP},
         publish_limit = #{record.publishLimit,jdbcType=INTEGER}
         <if test="_parameter != null">
-            <include refid="Update_By_Criteria_Where_Clause"/>
+            <include refid="Update_By_Criteria_Where_Clause" />
         </if>
     </update>
     <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Announcement">
@@ -236,16 +485,15 @@
       publish_limit = #{publishLimit,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria"
-            id="selectByCriteriaWithRowbounds">
+    <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.AnnouncementCriteria" resultMap="BaseResultMap">
         select
         <if test="distinct">
             distinct
         </if>
-        <include refid="Base_Column_List"/>
+        <include refid="Base_Column_List" />
         from announcement
         <if test="_parameter != null">
-            <include refid="Criteria_Where_Clause"/>
+            <include refid="Criteria_Where_Clause" />
         </if>
         <if test="orderByClause != null">
             order by ${orderByClause}

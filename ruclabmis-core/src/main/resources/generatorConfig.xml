@@ -102,9 +102,9 @@
         <!--<table tableName="major">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <table tableName="organization">
+        <!--<table tableName="organization">
         <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
-        </table>
+        </table>-->
         <!--<table tableName="position">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
@@ -135,12 +135,12 @@
         <!--<table tableName="title">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="announcement">-->
-        <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
-        <!--<table tableName="message">-->
-        <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
+        <!--<table tableName="announcement">
+        <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
+        <!--<table tableName="message">
+        <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
 
         <!--<table tableName="view_apply_equipment" />-->
         <!--<table tableName="view_equipment" />-->

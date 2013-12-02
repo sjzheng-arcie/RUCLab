@@ -44,14 +44,17 @@
                         </table>
                         <ul class="MM">
 
-                            <li><a href="../equipment/jsp/announcement/remind/remind?id=0" onfocus="toFocus(this)" target="main">我的短消息</a>
+                            <li><a href="../equipment/jsp/announcement/remind/remind?id=0" onfocus="toFocus(this)"
+                                   target="main">我的短消息</a>
                             </li>
-                            <li><a href="../equipment/jsp/announcement/remind/remind?id=1" onfocus="toFocus(this)" target="main">我的通知</a>
+                            <li><a href="../equipment/jsp/announcement/remind/remind?id=1" onfocus="toFocus(this)"
+                                   target="main">我的通知</a>
                             </li>
                             <shiro:hasRole name="teacher,equipment_admin,student">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.html"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
-                                <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
+                                <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)"
+                                       target="main">
                                     我的预约申请</a></li>
                             </shiro:hasRole>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,administrators">
@@ -71,34 +74,36 @@
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
 
                             </shiro:hasRole>
-                                <li><a href="jsp/experiment/experiment/myexperimentlist" onfocus="toFocus(this)"
+                            <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)"
                                    target="main">我的实验课程</a></li>
 
                         </ul>
                     </div>
                 </shiro:hasAnyRoles>
                 <shiro:hasAnyRoles name="equipment_admin,teacher">
-                <h1 class="type"><a href="javascript:void(0)">实验教学管理</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">实验教学管理</a></h1>
 
-                <div class="content">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
-                        </tr>
-                    </table>
-                    <ul class="MM">
-                        <li><a href="jsp/experiment/virtual/list" onfocus="toFocus(this)" target="main">虚拟班级管理</a>
-                        </li>
-                        <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)" target="main">
-                            实验信息管理</a></li>
-                        <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)" target="main">
-                            实验室预约</a></li>
-                        <li><a href="jsp/experiment/report/courselist" onfocus="toFocus(this)" target="main">实验报告管理</a>
-                        </li>
-                        <li><a href="jsp/experiment/achievement/courselist" onfocus="toFocus(this)" target="main">
-                            学期成绩评定</a></li>
-                    </ul>
-                </div>
+                    <div class="content">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
+                            </tr>
+                        </table>
+                        <ul class="MM">
+                            <li><a href="jsp/experiment/virtual/list" onfocus="toFocus(this)" target="main">虚拟班级管理</a>
+                            </li>
+                            <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)" target="main">
+                                实验信息管理</a></li>
+                            <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)"
+                                   target="main">
+                                实验室预约</a></li>
+                            <li><a href="jsp/experiment/report/courselist" onfocus="toFocus(this)"
+                                   target="main">实验报告管理</a>
+                            </li>
+                            <li><a href="jsp/experiment/achievement/courselist" onfocus="toFocus(this)" target="main">
+                                学期成绩评定</a></li>
+                        </ul>
+                    </div>
                 </shiro:hasAnyRoles>
                 <shiro:hasAnyRoles name="equipment_admin,student,teacher">
                     <h1 class="type"><a href="javascript:void(0)">教学资源管理</a></h1>
@@ -133,29 +138,25 @@
                     </div>
                 </shiro:hasAnyRoles>
                 <shiro:hasAnyRoles name="administrators">
-                <h1 class="type"><a href="javascript:void(0)">常用功能</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">常用功能</a></h1>
 
-                <div class="content">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
-                        </tr>
-                    </table>
-                    <ul class="MM">
-                        <li><a href="../equipment/jsp/announcement/remind/remind?id=2" onfocus="toFocus(this)" target="main">发布公告</a>
-                        </li>
-                        <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>
-                        </li>
-                        <li><a href="jsp/bas/student/list" onfocus="toFocus(this)" target="main">学生信息管理</a>
-                        </li>
-                    </ul>
-                </div>
-
+                    <div class="content">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
+                            </tr>
+                        </table>
+                        <ul class="MM">
+                            <li><a href="../equipment/jsp/announcement/remind/remind?id=2" onfocus="toFocus(this)"
+                                   target="main">发布公告</a>
+                            </li>
+                            <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>
+                            </li>
+                            <li><a href="jsp/bas/student/list" onfocus="toFocus(this)" target="main">学生信息管理</a>
+                            </li>
+                        </ul>
+                    </div>
                 </shiro:hasAnyRoles>
-
-
-
-
             </div>
             <script type="text/javascript">
                 var contents = document.getElementsByClassName('content');

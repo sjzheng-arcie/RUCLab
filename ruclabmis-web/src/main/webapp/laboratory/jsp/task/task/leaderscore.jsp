@@ -12,6 +12,10 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/laboratory/jsp/task/task/leaderscore';
+        function save(){
+            document.listForm.action="/laboratory/jsp/task/task/save?taskId=${taskId}";
+            document.listForm.submit();
+        }
     </script>
 
 </head>
@@ -77,27 +81,28 @@
                         <tr bgcolor="#FFFFFF">
                             <td bgcolor="#FFFFFF">
                                 <table cellpadding="10" cellspacing="0"
-                                       style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
+                                       style="width:100%;height:100%;font-size:12px;
+                                       font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        border="1px" bgcolor="#E3E9EE">
                                     <tr height="">
                                         <td nowrap align="right">任务编号:</td>
                                         <td nowrap>
-                                            任务2012
+                                            ${task.taskNo}
                                         </td>
                                         <td nowrap align="right">任务名称:</td>
                                         <td nowrap>
-                                            老坏设备更新
+                                            ${task.taskName}
                                         </td>
 
                                     </tr>
                                     <tr>
                                         <td nowrap align="right">负责人:</td>
                                         <td nowrap>
-                                            张春华
+                                            ${task.head}
                                         </td>
                                         <td nowrap align="right">到期时间:</td>
                                         <td nowrap>
-                                            2012-12-12
+                                            ${task.limitTime}
                                         </td>
 
                                     </tr>
@@ -106,18 +111,16 @@
                                         <td nowrap align="right">任务内容:</td>
 
                                         <td colspan="3">
-                                            部署新设备
+                                            ${task.taskContent}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td nowrap align="right">备注:</td>
 
                                         <td colspan="3">
-                                            由于实验室没有空位，不能一次部署完毕
+                                            ${task.taskNote}
                                         </td>
                                     </tr>
-
-
                                 </table>
                             </td>
                         </tr>
@@ -169,20 +172,23 @@
                         <tr bgcolor="#FFFFFF">
                             <td bgcolor="#FFFFFF">
                                 <table border="0" cellpadding="2" cellspacing="1"
-                                       style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
+                                       style="width:100%;height:100%;font-size:12px;
+                                       font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
                                     <tr>
                                         <td nowrap align="right">完成度评分:</td>
                                         <td nowrap>
                                             <input name="completeness" id="completeness" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="6" readonly/>
+                                                   style="width:154px" maxlength="20"
+                                                   value="${taskScore.completeness}"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
                                         </td>
                                         <td nowrap align="right">即时度评分:</td>
                                         <td nowrap>
                                             <input name="instantDegree" id="instantDegree" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="7" readonly/>
+                                                   style="width:154px" maxlength="20"
+                                                   value="${taskScore.instantDegree}"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
                                         </td>
@@ -192,15 +198,16 @@
                                         <td nowrap align="right">完成质量评分:</td>
                                         <td nowrap>
                                             <input name="quality" id="quality" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="8" readonly/>
+                                                   style="width:154px" maxlength="20" value="${taskScore.quality}"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
 
                                         </td>
                                         <td nowrap align="right">花费资源评分:</td>
                                         <td nowrap>
-                                            <input name="rsourceSpent" id="rsourceSpent" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="9" readonly/>
+                                            <input name="resourceSpent" id="resourceSpent" onblur="" class="text"
+                                                   style="width:154px" maxlength="20"
+                                                   value="${taskScore.resourceSpent}"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_resource_spent"></span>
                                         </td>
@@ -211,15 +218,15 @@
                                         <td nowrap align="right">任务整体评分:</td>
                                         <td nowrap>
                                             <input name="integrity" id="integrity" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="8" readonly/>
+                                                   style="width:154px" maxlength="20" value="${taskScore.integrity}"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_totaly_score"></span>
                                         </td>
                                         <td nowrap align="right">评分人姓名:</td>
                                         <td nowrap>
-                                            <input name="judes" id="judes" onblur="" class="text"
+                                            <input name="judesName" id="judesName" onblur="" class="text"
                                                    style="width:154px" maxlength="20" valid="required|isAccount"
-                                                   value="徐长卿" readonly/>
+                                                   value="${taskScore.judesName}"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span>
                                         </td>
@@ -255,7 +262,6 @@
                                                                               width="16" height="17"/></td>
 </tr>
 </table>
-
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
@@ -272,7 +278,6 @@
         <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
                 src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
     </tr>
-
     <tr>
         <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
         <td valign="top" bgcolor="#F7F8F9">
@@ -295,15 +300,15 @@
                                                                     <td width="6%" height="19" valign="bottom">
                                                                         <div align="center"><img
                                                                                 src="../../../../images/tb.gif"
-                                                                                width="14"height="14"/></div>
+                                                                                width="14" height="14"/></div>
                                                                     </td>
                                                                     <td width="94%" valign="bottom">
-                                                                        <span class="STYLE1"style="white-space:nowrap">组织结构</span>
+                                                                        <span class="STYLE1" style="white-space:nowrap">
+                                                                            组织结构
+                                                                        </span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
-                                                        </td>
-                                                        <td>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -347,12 +352,16 @@
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"value="${item.id}"
-                                                        onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.id}</td>
-                                                    <td>${item.sn}</td>
                                                     <td>${item.name}</td>
+                                                    <td>${item.complenessScore}</td>
+                                                    <td>${item.instantScore}</td>
+                                                    <td>${item.QualityScore}</td>
+                                                    <td>${item.spentScore}</td>
+                                                    <td>${item.totalScore}</td>
                                                 </tr>
                                             </c:forEach>
                                             <tr height="16px"></tr>

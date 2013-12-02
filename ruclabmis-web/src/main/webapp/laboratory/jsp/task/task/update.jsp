@@ -14,7 +14,7 @@
 
     <script>
         function save(){
-            document.mainForm.href="jsp/task/task/add";
+            document.mainForm.href="jsp/task/task/saveupdate";
             document.mainForm.submit();
         }
 

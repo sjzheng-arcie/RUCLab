@@ -787,6 +787,12 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/update");
 		return mav;
 	}
+	@RequestMapping("jsp/task/task/saveupdate")
+	public ModelAndView toSaveUpdateTask(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
+		return mav;
+	}
 	@RequestMapping("jsp/task/task/deleteTask")
 	public ModelAndView toDeleteTask(HttpServletRequest request) {
 
@@ -797,6 +803,12 @@ public class PrototypeTest {
 	public ModelAndView toScore(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderscore");
+		return mav;
+	}
+	@RequestMapping("jsp/task/task/save")
+	public ModelAndView toSaveScore(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
 		return mav;
 	}
 }

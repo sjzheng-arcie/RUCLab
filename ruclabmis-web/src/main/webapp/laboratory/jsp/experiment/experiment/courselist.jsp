@@ -87,11 +87,11 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-
+                                            <shiro:hasRole name="teacher">
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
-
+                                            </shiro:hasRole>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
@@ -102,8 +102,9 @@
 
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-
+                                                <shiro:hasRole name="teacher">
                                                     <td title="">软件工程虚拟班级一</td>
+                                                </shiro:hasRole>
                                                     <td title="">软件工程</td>
 
 
@@ -113,10 +114,12 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td>${item.className}</td>
+                                                        <shiro:hasRole name="teacher">
+                                                            <td>${item.className}</td>
+                                                        </shiro:hasRole>
                                                         <td>${item.courseName}</td>
-                                                        <td title=""><a
-                                                                href="myexperimentlist?courseId=${item.id}">查看实验</a>
+                                                        <td title="">
+                                                            <a href="myexperimentlist?courseId=${item.id}">查看实验</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

@@ -15,9 +15,7 @@ public class Message {
 
     private Boolean ifread;
 
-    private User sender;
-
-    private User receiver;
+    private Boolean type;
 
     public Integer getId() {
         return id;
@@ -67,20 +65,11 @@ public class Message {
         this.ifread = ifread;
     }
 
-    public User getSender() {
-        return sender;
+    public Boolean getType() {
+        return type;
     }
 
-    public void setSender(User sender) {
-        this.sender = sender;
+    public void setType(Boolean type) {
+        this.type = type;
     }
-
-    public User getReceiver() {
-        return receiver;
-    }
-
-    public void setReceiver(User receiver) {
-        this.receiver = receiver;
-    }
-
 }

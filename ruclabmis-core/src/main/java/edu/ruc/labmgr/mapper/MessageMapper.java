@@ -2,15 +2,14 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Message;
 import edu.ruc.labmgr.domain.MessageCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-import java.util.List;
-
 public interface MessageMapper {
-    int countByCriteria(MessageCriteria criteria);
+    int countByExample(MessageCriteria example);
 
-    int deleteByCriteria(MessageCriteria criteria);
+    int deleteByExample(MessageCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,15 +17,15 @@ public interface MessageMapper {
 
     int insertSelective(Message record);
 
-    List<Message> selectByCriteriaWithRowbounds(MessageCriteria criteria, RowBounds rowBounds);
+    List<Message> selectByExampleWithRowbounds(MessageCriteria example, RowBounds rowBounds);
 
-    List<Message> selectByCriteria(MessageCriteria criteria);
+    List<Message> selectByExample(MessageCriteria example);
 
     Message selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Message record, @Param("criteria") MessageCriteria criteria);
+    int updateByExampleSelective(@Param("record") Message record, @Param("example") MessageCriteria example);
 
-    int updateByCriteria(@Param("record") Message record, @Param("criteria") MessageCriteria criteria);
+    int updateByExample(@Param("record") Message record, @Param("example") MessageCriteria example);
 
     int updateByPrimaryKeySelective(Message record);
 
