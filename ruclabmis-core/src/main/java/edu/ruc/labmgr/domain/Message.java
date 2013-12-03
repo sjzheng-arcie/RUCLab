@@ -15,7 +15,7 @@ public class Message {
 
     private Boolean ifread;
 
-    private Boolean type;
+    private Boolean system;
 
 	public User getSender() {
 		return sender;
@@ -25,8 +25,6 @@ public class Message {
 		this.sender = sender;
 	}
 
-	private User sender;
-
 	public User getReceiver() {
 		return receiver;
 	}
@@ -35,7 +33,10 @@ public class Message {
 		this.receiver = receiver;
 	}
 
+	private User sender;
+
 	private User receiver;
+
 
     public Integer getId() {
         return id;
@@ -85,11 +86,11 @@ public class Message {
         this.ifread = ifread;
     }
 
-    public Boolean getType() {
-        return type;
+    public Boolean getSystem() {
+        return system;
     }
 
-    public void setType(Boolean type) {
-        this.type = type;
+    public void setSystem(Boolean system) {
+        this.system = system;
     }
 }

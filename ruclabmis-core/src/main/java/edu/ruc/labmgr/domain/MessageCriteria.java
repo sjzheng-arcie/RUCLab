@@ -475,63 +475,63 @@ public class MessageCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andSystemIsNull() {
+            addCriterion("system is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andSystemIsNotNull() {
+            addCriterion("system is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Boolean value) {
-            addCriterion("type =", value, "type");
+        public Criteria andSystemEqualTo(Boolean value) {
+            addCriterion("system =", value, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Boolean value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andSystemNotEqualTo(Boolean value) {
+            addCriterion("system <>", value, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Boolean value) {
-            addCriterion("type >", value, "type");
+        public Criteria andSystemGreaterThan(Boolean value) {
+            addCriterion("system >", value, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andSystemGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("system >=", value, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Boolean value) {
-            addCriterion("type <", value, "type");
+        public Criteria andSystemLessThan(Boolean value) {
+            addCriterion("system <", value, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Boolean value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andSystemLessThanOrEqualTo(Boolean value) {
+            addCriterion("system <=", value, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Boolean> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andSystemIn(List<Boolean> values) {
+            addCriterion("system in", values, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Boolean> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andSystemNotIn(List<Boolean> values) {
+            addCriterion("system not in", values, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Boolean value1, Boolean value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andSystemBetween(Boolean value1, Boolean value2) {
+            addCriterion("system between", value1, value2, "system");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andSystemNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("system not between", value1, value2, "system");
             return (Criteria) this;
         }
     }

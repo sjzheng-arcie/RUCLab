@@ -15,18 +15,17 @@ public class Announcement {
 
     private Integer publishLimit;
 
-    private Boolean type;
+    private Boolean system;
 
-
-	public User getUser() {
-		return user;
+	public User getPublisher() {
+		return publisher;
 	}
 
-	public void setUser(User user) {
-		this.user = user;
+	public void setPublisher(User publisher) {
+		this.publisher = publisher;
 	}
 
-	private User user;
+	private User publisher;
 
     public Integer getId() {
         return id;
@@ -76,11 +75,11 @@ public class Announcement {
         this.publishLimit = publishLimit;
     }
 
-    public Boolean getType() {
-        return type;
+    public Boolean getSystem() {
+        return system;
     }
 
-    public void setType(Boolean type) {
-        this.type = type;
+    public void setSystem(Boolean system) {
+        this.system = system;
     }
 }

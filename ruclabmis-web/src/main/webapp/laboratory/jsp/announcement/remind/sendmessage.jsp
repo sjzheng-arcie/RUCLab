@@ -42,7 +42,7 @@
                                 <td align="center" bgcolor="#E3E9EE">
                                     <div id="">
                                         <div class="message">
-                                            <form action="messagecenter/laboratory/jsp/announcement/remind/addMessage"
+                                            <form action="/messagecenter/laboratory/jsp/announcement/remind/addMessage"
                                                   method="post" target="_parent" name="mainForm">
                                                 <table style=" border:1px; width:80%;margin:auto;">
                                                     <tr>

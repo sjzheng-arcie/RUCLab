@@ -4,11 +4,11 @@
 
 <html>
 <head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../../js/util.js"></script>
-    <script type="text/javascript" src="../../../../js/page.js"></script>
+    <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="/js/util.js"></script>
+    <script type="text/javascript" src="/js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script src="/js/valid.js" type=text/javascript></script>
 
     <style type="text/css">
         .message {
@@ -89,7 +89,7 @@
                                                                 <p align="left" style="margin: 10px;font-size: 12px">
                                                                 <span>
                                                                     <a class="announcement"
-                                                                       href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">
+                                                                       href="announcementDetail?announcementDetailId=${item.id}">
                                                                             ${item.title}
                                                                     </a>
                                                                 </span>

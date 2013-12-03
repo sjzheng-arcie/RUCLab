@@ -43,7 +43,7 @@
                                                         <h1 style="text-align: center;margin: 20px">${announcementDetailFlag.title}</h1>
                                                         <hr style="margin: 30px">
                                                         <p style="margin: 30px" align="left">
-                                                            <span>发送人 :  </span><span>${announcementDetailFlag.user.name}</span>
+                                                            <span>发送人 :  </span><span>${announcementDetailFlag.publisher.name}</span>
                                                             <span style="float:right"><fmt:formatDate
                                                                     value="${announcementDetailFlag.publishTime}"></fmt:formatDate></span>
                                                             <span style="float:right;">发布时间 :  </span></p>

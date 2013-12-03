@@ -27,48 +27,40 @@ public class MessageCenterController {
     private TeacherService userService;
 
     private int currPage = 0;
-
-    @RequestMapping("/{system}/jsp/announcement/remind/remind")
-    public ModelAndView pageList(@PathVariable String system,HttpServletRequest request) {
-        currPage = request.getParameter("page") == null ?
-                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
-        String tabId = request.getParameter("id");
-
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
-
-        mav.addObject("tabId", tabId);
-        return mav;
-    }
+//
+//    @RequestMapping("/{system}/jsp/announcement/remind/remind")
+//    public ModelAndView pageList(@PathVariable String system,HttpServletRequest request) {
+//        currPage = request.getParameter("page") == null ?
+//                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+//        String tabId = request.getParameter("id");
+//
+//        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
+//
+//        mav.addObject("tabId", tabId);
+//        return mav;
+//    }
 	@RequestMapping("/{system}/jsp/announcement/remind/messageTab")
-	public ModelAndView showMessageTab(@PathVariable String system,HttpServletRequest request) {
+	public ModelAndView showMessageTab(@PathVariable String system) {
 
 		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messageTab");
-		//mav.addObject("messageLists", pageInfo.getListObject());
-
 		return mav;
 	}
 	@RequestMapping("/{system}/jsp/announcement/remind/sendmessageTab")
-	public ModelAndView sendMessageTab(@PathVariable String system,HttpServletRequest request) {
+	public ModelAndView sendMessageTab(@PathVariable String system) {
 
 		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessageTab");
-		//mav.addObject("messageLists", pageInfo.getListObject());
-
 		return mav;
 	}
 	@RequestMapping("/{system}/jsp/announcement/remind/announcementTab")
-	public ModelAndView showAnnouncementTab(@PathVariable String system,HttpServletRequest request) {
+	public ModelAndView showAnnouncementTab(@PathVariable String system) {
 
 		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcementTab");
-		//mav.addObject("messageLists", pageInfo.getListObject());
-
 		return mav;
 	}
 	@RequestMapping("/{system}/jsp/announcement/remind/addannouncementTab")
-	public ModelAndView showAnnouncementAddTab(@PathVariable String system,HttpServletRequest request) {
+	public ModelAndView showAnnouncementAddTab(@PathVariable String system) {
 
 		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/addannouncementTab");
-		//mav.addObject("messageLists", pageInfo.getListObject());
-
 		return mav;
 	}
 
@@ -84,12 +76,14 @@ public class MessageCenterController {
         messageCriteria.setOrderByClause(" sendtime desc");
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andReceiverIdEqualTo(currentUserId);
-
-
+		if(system.equals("laboratory")){
+			criteria.andSystemEqualTo(true);
+		}else {
+			criteria.andSystemEqualTo(false);
+		}
         PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria, currPage);
 
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
-        //mav.addObject("messageLists", pageInfo.getListObject());
         mav.addObject("pageInfo", pageInfo);
         mav.addObject("fatherPage", fatherPage);
         return mav;
@@ -107,13 +101,17 @@ public class MessageCenterController {
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andReceiverIdEqualTo(userId);
         criteria.andIfreadEqualTo(false);
+		if(system.equals("laboratory")){
+			criteria.andSystemEqualTo(true);
+		}else {
+			criteria.andSystemEqualTo(false);
+		}
 
         PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria, currPage);
         if (pageInfo.getTotalPage() < currPage) {
             pageInfo = messageService.selectListPage(messageCriteria, currPage - 1);
         }
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
-        //mav.addObject("messageLists", pageInfo.getListObject());
         mav.addObject("pageInfo", pageInfo);
         mav.addObject("fatherPage", fatherPage);
         return mav;
@@ -122,7 +120,7 @@ public class MessageCenterController {
     @RequestMapping("/{system}/jsp/announcement/remind/readmessage")
     public ModelAndView showReadMessage(@PathVariable String system,HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
-        ;
+
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
         String fatherPage = request.getParameter("fatherPage");
@@ -132,9 +130,13 @@ public class MessageCenterController {
         criteria.andReceiverIdEqualTo(currentUserId);
         criteria.andIfreadEqualTo(true);
 
+		if(system.equals("laboratory")){
+			criteria.andSystemEqualTo(true);
+		}else {
+			criteria.andSystemEqualTo(false);
+		}
         PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria, currPage);
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
-        //mav.addObject("messageLists", pageInfo.getListObject());
         mav.addObject("pageInfo", pageInfo);
         mav.addObject("fatherPage", fatherPage);
         return mav;
@@ -143,7 +145,7 @@ public class MessageCenterController {
     @RequestMapping("/{system}/jsp/announcement/remind/replyMessage")
     public ModelAndView replyMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessageTab");
         mav.addObject("tabId", 3);
         mav.addObject("replySn", replySn);
 
@@ -162,11 +164,14 @@ public class MessageCenterController {
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andSenderIdEqualTo(currentUserId);
         criteria.andIfreadEqualTo(true);
-
+		if(system.equals("laboratory")){
+			criteria.andSystemEqualTo(true);
+		}else {
+			criteria.andSystemEqualTo(false);
+		}
         PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria, currPage);
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
-        //mav.addObject("messageLists", pageInfo);
-        mav.addObject("pageInfo", pageInfo);
+		mav.addObject("pageInfo", pageInfo);
         mav.addObject("mode", "mode");
         mav.addObject("fatherPage", fatherPage);
         return mav;
@@ -179,9 +184,14 @@ public class MessageCenterController {
 
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
-
+		if(system.equals("laboratory")){
+			criteria.andSystemEqualTo(true);
+		}else {
+			criteria.andSystemEqualTo(false);
+		}
         announcementCriteria.setOrderByClause(" publish_time desc");
-        PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage);
+
+		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage);
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcement");
         mav.addObject("pageInfo", pageInfo);
 
@@ -208,9 +218,9 @@ public class MessageCenterController {
 
     @RequestMapping("/{system}/jsp/announcement/remind/addAnnouncement")
     public ModelAndView addAnnouncement(@PathVariable String system,HttpServletRequest request) {
-        Announcement announcement = initFromRequest(request);
+        Announcement announcement = initFromRequest(request,system);
         int result = serviceAnnouncement.insert(announcement);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcementTab");
         mav.addObject("tabId", 0);
         return mav;
     }
@@ -243,9 +253,9 @@ public class MessageCenterController {
 
     @RequestMapping("/{system}/jsp/announcement/remind/addMessage")
     public ModelAndView addMessage(@PathVariable String system,HttpServletRequest request) {
-        Message message = insertMessageIntoDB(request);
-        int result = messageService.insert(message);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
+        Message message = insertMessageIntoDB(request,system);
+        messageService.insert(message);
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messageTab");
         mav.addObject("tabId", 1);
         return mav;
     }
@@ -254,12 +264,12 @@ public class MessageCenterController {
     public ModelAndView deleteMessage(@PathVariable String system,HttpServletRequest request) {
         int messageId = Integer.parseInt(request.getParameter("deleteMessageId"));
         messageService.deleteById(messageId);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messageTab");
         mav.addObject("tabId", 1);
         return mav;
     }
 
-    private Announcement initFromRequest(HttpServletRequest request) {
+    private Announcement initFromRequest(HttpServletRequest request,String system) {
         int currentUserId = userService.getCurrentUserId();
         Announcement announcement = new Announcement();
         announcement.setContent(request.getParameter("content"));
@@ -269,12 +279,17 @@ public class MessageCenterController {
         } else {
             announcement.setPublishLimit(0);
         }
+		if(system.equals("laboratory")){
+			announcement.setSystem(true);
+		}else{
+			announcement.setSystem(false);
+		}
         announcement.setTitle(request.getParameter("title"));
         announcement.setPublishTime(new Date());
         return announcement;
     }
 
-    private Message insertMessageIntoDB(HttpServletRequest request) {
+    private Message insertMessageIntoDB(HttpServletRequest request,String system) {
         int currentUserId = userService.getCurrentUserId();
 
         int targetId = Integer.parseInt(request.getParameter("target"));
@@ -287,6 +302,11 @@ public class MessageCenterController {
         message.setReceiverId(targetId);
         message.setSenderId(currentUserId);
         message.setSendtime(new Date());
+		if(system.equals("laboratory")){
+			message.setSystem(true);
+		}else{
+			message.setSystem(false);
+		}
         return message;
     }
 
@@ -298,6 +318,11 @@ public class MessageCenterController {
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andReceiverIdEqualTo(currentUser.getId());
         criteria.andIfreadEqualTo(false);
+		if(system.equals("laboratory")){
+			criteria.andSystemEqualTo(true);
+		}else {
+			criteria.andSystemEqualTo(false);
+		}
         int count = messageService.getCount(messageCriteria);
         ModelAndView mav = new ModelAndView("/"+system+"/top");
         mav.addObject("unreadCount", count);

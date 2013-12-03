@@ -33,22 +33,19 @@
                                                 <td nowrap >
                                                     <input id="title" name="title" class="text" style="width:154px" maxlength="20" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-
                                                 </td>
-
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">通知内容:</td>
                                                 <td colspan="3"nowrap>
                                                     <div id="innerId">
-                                                <span><textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"
-                                                                tabIndex="2"></textarea></span>
+                                                        <span>
+                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">
+                                                            </textarea>
+                                                        </span>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
-
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
-
                                                         <link type="text/css" href="${pageContext.request.contextPath}/js/ueditor/themes/default/css/ueditor.css"/>
-
                                                         <script type="text/javascript" charset="utf-8">
                                                             var editor = new baidu.editor.ui.Editor();
                                                             editor.render('content');
@@ -60,25 +57,17 @@
                                             <tr>
                                                 <td colspan="2" align="center">
                                                     <input type="button" name="Submit" value="发布" class="button" onclick="save();"/>
-
                                                 </td>
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
-
                             </table>
-
                         </td>
                     </tr>
                 </table>
             </td>
-
         </tr>
-
     </table>
-
 </form>
 </body>
