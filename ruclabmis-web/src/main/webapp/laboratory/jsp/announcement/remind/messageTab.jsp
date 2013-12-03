@@ -155,23 +155,34 @@
 
             switch (n) {
                 case 0:
-                    document.mainForm.action = "announcement";
+                    document.mainForm.action = "announcementTab";
                     document.mainForm.submit();
                     break;
                 case 1:
-                    document.mainForm.action = "message";
+                    document.mainForm.action = "messageTab";
                     document.mainForm.submit();
                     break;
                 case 2:
-                    document.mainForm.action = "toaddannouncement";
+                    document.mainForm.action = "addannouncementTab";
                     document.mainForm.submit();
                     break;
                 case 3:
-                    document.mainForm.action = "sendmessage";
+                    document.mainForm.action = "sendmessageTab";
                     document.mainForm.submit();
                     break;
             }
-            document.mainForm.action = ""
+        }
+        function initTab(n) {
+
+            var tli = document.getElementById("menu0").getElementsByTagName("li");
+
+            for (i = 0; i < tli.length; i++) {
+
+                tli[i].className = i == n ? "hover" : "";
+
+            }
+
+
         }
         function changTab(n) {
 
@@ -179,7 +190,7 @@
 
     </script>
 </head>
-<body onload="setTab(newId)" style="background-color:#EEF2FB;">
+<body onload="initTab(1)" style="background-color:#EEF2FB;">
 <form name="mainForm" method="get">
     <div id="tabs0">
         <ul class="menu0" id="menu0">

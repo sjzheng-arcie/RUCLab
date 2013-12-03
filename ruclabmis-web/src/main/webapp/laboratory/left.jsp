@@ -44,10 +44,10 @@
                         </table>
                         <ul class="MM">
 
-                            <li><a href="../equipment/jsp/announcement/remind/remind?id=0" onfocus="toFocus(this)"
+                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/messageTab?id=0" onfocus="toFocus(this)"
                                    target="main">我的短消息</a>
                             </li>
-                            <li><a href="../equipment/jsp/announcement/remind/remind?id=1" onfocus="toFocus(this)"
+                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/announcementTab?id=1" onfocus="toFocus(this)"
                                    target="main">我的通知</a>
                             </li>
                             <shiro:hasRole name="teacher,equipment_admin,student">

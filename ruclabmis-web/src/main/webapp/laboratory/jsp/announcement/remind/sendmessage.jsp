@@ -3,14 +3,12 @@
 
 <html>
 <head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <link href="../../../../js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
-
+    <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-
-    <script src="../../../../js/valid.js" type=text/javascript></script>
-    <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
-    <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
+    <script src="/js/valid.js" type=text/javascript></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
 
     <script>
         function save() {
@@ -44,7 +42,7 @@
                                 <td align="center" bgcolor="#E3E9EE">
                                     <div id="">
                                         <div class="message">
-                                            <form action="/equipment/jsp/announcement/remind/addMessage"
+                                            <form action="messagecenter/laboratory/jsp/announcement/remind/addMessage"
                                                   method="post" target="_parent" name="mainForm">
                                                 <table style=" border:1px; width:80%;margin:auto;">
                                                     <tr>
