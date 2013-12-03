@@ -6,7 +6,7 @@
 <head>
     <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/js/util.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/page.js"></script>
+    <script type="text/javascript" src="/js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="/js/valid.js" type=text/javascript></script>
     <style type="text/css">
@@ -154,7 +154,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <%@ include file="../../common/pagetable.jsp" %>
+                                            <%@ include file="../../common/pagetableformessage.jsp" %>
                                         </table>
                                     </td>
                                 </tr>
