@@ -134,60 +134,37 @@
     </style>
 
     <script>
-
-
         var replyFlag = "${replySn}";
-
-        var newId = "${tabId}";
-        if (newId == null || newId == "") {
-            newId = 0;
-        }
-
         function setTab(n) {
-
             var tli = document.getElementById("menu0").getElementsByTagName("li");
-
             for (i = 0; i < tli.length; i++) {
-
                 tli[i].className = i == n ? "hover" : "";
-
             }
-
             switch (n) {
                 case 0:
-                    document.mainForm.action = "announcementTab";
+                    document.mainForm.action = "announcementTab?page=0";
                     document.mainForm.submit();
                     break;
                 case 1:
-                    document.mainForm.action = "messageTab";
+                    document.mainForm.action = "messageTab?page=0";
                     document.mainForm.submit();
                     break;
                 case 2:
-                    document.mainForm.action = "addannouncementTab";
+                    document.mainForm.action = "addannouncementTab?page=0";
                     document.mainForm.submit();
                     break;
                 case 3:
-                    document.mainForm.action = "sendmessageTab";
+                    document.mainForm.action = "sendmessageTab?page=0";
                     document.mainForm.submit();
                     break;
             }
         }
         function initTab(n) {
-
             var tli = document.getElementById("menu0").getElementsByTagName("li");
-
             for (i = 0; i < tli.length; i++) {
-
                 tli[i].className = i == n ? "hover" : "";
-
             }
-
-
         }
-        function changTab(n) {
-
-        }
-
     </script>
 </head>
 <body onload="initTab(1)" style="background-color:#EEF2FB;">
@@ -206,7 +183,7 @@
 
                     <div id="rr1" style="border: 1px #B7B7B7">
                         <iframe id="contentFrm1"
-                                name="contentFrm1" src="message?fatherPage=message" width="99%" frameborder="0"
+                                name="contentFrm1" src="message?page=0&fatherPage=message" width="99%" frameborder="0"
                                 onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
                                 style="padding:0px; margin:0px;" scrolling="no"></iframe>
                     </div>

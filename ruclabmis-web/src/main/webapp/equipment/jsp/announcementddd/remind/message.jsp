@@ -1,20 +1,27 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <html>
 <head>
-    <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="/js/util.js"></script>
-    <script type="text/javascript" src="/js/page.js"></script>
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <meta http-equiv="Pragma" content="no-cache"/>
-    <script src="/js/valid.js" type=text/javascript></script>
+    <script src="../../../../js/valid.js" type=text/javascript>
+
+
+    </script>
+
     <style type="text/css">
         .message {
+
             border: 1px solid #cbcbcb;
+
             background-color: #ffffff;
+
         }
+
         .hr1 {
             color: #aaaaaa;
             height: 1px;
@@ -26,26 +33,27 @@
             padding: 0px;
             overflow: hidden;
         }
+
         a.A_See:link {
             text-decoration: none;
             color: #376189;
         }
+
         a.A_See:visited {
             text-decoration: none;
             color: #376189;
         }
+
         a.A_See:hover {
             text-decoration: none;
             color: #376189;
         }
+
         a.A_See:active {
             text-decoration: none;
             color: #376189;
         }
     </style>
-    <script>
-
-    </script>
 
 </head>
 <body style="background-color: #EEF2FB">
@@ -76,13 +84,13 @@
                                                              style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                             <p align="left" style="font-size: 12px">
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/message?page=0&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/equipment/jsp/announcement/remind/message?page=1&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/equipment/jsp/announcement/remind/unreadmessage?page=1&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/readmessage?page=0&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/equipment/jsp/announcement/remind/readmessage?page=1&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/mysendmessage?page=0&&fatherPage=mysendmessage">我发送的消息</a>
+                                                                   href="/equipment/jsp/announcement/remind/mysendmessage?page=1&&fatherPage=mysendmessage">我发送的消息</a>
                                                             </p>
                                                         </div>
                                                         <c:choose>
@@ -109,13 +117,13 @@
                                                                         </c:if>
                                                                         <p align="left" style="font-size: 12px">
                                                                             <a class="A_See"
-                                                                               href="/messagecenter/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}&&fatherPage=${fatherPage}">查看详细></a>
+                                                                               href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}&&fatherPage=${fatherPage}">查看详细></a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See"
                                                                                                         target="_parent"
-                                                                                                        href="/messagecenter/equipment/jsp/announcement/remind/replyMessage?replyFlag=${item.sender.sn}">回复</a>
+                                                                                                        href="/equipment/jsp/announcement/remind/replyMessage?replyFlag=${item.sender.sn}">回复</a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See"
                                                                                                         target="_parent"
-                                                                                                        href="/messagecenter/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
+                                                                                                        href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
                                                                         </p>
 
                                                                     </div>
@@ -135,16 +143,14 @@
                                                                                          value="${item.sendtime}"></fmt:formatDate></span>
                                                                         </p>
 
-
                                                                         <p align="left">${item.content}</p>
-
 
                                                                         <p align="left" style="font-size: 12px"><a
                                                                                 class="A_See"
-                                                                                href="/messagecenter/laboratory/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>
+                                                                                href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp
                                                                             <a class="A_See"
-                                                                               href="/messagecenter/laboratory/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
+                                                                               href="/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
                                                                         </p>
                                                                     </div>
                                                                 </c:forEach>
@@ -155,14 +161,8 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <%@ include file="/js/pagetableformessage.jsp" %>
+                                            <%@ include file="../../../../include/pagetable.jsp" %>
                                         </table>
-                                    </td>
-                                </tr>
-                                <tr align="center" bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE">
-                                    <td align="center">
-                                        <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
                             </table>
@@ -172,5 +172,6 @@
             </td>
         </tr>
     </table>
+
 </form>
 </body>

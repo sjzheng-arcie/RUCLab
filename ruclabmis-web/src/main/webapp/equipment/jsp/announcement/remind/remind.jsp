@@ -147,131 +147,69 @@
 
             var tli = document.getElementById("menu0").getElementsByTagName("li");
 
-            var mli = document.getElementById("main0").getElementsByTagName("ul");
-
             for (i = 0; i < tli.length; i++) {
 
                 tli[i].className = i == n ? "hover" : "";
 
-                mli[i].style.display = i == n ? "block" : "none";
-
             }
 
-
-        }
-        function initTab(n) {
-
-            setTab(n);
             switch (n) {
                 case 0:
-                    if (document.getElementById('contentFrm0').src == "")
-                        document.getElementById('contentFrm0').src = "announcement";
+                    document.mainForm.action = "announcement";
+                    document.mainForm.submit();
                     break;
                 case 1:
-                    if (document.getElementById('contentFrm1').src == "")
-                        document.getElementById('contentFrm1').src = "message";
+                    document.mainForm.action = "message";
+                    document.mainForm.submit();
                     break;
                 case 2:
-                    if (document.getElementById('contentFrm2').src == "")
-                        document.getElementById('contentFrm2').src = "toaddannouncement";
+                    document.mainForm.action = "toaddannouncement";
+                    document.mainForm.submit();
                     break;
                 case 3:
-                    if (document.getElementById('contentFrm3').src == "")
-                        document.getElementById('contentFrm3').src = "sendmessage?replyFlag=${replySn}";
+                    document.mainForm.action = "sendmessage";
+                    document.mainForm.submit();
                     break;
-
-
             }
+            document.mainForm.action = ""
+        }
+        function changTab(n) {
 
         }
 
-
     </script>
-
-
 </head>
-
-<body onload="initTab(newId)" style="background-color:#EEF2FB;">
-
-
-<div id="tabs0">
-    <ul class="menu0" id="menu0">
-
-        <li onclick="setTab(0)">公告</li>
-        <li onclick="setTab(1)">短消息</li>
-        <li onclick="setTab(2)">发布公告</li>
-        <li onclick="setTab(3)">发送消息</li>
-
-
-    </ul>
-
-    <div class="main" id="main0">
-
-
-        <ul class="block">
-            <li>
-
-
-                <p></p>
-
-                <div id=rr0 style="border: 1px  #B7B7B7">
-                    <iframe id="contentFrm0"
-                            name="contentFrm0" src="announcement" width="98%" frameborder="0"
-                            onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
-                            style="padding:0px; margin:0px;" scrolling="no"></iframe>
-                </div>
-
-            </li>
+<body onload="setTab(newId)" style="background-color:#EEF2FB;">
+<form name="mainForm" method="get">
+    <div id="tabs0">
+        <ul class="menu0" id="menu0">
+            <li onclick="setTab(0)">公告</li>
+            <li onclick="setTab(1)">短消息</li>
+            <li onclick="setTab(2)">发布公告</li>
+            <li onclick="setTab(3)">发送消息</li>
         </ul>
-        <ul class="block">
-            <li>
-                <p></p>
+        <div class="main" id="main0">
+            <ul class="block">
+                <li>
+                    <p></p>
 
-                <div id="rr1" style="border: 1px #B7B7B7">
-                    <iframe id="contentFrm1"
-                            name="contentFrm1" src="message?fatherPage=message&page=1" width="99%" frameborder="0"
-                            onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
-                            style="padding:0px; margin:0px;" scrolling="no"></iframe>
-                </div>
-            </li>
-        </ul>
+                    <div id="rr1" style="border: 1px #B7B7B7">
+                        <iframe id="contentFrm1"
+                                name="contentFrm1" src="message?fatherPage=message" width="99%" frameborder="0"
+                                onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
+                                style="padding:0px; margin:0px;" scrolling="no"></iframe>
+                    </div>
+                </li>
+            </ul>
 
-
-        <ul class="block">
-            <li>
-                <p></p>
-
-                <div id="rr2" style="border: 1px  #B7B7B7">
-                    <iframe id="contentFrm2"
-                            name="contentFrm2" src="toaddannouncement" width="99%" frameborder="0"
-                            onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
-                            style="padding:0px; margin:0px;" scrolling="no"></iframe>
-                </div>
-            </li>
-        </ul>
-        <ul class="block">
-            <li>
-                <p></p>
-
-                <div id="rr3" style="border: 1px #B7B7B7">
-                    <iframe id="contentFrm3"
-
-                            name="contentFrm3" src="sendmessage?replyFlag=${replySn}" width="99%" frameborder="0"
-                            onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
-                            style="padding:0px; margin:0px;" scrolling="no"></iframe>
-                </div>
-            </li>
-        </ul>
-
+        </div>
     </div>
-
-</div>
-<br/>
+    <br/>
 
 
-<!--onLoad="document.getElementById('rr3').innerHTML=this.body.innerHTML;this.style.display='none';"-->
+    <!--onLoad="document.getElementById('rr3').innerHTML=this.body.innerHTML;this.style.display='none';"-->
 
-
+</form>
 </body>
 
 </html>

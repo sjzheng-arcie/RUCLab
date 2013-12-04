@@ -4,12 +4,11 @@
 
 <html>
 <head>
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="/js/util.js"></script>
-    <script type="text/javascript" src="/js/page.js"></script>
-
-    <script src="/js/valid.js" type=text/javascript></script>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
 
     <style type="text/css">
         .message {
@@ -88,21 +87,21 @@
                                                                 <hr size="0"
                                                                     style="  border:none; border-bottom:1px dashed #ccc;">
                                                                 <p align="left" style="margin: 10px;font-size: 12px">
-                                                                <span>
-                                                                    <a class="announcement"
-                                                                       href="announcementDetail?announcementDetailId=${item.id}">
-                                                                            ${item.title}
-                                                                    </a>
-                                                                </span>
-                                                                <span style="float:right">
-                                                                    <fmt:formatDate value="${item.publishTime}"></fmt:formatDate>
-                                                                </span>
+                            <span>
+                                <a class="announcement"
+                                   href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">
+                                        ${item.title}
+                                </a>
+                            </span>
+                            <span style="float:right">
+                                <fmt:formatDate value="${item.publishTime}"></fmt:formatDate>
+                            </span>
                                                             </div>
                                                         </c:forEach>
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <%@ include file="/js/pagetableformessage.jsp" %>
+                                            <%@ include file="../../../../include/pagetable.jsp" %>
                                         </table>
                                     </td>
                                 </tr>
@@ -111,7 +110,9 @@
                     </tr>
                 </table>
             </td>
+
         </tr>
+
     </table>
 </form>
 </body>

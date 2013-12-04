@@ -42,10 +42,6 @@
             color: #376189;
         }
     </style>
-    <script>
-
-    </script>
-
 </head>
 <body style="background-color: #EEF2FB">
 <form name="listForm" method="post">
@@ -154,7 +150,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <%@ include file="../../common/pagetableformessage.jsp" %>
+                                            <%@ include file="/js/pagetableformessage.jsp" %>
                                         </table>
                                     </td>
                                 </tr>

@@ -131,7 +131,7 @@
 
                     <div id="rr1" style="border: 1px #B7B7B7">
                         <iframe id="contentFrm1"
-                                name="contentFrm1" src="toaddannouncement" width="99%" frameborder="0"
+                                name="contentFrm1" src="toaddannouncement?page=0" width="99%" frameborder="0"
                                 onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
                                 style="padding:0px; margin:0px;" scrolling="no"></iframe>
                     </div>

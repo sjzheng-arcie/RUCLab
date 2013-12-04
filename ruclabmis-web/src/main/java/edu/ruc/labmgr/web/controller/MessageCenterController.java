@@ -27,18 +27,7 @@ public class MessageCenterController {
     private TeacherService userService;
 
     private int currPage = 0;
-//
-//    @RequestMapping("/{system}/jsp/announcement/remind/remind")
-//    public ModelAndView pageList(@PathVariable String system,HttpServletRequest request) {
-//        currPage = request.getParameter("page") == null ?
-//                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
-//        String tabId = request.getParameter("id");
-//
-//        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/remind");
-//
-//        mav.addObject("tabId", tabId);
-//        return mav;
-//    }
+
 	@RequestMapping("/{system}/jsp/announcement/remind/messageTab")
 	public ModelAndView showMessageTab(@PathVariable String system) {
 
@@ -70,7 +59,7 @@ public class MessageCenterController {
         int currentUserId = userService.getCurrentUserId();
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
-
+		currPage=currPage > 0 ? currPage : 1;
         String fatherPage = request.getParameter("fatherPage");
         MessageCriteria messageCriteria = new MessageCriteria();
         messageCriteria.setOrderByClause(" sendtime desc");
@@ -95,6 +84,7 @@ public class MessageCenterController {
 
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+		currPage=currPage > 0 ? currPage : 1;
         String fatherPage = request.getParameter("fatherPage");
         MessageCriteria messageCriteria = new MessageCriteria();
         messageCriteria.setOrderByClause(" sendtime desc");

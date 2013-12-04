@@ -6,10 +6,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml">
+
 <head>
+
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <meta http-equiv="Pragma" content="no-cache"/>
+
     <title>消息通知</title>
     <style type="text/css">
+
         body, div, ul, li {
             margin: 0 auto;
             padding: 0;
@@ -40,6 +45,7 @@
             padding: 8px;
             text-align: center;
         }
+            /*第一种形式*/
         #tabs0 {
             width: 100%;
             background-color: #EEF2FB;
@@ -68,17 +74,21 @@
             display: block;
         }
     </style>
+
     <script>
+
         var replyFlag = "${replySn}";
         var newId = "${tabId}";
         if (newId == null || newId == "") {
             newId = 0;
         }
         function setTab(n) {
+
             var tli = document.getElementById("menu0").getElementsByTagName("li");
             for (i = 0; i < tli.length; i++) {
                 tli[i].className = i == n ? "hover" : "";
             }
+
             switch (n) {
                 case 0:
                     document.mainForm.action = "announcementTab";
@@ -106,7 +116,7 @@
         }
     </script>
 </head>
-<body onload="initTab(0)" style="background-color:#EEF2FB;">
+<body onload="initTab(2)" style="background-color:#ffffff;">
 <form name="mainForm" method="get">
     <div id="tabs0">
         <ul class="menu0" id="menu0">
@@ -119,17 +129,20 @@
             <ul class="block">
                 <li>
                     <p></p>
+
                     <div id="rr1" style="border: 1px #B7B7B7">
                         <iframe id="contentFrm1"
-                                name="contentFrm1" src="announcement?fatherPage=message" width="99%" frameborder="0"
+                                name="contentFrm1" src="toaddannouncement" width="99%" frameborder="0"
                                 onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
                                 style="padding:0px; margin:0px;" scrolling="no"></iframe>
                     </div>
                 </li>
             </ul>
+
         </div>
     </div>
     <br/>
+
 </form>
 </body>
 

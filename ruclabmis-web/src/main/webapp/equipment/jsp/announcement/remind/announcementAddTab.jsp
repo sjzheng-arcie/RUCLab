@@ -1,10 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -106,7 +103,7 @@
         }
     </script>
 </head>
-<body onload="initTab(0)" style="background-color:#EEF2FB;">
+<body onload="initTab(2)" style="background-color:#EEF2FB;">
 <form name="mainForm" method="get">
     <div id="tabs0">
         <ul class="menu0" id="menu0">
@@ -121,7 +118,7 @@
                     <p></p>
                     <div id="rr1" style="border: 1px #B7B7B7">
                         <iframe id="contentFrm1"
-                                name="contentFrm1" src="announcement?fatherPage=message" width="99%" frameborder="0"
+                                name="contentFrm1" src="addannouncement" width="99%" frameborder="0"
                                 onload="this.height=this.contentWindow.document.documentElement.scrollHeight"
                                 style="padding:0px; margin:0px;" scrolling="no"></iframe>
                     </div>
