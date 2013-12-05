@@ -491,7 +491,7 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("jsp/experiment/achievement/courselist")
-    public ModelAndView achievementCourseList(HttpServletRequest request) {
+    public ModelAndView achievementCourseList() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/courselist");
         return mav;
@@ -509,7 +509,7 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("jsp/res/paper/editpaper")
-    public ModelAndView editPaper(HttpServletRequest request) {
+    public ModelAndView editPaper() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/editpaper");
         return mav;
@@ -521,7 +521,7 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("jsp/res/paper/addpaper")
-    public ModelAndView paperAdd(HttpServletRequest request) {
+    public ModelAndView paperAdd() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/paper/addpaper");
         return mav;
@@ -533,49 +533,49 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("jsp/res/question/list")
-    public ModelAndView questionList(HttpServletRequest request) {
+    public ModelAndView questionList() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/list");
         return mav;
     }
     @RequestMapping("jsp/res/question/detail")
-    public ModelAndView questionDetail(HttpServletRequest request) {
+    public ModelAndView questionDetail() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/detail");
         return mav;
     }
 	@RequestMapping("jsp/res/instructor/list")
-	public ModelAndView instructorList(HttpServletRequest request) {
+	public ModelAndView instructorList() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/list");
 		return mav;
 	}
 	@RequestMapping("jsp/res/instructor/add")
-	public ModelAndView instructorAdd(HttpServletRequest request) {
+	public ModelAndView instructorAdd() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/add");
 		return mav;
 	}
 	@RequestMapping("jsp/res/instructor/addpaper")
-	public ModelAndView instructorAddPaperList(HttpServletRequest request) {
+	public ModelAndView instructorAddPaperList() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/addpaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/instructor/addtopaper")
-	public ModelAndView instructorAddToPaper(HttpServletRequest request) {
+	public ModelAndView instructorAddToPaper() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/addtopaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/instructor/editpaper")
-	public ModelAndView instructorEditPaper(HttpServletRequest request) {
+	public ModelAndView instructorEditPaper() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/editpaper");
 		return mav;
 	}
 	@RequestMapping("jsp/res/instructor/paperinfo")
-	public ModelAndView instructorPaperInfo(HttpServletRequest request) {
+	public ModelAndView instructorPaperInfo() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/paperinfo");
 		return mav;
@@ -583,37 +583,37 @@ public class PrototypeTest {
 
 
     @RequestMapping("jsp/res/question/add")
-    public ModelAndView questionAdd(HttpServletRequest request) {
+    public ModelAndView questionAdd() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/add");
         return mav;
     }
     @RequestMapping("jsp/res/question/toadd")
-    public ModelAndView questionToAdd(HttpServletRequest request) {
+    public ModelAndView questionToAdd() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/list");
         return mav;
     }
     @RequestMapping("jsp/res/question/edit")
-    public ModelAndView questionEdit(HttpServletRequest request) {
+    public ModelAndView questionEdit() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/question/edit");
         return mav;
     }
     @RequestMapping("jsp/res/experimentquestion/list")
-    public ModelAndView experimentQuestionList(HttpServletRequest request) {
+    public ModelAndView experimentQuestionList() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/list");
         return mav;
     }
     @RequestMapping("jsp/res/experimentquestion/detail")
-    public ModelAndView experimentQuestionDetail(HttpServletRequest request) {
+    public ModelAndView experimentQuestionDetail() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/detail");
         return mav;
     }
     @RequestMapping("jsp/res/experimentquestion/add")
-    public ModelAndView experimentQuestionAdd(HttpServletRequest request) {
+    public ModelAndView experimentQuestionAdd() {
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/add");
         return mav;
@@ -809,6 +809,64 @@ public class PrototypeTest {
 	public ModelAndView toSaveScore(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
+		return mav;
+	}
+	@RequestMapping("jsp/res/book/list")
+	public ModelAndView bookList(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/book/list");
+		return mav;
+	}
+	@RequestMapping("jsp/res/book/toUpload")
+	public ModelAndView bookUpload(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/book/upload");
+		return mav;
+	}
+	@RequestMapping("jsp/res/book/toUpdate")
+	public ModelAndView bookToUpdate(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/book/update");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/experiment/curriculum/mycurriculumschedule")
+	public ModelAndView myCurriculumSchedule() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/mycurriculumschedule");
+		return mav;
+	}
+
+	@RequestMapping("jsp/curriculum/experiment/curriculum/listdeviceapply")
+	public ModelAndView listDeviceApply() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listdeviceapply");
+		return mav;
+	}
+
+	@RequestMapping("jsp/curriculum/experiment/curriculum/listcommit")
+	public ModelAndView listCommit() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listcommit");
+		return mav;
+	}
+
+	@RequestMapping("jsp/curriculum/experiment/curriculum/listapply")
+	public ModelAndView applyList() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listapply");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/experiment/curriculum/view")
+	public ModelAndView curriculumView() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/view");
+		return mav;
+	}
+
+	@RequestMapping("jsp/curriculum/experiment/curriculum/list")
+	public ModelAndView curriculumList() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/list");
+		return mav;
+	}
+
+	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculum")
+	public ModelAndView curriculum() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/curriculum");
 		return mav;
 	}
 }

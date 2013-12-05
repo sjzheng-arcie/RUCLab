@@ -148,6 +148,7 @@ public class MessageCenterController {
 
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+		currPage=currPage > 0 ? currPage : 1;
         String fatherPage = request.getParameter("fatherPage");
         MessageCriteria messageCriteria = new MessageCriteria();
         messageCriteria.setOrderByClause(" sendtime desc");
@@ -171,7 +172,7 @@ public class MessageCenterController {
     public ModelAndView showAnnouncement(@PathVariable String system,HttpServletRequest request) {
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
-
+		currPage=currPage > 0 ? currPage : 1;
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 		if(system.equals("laboratory")){
@@ -230,6 +231,7 @@ public class MessageCenterController {
         int id = Integer.parseInt(request.getParameter("messageDetailId"));
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+		currPage=currPage > 0 ? currPage : 1;
         String fatherPage = request.getParameter("fatherPage");
         Message message = messageService.selectById(id);
         message.setIfread(true);

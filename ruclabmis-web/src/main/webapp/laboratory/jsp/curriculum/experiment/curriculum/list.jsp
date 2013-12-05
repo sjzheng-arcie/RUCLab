@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -39,10 +41,10 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_nor" onclick="javascript:location.href='curriculum.html'">课表一览</td>
-                                <td class="op_nor" onclick="javascript:location.href='listcommit.html'">课表信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='listapply.html'">实验室申请</td>
-                                <td class="op_act" onclick="javascript:location.href='list.html'">课程基本信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='curriculum'">课表一览</td>
+                                <td class="op_nor" onclick="javascript:location.href='listcommit'">课表信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='listapply'">实验室申请</td>
+                                <td class="op_act" onclick="javascript:location.href='list'">课程基本信息</td>
 
                             </tr>
                         </table>
@@ -97,13 +99,11 @@
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
                                     <td align="center"><input type="submit" value="保存"
-                                                              onclick="javascript:location.href='curriculum.html'"/>
+                                                              onclick="javascript:location.href='curriculum'"/>
                                     </td>
                                 </tr>
                             </table>
-
                         </div>
-
                         <div id="parentId"
                              style="position: relative; top: 0px; left: 0px; width: 100%; height: 100%; aborder: #B5CDE4 1px solid;"></div>
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
@@ -121,13 +121,12 @@
                                         alert("已经是第一步!")
                                         break;
                                     case 'next' :
-                                        window.location.href = 'listdate.html';
+                                        window.location.href = 'listdate';
                                         break;
                                     default:
                                         alert("Button " + id + " was clicked!")
                                 }
                             });
-
                             dhxLayout.cells("a").setText("创建预案");
                             dhxLayout.cells("a").attachObject("zuoxi");
 

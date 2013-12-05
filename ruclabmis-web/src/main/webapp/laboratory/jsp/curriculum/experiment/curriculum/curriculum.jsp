@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -5,7 +7,7 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
 <script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
 <link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/dhtmlxlayout.css">
@@ -25,7 +27,7 @@
 <body onload="doOnLoad();">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
     <tr>
-        <td class="title">教学实验管理 -&gt; 课程信息管理 -&gt; 课表信息</td>
+        <td class="title">教学实验管理 -&gt; 课程信息管理 -&gt; 课表一览</td>
     </tr>
     <tr>
         <td valign="top" height="100%">
@@ -34,10 +36,10 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_nor" onclick="javascript:location.href='curriculum.html'">课表一览</td>
-                                <td class="op_act" onclick="javascript:location.href='listcommit.html'">课表信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='listapply.html'">实验室申请</td>
-                                <td class="op_nor" onclick="javascript:location.href='list.html'">课程基本信息</td>
+                                <td class="op_act" onclick="javascript:location.href='curriculum'">课表一览</td>
+                                <td class="op_nor" onclick="javascript:location.href='listcommit'">课表信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='listapply'">实验室申请</td>
+                                <td class="op_nor" onclick="javascript:location.href='list'">课程基本信息</td>
 
                             </tr>
                         </table>
@@ -51,6 +53,7 @@
                                 <tr height="25">
 
                                     <td width="12.5%" bgcolor="#E3EFFF">周次：<input type="text"/></td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">班级：<input type="text"/></td>
                                     <td width="12.5%" bgcolor="#E3EFFF"><input type="button" value="转到"/></td>
                                     <td width="12.5%" bgcolor="#E3EFFF"></td>
                                     <td width="12.5%" bgcolor="#E3EFFF"></td>
@@ -59,60 +62,44 @@
                                 </tr>
 
                             </table>
-                            <table width="100%" border="1" cellpadding="10" cellspacing="0">
-                                <tr height="25" align="center">
-                                    <td colspan="7" align="center" bgcolor="#e3efff"><strong>软件工程09-1课程表</strong></td>
+                            <table width="100%" border="1" cellpadding="" cellspacing="0" style="font-size:25px;">
+                                <tr height="40">
+                                    <td colspan="5" align="center" bgcolor="#e3efff"><strong>课表一览</strong></td>
                                 </tr>
-                                <tr height="25" align="center">
+                                <tr align="center" height="40">
 
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">节次</td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">周一</td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">周二</td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">周三</td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">周四</td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">周五</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">序号</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">编号</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">班级</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">详细</td>
+
                                 </tr>
-                                <tr height="100" align="center">
-                                    <td bgcolor="#F7F7F7" rowspan="2">上午</td>
-                                    <td bgcolor="#F7F7F7">一二节</td>
+                                <tr height="40" align="center">
+                                    <td bgcolor="#F7F7F7">1</td>
+                                    <td bgcolor="#F7F7F7">kb0001</td>
+                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
 
-
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
-                                <tr height="100" align="center">
+                                <tr height="40" align="center">
 
-                                    <td bgcolor="#F7F7F7">三四节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7">2</td>
+                                    <td bgcolor="#F7F7F7">kb0001</td>
+                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
                                 </tr>
-                                <tr height="100" align="center">
-                                    <td bgcolor="#F7F7F7" rowspan="2">下午</td>
-                                    <td bgcolor="#F7F7F7">五六节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                <tr height="40" align="center">
+                                    <td bgcolor="#F7F7F7">3</td>
+                                    <td bgcolor="#F7F7F7">kb0001</td>
+                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
                                 </tr>
-                                <tr height="100" align="center">
+                                <tr height="40" align="center">
 
-                                    <td bgcolor="#F7F7F7">七八节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply.html'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7">4</td>
+                                    <td bgcolor="#F7F7F7">kb0001</td>
+                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
                                 </tr>
                             </table>
                         </div>
@@ -133,10 +120,10 @@
                                         break;
                                     case 'tijiao' :
                                         alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply.html';
+                                        window.location.href = 'listapply';
                                         break;
                                     case 'prev' :
-                                        window.location.href = 'listdeviceapply.html';
+                                        window.location.href = 'listdeviceapply';
                                         break;
                                     case 'next' :
                                         alert("已经到最后一步!")
@@ -146,7 +133,7 @@
                                 }
                             });
 
-                            dhxLayout.cells("a").setText("课表信息");
+                            dhxLayout.cells("a").setText("课表一览");
                             dhxLayout.cells("a").attachObject("zuoxi");
 
                         }</script>

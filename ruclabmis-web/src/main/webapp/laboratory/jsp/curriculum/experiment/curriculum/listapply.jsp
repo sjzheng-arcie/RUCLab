@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -34,10 +36,10 @@
     <td height="27">
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td class="op_nor" onclick="javascript:location.href='curriculum.html'">课表一览</td>
-                <td class="op_nor" onclick="javascript:location.href='listcommit.html'">课表信息</td>
-                <td class="op_act" onclick="javascript:location.href='listapply.html'">实验室选择</td>
-                <td class="op_nor" onclick="javascript:location.href='list.html'">课程基本信息</td>
+                <td class="op_nor" onclick="javascript:location.href='curriculum'">课表一览</td>
+                <td class="op_nor" onclick="javascript:location.href='listcommit'">课表信息</td>
+                <td class="op_act" onclick="javascript:location.href='listapply'">实验室选择</td>
+                <td class="op_nor" onclick="javascript:location.href='list'">课程基本信息</td>
 
             </tr>
         </table>
@@ -59,11 +61,11 @@
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
 <tr>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><p><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><p><img src="../../images/ico/32x32/door_open.png" width="64"
                                                        height="64"/><br/>
                     <span class="title">101</span></p></td>
                 <td><p>空闲<br/>
@@ -74,11 +76,11 @@
             </tr>
         </table>
     </td>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">102</span></td>
                 <td><p>空闲<br/>
@@ -92,7 +94,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">103</span></td>
                 <td><p>已占用<br/>
@@ -103,11 +105,11 @@
             </tr>
         </table>
     </td>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">104</span></td>
                 <td><p>空闲<br/>
@@ -120,11 +122,11 @@
     </td>
 </tr>
 <tr>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">201</span></td>
                 <td><p>空闲<br/>
@@ -138,7 +140,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">202</span></td>
                 <td><p>已占用<br/>
@@ -149,11 +151,11 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">203</span></td>
                 <td><p>空闲<br/>
@@ -164,11 +166,11 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">204</span></td>
                 <td><p> 空闲<br/>
@@ -184,7 +186,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">301</span></td>
                 <td><p>已占用<br/>
@@ -195,11 +197,11 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">302</span></td>
                 <td><p>空闲<br/>
@@ -213,7 +215,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">303</span></td>
                 <td><p>已占用<br/>
@@ -227,7 +229,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">304</span></td>
                 <td><p> 已占用<br/>
@@ -243,7 +245,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">401</span></td>
                 <td><p>已占用<br/>
@@ -254,11 +256,11 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list.html'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">402</span></td>
                 <td><p>空闲<br/>
@@ -269,11 +271,11 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='list.html'"
+    <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='list'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door_open.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door_open.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">403</span></td>
                 <td><p>空闲<br/>
@@ -287,7 +289,7 @@
     <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td width="40%" align="center"><img src="../../../images/ico/32x32/door.png" width="64"
+                <td width="40%" align="center"><img src="../../images/ico/32x32/door.png" width="64"
                                                     height="64"/><br/>
                     <span class="title">404</span></td>
                 <td><p> 已占用<br/>

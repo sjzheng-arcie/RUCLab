@@ -42,7 +42,7 @@
                     </table>
                     <ul class="MM">
 
-                        <li><a href="/experiment/virtual/list?page=1" onfocus="toFocus(this)" target="main">虚拟班级</a>
+                        <li><a href="jsp/experiment/virtual/list?page=1" onfocus="toFocus(this)" target="main">虚拟班级</a>
                         </li>
                         <li><a href="jsp/experiment/notice/list" onfocus="toFocus(this)" target="main">通知公告</a>
                         </li>

@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -25,7 +27,7 @@
 <body onload="doOnLoad();">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
     <tr>
-        <td class="title">个人中心 -&gt; 课程表信息-&gt; 我的课程表</td>
+        <td class="title">教学实验管理 -&gt; 课程信息管理 -&gt; 课表信息</td>
     </tr>
     <tr>
         <td valign="top" height="100%">
@@ -34,9 +36,11 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                ?
-                                <td class="op_act" onclick="javascript:location.href='mycurriculumschedule.html'">课表信息
-                                </td>
+                                <td class="op_nor" onclick="javascript:location.href='curriculum'">课表一览</td>
+                                <td class="op_act" onclick="javascript:location.href='listcommit'">课表信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='listapply'">实验室申请</td>
+                                <td class="op_nor" onclick="javascript:location.href='list.html'">课程基本信息</td>
+
                             </tr>
                         </table>
                     </td>
@@ -49,7 +53,6 @@
                                 <tr height="25">
 
                                     <td width="12.5%" bgcolor="#E3EFFF">周次：<input type="text"/></td>
-
                                     <td width="12.5%" bgcolor="#E3EFFF"><input type="button" value="转到"/></td>
                                     <td width="12.5%" bgcolor="#E3EFFF"></td>
                                     <td width="12.5%" bgcolor="#E3EFFF"></td>
@@ -58,8 +61,8 @@
                                 </tr>
 
                             </table>
-                            <table width="100%" border="1" cellpadding="1" cellspacing="0">
-                                <tr height="25">
+                            <table width="100%" border="1" cellpadding="10" cellspacing="0">
+                                <tr height="25" align="center">
                                     <td colspan="7" align="center" bgcolor="#e3efff"><strong>软件工程09-1课程表</strong></td>
                                 </tr>
                                 <tr height="25" align="center">
@@ -78,8 +81,8 @@
 
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7"></td>
-                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
@@ -87,10 +90,10 @@
 
                                     <td bgcolor="#F7F7F7">三四节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
 
-                                    <td bgcolor="#F7F7F7"></td>
-                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
@@ -100,17 +103,17 @@
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
 
                                     <td bgcolor="#F7F7F7">七八节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
 
-                                    <td bgcolor="#F7F7F7"></td>
-                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                             </table>
@@ -132,10 +135,10 @@
                                         break;
                                     case 'tijiao' :
                                         alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply.html';
+                                        window.location.href = 'listapply';
                                         break;
                                     case 'prev' :
-                                        window.location.href = 'listdeviceapply.html';
+                                        window.location.href = 'listdeviceapply';
                                         break;
                                     case 'next' :
                                         alert("已经到最后一步!")
