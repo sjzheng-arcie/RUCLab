@@ -24,11 +24,8 @@
 <link rel="stylesheet" type="text/css" href="../../common/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="../../common/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
 
-<body onload="doOnLoad();">
+<body onload="doOnLoad();"style="background-color: #eef2fb">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
-<tr>
-    <td class="title">教学实验管理 -&gt; 课程信息管理 -&gt; 实验室选择</td>
-</tr>
 <tr>
 <td valign="top" height="100%">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -36,18 +33,16 @@
     <td height="27">
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td class="op_nor" onclick="javascript:location.href='curriculum'">课表一览</td>
-                <td class="op_nor" onclick="javascript:location.href='listcommit'">课表信息</td>
-                <td class="op_act" onclick="javascript:location.href='listapply'">实验室选择</td>
-                <td class="op_nor" onclick="javascript:location.href='list'">课程基本信息</td>
-
+                <td class="op_nor" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
+                <td class="op_nor" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
+                <td class="op_act" onclick="javascript:location.href='setlab'">安排实验室</td>
+                <td class="op_nor" onclick="javascript:location.href='curriculumview'">课表信息</td>
             </tr>
         </table>
     </td>
 </tr>
-
 <tr>
-<td valign="top" height="420">
+<td valign="top" height="490">
 <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr bgcolor="#E3EFFF">
@@ -61,7 +56,7 @@
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
 <tr>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -76,7 +71,7 @@
             </tr>
         </table>
     </td>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -105,7 +100,7 @@
             </tr>
         </table>
     </td>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -122,7 +117,7 @@
     </td>
 </tr>
 <tr>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -151,7 +146,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -166,7 +161,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -197,7 +192,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -256,7 +251,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='list'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -271,7 +266,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='list'"
+    <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='curriculumview'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -309,25 +304,6 @@
 <script>var dhxLayout, dhxToolbar, dhxTree, editor;
 function doOnLoad() {
     dhxLayout = new dhtmlXLayoutObject("parentId", "1C");
-    dhxToolbar = dhxLayout.attachToolbar();
-    dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
-    dhxToolbar.loadXML("common/toolbar.xml?" + new Date().getTime());
-    dhxToolbar.attachEvent("onClick", function (id) {
-        switch (id) {
-            case 'save' :
-                alert("保存当前数据!")
-                break;
-            case 'prev' :
-                window.location.href = 'listdate.html';
-                break;
-            case 'next' :
-                window.location.href = 'page01_ylya_zx2.html';
-                break;
-            default:
-                alert("Button " + id + " was clicked!")
-        }
-    });
-
     dhxLayout.cells("a").setText("选择教室");
     dhxLayout.cells("a").attachObject("zuoxi");
 

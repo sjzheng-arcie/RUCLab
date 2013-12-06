@@ -24,11 +24,8 @@
 <link rel="stylesheet" type="text/css" href="../../common/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="../../common/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
 
-<body onload="doOnLoad();">
+<body onload="doOnLoad();" style="background-color: #eef2fb">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
-    <tr>
-        <td class="title">教学实验管理 -&gt; 课程信息管理 -&gt; 课表信息</td>
-    </tr>
     <tr>
         <td valign="top" height="100%">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -36,30 +33,21 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_nor" onclick="javascript:location.href='curriculum'">课表一览</td>
-                                <td class="op_act" onclick="javascript:location.href='listcommit'">课表信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='listapply'">实验室申请</td>
-                                <td class="op_nor" onclick="javascript:location.href='list'">课程基本信息</td>
-
+                                <td class="op_nor" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
+                                <td class="op_nor" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='setlab'">安排实验室</td>
+                                <td class="op_act" onclick="javascript:location.href='curriculumview'">课表信息</td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" height="800">
+                    <td valign="top" height="626">
                         <div id="zuoxi" style="width: 100%; overflow: auto; display: none;">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
                                 <tr height="25">
-
-                                    <td width="12.5%" bgcolor="#E3EFFF">周次：<input type="text"/></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"><input type="button" value="转到"/></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">周次：<input type="text"/><input type="button" value="转到"/></td>
                                 </tr>
-
                             </table>
                             <table width="100%" border="1" cellpadding="10" cellspacing="0">
                                 <tr height="25" align="center">
@@ -81,8 +69,8 @@
 
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
@@ -90,10 +78,10 @@
 
                                     <td bgcolor="#F7F7F7">三、四节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
 
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
@@ -103,17 +91,17 @@
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
 
                                     <td bgcolor="#F7F7F7">七、八节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
 
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
@@ -123,7 +111,7 @@
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listapply'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
                             </table>
@@ -135,29 +123,6 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
-                            dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
-                            dhxToolbar.loadXML("common/toolbar_fayl.xml?" + new Date().getTime());
-                            dhxToolbar.attachEvent("onClick", function (id) {
-                                switch (id) {
-                                    case 'save' :
-                                        alert("保存当前数据")
-                                        break;
-                                    case 'tijiao' :
-                                        alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply';
-                                        break;
-                                    case 'prev' :
-                                        window.location.href = 'listdeviceapply';
-                                        break;
-                                    case 'next' :
-                                        alert("已经到最后一步!")
-                                        break;
-                                    default:
-                                        alert("Button " + id + " was clicked!")
-                                }
-                            });
-
                             dhxLayout.cells("a").setText("课表信息");
                             dhxLayout.cells("a").attachObject("zuoxi");
 

@@ -40,7 +40,7 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="jsp/dev/info/deviceList" onfocus="toFocus(this)" target="main">设备信息库管理</a>
+                            <li><a href="index" onfocus="toFocus(this)" target="main">预约管理</a>
                             </li>
                         </ul>
                     </div>

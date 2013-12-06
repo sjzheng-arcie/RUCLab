@@ -23,12 +23,8 @@
 <script src="../../common/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
 <link rel="stylesheet" type="text/css" href="../../common/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="../../common/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
-
-<body onload="doOnLoad();">
+<body onload="doOnLoad();" style="background-color: #eef2fb">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
-    <tr>
-        <td class="title">教学实验管理 -&gt; 课程信息管理 -&gt; 课表一览</td>
-    </tr>
     <tr>
         <td valign="top" height="100%">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -36,65 +32,50 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_act" onclick="javascript:location.href='curriculum'">课表一览</td>
-                                <td class="op_nor" onclick="javascript:location.href='listcommit'">课表信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='listapply'">实验室申请</td>
-                                <td class="op_nor" onclick="javascript:location.href='list'">课程基本信息</td>
-
+                                <td class="op_act" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
+                                <td class="op_nor" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='setlab'">安排实验室</td>
+                                <td class="op_nor" onclick="javascript:location.href='curriculumview'">课表信息</td>
                             </tr>
                         </table>
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" height="800">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
+                    <td valign="top" height="600">
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; ">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
                                 <tr height="25">
-
-                                    <td width="12.5%" bgcolor="#E3EFFF">周次：<input type="text"/></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">班级：<input type="text"/></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"><input type="button" value="转到"/></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >班级：<input type="text"/><input type="button" value="转到"/></td>
                                 </tr>
-
                             </table>
                             <table width="100%" border="1" cellpadding="" cellspacing="0" style="font-size:25px;">
                                 <tr height="40">
-                                    <td colspan="5" align="center" bgcolor="#e3efff"><strong>课表一览</strong></td>
+                                    <td colspan="5" align="center" bgcolor="#e3efff"><strong>班级一览</strong></td>
                                 </tr>
                                 <tr align="center" height="40">
-                                    <td width="12.5%" bgcolor="#E3EFFF">序号</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">编号</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">班级</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">详细</td>
                                 </tr>
                                 <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">1</td>
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
                                 </tr>
                                 <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">2</td>
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
                                 </tr>
                                 <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">3</td>
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
                                 </tr>
                                 <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">4</td>
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='listcommit'">点击查看</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
                                 </tr>
                             </table>
                         </div>
@@ -103,31 +84,8 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
-                            dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
-                            dhxToolbar.loadXML("common/toolbar_fayl.xml?" + new Date().getTime());
-                            dhxToolbar.attachEvent("onClick", function (id) {
-                                switch (id) {
-                                    case 'save' :
-                                        alert("保存当前数据")
-                                        break;
-                                    case 'tijiao' :
-                                        alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply';
-                                        break;
-                                    case 'prev' :
-                                        window.location.href = 'listdeviceapply';
-                                        break;
-                                    case 'next' :
-                                        alert("已经到最后一步!")
-                                        break;
-                                    default:
-                                        alert("Button " + id + " was clicked!")
-                                }
-                            });
                             dhxLayout.cells("a").setText("课表一览");
                             dhxLayout.cells("a").attachObject("zuoxi");
-
                         }</script>
                     </td>
                 </tr>

@@ -3,11 +3,11 @@
     MARGIN: 0px;
     FONT-FAMILY: "宋体", "微软雅黑";
     background-color: #FFFFFF;
-    background-image: url(../../images/main_bg.gif);
+    background-image: url(../images/main_bg.gif);
 }
 
 BODY.login {
-    background-image: url(../../images/login_bg.gif);
+    background-image: url(../images/login_bg.gif);
 }
 
 form {
@@ -183,7 +183,7 @@ button.sbtn {
     position: absolute;
     height: 100%;
     width: 100%;
-    background-image: url(../../images/openwin_bg.gif);
+    background-image: url(../images/openwin_bg.gif);
 }
 
 .win_tab {
@@ -237,7 +237,7 @@ button.sbtn {
     width: 120px;
     height: 27px;
     text-align: center;
-    background-image: url(../../images/op_nor.gif);
+    background-image: url(../images/op_nor.gif);
     color: #666;
     cursor: hand;
     font-size: 12px;
@@ -247,7 +247,7 @@ button.sbtn {
     width: 120px;
     height: 27px;
     text-align: center;
-    background-image: url(../../images/op_act.gif);
+    background-image: url(../images/op_act.gif);
     color: #FFF;
     font-weight: bold;
     cursor: hand;
@@ -258,7 +258,7 @@ button.sbtn {
     width: 100px;
     height: 27px;
     text-align: center;
-    background-image: url(../../images/op_nor2.gif);
+    background-image: url(../images/op_nor2.gif);
     color: #666;
     cursor: hand;
     font-size: 12px;
@@ -268,7 +268,7 @@ button.sbtn {
     width: 100px;
     height: 27px;
     text-align: center;
-    background-image: url(../../images/op_act2.gif);
+    background-image: url(../images/op_act2.gif);
     color: #FFF;
     font-weight: bold;
     cursor: hand;
@@ -288,6 +288,7 @@ a:visited {
 a:hover {
     COLOR: #ff6600;
     TEXT-DECORATION: underline
+
 }
 
 .black:link {
@@ -350,17 +351,17 @@ a:hover {
 }
 
 .line1 {
-    BACKGROUND-IMAGE: url(../../images/line.gif);
+    BACKGROUND-IMAGE: url(../images/line.gif);
     HEIGHT: 1px
 }
 
 .line2 {
-    BACKGROUND-IMAGE: url(../../images/line2.gif);
+    BACKGROUND-IMAGE: url(../images/line2.gif);
     HEIGHT: 1px
 }
 
 .line3 {
-    BACKGROUND-IMAGE: url(../../images/line.gif);
+    BACKGROUND-IMAGE: url(../images/line.gif);
     WIDTH: 3px
 }
 
@@ -398,46 +399,46 @@ select {
 }
 
 .taba1 {
-    BACKGROUND-IMAGE: url(../../images/main_taba1.png);
+    BACKGROUND-IMAGE: url(../images/main_taba1.png);
     WIDTH: 7px;
     HEIGHT: 7px
 }
 
 .taba2 {
-    BACKGROUND-IMAGE: url(../../images/main_taba2.png);
+    BACKGROUND-IMAGE: url(../images/main_taba2.png);
     WIDTH: 7px;
     HEIGHT: 7px
 }
 
 .tabb1 {
-    BACKGROUND-IMAGE: url(../../images/main_tabb1.png);
+    BACKGROUND-IMAGE: url(../images/main_tabb1.png);
     WIDTH: 7px;
     HEIGHT: 7px
 }
 
 .tabb2 {
-    BACKGROUND-IMAGE: url(../../images/main_tabb2.png);
+    BACKGROUND-IMAGE: url(../images/main_tabb2.png);
     WIDTH: 7px;
     HEIGHT: 7px
 }
 
 .tabtop {
-    BACKGROUND-IMAGE: url(../../images/main_tabtop.png);
+    BACKGROUND-IMAGE: url(../images/main_tabtop.png);
     HEIGHT: 7px
 }
 
 .tabfoot {
-    BACKGROUND-IMAGE: url(../../images/main_tabfoot.png);
+    BACKGROUND-IMAGE: url(../images/main_tabfoot.png);
     HEIGHT: 7px
 }
 
 .tableft {
-    BACKGROUND-IMAGE: url(../../images/main_tableft.png);
+    BACKGROUND-IMAGE: url(../images/main_tableft.png);
     WIDTH: 7px
 }
 
 .tabright {
-    BACKGROUND-IMAGE: url(../../images/main_tabright.png);
+    BACKGROUND-IMAGE: url(../images/main_tabright.png);
     WIDTH: 7px
 }
 
@@ -451,7 +452,7 @@ table.table1 {
 }
 
 table.table1 th {
-    background-image: url(../../images/th_bg.gif);
+    background-image: url(../images/th_bg.gif);
     background-color: #daeafe;
     border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #a4bed4;
@@ -543,7 +544,7 @@ table.table1 tr.BGCbase {
 }
 
 table.table1 th.TableTit {
-    background-image: url(../../images/th_bg.gif);
+    background-image: url(../images/th_bg.gif);
     border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #a4bed4;
     height: 27px;
@@ -559,7 +560,7 @@ table.table2 {
 }
 
 table.table2 th {
-    background-image: url(../../images/th_bg2.gif);
+    background-image: url(../images/th_bg2.gif);
     background-color: #e3ffe5;
     border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #a6d4a4;
@@ -651,7 +652,7 @@ table.table2 td.BGCyellow {
 }
 
 table.table2 th.TableTit {
-    background-image: url(../../images/th_bg.gif);
+    background-image: url(../images/th_bg.gif);
     border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #a6d4a4;
     height: 27px;
@@ -660,7 +661,7 @@ table.table2 th.TableTit {
 
 .page_bar {
     border: 1px solid #a4bed4;
-    background-image: url(../../images/th_bg.gif);
+    background-image: url(../images/th_bg.gif);
     height: 35px;
     padding-top: 3px;
 }
@@ -683,7 +684,7 @@ table.table2 th.TableTit {
 
 .table_menu {
     border: 1px solid #a4bed4;
-    background-image: url(../../images/th_left.gif);
+    background-image: url(../images/th_left.gif);
     width: 11px;
 }
 
@@ -719,12 +720,12 @@ table.table2 th.TableTit {
 }
 
 .l1menu .TabTitle .active {
-    background-image: url(../../images/main_l1menu_act.gif);
+    background-image: url(../images/main_l1menu_act.gif);
     color: #000;
 }
 
 .l1menu .TabTitle .normal {
-    background-image: url(../../images/main_l1menu_bg.gif);
+    background-image: url(../images/main_l1menu_bg.gif);
     color: #FFF;
 }
 
@@ -772,13 +773,13 @@ table.table2 th.TableTit {
 }
 
 .l2menu .TabTitle .active {
-    background-image: url(../../images/main_l2menu_act.gif);
+    background-image: url(../images/main_l2menu_act.gif);
     color: #122661;
     font-weight: bold;
 }
 
 .l2menu .TabTitle .normal {
-    background-image: url(../../images/main_l2menu_bg.gif);
+    background-image: url(../images/main_l2menu_bg.gif);
     color: #FFF;
     font-weight: bold;
 }
@@ -820,13 +821,13 @@ table.table2 th.TableTit {
 }
 
 .nTab .TabTitle .active {
-    background-image: url(../../images/op_act2.gif);
+    background-image: url(../images/op_act2.gif);
     color: #FFF;
     font-weight: bold;
 }
 
 .nTab .TabTitle .normal {
-    background-image: url(../../images/op_nor2.gif);
+    background-image: url(../images/op_nor2.gif);
     color: #666;
 }
 
@@ -945,7 +946,7 @@ table.table9 tr.BGCbase {
 }
 
 table.table9 th.TableTit {
-    background-image: url(../../images/th_bg.gif);
+    background-image: url(../images/th_bg.gif);
     border-top: 1px solid #FFFFFF;
     border-bottom: 1px solid #a4bed4;
     height: 27px;

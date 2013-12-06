@@ -8,7 +8,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
 </head>
-<link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
 <script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
 <link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/dhtmlxlayout.css">
@@ -25,11 +25,8 @@
 <link rel="stylesheet" type="text/css" href="../../common/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="../../common/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
 
-<body onload="doOnLoad();">
+<body onload="doOnLoad();"style="background-color: #eef2fb">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
-    <tr>
-        <td class="title">个人中心 -&gt; 课程表信息-&gt; 我的课程表</td>
-    </tr>
     <tr>
         <td valign="top" height="100%">
             <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -44,22 +41,8 @@
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" height="800">
+                    <td valign="top" height="580">
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
-
-                                <tr height="25">
-
-                                    <td width="12.5%" bgcolor="#E3EFFF">周次：<input type="text"/></td>
-
-                                    <td width="12.5%" bgcolor="#E3EFFF"><input type="button" value="转到"/></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                </tr>
-
-                            </table>
                             <table width="100%" border="1" cellpadding="1" cellspacing="0">
                                 <tr height="25">
                                     <td colspan="7" align="center" bgcolor="#e3efff"><strong>软件工程09-1课程表</strong></td>
@@ -76,7 +59,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">上午</td>
-                                    <td bgcolor="#F7F7F7">一二节</td>
+                                    <td bgcolor="#F7F7F7">一、二节</td>
 
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
@@ -87,7 +70,7 @@
                                 </tr>
                                 <tr height="100" align="center">
 
-                                    <td bgcolor="#F7F7F7">三四节</td>
+                                    <td bgcolor="#F7F7F7">三、四节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
                                     <td bgcolor="#F7F7F7"></td>
 
@@ -97,7 +80,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">下午</td>
-                                    <td bgcolor="#F7F7F7">五六节</td>
+                                    <td bgcolor="#F7F7F7">五、六节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
@@ -107,11 +90,21 @@
                                 </tr>
                                 <tr height="100" align="center">
 
-                                    <td bgcolor="#F7F7F7">七八节</td>
+                                    <td bgcolor="#F7F7F7">七、八节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
                                     <td bgcolor="#F7F7F7"></td>
 
                                     <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7"></td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                </tr>
+                                <tr height="100" align="center">
+                                    <td bgcolor="#F7F7F7">晚上</td>
+                                    <td bgcolor="#F7F7F7">九、十节</td>
+                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
+
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
                                     <td bgcolor="#F7F7F7"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
                                 </tr>
@@ -124,28 +117,6 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
-                            dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
-                            dhxToolbar.loadXML("common/toolbar_fayl.xml?" + new Date().getTime());
-                            dhxToolbar.attachEvent("onClick", function (id) {
-                                switch (id) {
-                                    case 'save' :
-                                        alert("保存当前数据")
-                                        break;
-                                    case 'tijiao' :
-                                        alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply';
-                                        break;
-                                    case 'prev' :
-                                        window.location.href = 'listdeviceapply';
-                                        break;
-                                    case 'next' :
-                                        alert("已经到最后一步!")
-                                        break;
-                                    default:
-                                        alert("Button " + id + " was clicked!")
-                                }
-                            });
 
                             dhxLayout.cells("a").setText("课表信息");
                             dhxLayout.cells("a").attachObject("zuoxi");

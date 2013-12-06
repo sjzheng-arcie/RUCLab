@@ -69,11 +69,11 @@
                                 <li><a href="new/pages_miyl/miyl01_ylsj/datelist" onfocus="toFocus(this)" target="main">
                                     待审核预约</a></li>
                             </shiro:hasRole>
-                            <shiro:hasRole name="student">
+                            <shiro:hasAnyRoles name="student,teacher">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
 
-                            </shiro:hasRole>
+                            </shiro:hasAnyRoles>
                             <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
                                    target="main">我的实验课程</a></li>
 

@@ -5,7 +5,7 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../../css/style.css" rel="stylesheet" type="text/css"/>
+<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
 <script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
 <script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
 
@@ -40,10 +40,10 @@
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="op_nor" onclick="javascript:location.href='list.html'">课程基本信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='listdate.html'">预约日程</td>
-                                <td class="op_nor" onclick="javascript:location.href='listapply.html'">实验室申请</td>
-                                <td class="op_act" onclick="javascript:location.href='listdeviceapply.html'">实验设备申请</td>
-                                <td class="op_nor" onclick="javascript:location.href='listcommit.html'">课表信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='listdate'">预约日程</td>
+                                <td class="op_nor" onclick="javascript:location.href='listapply'">实验室申请</td>
+                                <td class="op_act" onclick="javascript:location.href='listdeviceapply'">实验设备申请</td>
+                                <td class="op_nor" onclick="javascript:location.href='listcommit'">课表信息</td>
                             </tr>
                         </table>
                     </td>
@@ -64,10 +64,10 @@
                                         alert("保存当前数据!")
                                         break;
                                     case 'prev' :
-                                        window.location.href = 'listapply.html';
+                                        window.location.href = 'listapply';
                                         break;
                                     case 'next' :
-                                        window.location.href = 'listcommit.html';
+                                        window.location.href = 'listcommit';
                                         break;
                                     default:
                                         alert("Button " + id + " was clicked!")
