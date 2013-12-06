@@ -21,6 +21,9 @@ public interface CurriculumClassMapper {
     List<CurriculumClass> selectByCriteriaWithRowbounds(CurriculumClassCriteria criteria, RowBounds rowBounds);
 
     List<CurriculumClass> selectByCriteria(CurriculumClassCriteria criteria);
+	List<CurriculumClass> selectByCriteriaAndClsStudentWithRowbounds(CurriculumClassCriteria criteria, RowBounds rowBounds);
+
+	List<CurriculumClass> selectByCriteriaAndClsStudent(CurriculumClassCriteria criteria);
 
     CurriculumClass selectByPrimaryKey(Integer id);
 

@@ -424,6 +424,14 @@ public class CurriculumClassCriteria {
             return (Criteria) this;
         }
 
+	    public Criteria andUserIdEqual(int tid){
+			addCriterion("u.id =", tid, "id");
+			return (Criteria) this;
+		}
+		public Criteria andStudentIdEqual(int tid){
+			addCriterion("cs.student_id=", tid, "id");
+			return (Criteria) this;
+		}
         //以下为连表查询
         public Criteria andJoinCurriculum() {
             addCriterion("cc.curriculum_id = c.id ");
@@ -433,8 +441,16 @@ public class CurriculumClassCriteria {
         public Criteria andJoinUser() {
             addCriterion("c.teacher_id = u.id ");
             return (Criteria) this;
-        }
-    }
+	}
+		public Criteria andJoinClassStudent(){
+			addCriterion("cc.id = cs.class_id");
+			return (Criteria) this;
+		}
+		public Criteria andJoinCsUser() {
+			addCriterion("cs.student_id = u.id ");
+			return (Criteria) this;
+		}
+	}
 
     public static class Criteria extends GeneratedCriteria {
 

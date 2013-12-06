@@ -50,13 +50,13 @@
                             <li><a href="/messagecenter/laboratory/jsp/announcement/remind/announcementTab?id=1" onfocus="toFocus(this)"
                                    target="main">我的通知</a>
                             </li>
-                            <shiro:hasAnyRoles name="teacher,equipment_admin,student">
-                                <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
+                            <shiro:hasRole name="teacher,equipment_admin,student">
+                                <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.html"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
                                 <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)"
                                        target="main">
                                     我的预约申请</a></li>
-                            </shiro:hasAnyRoles>
+                            </shiro:hasRole>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,administrators">
                                 <li><a href="jsp/task/mytask/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
                                 </li>
@@ -72,8 +72,9 @@
                             <shiro:hasRole name="student">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
+
                             </shiro:hasRole>
-                                <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)"
+                            <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
                                    target="main">我的实验课程</a></li>
 
                         </ul>
@@ -89,9 +90,9 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="jsp/experiment/virtual/list" onfocus="toFocus(this)" target="main">虚拟班级管理</a>
+                            <li><a href="/experiment/virtual/list?page=1" onfocus="toFocus(this)" target="main">虚拟班级管理</a>
                             </li>
-                            <li><a href="jsp/experiment/experiment/courselist" onfocus="toFocus(this)" target="main">
+                            <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)" target="main">
                                 实验信息管理</a></li>
                             <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)"
                                    target="main">

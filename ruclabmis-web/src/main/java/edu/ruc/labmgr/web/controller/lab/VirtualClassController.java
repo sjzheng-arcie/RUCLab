@@ -37,9 +37,10 @@ public class VirtualClassController {
                                   @RequestParam(value = "sn", required = false, defaultValue = "") String sn,
                                   @RequestParam(value = "name", required = false, defaultValue = "") String name) {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/list");
+
         PageInfo<CurriculumClass> pageInfo = classService.getPageClasses(page, sn, name);
         mv.addObject("pageInfo", pageInfo);
-        return mv;
+		return mv;
     }
 
     @RequestMapping(value = "/showAdd", method = {RequestMethod.GET, RequestMethod.POST})

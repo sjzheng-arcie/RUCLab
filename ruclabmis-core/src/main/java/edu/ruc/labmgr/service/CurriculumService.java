@@ -29,4 +29,5 @@ public class CurriculumService {
         }
         return curriculumMapper.selectByCriteria(criteria);
     }
+
 }

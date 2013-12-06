@@ -75,7 +75,6 @@
     </sql>
     <sql id="Base_Column_List">
     cc.id as cc_id, cc.curriculum_id as cc_curriculum_id,
---     cc.student_id as cc_student_id, cc.usual_performance as cc_usual_performance, cc.final_grade as cc_final_grade,
     cc.class_name as cc_class_name,cc.class_sn as cc_class_sn, cc.class_year as cc_class_year
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap"
@@ -95,6 +94,22 @@
         </if>
     </select>
 
+    <select id="selectByCriteriaAndClsStudent" resultMap="BaseResultMap"
+            parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,c.name as curriculum_name,u.name as teacher_name
+        from curriculum_class cc,curriculum c, user u,class_student cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         u.name as teacher_name,
@@ -236,6 +251,23 @@
         <include refid="Base_Column_List"/>
         ,c.name as curriculum_name,u.name as teacher_name
         from curriculum_class cc,curriculum c, user u
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
+    <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria"
+            id="selectByCriteriaAndClsStudentWithRowbounds">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List"/>
+        ,c.name as curriculum_name,u.name as teacher_name
+        from curriculum_class cc,curriculum c, user u,class_student cs
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>

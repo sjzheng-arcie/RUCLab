@@ -61,6 +61,10 @@
                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
                                     查询</a></span>
 
+                                                        <span style="float:right">&nbsp;
+                                <a href="javascript:void(0)" onclick="window.history.go(-1);">
+                                    <img src="../../../../images/database_import_.gif" width="15" height="15" border="0"/>
+                                    返回</a></span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -98,6 +102,7 @@
                                                                                     src="../../../../images/del_min.gif"
                                                                                     width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+
                                                                     </shiro:hasAnyRoles>
                                                                 </span>
                                                                 </div>

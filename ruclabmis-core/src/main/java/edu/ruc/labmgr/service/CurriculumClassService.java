@@ -3,6 +3,8 @@ package edu.ruc.labmgr.service;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.ClassStudentMapper;
 import edu.ruc.labmgr.mapper.CurriculumClassMapper;
+import edu.ruc.labmgr.mapper.CurriculumMapper;
+import edu.ruc.labmgr.mapper.UserMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -22,6 +24,10 @@ public class CurriculumClassService {
     private CurriculumClassMapper classMapper;
     @Autowired
     private ClassStudentMapper classStudentMapper;
+	@Autowired
+	private CurriculumMapper curriculumMapper;
+	@Autowired
+	private UserMapper userMapper;
 
     /**
      * 获得分页的虚拟班级列表
@@ -42,6 +48,18 @@ public class CurriculumClassService {
         }
         return getPageClassByCriteria(pageNum, criteria);
     }
+
+	/**
+	 *
+	 * @param id
+	 * @return
+	 * @author:sjzheng
+	 */
+	public PageInfo<CurriculumClass> getPageClassbyPageNum(int pageNum,int id,boolean flag){
+		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+		CurriculumClassCriteria.Criteria c = criteria.or();
+		return getPageClassByCriteriaAndUid(pageNum, criteria, id, flag);
+	}
 
     public CurriculumClass getVirtualClass(int cid) {
         return classMapper.selectByPrimaryKey(cid);
@@ -125,4 +143,44 @@ public class CurriculumClassService {
         p.setData(data);
         return p;
     }
+
+	/**
+	 *
+ 	 * @param pageNum
+	 * @param criteria
+	 * @param id
+	 * @return
+	 */
+	private PageInfo<CurriculumClass> getPageClassByCriteriaAndUid(int pageNum,
+															 CurriculumClassCriteria criteria,int id,boolean ifstudent) {
+		int totalCount = classMapper.countByCriteria(criteria);
+
+		CurriculumClassCriteria.Criteria c = criteria.getOredCriteria().get(0);
+		PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+		if(ifstudent){
+			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
+			List<CurriculumClass> data = classMapper.selectByCriteriaAndClsStudentWithRowbounds(criteria,
+					new RowBounds(p.getCurrentResult(), p.getPageSize()));
+			p.setData(ChangeNameFromStuToTea(data));
+		}else{
+			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+			List<CurriculumClass> data = classMapper.selectByCriteriaWithRowbounds(criteria,
+					new RowBounds(p.getCurrentResult(), p.getPageSize()));
+			p.setData(data);
+		}
+
+		return p;
+	}
+	private List<CurriculumClass> ChangeNameFromStuToTea(List<CurriculumClass> data){
+		if(data==null)
+			return data;
+		for(CurriculumClass cc:data){
+			int curricumId = cc.getCurriculumId();
+			Curriculum cum =curriculumMapper.selectByPrimaryKey(curricumId);
+			int teacheId = cum.getTeacherId();
+			User user= userMapper.selectByPrimaryKey(teacheId);
+			cc.setTeacherName(user.getName());
+		}
+		return data;
+	}
 }
