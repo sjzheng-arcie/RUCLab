@@ -889,6 +889,11 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/setcurriculum");
 		return mav;
 	}
+	@RequestMapping("jsp/curriculum/experiment/curriculum/importcurriculum")
+	public ModelAndView importCurriculum() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/importcurriculum");
+		return mav;
+	}
 
 	@RequestMapping("jsp/curriculum/experiment/curriculum/setlab")
 	public ModelAndView setLab() {
@@ -896,5 +901,9 @@ public class PrototypeTest {
 		return mav;
 	}
 
-
+	@RequestMapping("/administor_leftmenuorder")
+	public ModelAndView leftMenuOrder() {
+		ModelAndView mav = new ModelAndView("/laboratory/administor_leftmenuorder");
+		return mav;
+	}
 }

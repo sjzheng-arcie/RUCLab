@@ -33,9 +33,6 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_nor" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
-                                <td class="op_nor" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='setlab'">安排实验室</td>
                                 <td class="op_act" onclick="javascript:location.href='curriculumview'">课表信息</td>
                             </tr>
                         </table>
@@ -68,51 +65,51 @@
                                     <td bgcolor="#F7F7F7">一、二节</td>
 
 
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
 
                                     <td bgcolor="#F7F7F7">三、四节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
+                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
 
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">下午</td>
                                     <td bgcolor="#F7F7F7">五、六节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
+                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
 
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
 
                                     <td bgcolor="#F7F7F7">七、八节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
+                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
 
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" >晚上</td>
                                     <td bgcolor="#F7F7F7">九、十节</td>
-                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件实验室201 软件工程实验题一</td>
+                                    <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
 
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumclasslist'"></td>
-                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络实验室301 网络工程实验题二</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
                                 </tr>
                             </table>
                         </div>

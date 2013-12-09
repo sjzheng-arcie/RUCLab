@@ -38,7 +38,7 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_act" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
+                                <td class="op_act" onclick="javascript:location.href='importcurriculum'">导入课表</td>
                             </tr>
                         </table>
                     </td>
@@ -47,28 +47,11 @@
                     <td valign="top" height="500">
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
+
                                 <tr>
-                                    <td align="right" width="40%">课程名称：</td>
-                                    <td width="60%">
-                                        <input value="软件工程" type="text" name="textfield" id="textfield"/>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right">任课老师：</td>
-                                    <td>
-                                        <input name="theTeacher" value="谢衣">
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right" width="">开始时间：</td>
+                                    <td align="right">选择文件：</td>
                                     <td width="">
-                                        第<input value="" style="max-width: 10" type="text" name="startTime" id="startTime"/>周
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td align="right">结束时间：</td>
-                                    <td width="">
-                                        第<input value="" style="max-width: 10" type="text" name="endTime" id="endTime"/>周
+                                        <input value="" style="max-width: 10" type="file" name="importFile" id="importFile"/>
                                     </td>
                                 </tr>
                             </table>

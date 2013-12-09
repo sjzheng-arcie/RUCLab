@@ -33,10 +33,7 @@
     <td height="27">
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
-                <td class="op_nor" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
-                <td class="op_nor" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
                 <td class="op_act" onclick="javascript:location.href='setlab'">安排实验室</td>
-                <td class="op_nor" onclick="javascript:location.href='curriculumview'">课表信息</td>
             </tr>
         </table>
     </td>
@@ -56,7 +53,7 @@
 </table>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
 <tr>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -71,7 +68,7 @@
             </tr>
         </table>
     </td>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -100,7 +97,7 @@
             </tr>
         </table>
     </td>
-    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -117,7 +114,7 @@
     </td>
 </tr>
 <tr>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -146,7 +143,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -161,7 +158,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -192,7 +189,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -251,7 +248,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumview'"
+    <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
@@ -266,7 +263,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='curriculumview'"
+    <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='curriculumclasslist'"
         style="cursor:hand;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>

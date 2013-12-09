@@ -33,9 +33,6 @@
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td class="op_act" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
-                                <td class="op_nor" onclick="javascript:location.href='setcurriculum'">添加课表信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='setlab'">安排实验室</td>
-                                <td class="op_nor" onclick="javascript:location.href='curriculumview'">课表信息</td>
                             </tr>
                         </table>
                     </td>
@@ -60,22 +57,22 @@
                                 <tr height="40" align="center">
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
                                 </tr>
                                 <tr height="40" align="center">
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
                                 </tr>
                                 <tr height="40" align="center">
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
                                 </tr>
                                 <tr height="40" align="center">
                                     <td bgcolor="#F7F7F7">kb0001</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setcurriculum'">点击设置</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
                                 </tr>
                             </table>
                         </div>
@@ -84,6 +81,21 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
+                            dhxToolbar = dhxLayout.attachToolbar();
+                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.loadXML("common/toolbar.xml?" + new Date().getTime());
+                            dhxToolbar.attachEvent("onClick", function (id) {
+                                switch (id) {
+                                    case 'new' :
+                                        window.location.href = 'setcurriculum';
+                                        break;
+                                    case 'import' :
+                                        window.location.href = 'importcurriculum';
+                                        break;
+                                    default:
+                                        alert("Button " + id + " was clicked!")
+                                }
+                            });
                             dhxLayout.cells("a").setText("课表一览");
                             dhxLayout.cells("a").attachObject("zuoxi");
                         }</script>
