@@ -65,25 +65,27 @@
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">上午</td>
                                     <td bgcolor="#F7F7F7">一、二节</td>
+
+
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                 </tr>
                                 <tr height="100" align="center">
 
                                     <td bgcolor="#F7F7F7">三、四节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
 
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">下午</td>
@@ -92,22 +94,22 @@
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                 </tr>
                                 <tr height="100" align="center">
 
                                     <td bgcolor="#F7F7F7">七、八节</td>
                                     <td bgcolor="#F7F7F7">软件工程 孙红梅 软件工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
 
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" >晚上</td>
@@ -116,10 +118,10 @@
 
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题一</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                     <td bgcolor="#F7F7F7">网络工程 王晓静 网络工程实验题二</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='setlab'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='addlession'"></td>
                                 </tr>
                             </table>
                         </div>

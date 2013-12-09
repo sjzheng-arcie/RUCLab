@@ -32,7 +32,7 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_act" onclick="javascript:location.href='curriculumclasslist'">班级一览</td>
+                                <td class="op_act" onclick="javascript:location.href='curriculumclasslist'">课表一览</td>
                             </tr>
                         </table>
                     </td>
@@ -42,38 +42,40 @@
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; ">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr height="25">
-                                    <td width="20px" bgcolor="#E3EFFF" >班级：<input type="text"/><input type="button" value="转到"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >学年：<input name="schoolYear"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >学期：<input name="semester"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >专业：<input name="major"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >班级：<input name="class"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" ><input type="button" value="转到"/></td>
                                 </tr>
                             </table>
                             <table width="100%" border="1" cellpadding="" cellspacing="0" style="font-size:25px;">
                                 <tr height="40">
-                                    <td colspan="5" align="center" bgcolor="#e3efff"><strong>班级一览</strong></td>
+                                    <td colspan="5" align="center" bgcolor="#e3efff"><strong>课表一览</strong></td>
                                 </tr>
                                 <tr align="center" height="40">
-                                    <td width="12.5%" bgcolor="#E3EFFF">编号</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">学年</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">学期</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">专业</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">班级</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">详细</td>
                                 </tr>
                                 <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">kb0001</td>
+                                    <td bgcolor="#F7F7F7">2012</td>
+                                    <td bgcolor="#F7F7F7">1</td>
+                                    <td bgcolor="#F7F7F7">网络工程</td>
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击安排实验室</td>
                                 </tr>
-                                <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">kb0001</td>
-                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
-                                </tr>
-                                <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">kb0001</td>
-                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
-                                </tr>
-                                <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">kb0001</td>
-                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击设置</td>
-                                </tr>
+                                <c:forEach items="${pageInfo.data}" var="item">
+                                    <tr>
+                                        <td bgcolor="#F7F7F7">${item.schoolYear}</td>
+                                        <td bgcolor="#F7F7F7">${item.semester}</td>
+                                        <td bgcolor="#F7F7F7">${item.major}</td>
+                                        <td bgcolor="#F7F7F7">${item.className}</td>
+                                        <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview?scheduleId=${item.id}'">点击安排实验室</td>
+                                    </tr>
+                                </c:forEach>
                             </table>
                         </div>
                         <div id="parentId"
@@ -87,7 +89,7 @@
                             dhxToolbar.attachEvent("onClick", function (id) {
                                 switch (id) {
                                     case 'new' :
-                                        window.location.href = 'setcurriculum';
+                                        window.location.href = 'createcurriculum';
                                         break;
                                     case 'import' :
                                         window.location.href = 'importcurriculum';

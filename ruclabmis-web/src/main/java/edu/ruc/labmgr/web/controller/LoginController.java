@@ -28,7 +28,7 @@ public class LoginController {
     }
 	@RequestMapping("/{system}/excutelogin")
 	public String login(@PathVariable String system,HttpServletRequest request) {
-		String result = "/login";
+		String result = "redirect:/"+system+"/index";
 		String userSn = request.getParameter("username");
 		String password = CipherUtil.generatePassword(request.getParameter("password"));
 		UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
@@ -74,17 +74,16 @@ public class LoginController {
 				}
 			}
 			if (currentUser.hasRole(Types.Role.ADMIN.getName())) {
-
-
 				result = "redirect:/laboratory/index";
-			} else if (currentUser.hasRole("teacher")){
-
+			} else if (currentUser.hasRole(Types.Role.EQUIPMENT_ADMIN.getName())){
 				result = "redirect:/laboratory/index";
-			}else if (currentUser.hasRole("student")){
-
+			}else if (currentUser.hasRole(Types.Role.STUDENT.getName())){
 				result = "redirect:/laboratory/index";
-			}else if (currentUser.hasRole("equipment_admin")){
-
+			}else if (currentUser.hasRole(Types.Role.TEACHER.getName())){
+				result = "redirect:/laboratory/index";
+			}else if (currentUser.hasRole(Types.Role.LEADER.getName())){
+				result = "redirect:/laboratory/index";
+			}else if (currentUser.hasRole(Types.Role.LAB_ADMIN.getName())){
 				result = "redirect:/laboratory/index";
 			}
 		}

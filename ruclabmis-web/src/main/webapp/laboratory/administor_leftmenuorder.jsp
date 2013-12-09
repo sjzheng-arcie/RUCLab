@@ -32,7 +32,7 @@
         <td width="182" valign="top">
             <div id="container">
                 <shiro:hasAnyRoles name="administrators,equipment_admin">
-                    <h1 class="type"><a href="javascript:void(0)">个人中心</a></h1>
+                    <h1 class="type"><a href="javascript:void(0)">预约管理</a></h1>
 
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -41,29 +41,17 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="new/index" onfocus="toFocus(this)" target="main">实验室预约管理</a></li>
-                            <li><a href="new/index" onfocus="toFocus(this)" target="main">实验室预约申请</a></li>
+                            <li><a href="jsp/curriculum/pages_miyl/miyl01_ylsj/page01_ylya_new.html" onfocus="toFocus(this)"
+                                   target="main">实验室室预约申请</a></li>
+                            <li><a href="jsp/curriculum/pages_miyl/miyl01_ylsj/page01_ylya.html" onfocus="toFocus(this)"
+                                   target="main">实验室预约管理</a></li>
+                            <li><a href="jsp/curriculum/pages_miyl/miyl02_yljk/page02_hysyy_new.html" onfocus="toFocus(this)"
+                                   target="main">会议室预约申请</a></li>
+                            <li><a href="jsp/curriculum/pages_miyl/miyl02_yljk/page02_hysyy.html" onfocus="toFocus(this)" target="main">会议室预约管理</a>
+                            </li>
                         </ul>
                     </div>
                 </shiro:hasAnyRoles>
-
-                <h1 class="type"><a href="javascript:void(0)">会议室预约</a></h1>
-
-                <div class="content">
-                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                        <tr>
-                            <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
-                        </tr>
-                    </table>
-                    <ul class="MM">
-                        <li><a href="jsp/curriculum/pages_miyl/miyl02_yljk/page02_hysyy_new.html" onfocus="toFocus(this)"
-                               target="main">会议室预约申请</a></li>
-                        <li><a href="jsp/curriculum/pages_miyl/miyl02_yljk/page02_hysyy.html" onfocus="toFocus(this)" target="main">会议室预约管理</a>
-                        </li>
-                    </ul>
-
-                </div>
-
             </div>
 
 

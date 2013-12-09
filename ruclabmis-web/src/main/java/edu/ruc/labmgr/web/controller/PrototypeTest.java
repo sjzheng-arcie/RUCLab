@@ -889,9 +889,24 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/setcurriculum");
 		return mav;
 	}
+	@RequestMapping("jsp/curriculum/experiment/curriculum/createcurriculum")
+	public ModelAndView createCurriculum() {
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/createcurriculum");
+		return mav;
+	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/importcurriculum")
 	public ModelAndView importCurriculum() {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/importcurriculum");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/experiment/curriculum/addlession")
+	public ModelAndView addLession() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/experiment/curriculum/addlession");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/experiment/curriculum/toaddlession")
+	public ModelAndView toAddLession() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/experiment/curriculum/toaddlession");
 		return mav;
 	}
 

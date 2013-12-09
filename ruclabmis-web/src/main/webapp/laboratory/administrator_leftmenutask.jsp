@@ -48,11 +48,6 @@
 
                         <li><a href="jsp/task/task/leaderlist" onfocus="toFocus(this)" target="main">任务管理</a>
                         </li>
-                        <li><a href="jsp/task/task/userlist" onfocus="toFocus(this)" target="main">任务评分</a>
-                        </li>
-                        <li><a href="jsp/task/scoitem/list" onfocus="toFocus(this)" target="main">评分项管理</a>
-                        </li>
-
 
                     </ul>
                 </div>

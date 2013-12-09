@@ -62,14 +62,8 @@
                                 </li>
                                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
-                                <li><a href="jsp/task/task/leaderlist" onfocus="toFocus(this)" target="main">工作任务分配</a>
-                                </li>
                             </shiro:hasAnyRoles>
-                            <shiro:hasRole name="administrators">
-                                <li><a href="new/pages_miyl/miyl01_ylsj/datelist" onfocus="toFocus(this)" target="main">
-                                    待审核预约</a></li>
-                            </shiro:hasRole>
-                            <shiro:hasAnyRoles name="student,teacher">
+                            <shiro:hasAnyRoles name="student,teacher,equipment_admin,student">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
 
@@ -147,7 +141,8 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="../equipment/jsp/announcement/remind/remind?id=2" onfocus="toFocus(this)"
+
+                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/addannouncementTab?id=1" onfocus="toFocus(this)"
                                    target="main">发布公告</a>
                             </li>
                             <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>

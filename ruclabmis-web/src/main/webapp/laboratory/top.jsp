@@ -42,7 +42,7 @@
     </div>
     <ul class="top_right_menu">
         <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher">
-            <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
+                <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
             <shiro:hasRole name="administrators">
                 <li id="administrator_leftmenubasinfo"><a href="administrator_leftmenubasinfo" target="leftFrame"onclick="rs('administrator_leftmenubasinfo')">基础信息管理</a></li>
                 <li id="administrator_leftmenulab"><a href="administrator_leftmenulab" target="leftFrame"onclick="rs('administrator_leftmenulab')">实验室管理</a></li>
