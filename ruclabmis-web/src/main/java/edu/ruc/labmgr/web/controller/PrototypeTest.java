@@ -921,4 +921,93 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/administor_leftmenuorder");
 		return mav;
 	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentbaseinfo")
+	public ModelAndView appointmentBaseInfo() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentbaseinfo");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentdate")
+	public ModelAndView appointmentDate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentdate");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentdatecontent")
+	public ModelAndView appointmentDateContent() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentdatecontent");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentinfosubmit")
+	public ModelAndView appointmentInfoSubmit() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentinfosubmit");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/deviceapply")
+	public ModelAndView deviceApply() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/deviceapply");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/laboratoryapply")
+	public ModelAndView laboratoryApply() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/laboratoryapply");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/benchappointment")
+	public ModelAndView benchAppointment() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/benchappointment");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/benchappointmentcontent")
+	public ModelAndView benchAppointmentContent() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/benchappointmentcontent");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/laboratory/mydatelist")
+	public ModelAndView myDateList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/mydatelist");
+		return mav;
+	}
+
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentdate")
+	public ModelAndView meetingRoomAppointmentDate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentdate");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentdatecontent")
+	public ModelAndView meetingRoomAppointmentDateContent() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentdatecontent");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentinfocommit")
+	public ModelAndView appointmentInfoCommit() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentinfocommit");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/deviceapply")
+	public ModelAndView meetingRoomDeviceApply() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/deviceapply");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/meetingroomappointment")
+	public ModelAndView meetingRoomAppointment() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/meetingroomappointment");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/meetingroomapply")
+	public ModelAndView meetingRoomApply() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/meetingroomapply");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/meetingroomappointmentbaseinfo")
+	public ModelAndView meetingRoomAppointmentBaseInfo() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/meetingroomappointmentbaseinfo");
+		return mav;
+	}
+	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentbaseinfo")
+	public ModelAndView metingappointmentBaseInfo() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentbaseinfo");
+		return mav;
+	}
+
+
+
 }
