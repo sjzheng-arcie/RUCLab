@@ -162,6 +162,7 @@ public class MessageService {
 
                 content += " <a href='" + listPath + "'>查看申请</a>";
                 message.setContent(content);
+                message.setSystem(true);
                 insert(message);
             }
         }
@@ -181,6 +182,7 @@ public class MessageService {
             content += " <a href='" + listPath + "'>查看申请</a>";
 
             message.setContent(content);
+            message.setSystem(true);
             insert(message);
         }
     }
@@ -207,6 +209,7 @@ public class MessageService {
         content += " <a href='" + listPath + "'>查看申请</a>";
 
         message.setContent(content);
+        message.setSystem(true);
         insert(message);
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
@@ -225,6 +228,7 @@ public class MessageService {
             adminContent += " <a href='" + listAdminPath + "'>查看申请</a>";
 
             message.setContent(adminContent);
+            message.setSystem(true);
             insert(message);
         }
     }
@@ -250,6 +254,7 @@ public class MessageService {
         content += " <a href='" + listPath + "'>查看申请</a>";
 
         message.setContent(content);
+        message.setSystem(true);
         insert(message);
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);
@@ -263,6 +268,7 @@ public class MessageService {
             adminContent += "处理了 " + apply.getApplicantName() + " 的 " + type.getTitle() + " 申请，表单号 " + Integer.toString(appId) + " : ";
             adminContent += " <a href='" + listPath + "'>查看申请</a>";
             message.setContent(adminContent);
+            message.setSystem(true);
             insert(message);
         }
     }
