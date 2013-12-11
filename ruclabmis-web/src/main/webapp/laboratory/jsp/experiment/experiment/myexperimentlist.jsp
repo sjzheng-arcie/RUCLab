@@ -46,20 +46,6 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验编号:<input type="text"
-                                                                                     name="experimentNoForSearch"
-                                                                                     id="experimentNoForSearch" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验名称:<input type="text"
-                                                                                     name="experimentNameForSearch"
-                                                                                     id="experimentNameForSearch"
-                                                                                     value=""
-                                                                                     style="width:100px;"/></span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;
-                                <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
-                                    查询</a></span>
 
                                                         <span style="float:right">&nbsp;
                                 <a href="javascript:void(0)" onclick="window.history.go(-1);">
@@ -127,18 +113,15 @@
                                                         </div>
                                                     </td>
 
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验编号</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                       <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验名称</span></div>
                                                     </td>
 
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验指导书</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验报告</span></div>
+                                                    <td width="250" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验内容描述</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">查看
@@ -147,32 +130,15 @@
                                                         </span></div>
                                                     </td>
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20">
-                                                        <input name="idcheckbox" type="checkbox"
-                                                               value="${item.id}"
-                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                <c:forEach items="${pageInfo.data}" var="item">
+                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                    value="${item.id}"
+                                                    onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
-                                                    <td>${item.director}</td>
-                                                    <td>${item.reportName}</td>
-                                                    <td><a href="detail?id=${item.id}"> 查看</a>
-                                                        <shiro:hasAnyRoles name="administrators,teacher">
-                                                        /<a href="update?id=${item.id}">编辑</a></td>
-                                                    </shiro:hasAnyRoles>
-                                                    </td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20">
-                                                        <input name="idcheckbox" type="checkbox"
-                                                               value="${item.id}"
-                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
-                                                    </td>
-                                                    <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
-                                                    <td>${item.director}</td>
-                                                    <td>${item.reportName}</td>
+                                                    <td>${item.experimentInstructionName}</td>
+                                                    <td>${item.experimentInstructionName}</td>
+                                                    <td>${item.content}</td>
                                                     <td><a href="detail?id=${item.id}"> 查看</a>
                                                         <shiro:hasAnyRoles name="administrators,teacher">
                                                         /<a href="update?id=${item.id}">编辑</a></td>
@@ -180,22 +146,6 @@
                                                     </td>
                                                 </tr>
 
-                                                <c:forEach items="${pageInfo.data}" var="item">
-                                                    <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
-                                                        </td>
-                                                        <td>${item.sn}</td>
-                                                        <td>${item.name}</td>
-                                                        <td>${item.director}</td>
-                                                        <td>${item.reportName}</td>
-                                                        <td><a href="detail?id=${item.id}"> 查看</a>
-                                                            <shiro:hasAnyRoles name="administrators,teacher">
-                                                            /<a href="update?id=${item.id}">编辑</a></td>
-                                                        </shiro:hasAnyRoles>
-                                                        </td>
-                                                    </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
                                             </table>

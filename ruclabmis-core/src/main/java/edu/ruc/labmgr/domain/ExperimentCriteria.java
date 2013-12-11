@@ -174,52 +174,62 @@ public class ExperimentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andContentEqualTo(Short value) {
+        public Criteria andContentEqualTo(String value) {
             addCriterion("content =", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotEqualTo(Short value) {
+        public Criteria andContentNotEqualTo(String value) {
             addCriterion("content <>", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentGreaterThan(Short value) {
+        public Criteria andContentGreaterThan(String value) {
             addCriterion("content >", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentGreaterThanOrEqualTo(Short value) {
+        public Criteria andContentGreaterThanOrEqualTo(String value) {
             addCriterion("content >=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentLessThan(Short value) {
+        public Criteria andContentLessThan(String value) {
             addCriterion("content <", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentLessThanOrEqualTo(Short value) {
+        public Criteria andContentLessThanOrEqualTo(String value) {
             addCriterion("content <=", value, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentIn(List<Short> values) {
+        public Criteria andContentLike(String value) {
+            addCriterion("content like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentNotLike(String value) {
+            addCriterion("content not like", value, "content");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentIn(List<String> values) {
             addCriterion("content in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotIn(List<Short> values) {
+        public Criteria andContentNotIn(List<String> values) {
             addCriterion("content not in", values, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentBetween(Short value1, Short value2) {
+        public Criteria andContentBetween(String value1, String value2) {
             addCriterion("content between", value1, value2, "content");
             return (Criteria) this;
         }
 
-        public Criteria andContentNotBetween(Short value1, Short value2) {
+        public Criteria andContentNotBetween(String value1, String value2) {
             addCriterion("content not between", value1, value2, "content");
             return (Criteria) this;
         }
@@ -283,6 +293,22 @@ public class ExperimentCriteria {
             addCriterion("experiment_instructions_id not between", value1, value2, "experimentInstructionsId");
             return (Criteria) this;
         }
+		public Criteria andCurricumIdEqual(int tid){
+			addCriterion("ei.curriculum_id=", tid, "id");
+			return (Criteria) this;
+		}
+		/**
+		 * 连表查询
+		 */
+		public Criteria andJoinExperimentInstuction() {
+			addCriterion("e.experiment_instructions_id =ei.id");
+			return (Criteria) this;
+		}
+		public Criteria andJoinCurriculum() {
+			addCriterion("ei.curriculum_id =c.id");
+			return (Criteria) this;
+		}
+
     }
 
     public static class Criteria extends GeneratedCriteria {

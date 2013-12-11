@@ -97,7 +97,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <shiro:hasAnyRoles name="tacher,administrators">
+                                                                        <shiro:hasAnyRoles name="teacher,administrators">
                                                                             <a href="#" onclick="toUpload()">
                                                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">上传</span></a>&nbsp;

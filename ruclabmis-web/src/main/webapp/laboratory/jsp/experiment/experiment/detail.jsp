@@ -80,17 +80,26 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验编号:</td>
-                                                <td nowrap>${experiment.sn}</td>
                                                 <td nowrap align="right">实验名称:</td>
                                                 <td nowrap>${experiment.name}</td>
+
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验内容:</td>
+                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">实验指导书:</td>
                                                 <td nowrap>${experiment.instructor}<input type="button" value="下载"/>
                                                 </td>
-                                                <td nowrap align="right">实验报告书:</td>
-                                                <td nowrap>${experiment.report}<input type="button" value="下载"/></td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验报告模板:</td>
+                                                <td nowrap>${experiment.instructor}<input type="button" value="下载"/>
+                                                </td>
                                             </tr>
 
 
