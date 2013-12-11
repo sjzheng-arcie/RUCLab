@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         function editorClass(vcid) {
-            window.location.href = "myexperimentlist?courseId="+vcid;
+            window.location.href = "myexperimentlist?courseId="+vcid+"&&page=1";
         }
     </script>
 
@@ -114,7 +114,7 @@
                                                              <td>${item.classYear}</td>
                                                              <td>${item.teacherName}</td>
                                                         <td>
-                                                            <input type="button" onClick="editorClass(${item.id})"
+                                                            <input type="button" onClick="editorClass(${item.curriculumId})"
                                                                    class="button"
                                                                    value="查看实验"/>
                                                         </td>

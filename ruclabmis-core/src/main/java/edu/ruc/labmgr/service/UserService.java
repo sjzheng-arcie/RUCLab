@@ -37,13 +37,13 @@ public class UserService {
         return getCurrentUser().getId();
     }
 
-    public int getUserIdByName(String name) {
+    public Integer getUserIdByName(String name) {
         UserCriteria criteria = new UserCriteria();
         UserCriteria.Criteria ec = criteria.createCriteria();
         ec.andNameEqualTo(name);
         List<User> teachers = mapperUser.selectByCriteria(criteria);
         if (teachers.size() != 1)
-            return -1;
+            return null;
 
         return teachers.get(0).getId();
     }

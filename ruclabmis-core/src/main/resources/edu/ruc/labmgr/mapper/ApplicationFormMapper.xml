@@ -345,4 +345,12 @@
             order by ${orderByClause}
         </if>
     </select>
+
+
+    <select id="selectCurrentSnIndex" resultType="java.lang.Integer">
+        select count(*) +1
+        from application_form
+        where to_days(apply_time) = to_days(now())
+    </select>
+
 </mapper>

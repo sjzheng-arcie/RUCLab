@@ -119,6 +119,8 @@
             <li><a href="jsp/dev/return/applyList?formType=process" onfocus="toFocus(this)" target="main">设备归还执行</a>
             </li>
         </shiro:hasAnyRoles>
+        <li><a href="jsp/dev/return/applyList?formType=history" onfocus="toFocus(this)" target="main">设备归还历史</a>
+        </li>
     </ul>
 </div>
 

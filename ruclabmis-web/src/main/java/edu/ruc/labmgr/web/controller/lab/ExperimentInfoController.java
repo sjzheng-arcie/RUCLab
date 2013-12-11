@@ -1,7 +1,9 @@
 package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.CurriculumClass;
+import edu.ruc.labmgr.domain.Experiment;
 import edu.ruc.labmgr.service.CurriculumClassService;
+import edu.ruc.labmgr.service.CurriculumService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
@@ -26,6 +28,8 @@ public class ExperimentInfoController {
 	private CurriculumClassService classService;
 	@Autowired
 	private UserService userService;
+	@Autowired
+	private CurriculumService curriculumService;
 
 	@RequestMapping(value = "/courselist",method = RequestMethod.GET)
 	public ModelAndView courseList(@RequestParam int page){
@@ -39,5 +43,13 @@ public class ExperimentInfoController {
 			pageInfo = classService.getPageClassbyPageNum(page,id,false);
 		mv.addObject("pageInfo", pageInfo);
 		return mv;
+	}
+	@RequestMapping(value = "/myexperimentlist",method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView experimentList(@RequestParam int page,@RequestParam("courseId") int curriumId
+									   ){
+		ModelAndView view = new ModelAndView("laboratory/jsp/experiment/experiment/myexperimentlist");
+		PageInfo<Experiment> pageInfo = curriculumService.getExperimentbyClassId(curriumId,page);
+		view.addObject("pageInfo",pageInfo);
+		return view;
 	}
 }

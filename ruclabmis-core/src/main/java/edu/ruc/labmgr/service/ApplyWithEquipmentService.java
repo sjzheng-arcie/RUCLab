@@ -275,4 +275,5 @@ public class ApplyWithEquipmentService {
 
         mapperApply.updateByPrimaryKeySelective(form);
     }
+
 }

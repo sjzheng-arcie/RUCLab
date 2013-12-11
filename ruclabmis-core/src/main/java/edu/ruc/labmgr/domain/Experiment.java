@@ -3,9 +3,33 @@ package edu.ruc.labmgr.domain;
 public class Experiment {
     private Integer id;
 
-    private Short content;
+    private String content;
 
     private Integer experimentInstructionsId;
+
+    private byte[] articletemplate;
+	private String experimentInstructionName;
+	private String curriculumName;
+
+	public String getCurriculumName() {
+		return curriculumName;
+	}
+
+	public void setCurriculumName(String curriculumName) {
+		this.curriculumName = curriculumName;
+	}
+
+
+
+	public String getExperimentInstructionName() {
+		return experimentInstructionName;
+	}
+
+	public void setExperimentInstructionName(String experimentInstructionName) {
+		this.experimentInstructionName = experimentInstructionName;
+	}
+
+
 
     public Integer getId() {
         return id;
@@ -15,12 +39,12 @@ public class Experiment {
         this.id = id;
     }
 
-    public Short getContent() {
+    public String getContent() {
         return content;
     }
 
-    public void setContent(Short content) {
-        this.content = content;
+    public void setContent(String content) {
+        this.content = content == null ? null : content.trim();
     }
 
     public Integer getExperimentInstructionsId() {
@@ -29,5 +53,13 @@ public class Experiment {
 
     public void setExperimentInstructionsId(Integer experimentInstructionsId) {
         this.experimentInstructionsId = experimentInstructionsId;
+    }
+
+    public byte[] getArticletemplate() {
+        return articletemplate;
+    }
+
+    public void setArticletemplate(byte[] articletemplate) {
+        this.articletemplate = articletemplate;
     }
 }

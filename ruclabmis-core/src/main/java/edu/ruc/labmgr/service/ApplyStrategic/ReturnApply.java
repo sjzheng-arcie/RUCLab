@@ -52,13 +52,13 @@ public class ReturnApply extends BaseApply {
 
         ApplyWithEquipment applyWithEquipment = mapperViewStore.selectByApplyId(applicationId);
         for (Equipment equipment : applyWithEquipment.getEquipments()) {
-            equipment.setHolder(applyWithEquipment.getApplicantId());
+            equipment.setHolder(null);
             equipment.setStateId(Types.EquipState.NORMAL.getValue());
-            mapperEquipment.updateByPrimaryKeySelective(equipment);
+            mapperEquipment.updateByPrimaryKey(equipment);
         }
     }
 
-    //删除捐赠申请，更新设备状态为已借用
+    //删除归还申请，更新设备状态为已借用
     @Override
     public void deleteApplys(List<Integer> appIds) {
         for (Integer id : appIds) {

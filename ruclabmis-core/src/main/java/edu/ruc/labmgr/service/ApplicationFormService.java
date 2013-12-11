@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.service;
 
+import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ApplicationForm;
 import edu.ruc.labmgr.domain.ApplicationFormCriteria;
 import edu.ruc.labmgr.mapper.ApplicationFormMapper;
@@ -47,4 +48,8 @@ public class ApplicationFormService {
     }
 
 
+    //得到当天的Sn顺序号
+    public int selectCurrentSnIndex() {
+        return applicationFormMapper.selectCurrentSnIndex();
+    }
 }
