@@ -228,6 +228,9 @@
                                             <td width="65" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">出厂日期</span></div>
                                             </td>
+                                            <td width="80" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">存放地点</span></div>
+                                            </td>
                                             <td width="65" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">购置日期</span></div>
                                             </td>
@@ -268,6 +271,7 @@
                                                 <td>${item.factoryNumber}</td>
                                                 <td><fmt:formatDate value="${item.manufactureDate}"
                                                                     pattern="yyyy-MM-dd"/></td>
+                                                <td>${item.location}</td>
                                                 <td><fmt:formatDate value="${item.acquisitionDate}"
                                                                     pattern="yyyy-MM-dd"/></td>
                                                 <td><fmt:formatDate value="${item.scrapDate}"

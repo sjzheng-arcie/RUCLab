@@ -20,6 +20,7 @@
         <result column="acquisition_date" property="acquisitionDate" jdbcType="DATE"/>
         <result column="scrap_date" property="scrapDate" jdbcType="DATE"/>
         <result column="country" property="country" jdbcType="VARCHAR"/>
+        <result column="location" property="location" jdbcType="VARCHAR"/>
         <result column="funding_subject_id" jdbcType="INTEGER" property="fundingSubjectId"/>
         <result column="funding_subject" jdbcType="VARCHAR" property="fundingSubject"/>
         <result column="use_direction_id" jdbcType="INTEGER" property="useDirectionId"/>
@@ -90,7 +91,7 @@
     <sql id="Base_Column_List">
     id, category_id,category_sn, category_name, sn, name, holder, holder_name, user,
     model_number, specifications, unit_price,
-    vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, 
+    vender, factory_number, manufacture_date, acquisition_date, scrap_date, country, location,
     funding_subject_id, funding_subject, use_direction_id, use_direction,  state_id, state
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.EquipmentCriteria">
@@ -131,13 +132,13 @@
         holder, user, model_number,
         specifications, unit_price, vender,
         factory_number, manufacture_date, acquisition_date,
-        scrap_date, country, funding_subject_id,
+        scrap_date, country, location, funding_subject_id,
         use_direction_id, state_id)
         values (#{categoryId,jdbcType=INTEGER}, #{sn,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR},
         #{holder,jdbcType=INTEGER}, #{user,jdbcType=VARCHAR}, #{modelNumber,jdbcType=VARCHAR},
         #{specifications,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, #{vender,jdbcType=VARCHAR},
         #{factoryNumber,jdbcType=VARCHAR}, #{manufactureDate,jdbcType=DATE}, #{acquisitionDate,jdbcType=DATE},
-        #{scrapDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, #{fundingSubjectId,jdbcType=INTEGER},
+        #{scrapDate,jdbcType=DATE}, #{country,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{fundingSubjectId,jdbcType=INTEGER},
         #{useDirectionId,jdbcType=INTEGER}, #{stateId,jdbcType=INTEGER})
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Equipment">
@@ -187,6 +188,9 @@
             </if>
             <if test="country != null">
                 country,
+            </if>
+            <if test="location != null">
+                location,
             </if>
             <if test="fundingSubjectId != null">
                 funding_subject_id,
@@ -240,6 +244,9 @@
             </if>
             <if test="country != null">
                 #{country,jdbcType=VARCHAR},
+            </if>
+            <if test="location != null">
+                #{location,jdbcType=VARCHAR},
             </if>
             <if test="fundingSubjectId != null">
                 #{fundingSubjectId,jdbcType=INTEGER},
@@ -306,6 +313,9 @@
             <if test="record.country != null">
                 country = #{record.country,jdbcType=VARCHAR},
             </if>
+            <if test="record.location != null">
+                location = #{record.location,jdbcType=VARCHAR},
+            </if>
             <if test="record.fundingSubjectId != null">
                 funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
             </if>
@@ -337,6 +347,7 @@
         acquisition_date = #{record.acquisitionDate,jdbcType=DATE},
         scrap_date = #{record.scrapDate,jdbcType=DATE},
         country = #{record.country,jdbcType=VARCHAR},
+        location = #{record.location,jdbcType=VARCHAR},
         funding_subject_id = #{record.fundingSubjectId,jdbcType=INTEGER},
         use_direction_id = #{record.useDirectionId,jdbcType=INTEGER},
         state_id = #{record.stateId,jdbcType=INTEGER}
@@ -389,6 +400,9 @@
             <if test="country != null">
                 country = #{country,jdbcType=VARCHAR},
             </if>
+            <if test="location != null">
+                location = #{location,jdbcType=VARCHAR},
+            </if>
             <if test="fundingSubjectId != null">
                 funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
             </if>
@@ -417,6 +431,7 @@
       acquisition_date = #{acquisitionDate,jdbcType=DATE},
       scrap_date = #{scrapDate,jdbcType=DATE},
       country = #{country,jdbcType=VARCHAR},
+       location = #{location,jdbcType=VARCHAR},
       funding_subject_id = #{fundingSubjectId,jdbcType=INTEGER},
       use_direction_id = #{useDirectionId,jdbcType=INTEGER},
       state_id = #{stateId,jdbcType=INTEGER}
