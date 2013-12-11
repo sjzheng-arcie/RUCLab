@@ -1012,9 +1012,29 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/org/list");
 		return mav;
 	}
+	@RequestMapping("jsp/lab/org/add")
+	public ModelAndView orgAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/org/add");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/org/toUpdate")
+	public ModelAndView orgUpdate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/org/update");
+		return mav;
+	}
 	@RequestMapping("jsp/lab/device/devicelist")
 	public ModelAndView deviceList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/device/devicelist");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/device/add")
+	public ModelAndView deviceAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/device/add");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/device/toUpdate")
+	public ModelAndView deviceUpdate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/device/update");
 		return mav;
 	}
 	@RequestMapping("jsp/lab/house/list")
@@ -1022,9 +1042,19 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/list");
 		return mav;
 	}
+	@RequestMapping("jsp/lab/house/add")
+	public ModelAndView houseAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/add");
+		return mav;
+	}
 	@RequestMapping("jsp/lab/lab/list")
 	public ModelAndView labList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/lab/add")
+	public ModelAndView labAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/add");
 		return mav;
 	}
 	@RequestMapping("jsp/lab/emp/list")
@@ -1032,9 +1062,19 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/emp/list");
 		return mav;
 	}
+	@RequestMapping("jsp/lab/emp/add")
+	public ModelAndView empAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/emp/add");
+		return mav;
+	}
 	@RequestMapping("jsp/lab/post/list")
 	public ModelAndView postList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/post/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/post/add")
+	public ModelAndView postAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/post/add");
 		return mav;
 	}
 }

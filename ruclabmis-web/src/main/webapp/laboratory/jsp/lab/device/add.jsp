@@ -1,13 +1,18 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        document.mainForm.action = "devicelist";
+        document.mainForm.submit();
     }
 
 </script>
+</head>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 组织架构管理</div>
+                            <div class="titlebt">设备信息管理 >设备信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -35,7 +40,7 @@
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
                         <td height="30">
-                            <table width="100%" border="" cellspacing="0" cellpadding="0">
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td height="24" bgcolor="#353c44">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加组织机构</span></td>
+                                                                    class="STYLE1">添加设备信息</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -65,62 +70,58 @@
                     </tr>
                     <tr valign="top">
                         <td>
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <tr>
-                                                <td nowrap align="right">组织编号:</td>
+                                            <tr heigt="25px">
+                                                <td nowrap align="right">设备编号:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <input type="text" name="deviceName" value="">
                                                 </td>
-                                                <td nowrap align="right">组织名称名称:</td>
+                                                <td nowrap align="right">设备名称:</td>
                                                 <td nowrap>
-                                                    <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <input type="text" name="deviceName" value="">
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">级别:</td>
+                                            <tr heigt="25px">
+                                                <td nowrap align="right">设备类型:</td>
                                                 <td nowrap>
-                                                    <select>
-                                                        <option value="">--请选择--</option>
-                                                        <option value="0">院处级</option>
-                                                        <option value="1">系科级</option>
-
+                                                    <select name="deviceType">
+                                                        <c:forEach items="${deviceTypeList}" var="item">
+                                                            <option id="${item.id}">${item.value}</option>
+                                                        </c:forEach>
                                                     </select>
 
                                                 </td>
-                                                <td nowrap align="right">负责人:</td>
-
-                                                <td nowrap align="left"><input class="text" style="width:154px"
-                                                                               maxlength="20"
-                                                                               valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-
+                                                <td nowrap align="right">是否存在故障:</td>
+                                                <td nowrap>
+                                                    <select name="ifBroken">
+                                                        <option value="0">否</option>
+                                                        <option value="1"  >是</option>
                                                     </select>
                                                 </td>
-
                                             </tr>
-
-
-                                            <tr>
-
-
-                                                <td nowrap align="right">备注：</td>
-                                                <td nowrap colspan="3" align="left"><textarea
-                                                        style="width:70%;height:100"></textarea></td>
+                                            <tr heigt="25px">
+                                                <td nowrap align="right">存放位置:</td>
+                                                <td nowrap>
+                                                    <select name="theRoom">
+                                                        <c:forEach items="${roomList}" var="item">
+                                                            <option id="${item.id}">${item.value}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
+                                                <td nowrap align="right">所属部门:</td>
+                                                <td nowrap>
+                                                    <select name="theDepartment">
+                                                        <c:forEach items="${departmentList}" var="item">
+                                                            <option id="${item.id}">${item.value}</option>
+                                                        </c:forEach>
+                                                    </select>
+                                                </td>
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -156,3 +157,4 @@
 
 </form>
 </body>
+</html>

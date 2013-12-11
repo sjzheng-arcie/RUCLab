@@ -5,14 +5,13 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="jquery.min.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/sys/user/list';
-    </script>
 
 </head>
 
@@ -43,19 +42,16 @@
 <tr>
 <td valign="top" class="STYLE10">
 
-<span style="white-space:nowrap">&nbsp;&nbsp;组织编号:<input type="text" name="searchB1" id="searchB1"
+<span style="white-space:nowrap">&nbsp;&nbsp;组织编号:<input type="text" name="orgNo" id="orgNo"
                                                          value="" style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;组织名称:<input type="text" name="searchB1" id="searchB1"
+                <span style="white-space:nowrap">&nbsp;&nbsp;组织名称:<input type="text" name="orgName" id="orgName"
                                                                          value="" style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;级别:<input type="text" name="searchB1" id="searchB1"
+                <span style="white-space:nowrap">&nbsp;&nbsp;级别:<input type="text" name="orgLevel" id="orgLevel"
                                                                        value="" style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
-                                                                onclick="findInfo()"><img
-                        src="../../../../images/zoom.png"
-                        width="15" height="15"
-                        border="0"/> 查询</a></span>
-
-
+                <span style="white-space:nowrap">&nbsp;&nbsp;
+                    <a href="javascript:void(0)" onclick="toFind('listForm');">
+                        <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                </span>
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
     <tr>
         <td height="30">
@@ -79,18 +75,18 @@
                                 </td>
                                 <td>
                                     <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
-      					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
+                                    <span class="STYLE1" style="white-space:nowrap">
+                                        <a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                            <span class="STYLE1">新增</span></a>&nbsp;
+                                        <a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
+                                                                               height="10"
+                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+                                        <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
+                                                                               height="10"
+                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                        <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                            </span>
                                     </div>
                                 </td>
                             </tr>
@@ -103,13 +99,12 @@
     <tr>
         <td>
             <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
-                <table id="hello" width="100%" border="1" cellpadding="0" cellspacing="1"
+                <table id="treeTable" width="100%" border="0" cellpadding="0" cellspacing="1"
                        bgcolor="#a8c7ce">
                     <tr>
                         <td width="200" height="20" bgcolor="d3eaef">
                         </td>
-
-                        <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">房间编号</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -139,15 +134,13 @@
 
                     <tr bgcolor="#ffffff" align="center" data-tt-id="rjgc" data-tt-parent-id="xxxy">
                         <td height="20" align="left">信息学院实验楼一</td>
-
-
                         <td colspan="6"></td>
                     </tr>
 
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20"
                         data-tt-parent-id="rjgc">
 
-                        <td height="20"><input type="checkbox">软件实验房间101</td>
+                        <td height="20">软件实验房间101</td>
 
                         <td>SJ003</td>
                         <td>软件实验房间</td>
@@ -168,7 +161,7 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="1"
                         data-tt-parent-id="kc1">
-                        <td height="20"><input type="checkbox">计算机实验房间101</td>
+                        <td height="20">计算机实验房间101</td>
 
                         <td>SJ001</td>
                         <td>软件实验房间</td>
@@ -181,7 +174,7 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2"
                         data-tt-parent-id="kc1">
-                        <td height="20"><input type="checkbox">计算机实验房间102</td>
+                        <td height="20">计算机实验房间102</td>
 
                         <td>SY005</td>
                         <td>软件实验房间</td>
@@ -198,33 +191,28 @@
 
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="7"
                         data-tt-parent-id="kc2">
-                        <td height="20"><input type="checkbox">网络实验房间102</td>
-
+                        <td height="20">网络实验房间102</td>
                         <td>SJ001</td>
                         <td>软件实验房间</td>
                         <td>S1-101</td>
                         <td><a href="experimentriglist.html">实验台</a></td>
-
                         <td><a href="stocklist.html">库存设备</a></td>
                         <td><a href="detail.html">详细信息</a></td>
-
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8"
                         data-tt-parent-id="kc2">
-                        <td height="20"><input type="checkbox">网络实验房间201</td>
+                        <td height="20">网络实验房间201</td>
 
                         <td>SJ002</td>
                         <td>软件实验房间</td>
                         <td>S1-101</td>
                         <td><a href="experimentriglist.html">实验台</a></td>
-
                         <td><a href="stocklist.html">库存设备</a></td>
                         <td><a href="detail.html">详细信息</a></td>
-
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9"
                         data-tt-parent-id="kc2">
-                        <td height="20"><input type="checkbox">网络实验房间301</td>
+                        <td height="20">网络实验房间301</td>
 
                         <td>SJ002</td>
                         <td>软件实验房间</td>
@@ -234,19 +222,14 @@
                         <td><a href="stocklist.html">库存设备</a></td>
                         <td><a href="detail.html">详细信息</a></td>
                     </tr>
-
-
                     <tr height="16px"></tr>
                 </table>
 
                 <link rel="stylesheet" href="jquery.treetable.css"/>
-                <script src="jquery.min.js"></script>
 
                 <script src="jquery.treetable.js"></script>
                 <script>
-                    $("#hello").treetable({ expandable: true });
-
-
+                    $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
                 </script>
             </div>
         </td>
