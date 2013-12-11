@@ -103,8 +103,8 @@
                                         <td>
                                             <input name="sn" id="sn" value="${apply.applicationSn}" onblur="" class="text"
                                                    style="width:154px" maxlength="20"
-                                                   valid="required|isNumber"
-                                                   errmsg="单据号不能为空!|单据号只能为数字"/>
+                                                   valid="required"
+                                                   errmsg="单据号不能为空!"/>
                                             <span style="color:red;">*</span>
                                         </td>
 

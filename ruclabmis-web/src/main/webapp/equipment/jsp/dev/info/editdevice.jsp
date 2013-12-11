@@ -156,17 +156,13 @@
                             <td>
                                 <input name="modelNumber" id="modelNumber" value="${equipment.modelNumber}" onblur=""
                                        class="text"
-                                       style="width:154px" maxlength="20"
-                                       valid="isNumber"
-                                       errmsg="设备型号只能为数字"/>
+                                       style="width:154px" maxlength="20"/>
                             </td>
                             <td align="center">设备规格</td>
                             <td>
                                 <input name="specifications" id="specifications" value="${equipment.specifications}"
                                        onblur="" class="text"
-                                       style="width:154px" maxlength="20"
-                                       valid="isNumber"
-                                       errmsg="设备规格只能为数字"/>
+                                       style="width:154px" maxlength="20"/>
                             </td>
                             <td align="center">单价</td>
                             <td>
@@ -218,12 +214,17 @@
                                 <input name="scrapDate" id="scrapDate"
                                        value="<fmt:formatDate value="${equipment.scrapDate}" pattern="yyyy-MM-dd"/>"
                                        onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                       valid="required|isDate" errmsg="报废日期不能为空|日期只能为：XXXX-XX-XX"
+                                       valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                        onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                 <span style="color:red;">*</span>
                             </td>
                         </tr>
                         <tr style="height: 30px;">
+                            <td align="center">存放地点</td>
+                            <td>
+                                <input name="location" id="location" value="${equipment.location}" onblur="" class="text"
+                                       style="width:154px" maxlength="20"/>
+                            </td>
                             <td nowrap align="center">经费科目:</td>
                             <td nowrap>
                                 <select name="fundingSubjectId" id="fundingSubjectId">
