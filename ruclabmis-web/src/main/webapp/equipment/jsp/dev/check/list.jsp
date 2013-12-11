@@ -42,15 +42,6 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-<span class="noprint" style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input class="noprint" type="text" name="name"
-                                                                         id="name" value=""
-                                                                         style="width:100px;"/></span>
-
-<span style="white-space:nowrap">&nbsp;&nbsp;<a class="noprint" href="javascript:void(0);" style="cursor:pointer"
-                                                onclick="toFind('listForm')"><img
-        src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
-
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -107,12 +98,6 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                        <div align="center">
-                                                            <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
-                                                        </div>
-                                                    </td>
                                                     <td width="40" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
@@ -158,9 +143,6 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="equip" varStatus="st">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="admin" onclick="checkOne(this)"/>
-                                                        </td>
                                                         <td>${st.index+1}</td>
                                                         <td>${equip.sn}</td>
                                                         <td>${equip.categoryId}</td>
