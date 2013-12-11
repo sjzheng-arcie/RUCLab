@@ -113,7 +113,11 @@
                             <td align="center">申请人</td>
                             <td>
                                 <input name="applicant" id="applicant"
-                                       style="color:#aaaaaa" disabled value="<shiro:principal/>"
+                                       style="color:#aaaaaa" disabled
+                                        <c:choose>
+                                            <c:when test="${apply.applicationId != null}"> value="${apply.applicantName}" </c:when>
+                                            <c:otherwise> value= "<shiro:principal/>"   </c:otherwise>
+                                        </c:choose>
                                        valid="required"
                                        errmsg="申请人不能为空!"/>
                                 <span style="color:red;">*</span>

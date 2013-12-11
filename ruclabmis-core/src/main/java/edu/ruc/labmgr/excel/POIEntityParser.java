@@ -101,7 +101,9 @@ public abstract class POIEntityParser<T> {
         if (max > min) {
             for (int i = min; i < max; i++) {
                 Row row = sheet.getRow(i);
-                result.add(parseFromRow(row));
+                T t = parseFromRow(row);
+                if(t!=null)
+                    result.add(t);
             }
         }
         return result;

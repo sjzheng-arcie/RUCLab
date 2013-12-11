@@ -177,8 +177,8 @@ public class EquipmentService {
 
     public void updateEquipment(Equipment equipment) throws Exception {
         if (!StringUtils.isNullOrEmpty(equipment.getHolderName())) {
-            int id = serviceTeacher.getUserIdByName(equipment.getHolderName());
-            if (id < 0) {
+            Integer id = serviceTeacher.getUserIdByName(equipment.getHolderName());
+            if (id  == null) {
                 throw (new Exception("领用人不存在，请检查后重新输入"));
             }
             equipment.setHolder(id);
@@ -201,11 +201,11 @@ public class EquipmentService {
                 }
 
                 if (!StringUtils.isNullOrEmpty(equipment.getFundingSubject())) {
-                    Integer fundingSubjectId = serviceClassif.getIdByName(equipment.getFundingSubject());
+                    Integer fundingSubjectId = serviceClassif.getFundingSubjectIdByName(equipment.getFundingSubject());
                     equipment.setFundingSubjectId(fundingSubjectId);
                 }
                 if (!StringUtils.isNullOrEmpty(equipment.getUseDirection())) {
-                    Integer useDirectionId = serviceClassif.getIdByName(equipment.getUseDirection());
+                    Integer useDirectionId = serviceClassif.getUseDirectionIdByName(equipment.getUseDirection());
                     equipment.setUseDirectionId(useDirectionId);
                 }
                 equipment.setStateId(Types.EquipState.NORMAL.getValue());
