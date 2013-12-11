@@ -39,6 +39,8 @@ public class Equipment {
 
     private String country;
 
+    private String location;
+
     private Integer fundingSubjectId;
 
     private String fundingSubject;
@@ -169,6 +171,14 @@ public class Equipment {
 
     public void setCountry(String country) {
         this.country = country == null ? null : country.trim();
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public Integer getFundingSubjectId() {

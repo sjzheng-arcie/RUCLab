@@ -49,6 +49,7 @@ public class EquipmentsExcelParser extends POIEntityParser<Equipment> {
                 result.setHolder(holderId);
             }
 
+            result.setLocation((String) map.get("location"));
 //        result.setUseDirection((String) map.get("useDirection"));
 
             return result;
