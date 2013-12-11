@@ -1003,11 +1003,38 @@ public class PrototypeTest {
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentbaseinfo")
-	public ModelAndView metingappointmentBaseInfo() {
+	public ModelAndView meetingAppointmentBaseInfo() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentbaseinfo");
 		return mav;
 	}
-
-
-
+	@RequestMapping("jsp/lab/org/list")
+	public ModelAndView orgList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/org/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/device/devicelist")
+	public ModelAndView deviceList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/device/devicelist");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/house/list")
+	public ModelAndView houseList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/lab/list")
+	public ModelAndView labList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/emp/list")
+		 public ModelAndView empList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/emp/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/post/list")
+	public ModelAndView postList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/post/list");
+		return mav;
+	}
 }
