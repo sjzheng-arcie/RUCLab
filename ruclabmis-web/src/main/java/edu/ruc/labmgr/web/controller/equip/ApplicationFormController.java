@@ -2,11 +2,8 @@ package edu.ruc.labmgr.web.controller.equip;
 
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.service.ApplyStrategic.ApplyContext;
-import edu.ruc.labmgr.service.ApplyWithEquipmentService;
-import edu.ruc.labmgr.service.ClassifService;
-import edu.ruc.labmgr.service.MessageService;
-import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 
@@ -26,7 +25,9 @@ public class ApplicationFormController {
     @Autowired
     ClassifService serviceClassif;
     @Autowired
-    ApplyWithEquipmentService serviceApply;
+    ApplyWithEquipmentService serviceApplyWithEquipment;
+    @Autowired
+    ApplicationFormService serviceApply;
     @Autowired
     TeacherService serviceTeacher;
     @Autowired
@@ -65,7 +66,7 @@ public class ApplicationFormController {
     public ModelAndView toUpdateApplication(@RequestParam("application_id") int applicationId,
                                             @RequestParam("formType") String formType,
                                             @PathVariable("applyType") String applyType) {
-        ApplyWithEquipment apply = serviceApply.selectApplyById(applicationId);
+        ApplyWithEquipment apply = serviceApplyWithEquipment.selectApplyById(applicationId);
 
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/" + applyType + "/updateapply");
 
@@ -102,14 +103,16 @@ public class ApplicationFormController {
         ApplicationForm apply = new ApplicationForm();
 
         Date now = new Date();
-        String sn = String.format("%d", now.getTime());
+        DateFormat format = new SimpleDateFormat("yyyyMMdd");
+        String dateString = format.format(now);
+        String sn = String.format("14101-%s-%d", dateString, serviceApply.selectCurrentSnIndex());
         apply.setSn(sn);
         apply.setType(Types.ApplyType.getApplyTypeFromStr(applyType).getValue());
         apply.setStateId(Types.ApplyState.WAITING.getValue());
         apply.setApplyTime(new Date());
         apply.setApplicantId(serviceTeacher.getCurrentUserId());
 
-        serviceApply.insertApply(apply);
+        serviceApplyWithEquipment.insertApply(apply);
 
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         ApplyContext applyContext = new ApplyContext(type);
@@ -137,7 +140,7 @@ public class ApplicationFormController {
     public String removeEquipmentFromApply(@RequestParam("application_id") int applicationId,
                                            @RequestParam("equipment_id") int equipmentId,
                                            @PathVariable("applyType") String applyType) {
-        serviceApply.removeEquipmentFromApply(applicationId, equipmentId);
+        serviceApplyWithEquipment.removeEquipmentFromApply(applicationId, equipmentId);
         return "redirect:/equipment/jsp/dev/" + applyType +
                 "/toUpdateApplication?formType=apply&application_id=" +
                 Integer.toString(applicationId);
@@ -148,7 +151,7 @@ public class ApplicationFormController {
     public String approve(@RequestParam("items") List<Integer> appIds,
                           @PathVariable("applyType") String applyType,
                           HttpServletRequest request) {
-        serviceApply.approveApplys(appIds);
+        serviceApplyWithEquipment.approveApplys(appIds);
 
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         //发送表单批准消息
@@ -165,7 +168,7 @@ public class ApplicationFormController {
     public String reject(@RequestParam("items") List<Integer> appIds,
                          @PathVariable("applyType") String applyType,
                          HttpServletRequest request) {
-        serviceApply.rejectApplys(appIds);
+        serviceApplyWithEquipment.rejectApplys(appIds);
 
         Types.ApplyType type = Types.ApplyType.getApplyTypeFromStr(applyType);
         //发送表单拒绝消息

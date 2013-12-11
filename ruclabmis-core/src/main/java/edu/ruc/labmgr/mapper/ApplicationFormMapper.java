@@ -24,6 +24,8 @@ public interface ApplicationFormMapper {
 
     ApplicationForm selectByPrimaryKey(Integer id);
 
+    Integer selectCurrentSnIndex();
+
     int updateByCriteriaSelective(@Param("record") ApplicationForm record, @Param("criteria") ApplicationFormCriteria criteria);
 
     int updateByCriteria(@Param("record") ApplicationForm record, @Param("criteria") ApplicationFormCriteria criteria);
