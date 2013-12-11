@@ -8,28 +8,8 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <title></title>
+    <title>修改实验信息</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/experiment/experimentpaper/addtopaper';
-
-
-        function update() {
-            if (!validator(document.listForm)) {
-                return;
-            }
-
-            document.listForm.action = "updatePaper";
-            document.listForm.submit();
-        }
-
-        function toAddQuestion() {
-            window.open("/laboratory/jsp/experiment/experimentpaper/addtopaper", "实验试题",
-                    "height=600, width=1350, toolbar=no, status=no");
-        }
-
-    </script>
-
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
@@ -45,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 试题资源管理</div>
+                            <div class="titlebt">实验教学管理 > 修改实验信息</div>
                         </td>
                     </tr>
                 </table>
@@ -72,7 +52,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改试卷资源</span></td>
+                                                                    class="STYLE1">修改实验信息</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -96,14 +76,7 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验编号:</td>
-                                                <td nowrap>
-                                                    <input name="experimentNo" id="experimentNo" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="${experiment.sn}" readonly/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
 
-                                                </td>
                                                 <td nowrap align="right">实验名称:</td>
                                                 <td nowrap>
                                                     <input name="experimentName" id="experimentName" onblur=""
@@ -113,7 +86,13 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
 
                                                 </td>
-
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验描述:</td>
+                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">实验指导书:</td>
@@ -125,7 +104,9 @@
 
 
                                                 </td>
-                                                <td nowrap align="right">实验报告书:</td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>
                                                     <input name="report" id="report" type="file"
                                                            style="width:154px" maxlength="20" valid="required|isAccount"
@@ -133,7 +114,6 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sname"></span>
                                                 </td>
-
                                             </tr>
 
 
@@ -144,10 +124,11 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
+
                                         <input type="button" name="Submit" value="保存" class="button"
                                                onclick="addend();"/>
+                                        <input type="button" name="return" value="返回" class="button"
+                                               onclick="window.history.go(-1);"/>
 
                                     </td>
                                 </tr>

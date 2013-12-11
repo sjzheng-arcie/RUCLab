@@ -14,6 +14,11 @@
     }
 
 </script>
+<link href="/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="/js/util.js"></script>
+<script type="text/javascript" src="/js/page.js"></script>
+<script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -74,18 +79,10 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
-                                        <table border="0" cellpadding="2" cellspacing="1"
+                                        <table border="0" cellpadding="1" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验编号:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-
-                                                </td>
                                                 <td nowrap align="right">实验名称:</td>
                                                 <td nowrap>
                                                     <input name="us_sno" id="us_sno" value="" onblur="" class="text"
@@ -94,26 +91,24 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
 
                                                 </td>
+
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">所属课程:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
+                                                    <select id="curriculumId" name="curriculumId"
+                                                            style="width: 152px;height: 22px"
+                                                            data-placeholder="请选择课程...">
+                                                        <option value="-1"></option>
+                                                    </select>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-
+                                                    <span style="color:red;" id="errMsg_curriculum"></span>
 
                                                 </td>
-                                                <td nowrap align="right">指导老师:</td>
-                                                <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-
                                             </tr>
+
+
+
                                             <tr>
                                                 <td nowrap align="right">实验指导书:</td>
                                                 <td nowrap>
@@ -126,7 +121,11 @@
 
 
                                                 </td>
-                                                <td nowrap align="right">实验报告书:</td>
+
+
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>
                                                     <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
                                                            valid="required|isPassword"/><input type="button"
@@ -135,9 +134,14 @@
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_spwd"></span>
                                                 </td>
-
                                             </tr>
-
+                                            <tr>
+                                                <td nowrap align="right">实验内容:</td>
+                                                <td colspan="3"><textarea name="taskContent" style="width:80%;height:100px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
+                                            </tr>
 
                                         </table>
                                     </td>
@@ -149,8 +153,6 @@
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="reset" name="reset" value="添加试题" class="button"
-                                               onclick="addtopaper();"/>
                                         <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>

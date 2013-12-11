@@ -2,15 +2,14 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Experiment;
 import edu.ruc.labmgr.domain.ExperimentCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-import java.util.List;
-
 public interface ExperimentMapper {
-    int countByCriteria(ExperimentCriteria criteria);
+    int countByCriteria(ExperimentCriteria example);
 
-    int deleteByCriteria(ExperimentCriteria criteria);
+    int deleteByCriteria(ExperimentCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,17 +17,25 @@ public interface ExperimentMapper {
 
     int insertSelective(Experiment record);
 
-    List<Experiment> selectByCriteriaWithRowbounds(ExperimentCriteria criteria, RowBounds rowBounds);
+    List<Experiment> selectByCriteriaWithBLOBsWithRowbounds(ExperimentCriteria example, RowBounds rowBounds);
 
-    List<Experiment> selectByCriteria(ExperimentCriteria criteria);
+    List<Experiment> selectByCriteriaWithBLOBs(ExperimentCriteria example);
+
+    List<Experiment> selectByCriteriaWithRowbounds(ExperimentCriteria example, RowBounds rowBounds);
+
+    List<Experiment> selectByCriteria(ExperimentCriteria example);
 
     Experiment selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Experiment record, @Param("criteria") ExperimentCriteria criteria);
+    int updateByCriteriaSelective(@Param("record") Experiment record, @Param("example") ExperimentCriteria example);
 
-    int updateByCriteria(@Param("record") Experiment record, @Param("criteria") ExperimentCriteria criteria);
+    int updateByCriteriaWithBLOBs(@Param("record") Experiment record, @Param("example") ExperimentCriteria example);
+
+    int updateByCriteria(@Param("record") Experiment record, @Param("example") ExperimentCriteria example);
 
     int updateByPrimaryKeySelective(Experiment record);
+
+    int updateByPrimaryKeyWithBLOBs(Experiment record);
 
     int updateByPrimaryKey(Experiment record);
 }
