@@ -48,7 +48,7 @@
                 <li id="administrator_leftmenulab"><a href="administrator_leftmenulab" target="leftFrame"onclick="rs('administrator_leftmenulab')">实验室管理</a></li>
                 <li id="administrator_leftmenu"><a href="administrator_leftmenu" target="leftFrame"onclick="rs('administrator_leftmenu')">教学资源管理</a></li>
                 <li id="administrator_leftmenuteach"><a href="administrator_leftmenuteach" target="leftFrame"onclick="rs('administrator_leftmenuteach')">实验教学管理</a></li>
-                <li id="left"><a href="administor_leftmenuorder" target="leftFrame"onclick="rs('left')">预约管理</a></li>
+                <li id="administrator_leftmenuorder"><a href="administrator_leftmenuorder" target="leftFrame"onclick="rs('administrator_leftmenuorder')">预约管理</a></li>
                 <li id="administrator_leftmenutask"><a href="administrator_leftmenutask" target="leftFrame"onclick="rs('administrator_leftmenutask')">考核管理</a></li>
             </shiro:hasRole>
             <li id="bbs"><a href="bbs/left" target="leftFrame" onclick="rs('bbs')">论坛</a></li>

@@ -916,9 +916,9 @@ public class PrototypeTest {
 		return mav;
 	}
 
-	@RequestMapping("/administor_leftmenuorder")
+	@RequestMapping("/administrator_leftmenuorder")
 	public ModelAndView leftMenuOrder() {
-		ModelAndView mav = new ModelAndView("/laboratory/administor_leftmenuorder");
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenuorder");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentbaseinfo")

@@ -5,7 +5,6 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>管理页面</title>
-
     <script src="../js/prototype.lite.js" type="text/javascript"></script>
     <script src="../js/moo.fx.js" type="text/javascript"></script>
     <script src="../js/moo.fx.pack.js" type="text/javascript"></script>
@@ -25,7 +24,6 @@
         }
     </script>
 </head>
-
 <body>
 <table width="100%" height="280" border="0" cellpadding="0" cellspacing="0" bgcolor="#eef2fb">
     <tr>
@@ -33,26 +31,6 @@
             <div id="container">
                 <shiro:hasAnyRoles name="administrators,equipment_admin">
                     <h1 class="type"><a href="javascript:void(0)">预约管理</a></h1>
-
-                    <div class="content">
-                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                            <tr>
-                                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
-                            </tr>
-                        </table>
-                        <ul class="MM">
-                            <li><a href="jsp/curriculum/pages_miyl/miyl01_ylsj/page01_ylya_new.html" onfocus="toFocus(this)"
-                                   target="main">实验室室预约申请</a></li>
-                            <li><a href="jsp/curriculum/pages_miyl/miyl01_ylsj/page01_ylya.html" onfocus="toFocus(this)"
-                                   target="main">实验室预约管理</a></li>
-                            <li><a href="jsp/curriculum/pages_miyl/miyl02_yljk/page02_hysyy_new.html" onfocus="toFocus(this)"
-                                   target="main">会议室预约申请</a></li>
-                            <li><a href="jsp/curriculum/pages_miyl/miyl02_yljk/page02_hysyy.html" onfocus="toFocus(this)" target="main">会议室预约管理</a>
-                            </li>
-                        </ul>
-                    </div>
-                    <h1 class="type"><a href="javascript:void(0)">预约管理</a></h1>
-
                     <div class="content">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
@@ -64,27 +42,23 @@
                                    target="main">实验室室预约申请</a></li>
                             <li><a href="jsp/curriculum/appointment/laboratory/mydatelist" onfocus="toFocus(this)"
                                    target="main">实验室预约管理</a></li>
-                            <li><a href="jsp/curriculum/appointment/meetingroom/meetingroomappointmentbaseinfo" onfocus="toFocus(this)"
+                            <li><a href="jsp/curriculum/appointment/meetingroom/appointmentbaseinfo" onfocus="toFocus(this)"
                                    target="main">会议室预约申请</a></li>
-                            <li><a href="jsp/curriculum/appointment/meetingroom/appointmentbaseinfo" onfocus="toFocus(this)" target="main">会议室预约管理</a>
+                            <li><a href="jsp/curriculum/appointment/meetingroom/meetingroomappointmentbaseinfo" onfocus="toFocus(this)" target="main">会议室预约管理</a>
                             </li>
                         </ul>
                     </div>
                 </shiro:hasAnyRoles>
             </div>
-
-
             <script type="text/javascript">
                 var contents = document.getElementsByClassName('content');
                 var toggles = document.getElementsByClassName('type');
-
                 var myAccordion = new fx.Accordion(
                         toggles, contents, {opacity: true, duration: 400}
                 );
                 myAccordion.showThisHideOpen(contents[0]);
                 var windowHeight = document.documentElement.clientHeight;
                 window.parent.document.getElementById("frame").rows = "2000,*";
-
             </script>
         </td>
     </tr>
