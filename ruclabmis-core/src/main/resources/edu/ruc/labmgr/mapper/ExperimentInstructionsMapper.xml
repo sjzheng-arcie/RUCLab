@@ -6,12 +6,10 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="purpose" property="purpose" jdbcType="VARCHAR" />
     <result column="explanation" property="explanation" jdbcType="VARCHAR" />
+    <result column="document_path" property="documentPath" jdbcType="VARCHAR" />
     <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
   </resultMap>
-  <resultMap id="ResultMapWithBLOBs" type="edu.ruc.labmgr.domain.ExperimentInstructions" extends="BaseResultMap" >
-    <result column="document" property="document" jdbcType="LONGVARBINARY" />
-  </resultMap>
-  <sql id="Example_Where_Clause" >
+  <sql id="Criteria_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -40,7 +38,7 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
+  <sql id="Update_By_Criteria_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -70,28 +68,9 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, purpose, explanation, curriculum_id
+    id, name, purpose, explanation, document_path, curriculum_id
   </sql>
-  <sql id="Blob_Column_List" >
-    document
-  </sql>
-  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from experiment_instructions
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -99,17 +78,15 @@
     <include refid="Base_Column_List" />
     from experiment_instructions
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
     </if>
   </select>
-  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.Integer" >
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
     from experiment_instructions
     where id = #{id,jdbcType=INTEGER}
   </select>
@@ -117,10 +94,10 @@
     delete from experiment_instructions
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" >
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" >
     delete from experiment_instructions
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.ExperimentInstructions" >
@@ -128,9 +105,9 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into experiment_instructions (name, purpose, explanation, 
-      curriculum_id, document)
+      document_path, curriculum_id)
     values (#{name,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR}, #{explanation,jdbcType=VARCHAR}, 
-      #{curriculumId,jdbcType=INTEGER}, #{document,jdbcType=LONGVARBINARY})
+      #{documentPath,jdbcType=VARCHAR}, #{curriculumId,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ExperimentInstructions" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -147,11 +124,11 @@
       <if test="explanation != null" >
         explanation,
       </if>
+      <if test="documentPath != null" >
+        document_path,
+      </if>
       <if test="curriculumId != null" >
         curriculum_id,
-      </if>
-      <if test="document != null" >
-        document,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
@@ -164,21 +141,21 @@
       <if test="explanation != null" >
         #{explanation,jdbcType=VARCHAR},
       </if>
+      <if test="documentPath != null" >
+        #{documentPath,jdbcType=VARCHAR},
+      </if>
       <if test="curriculumId != null" >
         #{curriculumId,jdbcType=INTEGER},
       </if>
-      <if test="document != null" >
-        #{document,jdbcType=LONGVARBINARY},
-      </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" resultType="java.lang.Integer" >
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" resultType="java.lang.Integer" >
     select count(*) from experiment_instructions
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByCriteriaSelective" parameterType="map" >
     update experiment_instructions
     <set >
       <if test="record.id != null" >
@@ -193,38 +170,27 @@
       <if test="record.explanation != null" >
         explanation = #{record.explanation,jdbcType=VARCHAR},
       </if>
+      <if test="record.documentPath != null" >
+        document_path = #{record.documentPath,jdbcType=VARCHAR},
+      </if>
       <if test="record.curriculumId != null" >
         curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
       </if>
-      <if test="record.document != null" >
-        document = #{record.document,jdbcType=LONGVARBINARY},
-      </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExampleWithBLOBs" parameterType="map" >
+  <update id="updateByCriteria" parameterType="map" >
     update experiment_instructions
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       purpose = #{record.purpose,jdbcType=VARCHAR},
       explanation = #{record.explanation,jdbcType=VARCHAR},
-      curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-      document = #{record.document,jdbcType=LONGVARBINARY}
-    <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByExample" parameterType="map" >
-    update experiment_instructions
-    set id = #{record.id,jdbcType=INTEGER},
-      name = #{record.name,jdbcType=VARCHAR},
-      purpose = #{record.purpose,jdbcType=VARCHAR},
-      explanation = #{record.explanation,jdbcType=VARCHAR},
+      document_path = #{record.documentPath,jdbcType=VARCHAR},
       curriculum_id = #{record.curriculumId,jdbcType=INTEGER}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.ExperimentInstructions" >
@@ -239,22 +205,13 @@
       <if test="explanation != null" >
         explanation = #{explanation,jdbcType=VARCHAR},
       </if>
+      <if test="documentPath != null" >
+        document_path = #{documentPath,jdbcType=VARCHAR},
+      </if>
       <if test="curriculumId != null" >
         curriculum_id = #{curriculumId,jdbcType=INTEGER},
       </if>
-      <if test="document != null" >
-        document = #{document,jdbcType=LONGVARBINARY},
-      </if>
     </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKeyWithBLOBs" parameterType="edu.ruc.labmgr.domain.ExperimentInstructions" >
-    update experiment_instructions
-    set name = #{name,jdbcType=VARCHAR},
-      purpose = #{purpose,jdbcType=VARCHAR},
-      explanation = #{explanation,jdbcType=VARCHAR},
-      curriculum_id = #{curriculumId,jdbcType=INTEGER},
-      document = #{document,jdbcType=LONGVARBINARY}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.ExperimentInstructions" >
@@ -262,26 +219,11 @@
     set name = #{name,jdbcType=VARCHAR},
       purpose = #{purpose,jdbcType=VARCHAR},
       explanation = #{explanation,jdbcType=VARCHAR},
+      document_path = #{documentPath,jdbcType=VARCHAR},
       curriculum_id = #{curriculumId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="ResultMapWithBLOBs" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" id="selectByExampleWithBLOBsWithRowbounds" >
-    select
-    <if test="distinct" >
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    ,
-    <include refid="Blob_Column_List" />
-    from experiment_instructions
-    <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
-    </if>
-    <if test="orderByClause != null" >
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" id="selectByExampleWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" id="selectByCriteriaWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -289,7 +231,7 @@
     <include refid="Base_Column_List" />
     from experiment_instructions
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}

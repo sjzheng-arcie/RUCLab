@@ -224,63 +224,133 @@ public class ExperimentDetailCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdIsNull() {
-            addCriterion("curriculum_class_id is null");
+        public Criteria andClassStudentIdIsNull() {
+            addCriterion("class_student_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdIsNotNull() {
-            addCriterion("curriculum_class_id is not null");
+        public Criteria andClassStudentIdIsNotNull() {
+            addCriterion("class_student_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdEqualTo(Integer value) {
-            addCriterion("curriculum_class_id =", value, "curriculumClassId");
+        public Criteria andClassStudentIdEqualTo(Integer value) {
+            addCriterion("class_student_id =", value, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdNotEqualTo(Integer value) {
-            addCriterion("curriculum_class_id <>", value, "curriculumClassId");
+        public Criteria andClassStudentIdNotEqualTo(Integer value) {
+            addCriterion("class_student_id <>", value, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdGreaterThan(Integer value) {
-            addCriterion("curriculum_class_id >", value, "curriculumClassId");
+        public Criteria andClassStudentIdGreaterThan(Integer value) {
+            addCriterion("class_student_id >", value, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("curriculum_class_id >=", value, "curriculumClassId");
+        public Criteria andClassStudentIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("class_student_id >=", value, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdLessThan(Integer value) {
-            addCriterion("curriculum_class_id <", value, "curriculumClassId");
+        public Criteria andClassStudentIdLessThan(Integer value) {
+            addCriterion("class_student_id <", value, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdLessThanOrEqualTo(Integer value) {
-            addCriterion("curriculum_class_id <=", value, "curriculumClassId");
+        public Criteria andClassStudentIdLessThanOrEqualTo(Integer value) {
+            addCriterion("class_student_id <=", value, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdIn(List<Integer> values) {
-            addCriterion("curriculum_class_id in", values, "curriculumClassId");
+        public Criteria andClassStudentIdIn(List<Integer> values) {
+            addCriterion("class_student_id in", values, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdNotIn(List<Integer> values) {
-            addCriterion("curriculum_class_id not in", values, "curriculumClassId");
+        public Criteria andClassStudentIdNotIn(List<Integer> values) {
+            addCriterion("class_student_id not in", values, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdBetween(Integer value1, Integer value2) {
-            addCriterion("curriculum_class_id between", value1, value2, "curriculumClassId");
+        public Criteria andClassStudentIdBetween(Integer value1, Integer value2) {
+            addCriterion("class_student_id between", value1, value2, "classStudentId");
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumClassIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("curriculum_class_id not between", value1, value2, "curriculumClassId");
+        public Criteria andClassStudentIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("class_student_id not between", value1, value2, "classStudentId");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathIsNull() {
+            addCriterion("report_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathIsNotNull() {
+            addCriterion("report_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathEqualTo(String value) {
+            addCriterion("report_path =", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathNotEqualTo(String value) {
+            addCriterion("report_path <>", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathGreaterThan(String value) {
+            addCriterion("report_path >", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathGreaterThanOrEqualTo(String value) {
+            addCriterion("report_path >=", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathLessThan(String value) {
+            addCriterion("report_path <", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathLessThanOrEqualTo(String value) {
+            addCriterion("report_path <=", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathLike(String value) {
+            addCriterion("report_path like", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathNotLike(String value) {
+            addCriterion("report_path not like", value, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathIn(List<String> values) {
+            addCriterion("report_path in", values, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathNotIn(List<String> values) {
+            addCriterion("report_path not in", values, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathBetween(String value1, String value2) {
+            addCriterion("report_path between", value1, value2, "reportPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportPathNotBetween(String value1, String value2) {
+            addCriterion("report_path not between", value1, value2, "reportPath");
             return (Criteria) this;
         }
 

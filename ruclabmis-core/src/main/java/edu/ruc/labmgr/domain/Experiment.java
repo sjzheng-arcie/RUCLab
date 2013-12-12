@@ -7,7 +7,7 @@ public class Experiment {
 
     private Integer experimentInstructionsId;
 
-    private byte[] articletemplate;
+    private String templatePath;
 	private String experimentInstructionName;
 	private String curriculumName;
 
@@ -28,8 +28,6 @@ public class Experiment {
 	public void setExperimentInstructionName(String experimentInstructionName) {
 		this.experimentInstructionName = experimentInstructionName;
 	}
-
-
 
     public Integer getId() {
         return id;
@@ -55,11 +53,11 @@ public class Experiment {
         this.experimentInstructionsId = experimentInstructionsId;
     }
 
-    public byte[] getArticletemplate() {
-        return articletemplate;
+    public String getTemplatePath() {
+        return templatePath;
     }
 
-    public void setArticletemplate(byte[] articletemplate) {
-        this.articletemplate = articletemplate;
+    public void setTemplatePath(String templatePath) {
+        this.templatePath = templatePath == null ? null : templatePath.trim();
     }
 }

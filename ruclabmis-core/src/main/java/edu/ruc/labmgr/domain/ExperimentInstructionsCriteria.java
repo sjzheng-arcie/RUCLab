@@ -374,6 +374,76 @@ public class ExperimentInstructionsCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andDocumentPathIsNull() {
+            addCriterion("document_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathIsNotNull() {
+            addCriterion("document_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathEqualTo(String value) {
+            addCriterion("document_path =", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotEqualTo(String value) {
+            addCriterion("document_path <>", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathGreaterThan(String value) {
+            addCriterion("document_path >", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathGreaterThanOrEqualTo(String value) {
+            addCriterion("document_path >=", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathLessThan(String value) {
+            addCriterion("document_path <", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathLessThanOrEqualTo(String value) {
+            addCriterion("document_path <=", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathLike(String value) {
+            addCriterion("document_path like", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotLike(String value) {
+            addCriterion("document_path not like", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathIn(List<String> values) {
+            addCriterion("document_path in", values, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotIn(List<String> values) {
+            addCriterion("document_path not in", values, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathBetween(String value1, String value2) {
+            addCriterion("document_path between", value1, value2, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotBetween(String value1, String value2) {
+            addCriterion("document_path not between", value1, value2, "documentPath");
+            return (Criteria) this;
+        }
+
         public Criteria andCurriculumIdIsNull() {
             addCriterion("curriculum_id is null");
             return (Criteria) this;

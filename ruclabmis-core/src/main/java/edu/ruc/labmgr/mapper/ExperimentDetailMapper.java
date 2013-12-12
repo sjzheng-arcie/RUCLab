@@ -2,15 +2,14 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.ExperimentDetail;
 import edu.ruc.labmgr.domain.ExperimentDetailCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-import java.util.List;
-
 public interface ExperimentDetailMapper {
-    int countByCriteria(ExperimentDetailCriteria criteria);
+    int countByCriteria(ExperimentDetailCriteria example);
 
-    int deleteByCriteria(ExperimentDetailCriteria criteria);
+    int deleteByCriteria(ExperimentDetailCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,25 +17,17 @@ public interface ExperimentDetailMapper {
 
     int insertSelective(ExperimentDetail record);
 
-    List<ExperimentDetail> selectByCriteriaWithBLOBsWithRowbounds(ExperimentDetailCriteria criteria, RowBounds rowBounds);
+    List<ExperimentDetail> selectByCriteriaWithRowbounds(ExperimentDetailCriteria example, RowBounds rowBounds);
 
-    List<ExperimentDetail> selectByCriteriaWithBLOBs(ExperimentDetailCriteria criteria);
-
-    List<ExperimentDetail> selectByCriteriaWithRowbounds(ExperimentDetailCriteria criteria, RowBounds rowBounds);
-
-    List<ExperimentDetail> selectByCriteria(ExperimentDetailCriteria criteria);
+    List<ExperimentDetail> selectByCriteria(ExperimentDetailCriteria example);
 
     ExperimentDetail selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") ExperimentDetail record, @Param("criteria") ExperimentDetailCriteria criteria);
+    int updateByCriteriaSelective(@Param("record") ExperimentDetail record, @Param("example") ExperimentDetailCriteria example);
 
-    int updateByCriteriaWithBLOBs(@Param("record") ExperimentDetail record, @Param("criteria") ExperimentDetailCriteria criteria);
-
-    int updateByCriteria(@Param("record") ExperimentDetail record, @Param("criteria") ExperimentDetailCriteria criteria);
+    int updateByCriteria(@Param("record") ExperimentDetail record, @Param("example") ExperimentDetailCriteria example);
 
     int updateByPrimaryKeySelective(ExperimentDetail record);
-
-    int updateByPrimaryKeyWithBLOBs(ExperimentDetail record);
 
     int updateByPrimaryKey(ExperimentDetail record);
 }

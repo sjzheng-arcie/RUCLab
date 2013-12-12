@@ -293,6 +293,77 @@ public class ExperimentCriteria {
             addCriterion("experiment_instructions_id not between", value1, value2, "experimentInstructionsId");
             return (Criteria) this;
         }
+
+        public Criteria andTemplatePathIsNull() {
+            addCriterion("template_path is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathIsNotNull() {
+            addCriterion("template_path is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathEqualTo(String value) {
+            addCriterion("template_path =", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathNotEqualTo(String value) {
+            addCriterion("template_path <>", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathGreaterThan(String value) {
+            addCriterion("template_path >", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathGreaterThanOrEqualTo(String value) {
+            addCriterion("template_path >=", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathLessThan(String value) {
+            addCriterion("template_path <", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathLessThanOrEqualTo(String value) {
+            addCriterion("template_path <=", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathLike(String value) {
+            addCriterion("template_path like", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathNotLike(String value) {
+            addCriterion("template_path not like", value, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathIn(List<String> values) {
+            addCriterion("template_path in", values, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathNotIn(List<String> values) {
+            addCriterion("template_path not in", values, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathBetween(String value1, String value2) {
+            addCriterion("template_path between", value1, value2, "templatePath");
+            return (Criteria) this;
+        }
+
+        public Criteria andTemplatePathNotBetween(String value1, String value2) {
+            addCriterion("template_path not between", value1, value2, "templatePath");
+            return (Criteria) this;
+        }
+
 		public Criteria andCurricumIdEqual(int tid){
 			addCriterion("ei.curriculum_id=", tid, "id");
 			return (Criteria) this;
@@ -308,7 +379,6 @@ public class ExperimentCriteria {
 			addCriterion("ei.curriculum_id =c.id");
 			return (Criteria) this;
 		}
-
     }
 
     public static class Criteria extends GeneratedCriteria {

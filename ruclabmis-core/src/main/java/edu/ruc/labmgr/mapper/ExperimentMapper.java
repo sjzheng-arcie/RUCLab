@@ -17,10 +17,6 @@ public interface ExperimentMapper {
 
     int insertSelective(Experiment record);
 
-    List<Experiment> selectByCriteriaWithBLOBsWithRowbounds(ExperimentCriteria example, RowBounds rowBounds);
-
-    List<Experiment> selectByCriteriaWithBLOBs(ExperimentCriteria example);
-
     List<Experiment> selectByCriteriaWithRowbounds(ExperimentCriteria example, RowBounds rowBounds);
 
     List<Experiment> selectByCriteria(ExperimentCriteria example);
@@ -29,13 +25,9 @@ public interface ExperimentMapper {
 
     int updateByCriteriaSelective(@Param("record") Experiment record, @Param("example") ExperimentCriteria example);
 
-    int updateByCriteriaWithBLOBs(@Param("record") Experiment record, @Param("example") ExperimentCriteria example);
-
     int updateByCriteria(@Param("record") Experiment record, @Param("example") ExperimentCriteria example);
 
     int updateByPrimaryKeySelective(Experiment record);
-
-    int updateByPrimaryKeyWithBLOBs(Experiment record);
 
     int updateByPrimaryKey(Experiment record);
 }

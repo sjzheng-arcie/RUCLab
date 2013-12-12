@@ -90,7 +90,7 @@
                                                 <td nowrap align="right">指导书名称:</td>
                                                 <td nowrap>
                                                     <input name="paperName" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
+                                                           style="width:300px" maxlength="20"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
 
@@ -107,6 +107,20 @@
                                                     <span style="color:red;" id="s"></span>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验目的:</td>
+                                                <td colspan="2"><textarea name="taskContent" style="width:80%;height:80px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验说明:</td>
+                                                <td colspan="3"><textarea name="taskContent" style="width:80%;height:100px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
+                                            </tr>
                                         </table>
                                     </td>
                                 </tr>
@@ -117,7 +131,9 @@
                                         <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="reset" name="reset" value="添加实验题目" class="button"
+                                        <input type="reset" name="reset" value="添加题目生成指导书" class="button"
+                                               onclick="addToPaper();"/>
+                                        <input type="reset" name="reset" value="上传指导书" class="button"
                                                onclick="addToPaper();"/>
                                         <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>

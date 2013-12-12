@@ -5,11 +5,11 @@ public class ExperimentDetail {
 
     private Integer experimentId;
 
-    private Integer curriculumClassId;
+    private Integer classStudentId;
+
+    private String reportPath;
 
     private Short score;
-
-    private byte[] report;
 
     public Integer getId() {
         return id;
@@ -27,12 +27,20 @@ public class ExperimentDetail {
         this.experimentId = experimentId;
     }
 
-    public Integer getCurriculumClassId() {
-        return curriculumClassId;
+    public Integer getClassStudentId() {
+        return classStudentId;
     }
 
-    public void setCurriculumClassId(Integer curriculumClassId) {
-        this.curriculumClassId = curriculumClassId;
+    public void setClassStudentId(Integer classStudentId) {
+        this.classStudentId = classStudentId;
+    }
+
+    public String getReportPath() {
+        return reportPath;
+    }
+
+    public void setReportPath(String reportPath) {
+        this.reportPath = reportPath == null ? null : reportPath.trim();
     }
 
     public Short getScore() {
@@ -41,13 +49,5 @@ public class ExperimentDetail {
 
     public void setScore(Short score) {
         this.score = score;
-    }
-
-    public byte[] getReport() {
-        return report;
-    }
-
-    public void setReport(byte[] report) {
-        this.report = report;
     }
 }

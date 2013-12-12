@@ -121,10 +121,13 @@
                                                         <div align="center"><span class="STYLE10">指导书名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所属科目</span></div>
+                                                        <div align="center"><span class="STYLE10">所属课程</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">出题人</span></div>
+                                                        <div align="center"><span class="STYLE10">实验目的</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验说明</span></div>
                                                     </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -136,12 +139,12 @@
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td>软件工程06年第二学期期末考试</td>
-                                                    <td>软件工程</td>
-                                                    <td>赵天华</td>
-                                                    <td><a class="button" href="paperinfo">查看试卷</a>
-                                                        <a class="button" href="editpaper">编辑试卷</a>
-                                                        <a class="button" href="printpaper?paper_id=${item.id}">打印试卷</a>
+                                                    <td>防火墙那个i指导书</td>
+                                                    <td>网络</td>
+                                                    <td>目的到底是为什么</td>
+                                                    <td>说明</td>
+                                                    <td>
+                                                        <a class="button" href="editpaper">编辑</a>
                                                     </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -153,9 +156,8 @@
                                                         <td>${item.name}</td>
                                                         <td>${item.course}</td>
                                                         <td>${item.teacher}</td>
-                                                        <td><a class="button" href="paperinfo?paper_id=${item.id}">查看试卷</a>
+                                                        <td>
                                                             <a class="button" href="editpaper?paper_id=${item.id}">编辑试卷</a>
-                                                            <a class="button" href="printpaper?paper_id=${item.id}">打印试卷</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

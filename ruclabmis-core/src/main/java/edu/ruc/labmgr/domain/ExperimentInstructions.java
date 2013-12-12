@@ -9,9 +9,9 @@ public class ExperimentInstructions {
 
     private String explanation;
 
-    private Integer curriculumId;
+    private String documentPath;
 
-    private byte[] document;
+    private Integer curriculumId;
 
     public Integer getId() {
         return id;
@@ -45,19 +45,19 @@ public class ExperimentInstructions {
         this.explanation = explanation == null ? null : explanation.trim();
     }
 
+    public String getDocumentPath() {
+        return documentPath;
+    }
+
+    public void setDocumentPath(String documentPath) {
+        this.documentPath = documentPath == null ? null : documentPath.trim();
+    }
+
     public Integer getCurriculumId() {
         return curriculumId;
     }
 
     public void setCurriculumId(Integer curriculumId) {
         this.curriculumId = curriculumId;
-    }
-
-    public byte[] getDocument() {
-        return document;
-    }
-
-    public void setDocument(byte[] document) {
-        this.document = document;
     }
 }
