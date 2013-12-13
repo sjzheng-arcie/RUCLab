@@ -1,22 +1,28 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ page language="java" contentType="text/html;charset=UTF-8"
-         pageEncoding="UTF-8" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/valid.js" type=text/javascript></script>
-    <script>
-        function update() {
-            if (!validator(document.mainForm)) {
-                return;
-            }
 
-            document.mainForm.action = "update";
-            document.mainForm.submit();
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+
+<script src="../../../../js/valid.js" type=text/javascript></script>
+<script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
+
+<script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
+
+<script>
+    function update() {
+        if (!validator(document.mainForm)) {
+            return;
         }
-    </script>
-</head>
+
+        document.mainForm.action = "update";
+        document.mainForm.submit();
+    }
+</script>
+
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -29,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 用户管理</div>
+                            <div class="titlebt">系统管理 > 学生信息修改</div>
                         </td>
                     </tr>
                 </table>
@@ -57,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改用户</span></td>
+                                                                    class="STYLE1">修改学生信息</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -80,101 +86,89 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <input name="id" id="id" type="hidden" value="${teacher.id}">
+                                            <input name="id" id="id" type="hidden" value="${student.id}">
                                             <tr>
-                                                <td nowrap align="right">用户账号:</td>
+                                                <td nowrap align="right">学号:</td>
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
                                                            maxlength="20"
-                                                           valid="required|isAccount"
-                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"
-                                                           value="${teacher.sn}"/>
+                                                           valid="required"
+                                                           errmsg="用户学号不能为空!"
+                                                           value="${student.sn}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-                                                <td nowrap align="right">用户名:</td>
+                                                <td nowrap align="right">姓名:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" class="text"
                                                            style="width:154px"
                                                            maxlength="20"
                                                            valid="required|isEnglishChinese"
                                                            errmsg="用户名不能为空!|用户名只能为中英文字符"
-                                                           value="${teacher.name}"/>
+                                                           value="${student.name}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td nowrap align="right">性别:</td>
+                                                <td nowrap>
+                                                    <select name="sex" id="sex">
+                                                        <option value="false" selected>男</option>
+                                                        <option value="true"
+                                                                <c:if test="${student.sex == true}"> selected</c:if>>女</option>
+                                                    </select>
+                                                </td>
+                                                <td nowrap align="right">籍贯：</td>
+                                                <td nowrap align="left">
+                                                    <input name="originPlace" id="originPlace" type="text"
+                                                           value="${student.originPlace}">
+                                                </td>
                                             <tr>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
                                                     <input name="email" id="email" type="text"
                                                            valid="isEmail"
                                                            errmsg="邮箱格式不正确!"
-                                                           value="${teacher.email}">
+                                                           value="${student.email}">
                                                 </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
                                                     <input name="phoneNum" id="phoneNum" type="text"
-                                                           value="${teacher.phoneNum}">
+                                                           value="${student.phoneNum}">
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">用户角色:</td>
-                                                <td nowrap>
-                                                    <select name="roleId" id="roleId">
-                                                        <c:forEach items="${roles}" var="item">
-                                                            <option value="${item.id}"
-                                                                    <c:if test="${item.id == teacher.roleId}"> selected</c:if>>${item.displayName}
-                                                            </option>
-                                                        </c:forEach>
-                                                    </select>
+                                                <td align="right">入学日期</td>
+                                                <td>
+                                                    <input name="admissionDate" id="admissionDate"
+                                                           value="<fmt:formatDate value="${student.admissionDate}" pattern="yyyy-MM-dd"/>"
+                                                           onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                           valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                           onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                                 </td>
+                                                <td align="right">出生日期</td>
+                                                <td>
+                                                    <input name="birthday" id="birthday"
+                                                           value="<fmt:formatDate value="${student.birthday}" pattern="yyyy-MM-dd"/>"
+                                                           onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                           valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                           onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">所属专业：</td>
                                                 <td nowrap align="left">
                                                     <select name="majorId" id="majorId">
                                                         <c:forEach items="${majors}" var="item">
                                                             <option value="${item.id}"
-                                                                    <c:if test="${item.id == teacher.majorId}"> selected</c:if>>${item.name}
-                                                            </option>
-                                                        </c:forEach>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">职称:</td>
-                                                <td nowrap>
-                                                    <select name="titleId" id="titleId">
-                                                        <c:forEach items="${titles}" var="item">
-                                                            <option value="${item.id}"
-                                                                    <c:if test="${item.id == teacher.titleId}"> selected</c:if>>${item.name}
-                                                            </option>
-                                                        </c:forEach>
-                                                    </select>
-                                                </td>
-                                                <td nowrap align="right">职位：</td>
-                                                <td nowrap align="left">
-                                                    <select name="positionId" id="positionId">
-                                                        <c:forEach items="${positions}" var="item">
-                                                            <option value="${item.id}"
-                                                                    <c:if test="${item.id == teacher.positionId}"> selected</c:if>>${item.name}
-                                                            </option>
-                                                        </c:forEach>
-                                                    </select>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">所属部门：</td>
-                                                <td nowrap align="left">
-                                                    <select name="organizationId" id="organizationId">
-                                                        <c:forEach items="${organizations}" var="item">
-                                                            <option value="${item.id}"
-                                                                    <c:if test="${item.id == teacher.organizationId}"> selected</c:if>>${item.name}
+                                                                    <c:if test="${item.id == student.majorId}"> selected</c:if>>${item.name}
                                                             </option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left">
+                                                <td nowrap align="left" colspan="3">
                                                     <textarea name="comment"
-                                                              id="comment">${teacher.comment}</textarea>
+                                                              id="comment">${student.comment}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

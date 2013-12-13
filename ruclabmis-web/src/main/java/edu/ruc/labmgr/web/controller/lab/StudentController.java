@@ -1,4 +1,4 @@
-package edu.ruc.labmgr.web.controller;
+package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
@@ -13,105 +13,78 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-@RequestMapping("/common/user")
-public class TeacherController {
+@RequestMapping("/laboratory/jsp/bas/student")
+public class StudentController {
     @Autowired
-    TeacherService serviceTeacher;
-    @Autowired
-    RoleService serviceRole;
+    StudentService serviceStudent;
     @Autowired
     MajorService serviceMajor;
-    @Autowired
-    TitleService serviceTitle;
-    @Autowired
-    PositionService servicePosition;
-    @Autowired
-    OrganizationService serviceOrganization;
+
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchSN", required = false, defaultValue = "") String sn,
                                  @RequestParam(value = "searchName", required = false, defaultValue = "") String name,
-                                 @RequestParam(value = "searchMajor", required = false, defaultValue = "") Integer major,
-                                 @RequestParam(value = "searchOrg", required = false, defaultValue = "") Integer org,
+                                 @RequestParam(value = "searchMajor", required = false, defaultValue = "") String major,
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView result = new ModelAndView();
-        result.setViewName("/common/user/list");
+        result.setViewName("/laboratory/jsp/bas/student/list");
         List<Major> majors = serviceMajor.listAll();
-        List<Organization> organizations = serviceOrganization.selectAllOrganizations();
-
-        PageInfo<Teacher> pageInfo = serviceTeacher.selectListPage(sn, name, major, org, page);
+        PageInfo<Student> pageInfo = serviceStudent.getPageStudent(page, sn, name, major);
 
         result.addObject("pageInfo", pageInfo);
         result.addObject("majors", majors);
-        result.addObject("organizations", organizations);
         return result;
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
-        List<Role> roles = serviceRole.listAllInEquipment();
         List<Major> majors = serviceMajor.listAll();
-        List<Title> titles = serviceTitle.selectAllTitles();
-        List<Position> positions = servicePosition.selectAllPositions();
-        List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
-        ModelAndView mav = new ModelAndView("/common/user/add");
-        mav.addObject("roles", roles);
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/student/add");
         mav.addObject("majors", majors);
-        mav.addObject("titles", titles);
-        mav.addObject("positions", positions);
-        mav.addObject("organizations", organizations);
 
         return mav;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(Teacher teacher) {
-        serviceTeacher.insert(teacher);
-        return "redirect:/common/user/list";
+    public String add(Student student) {
+        serviceStudent.insert(student);
+        return "redirect:/laboratory/jsp/bas/student/list";
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Teacher teacher = serviceTeacher.selectByPrimaryKey(id);
-        List<Role> roles = serviceRole.listAllInEquipment();
+        Student student = serviceStudent.selectByPrimaryKey(id);
         List<Major> majors = serviceMajor.listAll();
-        List<Title> titles = serviceTitle.selectAllTitles();
-        List<Position> positions = servicePosition.selectAllPositions();
-        List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
-        ModelAndView mav = new ModelAndView("/common/user/update");
-        mav.addObject("teacher", teacher);
-        mav.addObject("roles", roles);
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/student/update");
+        mav.addObject("student", student);
         mav.addObject("majors", majors);
-        mav.addObject("titles", titles);
-        mav.addObject("positions", positions);
-        mav.addObject("organizations", organizations);
 
         return mav;
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Teacher teacher) {
-        serviceTeacher.update(teacher);
-        return "redirect:/common/user/list";
+    public String update(Student student) {
+        serviceStudent.update(student);
+        return "redirect:/laboratory/jsp/bas/student/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) {
         for (int id : items) {
-            serviceTeacher.delete(id);
+            serviceStudent.delete(id);
         }
-        return "redirect:/common/user/list";
+        return "redirect:/laboratory/jsp/bas/student/list";
     }
 
     @RequestMapping(value = "/toUpdatePassword", method = RequestMethod.GET)
     public ModelAndView toUpdatePassword(@RequestParam(value = "id", required = false, defaultValue = "-1") int id) {
         //没有传进id则取出当前登录用户id
         if (id == -1) {
-            id = serviceTeacher.getCurrentUserId();
+            id = serviceStudent.getCurrentUserId();
         }
-        ModelAndView mav = new ModelAndView("/common/user/password");
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/student/password");
         mav.addObject("id", id);
         return mav;
     }
@@ -120,8 +93,8 @@ public class TeacherController {
     public String updatePassword(@RequestParam("id") int id,
                                  @RequestParam(value = "oriPassword", required = false) String oriPassword,
                                  @RequestParam("newPassword") String newPassword) throws Exception {
-        serviceTeacher.updatePassword(id, oriPassword, newPassword);
-        return "redirect:/common/user/list";
+        serviceStudent.updatePassword(id, oriPassword, newPassword);
+        return "redirect:/laboratory/jsp/bas/student/list";
     }
 
 }

@@ -3,7 +3,6 @@ package edu.ruc.labmgr.web.controller;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
-import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,7 +19,7 @@ public class HomeLinkController {
     @Autowired
     private ApplicationFormService applicationFormService;
     @Autowired
-    private TeacherService teacherService;
+    private StudentService teacherService;
     @Autowired
     private UserService userService;
     @Autowired

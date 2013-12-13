@@ -6,7 +6,7 @@ import edu.ruc.labmgr.domain.Equipment;
 import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
 import edu.ruc.labmgr.mapper.EquipmentMapper;
-import edu.ruc.labmgr.service.TeacherService;
+import edu.ruc.labmgr.service.StudentService;
 import edu.ruc.labmgr.utils.Types;
 import org.apache.ibatis.session.RowBounds;
 import org.junit.BeforeClass;
@@ -19,7 +19,7 @@ import java.util.List;
 
 public class ApplyWithEquipmentMapperTest {
     private static ApplyWithEquipmentMapper mapper;
-    private TeacherService teacherService;
+    private StudentService teacherService;
     private static ApplicationFormMapper mapperApply;
     private static EquipmentMapper mapperEquipment;
 

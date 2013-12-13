@@ -142,7 +142,7 @@
                                         style="width: 202px;height: 22px"
                                         data-placeholder="选择对象...">
                                     <c:forEach items="${teacherList}" var="teacher">
-                                        <option value="${teacher.id}">${teacher.user.name}(${teacher.user.sn})</option>
+                                        <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
                                     </c:forEach>
                                 </select>
                             </td>

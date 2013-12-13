@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.ruc.labmgr.mapper.TeacherMapper">
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Teacher">
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Teacher" extends="edu.ruc.labmgr.mapper.UserMapper.BaseResultMap">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="title_id" property="titleId" jdbcType="INTEGER"/>
         <result column="title_name" property="titleName" jdbcType="VARCHAR"/>
@@ -9,8 +9,6 @@
         <result column="position_name" property="positionName" jdbcType="VARCHAR"/>
         <result column="organization_id" property="organizationId" jdbcType="INTEGER"/>
         <result column="organization_name" property="organizationName" jdbcType="VARCHAR"/>
-        <association property="user" column="id" javaType="User"
-                     select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey"/>
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>
@@ -73,7 +71,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, title_id, title_name, position_id, position_name, organization_id, organization_name
+        id, sn, name, password, sex, email, phone_num, comment, major_id, role_id,
+        title_id, title_name, position_id, position_name, organization_id, organization_name
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.TeacherCriteria">
         select

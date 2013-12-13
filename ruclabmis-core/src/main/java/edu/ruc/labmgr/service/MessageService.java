@@ -154,7 +154,8 @@ public class MessageService {
                     continue;
                 message.setReceiverId(leader.getId());
                 String content = "";
-                content += applicant.getUser().getName() + " 于" + format.format(applicationForm.getApplyTime()) +
+                User user = leader;
+                content += user.getName() + " 于" + format.format(applicationForm.getApplyTime()) +
                         " 提出 " + type.getTitle() + " 申请，表单号 " + Integer.toString(applicationForm.getId()) + " : ";
 
                 String listPath = path.substring(0, path.lastIndexOf("/"));
@@ -173,7 +174,8 @@ public class MessageService {
                 continue;
             message.setReceiverId(equpiAdmin.getId());
             String content = "";
-            content += applicant.getUser().getName() + " 于" + format.format(applicationForm.getApplyTime()) + " 提出 " +
+            User user = equpiAdmin;
+            content += user.getName() + " 于" + format.format(applicationForm.getApplyTime()) + " 提出 " +
                     type.getTitle() + " 申请，表单号 " + Integer.toString(applicationForm.getId()) + " : ";
 
             String listPath = path.substring(0, path.lastIndexOf("/"));

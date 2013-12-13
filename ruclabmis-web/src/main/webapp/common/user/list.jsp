@@ -4,8 +4,9 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="../../../../js/util.js"></script>
+    <link href="../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="../../js/util.js"></script>
+    <script type="text/javascript" src="../../js/page.js"></script>
     <title></title>
 </head>
 
@@ -14,9 +15,9 @@
 <form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <tr>
-    <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
-            src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
-    <td valign="top" background="../../../../images/content-bg.gif">
+    <td width="17" valign="top" background="../../images/mail_leftbg.gif"><img
+            src="../../images/left-top-right.gif" width="17" height="29"/></td>
+    <td valign="top" background="../../images/content-bg.gif">
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg"
                id="table2">
             <tr>
@@ -26,12 +27,12 @@
             </tr>
         </table>
     </td>
-    <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
-            src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
+    <td width="16" valign="top" background="../../images/mail_rightbg.gif"><img
+            src="../../images/nav-right-bg.gif" width="16" height="29"/></td>
 </tr>
 
 <tr>
-    <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
+    <td valign="middle" background="../../images/mail_leftbg.gif"></td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
             <tr>
@@ -69,7 +70,7 @@
                     </span>
                      <span style="white-space:nowrap">
                          <a href="javascript:void(0)" onclick="toFind('listForm');">
-                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                             <img src="../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
                      </span>
 
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -86,7 +87,7 @@
                                                             <tr>
                                                                 <td width="6%" height="19" valign="bottom">
                                                                     <div align="center"><img
-                                                                            src="../../../../images/tb.gif"
+                                                                            src="../../images/tb.gif"
                                                                             width="14" height="14"/></div>
                                                                 </td>
                                                                 <td width="94%" valign="bottom"><span
@@ -100,11 +101,11 @@
                                                         <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
                         <a href="/common/user/toAdd">
-                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <img src="../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
-                            <img src="../../../../images/del_min.gif" width="10" height="10"
+                            <img src="../../images/del_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">删除</span>
                         </a>
 	                </span>
@@ -175,23 +176,23 @@
                                                                        value="${item.id}"
                                                                        onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>${item.user.id}</td>
-                                                <td>${item.user.sn}</td>
-                                                <td>${item.user.name}</td>
-                                                <td>${item.user.role.displayName}</td>
-                                                <td>${item.user.major.name}</td>
+                                                <td>${item.id}</td>
+                                                <td>${item.sn}</td>
+                                                <td>${item.name}</td>
+                                                <td>${item.role.displayName}</td>
+                                                <td>${item.major.name}</td>
                                                 <td>${item.organizationName}</td>
                                                 <td>${item.positionName}</td>
                                                 <td>${item.titleName}</td>
-                                                <td>${item.user.phoneNum}</td>
-                                                <td>${item.user.email}</td>
-                                                <td>${item.user.comment}</td>
+                                                <td>${item.phoneNum}</td>
+                                                <td>${item.email}</td>
+                                                <td>${item.comment}</td>
                                                 <td><a href="toUpdate?id=${item.id}">
-                                                    <img src="../../../../images/set2.gif" width="10"
+                                                    <img src="../../images/set2.gif" width="10"
                                                          height="10" border="0"/>
                                                 </a></td>
                                                 <td><a href="toUpdatePassword?id=${item.id}">
-                                                    <img src="../../../../images/edit_min.gif" width="10"
+                                                    <img src="../../images/edit_min.gif" width="10"
                                                          height="10" border="0"/>
                                                 </a></td>
                                             </tr>
@@ -201,23 +202,23 @@
                                 </div>
                             </td>
                         </tr>
-                        <%@ include file="../../../../include/pagetable.jsp" %>
+                        <%@ include file="../../include/pagetable.jsp" %>
                     </table>
                 </td>
             </tr>
         </table>
     </td>
-    <td background="../../../../images/mail_rightbg.gif"></td>
+    <td background="../../images/mail_rightbg.gif"></td>
 </tr>
 <tr>
-    <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
-            src="../../../../images/buttom_left2.gif"
+    <td valign="bottom" background="../../images/mail_leftbg.gif"><img
+            src="../../images/buttom_left2.gif"
             width="17" height="17"/></td>
-    <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
-            src="../../../../images/buttom_bgs.gif"
+    <td valign="bottom" background="../../images/buttom_bgs.gif"><img
+            src="../../images/buttom_bgs.gif"
             width="100%" height="17"/></td>
-    <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
-            src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
+    <td valign="bottom" background="../../images/mail_rightbg.gif"><img
+            src="../../images/buttom_right2.gif" width="16" height="17"/></td>
 </tr>
 </table>
 </form>

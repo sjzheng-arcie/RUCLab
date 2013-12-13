@@ -4,6 +4,7 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.AnnouncementService;
 import edu.ruc.labmgr.service.MessageService;
+import edu.ruc.labmgr.service.StudentService;
 import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.ruc.labmgr.mapper.StudentMapper">
-    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Student">
-        <id column="st_id" property="id" jdbcType="INTEGER"/>
-        <result column="st_birthday" property="birthday" jdbcType="DATE"/>
-        <result column="st_origin_place" property="originPlace" jdbcType="VARCHAR"/>
-        <result column="st_name" property="name" jdbcType="VARCHAR"/>
-        <result column="st_sn" property="sn" jdbcType="VARCHAR"/>
-        <result column="st_sex" property="sex" jdbcType="BIT"/>
-        <result column="st_major_name" property="majorName" jdbcType="VARCHAR"/>
-        <result column="st_admission_date" property="admissionDate" jdbcType="DATE"/>
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Student" extends="edu.ruc.labmgr.mapper.UserMapper.BaseResultMap">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="birthday" property="birthday" jdbcType="DATE"/>
+        <result column="origin_place" property="originPlace" jdbcType="VARCHAR"/>
+        <result column="admission_date" property="admissionDate" jdbcType="DATE"/>
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>
@@ -72,7 +68,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    st.id as st_id, st.birthday as st_birthday, st.origin_place as st_origin_place, st.admission_date as st_admission_date
+    id, sn, name, password, sex, email, phone_num, comment, major_id, role_id, birthday, origin_place, admission_date
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.StudentCriteria">
         select
@@ -80,8 +76,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        ,u.sn as st_sn,u.name as st_name,u.sex as st_sex,m.name as st_major_name
-        from student st,user u,major m
+        from view_students
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -92,8 +87,8 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from student st
-        where st.id = #{id,jdbcType=INTEGER}
+        from view_students
+        where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from student
@@ -109,9 +104,9 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into student (birthday, origin_place, admission_date
+        insert into student (id, birthday, origin_place, admission_date
         )
-        values (#{birthday,jdbcType=DATE}, #{originPlace,jdbcType=VARCHAR}, #{admissionDate,jdbcType=DATE}
+        values (#{id,jdbcType=INTEGER}, #{birthday,jdbcType=DATE}, #{originPlace,jdbcType=VARCHAR}, #{admissionDate,jdbcType=DATE}
         )
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Student">
@@ -120,6 +115,9 @@
         </selectKey>
         insert into student
         <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                id,
+            </if>
             <if test="birthday != null">
                 birthday,
             </if>
@@ -131,6 +129,9 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="id != null">
+                #{id,jdbcType=Integer},
+            </if>
             <if test="birthday != null">
                 #{birthday,jdbcType=DATE},
             </if>
@@ -143,8 +144,8 @@
         </trim>
     </insert>
     <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.StudentCriteria" resultType="java.lang.Integer">
-        select count(st.id)
-        from student st,user u,major m
+        select count(id)
+        from view_students
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -153,16 +154,16 @@
         update student st
         <set>
             <if test="record.id != null">
-                st.id = #{record.id,jdbcType=INTEGER},
+                id = #{record.id,jdbcType=INTEGER},
             </if>
             <if test="record.birthday != null">
-                st.birthday = #{record.birthday,jdbcType=DATE},
+                birthday = #{record.birthday,jdbcType=DATE},
             </if>
             <if test="record.originPlace != null">
-                st.origin_place = #{record.originPlace,jdbcType=VARCHAR},
+                origin_place = #{record.originPlace,jdbcType=VARCHAR},
             </if>
             <if test="record.admissionDate != null">
-                st.admission_date = #{record.admissionDate,jdbcType=DATE},
+                admission_date = #{record.admissionDate,jdbcType=DATE},
             </if>
         </set>
         <if test="_parameter != null">
@@ -171,10 +172,10 @@
     </update>
     <update id="updateByCriteria" parameterType="map">
         update student st
-        set st.id = #{record.id,jdbcType=INTEGER},
-        st.birthday = #{record.birthday,jdbcType=DATE},
-        st.origin_place = #{record.originPlace,jdbcType=VARCHAR},
-        st.admission_date = #{record.admissionDate,jdbcType=DATE}
+        set id = #{record.id,jdbcType=INTEGER},
+        birthday = #{record.birthday,jdbcType=DATE},
+        origin_place = #{record.originPlace,jdbcType=VARCHAR},
+        admission_date = #{record.admissionDate,jdbcType=DATE}
         <if test="_parameter != null">
             <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
@@ -208,8 +209,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        ,u.sn as st_sn,u.name as st_name,u.sex as st_sex,m.name as st_major_name
-        from student st,user u,major m
+        from view_students
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>

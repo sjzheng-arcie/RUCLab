@@ -1,10 +1,7 @@
 package edu.ruc.labmgr.service.ApplyStrategic;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.ApplicationForm;
-import edu.ruc.labmgr.domain.ApplyWithEquipment;
-import edu.ruc.labmgr.domain.Equipment;
-import edu.ruc.labmgr.domain.EquipmentApplicationFormKey;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.ApplicationFormMapper;
 import edu.ruc.labmgr.mapper.ApplyWithEquipmentMapper;
 import edu.ruc.labmgr.mapper.EquipmentApplicationFormMapper;
@@ -39,7 +36,8 @@ public class AllotApply extends BaseApply {
         //转移申请时，取出接受者名字
         for (ApplicationForm apply : pageInfo.getData()) {
             if (!StringUtils.isNullOrEmpty(apply.getAnnex())) {
-                String target = serviceTeacher.selectByPrimaryKey(Integer.parseInt(apply.getAnnex())).getUser().getName();
+                User user = serviceTeacher.selectByPrimaryKey(Integer.parseInt(apply.getAnnex()));
+                String target =user.getName();
                 apply.setTarget(target);
             }
         }

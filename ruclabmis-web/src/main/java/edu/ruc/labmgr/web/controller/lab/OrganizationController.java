@@ -59,7 +59,7 @@ public class OrganizationController {
         return "redirect:/laboratory/jsp/bas/org/list";
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(@RequestParam("items") List<Integer> items) {
         organizationService.delete(items);
         return "redirect:/laboratory/jsp/bas/org/list";

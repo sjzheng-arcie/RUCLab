@@ -20,7 +20,7 @@ public class TeacherMapperTest {
     @Ignore
     public void testSelectTeacher() throws Exception {
         Teacher teacher = mapper.selectByPrimaryKey(1);
-        System.out.println(teacher.getUser().getName());
+        System.out.println(teacher.getName());
     }
 
     @Ignore

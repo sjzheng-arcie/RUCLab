@@ -1,6 +1,6 @@
 package edu.ruc.labmgr.domain;
 
-public class Teacher {
+public class Teacher extends User{
     private Integer id;
 
     private Integer titleId;
@@ -14,8 +14,6 @@ public class Teacher {
     private Integer organizationId;
 
     private String organizationName;
-
-    private User user;
 
     public Integer getId() {
         return id;
@@ -47,14 +45,6 @@ public class Teacher {
 
     public void setOrganizationId(Integer organizationId) {
         this.organizationId = organizationId;
-    }
-
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
     }
 
     public String getTitleName() {

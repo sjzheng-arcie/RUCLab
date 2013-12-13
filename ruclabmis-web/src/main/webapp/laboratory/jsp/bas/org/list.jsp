@@ -60,10 +60,6 @@
                                                                     <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                     <span class="STYLE1">新增</span>
                                                                 </a>
-                                                                <a href="#" onclick="toDelete('listForm','idcheckbox')">
-                                                                    <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
-                                                                    <span class="STYLE1">删除</span>
-                                                                </a>
                                                             </span>
                                                         </div>
                                                     </td>
@@ -98,7 +94,7 @@
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
-                                                        <td><a href="toDelete?id=${item.id}">
+                                                        <td><a href="delete?items=${item.id}">
                                                             <img src="../../../../images/del_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>

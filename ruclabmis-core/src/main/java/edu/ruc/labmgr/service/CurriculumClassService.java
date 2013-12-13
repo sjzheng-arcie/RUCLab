@@ -68,7 +68,7 @@ public class CurriculumClassService {
     public List<Student> getClassStudents(int cid, String sn, String name, String major) {
         ClassStudentCriteria criteria = new ClassStudentCriteria();
         ClassStudentCriteria.Criteria c = criteria.or();
-        c.andJoinUser().andJoinStudent().andJoinMajor().andClassIdEqualTo(cid);
+        c.andClassIdEqualTo(cid);
         if (StringUtils.isNotEmpty(sn))
             c.andStudentSnLike("%" + sn + "%");
         if (StringUtils.isNotEmpty(name))

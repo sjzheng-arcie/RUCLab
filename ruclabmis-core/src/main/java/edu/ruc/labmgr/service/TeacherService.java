@@ -128,35 +128,36 @@ public class TeacherService extends UserService {
     }
 
     public void insert(Teacher teacher) {
-        teacher.getUser().setPassword(CipherUtil.generatePassword(teacher.getUser().getPassword()));
-        mapperUser.insert(teacher.getUser());
-        teacher.setId(teacher.getUser().getId());
+        User user = teacher;
+        user.setPassword(CipherUtil.generatePassword(user.getPassword()));
+        mapperUser.insert(user);
+        teacher.setId(user.getId());
         mapperTeacher.insert(teacher);
     }
 
     public void update(Teacher teacher) {
-        if (StringUtils.isNullOrEmpty(teacher.getUser().getPassword())) {
-            Teacher tmpTeacher = mapperTeacher.selectByPrimaryKey(teacher.getId());
-            teacher.getUser().setPassword(tmpTeacher.getUser().getPassword());
+        if (StringUtils.isNullOrEmpty(teacher.getPassword())) {
+            User tmpUser = mapperUser.selectByPrimaryKey(teacher.getId());
+            teacher.setPassword(tmpUser.getPassword());
         }
-        mapperUser.updateByPrimaryKey(teacher.getUser());
+        User user = teacher;
+        mapperUser.updateByPrimaryKey(user);
+
         mapperTeacher.updateByPrimaryKey(teacher);
     }
 
     public void updatePassword(int id, String oriPassword, String newPassword) throws Exception {
-        Teacher teacher = mapperTeacher.selectByPrimaryKey(id);
-
+        User user = mapperUser.selectByPrimaryKey(id);
         //没有管理员权限则需要验证当前密码
         Subject subject = SecurityUtils.getSubject();
         if (!subject.hasRole(Types.Role.ADMIN.getName())) {
-            if (!CipherUtil.validatePassword(teacher.getUser().getPassword(), oriPassword)) {
+            if (!CipherUtil.validatePassword(user.getPassword(), oriPassword)) {
                 throw (new Exception("用户原密码不匹配，请重新输入"));
             }
-            ;
         }
 
-        teacher.getUser().setPassword(CipherUtil.generatePassword(newPassword));
-        mapperUser.updateByPrimaryKey(teacher.getUser());
+        user.setPassword(CipherUtil.generatePassword(newPassword));
+        mapperUser.updateByPrimaryKey(user);
     }
 
     public void delete(int id) {

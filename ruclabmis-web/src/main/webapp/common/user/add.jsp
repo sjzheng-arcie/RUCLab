@@ -85,7 +85,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户账号:</td>
                                                 <td nowrap>
-                                                    <input name="user.sn" id="user.sn" onblur="" class="text"
+                                                    <input name="sn" id="sn" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"
                                                            errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
@@ -93,7 +93,7 @@
                                                 </td>
                                                 <td nowrap align="right">用户名:</td>
                                                 <td nowrap>
-                                                    <input name="user.name" id="user.name" onblur="" class="text"
+                                                    <input name="name" id="name" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isEnglishChinese"
                                                            errmsg="用户名不能为空!|用户名只能为中英文字符"/>
@@ -103,7 +103,7 @@
                                             <tr>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
-                                                    <input name="user.password" id="user.password" value="" onblur=""
+                                                    <input name="password" id="password" value="" onblur=""
                                                            class="text"
                                                            style="width:154px" maxlength="16"
                                                            valid="required|isPassword" type="password"
@@ -112,7 +112,7 @@
                                                 </td>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input name="user.email" id="user.email"
+                                                    <input name="email" id="email"
                                                            valid="isEmail"
                                                            errmsg="邮箱格式不正确!"/>
                                                 </td>
@@ -120,7 +120,7 @@
                                             <tr>
                                                 <td nowrap align="right">用户角色:</td>
                                                 <td nowrap>
-                                                    <select name="user.roleId" id="user.roleId">
+                                                    <select name="roleId" id="roleId">
                                                         <c:forEach items="${roles}" var="item">
                                                             <option value="${item.id}">${item.displayName}</option>
                                                         </c:forEach>
@@ -128,7 +128,7 @@
                                                 </td>
                                                 <td nowrap align="right">所属专业：</td>
                                                 <td nowrap align="left">
-                                                    <select name="user.majorId" id="user.majorId">
+                                                    <select name="majorId" id="majorId">
                                                         <c:forEach items="${majors}" var="item">
                                                             <option value="${item.id}">${item.name}
                                                             </option>
@@ -173,11 +173,11 @@
                                             <tr>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input name="user.phoneNum" id="user.phoneNum" type="text">
+                                                    <input name="phoneNum" id="phoneNum" type="text">
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="user.comment" id="user.comment">
+                                                    <textarea name="comment" id="comment">
                                                     </textarea>
                                                 </td>
                                             </tr>
