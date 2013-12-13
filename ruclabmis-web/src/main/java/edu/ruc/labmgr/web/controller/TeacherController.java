@@ -36,7 +36,7 @@ public class TeacherController {
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/common/user/list");
-        List<Major> majors = serviceMajor.listAll();
+        List<Major> majors = serviceMajor.selectAllMajors();
         List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
         PageInfo<Teacher> pageInfo = serviceTeacher.selectListPage(sn, name, major, org, page);
@@ -50,7 +50,7 @@ public class TeacherController {
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
         List<Role> roles = serviceRole.listAllInEquipment();
-        List<Major> majors = serviceMajor.listAll();
+        List<Major> majors = serviceMajor.selectAllMajors();
         List<Title> titles = serviceTitle.selectAllTitles();
         List<Position> positions = servicePosition.selectAllPositions();
         List<Organization> organizations = serviceOrganization.selectAllOrganizations();
@@ -75,7 +75,7 @@ public class TeacherController {
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Teacher teacher = serviceTeacher.selectByPrimaryKey(id);
         List<Role> roles = serviceRole.listAllInEquipment();
-        List<Major> majors = serviceMajor.listAll();
+        List<Major> majors = serviceMajor.selectAllMajors();
         List<Title> titles = serviceTitle.selectAllTitles();
         List<Position> positions = servicePosition.selectAllPositions();
         List<Organization> organizations = serviceOrganization.selectAllOrganizations();

@@ -4,16 +4,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/bas/major/list';
-    </script>
-
+    <title>专业列表</title>
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
@@ -28,7 +23,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">基础信息管理 > 专业信息管理</div>
+                            <div class="titlebt">实验室管理 > 专业信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -38,22 +33,20 @@
         </tr>
 
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;专业编号:<input type="text" name="majorNo"
-                                                                                     id="majorNo" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;专业名称:<input type="text" name="majorName"
-                                                                                     id="majorName" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:hand"
-                                                                            onclick="findInfo()"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">名称:
+                                <input type="text" name="searchName" id="searchName"
+                                       value="" style="width:100px;"/>
+                            </span>
+                            <span style="white-space:nowrap">
+                                <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
+                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                                </a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -75,17 +68,24 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">专业信息管理</span>
+                                                                                style="white-space:nowrap">专业信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    </span>
+	            	<span class="STYLE1" style="white-space:nowrap">
+						<a href="/laboratory/jsp/bas/major/toAdd">
+                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">新增</span>
+                        </a>
+      					<a href="#" onclick="toDelete('listForm','idcheckbox');">
+                            <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">删除</span>
+                        </a>
+
+	                </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -101,62 +101,30 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
+                                                    <td width="10" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm','idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">专业编号</span></div>
-                                                    </td>
-                                                    <td width="100" bgcolor="d3eaef">
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">专业名称</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
+                                                    <td width="20" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">删除</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">00001</td>
-                                                    <td title="">计算机科学与技术</td>
-                                                    <td><a href="toUpdate?id=17">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-                                                    <td><a href="toDelete?id=17">
-                                                        <img src="../../../../images/del_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-
-
-
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                                               onclick="checkOne('listForm','idcheckbox')"/>
                                                         </td>
-
-                                                        <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-                                                        <td><a href="toUpdate?id=17">
+                                                        <td><a href="toUpdate?id=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
-                                                        <td><a href="toDelete?id=17">
-                                                            <img src="../../../../images/del_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
-
-
-
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -164,13 +132,13 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp" %>
+                                <%@ include file="../../../../include/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

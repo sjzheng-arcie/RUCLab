@@ -28,7 +28,7 @@ public class StudentController {
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/laboratory/jsp/bas/student/list");
-        List<Major> majors = serviceMajor.listAll();
+        List<Major> majors = serviceMajor.selectAllMajors();
         PageInfo<Student> pageInfo = serviceStudent.getPageStudent(page, sn, name, major);
 
         result.addObject("pageInfo", pageInfo);
@@ -38,7 +38,7 @@ public class StudentController {
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
-        List<Major> majors = serviceMajor.listAll();
+        List<Major> majors = serviceMajor.selectAllMajors();
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/student/add");
         mav.addObject("majors", majors);
@@ -55,7 +55,7 @@ public class StudentController {
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Student student = serviceStudent.selectByPrimaryKey(id);
-        List<Major> majors = serviceMajor.listAll();
+        List<Major> majors = serviceMajor.selectAllMajors();
 
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/student/update");
         mav.addObject("student", student);
