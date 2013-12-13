@@ -5,11 +5,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../js/treetable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <script src="jquery.min.js"></script>
+    <script src="../../../../js/treetable/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 
 </head>
@@ -41,12 +41,16 @@
 <tr>
 <td valign="top" class="STYLE10">
 
-        <span style="white-space:nowrap">&nbsp;&nbsp;实验室编号:
-            <input type="text" name="searchB1" id="labSno" value=""
-                   style="width:100px;"/>
+
+        <span style="white-space:nowrap">&nbsp;&nbsp;所属专业:
+            <select name="theMajor" id="theMajor">
+                <c:forEach items="${majorList}" var="item">
+                    <option value="${item.id}">${item.name}</option>
+                </c:forEach>
+            </select>
         </span>
         <span style="white-space:nowrap">&nbsp;&nbsp;实验室名称:
-            <input type="text" name="searchB1" id="searchB1" value=""
+            <input type="text" name="labName" id="labName" value=""
                 style="width:100px;"/>
         </span>
         <span style="white-space:nowrap">&nbsp;&nbsp;
@@ -80,7 +84,7 @@
                                 <td>
                                     <div align="right">
                                         <span class="STYLE1" style="white-space:nowrap">
-                                            <a href="add.html">
+                                            <a href="add">
                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                 <span class="STYLE1">新增</span>
                                             </a>&nbsp;
@@ -136,7 +140,7 @@
                         <td>纪晓岚</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
 
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -147,7 +151,7 @@
                         </a></td>
                     </tr>
                     <tr bgcolor="#ffffff" align="center" data-tt-id="rjgc" data-tt-parent-id="xxxy">
-                        <td height="20" align="left">软件工程实验办公室</td>
+                        <td height="20" align="left">软件工程专业</td>
 
 
                         <td>SJ003</td>
@@ -155,7 +159,7 @@
                         <td>和珅</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
 
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -173,7 +177,7 @@
                         <td>软件实验室一</td>
                         <td>李白</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -186,14 +190,14 @@
                     </tr>
 
                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc1" data-tt-parent-id="xxxy">
-                        <td height="20" align="left">计算机实验办公室</td>
+                        <td height="20" align="left">计算机科学与技术专业</td>
 
 
                         <td>SJ003</td>
                         <td>计算机科学与技术专业</td>
                         <td>曹操</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -210,7 +214,7 @@
                         <td>计算机实验室一</td>
                         <td>杜甫</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -226,7 +230,7 @@
                         <td>计算机实验室二</td>
                         <td>张三丰</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -237,12 +241,12 @@
                         </a></td>
                     </tr>
                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc2" data-tt-parent-id="xxxy">
-                        <td height="20" align="left">网络工程实验办公室</td>
+                        <td height="20" align="left">网络工程专业</td>
                         <td>SJ003</td>
                         <td>网络工程专业</td>
                         <td>李白</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -258,7 +262,7 @@
                         <td>网络实验室一</td>
                         <td>洪天寿</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -274,7 +278,7 @@
                         <td>网络实验室二</td>
                         <td>赵天华</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -290,7 +294,7 @@
                         <td>网络实验室三</td>
                         <td>最光阴</td>
                         <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/room/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -300,10 +304,32 @@
                                  height="10" border="0"/>
                         </a></td>
                     </tr>
+                    <c:forEach items="${organizations}" var="item">
+                        <tr bgcolor="#ffffff" align="center" data-tt-id="id${item.id}"
+                                <c:if test="${item.id!=item.parentId}">
+                                    data-tt-parent-id="id${item.parentId}"
+                                </c:if>>
+                            <td height="20" align="left" >${item.name}</td>
+                            <td >${item.sn}</td>
+                            <td >${item.name}</td>
+                            <td >${item.director}</td>
+                            <td title=""><a href="/laboratory/jsp/lab/desk/list?lab_id=${item.id}">工作台</a></td>
+                            <td><a href="/laboratory/jsp/lab/lab/addroom?lab_id=${item.id}">实验房间</a></td>
+
+                            <td><a href="toUpdate?id=${item.id}">
+                                <img src="../../../../images/edit_min.gif" width="10"
+                                     height="10" border="0"/>
+                            </a></td>
+                            <td><a href="delete?items=${item.id}">
+                                <img src="../../../../images/del_min.gif" width="10"
+                                     height="10" border="0"/>
+                            </a></td>
+                        </tr>
+                    </c:forEach>
                     <tr height="16px"></tr>
                 </table>
-                <link rel="stylesheet" href="jquery.treetable.css"/>
-                <script src="jquery.treetable.js"></script>
+                <link rel="stylesheet" href="../../../../js/treetable/jquery.treetable.css"/>
+                <script src="../../../../js/treetable/jquery.treetable.js"></script>
                 <script>
                     $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
                 </script>

@@ -110,21 +110,7 @@
                                                                 </table>
                                                             </td>
                                                             <td>
-                                                                <div align="right">
-	            	<span class="STYLE1" style="white-space:nowrap">
-	            	<a href="#" onclick="toAdd();"><img src="../../../../images/edit_min.gif" width="10"
-                                                                  height="10" border="0"/> <span
-                            class="STYLE1">添加</span></a>&nbsp;
-      					<a href="update.html" onclick="toUpdate();"><img src="../../../../images/edit_min.gif"
-                                                                         width="10"
-                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                               height="10"
-                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>
-                                                                </div>
+
                                                             </td>
                                                         </tr>
                                                     </table>

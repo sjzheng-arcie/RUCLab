@@ -5,18 +5,15 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <link href="jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="../../../../js/treetable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <script src="jquery.min.js"></script>
+    <script src="../../../../js/treetable/jquery.min.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-
 </head>
-
 <body onload="getWidth()" onresize="getWidth()">
-
 <form name="mainForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <tr>
@@ -41,7 +38,6 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
 <tr>
 <td valign="top" class="STYLE10">
-
 <span style="white-space:nowrap">&nbsp;&nbsp;组织编号:<input type="text" name="orgNo" id="orgNo"
                                                          value="" style="width:100px;"/></span>
                 <span style="white-space:nowrap">&nbsp;&nbsp;组织名称:<input type="text" name="orgName" id="orgName"
@@ -220,9 +216,8 @@
                     <tr height="16px"></tr>
                 </table>
 
-                <link rel="stylesheet" href="jquery.treetable.css"/>
-
-                <script src="jquery.treetable.js"></script>
+                <link rel="stylesheet" href="../../../../js/treetable/jquery.treetable.css"/>
+                <script src="../../../../js/treetable/jquery.treetable.js"></script>
                 <script>
                     $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
                 </script>

@@ -28,7 +28,7 @@
         }
 
         function toAddRoom(){
-            window.open("/laboratory/jsp/lab/room/addtolaboratory?room_id=${equipment.id}", "设备库",
+            window.open("/laboratory/jsp/lab/lab/addtolaboratory?room_id=${equipment.id}", "设备库",
                     "height=400, width=1000, toolbar=no, status=no");
         }
         function freshWindow(){
@@ -109,8 +109,6 @@
                                                 <input name="deskName" id="deskName" onblur="" class="text"
                                                        style="width:154px" maxlength="20" valid="required|isAccount"
                                                        value="${desk.name}" />
-                                                <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;"></span>
                                             </td>
 
                                         </tr>
@@ -161,12 +159,20 @@
                                                                     </td>
                                                                     <td width="94%" valign="bottom"><span
                                                                             class="STYLE1"
-                                                                            style="white-space:nowrap">题目列表</span>
+                                                                            style="white-space:nowrap">房间列表</span>
                                                                     </td>
                                                                 </tr>
                                                             </table>
                                                         </td>
                                                         <td>
+                                                            <div align="right">
+                                                                <span class="STYLE1" style="white-space:nowrap">
+                                                                    <a href="#" onclick="toDelete();">
+                                                                        <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">删除</span>
+                                                                    </a>&nbsp;&nbsp;
+                                                                </span>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                 </table>
@@ -191,70 +197,36 @@
                                                     <div align="center"><span class="STYLE10">序号</span></div>
                                                 </td>
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">设备编号</span></div>
+                                                    <div align="center"><span class="STYLE10">房间名称</span></div>
                                                 </td>
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">设备名称</span></div>
-                                                </td>
-
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">设备类型</span></div>
+                                                    <div align="center"><span class="STYLE10">类型</span></div>
                                                 </td>
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">设备描述</span></div>
+                                                    <div align="center"><span class="STYLE10">描述</span></div>
                                                 </td>
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">所在工作台</span></div>
-                                                </td>
-
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">是否存在故障</span></div>
-                                                </td>
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                </td>
-
-
                                             </tr>
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="admin" onclick="checkOne(this)"/></td>
-                                                <td>1</td>
-                                                <td title="">00001</td>
-                                                <td title="">整流器01</td>
-                                                <td title="">电子</td>
-                                                <td title="">200CM*120CM*80CM</td>
-
-                                                <td title="">工作台01</td>
-
-                                                <td title="">否</td>
-                                                <td title=""><a href="devinfo.html">详细信息</a></td>
-                                            </tr>
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="admin" onclick="checkOne(this)"/></td>
+                                                <td height="20">
+                                                    <input name="idcheckbox" type="checkbox"
+                                                           value="admin" onclick="checkOne(this)"/>
+                                                </td>
                                                 <td>2</td>
-                                                <td title="">00002</td>
-                                                <td title="">新版整流器</td>
-                                                <td title="">电子</td>
-                                                <td title="">200CM*120CM*80CM</td>
-                                                <td title="">工作台01</td>
-                                                <td title="">否</td>
-                                                <td title=""><a href="devinfo.html">详细信息</a></td>
+                                                <td title="">实验房间一</td>
+                                                <td title="">实验房间</td>
+                                                <td title="">我这里是描述</td>
                                             </tr>
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                       value="admin" onclick="checkOne(this)"/></td>
-                                                <td>3</td>
-                                                <td title="">00003</td>
-                                                <td title="">整流器98版</td>
-                                                <td title="">电子</td>
-                                                <td title="">200CM*120CM*80CM</td>
-
-                                                <td title="">工作台01</td>
-                                                <td title="">否</td>
-                                                <td title=""><a href="devinfo.html">详细信息</a></td>
-                                            </tr>
+                                            <c:forEach items="${pageInfo.data}" var="item">
+                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                    <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                           value="${item.id}"
+                                                                           onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                    </td>
+                                                    <td>${item.name}</td>
+                                                    <td>${item.type}</td>
+                                                    <td>${item.description}</td>
+                                                </tr>
+                                            </c:forEach>
                                             <tr height="16px"></tr>
                                         </table>
                                     </div>

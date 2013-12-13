@@ -11,7 +11,32 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/lab/lab/equipmenttriglist';
+    function toAdd()
+    {
+        var id = "141";
+        var selectedItems = getAllSelected('listForm', 'idcheckbox');
+        if(selectedItems.length <= 0 )
+        {
+            alert("请选择要添加的的设备！");
+            return;
+        }
+
+        if( id != "") //有父窗体则刷新父窗体，关闭自己
+        {
+            document.forms["listForm"].action = "addroom?questionId="+id+"&items=" + selectedItems;
+            document.forms["listForm"].submit();
+
+            window.opener.location.href=window.opener.location.href;
+            window.close();
+        }
+        else //无父窗体则跳转至表单页面
+        {
+            document.forms["listForm"].action = "toApply?items=" + selectedItems;
+            document.forms["listForm"].submit();
+        }
+
+    }
+
     </script>
 
 </head>
@@ -28,7 +53,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 实验房间管理</div>
+                            <div class="titlebt">实验室管理 > 添加实验房间</div>
                         </td>
                     </tr>
                 </table>
@@ -43,15 +68,14 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验室名称:
-                                <input type="text" name="deskName" id="deskName" value=""style="width:100px;"/>
-                            </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;实验房间名称:<input type="text" name="deviceName"
+                                                                                     id="deviceName" value=""
+                                                                                     style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                                </a>
                             </span>
-
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -69,22 +93,15 @@
                                                                                     src="../../../../images/tb.gif"
                                                                                     width="14" height="14"/></div>
                                                                         </td>
-                                                                        <td width="94%" valign="bottom">
-                                                                            <span class="STYLE1" style="white-space:nowrap">
-                                                                                实验室房间包含管理
-                                                                            </span>
+                                                                        <td width="94%" valign="bottom"><span
+                                                                                class="STYLE1"
+                                                                                style="white-space:nowrap">配备设备信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add">
-                                                                            <img src="../../../../images/add_min.gif" width="10" height="10"border="0"/>
-                                                                            <span class="STYLE1">添加</span>
-                                                                        </a>&nbsp;
-                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -106,45 +123,38 @@
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">实验房间名称</span></div>
+                                                    <td width="40" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
+                                                        <div align="center"><span class="STYLE10">房间名称</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">类型</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">描述</span></div>
                                                     </td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">实验房间名称</td>
-                                                    <td title=""><a href="laboratoryinfo">实验房间详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">实验房间名称</td>
-                                                    <td title=""><a href="laboratoryinfo">实验房间详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">实验房间名称</td>
-                                                    <td title=""><a href="laboratoryinfo">实验房间详细</a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">实验房间名称</td>
-                                                    <td title=""><a href="laboratoryinfo">实验房间详细</a></td>
+                                                    <td height="20">
+                                                        <input name="idcheckbox" type="checkbox"
+                                                                           value="admin" onclick="checkOne(this)"/>
+                                                    </td>
+                                                    <td>2</td>
+                                                    <td title="">实验房间一</td>
+                                                    <td title="">实验房间</td>
+                                                    <td title="">我这里是描述</td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20">
-                                                            <input name="idcheckbox" type="checkbox" value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                               value="${item.id}"
+                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
+                                                        <td>${item.id}</td>
+                                                        <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-                                                        <td title=""><a href="laboratoryinfo">实验房间详细</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -153,6 +163,16 @@
                                     </td>
                                 </tr>
                                 <%@ include file="../../common/pagetable.jsp" %>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center">
+                                        <input type="button" name="return" value="返回" class="button"
+                                               onclick="window.history.go(-1);"/>
+                                        <input type="button" name="Submit" value="添加房间到实验室" class="button"
+                                               onclick="toAdd();return false;"/>
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                     </tr>
