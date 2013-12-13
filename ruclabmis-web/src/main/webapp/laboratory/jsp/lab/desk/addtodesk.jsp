@@ -11,7 +11,32 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/lab/device/list';
+    function toAdd()
+    {
+    var id = "141";
+    var selectedItems = getAllSelected('listForm', 'idcheckbox');
+    if(selectedItems.length <= 0 )
+    {
+    alert("请选择要添加的的设备！");
+    return;
+    }
+
+    if( id != "") //有父窗体则刷新父窗体，关闭自己
+    {
+    document.forms["listForm"].action = "addequipment?questionId="+id+"&items=" + selectedItems;
+    document.forms["listForm"].submit();
+
+    window.opener.location.href=window.opener.location.href;
+    window.close();
+    }
+    else //无父窗体则跳转至表单页面
+    {
+    document.forms["listForm"].action = "toApply?items=" + selectedItems;
+    document.forms["listForm"].submit();
+    }
+
+    }
+
     </script>
 
 </head>
@@ -28,7 +53,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 设备信息管理</div>
+                            <div class="titlebt">实验室管理 > 配备设备信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -44,23 +69,20 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;所在房间:
-                                <select name="theRoom">
-                                    <c:forEach items="${roomList}" var="item">
-                                        <option value="${item.id}">${item.name}</option>
-                                    </c:forEach>
-
-                                </select></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;设备类型:<select>
+                                <option>电子</option>
+                                <option>消耗</option>
+                            </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;设备编号:<input type="text" name="deviceNo"
                                                                                      id="deviceNo" value=""
                                                                                      style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;设备名称:<input type="text" name="deviceName"
                                                                                      id="deviceName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;
-                                <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
-                            </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
+                                                                            style="cursor:hand"
+                                                                            onclick="findInfo()"><img
+                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -82,22 +104,26 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">设备信息列表</span>
+                                                                                style="white-space:nowrap">配备设备信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                                   <span class="STYLE1">新增</span></a>&nbsp;</span>
-
-                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                                                                               height="10"
-                                                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                    </span>
+	            	<span class="STYLE1" style="white-space:nowrap">
+	            	<a href="#" onclick="toAdd();"><img src="../../../../images/edit_min.gif" width="10"
+                                                                  height="10" border="0"/> <span
+                            class="STYLE1">添加</span></a>&nbsp;
+      					<a href="update.html" onclick="toUpdate();"><img src="../../../../images/edit_min.gif"
+                                                                         width="10"
+                                                                         height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
+      					<a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
+                                                               height="10"
+                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+	                </span>
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -119,6 +145,9 @@
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
+                                                    <td width="40" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">序号</span></div>
+                                                    </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">设备编号</span></div>
                                                     </td>
@@ -133,43 +162,30 @@
                                                         <div align="center"><span class="STYLE10">设备描述</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">存放位置</span></div>
+                                                        <div align="center"><span class="STYLE10">所在工作台</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">归属部门</span></div>
-                                                    </td>
+
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">是否存在故障</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">删除</span></div>
-                                                    </td>
-
 
 
                                                 </tr>
+
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">00001</td>
-                                                    <td title="">整流器</td>
+                                                    <td>2</td>
+                                                    <td title="">00002</td>
+                                                    <td title="">新版整流器</td>
                                                     <td title="">电子</td>
                                                     <td title="">200CM*120CM*80CM</td>
-
-                                                    <td title="">网络工程实验室一</td>
-                                                    <td title="">网络实验室</td>
+                                                    <td title="">工作台01</td>
                                                     <td title="">否</td>
-                                                    <td><a href="toUpdate?id=${item.id}">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-                                                    <td><a href="toDelete?id=${item.id}">
-                                                        <img src="../../../../images/del_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
+                                                    <td title=""><a href="devinfo.html">详细信息</a></td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -180,14 +196,6 @@
                                                         <td>${item.id}</td>
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-                                                        <td><a href="toUpdate?id=${item.id}">
-                                                            <img src="../../../../images/edit_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
-                                                        <td><a href="toDelete?id=${item.id}">
-                                                            <img src="../../../../images/del_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
 
                                                     </tr>
                                                 </c:forEach>
@@ -197,6 +205,17 @@
                                     </td>
                                 </tr>
                                 <%@ include file="../../common/pagetable.jsp" %>
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                <tr>
+                                    <td align="center">
+                                        <input type="button" name="return" value="返回" class="button"
+                                               onclick="window.history.go(-1);"/>
+                                        <input type="button" name="Submit" value="添加设备到工作台" class="button"
+                                               onclick="toAdd();return false;"/>
+
+                                    </td>
+                                </tr>
                             </table>
                         </td>
                     </tr>

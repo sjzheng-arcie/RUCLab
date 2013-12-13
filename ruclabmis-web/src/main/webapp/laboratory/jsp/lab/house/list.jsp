@@ -76,17 +76,11 @@
                                 <td>
                                     <div align="right">
                                     <span class="STYLE1" style="white-space:nowrap">
-                                        <a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                        <a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
-                                                                               height="10"
-                                                                               border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                        <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
-                                                                               height="10"
-                                                                               border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                        <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                             border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                            </span>
+                                        <a href="add">
+                                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                            <span class="STYLE1">新增</span>
+                                        </a>&nbsp;
+                                    </span>
                                     </div>
                                 </td>
                             </tr>
@@ -105,122 +99,123 @@
                         <td width="200" height="20" bgcolor="d3eaef">
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">房间编号</span></div>
-                        </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">房间名称</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">房间位置</span></div>
-                        </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">实验工作台</span></div>
-                        </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">设备库存设备</span></div>
+                            <div align="center"><span class="STYLE10">房间类型</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">详细信息</span></div>
+                        </td>
+                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">删除</span></div>
                         </td>
                     </tr>
 
                     <tr bgcolor="#ffffff" align="center" data-tt-id="xxxy">
                         <td height="20" align="left">信息学院实验教学楼</td>
-
-
-                        <td colspan="6"></td>
+                        <td colspan="7"></td>
                     </tr>
-
-
                     <tr bgcolor="#ffffff" align="center" data-tt-id="rjgc" data-tt-parent-id="xxxy">
                         <td height="20" align="left">信息学院实验楼一</td>
-                        <td colspan="6"></td>
+                        <td colspan="7"></td>
                     </tr>
 
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20"
                         data-tt-parent-id="rjgc">
-
                         <td height="20">软件实验房间101</td>
-
                         <td>SJ003</td>
-                        <td>软件实验房间</td>
-                        <td>S1-101</td>
-                        <td><a href="experimentriglist.html">实验台</a></td>
 
-                        <td><a href="stocklist.html">库存设备</a></td>
-                        <td><a href="detail.html">详细信息</a></td>
-
+                        <td>实验室</td>
+                        <td><a href="toUpdate?id=${item.id}">
+                            <img src="../../../../images/edit_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
+                        <td><a href="toDelete?id=${item.id}">
+                            <img src="../../../../images/del_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
                     </tr>
 
                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc1" data-tt-parent-id="xxxy">
                         <td height="20" align="left">信息学院实验楼二</td>
-
-
-                        <td colspan="6"></td>
-
+                        <td colspan="7"></td>
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="1"
                         data-tt-parent-id="kc1">
                         <td height="20">计算机实验房间101</td>
-
                         <td>SJ001</td>
-                        <td>软件实验房间</td>
-                        <td>S1-101</td>
-                        <td><a href="experimentriglist.html">实验台</a></td>
 
-                        <td><a href="stocklist.html">库存设备</a></td>
-                        <td><a href="detail.html">详细信息</a></td>
+                        <td>会议室</td>
+                        <td><a href="toUpdate?id=${item.id}">
+                            <img src="../../../../images/edit_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
+                        <td><a href="toDelete?id=${item.id}">
+                            <img src="../../../../images/del_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
 
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2"
                         data-tt-parent-id="kc1">
                         <td height="20">计算机实验房间102</td>
-
                         <td>SY005</td>
-                        <td>软件实验房间</td>
                         <td>S1-101</td>
-                        <td><a href="experimentriglist.html">实验台</a></td>
-
-                        <td><a href="stocklist.html">库存设备</a></td>
-                        <td><a href="detail.html">详细信息</a></td>
+                        <td><a href="toUpdate?id=${item.id}">
+                            <img src="../../../../images/edit_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
+                        <td><a href="toDelete?id=${item.id}">
+                            <img src="../../../../images/del_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
                     </tr>
                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc2" data-tt-parent-id="xxxy">
                         <td height="20" align="left">信息学院实验楼三</td>
-                        <td colspan="6"></td>
+                        <td colspan="7"></td>
                     </tr>
-
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="7"
                         data-tt-parent-id="kc2">
                         <td height="20">网络实验房间102</td>
                         <td>SJ001</td>
-                        <td>软件实验房间</td>
-                        <td>S1-101</td>
-                        <td><a href="experimentriglist.html">实验台</a></td>
-                        <td><a href="stocklist.html">库存设备</a></td>
-                        <td><a href="detail.html">详细信息</a></td>
+                        <td>实验室</td>
+                        <td><a href="toUpdate?id=${item.id}">
+                            <img src="../../../../images/edit_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
+                        <td><a href="toDelete?id=${item.id}">
+                            <img src="../../../../images/del_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8"
                         data-tt-parent-id="kc2">
                         <td height="20">网络实验房间201</td>
-
                         <td>SJ002</td>
-                        <td>软件实验房间</td>
                         <td>S1-101</td>
-                        <td><a href="experimentriglist.html">实验台</a></td>
-                        <td><a href="stocklist.html">库存设备</a></td>
-                        <td><a href="detail.html">详细信息</a></td>
+                        <td><a href="toUpdate?id=${item.id}">
+                            <img src="../../../../images/edit_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
+                        <td><a href="toDelete?id=${item.id}">
+                            <img src="../../../../images/del_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9"
                         data-tt-parent-id="kc2">
                         <td height="20">网络实验房间301</td>
-
                         <td>SJ002</td>
-                        <td>软件实验房间</td>
-                        <td>S1-101</td>
-                        <td><a href="experimentriglist.html">实验台</a></td>
-
-                        <td><a href="stocklist.html">库存设备</a></td>
-                        <td><a href="detail.html">详细信息</a></td>
+                        <td>会议室</td>
+                        <td><a href="toUpdate?id=${item.id}">
+                            <img src="../../../../images/edit_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
+                        <td><a href="toDelete?id=${item.id}">
+                            <img src="../../../../images/del_min.gif" width="10"
+                                 height="10" border="0"/>
+                        </a></td>
                     </tr>
                     <tr height="16px"></tr>
                 </table>
@@ -234,8 +229,6 @@
             </div>
         </td>
     </tr>
-
-
 </table>
 </td>
 </tr>

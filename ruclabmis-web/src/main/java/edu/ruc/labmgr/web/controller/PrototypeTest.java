@@ -1047,6 +1047,11 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/add");
 		return mav;
 	}
+	@RequestMapping("jsp/lab/house/toUpdate")
+	public ModelAndView houseUpdate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/update");
+		return mav;
+	}
 	@RequestMapping("jsp/lab/lab/list")
 	public ModelAndView labList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/list");
@@ -1055,6 +1060,71 @@ public class PrototypeTest {
 	@RequestMapping("jsp/lab/lab/add")
 	public ModelAndView labAdd() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/add");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/lab/toUpdate")
+	public ModelAndView labUpdate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/update");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/list")
+	public ModelAndView deskList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/add")
+	public ModelAndView deskAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/add");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/toUpdate")
+	public ModelAndView deskUpdate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/update");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/addequipment")
+	public ModelAndView deskAddEquipment() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/addequipment");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/deskinfo")
+	public ModelAndView deskInfo() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/deskinfo");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/addtodesk")
+	public ModelAndView deskAddEquipmentToDesk() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/addtodesk");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/room/list")
+	public ModelAndView roomList() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/room/list");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/room/add")
+	public ModelAndView roomAdd() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/room/add");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/room/toUpdate")
+	public ModelAndView roomUpdate() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/room/update");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/room/addroom")
+	public ModelAndView deskAddRoom() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/room/addroom");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/room/laboratoryinfo")
+	public ModelAndView roomInfo() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/room/laboratoryinfo");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/room/addtolaboratory")
+	public ModelAndView laboratoryAddRoomToLaboratory() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/room/addtolaboratory");
 		return mav;
 	}
 	@RequestMapping("jsp/lab/emp/list")

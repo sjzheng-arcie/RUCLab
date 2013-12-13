@@ -4,10 +4,10 @@
 <head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
+<script src="../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.mainForm.action = "list";
+        document.mainForm.action = "listSysint.html";
         document.mainForm.submit();
     }
 
@@ -53,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加实验房间</span></td>
+                                                                    class="STYLE1">添加实验室</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -77,44 +77,39 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验房间编号:</td>
-                                                <td nowrap>
-                                                    <input name="houseSno" id="houseSno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_house_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">实验房间名称:</td>
+                                                <td nowrap align="right">实验室名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="houseName" id="houseName"
-                                                           valid="required|isAccount"/>
+                                                           name="labName" id="labName"valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_house_name"></span>
+                                                    <span style="color:red;" id="errMsg_lab_name"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">上级组织:</td>
+                                                <td nowrap align="right">专业:</td>
                                                 <td nowrap>
-                                                    <select name="theParent" id="theParent">
-                                                        <c:forEach items="${orgList}" var="item">
+                                                    <select name="theMajor">
+                                                        <c:forEach items="${majorList}" var="item">
                                                             <option value="${item.id}">${item.value}</option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
+                                            </tr>
+                                            <tr>
+
                                                 <td nowrap align="right">负责人:</td>
-                                                <td nowrap align="left"><input class="text" style="width:154px"
-                                                                               name="theDirector" id="theDirector"
-                                                                               maxlength="20"
-                                                                               valid="required|isAccount"/>
+                                                <td nowrap align="left">
+                                                    <input class="text" style="width:154px" maxlength="20" name="theDirector" id="theDirector"
+                                                           valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_director"></span>
-                                                    </select>
                                                 </td>
                                             </tr>
-                                            <tr>                                                <td nowrap align="right">描述：</td>
+                                            <tr>
+                                                <td nowrap align="right">描述：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="theDescription"id="theDescription" style="width:70%;height:100">
+                                                    <textarea name="theDescription"
+                                                              id="theDescription"style="width:70%;height:100">
                                                     </textarea>
                                                 </td>
                                             </tr>
@@ -141,15 +136,13 @@
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
-                    src="../../../../images/buttom_left2.gif"
-                    width="17" height="17"/></td>
+                    src="../../../../images/buttom_left2.gif" width="17" height="17"/></td>
             <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
-                    src="../../../../images/buttom_bgs.gif"
-                    width="100%" height="17"></td>
+                    src="../../../../images/buttom_bgs.gif" width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-
 </form>
 </body>
+<html>

@@ -10,7 +10,6 @@
         document.mainForm.action = "list";
         document.mainForm.submit();
     }
-
 </script>
 </head>
 <body>
@@ -53,7 +52,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加实验房间</span></td>
+                                                                    class="STYLE1">修改实验房间信息</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -80,17 +79,13 @@
                                                 <td nowrap align="right">实验房间编号:</td>
                                                 <td nowrap>
                                                     <input name="houseSno" id="houseSno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_house_sno"></span>
+                                                           maxlength="20" valid="required|isAccount" value="${house.sno}"/>
                                                 </td>
                                                 <td nowrap align="right">实验房间名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="houseName" id="houseName"
+                                                           name="houseName" id="houseName" value="${house.name}"
                                                            valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_house_name"></span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -103,18 +98,20 @@
                                                     </select>
                                                 </td>
                                                 <td nowrap align="right">负责人:</td>
+
                                                 <td nowrap align="left"><input class="text" style="width:154px"
                                                                                name="theDirector" id="theDirector"
-                                                                               maxlength="20"
+                                                                               maxlength="20" value="${house.director}"
                                                                                valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_director"></span>
+
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>                                                <td nowrap align="right">描述：</td>
+                                            <tr>
+                                                <td nowrap align="right">描述：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="theDescription"id="theDescription" style="width:70%;height:100">
+                                                    <textarea name="theDescription" id="theDescription"style="width:70%;height:100">
+                                                        ${house.description}
                                                     </textarea>
                                                 </td>
                                             </tr>
