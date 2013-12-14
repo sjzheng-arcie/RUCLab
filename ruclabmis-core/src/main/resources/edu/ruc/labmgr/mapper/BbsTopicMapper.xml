@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.BbsTopicMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.BbsTopic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sessionId" property="sessionid" jdbcType="INTEGER" />
+    <result column="uid" property="uid" jdbcType="INTEGER" />
+    <result column="replycount" property="replycount" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="INTEGER" />
+    <result column="contents" property="contents" jdbcType="INTEGER" />
+    <result column="creatTime" property="creattime" jdbcType="TIMESTAMP" />
+    <result column="lastRepliedUser" property="lastreplieduser" jdbcType="INTEGER" />
+    <result column="lastRepliedTime" property="lastrepliedtime" jdbcType="TIMESTAMP" />
+    <result column="isTop" property="istop" jdbcType="BIT" />
+    <result column="isClosed" property="isclosed" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, sessionId, uid, replycount, title, contents, creatTime, lastRepliedUser, lastRepliedTime, 
+    isTop, isClosed
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsTopicCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bbs_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from bbs_topic
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from bbs_topic
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.BbsTopicCriteria" >
+    delete from bbs_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.BbsTopic" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bbs_topic (sessionId, uid, replycount, 
+      title, contents, creatTime, 
+      lastRepliedUser, lastRepliedTime, isTop, 
+      isClosed)
+    values (#{sessionid,jdbcType=INTEGER}, #{uid,jdbcType=INTEGER}, #{replycount,jdbcType=INTEGER}, 
+      #{title,jdbcType=INTEGER}, #{contents,jdbcType=INTEGER}, #{creattime,jdbcType=TIMESTAMP}, 
+      #{lastreplieduser,jdbcType=INTEGER}, #{lastrepliedtime,jdbcType=TIMESTAMP}, #{istop,jdbcType=BIT}, 
+      #{isclosed,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.BbsTopic" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into bbs_topic
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="sessionid != null" >
+        sessionId,
+      </if>
+      <if test="uid != null" >
+        uid,
+      </if>
+      <if test="replycount != null" >
+        replycount,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="contents != null" >
+        contents,
+      </if>
+      <if test="creattime != null" >
+        creatTime,
+      </if>
+      <if test="lastreplieduser != null" >
+        lastRepliedUser,
+      </if>
+      <if test="lastrepliedtime != null" >
+        lastRepliedTime,
+      </if>
+      <if test="istop != null" >
+        isTop,
+      </if>
+      <if test="isclosed != null" >
+        isClosed,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="sessionid != null" >
+        #{sessionid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="replycount != null" >
+        #{replycount,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=INTEGER},
+      </if>
+      <if test="contents != null" >
+        #{contents,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastreplieduser != null" >
+        #{lastreplieduser,jdbcType=INTEGER},
+      </if>
+      <if test="lastrepliedtime != null" >
+        #{lastrepliedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="istop != null" >
+        #{istop,jdbcType=BIT},
+      </if>
+      <if test="isclosed != null" >
+        #{isclosed,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.BbsTopicCriteria" resultType="java.lang.Integer" >
+    select count(*) from bbs_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update bbs_topic
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.sessionid != null" >
+        sessionId = #{record.sessionid,jdbcType=INTEGER},
+      </if>
+      <if test="record.uid != null" >
+        uid = #{record.uid,jdbcType=INTEGER},
+      </if>
+      <if test="record.replycount != null" >
+        replycount = #{record.replycount,jdbcType=INTEGER},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=INTEGER},
+      </if>
+      <if test="record.contents != null" >
+        contents = #{record.contents,jdbcType=INTEGER},
+      </if>
+      <if test="record.creattime != null" >
+        creatTime = #{record.creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.lastreplieduser != null" >
+        lastRepliedUser = #{record.lastreplieduser,jdbcType=INTEGER},
+      </if>
+      <if test="record.lastrepliedtime != null" >
+        lastRepliedTime = #{record.lastrepliedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.istop != null" >
+        isTop = #{record.istop,jdbcType=BIT},
+      </if>
+      <if test="record.isclosed != null" >
+        isClosed = #{record.isclosed,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update bbs_topic
+    set id = #{record.id,jdbcType=INTEGER},
+      sessionId = #{record.sessionid,jdbcType=INTEGER},
+      uid = #{record.uid,jdbcType=INTEGER},
+      replycount = #{record.replycount,jdbcType=INTEGER},
+      title = #{record.title,jdbcType=INTEGER},
+      contents = #{record.contents,jdbcType=INTEGER},
+      creatTime = #{record.creattime,jdbcType=TIMESTAMP},
+      lastRepliedUser = #{record.lastreplieduser,jdbcType=INTEGER},
+      lastRepliedTime = #{record.lastrepliedtime,jdbcType=TIMESTAMP},
+      isTop = #{record.istop,jdbcType=BIT},
+      isClosed = #{record.isclosed,jdbcType=BIT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.BbsTopic" >
+    update bbs_topic
+    <set >
+      <if test="sessionid != null" >
+        sessionId = #{sessionid,jdbcType=INTEGER},
+      </if>
+      <if test="uid != null" >
+        uid = #{uid,jdbcType=INTEGER},
+      </if>
+      <if test="replycount != null" >
+        replycount = #{replycount,jdbcType=INTEGER},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=INTEGER},
+      </if>
+      <if test="contents != null" >
+        contents = #{contents,jdbcType=INTEGER},
+      </if>
+      <if test="creattime != null" >
+        creatTime = #{creattime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="lastreplieduser != null" >
+        lastRepliedUser = #{lastreplieduser,jdbcType=INTEGER},
+      </if>
+      <if test="lastrepliedtime != null" >
+        lastRepliedTime = #{lastrepliedtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="istop != null" >
+        isTop = #{istop,jdbcType=BIT},
+      </if>
+      <if test="isclosed != null" >
+        isClosed = #{isclosed,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.BbsTopic" >
+    update bbs_topic
+    set sessionId = #{sessionid,jdbcType=INTEGER},
+      uid = #{uid,jdbcType=INTEGER},
+      replycount = #{replycount,jdbcType=INTEGER},
+      title = #{title,jdbcType=INTEGER},
+      contents = #{contents,jdbcType=INTEGER},
+      creatTime = #{creattime,jdbcType=TIMESTAMP},
+      lastRepliedUser = #{lastreplieduser,jdbcType=INTEGER},
+      lastRepliedTime = #{lastrepliedtime,jdbcType=TIMESTAMP},
+      isTop = #{istop,jdbcType=BIT},
+      isClosed = #{isclosed,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsTopicCriteria" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from bbs_topic
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

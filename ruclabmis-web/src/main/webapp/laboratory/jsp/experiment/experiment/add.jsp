@@ -113,8 +113,7 @@
                                             <tr>
                                                 <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>
-                                                    <input name="us_spwd" id="us_spwd" class="text" style="width:154px"
-                                                           valid="required|isPassword"/><input type="button"
+                                                    <input type="file"
                                                                                                class="buttom"
                                                                                                value="浏览"/>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;

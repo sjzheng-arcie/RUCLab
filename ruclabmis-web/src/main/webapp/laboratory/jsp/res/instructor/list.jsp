@@ -92,14 +92,20 @@
                                                                 </table>
                                                             </td>
                                                             <td>
+                                                            <shiro:hasAnyRoles name="administrators,teacher,equipment_admin,lab_admin">
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
+                                                                    <a href="addpaper.jsp"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">从实验题目生成指导书</span></a>&nbsp;
+
                                                                     <a href="add.jsp"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                        <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete('listForm');"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                                                           border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
+                                                                        <span class="STYLE1">上传实验指导书</span></a>&nbsp;
+                                                        <a href="#" onclick="toDelete('listForm');"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                                                    border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                         </span>
+                                                                    </span>
                                                                 </div>
+                                                                </shiro:hasAnyRoles>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -132,6 +138,9 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验说明</span></div>
                                                     </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">是否从试题生成</span></div>
+                                                    </td>
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">操作</span></div>
@@ -146,6 +155,7 @@
                                                     <td>网络</td>
                                                     <td>目的到底是为什么</td>
                                                     <td>说明</td>
+                                                    <td>是</td>
                                                     <td>
                                                         <a class="button" href="editpaper">编辑</a>
                                                         <a class="button" href="editpaper">下载</a>
@@ -159,9 +169,11 @@
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.course}</td>
+                                                        <td>${item.isupload}</td>
                                                         <td>${item.teacher}</td>
                                                         <td>
-                                                            <a class="button" href="editpaper?paper_id=${item.id}">编辑试卷</a>
+                                                            <a class="button" href="editpaper">编辑</a>
+                                                            <a class="button" href="editpaper">下载</a>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

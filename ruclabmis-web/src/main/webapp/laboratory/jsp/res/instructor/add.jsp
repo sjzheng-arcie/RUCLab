@@ -121,6 +121,17 @@
                                                     <span style="color:red;" id="errMsg_task_content"></span>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验指导书:</td>
+                                                <td nowrap>
+                                                   <input type="file"
+                                                               class="buttom"
+                                                                                               value="浏览"/>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                </td>
+                                            </tr>
+
                                         </table>
                                     </td>
                                 </tr>
@@ -128,13 +139,10 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
-                                        <input type="reset" name="reset" value="添加题目生成指导书" class="button"
-                                               onclick="addToPaper();"/>
-                                        <input type="reset" name="reset" value="上传指导书" class="button"
-                                               onclick="addToPaper();"/>
+                                        <input type="reset" name="reset" value="保存" class="button"
+                                               onclick="Save();"/>
                                         <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>

@@ -3,6 +3,8 @@ package edu.ruc.labmgr.domain;
 public class ExperimentInstructions {
     private Integer id;
 
+    private Boolean isupload;
+
     private String name;
 
     private String purpose;
@@ -19,6 +21,14 @@ public class ExperimentInstructions {
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public Boolean getIsupload() {
+        return isupload;
+    }
+
+    public void setIsupload(Boolean isupload) {
+        this.isupload = isupload;
     }
 
     public String getName() {

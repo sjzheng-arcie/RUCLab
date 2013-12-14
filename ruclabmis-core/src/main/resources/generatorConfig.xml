@@ -87,9 +87,22 @@
         <!--<table tableName="experiment_detail">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!-- <table tableName="experiment_instructions">
+<!--         <table tableName="experiment_instructions">
         <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+        <table tableName="bbs_attachment">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+        <table tableName="bbs_reply">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+        <table tableName="bbs_session">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+        <table tableName="bbs_topic">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
+
         <!--<table tableName="experiment_question">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->

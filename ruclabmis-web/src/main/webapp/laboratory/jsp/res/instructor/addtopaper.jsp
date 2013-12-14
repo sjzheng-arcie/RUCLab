@@ -194,7 +194,7 @@
                                 <td align="center">
                                     <input type="button" name="return" value="返回" class="button"
                                            onclick="window.history.go(-1);"/>
-                                    <input type="button" name="Submit" value="添加选中题目到本试卷" class="button"
+                                    <input type="button" name="Submit" value="添加选中题目到指导书" class="button"
                                            onclick="toApply();return false;"/>
 
                                 </td>

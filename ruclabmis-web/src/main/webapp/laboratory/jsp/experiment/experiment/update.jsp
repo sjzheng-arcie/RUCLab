@@ -94,17 +94,7 @@
                                                     <span style="color:red;" id="errMsg_task_content"></span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">实验指导书:</td>
-                                                <td nowrap>
-                                                    <input name="guideBook" id="guideBook" onblur="" type="file"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="" readonly/>${experiment.instructor}
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
 
-
-                                                </td>
-                                            </tr>
                                             <tr>
                                                 <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>
