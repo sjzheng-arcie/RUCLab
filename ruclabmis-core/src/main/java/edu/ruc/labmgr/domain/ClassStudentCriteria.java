@@ -433,6 +433,20 @@ public class ClassStudentCriteria {
             addCriterion("m.name like", major, "m.name");
             return (Criteria) this;
         }
+		public Criteria andJoinUser() {
+			addCriterion("cs.student_id = u.id");
+			return (Criteria) this;
+		}
+
+		public Criteria andJoinStudent() {
+			addCriterion("u.id = st.id");
+			return (Criteria) this;
+		}
+
+		public Criteria andJoinMajor() {
+			addCriterion("u.major_id = m.id");
+			return (Criteria) this;
+		}
     }
 
     public static class Criteria extends GeneratedCriteria {

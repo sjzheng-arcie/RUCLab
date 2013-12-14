@@ -92,11 +92,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实验指导书:</td>
-                                                <td nowrap>${experiment.instructor}<input type="button" value="下载"/>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>${experiment.instructor}<input type="button" value="下载"/>
                                                 </td>

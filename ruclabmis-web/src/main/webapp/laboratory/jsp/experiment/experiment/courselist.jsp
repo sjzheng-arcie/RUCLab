@@ -12,6 +12,9 @@
         function editorClass(vcid) {
             window.location.href = "myexperimentlist?courseId="+vcid+"&&page=1";
         }
+        function editorInsturctor(vcid) {
+            window.location.href = "../../res/instructor/list?couseId="+vcid;
+        }
     </script>
 
 </head>
@@ -100,6 +103,7 @@
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
 
+
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">查看实验</span></div>
                                                     </td>
@@ -114,9 +118,12 @@
                                                              <td>${item.classYear}</td>
                                                              <td>${item.teacherName}</td>
                                                         <td>
+                                                            <input type="button" onClick="editorInsturctor(${item.curriculumId})"
+                                                                   class="button"
+                                                                   value="查看实验指导书"/>
                                                             <input type="button" onClick="editorClass(${item.curriculumId})"
                                                                    class="button"
-                                                                   value="查看实验"/>
+                                                                   value="查看所属实验"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
