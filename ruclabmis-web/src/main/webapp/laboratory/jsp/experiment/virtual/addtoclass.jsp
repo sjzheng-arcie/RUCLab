@@ -176,7 +176,7 @@
                                             <td nowrap align="right">任课老师:</td>
                                             <td nowrap>
                                                 <input id="teacherName" name="teacherName" class="text"
-                                                       value="${vclass.teacherName}"/>
+                                                       value="${vclass.teacherName}" disabled/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_teacher"></span>
                                             </td>
@@ -305,7 +305,7 @@
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                     <div align="center">
                                                         <input type="checkbox" name="checkbox" id="checkbox"
-                                                               onclick="checkAll(this,'listForm','');"/>
+                                                               onclick="checkAll(this,'listForm','stCheckbox');"/>
                                                     </div>
                                                 </td>
                                                 <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">

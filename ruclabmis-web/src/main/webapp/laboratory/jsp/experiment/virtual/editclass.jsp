@@ -55,7 +55,7 @@
                     'vcId': $("#vcId").val(),
                     'stIds': idStr
                 }, function (data) {
-                    alert(data.message);
+                    window.location.reload(true);
                 });
             }
         }
@@ -79,6 +79,16 @@
                 }
             });
         }
+        function addStudents(){
+            var vcId = $("#vcId").val();
+            window.open("/experiment/virtual/editClassAddStudent?vcId="+vcId+"&pageNum=1", "学生信息",
+                    "height=400, width=800, toolbar=no, status=no");
+        }
+
+        function refresh(){
+            window.location.reload(true);
+        }
+
         $(document).ready(function () {
             initCurriculumSelect();
         });
@@ -182,7 +192,7 @@
                                             <td nowrap align="right">任课老师:</td>
                                             <td nowrap>
                                                 <input id="teacherName" name="teacherName" class="text"
-                                                       value="${vClass.teacherName}"/>
+                                                       value="${vClass.teacherName}" disabled/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_teacher"></span>
                                             </td>

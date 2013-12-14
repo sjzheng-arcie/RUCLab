@@ -64,6 +64,32 @@ public class VirtualClassController {
         mv.addObject("students", students);
         return mv;
     }
+    @RequestMapping(value = "/editClassAddStudent", method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView editClassAddStudent(int vcId, String sn, String name, String major,int pageNum){
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/studentlist");
+        PageInfo<Student> pageInfo = classService.getStudentsNotInClass(vcId,sn,name,major,pageNum);
+        mv.addObject("pageInfo",pageInfo);
+        mv.addObject("vcId",vcId);
+        return mv;
+    }
+    @RequestMapping(value = "/addStudentToClass",method = RequestMethod.POST)
+    public @ResponseBody Result addStudentToClass(int vcId,String stIds){
+        Result result = null;
+        try {
+            if (vcId>0 && StringUtils.isNotEmpty(stIds)){
+                String[] stIdStrArr = stIds.split(",");
+                List<Integer> idList = new ArrayList<>();
+                for(String idstr:stIdStrArr){
+                    idList.add(Integer.valueOf(idstr));
+                }
+                classService.addStudentToClass(vcId,idList);
+            }
+            result = new Result(true, "添加学生到班级成功!");
+        }catch (Exception e){
+            result = new Result(false,"添加学生到班级失败!");
+        }
+        return result;
+    }
 
     @RequestMapping(value = "/updateClass", method = RequestMethod.POST, produces = "application/json")
     public

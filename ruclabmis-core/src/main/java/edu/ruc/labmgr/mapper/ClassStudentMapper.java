@@ -11,6 +11,8 @@ import java.util.List;
 public interface ClassStudentMapper {
     int countByCriteria(ClassStudentCriteria criteria);
 
+    int countStudentNotInClass(ClassStudentCriteria criteria);
+
     int deleteByCriteria(ClassStudentCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
@@ -24,6 +26,8 @@ public interface ClassStudentMapper {
     List<ClassStudent> selectByCriteria(ClassStudentCriteria criteria);
 
     List<Student> selectByCriteriaWithStudent(ClassStudentCriteria criteria);
+
+    List<Student> selectStudentNotInClassWithRowbounds(ClassStudentCriteria criteria,RowBounds rowBounds);
 
     ClassStudent selectByPrimaryKey(Integer id);
 
