@@ -104,22 +104,38 @@
                                            style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                            bgcolor="#E3E9EE">
                                         <tr>
-
                                             <td nowrap align="right">指导书名称:</td>
                                             <td nowrap>
-                                                <input name="instructorName" id="instructorName" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.name}" />
+                                                <input name="paperName" id="us_sno" value="" onblur="" class="text"
+                                                       style="width:300px" maxlength="20"
+                                                       valid="required|isAccount"/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;"></span>
+
                                             </td>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <input name="theCourse" id="theCourse" onblur="" class="text"
-                                                       style="width:154px" maxlength="20" valid="required|isAccount"
-                                                       value="${paper.course}" />
+                                                <select name="theCourse">
+                                                    <option value="0"></option>
+                                                    <c:forEach items="${courseList}" var="item">
+                                                        <option value="${item.id}">${item.courseName}</option>
+                                                    </c:forEach>
+                                                </select>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-
+                                                <span style="color:red;" id="s"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">实验目的:</td>
+                                            <td colspan="2"><textarea name="taskContent" style="width:80%;height:80px" value="${work.content}"></textarea>
+                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_task_content"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">实验说明:</td>
+                                            <td colspan="3"><textarea name="taskContent" style="width:80%;height:100px" value="${work.content}"></textarea>
+                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_task_content"></span>
                                             </td>
                                         </tr>
                                     </table>

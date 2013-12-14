@@ -5,6 +5,7 @@ import edu.ruc.labmgr.mapper.ClassStudentMapper;
 import edu.ruc.labmgr.mapper.CurriculumClassMapper;
 import edu.ruc.labmgr.mapper.CurriculumMapper;
 import edu.ruc.labmgr.mapper.UserMapper;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -55,10 +56,10 @@ public class CurriculumClassService {
 	 * @return
 	 * @author:sjzheng
 	 */
-	public PageInfo<CurriculumClass> getPageClassbyPageNum(int pageNum,int id,boolean flag){
+	public PageInfo<CurriculumClass> getPageClassbyPageNum(int pageNum,int id,Types.Role role){
 		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
 		CurriculumClassCriteria.Criteria c = criteria.or();
-		return getPageClassByCriteriaAndUid(pageNum, criteria, id, flag);
+		return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
 	}
 
     public CurriculumClass getVirtualClass(int cid) {
@@ -68,7 +69,7 @@ public class CurriculumClassService {
     public List<Student> getClassStudents(int cid, String sn, String name, String major) {
         ClassStudentCriteria criteria = new ClassStudentCriteria();
         ClassStudentCriteria.Criteria c = criteria.or();
-        c.andClassIdEqualTo(cid);
+		c.andJoinUser().andJoinStudent().andJoinMajor().andClassIdEqualTo(cid);
         if (StringUtils.isNotEmpty(sn))
             c.andStudentSnLike("%" + sn + "%");
         if (StringUtils.isNotEmpty(name))
@@ -152,17 +153,23 @@ public class CurriculumClassService {
 	 * @return
 	 */
 	private PageInfo<CurriculumClass> getPageClassByCriteriaAndUid(int pageNum,
-															 CurriculumClassCriteria criteria,int id,boolean ifstudent) {
+															 CurriculumClassCriteria criteria,int id,Types.Role role) {
 		int totalCount = classMapper.countByCriteria(criteria);
 
 		CurriculumClassCriteria.Criteria c = criteria.getOredCriteria().get(0);
 		PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
-		if(ifstudent){
+		if(role == Types.Role.STUDENT){
 			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
 			List<CurriculumClass> data = classMapper.selectByCriteriaAndClsStudentWithRowbounds(criteria,
 					new RowBounds(p.getCurrentResult(), p.getPageSize()));
 			p.setData(ChangeNameFromStuToTea(data));
-		}else{
+		}else if (role == Types.Role.ADMIN){
+			c.andJoinCurriculum().andJoinUser();
+			List<CurriculumClass> data = classMapper.selectByCriteriaWithRowbounds(criteria,
+					new RowBounds(p.getCurrentResult(), p.getPageSize()));
+			p.setData(data);
+		}else
+		{
 			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
 			List<CurriculumClass> data = classMapper.selectByCriteriaWithRowbounds(criteria,
 					new RowBounds(p.getCurrentResult(), p.getPageSize()));

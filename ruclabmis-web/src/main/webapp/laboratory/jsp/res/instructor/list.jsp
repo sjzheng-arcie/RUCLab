@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -51,6 +52,7 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
+                        <shiro:hasAnyRoles name="administrators">
                             <span style="white-space:nowrap">&nbsp;&nbsp;所属课程:
                             <select name="theCourse">
                                 <option value="0"></option>
@@ -61,9 +63,10 @@
                             </span>
                           <span style="white-space:nowrap">&nbsp;&nbsp;
                                  <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                          </span>
 
-
+                        </shiro:hasAnyRoles>
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -145,6 +148,7 @@
                                                     <td>说明</td>
                                                     <td>
                                                         <a class="button" href="editpaper">编辑</a>
+                                                        <a class="button" href="editpaper">下载</a>
                                                     </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">

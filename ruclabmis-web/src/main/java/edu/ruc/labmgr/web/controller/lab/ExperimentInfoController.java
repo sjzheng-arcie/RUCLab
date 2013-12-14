@@ -5,6 +5,7 @@ import edu.ruc.labmgr.domain.Experiment;
 import edu.ruc.labmgr.service.CurriculumClassService;
 import edu.ruc.labmgr.service.CurriculumService;
 import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
@@ -38,9 +39,11 @@ public class ExperimentInfoController {
 		int id = userService.getCurrentUserId();
 		PageInfo<CurriculumClass> pageInfo = null;
 		if(currentUser.hasRole("student"))
-			 pageInfo = classService.getPageClassbyPageNum(page,id,true);
+			 pageInfo = classService.getPageClassbyPageNum(page,id, Types.Role.STUDENT);
+		else if (currentUser.hasRole("administrators"))
+			pageInfo = classService.getPageClassbyPageNum(page,id,Types.Role.ADMIN);
 		else
-			pageInfo = classService.getPageClassbyPageNum(page,id,false);
+			pageInfo = classService.getPageClassbyPageNum(page,id, Types.Role.TEACHER);
 		mv.addObject("pageInfo", pageInfo);
 		return mv;
 	}
