@@ -433,6 +433,12 @@ public class ClassStudentCriteria {
             addCriterion("m.name like", major, "m.name");
             return (Criteria) this;
         }
+
+        public Criteria andStudentNotInClass(int vcId){
+            addCriterion("st.id not in (select cs.student_id from class_student cs where cs.class_id ="+vcId+")");
+            return (Criteria) this;
+        }
+
 		public Criteria andJoinUser() {
 			addCriterion("cs.student_id = u.id");
 			return (Criteria) this;

@@ -117,6 +117,20 @@
         </if>
     </select>
 
+    <select id="selectStudentNotInClassWithRowbounds" resultMap="ClassStudentResultMap"
+            parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria">
+        select
+        u.*,st.birthday as st_birthday,st.admission_date as st_admission_date,st.origin_place as st_origin_place,
+        m.name as st_major_name
+        from user u,student st,major m
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
@@ -128,7 +142,7 @@
     where id = #{id,jdbcType=INTEGER}
   </delete>
     <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria">
-        delete from class_student as cs
+        delete cs from class_student cs
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -179,6 +193,14 @@
     <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria"
             resultType="java.lang.Integer">
         select count(*) from class_student cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </select>
+    <select id="countStudentNotInClass" parameterType="edu.ruc.labmgr.domain.ClassStudentCriteria"
+            resultType="java.lang.Integer">
+        select count(st.id)
+        from user u,student st,major m
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
