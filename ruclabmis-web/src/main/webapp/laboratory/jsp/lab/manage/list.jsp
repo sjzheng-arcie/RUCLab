@@ -240,10 +240,10 @@
                     <tr height="16px"></tr>
                 </table>
 
-                <link rel="stylesheet" href="jquery.treetable.css"/>
-                <script src="jquery.min.js"></script>
+                <link rel="stylesheet" href="/js/treetable/jquery.treetable.css"/>
+                <script src="/js/treetable/jquery.min.js"></script>
 
-                <script src="jquery.treetable.js"></script>
+                <script src="/js/treetable/jquery.treetable.js"></script>
                 <script>
                     $("#hello").treetable({ expandable: true });
 

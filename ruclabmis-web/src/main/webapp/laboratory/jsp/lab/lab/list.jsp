@@ -6,10 +6,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
-    <link href="../../../../js/treetable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
+    <link href="/js/treetable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <script src="../../../../js/treetable/jquery.min.js"></script>
+    <script src="/js/treetable/jquery.min.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 
 </head>
@@ -328,8 +328,8 @@
                     </c:forEach>
                     <tr height="16px"></tr>
                 </table>
-                <link rel="stylesheet" href="../../../../js/treetable/jquery.treetable.css"/>
-                <script src="../../../../js/treetable/jquery.treetable.js"></script>
+                <link rel="stylesheet" href="${pageContext.request.contextPath}/js/treetable/jquery.treetable.css"/>
+                <script src="${pageContext.request.contextPath}/js/treetable/jquery.treetable.js"></script>
                 <script>
                     $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
                 </script>
