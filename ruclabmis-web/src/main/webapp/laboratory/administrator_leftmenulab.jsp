@@ -42,11 +42,7 @@
                     </table>
                     <ul class="MM">
 
-                        <li><a href="jsp/lab/org/list" onfocus="toFocus(this)" target="main">实验室组织架构管理</a>
-                        </li>
-                        <li><a href="jsp/lab/device/devicelist" onfocus="toFocus(this)" target="main">实验设备管理</a>
-                        </li>
-                        <li><a href="jsp/lab/house/list" onfocus="toFocus(this)" target="main">实验房间管理</a>
+                        <li><a href="jsp/lab/house/list" onfocus="toFocus(this)" target="main">房间管理</a>
                         </li>
                         <li><a href="jsp/lab/lab/list" onfocus="toFocus(this)" target="main">实验室信息管理</a>
                         </li>

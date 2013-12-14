@@ -1089,7 +1089,7 @@ public class PrototypeTest {
 	}
 	@RequestMapping("jsp/lab/desk/toUpdate")
 	public ModelAndView deskUpdate() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/update");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/toupdate");
 		return mav;
 	}
 	@RequestMapping("jsp/lab/desk/addequipment")
@@ -1105,6 +1105,16 @@ public class PrototypeTest {
 	@RequestMapping("jsp/lab/desk/addtodesk")
 	public ModelAndView deskAddEquipmentToDesk() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/addtodesk");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/toadd")
+	public ModelAndView toAddDesk() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/toadd");
+		return mav;
+	}
+	@RequestMapping("jsp/lab/desk/toupdate")
+	public ModelAndView toUpdateDesk() {
+		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/toupdate");
 		return mav;
 	}
 

@@ -123,9 +123,6 @@
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">房间名称</span></div>
                                                     </td>
@@ -141,7 +138,6 @@
                                                         <input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/>
                                                     </td>
-                                                    <td>2</td>
                                                     <td title="">实验房间一</td>
                                                     <td title="">实验房间</td>
                                                     <td title="">我这里是描述</td>
@@ -152,9 +148,9 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.id}</td>
-                                                        <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+                                                        <td>${item.type}</td>
+                                                        <td>${item.description}</td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

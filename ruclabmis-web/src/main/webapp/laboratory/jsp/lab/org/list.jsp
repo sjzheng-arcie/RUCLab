@@ -10,7 +10,7 @@
     <link href="/js/treetable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <script src="/js/treetable/jquery.min.js"></script>
+    <script src="jquery.min.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 </head>

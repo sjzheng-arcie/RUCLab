@@ -1,13 +1,18 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        document.mainForm.action = "list";
+        document.mainForm.submit();
     }
 
 </script>
+</head>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">设备信息管理 >设备信息管理</div>
+                            <div class="titlebt">实验室管理 > 工作台管理</div>
                         </td>
                     </tr>
                 </table>
@@ -35,7 +40,7 @@
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
                         <td height="30">
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <table width="100%" border="" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td height="24" bgcolor="#353c44">
                                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -48,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">设备信息修改</span></td>
+                                                                    class="STYLE1">添加工作台</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -65,57 +70,30 @@
                     </tr>
                     <tr valign="top">
                         <td>
-                            <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+                            <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <tr heigt="25px">
-                                                <td nowrap align="right">设备编号:</td>
+                                            <tr>
+
+                                                <td nowrap align="right">工作台名称:</td>
                                                 <td nowrap>
-                                                    00001
-                                                </td>
-                                                <td nowrap align="right">设备名称:</td>
-                                                <td nowrap>
-                                                    整流器
+                                                    <input class="text" style="width:154px" maxlength="20"
+                                                           name="houseName" id="houseName"
+                                                           valid="required|isAccount"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_house_name"></span>
                                                 </td>
                                             </tr>
-                                            <tr heigt="25px">
-                                                <td nowrap align="right">设备类型:</td>
-                                                <td nowrap>
-                                                    电子类
-                                                </td>
-                                                <td nowrap align="right">是否存在故障:</td>
-                                                <td nowrap>
-                                                    否
+                                            <tr>
+                                                <td nowrap align="right">详细情况：</td>
+                                                <td nowrap colspan="3" align="left">
+                                                    <textarea name="theDescription"id="theDescription" style="width:70%;height:100">
+                                                    </textarea>
                                                 </td>
                                             </tr>
-                                            <tr heigt="25px">
-                                                <td nowrap align="right">存放位置:</td>
-                                                <td nowrap>
-                                                    <input type="text" value="网络实验室一">
-
-                                                </td>
-                                                <td nowrap align="right">所属:</td>
-                                                <td nowrap>
-
-                                                    <input type="text" value="网络办公室">
-                                                </td>
-
-                                            </tr>
-
-                                            <tr heigt="25px">
-                                                <td nowrap align="right">备注:</td>
-                                                <td nowrap colspan="3">
-                                                    用来进行系统测试的设备
-
-                                                </td>
-
-
-                                            </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
