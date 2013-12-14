@@ -76,7 +76,7 @@
                                                                          height="14"/></div>
                                             </td>
                                             <td width="94%" valign="bottom"><span class="STYLE1"
-                                                                                  style="white-space:nowrap">组织结构</span>
+                                                                                  style="white-space:nowrap">实验室组织结构</span>
                                             </td>
                                         </tr>
                                     </table>
@@ -105,10 +105,6 @@
                     <tr>
                         <td width="200" height="20" bgcolor="d3eaef">
                         </td>
-
-                        <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">组织编号</span></div>
-                        </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">组织名称</span></div>
                         </td>
@@ -135,12 +131,12 @@
                         <td height="20" align="left">信息学院实验办公室</td>
 
 
-                        <td>SJ003</td>
+
                         <td>信息学院</td>
                         <td>纪晓岚</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
 
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -154,12 +150,12 @@
                         <td height="20" align="left">软件工程专业</td>
 
 
-                        <td>SJ003</td>
+
                         <td>软件工程专业</td>
                         <td>和珅</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
 
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -173,11 +169,11 @@
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20" data-tt-parent-id="rjgc">
                         <td height="20">软件实验室一</td>
 
-                        <td>SJ003</td>
+
                         <td>软件实验室一</td>
                         <td>李白</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list" class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -192,12 +188,10 @@
                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc1" data-tt-parent-id="xxxy">
                         <td height="20" align="left">计算机科学与技术专业</td>
 
-
-                        <td>SJ003</td>
                         <td>计算机科学与技术专业</td>
                         <td>曹操</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -210,11 +204,10 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="1" data-tt-parent-id="kc1">
                         <td height="20">计算机实验室一</td>
-                        <td>SJ001</td>
                         <td>计算机实验室一</td>
                         <td>杜甫</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -226,11 +219,10 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2" data-tt-parent-id="kc1">
                         <td height="20">计算机实验室二</td>
-                        <td>SY005</td>
                         <td>计算机实验室二</td>
                         <td>张三丰</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -242,11 +234,10 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" data-tt-id="kc2" data-tt-parent-id="xxxy">
                         <td height="20" align="left">网络工程专业</td>
-                        <td>SJ003</td>
                         <td>网络工程专业</td>
                         <td>李白</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -258,11 +249,10 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="7" data-tt-parent-id="kc2">
                         <td height="20">网络实验室一</td>
-                        <td>SJ001</td>
                         <td>网络实验室一</td>
                         <td>洪天寿</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -274,11 +264,10 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8" data-tt-parent-id="kc2">
                         <td height="20">网络实验室二</td>
-                        <td>SJ002</td>
                         <td>网络实验室二</td>
                         <td>赵天华</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list"  class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -290,11 +279,10 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9" data-tt-parent-id="kc2">
                         <td height="20">网络实验室三</td>
-                        <td>SJ002</td>
                         <td>网络实验室三</td>
                         <td>最光阴</td>
-                        <td title=""><a href="/laboratory/jsp/lab/desk/list">工作台</a></td>
-                        <td><a href="/laboratory/jsp/lab/lab/addroom">实验房间</a></td>
+                        <td title=""><a href="/laboratory/jsp/lab/desk/list" class="button">工作台</a></td>
+                        <td><a href="/laboratory/jsp/lab/lab/addroom"  class="button">实验房间</a></td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
                                  height="10" border="0"/>
@@ -313,8 +301,8 @@
                             <td >${item.sn}</td>
                             <td >${item.name}</td>
                             <td >${item.director}</td>
-                            <td title=""><a href="/laboratory/jsp/lab/desk/list?lab_id=${item.id}">工作台</a></td>
-                            <td><a href="/laboratory/jsp/lab/lab/addroom?lab_id=${item.id}">实验房间</a></td>
+                            <td title=""><a href="/laboratory/jsp/lab/desk/list?lab_id=${item.id}"  class="button">工作台</a></td>
+                            <td><a href="/laboratory/jsp/lab/lab/addroom?lab_id=${item.id}"  class="button">实验房间</a></td>
 
                             <td><a href="toUpdate?id=${item.id}">
                                 <img src="../../../../images/edit_min.gif" width="10"
@@ -343,17 +331,17 @@
 </td>
 <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
 </tr>
-<tr>
-    <td valign="bottom" background="../../../../images/mail_leftbg.gif">
-        <img src="../../../../images/buttom_left2.gif"width="17" height="17"/>
-    </td>
-    <td valign="bottom" background="../../../../images/buttom_bgs.gif">
-        <img src="../../../../images/buttom_bgs.gif" width="100%" height="17"/>
-    </td>
-    <td valign="bottom" background="../../../../images/mail_rightbg.gif">
-        <img src="../../../../images/buttom_right2.gif"width="16" height="17"/>
-    </td>
-</tr>
+    <tr>
+        <td valign="bottom" background="../../../../images/mail_leftbg.gif">
+            <img src="../../../../images/buttom_left2.gif"width="17" height="17"/>
+        </td>
+        <td valign="bottom" background="../../../../images/buttom_bgs.gif">
+            <img src="../../../../images/buttom_bgs.gif" width="100%" height="17"/>
+        </td>
+        <td valign="bottom" background="../../../../images/mail_rightbg.gif">
+            <img src="../../../../images/buttom_right2.gif"width="16" height="17"/>
+        </td>
+    </tr>
 </table>
 </form>
 </body>

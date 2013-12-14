@@ -80,7 +80,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="add">
+                                                                        <a href="toadd">
                                                                             <img src="../../../../images/add_min.gif" width="10" height="10"border="0"/>
                                                                             <span class="STYLE1">添加</span>
                                                                         </a>&nbsp;
@@ -107,7 +107,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
@@ -121,25 +121,37 @@
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td title="">工作台01</td>
-                                                    <td title=""><a href="addequipment">工作台详细</a></td>
+                                                    <td><a href="toUpdate?id=${item.id}">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td title="">工作台02</td>
-                                                    <td title=""><a href="addequipment">工作台详细</a></td>
+                                                    <td><a href="toUpdate?id=${item.id}">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td title="">工作台03</td>
-                                                    <td title=""><a href="addequipment">工作台详细</a></td>
+                                                    <td><a href="toUpdate?id=${item.id}">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
                                                 </tr>
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="admin" onclick="checkOne(this)"/></td>
                                                     <td title="">工作台04</td>
-                                                    <td title=""><a href="addequipment">工作台详细</a></td>
+                                                    <td><a href="toUpdate?id=${item.id}">
+                                                        <img src="../../../../images/edit_min.gif" width="10"
+                                                             height="10" border="0"/>
+                                                    </a></td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -148,7 +160,10 @@
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.name}</td>
-                                                        <td title=""><a href="addequipment?deskId=${item.id}">工作台详细</a></td>
+                                                        <td><a href="toUpdate?id=${item.id}">
+                                                            <img src="../../../../images/edit_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
 
                                                     </tr>
                                                 </c:forEach>

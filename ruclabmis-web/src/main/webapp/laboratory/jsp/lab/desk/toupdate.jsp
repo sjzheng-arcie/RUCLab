@@ -1,13 +1,18 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        document.mainForm.action = "list";
+        document.mainForm.submit();
     }
 
 </script>
+</head>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">系统管理 > 参数管理</div>
+                            <div class="titlebt">实验室管理 > 工作台管理</div>
                         </td>
                     </tr>
                 </table>
@@ -48,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改参数</span></td>
+                                                                    class="STYLE1">修改工作台信息</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -72,90 +77,23 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">访问名称:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="Mng_Dict"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">表示名称:</td>
+
+                                                <td nowrap align="right">工作台名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" value="Mng_Dict"/>
+                                                           name="houseName" id="houseName"
+                                                           valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <span style="color:red;" id="errMsg_house_name"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">规则类型:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option value="">--请选择--</option>
-                                                        <option selected="selected" value="0">主键</option>
-                                                        <option selected="selected" value="1">非主键</option>
-
-                                                    </select>
-
-                                                </td>
-                                                <td nowrap align="right">前缀:</td>
-
-                                                <td nowrap align="left"><select>
-                                                    <option value="">--请选择--</option>
-                                                    <option selected="selected" value="0">QE</option>
-                                                    <option selected="selected" value="1">FE</option>
-
-                                                </select>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">年份:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option value="">--请选择--</option>
-                                                        <option selected="selected" value="0">两位年</option>
-                                                        <option selected="selected" value="0">四位年</option>
-                                                        <option selected="selected" value="1">不启用</option>
-
-                                                    </select>
-
-                                                </td>
-                                                <td nowrap align="right">月份:</td>
-
-                                                <td nowrap align="left"><select>
-                                                    <option value="">--请选择--</option>
-                                                    <option selected="selected" value="0">启用</option>
-                                                    <option selected="selected" value="1">不启用</option>
-
-                                                </select>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">流水长度:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount" value="14"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">规则码:</td>
-                                                <td nowrap>
-                                                    <input class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" value="16"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                <td nowrap align="right">详细情况：</td>
+                                                <td nowrap colspan="3" align="left">
+                                                    <textarea name="theDescription"id="theDescription" style="width:70%;height:100">
+                                                    </textarea>
                                                 </td>
                                             </tr>
-                                            <tr>
-
-
-                                                <td nowrap align="right">备注：</td>
-                                                <td nowrap colspan="3" align="left"><textarea>我是备注</textarea></td>
-                                            </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>

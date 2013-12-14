@@ -25,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 实验房间管理</div>
+                            <div class="titlebt">基础信息管理 > 房间管理</div>
                         </td>
                     </tr>
                 </table>
@@ -53,7 +53,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加实验房间</span></td>
+                                                                    class="STYLE1">添加房间</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -77,39 +77,14 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验房间编号:</td>
-                                                <td nowrap>
-                                                    <input name="houseSno" id="houseSno" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_house_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">实验房间名称:</td>
+
+                                                <td nowrap align="right">房间名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
                                                            name="houseName" id="houseName"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_house_name"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">上级组织:</td>
-                                                <td nowrap>
-                                                    <select name="theParent" id="theParent">
-                                                        <c:forEach items="${orgList}" var="item">
-                                                            <option value="${item.id}">${item.value}</option>
-                                                        </c:forEach>
-                                                    </select>
-                                                </td>
-                                                <td nowrap align="right">负责人:</td>
-                                                <td nowrap align="left"><input class="text" style="width:154px"
-                                                                               name="theDirector" id="theDirector"
-                                                                               maxlength="20"
-                                                                               valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_director"></span>
-                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr>                                                <td nowrap align="right">描述：</td>

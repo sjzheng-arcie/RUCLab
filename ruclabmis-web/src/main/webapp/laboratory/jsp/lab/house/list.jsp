@@ -6,15 +6,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css" />
-    <link href="../../../../js/treetable/jquery.treetable.theme.default.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <script src="../../../../js/treetable/jquery.min.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 </head>
 <body onload="getWidth()" onresize="getWidth()">
-<form name="mainForm" method="post">
+<form name="listForm" method="post">
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
 <tr>
     <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
@@ -23,7 +21,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">基础管理 > 实验室管理</div>
+                    <div class="titlebt">实验室管理 > 房间管理</div>
                 </td>
             </tr>
         </table>
@@ -38,12 +36,9 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
 <tr>
 <td valign="top" class="STYLE10">
-<span style="white-space:nowrap">&nbsp;&nbsp;组织编号:<input type="text" name="orgNo" id="orgNo"
-                                                         value="" style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;组织名称:<input type="text" name="orgName" id="orgName"
-                                                                         value="" style="width:100px;"/></span>
-                <span style="white-space:nowrap">&nbsp;&nbsp;级别:<input type="text" name="orgLevel" id="orgLevel"
-                                                                       value="" style="width:100px;"/></span>
+                <span style="white-space:nowrap">&nbsp;&nbsp;房间名称:
+                    <input type="text" name="orgNo" id="orgNo" value="" style="width:100px;"/>
+                </span>
                 <span style="white-space:nowrap">&nbsp;&nbsp;
                     <a href="javascript:void(0)" onclick="toFind('listForm');">
                         <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
@@ -64,7 +59,7 @@
                                                                          width="14" height="14"/></div>
                                             </td>
                                             <td width="94%" valign="bottom"><span class="STYLE1"
-                                                                                  style="white-space:nowrap">组织结构</span>
+                                                                                  style="white-space:nowrap">房间管理</span>
                                             </td>
                                         </tr>
                                     </table>
@@ -75,6 +70,10 @@
                                         <a href="add">
                                             <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                             <span class="STYLE1">新增</span>
+                                        </a>&nbsp;
+                                        <a href="#" onclick="toDelete();">
+                                            <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                            <span class="STYLE1">删除</span>
                                         </a>&nbsp;
                                     </span>
                                     </div>
@@ -92,7 +91,11 @@
                 <table id="treeTable" width="100%" border="0" cellpadding="0" cellspacing="1"
                        bgcolor="#a8c7ce">
                     <tr>
-                        <td width="200" height="20" bgcolor="d3eaef">
+                        <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
+                            <div align="center">
+                                <input type="checkbox" name="checkbox" id="checkbox"
+                                       onclick="checkAll(this,'listForm', 'idcheckbox');"/>
+                            </div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">房间名称</span></div>
@@ -108,20 +111,13 @@
                         </td>
                     </tr>
 
-                    <tr bgcolor="#ffffff" align="center" data-tt-id="xxxy">
-                        <td height="20" align="left">信息学院实验教学楼</td>
-                        <td colspan="7"></td>
-                    </tr>
-                    <tr bgcolor="#ffffff" align="center" data-tt-id="rjgc" data-tt-parent-id="xxxy">
-                        <td height="20" align="left">信息学院实验楼一</td>
-                        <td colspan="7"></td>
-                    </tr>
-
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20"
                         data-tt-parent-id="rjgc">
+                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                               value="${item.id}"
+                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                        </td>
                         <td height="20">软件实验房间101</td>
-                        <td>SJ003</td>
-
                         <td>实验室</td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
@@ -132,16 +128,13 @@
                                  height="10" border="0"/>
                         </a></td>
                     </tr>
-
-                    <tr bgcolor="#ffffff" align="center" data-tt-id="kc1" data-tt-parent-id="xxxy">
-                        <td height="20" align="left">信息学院实验楼二</td>
-                        <td colspan="7"></td>
-                    </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="1"
                         data-tt-parent-id="kc1">
+                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                               value="${item.id}"
+                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                        </td>
                         <td height="20">计算机实验房间101</td>
-                        <td>SJ001</td>
-
                         <td>会议室</td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
@@ -155,8 +148,11 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2"
                         data-tt-parent-id="kc1">
+                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                               value="${item.id}"
+                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                        </td>
                         <td height="20">计算机实验房间102</td>
-                        <td>SY005</td>
                         <td>S1-101</td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
@@ -167,14 +163,13 @@
                                  height="10" border="0"/>
                         </a></td>
                     </tr>
-                    <tr bgcolor="#ffffff" align="center" data-tt-id="kc2" data-tt-parent-id="xxxy">
-                        <td height="20" align="left">信息学院实验楼三</td>
-                        <td colspan="7"></td>
-                    </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="7"
                         data-tt-parent-id="kc2">
+                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                               value="${item.id}"
+                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                        </td>
                         <td height="20">网络实验房间102</td>
-                        <td>SJ001</td>
                         <td>实验室</td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
@@ -187,8 +182,11 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8"
                         data-tt-parent-id="kc2">
+                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                               value="${item.id}"
+                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                        </td>
                         <td height="20">网络实验房间201</td>
-                        <td>SJ002</td>
                         <td>S1-101</td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
@@ -201,8 +199,11 @@
                     </tr>
                     <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9"
                         data-tt-parent-id="kc2">
+                        <td height="20"><input name="idcheckbox" type="checkbox"
+                                               value="${item.id}"
+                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                        </td>
                         <td height="20">网络实验房间301</td>
-                        <td>SJ002</td>
                         <td>会议室</td>
                         <td><a href="toUpdate?id=${item.id}">
                             <img src="../../../../images/edit_min.gif" width="10"
@@ -215,12 +216,6 @@
                     </tr>
                     <tr height="16px"></tr>
                 </table>
-
-                <link rel="stylesheet" href="../../../../js/treetable/jquery.treetable.css"/>
-                <script src="../../../../js/treetable/jquery.treetable.js"></script>
-                <script>
-                    $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
-                </script>
             </div>
         </td>
     </tr>

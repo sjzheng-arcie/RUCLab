@@ -38,11 +38,11 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_act" onclick="javascript:location.href='appointmentbaseinfo'">预约基本信息</td>
-                                <td class="op_nor" onclick="javascript:location.href='appointmentdate'">预约日程</td>
-                                <td class="op_nor" onclick="javascript:location.href='meetingroomapply'">会议室申请</td>
-                                <td class="op_nor" onclick="javascript:location.href='deviceapply'">会议设备申请</td>
-                                <td class="op_nor" onclick="javascript:location.href='appointmentinfocommit'">预约信息提交</td>
+                                <td class="op_act" >预约基本信息</td>
+                                <td class="op_nor" >预约日程</td>
+                                <td class="op_nor" >会议室申请</td>
+                                <td class="op_nor" >会议设备申请</td>
+                                <td class="op_nor" >预约信息提交</td>
                             </tr>
                         </table>
                     </td>
