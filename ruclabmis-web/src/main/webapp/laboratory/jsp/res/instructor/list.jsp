@@ -3,28 +3,28 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <title></title>
+    <title>实验指导书管理</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/res/paper/list';
-        //获得divwidth的宽度
-        function getWidth(){
-            document.getElementById("divwidth").style.width= document.body.offsetWidth-35+"px";
-            if(document.body.scrollWidth>document.body.offsetWidth){
-                document.getElementById("divwidth").style.width=document.body.scrollWidth-35+"px";
+        function editorClass(isupload,instructorId) {
+            if(isupload){
+                window.location.href = "editpaper?instructorId="+instructorId;
+            }else{
+                window.location.href = "editupload?instructorId="+instructorId;
             }
+
+        }
+        function download(instructorId){
+            window.location.href = "download?instructorId="+instructorId;
         }
 
     </script>
-
 </head>
-
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
@@ -157,8 +157,12 @@
                                                     <td>说明</td>
                                                     <td>是</td>
                                                     <td>
-                                                        <a class="button" href="editpaper">编辑</a>
-                                                        <a class="button" href="editpaper">下载</a>
+                                                        <input type="button" onClick="editorClass(true,1)"
+                                                               class="button"
+                                                               value="编辑"/>
+                                                        <input type="button" onClick="download(1)"
+                                                               class="button"
+                                                               value="下载"/>
                                                     </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -172,8 +176,12 @@
                                                         <td>${item.isupload}</td>
                                                         <td>${item.teacher}</td>
                                                         <td>
-                                                            <a class="button" href="editpaper">编辑</a>
-                                                            <a class="button" href="editpaper">下载</a>
+                                                            <input type="button" onClick="editorClass(true,1)"
+                                                                   class="button"
+                                                                   value="编辑"/>
+                                                            <input type="button" onClick="download(1)"
+                                                                   class="button"
+                                                                   value="下载"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
