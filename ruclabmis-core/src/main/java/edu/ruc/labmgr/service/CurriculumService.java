@@ -37,11 +37,14 @@ public class CurriculumService {
         }
         return curriculumMapper.selectByCriteria(criteria);
     }
+
+    public Curriculum getCurriculum(int cid){
+        return curriculumMapper.selectByPrimaryKey(cid);
+    }
+
 	public PageInfo<Experiment> getExperimentbyClassId(int curriculumId ,int pageNum){
 
 		ExperimentCriteria criteria  = new ExperimentCriteria();
-
-
 		criteria.or().andJoinExperimentInstuction().andJoinCurriculum().andCurricumIdEqual(curriculumId);
 		int totalCount = experimentMapper.countByCriteria(criteria);
 		PageInfo<Experiment> pageInfo = new PageInfo<>(totalCount,-1,pageNum);

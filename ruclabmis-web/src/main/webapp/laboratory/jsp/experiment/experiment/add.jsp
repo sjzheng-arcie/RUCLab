@@ -82,28 +82,25 @@
                                         <table border="0" cellpadding="1" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <tr>
-                                                <td nowrap align="right">实验名称:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                            <%--<tr>--%>
+                                                <%--<td nowrap align="right">实验名称:</td>--%>
+                                                <%--<td nowrap>--%>
+                                                    <%--<input name="exp.name" id="exp.name" value="" class="text"--%>
+                                                           <%--style="width:154px" maxlength="20"--%>
+                                                           <%--valid="required|isAccount"/>--%>
+                                                    <%--<span style="color:red;">*</span>&nbsp;&nbsp;--%>
+                                                <%--</td>--%>
 
-                                                </td>
-
-                                            </tr>
+                                            <%--</tr>--%>
                                             <tr>
                                                 <td nowrap align="right">所属课程:</td>
                                                 <td nowrap>
-                                                    <select id="curriculumId" name="curriculumId"
-                                                            style="width: 152px;height: 22px"
-                                                            data-placeholder="请选择课程...">
-                                                        <option value="-1"></option>
-                                                    </select>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_curriculum"></span>
-
+                                                    <%--<select id="curriculumId" name="curriculumId"--%>
+                                                            <%--style="width: 152px;height: 22px"--%>
+                                                            <%--data-placeholder="请选择课程...">--%>
+                                                        <%--<option value="-1"></option>--%>
+                                                    <%--</select>--%>
+                                                    <input type="text" value="${curriculum.name}" disabled/>
                                                 </td>
                                             </tr>
 
@@ -113,16 +110,14 @@
                                             <tr>
                                                 <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>
-                                                    <input type="file"
-                                                                                               class="buttom"
-                                                                                               value="浏览"/>
+                                                    <input type="file" class="buttom" value="浏览"/>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                    <span style="color:red;" id="errMsg_file"></span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">实验内容:</td>
-                                                <td colspan="3"><textarea name="taskContent" style="width:80%;height:100px" value="${work.content}"></textarea>
+                                                <td colspan="3"><textarea name="exp.content" id="exp.content" style="width:80%;height:100px"></textarea>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_content"></span>
                                                 </td>

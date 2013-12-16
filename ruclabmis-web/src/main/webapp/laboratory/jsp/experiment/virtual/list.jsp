@@ -123,21 +123,6 @@
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
                                                                                 class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toHouseDy();"><img
-                                                                                src="/laboratory/../images/del_min.gif"
-                                                                                width="10" height="10"
-                                                                                border="0"/> <span
-                                                                                class="STYLE1">导入</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toHouseLay();"><img
-                                                                                src="/laboratory/../images/del_min.gif"
-                                                                                width="10"
-                                                                                height="10" border="0"/> <span
-                                                                                class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                                                                        <a href="#" onclick="toRoom();"><img
-                                                                                src="/laboratory/../images/del_min.gif"
-                                                                                width="10" height="10"
-                                                                                border="0"/> <span
-                                                                                class="STYLE1">打印</span></a>&nbsp;&nbsp;
                                                                     </span>
                                                                 </div>
                                                             </td>
