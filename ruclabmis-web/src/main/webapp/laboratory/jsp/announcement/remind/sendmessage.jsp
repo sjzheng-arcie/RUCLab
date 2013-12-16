@@ -3,10 +3,10 @@
 
 <html>
 <head>
-    <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
-    <link href="/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="/js/valid.js" type=text/javascript></script>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
+    <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
 
@@ -46,11 +46,10 @@
                                                   method="post" target="_parent" name="mainForm">
                                                 <table style=" border:1px; width:80%;margin:auto;">
                                                     <tr>
-                                                        <td align="right">接收对象</td>
                                                         <td align="left">
                                                             <select id="target" name="target"
                                                                     style="width: 252px;height: 22px"
-                                                                    data-placeholder="选择对象...">
+                                                                    data-placeholder="选择人名...">
                                                                 <c:forEach items="${teacherList}" var="teacher">
                                                                     <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
                                                                 </c:forEach>
@@ -58,15 +57,23 @@
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td align="right">消息内容</td>
                                                         <td align="left">
-                                                            <textarea id="content" style="WIDTH: 500px; height: 300px"
-                                                                      name="content" rows="20" cols="90"
-                                                                      tabIndex="2"></textarea></span>
+                                                            <div id="innerId">
+                                                        <span>
+                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">
+                                                            </textarea>
+                                                        </span>
+                                                                <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
+                                                                <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
+                                                                <link type="text/css" href="${pageContext.request.contextPath}/js/ueditor/themes/default/css/ueditor.css"/>
+                                                                <script type="text/javascript" charset="utf-8">
+                                                                    var editor = new baidu.editor.ui.Editor();
+                                                                    editor.render('content');
+                                                                </script>
+                                                            </div>
                                                         </td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td>
                                                         <td align="center"><input type="button"
                                                                                   class="autocomplete-suggestion"
                                                                                   onclick="save();" value="发送"></td>

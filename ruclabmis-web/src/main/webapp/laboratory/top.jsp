@@ -20,7 +20,12 @@
 
             if (flag=="homePage"){
                 parent.main.location.href = "welcome";
-            }else if(flag=="bbs"){
+            }else if (flag=="teacher_homePage"){
+                parent.main.location.href = "teacher_welcome";
+            }else if (flag=="student_homePage"){
+                parent.main.location.href = "student_welcome";
+            }
+            else if(flag=="bbs"){
                 parent.main.location.href = "bbs/frame";
             }
         }
@@ -42,8 +47,14 @@
     </div>
     <ul class="top_right_menu">
         <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher">
-                <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
+            <shiro:hasRole name="student">
+                <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
+            </shiro:hasRole>
+            <shiro:hasRole name="teacher">
+                <li id="teacher_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('teacher_homePage')">首页</a></li>
+            </shiro:hasRole>
             <shiro:hasRole name="administrators">
+                <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
                 <li id="administrator_leftmenubasinfo"><a href="administrator_leftmenubasinfo" target="leftFrame"onclick="rs('administrator_leftmenubasinfo')">基础信息管理</a></li>
                 <li id="administrator_leftmenulab"><a href="administrator_leftmenulab" target="leftFrame"onclick="rs('administrator_leftmenulab')">实验室管理</a></li>
                 <li id="administrator_leftmenu"><a href="administrator_leftmenu" target="leftFrame"onclick="rs('administrator_leftmenu')">教学资源管理</a></li>
@@ -54,9 +65,22 @@
             <li id="bbs"><a href="bbs/left" target="leftFrame" onclick="rs('bbs')">论坛</a></li>
         </shiro:hasAnyRoles>
     </ul>
-    <script>
-        rs('homePage');
-    </script>
+
+        <shiro:hasRole name="administrators">
+            <script>
+                rs('homePage');
+            </script>
+        </shiro:hasRole>
+        <shiro:hasRole name="student">
+            <script>
+                rs('student_homePage');
+            </script>
+        </shiro:hasRole>
+        <shiro:hasRole name="teacher">
+            <script>
+                rs('teacher_homePage');
+            </script>
+        </shiro:hasRole>
 </div>
 </div>
 
