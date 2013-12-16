@@ -25,11 +25,11 @@ public class PositionService {
             ec.andNameLike("%" + name + "%");
         if (!StringUtils.isNullOrEmpty(grade))
             ec.andGradeLike("%" + grade + "%");
-        return getPosostionsByCriteria(PageNum, criteria);
+        return getPositionsByCriteria(PageNum, criteria);
 
     }
 
-    private PageInfo<Position> getPosostionsByCriteria(int PageNum, PositionCriteria criteria) {
+    private PageInfo<Position> getPositionsByCriteria(int PageNum, PositionCriteria criteria) {
         int totalCount = positionMapper.countByCriteria(criteria);
         PageInfo<Position> page = new PageInfo<>(totalCount, -1, PageNum);
         List<Position> data = positionMapper.selectByCriteriaWithRowbounds(criteria,

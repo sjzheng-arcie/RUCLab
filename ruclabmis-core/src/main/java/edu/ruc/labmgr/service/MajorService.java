@@ -24,10 +24,10 @@ public class MajorService {
         MajorCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(name))
             ec.andNameLike("%" + name + "%");
-        return getPosostionsByCriteria(PageNum, criteria);
+        return getMajorByCriteria(PageNum, criteria);
     }
 
-    private PageInfo<Major> getPosostionsByCriteria(int PageNum, MajorCriteria criteria) {
+    private PageInfo<Major> getMajorByCriteria(int PageNum, MajorCriteria criteria) {
         int totalCount = majorMapper.countByCriteria(criteria);
         PageInfo<Major> page = new PageInfo<>(totalCount, -1, PageNum);
         List<Major> data = majorMapper.selectByCriteriaWithRowbounds(criteria,
@@ -70,4 +70,5 @@ public class MajorService {
 
         return role;
     }
+
 }

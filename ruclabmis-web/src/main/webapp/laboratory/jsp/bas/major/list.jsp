@@ -41,7 +41,7 @@
 
                             <span style="white-space:nowrap">名称:
                                 <input type="text" name="searchName" id="searchName"
-                                       value="" style="width:100px;"/>
+                                       value="${param.searchName}" style="width:100px;"/>
                             </span>
                             <span style="white-space:nowrap">
                                 <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">

@@ -42,10 +42,10 @@
                         <td valign="top" class="STYLE10">
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;职称名称:<input type="text" name="searchName"
-                                                                                     id="searchName" value=""
+                                                                                     id="searchName" value="${param.searchName}"
                                                                                      style="width:100px;"/></span>
 		<span style="white-space:nowrap">&nbsp;&nbsp;职称级别:<input type="text" id="searchRank" name="searchRank"
-                                                                 value="" style="width:100px;"/>
+                                                                 value="${param.searchRank}" style="width:100px;"/>
             </span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
                                                                             style="cursor:hand"

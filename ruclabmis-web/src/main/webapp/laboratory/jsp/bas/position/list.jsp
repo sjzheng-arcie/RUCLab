@@ -43,11 +43,11 @@
 
                             <span style="white-space:nowrap">职务名称:
                                 <input type="text" name="searchName" id="searchName"
-                                       value="" style="width:100px;"/>
+                                       value="${param.searchName}" style="width:100px;"/>
                             </span>
 		                    <span style="white-space:nowrap">职务级别:
                                 <input type="text" id="searchRank" name="searchRank"
-                                       value="" style="width:100px;"/>
+                                       value="${param.searchRank}" style="width:100px;"/>
                             </span>
                             <span style="white-space:nowrap">
                                 <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">

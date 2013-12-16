@@ -119,7 +119,7 @@ public interface Types {
 
     enum ClassifType {
         BASE(0), EQUIPMENT_STATE(1), APPLY_TYPE(2), APPLY_STATE(3),
-        FUNDING_SUBJECT(4), USE_DIRECTION(5);
+        FUNDING_SUBJECT(4), USE_DIRECTION(5), EXAM_TYPE(8);
         private int value;
 
         private ClassifType(int v) {
@@ -128,6 +128,26 @@ public interface Types {
 
         public int getValue() {
             return value;
+        }
+    }
+
+    enum ExamType {
+        TEST(81, "考查"), EXAMINE(82, "考试");
+        private int value;
+        private String name;
+
+        private ExamType(int value, String name) {
+            this.value = value;
+            this.name = name;
+        }
+
+        public int getValue() {
+            return value;
+        }
+
+
+        public String getName() {
+            return name;
         }
     }
 
