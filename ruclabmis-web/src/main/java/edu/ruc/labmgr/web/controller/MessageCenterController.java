@@ -107,11 +107,9 @@ public class MessageCenterController {
         mav.addObject("fatherPage", fatherPage);
         return mav;
     }
-
     @RequestMapping("/{system}/jsp/announcement/remind/readmessage")
     public ModelAndView showReadMessage(@PathVariable String system,HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
-
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
         String fatherPage = request.getParameter("fatherPage");
@@ -120,7 +118,6 @@ public class MessageCenterController {
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andReceiverIdEqualTo(currentUserId);
         criteria.andIfreadEqualTo(true);
-
 		if(system.equals("laboratory")){
 			criteria.andSystemEqualTo(true);
 		}else {
@@ -132,17 +129,14 @@ public class MessageCenterController {
         mav.addObject("fatherPage", fatherPage);
         return mav;
     }
-
     @RequestMapping("/{system}/jsp/announcement/remind/replyMessage")
     public ModelAndView replyMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessageTab");
         mav.addObject("tabId", 3);
         mav.addObject("replySn", replySn);
-
         return mav;
     }
-
     @RequestMapping("/{system}/jsp/announcement/remind/mysendmessage")
     public ModelAndView showMySendMessage(@PathVariable String system,HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
@@ -168,7 +162,6 @@ public class MessageCenterController {
         mav.addObject("fatherPage", fatherPage);
         return mav;
     }
-
     @RequestMapping("/{system}/jsp/announcement/remind/announcement")
     public ModelAndView showAnnouncement(@PathVariable String system,HttpServletRequest request) {
         currPage = request.getParameter("page") == null ?
@@ -182,11 +175,9 @@ public class MessageCenterController {
 			criteria.andSystemEqualTo(false);
 		}
         announcementCriteria.setOrderByClause(" publish_time desc");
-
 		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage);
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcement");
         mav.addObject("pageInfo", pageInfo);
-
         return mav;
     }
 

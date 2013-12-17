@@ -4,10 +4,10 @@
 <head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../../js/valid.js" type=text/javascript></script>
+<script src="../../../../js/valid.js" type="text/javascript"></script>
 <script>
     function save() {
-        document.mainForm.action = "list";
+        document.mainForm.action = "update";
         document.mainForm.submit();
     }
 </script>
@@ -75,20 +75,40 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
+                                            <input type="hidden" name="roomId" id="roomId" value="${roomInfo.id}">
                                             <tr>
 
                                                 <td nowrap align="right">房间名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="houseName" id="houseName" value="${house.name}"
+                                                           name="roomName" id="roomName" value="${roomInfo.name}"
                                                            valid="required|isAccount"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">房间名称:</td>
+                                                <td nowrap>
+                                                    <select name="roomType">
+
+                                                        <c:choose>
+                                                            <c:when test="${roomInfo.type==true}">
+                                                                <option value="1" selected>实验室</option>
+                                                                <option value="0" >会议室</option>
+                                                            </c:when>
+                                                            <c:otherwise >
+                                                                <option value="1" >实验室</option>
+                                                                <option value="0"  selected>会议室</option>
+                                                            </c:otherwise>
+                                                        </c:choose>
+
+                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">描述：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="theDescription" id="theDescription"style="width:70%;height:100">
-                                                        ${house.description}
+                                                    <textarea name="roomDescription" id="roomDescription"style="width:70%;height:100">
+                                                        ${roomInfo.description}
                                                     </textarea>
                                                 </td>
                                             </tr>

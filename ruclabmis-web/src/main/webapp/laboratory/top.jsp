@@ -38,7 +38,7 @@
     <div class="top_left"><img src="../images/logo_lab.gif" width="305" height="103"></div>
     <div class="top_right_top">
            <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
-            <a href="/messagecenter/laboratory/jsp/announcement/remind/messageTab" target="">短消息(${unreadCount})</a>
+            <a href="/messagecenter/laboratory/jsp/announcement/remind/message" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
             [<a href="/login/laboratory/logout" target="_top">退出</a>]
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

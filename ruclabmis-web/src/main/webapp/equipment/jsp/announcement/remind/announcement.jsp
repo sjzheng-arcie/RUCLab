@@ -5,23 +5,18 @@
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <link href="/css/skin.css" rel="stylesheet" type="text/css"/>
-    <script type="text/javascript" src="/js/util.js"></script>
-    <script type="text/javascript" src="/js/page.js"></script>
-
-    <script src="/js/valid.js" type=text/javascript></script>
+    <link href="${pageContext.request.contextPath}/laboratory/jsp/curriculum/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/util.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/page.js"></script>
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
 
     <style type="text/css">
         .message {
-
             width: 100%;
-
             border: 1px solid #cbcbcb;
-
             background-color: #ffffff;
-
         }
-
         .hr1 {
             color: #efeeea;
             height: 1px;
@@ -33,22 +28,18 @@
             padding: 0px;
             overflow: hidden;
         }
-
         a.announcement:link {
             text-decoration: none;
             color: #000000;
         }
-
         a.announcement:visited {
             text-decoration: none;
             color: #000000;
         }
-
         a.announcement:hover {
             text-decoration: none;
             color: #FF0000;
         }
-
         a.announcement:active {
             text-decoration: none;
             color: #000000;
@@ -58,11 +49,19 @@
 </head>
 <body style="background-color: #EEF2FB">
 <form name="listForm" method="post">
+    <table border="0" cellspacing="0" cellpadding="0">
+        <tr>
+            <td class="op_act" onclick="javascript:location.href='announcement'">公告</td>
+            <td class="op_nor" onclick="javascript:location.href='message'">短消息</td>
+            <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
+            <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
+        </tr>
+    </table>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
 
         <tr>
             <td valign="top" bgcolor="#EEF2FB">
-                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                <table width="100%" border="0" align="center" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
 
                     <tr valign="top">
                         <td>
@@ -102,7 +101,7 @@
                                                     </div>
                                                 </td>
                                             </tr>
-                                            <%@ include file="/js/pagetableformessage.jsp" %>
+                                            <%@ include file="../../../../include/pagetable.jsp" %>
                                         </table>
                                     </td>
                                 </tr>

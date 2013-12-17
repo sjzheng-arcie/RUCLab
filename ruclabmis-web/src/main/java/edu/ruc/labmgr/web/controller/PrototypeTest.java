@@ -135,22 +135,6 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenuteach");
 		return mav;
 	}
-
-	@RequestMapping("/administrator_top")
-    public ModelAndView adminTop(HttpServletRequest request) {
-        User currentUser = userService.getCurrentUser();
-
-        MessageCriteria messageCriteria=  new MessageCriteria();
-        messageCriteria.setOrderByClause("sendtime desc");
-        MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-        criteria.andReceiverIdEqualTo(currentUser.getId());
-        criteria.andIfreadEqualTo(false);
-        int count=messageService.getCount(messageCriteria);
-        ModelAndView mav = new ModelAndView("/laboratory/administrator_top");
-        mav.addObject("unreadCount", count);
-        mav.addObject("user",currentUser);
-        return mav;
-    }
     @RequestMapping("/administrator_welcome")
     public ModelAndView showAdminWelcome(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/laboratory/administrator_welcome");
@@ -184,33 +168,6 @@ public class PrototypeTest {
 
         return mav;
     }
-    @RequestMapping("/teacher_index")
-    public ModelAndView teacher_Index(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/teacher_index");
-        return mav;
-    }
-    @RequestMapping("/teacher_left")
-    public ModelAndView teacher_Left(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/teacher_left");
-        return mav;
-    }
-    @RequestMapping("/teacher_top")
-    public ModelAndView teacher_top(HttpServletRequest request) {
-        User currentUser = userService.getCurrentUser();
-
-        MessageCriteria messageCriteria=  new MessageCriteria();
-        messageCriteria.setOrderByClause("sendtime desc");
-        MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-        criteria.andReceiverIdEqualTo(currentUser.getId());
-        criteria.andIfreadEqualTo(false);
-        int count=messageService.getCount(messageCriteria);
-        ModelAndView mav = new ModelAndView("/laboratory/teacher_top");
-        mav.addObject("unreadCount", count);
-        mav.addObject("user",currentUser);
-        return mav;
-    }
     @RequestMapping("/teacher_welcome")
     public ModelAndView showTeacherWelcome(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/laboratory/teacher_welcome");
@@ -236,35 +193,6 @@ public class PrototypeTest {
 
         return mav;
     }
-    @RequestMapping("student_index")
-    public ModelAndView student_Index(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/student_index");
-        return mav;
-    }
-    @RequestMapping("/student_left")
-    public ModelAndView student_Left(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/student_left");
-        return mav;
-    }
-
-    @RequestMapping("/student_top")
-    public ModelAndView leader_Top(HttpServletRequest request) {
-        User currentUser = userService.getCurrentUser();
-
-        MessageCriteria messageCriteria=  new MessageCriteria();
-        messageCriteria.setOrderByClause("sendtime desc");
-        MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
-        criteria.andReceiverIdEqualTo(currentUser.getId());
-        criteria.andIfreadEqualTo(false);
-        int count=messageService.getCount(messageCriteria);
-        ModelAndView mav = new ModelAndView("/laboratory/student_top");
-        mav.addObject("unreadCount", count);
-        mav.addObject("user",currentUser);
-        return mav;
-    }
-
     @RequestMapping("/student_welcome")
     public ModelAndView showLeaderWelcome(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/laboratory/student_welcome");
@@ -847,40 +775,11 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/mycurriculumschedule");
 		return mav;
 	}
-
 	@RequestMapping("jsp/curriculum/experiment/curriculum/listdeviceapply")
 	public ModelAndView listDeviceApply() {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listdeviceapply");
 		return mav;
 	}
-
-//	@RequestMapping("jsp/curriculum/experiment/curriculum/listcommit")
-//	public ModelAndView listCommit() {
-//		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listcommit");
-//		return mav;
-//	}
-//
-//	@RequestMapping("jsp/curriculum/experiment/curriculum/listapply")
-//	public ModelAndView applyList() {
-//		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listapply");
-//		return mav;
-//	}
-//	@RequestMapping("jsp/curriculum/experiment/curriculum/view")
-//	public ModelAndView curriculumView() {
-//		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/view");
-//		return mav;
-//	}
-//
-//	@RequestMapping("jsp/curriculum/experiment/curriculum/list")
-//	public ModelAndView curriculumList() {
-//		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/list");
-//		return mav;
-//	}
-//	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculum")
-//	public ModelAndView curriculum() {
-//		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/curriculum");
-//		return mav;
-//	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculumclasslist")
 	public ModelAndView curriculumClassList() {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/curriculumclasslist");
@@ -916,13 +815,11 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/experiment/curriculum/toaddlession");
 		return mav;
 	}
-
 	@RequestMapping("jsp/curriculum/experiment/curriculum/setlab")
 	public ModelAndView setLab() {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/setlab");
 		return mav;
 	}
-
 	@RequestMapping("/administrator_leftmenuorder")
 	public ModelAndView leftMenuOrder() {
 		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenuorder");
@@ -1044,21 +941,7 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/device/update");
 		return mav;
 	}
-	@RequestMapping("jsp/lab/house/list")
-	public ModelAndView houseList() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/list");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/house/add")
-	public ModelAndView houseAdd() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/add");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/house/toUpdate")
-	public ModelAndView houseUpdate() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/house/update");
-		return mav;
-	}
+
 	@RequestMapping("jsp/lab/lab/list")
 	public ModelAndView labList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/list");
