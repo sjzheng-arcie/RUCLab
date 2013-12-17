@@ -51,13 +51,9 @@
                         </li>
                         <li><a href="jsp/bas/student/list" onfocus="toFocus(this)" target="main">学生信息管理</a>
                         </li>
-                        <li><a href="jsp/bas/class/list" onfocus="toFocus(this)" target="main">班级信息管理</a>
-                        </li>
                         <li><a href="jsp/bas/major/list" onfocus="toFocus(this)" target="main">专业信息管理</a>
                         </li>
                         <li><a href="jsp/bas/curriculum/list" onfocus="toFocus(this)" target="main">课程信息管理</a>
-                        </li>
-                        <li><a href="jsp/bas/teachingmaterial/list" onfocus="toFocus(this)" target="main">教材信息管理</a>
                         </li>
                         <li><a href="jsp/bas/calendar/list" onfocus="toFocus(this)" target="main">学期校历信息管理</a>
                         </li>

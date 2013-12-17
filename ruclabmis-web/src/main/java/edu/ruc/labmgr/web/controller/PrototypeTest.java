@@ -102,7 +102,7 @@ public class PrototypeTest {
 	@RequestMapping("/administrator_leftmenu")
 	public ModelAndView admin_leftmenu(HttpServletRequest request) {
 
-		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenu");
+		ModelAndView mav = new ModelAndView("laboratory/administrator_leftmenuresource");
 		return mav;
 	}
 	@RequestMapping("/administrator_leftmenubasinfo")
