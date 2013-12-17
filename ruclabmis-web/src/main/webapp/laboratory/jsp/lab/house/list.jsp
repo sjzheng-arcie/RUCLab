@@ -7,9 +7,6 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        window.location.href="/laboratory/jsp/lab/house/querylist";
-    </script>
 </head>
 <body onload="getWidth()" onresize="getWidth()">
 <form name="listForm" method="post">

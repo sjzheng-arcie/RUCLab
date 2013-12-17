@@ -24,18 +24,10 @@ public class RoomController {
 	@Autowired
 	private RoomService roomService;
 
-	@RequestMapping(value="/list",method=RequestMethod.GET)
-	 public ModelAndView list(){
-		RoomCriteria roomCriteria=new RoomCriteria();
-		PageInfo<Room> pageInfo =roomService.getPageRoomByCriteria(1,roomCriteria);
-		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/house/list");
-		modelAndView.addObject("pageInfo",pageInfo);
-
-		return modelAndView;
-	}
-	@RequestMapping(value="/querylist",method=RequestMethod.POST)
-	public ModelAndView addlist(@RequestParam String roomName,
-							 @RequestParam int  roomTypeNum){
+	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView list(@RequestParam(required = false,defaultValue = "") String roomName,
+							 @RequestParam(value="roomType" ,required = false,defaultValue = "3") int  roomTypeNum,
+							 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
 		RoomCriteria roomCriteria=new RoomCriteria();
 		RoomCriteria.Criteria criteria=roomCriteria.createCriteria();
 		criteria.andNameLike("%"+roomName+"%");
@@ -46,10 +38,9 @@ public class RoomController {
 			criteria.andTypeEqualTo(true);
 		}
 
-		PageInfo<Room> pageInfo =roomService.getPageRoomByCriteria(1,roomCriteria);
+		PageInfo<Room> pageInfo =roomService.selectListPage(roomCriteria,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/house/list");
 		modelAndView.addObject("pageInfo",pageInfo);
-
 		return modelAndView;
 	}
 	@RequestMapping(value="/toadd",method=RequestMethod.GET)

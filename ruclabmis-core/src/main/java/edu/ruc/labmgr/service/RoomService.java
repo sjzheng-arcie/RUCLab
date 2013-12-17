@@ -22,20 +22,6 @@ public class RoomService {
 		Room room= mapper.selectByPrimaryKey(id);
 		return room;
 	}
-	public List<Room> getRoomListByCriteria(RoomCriteria criteria){
-		List<Room> roomList=mapper.selectByCriteria(criteria);
-		return roomList;
-	}
-	public PageInfo<Room> getPageRoomByCriteria(int pageNum, RoomCriteria criteria) {
-		int totalCount = mapper.countByCriteria(criteria);
-		PageInfo<Room> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Room> data = mapper.selectByCriteriaWithRowbounds(criteria,
-				new RowBounds(page.getCurrentResult(), page.getPageSize()));
-
-		page.setData(data);
-		return page;
-	}
-
 	public void insertRoom(Room room){
 		mapper.insert(room);
 	}
@@ -44,5 +30,13 @@ public class RoomService {
 	}
 	public void deleteById(int id){
 		mapper.deleteByPrimaryKey(id);
+	}
+	public PageInfo<Room> selectListPage(RoomCriteria criteria, int pageNum) {
+		int totalCount = mapper.countByCriteria(criteria);
+		PageInfo<Room> page = new PageInfo<>(totalCount, -1, pageNum);
+		List<Room> data = mapper.selectByCriteriaWithRowbounds(criteria,
+				new RowBounds(page.getCurrentResult(), page.getPageSize()));
+		page.setData(data);
+		return page;
 	}
 }
