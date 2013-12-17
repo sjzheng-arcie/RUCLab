@@ -44,16 +44,16 @@
                         </table>
                         <ul class="MM">
 
-                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/messageTab?id=0" onfocus="toFocus(this)"
+                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/message" onfocus="toFocus(this)"
                                    target="main">我的短消息</a>
                             </li>
-                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/announcementTab?id=1" onfocus="toFocus(this)"
+                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/announcement" onfocus="toFocus(this)"
                                    target="main">我的通知</a>
                             </li>
                             <shiro:hasRole name="teacher,equipment_admin,student">
-                                <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule.html"
+                                <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
-                                <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist.html" onfocus="toFocus(this)"
+                                <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist" onfocus="toFocus(this)"
                                        target="main">
                                     我的预约申请</a></li>
                             </shiro:hasRole>

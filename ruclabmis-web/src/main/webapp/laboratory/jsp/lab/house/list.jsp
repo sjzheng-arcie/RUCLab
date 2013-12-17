@@ -7,6 +7,9 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script>
+        window.location.href="/laboratory/jsp/lab/house/querylist";
+    </script>
 </head>
 <body onload="getWidth()" onresize="getWidth()">
 <form name="listForm" method="post">
@@ -34,7 +37,14 @@
                     <tr>
                     <td valign="top" class="STYLE10">
                                     <span style="white-space:nowrap">&nbsp;&nbsp;房间名称:
-                                        <input type="text" name="orgNo" id="orgNo" value="" style="width:100px;"/>
+                                        <input type="text" name="roomName" id="roomName" value="" style="width:100px;"/>
+                                    </span>
+                                    <span style="white-space:nowrap">&nbsp;&nbsp;房间类型:
+                                        <select name="roomType" id="roomType">
+                                            <option value="3"></option>
+                                            <option value="1">实验室</option>
+                                            <option value="0">会议室</option>
+                                        </select>
                                     </span>
                                     <span style="white-space:nowrap">&nbsp;&nbsp;
                                         <a href="javascript:void(0)" onclick="toFind('listForm');">
@@ -64,7 +74,7 @@
                                                     <td>
                                                         <div align="right">
                                                         <span class="STYLE1" style="white-space:nowrap">
-                                                            <a href="add">
+                                                            <a href="toadd">
                                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                 <span class="STYLE1">新增</span>
                                                             </a>&nbsp;
@@ -85,7 +95,7 @@
                         <tr>
                             <td>
                                 <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
-                                    <table id="treeTable" width="100%" border="0" cellpadding="0" cellspacing="1"
+                                    <table id="treeTable" class="table" width="100%" border="0" cellpadding="0" cellspacing="1"
                                            bgcolor="#a8c7ce">
                                         <tr>
                                             <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
@@ -101,116 +111,45 @@
                                                 <div align="center"><span class="STYLE10">房间类型</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">房间描述</span></div>
+                                            </td>
+                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">删除</span></div>
                                             </td>
                                         </tr>
+                                        <c:forEach items="${pageInfo.data}" var="item">
+                                            <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20"
+                                                data-tt-parent-id="rjgc">
+                                                <td height="20"><input name="idcheckbox" type="checkbox"
+                                                                       value="${item.id}"
+                                                                       onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                </td>
+                                                <td height="20">${item.name}</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${item.type==true}">
+                                                            实验室
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            会议室
+                                                        </c:otherwise>
+                                                    </c:choose>
 
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="20"
-                                            data-tt-parent-id="rjgc">
-                                            <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                   value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
-                                            </td>
-                                            <td height="20">软件实验房间101</td>
-                                            <td>实验室</td>
-                                            <td><a href="toUpdate?id=${item.id}">
-                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                            <td><a href="toDelete?id=${item.id}">
-                                                <img src="../../../../images/del_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                        </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="1"
-                                            data-tt-parent-id="kc1">
-                                            <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                   value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
-                                            </td>
-                                            <td height="20">计算机实验房间101</td>
-                                            <td>会议室</td>
-                                            <td><a href="toUpdate?id=${item.id}">
-                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                            <td><a href="toDelete?id=${item.id}">
-                                                <img src="../../../../images/del_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-
-                                        </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2"
-                                            data-tt-parent-id="kc1">
-                                            <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                   value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
-                                            </td>
-                                            <td height="20">计算机实验房间102</td>
-                                            <td>S1-101</td>
-                                            <td><a href="toUpdate?id=${item.id}">
-                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                            <td><a href="toDelete?id=${item.id}">
-                                                <img src="../../../../images/del_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                        </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="7"
-                                            data-tt-parent-id="kc2">
-                                            <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                   value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
-                                            </td>
-                                            <td height="20">网络实验房间102</td>
-                                            <td>实验室</td>
-                                            <td><a href="toUpdate?id=${item.id}">
-                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                            <td><a href="toDelete?id=${item.id}">
-                                                <img src="../../../../images/del_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                        </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8"
-                                            data-tt-parent-id="kc2">
-                                            <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                   value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
-                                            </td>
-                                            <td height="20">网络实验房间201</td>
-                                            <td>S1-101</td>
-                                            <td><a href="toUpdate?id=${item.id}">
-                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                            <td><a href="toDelete?id=${item.id}">
-                                                <img src="../../../../images/del_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                        </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9"
-                                            data-tt-parent-id="kc2">
-                                            <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                   value="${item.id}"
-                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
-                                            </td>
-                                            <td height="20">网络实验房间301</td>
-                                            <td>会议室</td>
-                                            <td><a href="toUpdate?id=${item.id}">
-                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                            <td><a href="toDelete?id=${item.id}">
-                                                <img src="../../../../images/del_min.gif" width="10"
-                                                     height="10" border="0"/>
-                                            </a></td>
-                                        </tr>
+                                                </td>
+                                                <td>${item.description}</td>
+                                                <td><a href="/laboratory/jsp/lab/house/update?id=${item.id}">
+                                                    <img src="../../../../images/edit_min.gif" width="10"
+                                                         height="10" border="0"/>
+                                                </a></td>
+                                                <td><a href="/laboratory/jsp/lab/house/delete?id=${item.id}">
+                                                    <img src="../../../../images/del_min.gif" width="10"
+                                                         height="10" border="0"/>
+                                                </a></td>
+                                            </tr>
+                                        </c:forEach>
                                         <tr height="16px"></tr>
                                     </table>
                                 </div>

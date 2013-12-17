@@ -7,7 +7,7 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.mainForm.action = "list";
+        document.mainForm.action = "add";
         document.mainForm.submit();
     }
 
@@ -81,15 +81,25 @@
                                                 <td nowrap align="right">房间名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="houseName" id="houseName"
+                                                           name="roomName" id="roomName"
                                                            valid="required|isAccount"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_house_name"></span>
+                                                    <span style="color:red;" id="errMsg_room_name"></span>
                                                 </td>
                                             </tr>
-                                            <tr>                                                <td nowrap align="right">描述：</td>
+                                            <tr>
+                                                <td nowrap align="right">类型：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="theDescription"id="theDescription" style="width:70%;height:100">
+                                                    <select  name="roomType"id="roomType">
+                                                        <option value="1">实验室</option>
+                                                        <option value="0">会议室</option>
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">描述：</td>
+                                                <td nowrap colspan="3" align="left">
+                                                    <textarea name="roomDescription"id="roomDescription" style="width:70%;height:100">
                                                     </textarea>
                                                 </td>
                                             </tr>
