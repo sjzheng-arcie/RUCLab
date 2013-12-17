@@ -7,6 +7,8 @@ public class BbsTopic {
 
     private Integer sessionid;
 
+    private Integer clickcount;
+
     private Integer uid;
 
     private Integer replycount;
@@ -39,6 +41,14 @@ public class BbsTopic {
 
     public void setSessionid(Integer sessionid) {
         this.sessionid = sessionid;
+    }
+
+    public Integer getClickcount() {
+        return clickcount;
+    }
+
+    public void setClickcount(Integer clickcount) {
+        this.clickcount = clickcount;
     }
 
     public Integer getUid() {

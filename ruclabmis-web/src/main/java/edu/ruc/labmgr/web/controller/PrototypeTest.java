@@ -332,11 +332,12 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("jsp/experiment/experiment/editpaper")
-    public ModelAndView editpaper(HttpServletRequest request) {
+		 public ModelAndView editpaper(HttpServletRequest request) {
 
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/editpaper");
-        return mav;
-    }
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/editpaper");
+		return mav;
+	}
+
     @RequestMapping("jsp/experiment/experiment/update")
     public ModelAndView updatePaper(HttpServletRequest request) {
 
@@ -500,6 +501,12 @@ public class PrototypeTest {
 	public ModelAndView instructorEditPaper() {
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/editpaper");
+		return mav;
+	}
+	@RequestMapping("jsp/res/instructor/editupload")
+	public ModelAndView editupload(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instructor/editupload");
 		return mav;
 	}
 	@RequestMapping("jsp/res/instructor/paperinfo")

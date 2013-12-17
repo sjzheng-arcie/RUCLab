@@ -129,6 +129,21 @@
 
                                             </td>
                                         </tr>
+
+                                        <tr>
+                                            <td nowrap align="right">实验目的:</td>
+                                            <td colspan="2"><textarea name="taskContent" style="width:80%;height:80px" value="${work.content}"></textarea>
+                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_task_content"></span>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td nowrap align="right">实验说明:</td>
+                                            <td colspan="3"><textarea name="taskContent" style="width:80%;height:100px" value="${work.content}"></textarea>
+                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                <span style="color:red;" id="errMsg_task_content"></span>
+                                            </td>
+                                        </tr>
                                     </table>
                                 </td>
                             </tr>

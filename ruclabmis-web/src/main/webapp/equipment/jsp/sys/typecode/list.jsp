@@ -40,10 +40,10 @@
                         <td valign="top" class="STYLE10">
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;分类名称<input type="text" name="searchName"
-                                                                                    id="searchName" value=""
+                                                                                    id="searchName" value="${param.searchName}"
                                                                                     style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;分类号<input type="text" name="searchId"
-                                                                                   id="searchId" value=""
+                                                                                   id="searchId" value="${param.searchId}"
                                                                                    style="width:100px;"/></span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"

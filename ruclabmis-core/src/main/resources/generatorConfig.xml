@@ -99,7 +99,8 @@
         <table tableName="bbs_session">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
-        <table tableName="bbs_topic">
+        -->
+<!--        <table tableName="bbs_topic">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
 

@@ -55,9 +55,7 @@
                         </li>
                         <li><a href="jsp/bas/major/list" onfocus="toFocus(this)" target="main">专业信息管理</a>
                         </li>
-                        <li><a href="jsp/bas/course/list" onfocus="toFocus(this)" target="main">课程信息管理</a>
-                        </li>
-                        <li><a href="jsp/bas/majorcourse/list" onfocus="toFocus(this)" target="main">专业课程信息管理</a>
+                        <li><a href="jsp/bas/curriculum/list" onfocus="toFocus(this)" target="main">课程信息管理</a>
                         </li>
                         <li><a href="jsp/bas/teachingmaterial/list" onfocus="toFocus(this)" target="main">教材信息管理</a>
                         </li>

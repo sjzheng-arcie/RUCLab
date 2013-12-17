@@ -21,6 +21,7 @@
         document.mainForm.action = "add";
         document.mainForm.submit();
     }
+
 </script>
 
 <body>

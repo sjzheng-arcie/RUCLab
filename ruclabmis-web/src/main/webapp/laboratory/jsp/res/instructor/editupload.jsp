@@ -1,13 +1,28 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<html>
+<head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
-    function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
-    }
+    var baseHref = '/laboratory/jsp/experiment/paper/addtopaper';
 
+
+    function update() {
+        if(!validator(document.listForm)){
+            return;
+        }
+
+        document.mainForm.action = "addPaper";
+        document.mainForm.submit();
+    }
+    function addToPaper(){
+        document.mainForm.action = "addpaper";
+        document.mainForm.submit();
+    }
 </script>
+</head>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +35,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">基础信息管理 > 课程信息管理</div>
+                            <div class="titlebt">指导书管理 > 编辑指导书信息</div>
                         </td>
                     </tr>
                 </table>
@@ -48,7 +63,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">课程信息添加</span></td>
+                                                                    class="STYLE1">编辑指导书信息</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -72,73 +87,50 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">课程编号:</td>
+                                                <td nowrap align="right">指导书名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" v/>
+                                                    <input name="paperName" id="us_sno" onblur="" class="text"
+                                                           style="width:300px" maxlength="20"
+                                                           value="${paper.name}"
+                                                           />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">课程名称:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">课程类型:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option>专业课</option>
-                                                        <option>公共课</option>
-                                                    </select>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-                                                <td nowrap align="right">课程类别:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option>选修</option>
-                                                        <option>必修</option>
-                                                    </select>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
 
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">课程方式:</td>
+                                                </td>
+                                                <td nowrap align="right">所属课程:</td>
                                                 <td nowrap>
-                                                    <select>
-                                                        <option>理论</option>
-                                                        <option>实验课</option>
-                                                        <option>理论与实验</option>
+                                                    <select name="theCourse">
+                                                        <option value="0"></option>
+                                                        <c:forEach items="${courseList}" var="item">
+                                                            <option value="${item.id}">${item.courseName}</option>
+                                                        </c:forEach>
                                                     </select>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
+                                                    <span style="color:red;" id="s"></span>
                                                 </td>
-                                                <td nowrap align="right">学时数:</td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验目的:</td>
+                                                <td colspan="2"><textarea name="taskContent" style="width:80%;height:80px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验说明:</td>
+                                                <td colspan="3"><textarea name="taskContent" style="width:80%;height:100px" value="${work.content}"></textarea>
+                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验指导书:</td>
                                                 <td nowrap>
-                                                    <input type="Password" name="us_spwd" id="us_spwd" class="text"
-                                                           style="width:154px"/>
+                                                   <input type="file"
+                                                               class="buttom"
+                                                                                               value="浏览"/>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_spwd"></span>
                                                 </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">考核类型:</td>
-                                                <td nowrap>
-                                                    <select>
-                                                        <option>考查</option>
-                                                        <option>考试</option>
-                                                    </select>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-
                                             </tr>
 
                                         </table>
@@ -148,9 +140,10 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
                                         <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
+                                        <input type="reset" name="reset" value="保存" class="button"
+                                               onclick="Save();"/>
                                         <input type="button" name="return" value="返回" class="button"
                                                onclick="window.history.go(-1);"/>
                                     </td>

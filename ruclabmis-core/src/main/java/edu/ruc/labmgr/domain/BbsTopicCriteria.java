@@ -225,6 +225,66 @@ public class BbsTopicCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andClickcountIsNull() {
+            addCriterion("clickCount is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountIsNotNull() {
+            addCriterion("clickCount is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountEqualTo(Integer value) {
+            addCriterion("clickCount =", value, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountNotEqualTo(Integer value) {
+            addCriterion("clickCount <>", value, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountGreaterThan(Integer value) {
+            addCriterion("clickCount >", value, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("clickCount >=", value, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountLessThan(Integer value) {
+            addCriterion("clickCount <", value, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountLessThanOrEqualTo(Integer value) {
+            addCriterion("clickCount <=", value, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountIn(List<Integer> values) {
+            addCriterion("clickCount in", values, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountNotIn(List<Integer> values) {
+            addCriterion("clickCount not in", values, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountBetween(Integer value1, Integer value2) {
+            addCriterion("clickCount between", value1, value2, "clickcount");
+            return (Criteria) this;
+        }
+
+        public Criteria andClickcountNotBetween(Integer value1, Integer value2) {
+            addCriterion("clickCount not between", value1, value2, "clickcount");
+            return (Criteria) this;
+        }
+
         public Criteria andUidIsNull() {
             addCriterion("uid is null");
             return (Criteria) this;
