@@ -45,8 +45,8 @@
                         </tr>
                     </table>
                     <ul class="MM">
-
-
+                        <li><a href="jsp/res/instructor/list" onfocus="toFocus(this)" target="main">实验指导书管理</a>
+                        </li>
                         <li><a href="jsp/res/book/list" onfocus="toFocus(this)" target="main">教学资源管理</a>
                         </li>
                         <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
@@ -55,8 +55,6 @@
                         </li>
                         <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">试卷管理</a>
                         </li>
-
-
                     </ul>
                 </div>
             </div>
