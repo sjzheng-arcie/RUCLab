@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
-<html>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <style>
 
@@ -46,7 +49,7 @@
 
     </div>
     <ul class="top_right_menu">
-        <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher">
+        <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher" >
             <shiro:hasRole name="student">
                 <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
             </shiro:hasRole>

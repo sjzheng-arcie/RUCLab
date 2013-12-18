@@ -2,11 +2,16 @@ package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.CurriculumClass;
 import edu.ruc.labmgr.domain.Student;
+import edu.ruc.labmgr.mapper.BbsSessionMapper;
 import edu.ruc.labmgr.service.CurriculumClassService;
 import edu.ruc.labmgr.service.StudentService;
+import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import edu.ruc.labmgr.web.controller.Result;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,14 +36,25 @@ public class VirtualClassController {
     private CurriculumClassService classService;
     @Autowired
     private StudentService studentService;
+	@Autowired
+	private UserService userService;
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView classList(@RequestParam int page,
                                   @RequestParam(value = "sn", required = false, defaultValue = "") String sn,
                                   @RequestParam(value = "name", required = false, defaultValue = "") String name) {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/list");
-
-        PageInfo<CurriculumClass> pageInfo = classService.getPageClasses(page, sn, name);
+/*
+        PageInfo<CurriculumClass> pageInfo = classService.getPageClasses(page, sn, name);*/
+		Subject currentUser = SecurityUtils.getSubject();
+		int id = userService.getCurrentUserId();
+		PageInfo<CurriculumClass> pageInfo = null;
+		if(currentUser.hasRole("student"))
+			pageInfo = classService.getPageClassbyPageNum(page,id, Types.Role.STUDENT);
+		else if (currentUser.hasRole("administrators"))
+			pageInfo = classService.getPageClassbyPageNum(page,id,Types.Role.ADMIN);
+		else
+			pageInfo = classService.getPageClassbyPageNum(page,id, Types.Role.TEACHER);
         mv.addObject("pageInfo", pageInfo);
 		return mv;
     }

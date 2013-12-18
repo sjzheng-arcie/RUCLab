@@ -101,7 +101,7 @@
 </DIV>
     <DIV>
     <DIV class="h" >
-        <p style="font-size: 26px;margin-top: 0px;margin-bottom: 0px">&gt;&gt;<B><a href="frame">论坛首页</a></B>&gt;&gt;<B>
+        <p style="font-size: 16px;margin-top: 0px;margin-bottom: 0px">&gt;&gt;<B><a href="frame">论坛首页</a></B>&gt;&gt;<B>
             <a href="list?courseId=${courseId}">${post.course.name}</a></B>
             <span style="float:right">
                 <A href="post?courseId=${courseId}"><IMG src="images/post.gif" border="0" id=td_post></A>
@@ -131,8 +131,7 @@
             <TR class="tr1">
                 <TH style="WIDTH: 20%">
                     <B>t</B><BR/>
-                    <img src="images/head/2.gif"/><BR/>
-                    注册:2007-07-27<BR/>
+                    <img src=""/>
                 </TH>
                 <TH>
                     <H4>鼓掌啊，终于 开通了</H4>

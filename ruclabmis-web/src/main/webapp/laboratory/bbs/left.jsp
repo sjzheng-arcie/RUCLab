@@ -110,7 +110,7 @@
     </tr>
 </table>
 
-<h3 style="margin:0; padding:5px 0; color:#FF6600; background-color:#eee; text-align:center;">在线用户: 2000人</h3>
+<%--<h3 style="margin:0; padding:5px 0; color:#FF6600; background-color:#eee; text-align:center;">在线用户: 2000人</h3>--%>
 
 <script type="text/javascript">
     ajaxget('misc.php?action=getonlines&inajax=1', 'onlinenum');
@@ -129,15 +129,11 @@
                         var tree = new dzTree('tree');
                         //tree.addNode(0, -1, '论坛首页', 'index.php', 'main', true);
 
-                        tree.addNode(0, -1, '实验交流论坛', 'frame', 'main', true);
+                        tree.addNode(0, -1, '信息学院内部交流论坛', 'frame', 'main', true);
                         <c:forEach items="${courseList}" var="item">
-                            tree.addNode(4, 0, '${item.courseName}', 'list?courseId=${item.courseId}', 'main', false);
+                            tree.addNode(${item.curriculumId}, 0, '${item.curriculumName}', 'list?courseId=${item.curriculumId}', 'main', false);
+
                         </c:forEach>
-                        tree.addNode(4, 0, 'C语言实验课', 'list', 'main', false);
-                        tree.addNode(5, 0, '电路实验课', 'list', 'main', false);
-                        tree.addNode(7, 0, 'CAD实验室', 'list', 'main', false);
-                        tree.addNode(19, 0, '高速网络实验室', 'list', 'main', false);
-                        tree.addNode(24, 0, '模拟电路实验课', 'list', 'main', false);
 
                         tree.show();
 
@@ -151,7 +147,7 @@
         </tr>
     </table>
 </div>
-<div style="font-size:12px; color:#bbb; display:none;">BBS.61.COM</div>
+<div style="font-size:12px; color:#bbb; display:none;">信息学院交流论坛</div>
 
 </body>
 </html>

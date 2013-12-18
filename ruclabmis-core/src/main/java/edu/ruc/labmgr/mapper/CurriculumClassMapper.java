@@ -9,6 +9,8 @@ import java.util.List;
 
 public interface CurriculumClassMapper {
     int countByCriteria(CurriculumClassCriteria criteria);
+	int countByCriteriaByJoinIncludeCS(CurriculumClassCriteria criteria);
+	int countByCriteriaJoinNotIncludeCS(CurriculumClassCriteria criteria);
 
     int deleteByCriteria(CurriculumClassCriteria criteria);
 

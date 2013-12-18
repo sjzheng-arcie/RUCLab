@@ -179,6 +179,20 @@
             <include refid="Criteria_Where_Clause"/>
         </if>
     </select>
+    <select id="countByCriteriaByJoinIncludeCS" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from curriculum c,curriculum_class cc,user u,class_student cs
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </select>
+    <select id="countByCriteriaJoinNotIncludeCS" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria"
+            resultType="java.lang.Integer">
+        select count(*) from curriculum c,curriculum_class cc,user u
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause"/>
+        </if>
+    </select>
     <update id="updateByCriteriaSelective" parameterType="map">
         update curriculum_class cc
         <set>

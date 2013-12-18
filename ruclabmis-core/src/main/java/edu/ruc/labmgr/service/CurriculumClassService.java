@@ -1,10 +1,7 @@
 package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.*;
-import edu.ruc.labmgr.mapper.ClassStudentMapper;
-import edu.ruc.labmgr.mapper.CurriculumClassMapper;
-import edu.ruc.labmgr.mapper.CurriculumMapper;
-import edu.ruc.labmgr.mapper.UserMapper;
+import edu.ruc.labmgr.mapper.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -12,6 +9,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -29,6 +27,8 @@ public class CurriculumClassService {
     private CurriculumMapper curriculumMapper;
     @Autowired
     private UserMapper userMapper;
+	@Autowired
+	private BbsSessionMapper bbsSessionMapper;
 
     /**
      * 获得分页的虚拟班级列表
@@ -134,7 +134,27 @@ public class CurriculumClassService {
                 classStudentMapper.insertSelective(cs);
             }
         }
+
+		addBBSection(cid,clazz);
+
     }
+
+	/**
+	 * 创建班级的时候添加版块
+	 * @param curriculumClassId
+	 * @param clazz
+	 * @auhtor zsj
+	 */
+	private void addBBSection(int curriculumClassId,CurriculumClass clazz){
+		BbsSession bbsSection = new BbsSession();
+		bbsSection.setId(curriculumClassId);
+		int curricumid = clazz.getCurriculumId();
+		Curriculum cm = curriculumMapper.selectByPrimaryKey(curricumid);
+		bbsSection.setDescription(cm.getName()+"-"+clazz.getClassName()+"-"+clazz.getClassYear());
+		bbsSection.setReplycount(0);
+		bbsSection.setTopiccount(0);
+		bbsSessionMapper.insert(bbsSection);
+	}
 
     /**
      * 添加学生到已有的班级
@@ -194,29 +214,64 @@ public class CurriculumClassService {
      */
     private PageInfo<CurriculumClass> getPageClassByCriteriaAndUid(int pageNum,
                                                                    CurriculumClassCriteria criteria, int id, Types.Role role) {
-        int totalCount = classMapper.countByCriteria(criteria);
+
 
         CurriculumClassCriteria.Criteria c = criteria.getOredCriteria().get(0);
-        PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+
+		List<CurriculumClass> data= new ArrayList<>();
         if (role == Types.Role.STUDENT) {
             c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
-            List<CurriculumClass> data = classMapper.selectByCriteriaAndClsStudentWithRowbounds(criteria,
-                    new RowBounds(p.getCurrentResult(), p.getPageSize()));
-            p.setData(ChangeNameFromStuToTea(data));
+			int totalCount = classMapper.countByCriteriaByJoinIncludeCS(criteria);
+			PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+			 data = classMapper.selectByCriteriaAndClsStudentWithRowbounds(criteria,
+					new RowBounds(p.getCurrentResult(), p.getPageSize()));
+			p.setData(ChangeNameFromStuToTea(data));
+			return p;
+
         } else if (role == Types.Role.ADMIN) {
             c.andJoinCurriculum().andJoinUser();
-            List<CurriculumClass> data = classMapper.selectByCriteriaWithRowbounds(criteria,
-                    new RowBounds(p.getCurrentResult(), p.getPageSize()));
-            p.setData(data);
+			int totalCount = classMapper.countByCriteriaJoinNotIncludeCS(criteria);
+			PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+			 data = classMapper.selectByCriteriaWithRowbounds(criteria,
+					new RowBounds(p.getCurrentResult(), p.getPageSize()));
+			p.setData(data);
+			return p;
+
         } else {
-            c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
-            List<CurriculumClass> data = classMapper.selectByCriteriaWithRowbounds(criteria,
-                    new RowBounds(p.getCurrentResult(), p.getPageSize()));
-            p.setData(data);
+          //  c.andJoinCurriculum().andJoinClassStudent().andJoinUser().andUserIdEqual(id);
+			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+			int totalCount = classMapper.countByCriteriaJoinNotIncludeCS(criteria);
+			PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+			 data = classMapper.selectByCriteriaWithRowbounds(criteria,
+					new RowBounds(p.getCurrentResult(), p.getPageSize()));
+			p.setData(data);
+			return p;
         }
 
-        return p;
     }
+	public List<CurriculumClass> getClassByCriteriaUserIdAndRole(int id, Types.Role role) {
+		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+		CurriculumClassCriteria.Criteria c = criteria.or();
+		List<CurriculumClass> data = new ArrayList<CurriculumClass>();
+		if (role == Types.Role.STUDENT) {
+			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
+			data =classMapper.selectByCriteriaAndClsStudent(criteria);
+
+		} else if (role == Types.Role.ADMIN) {
+			c.andJoinCurriculum().andJoinUser();
+			 data =classMapper.selectByCriteria(criteria);
+
+		} else {
+			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+			data =classMapper.selectByCriteria(criteria);
+
+		}
+
+		if (role == Types.Role.STUDENT)
+			ChangeNameFromStuToTea(data);
+
+		return data;
+	}
 
     private List<CurriculumClass> ChangeNameFromStuToTea(List<CurriculumClass> data) {
         if (data == null)
