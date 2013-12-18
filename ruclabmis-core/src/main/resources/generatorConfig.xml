@@ -71,9 +71,9 @@
         <!--<table tableName="curriculum_class" alias="cc">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="desk">-->
-        <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
+        <table tableName="desk">
+        <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
         <!--<table tableName="equipment">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->

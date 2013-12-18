@@ -2,15 +2,14 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Desk;
 import edu.ruc.labmgr.domain.DeskCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-import java.util.List;
-
 public interface DeskMapper {
-    int countByCriteria(DeskCriteria criteria);
+    int countByExample(DeskCriteria example);
 
-    int deleteByCriteria(DeskCriteria criteria);
+    int deleteByExample(DeskCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,15 +17,15 @@ public interface DeskMapper {
 
     int insertSelective(Desk record);
 
-    List<Desk> selectByCriteriaWithRowbounds(DeskCriteria criteria, RowBounds rowBounds);
+    List<Desk> selectByExampleWithRowbounds(DeskCriteria example, RowBounds rowBounds);
 
-    List<Desk> selectByCriteria(DeskCriteria criteria);
+    List<Desk> selectByExample(DeskCriteria example);
 
     Desk selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Desk record, @Param("criteria") DeskCriteria criteria);
+    int updateByExampleSelective(@Param("record") Desk record, @Param("example") DeskCriteria example);
 
-    int updateByCriteria(@Param("record") Desk record, @Param("criteria") DeskCriteria criteria);
+    int updateByExample(@Param("record") Desk record, @Param("example") DeskCriteria example);
 
     int updateByPrimaryKeySelective(Desk record);
 

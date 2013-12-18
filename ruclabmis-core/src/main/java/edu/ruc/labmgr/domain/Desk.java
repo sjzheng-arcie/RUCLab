@@ -7,6 +7,8 @@ public class Desk {
 
     private Integer laboratoryRoomId;
 
+    private String description;
+
     public Integer getId() {
         return id;
     }
@@ -29,5 +31,13 @@ public class Desk {
 
     public void setLaboratoryRoomId(Integer laboratoryRoomId) {
         this.laboratoryRoomId = laboratoryRoomId;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description == null ? null : description.trim();
     }
 }

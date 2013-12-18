@@ -967,47 +967,6 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/addroom");
 		return mav;
 	}
-	@RequestMapping("jsp/lab/desk/list")
-	public ModelAndView deskList() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/list");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/add")
-	public ModelAndView deskAdd() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/add");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/toUpdate")
-	public ModelAndView deskUpdate() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/toupdate");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/addequipment")
-	public ModelAndView deskAddEquipment() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/addequipment");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/deskinfo")
-	public ModelAndView deskInfo() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/deskinfo");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/addtodesk")
-	public ModelAndView deskAddEquipmentToDesk() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/addtodesk");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/toadd")
-	public ModelAndView toAddDesk() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/toadd");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/desk/toupdate")
-	public ModelAndView toUpdateDesk() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/desk/toupdate");
-		return mav;
-	}
-
 	@RequestMapping("jsp/lab/emp/list")
 		 public ModelAndView empList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/emp/list");
