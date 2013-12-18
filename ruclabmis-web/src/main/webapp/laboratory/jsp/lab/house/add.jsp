@@ -7,6 +7,10 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
+        if (!validator(document.mainForm)) {
+            return;
+        }
+
         document.mainForm.action = "add";
         document.mainForm.submit();
     }
@@ -82,7 +86,9 @@
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
                                                            name="roomName" id="roomName"
-                                                           valid="required|isAccount"/>
+                                                           style="width:154px" maxlength="20"
+                                                           valid="required"
+                                                           errmsg="房间名不能为空！"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_room_name"></span>
                                                 </td>
