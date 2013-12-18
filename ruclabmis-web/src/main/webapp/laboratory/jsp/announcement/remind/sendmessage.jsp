@@ -67,7 +67,6 @@
     </script>
 </head>
 <body  style="background-color:#EEF2FB;">
-<form name="mainForm" method="get">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
@@ -90,7 +89,7 @@
                                         <div id="">
                                             <div class="">
                                                 <form action="/messagecenter/laboratory/jsp/announcement/remind/addMessage"
-                                                      method="post" target="_parent" name="mainForm">
+                                                      method="post" name="mainForm">
                                                     <table style=" border:1px; width:80%;margin:auto;">
                                                         <tr>
                                                             <td align="left">
@@ -138,7 +137,6 @@
             </td>
         </tr>
     </table>
-</form>
 </body>
 
 </html>

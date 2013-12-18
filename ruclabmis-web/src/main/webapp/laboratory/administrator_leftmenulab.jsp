@@ -46,6 +46,8 @@
                         </li>
                         <li><a href="jsp/lab/lab/list" onfocus="toFocus(this)" target="main">实验室信息管理</a>
                         </li>
+                        <li><a href="jsp/lab/desk/list" onfocus="toFocus(this)" target="main">工作台管理</a>
+                        </li>
 
                     </ul>
                 </div>

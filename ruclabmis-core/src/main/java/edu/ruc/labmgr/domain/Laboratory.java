@@ -9,7 +9,16 @@ public class Laboratory {
 
     private String description;
 
-    private Integer majorId;
+	public User getDirector() {
+		return director;
+	}
+
+	public void setDirector(User director) {
+		this.director = director;
+	}
+
+	private User director;
+
 
     public Integer getId() {
         return id;
@@ -41,13 +50,5 @@ public class Laboratory {
 
     public void setDescription(String description) {
         this.description = description == null ? null : description.trim();
-    }
-
-    public Integer getMajorId() {
-        return majorId;
-    }
-
-    public void setMajorId(Integer majorId) {
-        this.majorId = majorId;
     }
 }

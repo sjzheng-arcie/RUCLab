@@ -29,32 +29,6 @@ public class MessageCenterController {
 
     private int currPage = 0;
 
-	@RequestMapping("/{system}/jsp/announcement/remind/messageTab")
-	public ModelAndView showMessageTab(@PathVariable String system) {
-
-		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messageTab");
-		return mav;
-	}
-	@RequestMapping("/{system}/jsp/announcement/remind/sendmessageTab")
-	public ModelAndView sendMessageTab(@PathVariable String system) {
-
-		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessageTab");
-		return mav;
-	}
-	@RequestMapping("/{system}/jsp/announcement/remind/announcementTab")
-	public ModelAndView showAnnouncementTab(@PathVariable String system) {
-
-		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcementTab");
-		return mav;
-	}
-	@RequestMapping("/{system}/jsp/announcement/remind/addannouncementTab")
-	public ModelAndView showAnnouncementAddTab(@PathVariable String system) {
-
-		ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/addannouncementTab");
-		return mav;
-	}
-
-
 	@RequestMapping("/{system}/jsp/announcement/remind/message")
     public ModelAndView showMessage(@PathVariable String system,HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
@@ -203,8 +177,7 @@ public class MessageCenterController {
     public ModelAndView addAnnouncement(@PathVariable String system,HttpServletRequest request) {
         Announcement announcement = initFromRequest(request,system);
         int result = serviceAnnouncement.insert(announcement);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcementTab");
-        mav.addObject("tabId", 0);
+        ModelAndView mav = new ModelAndView("redirect:/messagecenter/"+system+"/jsp/announcement/remind/announcement");
         return mav;
     }
 
@@ -239,8 +212,7 @@ public class MessageCenterController {
     public ModelAndView addMessage(@PathVariable String system,HttpServletRequest request) {
         Message message = insertMessageIntoDB(request,system);
         messageService.insert(message);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messageTab");
-        mav.addObject("tabId", 1);
+        ModelAndView mav = new ModelAndView("redirect:/messagecenter/"+system+"/jsp/announcement/remind/message");
         return mav;
     }
 

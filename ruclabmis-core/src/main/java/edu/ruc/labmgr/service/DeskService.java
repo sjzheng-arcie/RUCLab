@@ -21,6 +21,19 @@ import java.util.List;
 public class DeskService {
 	@Autowired
 	private DeskMapper deskMapper;
+	public Desk getDeskById(int id){
+		Desk  desk= deskMapper.selectByPrimaryKey(id);
+		return desk;
+	}
+	public void insertDesk(Desk desk){
+		deskMapper.insert(desk);
+	}
+	public void updateDesk(Desk desk){
+		deskMapper.updateByPrimaryKey(desk);
+	}
+	public void deleteById(int id){
+		deskMapper.deleteByPrimaryKey(id);
+	}
 
 	public PageInfo<Desk> selectListPage(DeskCriteria criteria, int pageNum) {
 		int totalCount = deskMapper.countByExample(criteria);

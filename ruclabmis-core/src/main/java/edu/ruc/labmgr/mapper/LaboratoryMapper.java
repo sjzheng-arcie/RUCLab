@@ -2,15 +2,14 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Laboratory;
 import edu.ruc.labmgr.domain.LaboratoryCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-import java.util.List;
-
 public interface LaboratoryMapper {
-    int countByCriteria(LaboratoryCriteria criteria);
+    int countByExample(LaboratoryCriteria example);
 
-    int deleteByCriteria(LaboratoryCriteria criteria);
+    int deleteByExample(LaboratoryCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,15 +17,15 @@ public interface LaboratoryMapper {
 
     int insertSelective(Laboratory record);
 
-    List<Laboratory> selectByCriteriaWithRowbounds(LaboratoryCriteria criteria, RowBounds rowBounds);
+    List<Laboratory> selectByExampleWithRowbounds(LaboratoryCriteria example, RowBounds rowBounds);
 
-    List<Laboratory> selectByCriteria(LaboratoryCriteria criteria);
+    List<Laboratory> selectByExample(LaboratoryCriteria example);
 
     Laboratory selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Laboratory record, @Param("criteria") LaboratoryCriteria criteria);
+    int updateByExampleSelective(@Param("record") Laboratory record, @Param("example") LaboratoryCriteria example);
 
-    int updateByCriteria(@Param("record") Laboratory record, @Param("criteria") LaboratoryCriteria criteria);
+    int updateByExample(@Param("record") Laboratory record, @Param("example") LaboratoryCriteria example);
 
     int updateByPrimaryKeySelective(Laboratory record);
 

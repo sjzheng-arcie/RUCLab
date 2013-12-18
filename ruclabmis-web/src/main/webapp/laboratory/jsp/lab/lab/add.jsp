@@ -4,12 +4,23 @@
 <head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../js/valid.js" type=text/javascript></script>
+<script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
+    <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
 <script>
     function save() {
-        document.mainForm.action = "listSysint.html";
+        if (!validator(document.mainForm)) {
+            return;
+        }
+        document.mainForm.action = "add";
         document.mainForm.submit();
     }
+    $(document).ready(function () {
+        $("#theDirector").chosen({
+            no_results_text: "没有找到"
+        });
+    });
 
 </script>
 </head>
@@ -80,36 +91,29 @@
                                                 <td nowrap align="right">实验室名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="labName" id="labName"valid="required|isAccount"/>
+                                                           name="laboratoryName" id="laboratoryName"valid="required" errmsg="请输入实验室名称"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_lab_name"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">专业:</td>
-                                                <td nowrap>
-                                                    <select name="theMajor">
-                                                        <c:forEach items="${majorList}" var="item">
-                                                            <option value="${item.id}">${item.value}</option>
+
+                                                <td nowrap align="right">负责人:</td>
+                                                <td align="left">
+                                                    <select id="theDirector" name="theDirector"
+                                                            style="width: 252px;height: 22px"
+                                                            data-placeholder="选择负责人...">
+                                                        <c:forEach items="${directorList}" var="director">
+                                                            <option value="${director.id}">${director.name}(${director.sn})</option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
                                             </tr>
                                             <tr>
-
-                                                <td nowrap align="right">负责人:</td>
-                                                <td nowrap align="left">
-                                                    <input class="text" style="width:154px" maxlength="20" name="theDirector" id="theDirector"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_director"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">描述：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="theDescription"
-                                                              id="theDescription"style="width:70%;height:100">
+                                                    <textarea name="laboratoryDescription"
+                                                              id="laboratoryDescription"style="width:70%;height:100">
                                                     </textarea>
                                                 </td>
                                             </tr>

@@ -363,66 +363,6 @@ public class LaboratoryCriteria {
             addCriterion("description not between", value1, value2, "description");
             return (Criteria) this;
         }
-
-        public Criteria andMajorIdIsNull() {
-            addCriterion("major_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdIsNotNull() {
-            addCriterion("major_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdEqualTo(Integer value) {
-            addCriterion("major_id =", value, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdNotEqualTo(Integer value) {
-            addCriterion("major_id <>", value, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdGreaterThan(Integer value) {
-            addCriterion("major_id >", value, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("major_id >=", value, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdLessThan(Integer value) {
-            addCriterion("major_id <", value, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdLessThanOrEqualTo(Integer value) {
-            addCriterion("major_id <=", value, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdIn(List<Integer> values) {
-            addCriterion("major_id in", values, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdNotIn(List<Integer> values) {
-            addCriterion("major_id not in", values, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdBetween(Integer value1, Integer value2) {
-            addCriterion("major_id between", value1, value2, "majorId");
-            return (Criteria) this;
-        }
-
-        public Criteria andMajorIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("major_id not between", value1, value2, "majorId");
-            return (Criteria) this;
-        }
     }
 
     public static class Criteria extends GeneratedCriteria {

@@ -7,7 +7,7 @@
 <script src="../../../js/valid.js" type=text/javascript></script>
 <script>
     function addEquipment(){
-        document.mainForm.action = "addequipment";
+        document.mainForm.action = "add";
         document.mainForm.submit();
     }
 
@@ -80,9 +80,18 @@
                                                 <td nowrap align="right">工作台名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="deskName" id="deskName"valid="required|isAccount"/>
+                                                           name="deskName" id="deskName"valid="required" errmsg="工作台名称不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_desk_name"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">工作台描述:</td>
+                                                <td nowrap>
+                                                    <textarea style="width: 70%;height: 100px;" name="deskDescription" id="deskDescription">
+
+                                                    </textarea>
+
                                                 </td>
                                             </tr>
                                         </table>

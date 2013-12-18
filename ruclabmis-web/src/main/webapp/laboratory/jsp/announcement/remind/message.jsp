@@ -124,11 +124,10 @@
                                                                         </p>
                                                                         <c:if test="${item.ifread==true}">
 
-                                                                            <p align="left">${item.content}</p>
+                                                                            <div align="left">${item.content}</div>
                                                                         </c:if>
                                                                         <c:if test="${item.ifread==false}">
-                                                                            <p align="left"
-                                                                               style="font-weight: bold ">${item.content}</p>
+                                                                            <div align="left" style="font-weight: bold ">${item.content}</div>
                                                                         </c:if>
                                                                         <p align="left" style="font-size: 12px">
                                                                             <a class="A_See"

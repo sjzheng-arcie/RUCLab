@@ -941,32 +941,6 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/device/update");
 		return mav;
 	}
-
-	@RequestMapping("jsp/lab/lab/list")
-	public ModelAndView labList() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/list");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/lab/add")
-	public ModelAndView labAdd() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/add");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/lab/toUpdate")
-	public ModelAndView labUpdate() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/update");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/lab/addtolaboratory")
-	public ModelAndView laboratoryAddRoomToLaboratory() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/addtolaboratory");
-		return mav;
-	}
-	@RequestMapping("jsp/lab/lab/addroom")
-	public ModelAndView addRoom() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/lab/addroom");
-		return mav;
-	}
 	@RequestMapping("jsp/lab/emp/list")
 		 public ModelAndView empList() {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/lab/emp/list");
