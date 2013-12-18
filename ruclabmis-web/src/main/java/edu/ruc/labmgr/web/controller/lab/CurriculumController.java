@@ -31,7 +31,10 @@ public class CurriculumController {
     ClassifService serviceClassif;
     @Autowired
     TeacherService serviceTeacher;
-
+	@RequestMapping(value = "/list", produces = "application/json")
+	public @ResponseBody List<Curriculum> list(String name) {
+		return curriculumService.getCurriculum(name);
+	}
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchName", required = false) String name,
                                  @RequestParam(value = "searchMajor", required = false) Integer majorId,

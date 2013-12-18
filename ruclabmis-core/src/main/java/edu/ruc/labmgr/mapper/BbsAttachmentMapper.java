@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface BbsAttachmentMapper {
-    int countByExample(BbsAttachmentCriteria example);
+    int countByCriteria(BbsAttachmentCriteria example);
 
-    int deleteByExample(BbsAttachmentCriteria example);
+    int deleteByCriteria(BbsAttachmentCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface BbsAttachmentMapper {
 
     int insertSelective(BbsAttachment record);
 
-    List<BbsAttachment> selectByExampleWithRowbounds(BbsAttachmentCriteria example, RowBounds rowBounds);
+    List<BbsAttachment> selectByCriteriaWithRowbounds(BbsAttachmentCriteria example, RowBounds rowBounds);
 
-    List<BbsAttachment> selectByExample(BbsAttachmentCriteria example);
+    List<BbsAttachment> selectByCriteria(BbsAttachmentCriteria example);
 
     BbsAttachment selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") BbsAttachment record, @Param("example") BbsAttachmentCriteria example);
+    int updateByCriteriaSelective(@Param("record") BbsAttachment record, @Param("example") BbsAttachmentCriteria example);
 
-    int updateByExample(@Param("record") BbsAttachment record, @Param("example") BbsAttachmentCriteria example);
+    int updateByCriteria(@Param("record") BbsAttachment record, @Param("example") BbsAttachmentCriteria example);
 
     int updateByPrimaryKeySelective(BbsAttachment record);
 

@@ -7,7 +7,7 @@
     <result column="TopicCount" property="topiccount" jdbcType="INTEGER" />
     <result column="ReplyCount" property="replycount" jdbcType="INTEGER" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
+  <sql id="Criteria_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -36,7 +36,7 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
+  <sql id="Update_By_Criteria_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -68,7 +68,7 @@
   <sql id="Base_Column_List" >
     id, Description, TopicCount, ReplyCount
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -76,7 +76,7 @@
     <include refid="Base_Column_List" />
     from bbs_session
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -92,19 +92,19 @@
     delete from bbs_session
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" >
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" >
     delete from bbs_session
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.BbsSession" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into bbs_session (Description, TopicCount, ReplyCount
+    insert into bbs_session (id,Description, TopicCount, ReplyCount
       )
-    values (#{description,jdbcType=VARCHAR}, #{topiccount,jdbcType=INTEGER}, #{replycount,jdbcType=INTEGER}
+    values (#{id,jdbcType=INTEGER},#{description,jdbcType=VARCHAR}, #{topiccount,jdbcType=INTEGER}, #{replycount,jdbcType=INTEGER}
       )
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.BbsSession" >
@@ -113,6 +113,9 @@
     </selectKey>
     insert into bbs_session
     <trim prefix="(" suffix=")" suffixOverrides="," >
+        <if test="id != null">
+            id,
+        </if>
       <if test="description != null" >
         Description,
       </if>
@@ -124,6 +127,9 @@
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+        <if test="id != null">
+            #{id,jdbcType=Integer},
+        </if>
       <if test="description != null" >
         #{description,jdbcType=VARCHAR},
       </if>
@@ -135,13 +141,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" resultType="java.lang.Integer" >
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" resultType="java.lang.Integer" >
     select count(*) from bbs_session
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByCriteriaSelective" parameterType="map" >
     update bbs_session
     <set >
       <if test="record.id != null" >
@@ -158,17 +164,17 @@
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByCriteria" parameterType="map" >
     update bbs_session
     set id = #{record.id,jdbcType=INTEGER},
       Description = #{record.description,jdbcType=VARCHAR},
       TopicCount = #{record.topiccount,jdbcType=INTEGER},
       ReplyCount = #{record.replycount,jdbcType=INTEGER}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.BbsSession" >
@@ -193,7 +199,7 @@
       ReplyCount = #{replycount,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" id="selectByExampleWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsSessionCriteria" id="selectByCriteriaWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -201,7 +207,7 @@
     <include refid="Base_Column_List" />
     from bbs_session
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}

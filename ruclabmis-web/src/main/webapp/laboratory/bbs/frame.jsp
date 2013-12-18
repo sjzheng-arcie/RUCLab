@@ -186,7 +186,7 @@
     -->
 </style>
 <div class="clear"></div>
-<div class="mainbox forumlist">
+<%--<div class="mainbox forumlist">
 			<span class="headactions">
 				 		<img id="category_4_img" src="images/default/collapsed_no.gif" title="收起/展开" alt="收起/展开"
                              onclick="toggle_collapse('category_4');"/>
@@ -248,7 +248,7 @@
         </tr>
         </tbody>
     </table>
-</div>
+</div>--%>
 <div style="width:100%; margin:auto; overflow:hidden;">
     <div class="index_box_left">
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">今日热帖</div>
@@ -274,6 +274,50 @@
     </div>
     <div class="index_box_right">
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">本周热帖</div>
+        <div class="index_box_main">
+            <ul>
+                <li>
+                    <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
+                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
+                    </div>
+                    <div class="num">10033</div>
+                </li>
+                <c:forEach items="${weeklyHotPostList}" var="item">
+                    <li>
+                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="text">
+                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                        </div>
+                        <div class="num">${item.replyNum}</div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </div>
+    <div class="index_box_left">
+        <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">最新帖子</div>
+        <div class="index_box_main">
+            <ul>
+                <li>
+                    <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
+                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
+                    </div>
+                    <div class="num">10033</div>
+                </li>
+                <c:forEach items="${weeklyHotPostList}" var="item">
+                    <li>
+                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="text">
+                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                        </div>
+                        <div class="num">${item.replyNum}</div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+    </div>
+    <div class="index_box_right">
+        <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">最新回复</div>
         <div class="index_box_main">
             <ul>
                 <li>

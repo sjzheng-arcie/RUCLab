@@ -111,12 +111,12 @@
                                                                                 src="/laboratory/../images/add_min.gif"
                                                                                 width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">新增</span></a>&nbsp;
-                                                                        <a href="editclass.html"
+<%--                                                                        <a href="editclass.html"
                                                                            onclick="toUpdate();"><img
                                                                                 src="/laboratory/../images/edit_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span
-                                                                                class="STYLE1">编辑</span></a>&nbsp;
+                                                                                class="STYLE1">编辑</span></a>&nbsp;--%>
 
                                                                         <a href="#" onclick="deleteClasses();"><img
                                                                                 src="/laboratory/../images/del_min.gif"

@@ -24,7 +24,7 @@
             }
         }
         function initCurriculumSelect() {
-            $.getJSON("/curriculum/list", {name: ""}, function (data) {
+            $.getJSON("/laboratory/jsp/bas/curriculum/list", {name: ""}, function (data) {
                 $.each(data, function (idx, item) {
                     createCurriculumOption("curriculumId", item);
                 });

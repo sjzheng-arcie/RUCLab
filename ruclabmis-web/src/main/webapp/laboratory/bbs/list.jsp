@@ -15,7 +15,7 @@
     </div>
 </DIV>
 <DIV class="h">
-    <p style="font-size: 26px;margin-top: 0px;margin-bottom: 0px">
+    <p style="font-size: 16px;margin-top: 0px;margin-bottom: 0px">
         &gt;&gt;<B><a href="frame">论坛首页</a></B>&gt;&gt;
         <B><a href="list?courseId=${courseId}">C语言实验课</a></B>
         <span style="float:right">

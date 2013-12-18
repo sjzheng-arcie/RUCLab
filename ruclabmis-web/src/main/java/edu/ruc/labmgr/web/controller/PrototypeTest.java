@@ -571,12 +571,12 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/index");
 		return mav;
 	}
-	@RequestMapping("bbs/left")
+/*	@RequestMapping("bbs/left")
 	public ModelAndView bbsLeft(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/left");
 		return mav;
-	}
+	}*/
 	@RequestMapping("bbs/frame")
 	public ModelAndView bbsWelcome(HttpServletRequest request) {
 

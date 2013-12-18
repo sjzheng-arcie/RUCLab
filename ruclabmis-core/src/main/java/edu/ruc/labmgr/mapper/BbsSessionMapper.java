@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface BbsSessionMapper {
-    int countByExample(BbsSessionCriteria example);
+    int countByCriteria(BbsSessionCriteria example);
 
-    int deleteByExample(BbsSessionCriteria example);
+    int deleteByCriteria(BbsSessionCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface BbsSessionMapper {
 
     int insertSelective(BbsSession record);
 
-    List<BbsSession> selectByExampleWithRowbounds(BbsSessionCriteria example, RowBounds rowBounds);
+    List<BbsSession> selectByCriteriaWithRowbounds(BbsSessionCriteria example, RowBounds rowBounds);
 
-    List<BbsSession> selectByExample(BbsSessionCriteria example);
+    List<BbsSession> selectByCriteria(BbsSessionCriteria example);
 
     BbsSession selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") BbsSession record, @Param("example") BbsSessionCriteria example);
+    int updateByCriteriaSelective(@Param("record") BbsSession record, @Param("example") BbsSessionCriteria example);
 
-    int updateByExample(@Param("record") BbsSession record, @Param("example") BbsSessionCriteria example);
+    int updateByCriteria(@Param("record") BbsSession record, @Param("example") BbsSessionCriteria example);
 
     int updateByPrimaryKeySelective(BbsSession record);
 
