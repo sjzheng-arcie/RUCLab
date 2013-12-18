@@ -46,10 +46,6 @@
                         </li>
                         <li><a href="jsp/lab/lab/list" onfocus="toFocus(this)" target="main">实验室信息管理</a>
                         </li>
-                        <li><a href="jsp/lab/emp/list" onfocus="toFocus(this)" target="main">实验室人员管理</a>
-                        </li>
-                        <li><a href="jsp/lab/post/list" onfocus="toFocus(this)" target="main">实验室岗位管理</a>
-                        </li>
 
                     </ul>
                 </div>
