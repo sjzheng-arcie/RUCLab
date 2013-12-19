@@ -46,7 +46,7 @@ public class OrganizationController {
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         List<Organization> organizations = organizationService.selectAllOrganizations();
-        Organization organization = organizationService.selectByPrimerKey(id);
+        Organization organization = organizationService.selectByPrimaryKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/org/update");
         mav.addObject("organization", organization);
         mav.addObject("organizations", organizations);

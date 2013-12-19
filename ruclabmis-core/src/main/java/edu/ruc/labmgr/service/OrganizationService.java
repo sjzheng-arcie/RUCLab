@@ -35,7 +35,7 @@ public class OrganizationService {
         return result;
     }
 
-    public Organization selectByPrimerKey(int id) {
+    public Organization selectByPrimaryKey(int id) {
         Organization organization = null;
         organization = organizationMapper.selectByPrimaryKey(id);
         return organization;

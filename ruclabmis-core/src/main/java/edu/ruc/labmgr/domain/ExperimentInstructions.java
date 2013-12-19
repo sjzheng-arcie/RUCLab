@@ -1,9 +1,9 @@
 package edu.ruc.labmgr.domain;
 
+import java.util.List;
+
 public class ExperimentInstructions {
     private Integer id;
-
-    private Boolean isupload;
 
     private String name;
 
@@ -15,20 +15,14 @@ public class ExperimentInstructions {
 
     private Integer curriculumId;
 
+    List<ExperimentSubject> subjects;
+
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Boolean getIsupload() {
-        return isupload;
-    }
-
-    public void setIsupload(Boolean isupload) {
-        this.isupload = isupload;
     }
 
     public String getName() {
@@ -69,5 +63,13 @@ public class ExperimentInstructions {
 
     public void setCurriculumId(Integer curriculumId) {
         this.curriculumId = curriculumId;
+    }
+
+    public List<ExperimentSubject> getSubjects() {
+        return subjects;
+    }
+
+    public void setSubjects(List<ExperimentSubject> subjects) {
+        this.subjects = subjects;
     }
 }

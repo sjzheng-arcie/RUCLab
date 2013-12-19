@@ -48,7 +48,7 @@ public class MajorService {
         return result;
     }
 
-    public Major selectByPrimerKey(int id) {
+    public Major selectByPrimaryKey(int id) {
         Major Major = null;
         Major = majorMapper.selectByPrimaryKey(id);
         return Major;
@@ -62,13 +62,6 @@ public class MajorService {
         for(int id : ids){
             majorMapper.deleteByPrimaryKey(id);
         }
-    }
-
-    public Major selectByPrimaryKey(int id) {
-        Major role = null;
-        role = (Major) majorMapper.selectByPrimaryKey(id);
-
-        return role;
     }
 
 }

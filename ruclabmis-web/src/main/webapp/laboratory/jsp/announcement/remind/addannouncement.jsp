@@ -8,8 +8,6 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-
-
     <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/laboratory/jsp/curriculum/css/style.css" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />

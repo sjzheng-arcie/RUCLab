@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface ExperimentInstructionsMapper {
-    int countByCriteria(ExperimentInstructionsCriteria example);
+    int countByCriteria(ExperimentInstructionsCriteria criteria);
 
-    int deleteByCriteria(ExperimentInstructionsCriteria example);
+    int deleteByCriteria(ExperimentInstructionsCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface ExperimentInstructionsMapper {
 
     int insertSelective(ExperimentInstructions record);
 
-    List<ExperimentInstructions> selectByCriteriaWithRowbounds(ExperimentInstructionsCriteria example, RowBounds rowBounds);
+    List<ExperimentInstructions> selectByCriteriaWithRowbounds(ExperimentInstructionsCriteria criteria, RowBounds rowBounds);
 
-    List<ExperimentInstructions> selectByCriteria(ExperimentInstructionsCriteria example);
+    List<ExperimentInstructions> selectByCriteria(ExperimentInstructionsCriteria criteria);
 
     ExperimentInstructions selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") ExperimentInstructions record, @Param("example") ExperimentInstructionsCriteria example);
+    int updateByCriteriaSelective(@Param("record") ExperimentInstructions record, @Param("criteria") ExperimentInstructionsCriteria criteria);
 
-    int updateByCriteria(@Param("record") ExperimentInstructions record, @Param("example") ExperimentInstructionsCriteria example);
+    int updateByCriteria(@Param("record") ExperimentInstructions record, @Param("criteria") ExperimentInstructionsCriteria criteria);
 
     int updateByPrimaryKeySelective(ExperimentInstructions record);
 

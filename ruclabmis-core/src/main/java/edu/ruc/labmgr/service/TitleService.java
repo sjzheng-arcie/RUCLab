@@ -50,7 +50,7 @@ public class TitleService {
         return result;
     }
 
-    public Title selectByPrimerKey(int id) {
+    public Title selectByPrimaryKey(int id) {
         Title title = null;
         title = titleMapper.selectByPrimaryKey(id);
         return title;
