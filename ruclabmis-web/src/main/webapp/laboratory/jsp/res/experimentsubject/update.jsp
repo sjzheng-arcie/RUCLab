@@ -2,19 +2,18 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/valid.js" type=text/javascript></script>
-    <script>
-        function save() {
-            document.mainForm.action = "/add";
-            document.mainForm.submit();
-        }
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-    </script>
-</head>
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<script src="../../../../js/valid.js" type=text/javascript></script>
+<script>
+    function save() {
+        document.mainForm.action = "update";
+        document.mainForm.submit();
+    }
+
+</script>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -27,7 +26,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 实验试题管理</div>
+                            <div class="positionbt">教学资源管理 > 实现题管理</div>
                         </td>
                     </tr>
                 </table>
@@ -55,7 +54,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加实验题目</span></td>
+                                                                    class="STYLE1">实现题修改</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -78,40 +77,35 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
+                                            <input name="id" id="id" type="hidden" value="${experimentSubject.id}">
                                             <tr>
-                                                <td nowrap align="right">题目名字:</td>
+                                                <td nowrap align="right">实现题名称:</td>
                                                 <td nowrap>
-                                                    <input name="questionName"  class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isAccount" />
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-
+                                                    <input name="name" id="name" value="${experimentSubject.name}" onblur=""
+                                                           class="text" style="width:154px" maxlength="20"/>
+                                                    <span style="color:red;">*</span>
                                                 </td>
-
-                                            </tr>
-
                                             <tr>
-                                                <td nowrap align="right">题目内容:</td>
-                                                <td nowrap>
-                                                    <textarea name="questionContent"style="width: 50%;height:100px">
-                                                    </textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" ></span>
-                                                </td>
-
-                                            </tr>
                                             <tr>
-                                                <td nowrap align="right">答案:</td>
-                                                <td nowrap>
-                                                    <textarea name="answerContent" style="width: 50%;height:100px">
-                                                    </textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" ></span>
+                                                <td nowrap align="right">实现题内容:</td>
+                                                <td nowrap align="left">
+                                                    <div id="innerId">
+                                                        <span>
+                                                            <textarea id= "substance" name="substance" style="WIDTH: 90%; height: 300px"
+                                                                      rows="20" cols="90"tabIndex="2">
+                                                                ${experimentSubject.substance}
+                                                            </textarea>
+                                                        </span>
+                                                        <script type="text/javascript" src="../../../../js/ueditor/ueditor.config.js"></script>
+                                                        <script type="text/javascript" src="../../../../js/ueditor/ueditor.all.js"></script>
+                                                        <link type="text/css" href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
+                                                        <script type="text/javascript" charset="utf-8">
+                                                            var editor = new baidu.editor.ui.Editor();
+                                                            editor.render('substance');
+                                                        </script>
+                                                    </div>
                                                 </td>
-
                                             </tr>
-
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -134,10 +128,12 @@
             <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
         </tr>
         <tr>
-            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"
-                                                                                  width="17" height="17"/></td>
-            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                 width="100%" height="17"></td>
+            <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
+                    src="../../../../images/buttom_left2.gif"
+                    width="17" height="17"/></td>
+            <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img
+                    src="../../../../images/buttom_bgs.gif"
+                    width="100%" height="17"></td>
             <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>

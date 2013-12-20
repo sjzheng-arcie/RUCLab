@@ -62,7 +62,7 @@ public class TypeCodeController {
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Typecode typecode = typeService.selectByPrimerKey(id);
+        Typecode typecode = typeService.selectByPrimaryKey(id);
         ModelAndView mav = new ModelAndView("/equipment/jsp/sys/typecode/update");
         mav.addObject("typecode", typecode);
         return mav;

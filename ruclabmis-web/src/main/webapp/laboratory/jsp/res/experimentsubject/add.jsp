@@ -1,10 +1,19 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        if (!validator(document.mainForm)) {
+            return;
+        }
+        document.mainForm.action = "add";
+        document.mainForm.submit();
     }
 
 </script>
@@ -20,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">基础信息管理 > 学生信息管理</div>
+                            <div class="titlebt">教学资源管理 > 实现题管理</div>
                         </td>
                     </tr>
                 </table>
@@ -30,7 +39,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -48,13 +57,13 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">教材信息修改</span></td>
+                                                                    class="STYLE1">实现题添加</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
                                                 <td>
-                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                            class="STYLE1"> &nbsp;</span></div>
+                                                    <div align="right"><span class="STYLE1"></span><span
+                                                            class="STYLE1"> </span></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -72,51 +81,32 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">教材编号:</td>
+                                                <td nowrap align="right">实现题名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" v/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">教材名称:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
+                                                    <input name="name" id="name" value="" onblur="" class="text"
+                                                           style="width:400px"/>
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">作者:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
+                                                <td nowrap align="right">实现题内容:</td>
+                                                <td nowrap align="left">
+                                                    <div id="innerId">
+                                                        <span>
+                                                            <textarea id= "substance" name="substance" style="WIDTH: 90%; height: 300px"
+                                                                      rows="20" cols="90"tabIndex="2">
+                                                            </textarea>
+                                                        </span>
+                                                        <script type="text/javascript" src="../../../../js/ueditor/ueditor.config.js"></script>
+                                                        <script type="text/javascript" src="../../../../js/ueditor/ueditor.all.js"></script>
+                                                        <link type="text/css" href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
+                                                        <script type="text/javascript" charset="utf-8">
+                                                            var editor = new baidu.editor.ui.Editor();
+                                                            editor.render('substance');
+                                                        </script>
+                                                    </div>
                                                 </td>
-                                                <td nowrap align="right">出版年份:</td>
-                                                <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
-                                                </td>
-
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">用途:</td>
-                                                <td nowrap>
-                                                    <input type="Password" name="us_spwd" id="us_spwd" class="text"
-                                                           style="width:154px"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
-                                                </td>
-
-
-                                            </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -136,7 +126,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

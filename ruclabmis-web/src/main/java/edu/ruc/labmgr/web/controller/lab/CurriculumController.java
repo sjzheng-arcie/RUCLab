@@ -69,7 +69,7 @@ public class CurriculumController {
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Curriculum curriculum = curriculumService.selectByPrimerKey(id);
+        Curriculum curriculum = curriculumService.selectByPrimaryKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/curriculum/update");
         List<Major> majors = serviceMajor.selectAllMajors();
         List<Classif> examTypes = serviceClassif.getItemsByParentID(Types.ClassifType.EXAM_TYPE.getValue());

@@ -44,7 +44,7 @@ public class MajorController {
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Major major = majorService.selectByPrimerKey(id);
+        Major major = majorService.selectByPrimaryKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/major/update");
         mav.addObject("major", major);
         return mav;

@@ -61,7 +61,7 @@ public class TypeCodeService {
         return result;
     }
 
-    public Typecode selectByPrimerKey(int id) {
+    public Typecode selectByPrimaryKey(int id) {
         Typecode title = null;
         title = typeMapper.selectByPrimaryKey(id);
         return title;

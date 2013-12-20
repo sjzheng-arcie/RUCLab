@@ -3,14 +3,14 @@ package edu.ruc.labmgr.domain;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ExperimentQuestionCriteria {
+public class ExperimentSubjectCriteria {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public ExperimentQuestionCriteria() {
+    public ExperimentSubjectCriteria() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -164,66 +164,6 @@ public class ExperimentQuestionCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdIsNull() {
-            addCriterion("experiment_instructions_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdIsNotNull() {
-            addCriterion("experiment_instructions_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id =", value, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdNotEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id <>", value, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdGreaterThan(Integer value) {
-            addCriterion("experiment_instructions_id >", value, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id >=", value, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdLessThan(Integer value) {
-            addCriterion("experiment_instructions_id <", value, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdLessThanOrEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id <=", value, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdIn(List<Integer> values) {
-            addCriterion("experiment_instructions_id in", values, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdNotIn(List<Integer> values) {
-            addCriterion("experiment_instructions_id not in", values, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdBetween(Integer value1, Integer value2) {
-            addCriterion("experiment_instructions_id between", value1, value2, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
-        public Criteria andExperimentInstructionsIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("experiment_instructions_id not between", value1, value2, "experimentInstructionsId");
-            return (Criteria) this;
-        }
-
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;
@@ -291,66 +231,6 @@ public class ExperimentQuestionCriteria {
 
         public Criteria andNameNotBetween(String value1, String value2) {
             addCriterion("name not between", value1, value2, "name");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormIsNull() {
-            addCriterion("report_form is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormIsNotNull() {
-            addCriterion("report_form is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormEqualTo(Short value) {
-            addCriterion("report_form =", value, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormNotEqualTo(Short value) {
-            addCriterion("report_form <>", value, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormGreaterThan(Short value) {
-            addCriterion("report_form >", value, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormGreaterThanOrEqualTo(Short value) {
-            addCriterion("report_form >=", value, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormLessThan(Short value) {
-            addCriterion("report_form <", value, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormLessThanOrEqualTo(Short value) {
-            addCriterion("report_form <=", value, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormIn(List<Short> values) {
-            addCriterion("report_form in", values, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormNotIn(List<Short> values) {
-            addCriterion("report_form not in", values, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormBetween(Short value1, Short value2) {
-            addCriterion("report_form between", value1, value2, "reportForm");
-            return (Criteria) this;
-        }
-
-        public Criteria andReportFormNotBetween(Short value1, Short value2) {
-            addCriterion("report_form not between", value1, value2, "reportForm");
             return (Criteria) this;
         }
 
@@ -424,73 +304,73 @@ public class ExperimentQuestionCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andAnswerIsNull() {
-            addCriterion("answer is null");
+        public Criteria andRemarkIsNull() {
+            addCriterion("remark is null");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerIsNotNull() {
-            addCriterion("answer is not null");
+        public Criteria andRemarkIsNotNull() {
+            addCriterion("remark is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerEqualTo(String value) {
-            addCriterion("answer =", value, "answer");
+        public Criteria andRemarkEqualTo(String value) {
+            addCriterion("remark =", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerNotEqualTo(String value) {
-            addCriterion("answer <>", value, "answer");
+        public Criteria andRemarkNotEqualTo(String value) {
+            addCriterion("remark <>", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerGreaterThan(String value) {
-            addCriterion("answer >", value, "answer");
+        public Criteria andRemarkGreaterThan(String value) {
+            addCriterion("remark >", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerGreaterThanOrEqualTo(String value) {
-            addCriterion("answer >=", value, "answer");
+        public Criteria andRemarkGreaterThanOrEqualTo(String value) {
+            addCriterion("remark >=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerLessThan(String value) {
-            addCriterion("answer <", value, "answer");
+        public Criteria andRemarkLessThan(String value) {
+            addCriterion("remark <", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerLessThanOrEqualTo(String value) {
-            addCriterion("answer <=", value, "answer");
+        public Criteria andRemarkLessThanOrEqualTo(String value) {
+            addCriterion("remark <=", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerLike(String value) {
-            addCriterion("answer like", value, "answer");
+        public Criteria andRemarkLike(String value) {
+            addCriterion("remark like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerNotLike(String value) {
-            addCriterion("answer not like", value, "answer");
+        public Criteria andRemarkNotLike(String value) {
+            addCriterion("remark not like", value, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerIn(List<String> values) {
-            addCriterion("answer in", values, "answer");
+        public Criteria andRemarkIn(List<String> values) {
+            addCriterion("remark in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerNotIn(List<String> values) {
-            addCriterion("answer not in", values, "answer");
+        public Criteria andRemarkNotIn(List<String> values) {
+            addCriterion("remark not in", values, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerBetween(String value1, String value2) {
-            addCriterion("answer between", value1, value2, "answer");
+        public Criteria andRemarkBetween(String value1, String value2) {
+            addCriterion("remark between", value1, value2, "remark");
             return (Criteria) this;
         }
 
-        public Criteria andAnswerNotBetween(String value1, String value2) {
-            addCriterion("answer not between", value1, value2, "answer");
+        public Criteria andRemarkNotBetween(String value1, String value2) {
+            addCriterion("remark not between", value1, value2, "remark");
             return (Criteria) this;
         }
     }

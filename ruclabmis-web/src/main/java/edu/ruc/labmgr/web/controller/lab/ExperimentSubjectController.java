@@ -1,8 +1,7 @@
-package edu.ruc.labmgr.web.controller;
+package edu.ruc.labmgr.web.controller.lab;
 
-
-import edu.ruc.labmgr.domain.Title;
-import edu.ruc.labmgr.service.TitleService;
+import edu.ruc.labmgr.domain.ExperimentSubject;
+import edu.ruc.labmgr.service.ExperimentSubjectService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,55 +10,52 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
-import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 @Controller
-@RequestMapping("/laboratory/jsp/bas/title")
-public class TitleController {
+@RequestMapping("/laboratory/jsp/res/experimentsubject")
+public class ExperimentSubjectController {
     @Autowired
-    TitleService titleService;
+    ExperimentSubjectService experimentSubjectService;
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchName", required = false) String name,
-                                 @RequestParam(value = "searchRank", required = false) String rank,
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/list");
-        PageInfo<Title> pageInfo = titleService.selectListPage(name, rank, page);
+        ModelAndView mav = new ModelAndView("laboratory/jsp/res/experimentsubject/list");
+        PageInfo<ExperimentSubject> pageInfo = experimentSubjectService.selectListPage(name,  page);
         mav.addObject("pageInfo", pageInfo);
         return mav;
-
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
-        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/add");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/res/experimentsubject/add");
         return mav;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(Title title) {
-        titleService.insert(title);
-        return "redirect:/laboratory/jsp/bas/title/list";
+    public String add(ExperimentSubject experimentSubject) {
+        experimentSubjectService.insert(experimentSubject);
+        return "redirect:/laboratory/jsp/res/experimentsubject/list";
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Title title = titleService.selectByPrimaryKey(id);
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/title/update");
-        mav.addObject("title", title);
+        ExperimentSubject experimentSubject = experimentSubjectService.selectByPrimaryKey(id);
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentsubject/update");
+        mav.addObject("experimentSubject", experimentSubject);
         return mav;
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Title title) {
-        titleService.update(title);
-        return "redirect:/laboratory/jsp/bas/title/list";
+    public String update(ExperimentSubject experimentSubject) {
+        experimentSubjectService.update(experimentSubject);
+        return "redirect:/laboratory/jsp/res/experimentsubject/list";
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) {
-        titleService.delete(items);
-        return "redirect:/laboratory/jsp/bas/title/list";
+        experimentSubjectService.delete(items);
+        return "redirect:/laboratory/jsp/res/experimentsubject/list";
     }
 }

@@ -46,7 +46,7 @@ public class PositionController {
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
-        Position position = positionService.selectByPrimerKey(id);
+        Position position = positionService.selectByPrimaryKey(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/position/update");
         mav.addObject("position", position);
         return mav;

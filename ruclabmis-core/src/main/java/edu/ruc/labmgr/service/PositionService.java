@@ -50,7 +50,7 @@ public class PositionService {
         return result;
     }
 
-    public Position selectByPrimerKey(int id) {
+    public Position selectByPrimaryKey(int id) {
         Position Position = null;
         Position = positionMapper.selectByPrimaryKey(id);
         return Position;

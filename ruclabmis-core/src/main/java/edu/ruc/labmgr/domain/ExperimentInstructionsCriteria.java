@@ -164,66 +164,6 @@ public class ExperimentInstructionsCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andIsuploadIsNull() {
-            addCriterion("isUpload is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadIsNotNull() {
-            addCriterion("isUpload is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadEqualTo(Boolean value) {
-            addCriterion("isUpload =", value, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadNotEqualTo(Boolean value) {
-            addCriterion("isUpload <>", value, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadGreaterThan(Boolean value) {
-            addCriterion("isUpload >", value, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadGreaterThanOrEqualTo(Boolean value) {
-            addCriterion("isUpload >=", value, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadLessThan(Boolean value) {
-            addCriterion("isUpload <", value, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadLessThanOrEqualTo(Boolean value) {
-            addCriterion("isUpload <=", value, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadIn(List<Boolean> values) {
-            addCriterion("isUpload in", values, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadNotIn(List<Boolean> values) {
-            addCriterion("isUpload not in", values, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadBetween(Boolean value1, Boolean value2) {
-            addCriterion("isUpload between", value1, value2, "isupload");
-            return (Criteria) this;
-        }
-
-        public Criteria andIsuploadNotBetween(Boolean value1, Boolean value2) {
-            addCriterion("isUpload not between", value1, value2, "isupload");
-            return (Criteria) this;
-        }
-
         public Criteria andNameIsNull() {
             addCriterion("name is null");
             return (Criteria) this;
