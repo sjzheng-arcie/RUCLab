@@ -117,42 +117,6 @@
                                                         <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">工作台01</td>
-                                                    <td><a href="toUpdate?id=${item.id}">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">工作台02</td>
-                                                    <td><a href="toUpdate?id=${item.id}">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">工作台03</td>
-                                                    <td><a href="toUpdate?id=${item.id}">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-                                                    <td title="">工作台04</td>
-                                                    <td><a href="toUpdate?id=${item.id}">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-                                                </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
@@ -160,7 +124,7 @@
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.name}</td>
-                                                        <td><a href="toUpdate?id=${item.id}">
+                                                        <td><a href="toupdate?id=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>

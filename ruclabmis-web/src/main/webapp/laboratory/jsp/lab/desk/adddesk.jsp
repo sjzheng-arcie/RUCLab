@@ -23,7 +23,7 @@
 
         if( id != "") //有父窗体则刷新父窗体，关闭自己
         {
-            document.forms["listForm"].action = "addroom?questionId="+id+"&items=" + selectedItems;
+            document.forms["listForm"].action = "addtolaboratory?items=" + selectedItems;
             document.forms["listForm"].submit();
 
             window.opener.location.href=window.opener.location.href;
@@ -31,7 +31,7 @@
         }
         else //无父窗体则跳转至表单页面
         {
-            document.forms["listForm"].action = "toApply?items=" + selectedItems;
+            document.forms["listForm"].action = "addtolaboratory?items=" + selectedItems;
             document.forms["listForm"].submit();
         }
 
@@ -68,8 +68,8 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-                            <span style="white-space:nowrap">&nbsp;&nbsp;实验房间名称:<input type="text" name="deviceName"
-                                                                                     id="deviceName" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;房间名称:<input type="text" name="roomName"
+                                                                                     id="roomName" value=""
                                                                                      style="width:100px;"/></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;
                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
@@ -124,23 +124,11 @@
                                                         </div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">房间名称</span></div>
+                                                        <div align="center"><span class="STYLE10">工作台名称</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">类型</span></div>
+                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">描述</span></div>
-                                                    </td>
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20">
-                                                        <input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/>
-                                                    </td>
-                                                    <td title="">实验房间一</td>
-                                                    <td title="">实验房间</td>
-                                                    <td title="">我这里是描述</td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -149,8 +137,11 @@
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.type}</td>
-                                                        <td>${item.description}</td>
+                                                        <td><a href="toupdate?id=${item.id}">
+                                                            <img src="../../../../images/edit_min.gif" width="10"
+                                                                 height="10" border="0"/>
+                                                        </a></td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

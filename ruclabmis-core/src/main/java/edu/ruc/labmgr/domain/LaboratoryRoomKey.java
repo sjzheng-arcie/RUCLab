@@ -5,6 +5,16 @@ public class LaboratoryRoomKey {
 
     private Integer laboratoryId;
 
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	private Room room;
+
     public Integer getLaboratoryRoomId() {
         return laboratoryRoomId;
     }

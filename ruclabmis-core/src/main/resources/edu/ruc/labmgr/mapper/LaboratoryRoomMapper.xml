@@ -4,6 +4,8 @@
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.LaboratoryRoomKey">
         <id column="laboratory_room_id" property="laboratoryRoomId" jdbcType="INTEGER"/>
         <id column="laboratory_id" property="laboratoryId" jdbcType="INTEGER"/>
+        <association column="laboratory_room_id" javaType="Room" property="room"
+                     select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>

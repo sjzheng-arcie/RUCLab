@@ -100,13 +100,13 @@
                                                              style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                             <p align="left" style="font-size: 12px">
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/message?page=0&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/message?page=0&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/readmessage?page=0&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/readmessage?page=0&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/mysendmessage?page=0&&fatherPage=mysendmessage">我发送的消息</a>
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/mysendmessage?page=0&&fatherPage=mysendmessage">我发送的消息</a>
                                                             </p>
                                                         </div>
                                                         <hr size="0" class="hr1">
@@ -124,21 +124,20 @@
                                                                         </p>
                                                                         <c:if test="${item.ifread==true}">
 
-                                                                            <p align="left">${item.content}</p>
+                                                                            <div align="left">${item.content}</div>
                                                                         </c:if>
                                                                         <c:if test="${item.ifread==false}">
-                                                                            <p align="left"
-                                                                               style="font-weight: bold ">${item.content}</p>
+                                                                            <div align="left" style="font-weight: bold ">${item.content}</div>
                                                                         </c:if>
                                                                         <p align="left" style="font-size: 12px">
                                                                             <a class="A_See"
-                                                                               href="/messagecenter/laboratory/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}&&fatherPage=${fatherPage}">查看详细></a>
+                                                                               href="/messagecenter/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}&&fatherPage=${fatherPage}">查看详细></a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See"
                                                                                                         target="_parent"
-                                                                                                        href="/messagecenter/laboratory/jsp/announcement/remind/replyMessage?replyFlag=${item.sender.sn}">回复</a>
+                                                                                                        href="/messagecenter/equipment/jsp/announcement/remind/replyMessage?replyFlag=${item.sender.sn}">回复</a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See"
                                                                                                         target="_parent"
-                                                                                                        href="/messagecenter/laboratory/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
+                                                                                                        href="/messagecenter/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
                                                                         </p>
                                                                         <hr size="0"
                                                                             style="  border:none; border-bottom:1px dashed #ccc;">
@@ -159,10 +158,10 @@
                                                                         <p align="left">${item.content}</p>
                                                                         <p align="left" style="font-size: 12px"><a
                                                                                 class="A_See"
-                                                                                href="/messagecenter/laboratory/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>
+                                                                                href="/messagecenter/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp
                                                                             <a class="A_See"
-                                                                               href="/messagecenter/laboratory/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
+                                                                               href="/messagecenter/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
                                                                         </p>
                                                                         <hr size="0"
                                                                             style="  border:none; border-bottom:1px dashed #ccc;">

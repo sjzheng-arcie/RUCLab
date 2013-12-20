@@ -6,10 +6,11 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
-    function save() {
-        document.mainForm.action = "list";
+    function save(){
+        document.mainForm.action = "update";
         document.mainForm.submit();
     }
+
 
 </script>
 </head>
@@ -73,6 +74,8 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
+                                        <input type="hidden" id="deskId" name="deskId"value="${deskInfo.id}"/>
+                                        <input type="hidden" id="roomId" name="roomId"value="${roomInfo.id}"/>
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
@@ -81,17 +84,23 @@
                                                 <td nowrap align="right">工作台名称:</td>
                                                 <td nowrap>
                                                     <input class="text" style="width:154px" maxlength="20"
-                                                           name="houseName" id="houseName"
-                                                           valid="required|isAccount"/>
+                                                           name="deskName" id="deskName" value="${deskInfo.name}"
+                                                           valid="required" errmsg="工作台名称不能为空！"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_house_name"></span>
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td nowrap align="right">所属房间:</td>
+                                                <td nowrap>
+                                                    <input name="roomName" value="${deskInfo.name}" disabled="no" readonly>
+                                                </td>
+
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">详细情况：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="theDescription"id="theDescription" style="width:70%;height:100">
-                                                    </textarea>
+                                                    <textarea  name="deskDescription"id="deskDescription" style="width:70%;height:100px">${deskInfo.description}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

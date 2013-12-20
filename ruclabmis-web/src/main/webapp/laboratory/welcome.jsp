@@ -45,12 +45,9 @@
                     <c:forEach items="${announcementList}" var="item">
                         <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
                             <a style="max-width: 200px"
-                               href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
+                               href="/laboratory/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
                         </li>
-
                     </c:forEach>
-
-
                 </ul>
             </div>
         </div>
@@ -61,14 +58,9 @@
                 <ul>
                     <c:forEach items="${messageList}" var="item">
                         <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
-
-                            <a id="aa" style="max-width: 200px"
-                               href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
-
+                            <a style="max-width: 200px"href="/laboratory/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
                         </li>
-
                     </c:forEach>
-
                 </ul>
             </div>
         </div>

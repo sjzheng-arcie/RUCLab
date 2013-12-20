@@ -44,4 +44,8 @@ public class LaboratoryService {
 		page.setData(data);
 		return page;
 	}
+	public List<Laboratory> getAllLaboratory(){
+		List<Laboratory> laboratoryList=laboratoryMapper.selectByExample(null);
+		return laboratoryList;
+	}
 }

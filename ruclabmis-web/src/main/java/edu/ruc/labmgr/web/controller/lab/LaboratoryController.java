@@ -1,10 +1,9 @@
 package edu.ruc.labmgr.web.controller.lab;
 
-import edu.ruc.labmgr.domain.Laboratory;
-import edu.ruc.labmgr.domain.LaboratoryCriteria;
-import edu.ruc.labmgr.domain.Teacher;
-import edu.ruc.labmgr.domain.User;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.LaboratoryRoomService;
 import edu.ruc.labmgr.service.LaboratoryService;
+import edu.ruc.labmgr.service.RoomService;
 import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
+
 import java.util.List;
 
 /**
@@ -27,6 +27,10 @@ import java.util.List;
 public class LaboratoryController {
 	@Autowired
 	private LaboratoryService laboratoryService;
+	@Autowired
+	private RoomService roomService;
+	@Autowired
+	private LaboratoryRoomService laboratoryRoomServiceService;
 	@Autowired
 	private TeacherService userService;
 
@@ -89,10 +93,70 @@ public class LaboratoryController {
 	}
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String delete( @RequestParam int id){
-		laboratoryService.deleteById(id);
 
+
+		LaboratoryRoomCriteria laboratoryRoomCriteria =new LaboratoryRoomCriteria();
+		LaboratoryRoomCriteria.Criteria criteria=laboratoryRoomCriteria.createCriteria();
+		criteria.andLaboratoryIdEqualTo(id);
+		laboratoryRoomServiceService.deleteByCriteria(laboratoryRoomCriteria);
+		laboratoryService.deleteById(id);
 		String mdl="redirect:/laboratory/jsp/lab/lab/list";
 		return mdl;
+	}
+	@RequestMapping(value = "/roomlist", method = (RequestMethod.GET))
+	public ModelAndView roomList(@RequestParam(value = "id", required = true, defaultValue = "1") int id,
+								 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
+
+		Laboratory laboratory = laboratoryService.getLaboratoryById(id);
+
+		LaboratoryRoomCriteria laboratoryRoomCriteria=new LaboratoryRoomCriteria();
+		LaboratoryRoomCriteria.Criteria criteria=laboratoryRoomCriteria.createCriteria();
+		criteria.andLaboratoryIdEqualTo(id);
+		PageInfo<LaboratoryRoomKey> pageInfo=laboratoryRoomServiceService.selectListPage(laboratoryRoomCriteria,page);
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/lab/roomlist");
+		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("laboratoryInfo",laboratory);
+		return modelAndView;
+	}
+	@RequestMapping(value = "/addroom", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView addRoom(@RequestParam(value = "laboratoryId", required = true, defaultValue = "1") int id,
+								@RequestParam(value = "roomName", required = false, defaultValue = "") String roomName,
+								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
+
+		Laboratory laboratory = laboratoryService.getLaboratoryById(id);
+		RoomCriteria roomCriteria = new RoomCriteria();
+		RoomCriteria.Criteria criteria = roomCriteria.createCriteria();
+		criteria.andNameLike("%"+roomName+"%");
+		PageInfo<Room> pageInfo = roomService.selectListPage(roomCriteria ,page);
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/lab/addroom");
+		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("laboratoryInfo",laboratory);
+		return modelAndView;
+	}
+	@RequestMapping(value = "/addtolaboratory", method = {RequestMethod.GET,RequestMethod.POST})
+	public String addToLaboratory(@RequestParam(value = "laboratoryId", required = true, defaultValue = "1") int id,
+										@RequestParam("items") List<Integer> items){
+
+
+		for(int i=0;i<items.size();i++){
+			LaboratoryRoomKey laboratoryRoomKey=new LaboratoryRoomKey();
+			laboratoryRoomKey.setLaboratoryRoomId(items.get(i));
+			laboratoryRoomKey.setLaboratoryId(id);
+			laboratoryRoomServiceService.insertLaboratoryRoomKey(laboratoryRoomKey);
+		}
+
+		return "redirect:/laboratory/jsp/lab/lab/addroom?laboratoryId="+id+"&page=0";
+
+	}
+	@RequestMapping(value="/remove",method=RequestMethod.GET)
+	public String delete( @RequestParam int roomId,
+						  @RequestParam int laboratoryId){
+		LaboratoryRoomKey laboratoryRoomKey = new LaboratoryRoomKey();
+		laboratoryRoomKey.setLaboratoryId(laboratoryId);
+		laboratoryRoomKey.setLaboratoryRoomId(roomId);
+		laboratoryRoomServiceService.delete(laboratoryRoomKey);
+
+		return "redirect:/laboratory/jsp/lab/lab/roomlist?id="+laboratoryId+"&page=0";
 	}
 }
 

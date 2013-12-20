@@ -1,6 +1,8 @@
 package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.DeskService;
+import edu.ruc.labmgr.service.LaboratoryRoomService;
 import edu.ruc.labmgr.service.RoomService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,8 @@ import java.util.List;
 public class RoomController {
 	@Autowired
 	private RoomService roomService;
+	@Autowired
+	private DeskService deskService;
 
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView list(@RequestParam(required = false,defaultValue = "") String roomName,
@@ -88,5 +92,6 @@ public class RoomController {
 		String mdl="redirect:/laboratory/jsp/lab/house/list";
 		return mdl;
 	}
+
 
 }

@@ -111,9 +111,6 @@
                             <div align="center"><span class="STYLE10">负责人</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">工作台</span></div>
-                        </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">实验房间</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -134,9 +131,7 @@
                             </td>
                             <td height="20">${item.name}</td>
                             <td>${item.director.name}</td>
-
-                            <td title=""><a href="/laboratory/jsp/lab/desk/list?laboratory_id=${item.id}" class="button">工作台</a></td>
-                            <td><a href="/laboratory/jsp/lab/lab/addroom?laboratory_id=${item.id}"  class="button">实验房间</a></td>
+                            <td><a href="/laboratory/jsp/lab/lab/roomlist?id=${item.id}"  class="button">实验房间</a></td>
                             <td>${item.description}</td>
                             <td><a href="/laboratory/jsp/lab/lab/update?id=${item.id}">
                                 <img src="../../../../images/edit_min.gif" width="10"

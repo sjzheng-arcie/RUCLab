@@ -4,7 +4,7 @@
 <head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-<script src="../../../js/valid.js" type=text/javascript></script>
+<script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
 <script>
     function addEquipment(){
         document.mainForm.action = "add";
@@ -73,6 +73,7 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
+                                        <input type="hidden" name="roomId" id="roomId" value="${roomInfo.id}" readonly>
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
@@ -86,12 +87,15 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td nowrap align="right">所属房间:</td>
+                                                <td nowrap>
+                                                    <input name="roomName" value="${roomInfo.name}" disabled="no" readonly>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">工作台描述:</td>
                                                 <td nowrap>
-                                                    <textarea style="width: 70%;height: 100px;" name="deskDescription" id="deskDescription">
-
-                                                    </textarea>
-
+                                                    <textarea style="width: 70%;height: 100px;" name="deskDescription" id="deskDescription"></textarea>
                                                 </td>
                                             </tr>
                                         </table>
