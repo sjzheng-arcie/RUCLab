@@ -86,7 +86,6 @@
                             <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">删除</span>
                         </a>
-
 	                </span>
                                                                 </div>
                                                             </td>

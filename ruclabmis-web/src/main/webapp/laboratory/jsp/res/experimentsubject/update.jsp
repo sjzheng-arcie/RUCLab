@@ -8,6 +8,8 @@
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
+    window.UEDITOR_HOME_URL = "/js/ueditor/";
+
     function save() {
         document.mainForm.action = "update";
         document.mainForm.submit();
@@ -26,7 +28,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="positionbt">教学资源管理 > 实现题管理</div>
+                            <div class="positionbt">教学资源管理 > 实验题管理</div>
                         </td>
                     </tr>
                 </table>

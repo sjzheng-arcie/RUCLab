@@ -11,6 +11,8 @@ public class ExperimentInstructions {
 
     private String explanation;
 
+    private String documentName;
+
     private String documentPath;
 
     private Integer curriculumId;
@@ -47,6 +49,14 @@ public class ExperimentInstructions {
 
     public void setExplanation(String explanation) {
         this.explanation = explanation == null ? null : explanation.trim();
+    }
+
+    public String getDocumentName() {
+        return documentName;
+    }
+
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName;
     }
 
     public String getDocumentPath() {

@@ -19,7 +19,8 @@
                 x[i].className = "";
 
             }
-            document.getElementById(flag).className = "active";
+            if(document.getElementById(flag) != null)
+                document.getElementById(flag).className = "active";
 
             if (flag=="homePage"){
                 parent.main.location.href = "welcome";

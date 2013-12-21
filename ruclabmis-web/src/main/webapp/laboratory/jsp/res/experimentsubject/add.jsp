@@ -7,7 +7,10 @@
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
-<script>
+
+<script type="text/javascript" charset="gbk">
+    window.UEDITOR_HOME_URL = "/js/ueditor/";
+
     function save() {
         if (!validator(document.mainForm)) {
             return;
@@ -97,9 +100,9 @@
                                                                       rows="20" cols="90"tabIndex="2">
                                                             </textarea>
                                                         </span>
-                                                        <script type="text/javascript" src="../../../../js/ueditor/ueditor.config.js"></script>
-                                                        <script type="text/javascript" src="../../../../js/ueditor/ueditor.all.js"></script>
-                                                        <link type="text/css" href="../../../../js/ueditor/themes/default/css/ueditor.css"/>
+                                                        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
+                                                        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
+                                                        <link type="text/css" href="${pageContext.request.contextPath}/js/ueditor/themes/default/css/ueditor.css"/>
                                                         <script type="text/javascript" charset="utf-8">
                                                             var editor = new baidu.editor.ui.Editor();
                                                             editor.render('substance');

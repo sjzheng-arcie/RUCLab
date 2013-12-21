@@ -7,6 +7,7 @@
         <result column="purpose" property="purpose" jdbcType="VARCHAR" />
         <result column="explanation" property="explanation" jdbcType="VARCHAR" />
         <result column="document_path" property="documentPath" jdbcType="VARCHAR" />
+        <result column="document_name" property="documentName" jdbcType="VARCHAR" />
         <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
         <collection  ofType="edu.ruc.labmgr.domain.ExperimentSubject" property="subjects">
             <id column="subject_id" property="id" jdbcType="INTEGER"/>
@@ -74,7 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, name, purpose, explanation, document_path, curriculum_id,
+    id, name, purpose, explanation, document_name, document_path, curriculum_id,
      subject_id, subject_name, subject_substance, subject_remark
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentInstructionsCriteria" >
@@ -112,10 +113,10 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into experiment_instructions (name, purpose,
-        explanation, document_path, curriculum_id
+        explanation, document_name, document_path, curriculum_id
         )
         values (#{name,jdbcType=VARCHAR}, #{purpose,jdbcType=VARCHAR},
-        #{explanation,jdbcType=VARCHAR}, #{documentPath,jdbcType=VARCHAR}, #{curriculumId,jdbcType=INTEGER}
+        #{explanation,jdbcType=VARCHAR}, #{documentName,jdbcType=VARCHAR},  #{documentPath,jdbcType=VARCHAR}, #{curriculumId,jdbcType=INTEGER}
         )
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ExperimentInstructions" >
@@ -133,6 +134,9 @@
             <if test="explanation != null" >
                 explanation,
             </if>
+            <if test="documentName != null" >
+                document_name,
+            </if>
             <if test="documentPath != null" >
                 document_path,
             </if>
@@ -149,6 +153,9 @@
             </if>
             <if test="explanation != null" >
                 #{explanation,jdbcType=VARCHAR},
+            </if>
+            <if test="documentName != null" >
+                document_name,
             </if>
             <if test="documentPath != null" >
                 #{documentPath,jdbcType=VARCHAR},
@@ -179,6 +186,9 @@
             <if test="record.explanation != null" >
                 explanation = #{record.explanation,jdbcType=VARCHAR},
             </if>
+            <if test="record.documentName != null" >
+                document_name = #{record.documentName,jdbcType=VARCHAR},
+            </if>
             <if test="record.documentPath != null" >
                 document_path = #{record.documentPath,jdbcType=VARCHAR},
             </if>
@@ -196,6 +206,7 @@
         name = #{record.name,jdbcType=VARCHAR},
         purpose = #{record.purpose,jdbcType=VARCHAR},
         explanation = #{record.explanation,jdbcType=VARCHAR},
+        document_name = #{record.documentName,jdbcType=VARCHAR},
         document_path = #{record.documentPath,jdbcType=VARCHAR},
         curriculum_id = #{record.curriculumId,jdbcType=INTEGER}
         <if test="_parameter != null" >
@@ -214,6 +225,9 @@
             <if test="explanation != null" >
                 explanation = #{explanation,jdbcType=VARCHAR},
             </if>
+            <if test="documentName != null" >
+                document_name = #{documentName,jdbcType=VARCHAR},
+            </if>
             <if test="documentPath != null" >
                 document_path = #{documentPath,jdbcType=VARCHAR},
             </if>
@@ -228,6 +242,7 @@
     set name = #{name,jdbcType=VARCHAR},
       purpose = #{purpose,jdbcType=VARCHAR},
       explanation = #{explanation,jdbcType=VARCHAR},
+       document_name = #{documentName,jdbcType=VARCHAR},
       document_path = #{documentPath,jdbcType=VARCHAR},
       curriculum_id = #{curriculumId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}

@@ -4,23 +4,26 @@ package edu.ruc.labmgr.web.controller.lab;
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.Curriculum;
 import edu.ruc.labmgr.domain.ExperimentInstructions;
+import edu.ruc.labmgr.domain.ExperimentSubject;
 import edu.ruc.labmgr.service.CurriculumService;
 import edu.ruc.labmgr.service.ExperimentInstructionsService;
+import edu.ruc.labmgr.service.ExperimentSubjectService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import edu.ruc.labmgr.web.controller.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.File;
-import java.io.FileOutputStream;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 @Controller
@@ -32,6 +35,8 @@ public class ExperimentInstructionsController {
     CurriculumService curriculumService;
     @Autowired
     UserService userService;
+    @Autowired
+    ExperimentSubjectService subjectService;
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchCurriculum", required = false) Integer searchCurriculum,
@@ -58,7 +63,12 @@ public class ExperimentInstructionsController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(ExperimentInstructions experimentInstructions) {
+    public String add(ExperimentInstructions experimentInstructions, HttpServletRequest request) {
+        String filePath = "/WEB-INF/upload/generated/";
+        String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
+        String fullFilePath = uploadPath + "\\" + experimentInstructions.getDocumentName();
+        experimentInstructions.setDocumentPath(fullFilePath);
+
         experimentInstructionsService.insert(experimentInstructions);
         return "redirect:/laboratory/jsp/res/instruction/list";
     }
@@ -69,16 +79,6 @@ public class ExperimentInstructionsController {
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instruction/update");
         mav.addObject("instruction", instruction);
 
-        if(!StringUtils.isNullOrEmpty(instruction.getDocumentPath()))
-        {
-            String[] strArray =  instruction.getDocumentPath().split("\\|\\|");
-            for(int i = 0 ; i < strArray.length ; i++)
-            {
-                strArray[i] = strArray[i].substring(strArray[i].lastIndexOf('\\')+1);
-            }
-            mav.addObject("documents", strArray);
-        }
-
         List<Curriculum> curriculumList = curriculumService.selectAllCurriculums();
         mav.addObject("curriculumList", curriculumList);
 
@@ -86,7 +86,12 @@ public class ExperimentInstructionsController {
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(ExperimentInstructions experimentInstructions) {
+    public String update(ExperimentInstructions experimentInstructions, HttpServletRequest request) {
+        String filePath = "/WEB-INF/upload/generated/";
+        String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
+        String fullFilePath = uploadPath + "\\" + experimentInstructions.getDocumentName();
+        experimentInstructions.setDocumentPath(fullFilePath);
+
         experimentInstructionsService.update(experimentInstructions);
         return "redirect:/laboratory/jsp/res/instruction/list";
     }
@@ -97,61 +102,84 @@ public class ExperimentInstructionsController {
         return "redirect:/laboratory/jsp/res/instruction/list";
     }
 
-    @RequestMapping(value="/uploadFile",method=RequestMethod.POST)
-    public String uploadFile(@RequestParam("id") Integer id, MultipartFile file, HttpServletRequest request) throws Exception{
-        if (!file.isEmpty()) {
-            ExperimentInstructions instruction = experimentInstructionsService.selectByPrimaryKey(id);
+    @RequestMapping(value = "/toAddSubject", method = RequestMethod.GET)
+    public ModelAndView toAddSubject(@RequestParam("name") String name) {
+        List<ExperimentSubject> subjects = subjectService.selectAllExperimentSubjects();
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/res/instruction/addsubject");
+        mav.addObject("subjects", subjects);
+        mav.addObject("instructionName", name);
 
-            String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
-            String uploadPath=request.getSession().getServletContext().getRealPath(path);
+        return mav;
+    }
 
-            String fullFilePath = uploadPath+"\\"+file.getOriginalFilename();
-            File dir = new File(fullFilePath);
-            if (!dir.getParentFile().exists()) {
-                dir.getParentFile().mkdirs();
+    @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
+    public  @ResponseBody Result addSubject(String instructionName, String structIds, HttpServletRequest request,HttpServletResponse response){
+        Result result = null;
+        if(StringUtils.isNullOrEmpty(structIds))
+            return result;
+
+        response.setHeader("content-type", "text/html;charset=UTF-8");
+
+        try {
+            String[] subjectIdArr = structIds.split(",");
+            List<Integer> subjectIdList = new ArrayList<>();
+            for(String idStr:subjectIdArr){
+                subjectIdList.add(Integer.valueOf(idStr));
             }
 
-            FileOutputStream fileOS = new FileOutputStream(fullFilePath);
+            String filePath = "/WEB-INF/upload/generated/";
+            String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
+            String fileName = "实验-" + instructionName + "-指导书.doc";
+            String fullFilePath = uploadPath + "\\" + fileName;
+            subjectService.generateDocument(fullFilePath, subjectIdList);
 
-            fileOS.write(file.getBytes());
-            fileOS.close();
-
-            System.out.println("upload file path :" + fullFilePath);
-
-            String currDocPath = instruction.getDocumentPath();
-            String documentPath =  StringUtils.isNullOrEmpty(currDocPath) ? fullFilePath : currDocPath + "||" + fullFilePath;
-            instruction.setDocumentPath(documentPath);
-            experimentInstructionsService.update(instruction);
+            result = new Result(true, fileName);
         }
+        catch (Exception e){
+            result = new Result(false,"实验指导书生成失败!");
+        }
+        return result;
+
+    }
+
+    @RequestMapping(value="/deleteFile",method=RequestMethod.GET)
+    public String deleteFile(@RequestParam("id") Integer id) throws Exception{
+        ExperimentInstructions instruction = experimentInstructionsService.selectByPrimaryKey(id);
+        String path = instruction.getDocumentPath();
+
+        File file = new File(path);
+        if (!file.exists()) {
+            return "redirect:/laboratory/jsp/res/instruction/toUpdate?id=" + id;
+        }
+        file.delete();
+
+        instruction.setDocumentPath("");
+        instruction.setDocumentName("");
+        experimentInstructionsService.update(instruction);
+
         return "redirect:/laboratory/jsp/res/instruction/toUpdate?id=" + id;
     }
 
-    @RequestMapping(value="/deleteFile",method=RequestMethod.POST)
-    public String deleteFile(@RequestParam("id") Integer id, MultipartFile file, HttpServletRequest request) throws Exception{
-        if (!file.isEmpty()) {
-            ExperimentInstructions instruction = experimentInstructionsService.selectByPrimaryKey(id);
+    @RequestMapping(value="/downloadFile",method=RequestMethod.GET)
+    public void downloadFile(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception{
+        ExperimentInstructions instruction = experimentInstructionsService.selectByPrimaryKey(id);
+        String path = instruction.getDocumentPath();
+        String fileName = instruction.getDocumentName();
 
-            String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
-            String uploadPath=request.getSession().getServletContext().getRealPath(path);
+        response.setHeader("content-type", "text/html;charset=UTF-8");
+        response.setContentType("multipart/form-data");
+        String header = "attachment;fileName=\""+fileName + "\"";
+        response.setHeader("Content-Disposition", header);
 
-            String fullFilePath = uploadPath+"\\"+file.getOriginalFilename();
-            File dir = new File(fullFilePath);
-            if (!dir.getParentFile().exists()) {
-                dir.getParentFile().mkdirs();
-            }
-
-            FileOutputStream fileOS = new FileOutputStream(fullFilePath);
-
-            fileOS.write(file.getBytes());
-            fileOS.close();
-
-            System.out.println("upload file path :" + fullFilePath);
-
-            String currDocPath = instruction.getDocumentPath();
-            String documentPath =  StringUtils.isNullOrEmpty(currDocPath) ? fullFilePath : currDocPath + "||" + fullFilePath;
-            instruction.setDocumentPath(documentPath);
-            experimentInstructionsService.update(instruction);
+        File file=new File(path);
+        System.out.println(file.getAbsolutePath());
+        InputStream inputStream=new FileInputStream(file);
+        OutputStream os=response.getOutputStream();
+        byte[] b=new byte[2048];
+        int length;
+        while((length=inputStream.read(b))>0){
+            os.write(b,0,length);
         }
-        return "redirect:/laboratory/jsp/res/instruction/toUpdate?id=" + id;
+        inputStream.close();
     }
 }
