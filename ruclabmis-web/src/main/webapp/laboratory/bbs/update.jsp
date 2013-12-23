@@ -1,91 +1,91 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3c.org/TR/1999/REC-html401-19991224/loose.dtd">
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <HTML>
 <HEAD>
-    <TITLE>ÊµÑé½»Á÷ÂÛÌ³--ĞŞ¸ÄÌû×Ó</TITLE>
-    <META http-equiv=Content-Type content="text/html; charset=gbk">
+    <TITLE>å®éªŒäº¤æµè®ºå›--ä¿®æ”¹å¸–å­</TITLE>
+    <META http-equiv=Content-Type content="text/html; charset=UTF-8">
     <Link rel="stylesheet" type="text/css" href="style/style.css"/>
+    <script src="../../../../js/valid.js" type=text/javascript></script>
     <script type="text/javascript">
         function check() {
-            if (document.updateForm.title.value == "") {
-                alert("±êÌâ²»ÄÜÎª¿Õ");
+            if (document.postForm.title.value == "") {
+                alert("æ ‡é¢˜ä¸èƒ½ä¸ºç©º");
                 return false;
             }
-            if (document.updateForm.content.value == "") {
-                alert("ÄÚÈİ²»ÄÜÎª¿Õ");
+            if (document.postForm.content.value == "") {
+                alert("å†…å®¹ä¸èƒ½ä¸ºç©º");
                 return false;
             }
-            if (document.updateForm.content.value.length > 1000) {
-                alert("³¤¶È²»ÄÜ´óÓÚ1000");
+            if (document.postForm.content.value.length > 1000) {
+                alert("é•¿åº¦ä¸èƒ½å¤§äº1000");
                 return false;
             }
         }
+        function save() {
+            if (!validator(document.updateForm)) {
+                return;
+            }
+
+            document.updateForm.action = "updateTopic";
+            document.updateForm.submit();
+        }
     </script>
 </HEAD>
-
 <BODY>
 <DIV>
     <div id="banner" style="background-image:url('images/default/banner_mole_bg.jpg');border:0;position:relative;">
-        <div left:0px
-        ; top:0px; z-index:99px;"><img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/></div>
+        <div style="left:0px; top:0px; z-index:99px;"><img src="images/default/banner_mole_left.jpg" style="margin-left:0px;"/></div>
+    </div>
 </DIV>
-<!--      ÓÃ»§ĞÅÏ¢¡¢µÇÂ¼¡¢×¢²á        -->
-
-<DIV class="h">
-    ÄúÉĞÎ´¡¡<a href="">µÇÂ¼</a>
-    &nbsp;| &nbsp; <A href="">×¢²á</A> |
-</DIV>
-
-
-<!--      Ö÷Ìå        -->
-<DIV><BR/>
-    <!--      µ¼º½        -->
+<DIV>
     <DIV>
-        &gt;&gt;<B><a href="index.html">ÂÛÌ³Ê×Ò³</a></B>&gt;&gt;
-        <B><a href="list.html">Java»ù´¡</a></B>
-    </DIV>
-    <BR/>
-
-    <DIV>
-        <FORM name="updateForm" onSubmit="return check();" action="manage/doUpdateReply.jsp" method="post">
-            <INPUT type="hidden" name="boardId" value="8"/>
-            <INPUT type="hidden" name="replyId" value="61"/>
-
+        <FORM name="updateForm" onsubmit="return check()" action="post" method="POST">
+            <INPUT type="hidden" name="topicId" value="${bbsTopic.id}"/>
             <DIV class="t">
                 <TABLE cellSpacing="0" cellPadding="0" align="center">
-
                     <TR>
-                        <TD class="h" colSpan="3"><B>&#20462;&#25913;&#24086;&#23376;</B></TD>
+                        <TD class="h" colSpan="3"><B>ä¿®æ”¹å¸–å­</B></TD>
                     </TR>
-
                     <TR class="tr3">
-                        <TH width="20%"><B>±êÌâ</B></TH>
-                        <TH><INPUT name="title" value="ÄãºÃ" class="input" style="PADDING-LEFT: 2px; FONT: 14px Tahoma"
-                                   tabIndex="1" size="60"></TH>
+                        <TH width="20%"><B>æ ‡é¢˜</B></TH>
+                        <TH><INPUT class="input" style="PADDING-LEFT: 2px; FONT: 14px Tahoma" tabIndex="1" size="60"
+                                   name="title" value = "${bbsTopic.title}"> </TH>
                     </TR>
-
                     <TR class="tr3">
-                        <TH vAlign="top">
-                            <DIV><B>ÄÚÈİ</B></DIV>
+                        <TH vAlign=top>
+                            <DIV><B>å†…å®¹</B></DIV>
                         </TH>
-                        <TH colSpan="2">
-                            <DIV>
-                                <span><textarea name="content" style="WIDTH: 500px;" rows="20" cols="90" tabIndex="2">ÎÒÃÇÒ»ÆğÑ§</textarea></span>
-                            </DIV>
-                            (²»ÄÜ´óÓÚ:<FONT color="blue">1000</FONT>×Ö)
+                        <TH colSpan=2>
+                            <div id="innerId">
+                                                <span><textarea id="contents" style="WIDTH: 500px; height: 300px"
+                                                                name="contents" rows="20" cols="90"
+                                                                tabIndex="2" >${bbsTopic.contents} </textarea></span>
+                                <script type="text/javascript"
+                                        src="../../js/ueditor/ueditor.config.js"></script>
+
+                                <script type="text/javascript"
+                                        src="../../js/ueditor/ueditor.all.js"></script>
+
+                                <link type="text/css"
+                                      href="../../js/ueditor/themes/default/css/ueditor.css"/>
+
+                                <script type="text/javascript" charset="utf-8">
+                                    var editor = new baidu.editor.ui.Editor();
+                                    editor.render('contents');
+                                </script>
+                            </div>
                         </TH>
                     </TR>
                 </TABLE>
             </DIV>
-
             <DIV style="MARGIN: 15px 0px; TEXT-ALIGN: center">
-                <INPUT class="btn" tabIndex="3" type="submit" value="ĞŞ ¸Ä">
+                <INPUT class="btn" tabIndex="3" type="submit" value="æ äº¤" onclick="save();">
+                <INPUT class="btn" tabIndex="4" type="reset" value="é‡ ç½®" onclick="reset();">
+                <input type="button" name="return" value="è¿”å›" class="btn"
+                       onclick="window.history.go(-1);"/>
             </DIV>
         </FORM>
-
     </DIV>
-    <!--      ÉùÃ÷        -->
-    <BR/>
 </DIV>
 </BODY>
 </HTML>

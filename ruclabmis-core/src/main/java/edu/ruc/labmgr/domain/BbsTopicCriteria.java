@@ -176,7 +176,7 @@ public class BbsTopicCriteria {
         }
 
         public Criteria andSessionidEqualTo(Integer value) {
-            addCriterion("sessionId =", value, "sessionid");
+            addCriterion("bt.sessionId =", value, "sessionid");
             return (Criteria) this;
         }
 
@@ -206,7 +206,7 @@ public class BbsTopicCriteria {
         }
 
         public Criteria andSessionidIn(List<Integer> values) {
-            addCriterion("sessionId in", values, "sessionid");
+            addCriterion("bt.sessionId in", values, "sessionid");
             return (Criteria) this;
         }
 
@@ -415,52 +415,62 @@ public class BbsTopicCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTitleEqualTo(Integer value) {
+        public Criteria andTitleEqualTo(String value) {
             addCriterion("title =", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotEqualTo(Integer value) {
+        public Criteria andTitleNotEqualTo(String value) {
             addCriterion("title <>", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThan(Integer value) {
+        public Criteria andTitleGreaterThan(String value) {
             addCriterion("title >", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTitleGreaterThanOrEqualTo(String value) {
             addCriterion("title >=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThan(Integer value) {
+        public Criteria andTitleLessThan(String value) {
             addCriterion("title <", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleLessThanOrEqualTo(Integer value) {
+        public Criteria andTitleLessThanOrEqualTo(String value) {
             addCriterion("title <=", value, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleIn(List<Integer> values) {
+        public Criteria andTitleLike(String value) {
+            addCriterion("title like", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleNotLike(String value) {
+            addCriterion("title not like", value, "title");
+            return (Criteria) this;
+        }
+
+        public Criteria andTitleIn(List<String> values) {
             addCriterion("title in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotIn(List<Integer> values) {
+        public Criteria andTitleNotIn(List<String> values) {
             addCriterion("title not in", values, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleBetween(Integer value1, Integer value2) {
+        public Criteria andTitleBetween(String value1, String value2) {
             addCriterion("title between", value1, value2, "title");
             return (Criteria) this;
         }
 
-        public Criteria andTitleNotBetween(Integer value1, Integer value2) {
+        public Criteria andTitleNotBetween(String value1, String value2) {
             addCriterion("title not between", value1, value2, "title");
             return (Criteria) this;
         }
@@ -475,52 +485,62 @@ public class BbsTopicCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andContentsEqualTo(Integer value) {
+        public Criteria andContentsEqualTo(String value) {
             addCriterion("contents =", value, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsNotEqualTo(Integer value) {
+        public Criteria andContentsNotEqualTo(String value) {
             addCriterion("contents <>", value, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsGreaterThan(Integer value) {
+        public Criteria andContentsGreaterThan(String value) {
             addCriterion("contents >", value, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsGreaterThanOrEqualTo(Integer value) {
+        public Criteria andContentsGreaterThanOrEqualTo(String value) {
             addCriterion("contents >=", value, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsLessThan(Integer value) {
+        public Criteria andContentsLessThan(String value) {
             addCriterion("contents <", value, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsLessThanOrEqualTo(Integer value) {
+        public Criteria andContentsLessThanOrEqualTo(String value) {
             addCriterion("contents <=", value, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsIn(List<Integer> values) {
+        public Criteria andContentsLike(String value) {
+            addCriterion("contents like", value, "contents");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentsNotLike(String value) {
+            addCriterion("contents not like", value, "contents");
+            return (Criteria) this;
+        }
+
+        public Criteria andContentsIn(List<String> values) {
             addCriterion("contents in", values, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsNotIn(List<Integer> values) {
+        public Criteria andContentsNotIn(List<String> values) {
             addCriterion("contents not in", values, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsBetween(Integer value1, Integer value2) {
+        public Criteria andContentsBetween(String value1, String value2) {
             addCriterion("contents between", value1, value2, "contents");
             return (Criteria) this;
         }
 
-        public Criteria andContentsNotBetween(Integer value1, Integer value2) {
+        public Criteria andContentsNotBetween(String value1, String value2) {
             addCriterion("contents not between", value1, value2, "contents");
             return (Criteria) this;
         }
@@ -824,6 +844,26 @@ public class BbsTopicCriteria {
             addCriterion("isClosed not between", value1, value2, "isclosed");
             return (Criteria) this;
         }
+		public Criteria andJoinPostUser(){
+			addCriterion("bt.uid = u.id");
+			return (Criteria) this;
+		}
+		public Criteria andJoinReplierUser(){
+			addCriterion("bt.lastRepliedUser = u.id");
+			return (Criteria) this;
+		}
+		// 帖子的查询
+		//当天热帖
+		public Criteria andTodayTopic(){
+			addCriterion("date(bt.creatTime) = curdate()");
+			return (Criteria) this;
+		}
+		//本周热帖
+		public Criteria andWeekTopic(){
+			addCriterion("YEARWEEK(date_format(bt.creatTime,'%Y-%m-%d')) = YEARWEEK(now())");
+			return (Criteria) this;
+		}
+
     }
 
     public static class Criteria extends GeneratedCriteria {

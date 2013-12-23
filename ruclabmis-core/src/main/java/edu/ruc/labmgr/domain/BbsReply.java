@@ -14,6 +14,27 @@ public class BbsReply {
     private Integer replyuserid;
 
     private Date replytime;
+	private String replyUsersn;
+	private String replyUserName;
+
+	public String getReplyUsersn() {
+		return replyUsersn;
+	}
+
+	public void setReplyUsersn(String replyUsersn) {
+		this.replyUsersn = replyUsersn;
+	}
+
+
+
+	public String getReplyUserName() {
+		return replyUserName;
+	}
+
+	public void setReplyUserName(String replyUserName) {
+		this.replyUserName = replyUserName;
+	}
+
 
     public Integer getId() {
         return id;

@@ -2,12 +2,15 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.ruc.labmgr.mapper.BbsReplyMapper" >
   <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.BbsReply" >
-    <id column="id" property="id" jdbcType="INTEGER" />
-    <result column="topicId" property="topicid" jdbcType="INTEGER" />
-    <result column="title" property="title" jdbcType="VARCHAR" />
-    <result column="content" property="content" jdbcType="VARCHAR" />
-    <result column="replyUserId" property="replyuserid" jdbcType="INTEGER" />
-    <result column="replyTime" property="replytime" jdbcType="TIMESTAMP" />
+    <id column="br_id" property="id" jdbcType="INTEGER" />
+    <result column="br_topicId" property="topicid" jdbcType="INTEGER" />
+    <result column="br_title" property="title" jdbcType="VARCHAR" />
+    <result column="br_content" property="content" jdbcType="VARCHAR" />
+    <result column="br_replyUserId" property="replyuserid" jdbcType="INTEGER" />
+    <result column="br_replyTime" property="replytime" jdbcType="TIMESTAMP" />
+      <result column="u_replyuser" property="replyUserName" jdbcType="VARCHAR" />
+      <result column="u_replySn" property="replyUsersn" jdbcType="VARCHAR" />
+
   </resultMap>
   <sql id="Criteria_Where_Clause" >
     <where >
@@ -68,7 +71,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, topicId, title, content, replyUserId, replyTime
+    br.id as br_id, br.topicId as br_topicId, br.title as br_title, br.content as br_content,
+    br.replyUserId as br_replyUserId, br.replyTime as br_replyTime
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.BbsReplyCriteria" >
     select
@@ -76,7 +80,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bbs_reply
+    ,u.name as u_replyuser ,u.sn as u_replySn from bbs_reply br,user u
     <if test="_parameter != null" >
       <include refid="Criteria_Where_Clause" />
     </if>
@@ -87,7 +91,7 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-    from bbs_reply
+    from bbs_reply br
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -150,7 +154,7 @@
     </trim>
   </insert>
   <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.BbsReplyCriteria" resultType="java.lang.Integer" >
-    select count(*) from bbs_reply
+    select count(br.id) from bbs_reply br,user u
     <if test="_parameter != null" >
       <include refid="Criteria_Where_Clause" />
     </if>
@@ -229,7 +233,7 @@
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from bbs_reply
+      ,u.name as u_replyuser ,u.sn as u_replySn from bbs_reply br,user u
     <if test="_parameter != null" >
       <include refid="Criteria_Where_Clause" />
     </if>

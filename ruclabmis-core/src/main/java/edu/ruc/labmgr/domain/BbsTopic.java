@@ -13,19 +13,40 @@ public class BbsTopic {
 
     private Integer replycount;
 
-    private Integer title;
+    private String title;
 
-    private Integer contents;
+    private String contents;
 
     private Date creattime;
 
     private Integer lastreplieduser;
 
-    private Date lastrepliedtime;
+	private Date lastrepliedtime;
 
     private Boolean istop;
 
     private Boolean isclosed;
+
+
+	private String poster;
+	private String lastreplier;
+
+	public String getLastreplier() {
+		return lastreplier;
+	}
+
+	public void setLastreplier(String lastreplier) {
+		this.lastreplier = lastreplier;
+	}
+
+	public String getPoster() {
+
+		return poster;
+	}
+
+	public void setPoster(String poster) {
+		this.poster = poster;
+	}
 
     public Integer getId() {
         return id;
@@ -67,20 +88,20 @@ public class BbsTopic {
         this.replycount = replycount;
     }
 
-    public Integer getTitle() {
+    public String getTitle() {
         return title;
     }
 
-    public void setTitle(Integer title) {
-        this.title = title;
+    public void setTitle(String title) {
+        this.title = title == null ? null : title.trim();
     }
 
-    public Integer getContents() {
+    public String getContents() {
         return contents;
     }
 
-    public void setContents(Integer contents) {
-        this.contents = contents;
+    public void setContents(String contents) {
+        this.contents = contents == null ? null : contents.trim();
     }
 
     public Date getCreattime() {

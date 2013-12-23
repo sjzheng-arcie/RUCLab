@@ -131,7 +131,7 @@
 
                         tree.addNode(0, -1, '信息学院内部交流论坛', 'frame', 'main', true);
                         <c:forEach items="${courseList}" var="item">
-                            tree.addNode(${item.curriculumId}, 0, '${item.curriculumName}', 'list?courseId=${item.curriculumId}', 'main', false);
+                            tree.addNode(${item.id}, 0, '${item.curriculumName}', 'list?courseId=${item.id}&&page=1', 'main', false);
 
                         </c:forEach>
 

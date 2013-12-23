@@ -137,7 +137,7 @@
         *margin-right: 4px;
         border: 1px solid #e6e6e6;
         padding: 2px;
-        height: 348px;
+        height: 300px;
     }
 
     .index_box_right {
@@ -147,7 +147,7 @@
         margin: 5px auto 5px 5px;
         border: 1px solid #e6e6e6;
         padding: 2px;
-        height: 348px;
+        height: 300px;
     }
 
     .index_box_main_sqtt {
@@ -254,19 +254,15 @@
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">今日热帖</div>
         <div class="index_box_main">
             <ul>
-                <li>
-                    <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="C语言上机实验报告可以下载了 ...">C语言上机实验报告可以下载了）
-                        ...</a></div>
-                    <div class="num">941</div>
-                </li>
+                <c:set var="flag" value="1"></c:set>
                 <c:forEach items="${daylyHotPostList}" var="item">
                     <li>
-                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="ico"><img src="images/default/num_${flag}.gif" width="20" height="19"/></div>
+                        <c:set var="flag" value="${flag + 1}"></c:set>
                         <div class="text">
-                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                            <a href="detail?topicId=${item.id}&&sessionId=${item.sessionid}" target="main" title="${item.title}">${item.title}</a>
                         </div>
-                        <div class="num">${item.replyNum}</div>
+                        <div class="num">${item.replycount}</div>
                     </li>
                 </c:forEach>
             </ul>
@@ -276,19 +272,15 @@
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">本周热帖</div>
         <div class="index_box_main">
             <ul>
-                <li>
-                    <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
-                    </div>
-                    <div class="num">10033</div>
-                </li>
+                <c:set var="flag" value="1"></c:set>
                 <c:forEach items="${weeklyHotPostList}" var="item">
                     <li>
-                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="ico"><img src="images/default/num_${flag}.gif" width="20" height="19"/></div>
+                        <c:set var="flag" value="${flag + 1}"></c:set>
                         <div class="text">
-                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                            <a href="detail?topicId=${item.id}&&sessionId=${item.sessionid}" target="main" title="${item.title}">${item.title}</a>
                         </div>
-                        <div class="num">${item.replyNum}</div>
+                        <div class="num">${item.replycount}</div>
                     </li>
                 </c:forEach>
             </ul>
@@ -298,19 +290,15 @@
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">最新帖子</div>
         <div class="index_box_main">
             <ul>
-                <li>
-                    <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
-                    </div>
-                    <div class="num">10033</div>
-                </li>
-                <c:forEach items="${weeklyHotPostList}" var="item">
+                <c:set var="flag" value="1"></c:set>
+                <c:forEach items="${newestTopicList}" var="item">
                     <li>
-                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="ico"><img src="images/default/num_${flag}.gif" width="20" height="19"/></div>
+                        <c:set var="flag" value="${flag + 1}"></c:set>
                         <div class="text">
-                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                            <a href="detail?topicId=${item.id}&&sessionId=${item.sessionid}" target="main" title="${item.title}">${item.title}</a>
                         </div>
-                        <div class="num">${item.replyNum}</div>
+                        <div class="num">${item.replycount}</div>
                     </li>
                 </c:forEach>
             </ul>
@@ -320,19 +308,15 @@
         <div class="index_box_menu" style="background-image:url('images/default/header_bg.gif')">最新回复</div>
         <div class="index_box_main">
             <ul>
-                <li>
-                    <div class="ico"><img src="images/default/num_1.gif" width="20" height="19"/></div>
-                    <div class="text"><a href="detail" target="main" title="谁知道怎么做一个指纹识别程序">谁知道怎么做一个指纹识别程序</a>
-                    </div>
-                    <div class="num">10033</div>
-                </li>
-                <c:forEach items="${weeklyHotPostList}" var="item">
+                <c:set var="flag" value="1"></c:set>
+                <c:forEach items="${lastReplylistList}" var="item">
                     <li>
-                        <div class="ico"><img src="images/default/num_2.gif" width="20" height="19"/></div>
+                        <div class="ico"><img src="images/default/num_${flag}.gif" width="20" height="19"/></div>
+                        <c:set var="flag" value="${flag + 1}"></c:set>
                         <div class="text">
-                            <a href="detail?id=${item.id}" target="main" title="${item.title}">${item.title}</a>
+                            <a href="detail?topicId=${item.id}&&sessionId=${item.sessionid}" target="main" title="${item.title}">${item.title}</a>
                         </div>
-                        <div class="num">${item.replyNum}</div>
+                        <div class="num">${item.replycount}</div>
                     </li>
                 </c:forEach>
             </ul>
