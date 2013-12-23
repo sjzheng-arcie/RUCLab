@@ -12,11 +12,11 @@
                 alert("标题不能为空");
                 return false;
             }
-            if (document.postForm.content.value == "") {
+            if (document.postForm.contents.value == "") {
                 alert("内容不能为空");
                 return false;
             }
-            if (document.postForm.content.value.length > 1000) {
+            if (document.postForm.contents.value.length > 1000) {
                 alert("长度不能大于1000");
                 return false;
             }
