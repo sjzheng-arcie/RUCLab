@@ -5,10 +5,11 @@
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
         <result column="difficulty" property="difficulty" jdbcType="INTEGER"/>
-        <result column="type" property="type" jdbcType="INTEGER"/>
+        <result column="difficulty_name" property="difficultyName" jdbcType="VARCHAR"/>
+        <result column="item_type" property="itemType" jdbcType="INTEGER"/>
+        <result column="type_name" property="typeName" jdbcType="VARCHAR"/>
         <result column="substance" property="substance" jdbcType="VARCHAR"/>
         <result column="answer" property="answer" jdbcType="VARCHAR"/>
-        <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER"/>
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>
@@ -71,7 +72,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, name, difficulty, type, substance, answer, curriculum_id
+    id, name, difficulty, difficulty_name, item_type, type_name, substance, answer
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExamItemPoolCriteria">
         select
@@ -79,7 +80,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from exam_item_pool
+        from view_exam_item_pool
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -90,7 +91,7 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from exam_item_pool
+        from view_exam_item_pool
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -108,11 +109,9 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into exam_item_pool (id, name, difficulty,
-        type, substance, answer,
-        curriculum_id)
+        item_type, substance, answer)
         values (#{id,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, #{difficulty,jdbcType=INTEGER},
-        #{type,jdbcType=INTEGER}, #{substance,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR},
-        #{curriculumId,jdbcType=INTEGER})
+        #{itemType,jdbcType=INTEGER}, #{substance,jdbcType=VARCHAR}, #{answer,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ExamItemPool">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
@@ -129,17 +128,14 @@
             <if test="difficulty != null">
                 difficulty,
             </if>
-            <if test="type != null">
-                type,
+            <if test="itemType != null">
+                item_type,
             </if>
             <if test="substance != null">
                 substance,
             </if>
             <if test="answer != null">
                 answer,
-            </if>
-            <if test="curriculumId != null">
-                curriculum_id,
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -152,17 +148,14 @@
             <if test="difficulty != null">
                 #{difficulty,jdbcType=INTEGER},
             </if>
-            <if test="type != null">
-                #{type,jdbcType=INTEGER},
+            <if test="itemType != null">
+                #{itemType,jdbcType=INTEGER},
             </if>
             <if test="substance != null">
                 #{substance,jdbcType=VARCHAR},
             </if>
             <if test="answer != null">
                 #{answer,jdbcType=VARCHAR},
-            </if>
-            <if test="curriculumId != null">
-                #{curriculumId,jdbcType=INTEGER},
             </if>
         </trim>
     </insert>
@@ -185,17 +178,14 @@
             <if test="record.difficulty != null">
                 difficulty = #{record.difficulty,jdbcType=INTEGER},
             </if>
-            <if test="record.type != null">
-                type = #{record.type,jdbcType=INTEGER},
+            <if test="record.itemType != null">
+                item_type = #{record.itemType,jdbcType=INTEGER},
             </if>
             <if test="record.substance != null">
                 substance = #{record.substance,jdbcType=VARCHAR},
             </if>
             <if test="record.answer != null">
                 answer = #{record.answer,jdbcType=VARCHAR},
-            </if>
-            <if test="record.curriculumId != null">
-                curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
             </if>
         </set>
         <if test="_parameter != null">
@@ -207,10 +197,9 @@
         set id = #{record.id,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
         difficulty = #{record.difficulty,jdbcType=INTEGER},
-        type = #{record.type,jdbcType=INTEGER},
+        item_type = #{record.itemType,jdbcType=INTEGER},
         substance = #{record.substance,jdbcType=VARCHAR},
-        answer = #{record.answer,jdbcType=VARCHAR},
-        curriculum_id = #{record.curriculumId,jdbcType=INTEGER}
+        answer = #{record.answer,jdbcType=VARCHAR}
         <if test="_parameter != null">
             <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
@@ -224,17 +213,14 @@
             <if test="difficulty != null">
                 difficulty = #{difficulty,jdbcType=INTEGER},
             </if>
-            <if test="type != null">
-                type = #{type,jdbcType=INTEGER},
+            <if test="itemType != null">
+                item_type = #{itemType,jdbcType=INTEGER},
             </if>
             <if test="substance != null">
                 substance = #{substance,jdbcType=VARCHAR},
             </if>
             <if test="answer != null">
                 answer = #{answer,jdbcType=VARCHAR},
-            </if>
-            <if test="curriculumId != null">
-                curriculum_id = #{curriculumId,jdbcType=INTEGER},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
@@ -243,10 +229,9 @@
     update exam_item_pool
     set name = #{name,jdbcType=VARCHAR},
       difficulty = #{difficulty,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
+      item_type = #{itemType,jdbcType=INTEGER},
       substance = #{substance,jdbcType=VARCHAR},
-      answer = #{answer,jdbcType=VARCHAR},
-      curriculum_id = #{curriculumId,jdbcType=INTEGER}
+      answer = #{answer,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExamItemPoolCriteria"
@@ -256,7 +241,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from exam_item_pool
+        from view_exam_item_pool
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>

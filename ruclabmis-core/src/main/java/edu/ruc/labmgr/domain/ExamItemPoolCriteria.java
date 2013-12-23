@@ -294,63 +294,63 @@ public class ExamItemPoolCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNull() {
-            addCriterion("type is null");
+        public Criteria andItemTypeIsNull() {
+            addCriterion("item_type is null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIsNotNull() {
-            addCriterion("type is not null");
+        public Criteria andItemTypeIsNotNull() {
+            addCriterion("item_type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Integer value) {
-            addCriterion("type =", value, "type");
+        public Criteria andItemTypeEqualTo(Integer value) {
+            addCriterion("item_type =", value, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Integer value) {
-            addCriterion("type <>", value, "type");
+        public Criteria andItemTypeNotEqualTo(Integer value) {
+            addCriterion("item_type <>", value, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Integer value) {
-            addCriterion("type >", value, "type");
+        public Criteria andItemTypeGreaterThan(Integer value) {
+            addCriterion("item_type >", value, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
-            addCriterion("type >=", value, "type");
+        public Criteria andItemTypeGreaterThanOrEqualTo(Integer value) {
+            addCriterion("item_type >=", value, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Integer value) {
-            addCriterion("type <", value, "type");
+        public Criteria andItemTypeLessThan(Integer value) {
+            addCriterion("item_type <", value, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
-            addCriterion("type <=", value, "type");
+        public Criteria andItemTypeLessThanOrEqualTo(Integer value) {
+            addCriterion("item_type <=", value, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Integer> values) {
-            addCriterion("type in", values, "type");
+        public Criteria andItemTypeIn(List<Integer> values) {
+            addCriterion("item_type in", values, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Integer> values) {
-            addCriterion("type not in", values, "type");
+        public Criteria andItemTypeNotIn(List<Integer> values) {
+            addCriterion("item_type not in", values, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
-            addCriterion("type between", value1, value2, "type");
+        public Criteria andItemTypeBetween(Integer value1, Integer value2) {
+            addCriterion("item_type between", value1, value2, "item_type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
-            addCriterion("type not between", value1, value2, "type");
+        public Criteria andItemTypeNotBetween(Integer value1, Integer value2) {
+            addCriterion("item_type not between", value1, value2, "item_type");
             return (Criteria) this;
         }
 
@@ -491,66 +491,6 @@ public class ExamItemPoolCriteria {
 
         public Criteria andAnswerNotBetween(String value1, String value2) {
             addCriterion("answer not between", value1, value2, "answer");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdIsNull() {
-            addCriterion("curriculum_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdIsNotNull() {
-            addCriterion("curriculum_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdEqualTo(Integer value) {
-            addCriterion("curriculum_id =", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdNotEqualTo(Integer value) {
-            addCriterion("curriculum_id <>", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdGreaterThan(Integer value) {
-            addCriterion("curriculum_id >", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("curriculum_id >=", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdLessThan(Integer value) {
-            addCriterion("curriculum_id <", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdLessThanOrEqualTo(Integer value) {
-            addCriterion("curriculum_id <=", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdIn(List<Integer> values) {
-            addCriterion("curriculum_id in", values, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdNotIn(List<Integer> values) {
-            addCriterion("curriculum_id not in", values, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdBetween(Integer value1, Integer value2) {
-            addCriterion("curriculum_id between", value1, value2, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("curriculum_id not between", value1, value2, "curriculumId");
             return (Criteria) this;
         }
     }
