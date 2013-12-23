@@ -104,7 +104,7 @@
                                                                 <a class="A_See"
                                                                    href="/messagecenter/laboratory/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/readmessage?page=0&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/readmessage?page=1&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
                                                                    href="/messagecenter/laboratory/jsp/announcement/remind/mysendmessage?page=0&&fatherPage=mysendmessage">我发送的消息</a>
                                                             </p>

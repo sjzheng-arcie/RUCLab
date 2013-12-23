@@ -45,10 +45,10 @@
                         </tr>
                     </table>
                     <ul class="MM">
-
-                        <li><a href="jsp/task/task/leaderlist" onfocus="toFocus(this)" target="main">任务管理</a>
+                        <li><a href="jsp/task/task/teacherlist" onfocus="toFocus(this)" target="main">任务管理</a>
                         </li>
-
+                        <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务管理</a>
+                        </li>
                     </ul>
                 </div>
             </div>

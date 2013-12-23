@@ -373,13 +373,12 @@
                             <tr height="16px"></tr>
                             </table>
 
-                        <link rel="stylesheet" href="jquery.treetable.css"/>
-                        <script src="jquery.min.js"></script>
+                        <link rel="stylesheet" href="${pageContext.request.contextPath}/js/treetable/jquery.treetable.css"/>
+                        <script src="${pageContext.request.contextPath}/js/treetable/jquery.min.js"></script>
 
-                        <script src="jquery.treetable.js"></script>
+                        <script src="${pageContext.request.contextPath}/js/treetable/jquery.treetable.js"></script>
                         <script>
                             $("#treeTable").treetable({ expandable: true, initialState : "expanded"});
-
 
                         </script>
                         </div>

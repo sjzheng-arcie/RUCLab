@@ -106,7 +106,7 @@ public class MessageCenterController {
     @RequestMapping("/{system}/jsp/announcement/remind/replyMessage")
     public ModelAndView replyMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessageTab");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessage");
         mav.addObject("tabId", 3);
         mav.addObject("replySn", replySn);
         return mav;
@@ -220,7 +220,7 @@ public class MessageCenterController {
     public ModelAndView deleteMessage(@PathVariable String system,HttpServletRequest request) {
         int messageId = Integer.parseInt(request.getParameter("deleteMessageId"));
         messageService.deleteById(messageId);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messageTab");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
         mav.addObject("tabId", 1);
         return mav;
     }

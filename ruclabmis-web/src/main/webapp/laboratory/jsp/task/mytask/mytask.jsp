@@ -37,7 +37,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">考核管理 > 添加工作任务</div>
+                            <div class="titlebt">考核管理 > 我的任务详细</div>
                         </td>
                     </tr>
                 </table>
@@ -65,7 +65,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加任务</span></td>
+                                                                    class="STYLE1">任务详情</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -94,36 +94,31 @@
                                                 <td nowrap align="right">任务名称:</td>
                                                 <td nowrap>
                                                     <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_name"></span>
+                                                           style="width:154px" maxlength="20" valid="required" value="${taskInfo.taskname}"/>
                                                 </td>
                                                 <td nowrap align="right">执行人:</td>
                                                 <td nowrap>
                                                     <input name="operator" id="operator" onblur="" class="text"
                                                            style="width:154px" maxlength="20" readonly disabled="no"
                                                            value="${teacherInfo.name}"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_no"></span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">完成时间:</td>
                                                 <td nowrap>
-                                                    <input name="limitDate" id="limitDate"
-                                                           onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                           valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
-                                                           onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
-
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_limit_time"></span>
+                                                    <input name="limitDate" value="${taskInfo.limitdate}" readonly>
                                                 </td>
                                                 <td></td>
                                                 <td></td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">任务内容:</td>
-                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px"></textarea>
+                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px" readonly disabled="no">${taskInfo.content}</textarea>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">完成情况:</td>
+                                                <td colspan="3"><textarea name="completion" style="width:70%;height:100px">${taskInfo.completion}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

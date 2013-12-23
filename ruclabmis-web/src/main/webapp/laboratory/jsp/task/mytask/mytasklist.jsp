@@ -95,7 +95,9 @@
                                             <table id="hello" width="100%" class="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">序号</span></div>
+                                                    </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任务名称</span></div>
                                                     </td>
@@ -109,7 +111,7 @@
                                                         <div align="center"><span class="STYLE10">附件</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">备注</span></div>
+                                                        <div align="center"><span class="STYLE10">完成情况</span></div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">完成度</span></div>
@@ -123,42 +125,23 @@
 
                                                 </tr>
 
-
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td>实验设备部署</td>
-                                                    <td>2012-01-12</td>
-
-                                                    <td>将新购入的设备部署在实验室</td>
-
-                                                    <td>设备部署帮助手册</td>
-                                                    <td>设备易损，注意安全</td>
-                                                    <td>80%</td>
-                                                    <td>未完成</td>
-                                                    <td><a href="toUpdate?id=6">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
-
-                                                </tr>
-
+                                                <% int i = 1; %>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        <td height="20">
+                                                            <%=i++%>
                                                         </td>
-                                                        <td>${item.name}</td>
-                                                        <td>${item.limitTime}</td>
+                                                        <td>${item.taskname}</td>
+                                                        <td>${item.limitdate}</td>
                                                         <td>${item.content}</td>
-                                                        <td>${item.annex}</td>
-                                                        <td>${item.completeness}</td>
+                                                        <td>${item.annexname}</td>
+                                                        <td>${item.completion}</td>
+                                                        <td>${item.completely}</td>
                                                         <td>${item.score}</td>
-                                                        <td><a href="toUpdate?id=6">
+                                                        <td><a href="/laboratory/jsp/task/task/mytask?taskId=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
-
-
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

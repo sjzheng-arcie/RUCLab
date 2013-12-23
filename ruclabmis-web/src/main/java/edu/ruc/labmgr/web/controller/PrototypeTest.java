@@ -716,42 +716,6 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/work/add");
 		return mav;
 	}
-	@RequestMapping("jsp/task/task/leaderlist")
-	public ModelAndView leaderTaskList(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
-		return mav;
-	}
-	@RequestMapping("jsp/task/task/update")
-	public ModelAndView toUpdateTask(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/update");
-		return mav;
-	}
-	@RequestMapping("jsp/task/task/saveupdate")
-	public ModelAndView toSaveUpdateTask(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
-		return mav;
-	}
-	@RequestMapping("jsp/task/task/deleteTask")
-	public ModelAndView toDeleteTask(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
-		return mav;
-	}
-	@RequestMapping("jsp/task/task/toScore")
-	public ModelAndView toScore(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderscore");
-		return mav;
-	}
-	@RequestMapping("jsp/task/task/save")
-	public ModelAndView toSaveScore(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/task/task/leaderlist");
-		return mav;
-	}
 	@RequestMapping("jsp/res/book/list")
 	public ModelAndView bookList(HttpServletRequest request) {
 

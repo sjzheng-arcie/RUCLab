@@ -50,7 +50,7 @@
 
     </div>
     <ul class="top_right_menu">
-        <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher" >
+        <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher,leader" >
             <shiro:hasRole name="student">
                 <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
             </shiro:hasRole>

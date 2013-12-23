@@ -104,19 +104,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td align="left">
-                                                                <div id="innerId">
-                                                        <span>
-                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">
-                                                            </textarea>
-                                                        </span>
-                                                                    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
-                                                                    <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
-                                                                    <link type="text/css" href="${pageContext.request.contextPath}/js/ueditor/themes/default/css/ueditor.css"/>
-                                                                    <script type="text/javascript" charset="utf-8">
-                                                                        var editor = new baidu.editor.ui.Editor();
-                                                                        editor.render('content');
-                                                                    </script>
-                                                                </div>
+                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2"></textarea>
                                                             </td>
                                                         </tr>
                                                         <tr>
