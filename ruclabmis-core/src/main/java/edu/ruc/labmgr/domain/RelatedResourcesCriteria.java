@@ -382,73 +382,143 @@ public class RelatedResourcesCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPathIsNull() {
-            addCriterion("path is null");
+        public Criteria andDocumentNameIsNull() {
+            addCriterion("documentName is null");
             return (Criteria) this;
         }
 
-        public Criteria andPathIsNotNull() {
-            addCriterion("path is not null");
+        public Criteria andDocumentNameIsNotNull() {
+            addCriterion("documentName is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPathEqualTo(String value) {
-            addCriterion("path =", value, "path");
+        public Criteria andDocumentNameEqualTo(String value) {
+            addCriterion("documentName =", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathNotEqualTo(String value) {
-            addCriterion("path <>", value, "path");
+        public Criteria andDocumentNameNotEqualTo(String value) {
+            addCriterion("documentName <>", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathGreaterThan(String value) {
-            addCriterion("path >", value, "path");
+        public Criteria andDocumentNameGreaterThan(String value) {
+            addCriterion("documentName >", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathGreaterThanOrEqualTo(String value) {
-            addCriterion("path >=", value, "path");
+        public Criteria andDocumentNameGreaterThanOrEqualTo(String value) {
+            addCriterion("documentName >=", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathLessThan(String value) {
-            addCriterion("path <", value, "path");
+        public Criteria andDocumentNameLessThan(String value) {
+            addCriterion("documentName <", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathLessThanOrEqualTo(String value) {
-            addCriterion("path <=", value, "path");
+        public Criteria andDocumentNameLessThanOrEqualTo(String value) {
+            addCriterion("documentName <=", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathLike(String value) {
-            addCriterion("path like", value, "path");
+        public Criteria andDocumentNameLike(String value) {
+            addCriterion("documentName like", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathNotLike(String value) {
-            addCriterion("path not like", value, "path");
+        public Criteria andDocumentNameNotLike(String value) {
+            addCriterion("documentName not like", value, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathIn(List<String> values) {
-            addCriterion("path in", values, "path");
+        public Criteria andDocumentNameIn(List<String> values) {
+            addCriterion("documentName in", values, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathNotIn(List<String> values) {
-            addCriterion("path not in", values, "path");
+        public Criteria andDocumentNameNotIn(List<String> values) {
+            addCriterion("documentName not in", values, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathBetween(String value1, String value2) {
-            addCriterion("path between", value1, value2, "path");
+        public Criteria andDocumentNameBetween(String value1, String value2) {
+            addCriterion("documentName between", value1, value2, "documentName");
             return (Criteria) this;
         }
 
-        public Criteria andPathNotBetween(String value1, String value2) {
-            addCriterion("path not between", value1, value2, "path");
+        public Criteria andDocumentNameNotBetween(String value1, String value2) {
+            addCriterion("documentName not between", value1, value2, "documentName");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathIsNull() {
+            addCriterion("documentPath is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathIsNotNull() {
+            addCriterion("documentPath is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathEqualTo(String value) {
+            addCriterion("documentPath =", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotEqualTo(String value) {
+            addCriterion("documentPath <>", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathGreaterThan(String value) {
+            addCriterion("documentPath >", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathGreaterThanOrEqualTo(String value) {
+            addCriterion("documentPath >=", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathLessThan(String value) {
+            addCriterion("documentPath <", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathLessThanOrEqualTo(String value) {
+            addCriterion("documentPath <=", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathLike(String value) {
+            addCriterion("documentPath like", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotLike(String value) {
+            addCriterion("documentPath not like", value, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathIn(List<String> values) {
+            addCriterion("documentPath in", values, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotIn(List<String> values) {
+            addCriterion("documentPath not in", values, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathBetween(String value1, String value2) {
+            addCriterion("documentPath between", value1, value2, "documentPath");
+            return (Criteria) this;
+        }
+
+        public Criteria andDocumentPathNotBetween(String value1, String value2) {
+            addCriterion("documentPath not between", value1, value2, "documentPath");
             return (Criteria) this;
         }
 
@@ -522,62 +592,52 @@ public class RelatedResourcesCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonEqualTo(String value) {
+        public Criteria andUploadPersonEqualTo(Integer value) {
             addCriterion("upload_person =", value, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonNotEqualTo(String value) {
+        public Criteria andUploadPersonNotEqualTo(Integer value) {
             addCriterion("upload_person <>", value, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonGreaterThan(String value) {
+        public Criteria andUploadPersonGreaterThan(Integer value) {
             addCriterion("upload_person >", value, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonGreaterThanOrEqualTo(String value) {
+        public Criteria andUploadPersonGreaterThanOrEqualTo(Integer value) {
             addCriterion("upload_person >=", value, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonLessThan(String value) {
+        public Criteria andUploadPersonLessThan(Integer value) {
             addCriterion("upload_person <", value, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonLessThanOrEqualTo(String value) {
+        public Criteria andUploadPersonLessThanOrEqualTo(Integer value) {
             addCriterion("upload_person <=", value, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonLike(String value) {
-            addCriterion("upload_person like", value, "uploadPerson");
-            return (Criteria) this;
-        }
-
-        public Criteria andUploadPersonNotLike(String value) {
-            addCriterion("upload_person not like", value, "uploadPerson");
-            return (Criteria) this;
-        }
-
-        public Criteria andUploadPersonIn(List<String> values) {
+        public Criteria andUploadPersonIn(List<Integer> values) {
             addCriterion("upload_person in", values, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonNotIn(List<String> values) {
+        public Criteria andUploadPersonNotIn(List<Integer> values) {
             addCriterion("upload_person not in", values, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonBetween(String value1, String value2) {
+        public Criteria andUploadPersonBetween(Integer value1, Integer value2) {
             addCriterion("upload_person between", value1, value2, "uploadPerson");
             return (Criteria) this;
         }
 
-        public Criteria andUploadPersonNotBetween(String value1, String value2) {
+        public Criteria andUploadPersonNotBetween(Integer value1, Integer value2) {
             addCriterion("upload_person not between", value1, value2, "uploadPerson");
             return (Criteria) this;
         }

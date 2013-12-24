@@ -4,11 +4,15 @@
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.RelatedResources">
         <id column="id" property="id" jdbcType="INTEGER"/>
         <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER"/>
+        <result column="curriculum_name" property="curriculumName" jdbcType="VARCHAR"/>
         <result column="resource_type" property="resourceType" jdbcType="INTEGER"/>
         <result column="name" property="name" jdbcType="VARCHAR"/>
-        <result column="path" property="path" jdbcType="VARCHAR"/>
+        <result column="document_name" property="documentName" jdbcType="VARCHAR"/>
+        <result column="document_path" property="documentPath" jdbcType="VARCHAR"/>
         <result column="upload_date" property="uploadDate" jdbcType="DATE"/>
-        <result column="upload_person" property="uploadPerson" jdbcType="VARCHAR"/>
+        <result column="upload_person" property="uploadPerson" jdbcType="INTEGER"/>
+        <result column="upload_person_name" property="uploadPersonName" jdbcType="VARCHAR"/>
+        <result column="upload_person_sn" property="uploadPersonSn" jdbcType="VARCHAR"/>
         <result column="content" property="content" jdbcType="VARCHAR"/>
         <result column="download_limit" property="downloadLimit" jdbcType="BIT"/>
     </resultMap>
@@ -73,8 +77,8 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    id, curriculum_id, resource_type, name, path, upload_date, upload_person, content, 
-    download_limit
+    id, curriculum_id, curriculum_name, resource_type, name, document_name, document_path, upload_date,
+    upload_person, upload_person_name, upload_person_sn, content, download_limit
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap"
             parameterType="edu.ruc.labmgr.domain.RelatedResourcesCriteria">
@@ -83,7 +87,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from related_resources
+        from view_related_resources
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -94,7 +98,7 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
         <include refid="Base_Column_List"/>
-        from related_resources
+        from view_related_resources
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
@@ -112,12 +116,12 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into related_resources (id, curriculum_id, resource_type,
-        name, path, upload_date,
+        name, document_name, document_path, upload_date,
         upload_person, content, download_limit
         )
         values (#{id,jdbcType=INTEGER}, #{curriculumId,jdbcType=INTEGER}, #{resourceType,jdbcType=INTEGER},
-        #{name,jdbcType=VARCHAR}, #{path,jdbcType=VARCHAR}, #{uploadDate,jdbcType=DATE},
-        #{uploadPerson,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{downloadLimit,jdbcType=BIT}
+        #{name,jdbcType=VARCHAR}, #{documentName,jdbcType=VARCHAR}, #{documentPath,jdbcType=VARCHAR}, #{uploadDate,jdbcType=DATE},
+        #{uploadPerson,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, #{downloadLimit,jdbcType=BIT}
         )
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.RelatedResources">
@@ -138,8 +142,11 @@
             <if test="name != null">
                 name,
             </if>
-            <if test="path != null">
-                path,
+            <if test="documentName != null">
+                document_name,
+            </if>
+            <if test="documentPath != null">
+                document_path,
             </if>
             <if test="uploadDate != null">
                 upload_date,
@@ -167,14 +174,17 @@
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
-            <if test="path != null">
-                #{path,jdbcType=VARCHAR},
+            <if test="documentName != null">
+                #{documentName,jdbcType=VARCHAR},
+            </if>
+            <if test="documentPath != null">
+                #{documentPath,jdbcType=VARCHAR},
             </if>
             <if test="uploadDate != null">
                 #{uploadDate,jdbcType=DATE},
             </if>
             <if test="uploadPerson != null">
-                #{uploadPerson,jdbcType=VARCHAR},
+                #{uploadPerson,jdbcType=INTEGER},
             </if>
             <if test="content != null">
                 #{content,jdbcType=VARCHAR},
@@ -206,14 +216,17 @@
             <if test="record.name != null">
                 name = #{record.name,jdbcType=VARCHAR},
             </if>
-            <if test="record.path != null">
-                path = #{record.path,jdbcType=VARCHAR},
+            <if test="record.documentName != null">
+                document_name = #{record.documentName,jdbcType=VARCHAR},
+            </if>
+            <if test="record.documentPath != null">
+                document_path = #{record.documentPath,jdbcType=VARCHAR},
             </if>
             <if test="record.uploadDate != null">
                 upload_date = #{record.uploadDate,jdbcType=DATE},
             </if>
             <if test="record.uploadPerson != null">
-                upload_person = #{record.uploadPerson,jdbcType=VARCHAR},
+                upload_person = #{record.uploadPerson,jdbcType=INTEGER},
             </if>
             <if test="record.content != null">
                 content = #{record.content,jdbcType=VARCHAR},
@@ -232,9 +245,10 @@
         curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
         resource_type = #{record.resourceType,jdbcType=INTEGER},
         name = #{record.name,jdbcType=VARCHAR},
-        path = #{record.path,jdbcType=VARCHAR},
+        document_name = #{record.documentName,jdbcType=VARCHAR},
+        document_path = #{record.documentPath,jdbcType=VARCHAR},
         upload_date = #{record.uploadDate,jdbcType=DATE},
-        upload_person = #{record.uploadPerson,jdbcType=VARCHAR},
+        upload_person = #{record.uploadPerson,jdbcType=INTEGER},
         content = #{record.content,jdbcType=VARCHAR},
         download_limit = #{record.downloadLimit,jdbcType=BIT}
         <if test="_parameter != null">
@@ -253,14 +267,17 @@
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
-            <if test="path != null">
-                path = #{path,jdbcType=VARCHAR},
+            <if test="documentName != null">
+                document_name = #{documentName,jdbcType=VARCHAR},
+            </if>
+            <if test="documentPath != null">
+                document_path = #{documentPath,jdbcType=VARCHAR},
             </if>
             <if test="uploadDate != null">
                 upload_date = #{uploadDate,jdbcType=DATE},
             </if>
             <if test="uploadPerson != null">
-                upload_person = #{uploadPerson,jdbcType=VARCHAR},
+                upload_person = #{uploadPerson,jdbcType=INTEGER},
             </if>
             <if test="content != null">
                 content = #{content,jdbcType=VARCHAR},
@@ -276,9 +293,10 @@
     set curriculum_id = #{curriculumId,jdbcType=INTEGER},
       resource_type = #{resourceType,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
-      path = #{path,jdbcType=VARCHAR},
+      document_name = #{documentName,jdbcType=VARCHAR},
+      document_path = #{documentPath,jdbcType=VARCHAR},
       upload_date = #{uploadDate,jdbcType=DATE},
-      upload_person = #{uploadPerson,jdbcType=VARCHAR},
+      upload_person = #{uploadPerson,jdbcType=INTEGER},
       content = #{content,jdbcType=VARCHAR},
       download_limit = #{downloadLimit,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
@@ -290,7 +308,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        from related_resources
+        from view_related_resources
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>

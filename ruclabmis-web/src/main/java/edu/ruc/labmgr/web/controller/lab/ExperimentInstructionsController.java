@@ -127,7 +127,7 @@ public class ExperimentInstructionsController {
                 subjectIdList.add(Integer.valueOf(idStr));
             }
 
-            String filePath = "/WEB-INF/upload/generated/";
+            String filePath = "/WEB-INF/upload/instruction/generated/";
             String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
             String fileName = "实验-" + instructionName + "-指导书.doc";
             String fullFilePath = uploadPath + "\\" + fileName;
