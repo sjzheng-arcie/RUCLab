@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -84,31 +85,45 @@
                                         <td nowrap>
                                             ${taskInfo.taskname}
                                         </td>
-                                    </tr>
-                                    <tr>
+
                                         <td nowrap align="right">负责人:</td>
                                         <td nowrap>
+                                            ${taskInfo.manager.name}
 
                                         </td>
-                                        <td nowrap align="right">到期时间:</td>
+                                    </tr>
+                                    <tr>
+                                        <td nowrap align="right">截止时间:</td>
                                         <td nowrap>
-                                            2012-12-12
+                                            <fmt:formatDate value="${taskInfo.limitdate}"/>
                                         </td>
 
+                                        <td nowrap align="right">完成时间时间:</td>
+                                        <td nowrap>
+                                            <fmt:formatDate value="${taskInfo.finishdate}"/>
+                                        </td>
+
+                                    </tr>
+
+                                    <tr>
+                                        <td nowrap align="right">完成度:</td>
+                                        <td nowrap>
+                                            ${taskInfo.completely}%
+                                        </td>
                                     </tr>
 
                                     <tr>
                                         <td nowrap align="right">任务内容:</td>
 
                                         <td colspan="3">
-                                            部署新设备
+                                            ${taskInfo.content}
                                         </td>
                                     </tr>
                                     <tr>
                                         <td nowrap align="right">备注:</td>
 
                                         <td colspan="3">
-                                            由于实验室没有空位，不能一次部署完毕
+                                            ${taskInfo.completion}
                                         </td>
                                     </tr>
 
