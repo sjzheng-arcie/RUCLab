@@ -10,7 +10,7 @@
     <title>实验指导书管理</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        function editorClass(instructorId) {
+        function editItem(instructorId) {
             window.location.href = "toUpdate?id="+instructorId;
         }
 
@@ -152,12 +152,10 @@
                                                         <td>${item.explanation}</td>
                                                         <td>${item.documentName}</td>
                                                         <td>
-                                                            <input type="button" onClick="editorClass(${item.id})"
-                                                                   class="button"
-                                                                   value="编辑"/>
+                                                            <input type="button" onClick="editItem(${item.id})"
+                                                                   class="button" value="编辑"/>
                                                             <input type="button" onClick="downloadFile(${item.id})"
-                                                                   class="button"
-                                                                   value="下载"/>
+                                                                   class="button" value="下载"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

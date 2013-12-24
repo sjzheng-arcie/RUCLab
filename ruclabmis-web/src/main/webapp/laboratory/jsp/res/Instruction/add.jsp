@@ -51,11 +51,6 @@
             document.mainForm.submit();
         }
 
-        function deleteFile() {
-            var id = document.getElementById("id").value;
-            window.location.href = "deleteFile?id=" + id;
-        }
-
         function toAddSubject(){
             var fileName = document.getElementById("name").value;
             if (!fileName) {
