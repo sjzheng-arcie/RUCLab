@@ -1,20 +1,25 @@
-<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html>
-<head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/valid.js" type=text/javascript></script>
-    <script>
-        function save() {
-            document.mainForm.action = "/add";
-            document.mainForm.submit();
-        }
+<%@ page language="java" contentType="text/html;charset=UTF-8"
+         pageEncoding="UTF-8" %>
+<html xmlns="http://www.w3.org/1999/xhtml">
 
-    </script>
-</head>
+
+<link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+<script src="../../../../js/valid.js" type=text/javascript></script>
+
+<script type="text/javascript" charset="gbk">
+    window.UEDITOR_HOME_URL = "/js/ueditor/";
+
+    function save() {
+        if (!validator(document.mainForm)) {
+            return;
+        }
+        document.mainForm.action = "add";
+        document.mainForm.submit();
+    }
+
+</script>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -27,7 +32,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 试题管理</div>
+                            <div class="titlebt">教学资源管理 > 考试题管理</div>
                         </td>
                     </tr>
                 </table>
@@ -37,7 +42,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -55,13 +60,13 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加题目资源</span></td>
+                                                                    class="STYLE1">考试题添加</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
                                                 <td>
-                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                            class="STYLE1"> &nbsp;</span></div>
+                                                    <div align="right"><span class="STYLE1"></span><span
+                                                            class="STYLE1"> </span></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -79,71 +84,68 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">题目名字:</td>
-                                                <td nowrap>
-                                                    <input name="questionName" class="text" style="width:154px"
-                                                           maxlength="20"
-                                                           valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-
-                                                <td nowrap align="right">所属科目:</td>
-                                                <td nowrap>
-                                                    <input name="theCourse" onblur="" class="text" style="width:154px"
-                                                           maxlength="20" valid="required|isAccount"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;"></span>
+                                                <td  align="right">考试题名称:</td>
+                                                <td >
+                                                    <input name="name" id="name" value="" onblur="" class="text"
+                                                           style="width:400px"/>
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">题目类型:</td>
-                                                <td nowrap>
-                                                    <select name="questionType">
-                                                        <option value="0"></option>
-                                                        <c:forEach items="${typelist}" var="item">
-                                                            <option value="${item.id}">${item.value} </option>
-                                                        </c:forEach>
+                                                <td  align="right">考试题难度:</td>
+                                                <td  >
+                                                    <select id="difficulty" name="difficulty" style="width: 80px">
+                                                        <option value="1">难</option>
+                                                        <option value="2">中</option>
+                                                        <option value="3">易</option>
                                                     </select>
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">难易程度:</td>
-                                                <td nowrap>
-                                                    <select name="difficulty">
-                                                        <option value="0"></option>
-                                                        <c:forEach items="${difficultyList}" var="item">
-                                                            <option value="${item.id}">${item.value}</option>
-                                                        </c:forEach>
+                                                <td  align="right">考试题类型:</td>
+                                                <td  >
+                                                    <select id="itemType" name="itemType" style="width: 80px">
+                                                        <option value="1">单选</option>
+                                                        <option value="2">多选</option>
+                                                        <option value="3">判断</option>
+                                                        <option value="4">填空</option>
+                                                        <option value="5">简答</option>
                                                     </select>
-
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">题目内容:</td>
-                                                <td nowrap>
-                                                    <textarea name="questionContent" style="width: 50%;height:100px">
-                                                    </textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;"></span>
+                                                <td  align="right">考试题内容:</td>
+                                                <td  align="left" colspan="3">
+                                                    <div id="innerId">
+                                                        <span>
+                                                            <textarea id= "substance" name="substance"
+                                                                      style="WIDTH: 90%; height: 100px"
+                                                                      rows="20" cols="90"></textarea>
+                                                        </span>
+                                                        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
+                                                        <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
+                                                        <link type="text/css" href="${pageContext.request.contextPath}/js/ueditor/themes/default/css/ueditor.css"/>
+                                                        <script type="text/javascript" charset="utf-8">
+                                                            var editor = new baidu.editor.ui.Editor();
+                                                            editor.render('substance');
+                                                        </script>
+                                                    </div>
                                                 </td>
-
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">答案:</td>
-                                                <td nowrap>
-                                                    <textarea name="answerContent" style="width: 50%;height:100px">
-                                                    </textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;"></span>
+                                                <td  align="right">考试题答案:</td>
+                                                <td  align="left" colspan="3">
+                                                    <div>
+                                                        <span>
+                                                            <textarea id= "answer" name="answer"
+                                                                      style="WIDTH: 95%; height: 80px"
+                                                                      rows="20" cols="90"></textarea>
+                                                        </span>
+                                                    </div>
                                                 </td>
-
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>
@@ -163,7 +165,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

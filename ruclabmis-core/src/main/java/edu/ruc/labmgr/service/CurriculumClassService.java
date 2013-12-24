@@ -49,7 +49,17 @@ public class CurriculumClassService {
         }
         return getPageClassByCriteria(pageNum, criteria);
     }
-
+	public PageInfo<CurriculumClass> getPageClassbyPageNumUseQuery(String sn,String name,int pageNum, int id, Types.Role role) {
+		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+		CurriculumClassCriteria.Criteria c = criteria.or();
+		if (!StringUtils.isEmpty(sn)) {
+			c.andClassSnLike("%" + sn + "%");
+		}
+		if (!StringUtils.isEmpty(name)) {
+			c.andClassNameLike("%" + name + "%");
+		}
+		return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
+	}
     /**
      * @param id
      * @return
@@ -249,6 +259,29 @@ public class CurriculumClassService {
         }
 
     }
+	public List<Integer> getPrivateSessionIds(int id, Types.Role role){
+		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+		CurriculumClassCriteria.Criteria c = criteria.or();
+		List<CurriculumClass> data = new ArrayList<CurriculumClass>();
+		List<Integer> sessionIds = new ArrayList<Integer>();
+		if (role == Types.Role.STUDENT) {
+			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
+			data =classMapper.selectByCriteriaAndClsStudent(criteria);
+
+		} else if (role == Types.Role.ADMIN) {
+			c.andJoinCurriculum().andJoinUser();
+			data =classMapper.selectByCriteria(criteria);
+
+		} else {
+			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+			data =classMapper.selectByCriteria(criteria);
+
+		}
+		for(CurriculumClass cc : data){
+			sessionIds.add(cc.getId());
+		}
+		return sessionIds;
+	}
 	public List<CurriculumClass> getClassByCriteriaUserIdAndRole(int id, Types.Role role) {
 		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
 		CurriculumClassCriteria.Criteria c = criteria.or();

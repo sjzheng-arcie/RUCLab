@@ -56,7 +56,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">实现题修改</span></td>
+                                                                    class="STYLE1">实验题修改</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -81,7 +81,7 @@
                                                bgcolor="#E3E9EE">
                                             <input name="id" id="id" type="hidden" value="${experimentSubject.id}">
                                             <tr>
-                                                <td nowrap align="right">实现题名称:</td>
+                                                <td align="right">实验题名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="${experimentSubject.name}" onblur=""
                                                            class="text" style="width:154px" maxlength="20"/>
@@ -89,8 +89,8 @@
                                                 </td>
                                             <tr>
                                             <tr>
-                                                <td nowrap align="right">实现题内容:</td>
-                                                <td nowrap align="left">
+                                                <td align="right">实验题内容:</td>
+                                                <td align="left">
                                                     <div id="innerId">
                                                         <span>
                                                             <textarea id= "substance" name="substance" style="WIDTH: 90%; height: 300px"

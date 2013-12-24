@@ -7,13 +7,15 @@ public class ExamItemPool {
 
     private Integer difficulty;
 
-    private Integer type;
+    private String difficultyName;
+
+    private Integer itemType;
+
+    private String typeName;
 
     private String substance;
 
     private String answer;
-
-    private Integer curriculumId;
 
     public Integer getId() {
         return id;
@@ -39,12 +41,12 @@ public class ExamItemPool {
         this.difficulty = difficulty;
     }
 
-    public Integer getType() {
-        return type;
+    public Integer getItemType() {
+        return itemType;
     }
 
-    public void setType(Integer type) {
-        this.type = type;
+    public void setItemType(Integer itemType) {
+        this.itemType = itemType;
     }
 
     public String getSubstance() {
@@ -63,11 +65,19 @@ public class ExamItemPool {
         this.answer = answer == null ? null : answer.trim();
     }
 
-    public Integer getCurriculumId() {
-        return curriculumId;
+    public String getDifficultyName() {
+        return difficultyName;
     }
 
-    public void setCurriculumId(Integer curriculumId) {
-        this.curriculumId = curriculumId;
+    public void setDifficultyName(String difficultyName) {
+        this.difficultyName = difficultyName;
+    }
+
+    public String getTypeName() {
+        return typeName;
+    }
+
+    public void setTypeName(String typeName) {
+        this.typeName = typeName;
     }
 }

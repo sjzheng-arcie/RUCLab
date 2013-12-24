@@ -565,54 +565,54 @@ public class PrototypeTest {
         ModelAndView mav = new ModelAndView("/laboratory/jsp/res/experimentquestion/edit");
         return mav;
     }
-	@RequestMapping("bbs/index")
+/*	@RequestMapping("bbs/index")
 	public ModelAndView indexInIndex(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/index");
 		return mav;
-	}
+	}*/
 /*	@RequestMapping("bbs/left")
 	public ModelAndView bbsLeft(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/left");
 		return mav;
 	}*/
-	@RequestMapping("bbs/frame")
+/*	@RequestMapping("bbs/frame")
 	public ModelAndView bbsWelcome(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/frame");
 		return mav;
-	}
-	@RequestMapping("bbs/list")
+	}*/
+/*	@RequestMapping("bbs/list")
 	public ModelAndView bbsList(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/list");
 		return mav;
-	}
-	@RequestMapping("bbs/answer")
+	}*/
+/*	@RequestMapping("bbs/answer")
 	public ModelAndView bbsAnswer(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/answwer");
 		return mav;
-	}
-	@RequestMapping("bbs/detail")
+	}*/
+/*	@RequestMapping("bbs/detail")
 	public ModelAndView bbsDetail(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/detail");
 		return mav;
-	}
-	@RequestMapping("bbs/post")
+	}*/
+/*	@RequestMapping("bbs/post")
 	public ModelAndView bbsListPost(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/post");
 		return mav;
-	}
-	@RequestMapping("bbs/update")
+	}*/
+/*	@RequestMapping("bbs/update")
 	public ModelAndView bbsListUpdate(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/bbs/update");
 		return mav;
-	}
+	}*/
 	@RequestMapping("jsp/bas/teachingmaterial/list")
 	public ModelAndView teachingMaterialList(HttpServletRequest request) {
 

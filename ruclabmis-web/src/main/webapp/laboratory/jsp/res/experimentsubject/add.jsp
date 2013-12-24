@@ -32,7 +32,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学资源管理 > 实现题管理</div>
+                            <div class="titlebt">教学资源管理 > 实验题管理</div>
                         </td>
                     </tr>
                 </table>
@@ -60,7 +60,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">实现题添加</span></td>
+                                                                    class="STYLE1">实验题添加</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -84,7 +84,7 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实现题名称:</td>
+                                                <td align="right">实验题名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="" onblur="" class="text"
                                                            style="width:400px"/>
@@ -92,8 +92,8 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实现题内容:</td>
-                                                <td nowrap align="left">
+                                                <td align="right">实验题内容:</td>
+                                                <td align="left">
                                                     <div id="innerId">
                                                         <span>
                                                             <textarea id= "substance" name="substance" style="WIDTH: 90%; height: 300px"

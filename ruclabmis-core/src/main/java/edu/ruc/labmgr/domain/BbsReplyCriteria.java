@@ -176,7 +176,7 @@ public class BbsReplyCriteria {
         }
 
         public Criteria andTopicidEqualTo(Integer value) {
-            addCriterion("topicId =", value, "topicid");
+            addCriterion("br.topicId =", value, "topicid");
             return (Criteria) this;
         }
 
@@ -484,6 +484,10 @@ public class BbsReplyCriteria {
             addCriterion("replyTime not between", value1, value2, "replytime");
             return (Criteria) this;
         }
+		public Criteria andJoinReplierUser(){
+			addCriterion("br.replyUserId = u.id");
+			return (Criteria) this;
+		}
     }
 
     public static class Criteria extends GeneratedCriteria {

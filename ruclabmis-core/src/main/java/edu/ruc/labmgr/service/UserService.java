@@ -59,4 +59,16 @@ public class UserService {
 
         return teachers.get(0).getId();
     }
+	public String getUserNamebyId(int id){
+		User user = mapperUser.selectByPrimaryKey(id);
+		if (user==null)
+			return "";
+		return user.getName();
+	}
+	public String getUserSnbyId(int id){
+		User user = mapperUser.selectByPrimaryKey(id);
+		if (user==null)
+			return "";
+		return user.getSn();
+	}
 }

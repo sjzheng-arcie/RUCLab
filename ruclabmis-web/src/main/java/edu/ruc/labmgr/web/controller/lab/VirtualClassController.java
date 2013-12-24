@@ -50,11 +50,11 @@ public class VirtualClassController {
 		int id = userService.getCurrentUserId();
 		PageInfo<CurriculumClass> pageInfo = null;
 		if(currentUser.hasRole("student"))
-			pageInfo = classService.getPageClassbyPageNum(page,id, Types.Role.STUDENT);
+			pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.STUDENT);
 		else if (currentUser.hasRole("administrators"))
-			pageInfo = classService.getPageClassbyPageNum(page,id,Types.Role.ADMIN);
+			pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id,Types.Role.ADMIN);
 		else
-			pageInfo = classService.getPageClassbyPageNum(page,id, Types.Role.TEACHER);
+			pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.TEACHER);
         mv.addObject("pageInfo", pageInfo);
 		return mv;
     }
