@@ -47,7 +47,7 @@
                 return;
             }
 
-            document.mainForm.action = "update";
+            document.mainForm.action = "add";
             document.mainForm.submit();
         }
     </script>
@@ -65,7 +65,7 @@
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学资源管理 > 修改教学资源</div>
+                            <div class="titlebt">教学资源管理 > 添加教学资源</div>
                         </td>
                     </tr>
                 </table>
@@ -93,7 +93,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">修改教学资源</span></td>
+                                                                    class="STYLE1">添加教学资源</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -116,11 +116,10 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <input name="id" id="id" type="hidden" value="${relatedResource.id}">
                                             <tr>
                                                 <td align="right">教学资源名称:</td>
                                                 <td nowrap>
-                                                    <input name="name" id="name" onblur="" class="text" value="${relatedResource.name}"
+                                                    <input name="name" id="name" onblur="" class="text"
                                                            style="width:254px" maxlength="20" valid="required"
                                                            errmsg="名称不能为空!" />
                                                     <span style="color:red;">*</span>
@@ -129,8 +128,7 @@
                                                 <td nowrap>
                                                     <select name="curriculumId">
                                                         <c:forEach items="${curriculumList}" var="item">
-                                                            <option value="${item.id}"
-                                                                    <c:if test="${item.id == instruction.curriculumId}">selected </c:if> >${item.name}
+                                                            <option value="${item.id}">${item.name}
                                                             </option>
                                                         </c:forEach>
                                                     </select>
@@ -142,22 +140,22 @@
                                                 <td colspan="6">
                                                     <textarea id="content" name="content" style="width:90%;height:30px"
                                                               valid="required"
-                                                              errmsg="资源描述不能为空!">${relatedResource.content}</textarea>
+                                                              errmsg="资源描述不能为空!"></textarea>
                                                     <span style="color:red;"> *</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td align="right">附件:</td>
                                                 <td>
-                                                    <input id="documentName" name="documentName" readonly="true" value="${relatedResource.documentName}"/>
+                                                    <input id="documentName" name="documentName" readonly="true"/>
                                                     <input style="width:30%" type="file" name="file" id="file" class="bottom" value="浏览"/>
                                                     <input type="button" value="上传" class="bottom" onclick="return uploadFile();"/>
                                                 </td>
                                                 <td align="right">下载权限:</td>
                                                 <td nowrap>
                                                     <select name="downloadLimit">
-                                                        <option value="false"   <c:if test="!${relatedResource.downloadLimit}">selected </c:if> >公开</option>
-                                                        <option value="true"  <c:if test="${relatedResource.downloadLimit}">selected </c:if> >班级内部</option>
+                                                        <option value="false">公开</option>
+                                                        <option value="true">班级内部</option>
                                                     </select>
                                                     <span style="color:red;">*</span>
                                                 </td>

@@ -48,7 +48,7 @@
             marker.setAttribute("markerHeight", "10");
             marker.setAttribute("orient", "auto");
 
-            var linePath = doc.createElementNS(svgNS, 'path');
+            var linePath = doc.createElementNS(svgNS, 'documentPath');
             linePath.setAttribute("d", "M 0 0 L 20 10 L 0 20 z");
             linePath.setAttribute("fill", "purple");
             linePath.setAttribute("stroke", "blue");
@@ -65,13 +65,13 @@
             for (var i = lineKeysLength; i--;) {
 
                 var openerLine = opener.$id(lineKeys[i]);
-                var path = openerLine.getAttribute("d") || openerLine.getAttribute("path");
+                var documentPath = openerLine.getAttribute("d") || openerLine.getAttribute("documentPath");
 
-                var line = doc.createElementNS(svgNS, "path");
+                var line = doc.createElementNS(svgNS, "documentPath");
 
                 line.setAttribute("id", i);
-                line.setAttribute("d", path);
-                line.setAttribute("path", path);
+                line.setAttribute("d", documentPath);
+                line.setAttribute("documentPath", documentPath);
                 line.setAttribute("style", "cursor:pointer; fill:none; stroke:blue; stroke-width:2");
                 line.setAttribute("marker-end", 'url(#arrow)');
 

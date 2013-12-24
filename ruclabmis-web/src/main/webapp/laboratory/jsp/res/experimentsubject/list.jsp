@@ -4,13 +4,11 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>实验题列表</title>
-
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">

@@ -11,7 +11,7 @@
     <script src="../js/moo.fx.js" type="text/javascript"></script>
     <script src="../js/moo.fx.pack.js" type="text/javascript"></script>
     <script type="text/javascript">
-        var path = "../../../";
+        var documentPath = "../../../";
     </script>
     <script src="../../../../js/new_tree.js" type="text/javascript"></script>
     <link href="../css/left.css" rel="stylesheet" type="text/css"/>
