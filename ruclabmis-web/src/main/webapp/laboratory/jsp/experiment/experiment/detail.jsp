@@ -8,18 +8,40 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/laboratory/jsp/experiment/experimentpaper/paperinfo';
+        function save() {
+            document.listForm.action = "update";
+            document.listForm.submit();
+        }
+        function downloadFile(url, data, method) {
+            if (url && data) {
+                data = typeof data == 'string' ? data : $.param(data);
+                var inputs = '';
+                $.each(data.split('&'), function () {
+                    var p = this.split('=');
+                    inputs += '<input type="hidden" name="' + p[0] + '" value="' + p[1] + '" />';
+                });
+                $('<form action="' + url + '" method="' + (method || 'post') +'" id="'+'downloadForm'+ '">' + inputs + '</form>').
+                        appendTo('body').submit().remove();
+            }
+        }
+        function download(eid){
+            downloadFile("/laboratory/jsp/experiment/experiment/downloadTemplate",{eid:eid});
+        }
     </script>
 
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
 
-<form name="listForm" method="post">
-
+<form name="listForm" method="post" enctype="multipart/form-data">
+    <input type="hidden" id="id" name="id" value="${exp.id}" />
+    <input type="hidden" id="templatePath" name="templatePath" value="${exp.templatePath}" />
+    <input type="hidden" id="curriculumId" name="curriculumId" value="${exp.curriculumId}" />
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
@@ -81,33 +103,51 @@
                                                bgcolor="#E3E9EE">
                                             <tr>
                                                 <td nowrap align="right">实验名称:</td>
-                                                <td nowrap>${experiment.name}</td>
+                                                <td nowrap><input type="text" id="name" name="name" value="${exp.name}"/>
+                                                </td>
 
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">实验内容:</td>
-                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px" value="${work.content}"></textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_content"></span>
+                                                <td colspan="3"><textarea name="content" id="content"
+                                                                          style="width:70%;height:100px" >${exp.content}</textarea>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">实验报告模板:</td>
-                                                <td nowrap>${experiment.instructor}<input type="button" value="下载"/>
-                                                </td>
-                                            </tr>
-
-
+                                            <c:if test="${ac=='show'}">
+                                                <c:if test="${exp.templatePath!=null && exp.templatePath!='' }">
+                                                    <tr>
+                                                        <td nowrap align="right">实验报告模板:</td>
+                                                        <td nowrap><input type="button" value="下载" onclick="download('${exp.id}')"/></td>
+                                                    </tr>
+                                                </c:if>
+                                            </c:if>
+                                            <c:if test="${ac=='edit'}">
+                                                <tr>
+                                                    <td nowrap align="right">实验报告模板:</td>
+                                                    <td nowrap>
+                                                        <input type="file" id="file" name="file" class="button" value="浏览"/>
+                                                    </td>
+                                                </tr>
+                                            </c:if>
                                         </table>
                                     </td>
                                 </tr>
                             </table>
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
-                                    <td align="center">
-                                        <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
-                                    </td>
+                                    <c:if test="${ac=='show'}">
+                                        <td align="center">
+                                            <input type="button" name="return" value="返回" class="button"
+                                                   onclick="window.history.go(-1);"/>
+                                        </td>
+                                    </c:if>
+                                    <c:if test="${ac=='edit'}">
+                                        <td align="center">
+                                            <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
+                                            <input type="button" name="return" value="返回" class="button"
+                                                   onclick="window.history.go(-1);"/>
+                                        </td>
+                                    </c:if>
                                 </tr>
                             </table>
                         </td>

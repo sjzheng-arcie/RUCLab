@@ -9,8 +9,8 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        function editorClass(vcid,curricumname) {
-            window.location.href = "myexperimentlist?courseId="+vcid+"&&curricumname="+curricumname+"&&page=1";
+        function editorClass(vcid,curricumname,instructName) {
+            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
         }
         function editorInsturctor(vcid) {
             window.location.href = "../../res/instructor/list?couseId="+vcid;
@@ -121,7 +121,7 @@
                                                             <input type="button" onClick="editorInsturctor(${item.curriculumId})"
                                                                    class="button"
                                                                    value="查看实验指导书"/>
-                                                            <input type="button" onClick="editorClass(${item.curriculumId},item.curriculumName)"
+                                                            <input type="button" onClick="editorClass(${item.curriculumId},'${item.curriculumName}');"
                                                                    class="button"
                                                                    value="查看所属实验"/>
                                                         </td>

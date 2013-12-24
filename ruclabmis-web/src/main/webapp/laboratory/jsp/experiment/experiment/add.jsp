@@ -5,12 +5,16 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
-        document.mainForm.action = "jsp/experiment/experiment/add";
+        document.mainForm.action = "add";
         document.mainForm.submit();
     }
     function addtopaper() {
         document.mainForm.action = "jsp/experiment/experiment/addtopaper";
         document.mainForm.submit();
+    }
+    var error = "${error}";
+    if(error.length>0){
+        alert(error);
     }
 
 </script>
@@ -20,7 +24,8 @@
 <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
 <body>
-<form name="mainForm" method="post">
+<form name="mainForm" method="post" enctype="multipart/form-data">
+    <input type="hidden" value="${curriculum.id}" id="curriculumId" name="curriculumId"/>
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
@@ -82,16 +87,15 @@
                                         <table border="0" cellpadding="1" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <%--<tr>--%>
-                                                <%--<td nowrap align="right">实验名称:</td>--%>
-                                                <%--<td nowrap>--%>
-                                                    <%--<input name="exp.name" id="exp.name" value="" class="text"--%>
-                                                           <%--style="width:154px" maxlength="20"--%>
-                                                           <%--valid="required|isAccount"/>--%>
-                                                    <%--<span style="color:red;">*</span>&nbsp;&nbsp;--%>
-                                                <%--</td>--%>
+                                            <tr>
+                                                <td nowrap align="right">实验名称:</td>
+                                                <td nowrap>
+                                                    <input name="name" id="name" value="" class="text"
+                                                           style="width:154px" maxlength="20" />
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
 
-                                            <%--</tr>--%>
+                                            </tr>
                                             <tr>
                                                 <td nowrap align="right">所属课程:</td>
                                                 <td nowrap>
@@ -104,20 +108,15 @@
                                                 </td>
                                             </tr>
 
-
-
-
                                             <tr>
                                                 <td nowrap align="right">实验报告模板:</td>
                                                 <td nowrap>
-                                                    <input type="file" class="buttom" value="浏览"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_file"></span>
+                                                    <input type="file" id="file" name="file" class="button" value="浏览"/>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">实验内容:</td>
-                                                <td colspan="3"><textarea name="exp.content" id="exp.content" style="width:80%;height:100px"></textarea>
+                                                <td colspan="3"><textarea name="content" id="content" style="width:80%;height:100px"></textarea>
                                                     <span style="color:red;"> *</span> &nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_content"></span>
                                                 </td>

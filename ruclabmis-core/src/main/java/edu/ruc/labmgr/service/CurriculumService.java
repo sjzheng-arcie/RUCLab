@@ -43,17 +43,17 @@ public class CurriculumService {
         return curriculumMapper.selectByPrimaryKey(cid);
     }
 
-    public PageInfo<Experiment> getExperimentbyClassId(int curriculumId ,int pageNum){
-        ExperimentCriteria criteria  = new ExperimentCriteria();
-        criteria.or().andJoinExperimentInstuction().andJoinCurriculum().andCurricumIdEqual(curriculumId);
-        int totalCount = experimentMapper.countByCriteria(criteria);
-        PageInfo<Experiment> pageInfo = new PageInfo<>(totalCount,-1,pageNum);
-        List<Experiment> datas = experimentMapper.selectByCriteriaWithRowbounds(criteria,
-                new RowBounds(pageInfo.getCurrentResult(),pageInfo.getPageSize()));
-        pageInfo.setData(datas);
-        return pageInfo;
-
-    }
+//    public PageInfo<Experiment> getExperimentbyClassId(int curriculumId ,int pageNum){
+//        ExperimentCriteria criteria  = new ExperimentCriteria();
+//        criteria.or().andJoinExperimentInstuction().andJoinCurriculum().andCurricumIdEqual(curriculumId);
+//        int totalCount = experimentMapper.countByCriteria(criteria);
+//        PageInfo<Experiment> pageInfo = new PageInfo<>(totalCount,-1,pageNum);
+//        List<Experiment> datas = experimentMapper.selectByCriteriaWithRowbounds(criteria,
+//                new RowBounds(pageInfo.getCurrentResult(),pageInfo.getPageSize()));
+//        pageInfo.setData(datas);
+//        return pageInfo;
+//
+//    }
 
     public PageInfo<Curriculum> selectListPage(String name, Integer majorId, int PageNum) {
         CurriculumCriteria criteria = new CurriculumCriteria();

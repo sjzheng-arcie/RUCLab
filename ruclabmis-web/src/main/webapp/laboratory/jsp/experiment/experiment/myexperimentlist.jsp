@@ -9,10 +9,29 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         var baseHref = '/laboratory/jsp/experiment/experiment/myexperimentlist';
+        function deleteExperiment(cid){
+            var ids = new Array();
+            $.map($("input[name='idcheckbox']:checked"),function(data,idx){
+                ids.push($(data).val());
+            });
+            if(confirm("您确定要删除选定的实验吗?")){
+                $.post("/laboratory/jsp/experiment/experiment/delete",{
+                    items : ids.join(",")
+                },function(data){
+                    if(data.success){
+                        window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid="+cid;
+                    }else{
+                        alert(data.message);
+                    }
+                });
+            }
+
+        }
     </script>
 
 </head>
@@ -80,11 +99,11 @@
                                                                 <div align="right">
                                                                     <shiro:hasAnyRoles name="administrators,teacher">
                                                                         <span class="STYLE1" style="white-space:nowrap">
-                                                                            <a href="toadd"><img
+                                                                            <a href="add?cid=${cid}&cName=${cName}"><img
                                                                                     src="../../../../images/add_min.gif"
                                                                                     width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span></a>&nbsp;
-                                                                            <a href="#" onclick="toDelete('listForm');"><img
+                                                                            <a href="#" onclick="deleteExperiment(${cid});"><img
                                                                                     src="../../../../images/del_min.gif"
                                                                                     width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
@@ -117,9 +136,6 @@
                                                         <div align="center"><span class="STYLE10">实验名称</span></div>
                                                     </td>
 
-                                                    <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验指导书</span></div>
-                                                    </td>
                                                     <td width="250" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验内容描述</span></div>
                                                     </td>
@@ -136,12 +152,11 @@
                                                     value="${item.id}"
                                                     onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.experimentInstructionName}</td>
-                                                    <td>${item.experimentInstructionName}</td>
+                                                    <td>${item.name}</td>
                                                     <td>${item.content}</td>
-                                                    <td><a href="detail?id=${item.id}"> 查看</a>
+                                                    <td><a href="detail?eid=${item.id}&ac=show"> 查看</a>
                                                         <shiro:hasAnyRoles name="administrators,teacher">
-                                                        /<a href="update?id=${item.id}">编辑</a></td>
+                                                        /<a href="edit?eid=${item.id}&ac=edit">编辑</a></td>
                                                     </shiro:hasAnyRoles>
                                                     </td>
                                                 </tr>

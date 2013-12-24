@@ -164,6 +164,76 @@ public class ExperimentCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andNameIsNull() {
+            addCriterion("name is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameIsNotNull() {
+            addCriterion("name is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameEqualTo(String value) {
+            addCriterion("name =", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotEqualTo(String value) {
+            addCriterion("name <>", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameGreaterThan(String value) {
+            addCriterion("name >", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameGreaterThanOrEqualTo(String value) {
+            addCriterion("name >=", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameLessThan(String value) {
+            addCriterion("name <", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameLessThanOrEqualTo(String value) {
+            addCriterion("name <=", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameLike(String value) {
+            addCriterion("name like", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotLike(String value) {
+            addCriterion("name not like", value, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameIn(List<String> values) {
+            addCriterion("name in", values, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotIn(List<String> values) {
+            addCriterion("name not in", values, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameBetween(String value1, String value2) {
+            addCriterion("name between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
+        public Criteria andNameNotBetween(String value1, String value2) {
+            addCriterion("name not between", value1, value2, "name");
+            return (Criteria) this;
+        }
+
         public Criteria andContentIsNull() {
             addCriterion("content is null");
             return (Criteria) this;
@@ -234,63 +304,63 @@ public class ExperimentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdIsNull() {
-            addCriterion("experiment_instructions_id is null");
+        public Criteria andCurriculumIdIsNull() {
+            addCriterion("curriculum_id is null");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdIsNotNull() {
-            addCriterion("experiment_instructions_id is not null");
+        public Criteria andCurriculumIdIsNotNull() {
+            addCriterion("curriculum_id is not null");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id =", value, "experimentInstructionsId");
+        public Criteria andCurriculumIdEqualTo(Integer value) {
+            addCriterion("curriculum_id =", value, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdNotEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id <>", value, "experimentInstructionsId");
+        public Criteria andCurriculumIdNotEqualTo(Integer value) {
+            addCriterion("curriculum_id <>", value, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdGreaterThan(Integer value) {
-            addCriterion("experiment_instructions_id >", value, "experimentInstructionsId");
+        public Criteria andCurriculumIdGreaterThan(Integer value) {
+            addCriterion("curriculum_id >", value, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id >=", value, "experimentInstructionsId");
+        public Criteria andCurriculumIdGreaterThanOrEqualTo(Integer value) {
+            addCriterion("curriculum_id >=", value, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdLessThan(Integer value) {
-            addCriterion("experiment_instructions_id <", value, "experimentInstructionsId");
+        public Criteria andCurriculumIdLessThan(Integer value) {
+            addCriterion("curriculum_id <", value, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdLessThanOrEqualTo(Integer value) {
-            addCriterion("experiment_instructions_id <=", value, "experimentInstructionsId");
+        public Criteria andCurriculumIdLessThanOrEqualTo(Integer value) {
+            addCriterion("curriculum_id <=", value, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdIn(List<Integer> values) {
-            addCriterion("experiment_instructions_id in", values, "experimentInstructionsId");
+        public Criteria andCurriculumIdIn(List<Integer> values) {
+            addCriterion("curriculum_id in", values, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdNotIn(List<Integer> values) {
-            addCriterion("experiment_instructions_id not in", values, "experimentInstructionsId");
+        public Criteria andCurriculumIdNotIn(List<Integer> values) {
+            addCriterion("curriculum_id not in", values, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdBetween(Integer value1, Integer value2) {
-            addCriterion("experiment_instructions_id between", value1, value2, "experimentInstructionsId");
+        public Criteria andCurriculumIdBetween(Integer value1, Integer value2) {
+            addCriterion("curriculum_id between", value1, value2, "curriculumId");
             return (Criteria) this;
         }
 
-        public Criteria andExperimentInstructionsIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("experiment_instructions_id not between", value1, value2, "experimentInstructionsId");
+        public Criteria andCurriculumIdNotBetween(Integer value1, Integer value2) {
+            addCriterion("curriculum_id not between", value1, value2, "curriculumId");
             return (Criteria) this;
         }
 
@@ -363,22 +433,6 @@ public class ExperimentCriteria {
             addCriterion("template_path not between", value1, value2, "templatePath");
             return (Criteria) this;
         }
-
-		public Criteria andCurricumIdEqual(int tid){
-			addCriterion("ei.curriculum_id=", tid, "id");
-			return (Criteria) this;
-		}
-		/**
-		 * 连表查询
-		 */
-		public Criteria andJoinExperimentInstuction() {
-			addCriterion("e.experiment_instructions_id =ei.id");
-			return (Criteria) this;
-		}
-		public Criteria andJoinCurriculum() {
-			addCriterion("ei.curriculum_id =c.id");
-			return (Criteria) this;
-		}
     }
 
     public static class Criteria extends GeneratedCriteria {

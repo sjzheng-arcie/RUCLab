@@ -13,7 +13,7 @@
 </head>
 <body onload="getWidth()" onresize="getWidth()">
 
-<form name="listForm" method="get">
+<form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td  class="noprint" width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img

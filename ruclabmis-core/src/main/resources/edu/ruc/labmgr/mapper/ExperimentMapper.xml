@@ -2,14 +2,13 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="edu.ruc.labmgr.mapper.ExperimentMapper" >
   <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Experiment" >
-    <id column="e_id" property="id" jdbcType="INTEGER" />
-    <result column="e_content" property="content" jdbcType="VARCHAR" />
-    <result column="e_experiment_instructions_id" property="experimentInstructionsId" jdbcType="INTEGER" />
-    <result column="e_template_path" property="templatePath" jdbcType="VARCHAR" />
-      <result column="curriculum_name" property="curriculumName" jdbcType="VARCHAR"/>
-      <result column="instruction_name" property="experimentInstructionName" jdbcType="VARCHAR"/>
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
+    <result column="template_path" property="templatePath" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Criteria_Where_Clause" >
+  <sql id="Example_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -38,7 +37,7 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Criteria_Where_Clause" >
+  <sql id="Update_By_Example_Where_Clause" >
     <where >
       <foreach collection="example.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -68,19 +67,17 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    e.id as  e_id, e.content as e_content ,
- e.experiment_instructions_id  as e_experiment_instructions_id , e.template_path as e_template_path
+    id, name, content, curriculum_id, template_path
   </sql>
-  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-      ,c.name as curriculum_name, ei.name as instruction_name
-      from experiment e,curriculum c,experiment_instructions ei
+    from experiment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -89,27 +86,26 @@
   <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
     select 
     <include refid="Base_Column_List" />
-      ,c.name as curriculum_name, ei.name as instruction_name
-      from experiment e,curriculum c,experiment_instructions ei
+    from experiment
     where id = #{id,jdbcType=INTEGER}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from experiment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
     delete from experiment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Experiment" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
-    insert into experiment (content, experiment_instructions_id, 
+    insert into experiment (name, content, curriculum_id, 
       template_path)
-    values (#{content,jdbcType=VARCHAR}, #{experimentInstructionsId,jdbcType=INTEGER}, 
+    values (#{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{curriculumId,jdbcType=INTEGER}, 
       #{templatePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Experiment" >
@@ -118,72 +114,85 @@
     </selectKey>
     insert into experiment
     <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        name,
+      </if>
       <if test="content != null" >
         content,
       </if>
-      <if test="experimentInstructionsId != null" >
-        experiment_instructions_id,
+      <if test="curriculumId != null" >
+        curriculum_id,
       </if>
       <if test="templatePath != null" >
         template_path,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         #{content,jdbcType=VARCHAR},
       </if>
-      <if test="experimentInstructionsId != null" >
-        #{experimentInstructionsId,jdbcType=INTEGER},
+      <if test="curriculumId != null" >
+        #{curriculumId,jdbcType=INTEGER},
       </if>
       <if test="templatePath != null" >
         #{templatePath,jdbcType=VARCHAR},
       </if>
     </trim>
   </insert>
-  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" resultType="java.lang.Integer" >
-      select count(e.id) from experiment e,curriculum c,experiment_instructions ei
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" resultType="java.lang.Integer" >
+    select count(*) from experiment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
   </select>
-  <update id="updateByCriteriaSelective" parameterType="map" >
+  <update id="updateByExampleSelective" parameterType="map" >
     update experiment
     <set >
       <if test="record.id != null" >
         id = #{record.id,jdbcType=INTEGER},
       </if>
+      <if test="record.name != null" >
+        name = #{record.name,jdbcType=VARCHAR},
+      </if>
       <if test="record.content != null" >
         content = #{record.content,jdbcType=VARCHAR},
       </if>
-      <if test="record.experimentInstructionsId != null" >
-        experiment_instructions_id = #{record.experimentInstructionsId,jdbcType=INTEGER},
+      <if test="record.curriculumId != null" >
+        curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
       </if>
       <if test="record.templatePath != null" >
         template_path = #{record.templatePath,jdbcType=VARCHAR},
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByCriteria" parameterType="map" >
+  <update id="updateByExample" parameterType="map" >
     update experiment
     set id = #{record.id,jdbcType=INTEGER},
+      name = #{record.name,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
-      experiment_instructions_id = #{record.experimentInstructionsId,jdbcType=INTEGER},
+      curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
       template_path = #{record.templatePath,jdbcType=VARCHAR}
     <if test="_parameter != null" >
-      <include refid="Update_By_Criteria_Where_Clause" />
+      <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Experiment" >
     update experiment
     <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
       <if test="content != null" >
         content = #{content,jdbcType=VARCHAR},
       </if>
-      <if test="experimentInstructionsId != null" >
-        experiment_instructions_id = #{experimentInstructionsId,jdbcType=INTEGER},
+      <if test="curriculumId != null" >
+        curriculum_id = #{curriculumId,jdbcType=INTEGER},
       </if>
       <if test="templatePath != null" >
         template_path = #{templatePath,jdbcType=VARCHAR},
@@ -193,21 +202,21 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Experiment" >
     update experiment
-    set content = #{content,jdbcType=VARCHAR},
-      experiment_instructions_id = #{experimentInstructionsId,jdbcType=INTEGER},
+    set name = #{name,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      curriculum_id = #{curriculumId,jdbcType=INTEGER},
       template_path = #{templatePath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" id="selectByCriteriaWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" id="selectByExampleWithRowbounds" >
     select
     <if test="distinct" >
       distinct
     </if>
     <include refid="Base_Column_List" />
-      ,c.name as curriculum_name, ei.name as instruction_name
-      from experiment e,curriculum c,experiment_instructions ei
+    from experiment
     <if test="_parameter != null" >
-      <include refid="Criteria_Where_Clause" />
+      <include refid="Example_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
