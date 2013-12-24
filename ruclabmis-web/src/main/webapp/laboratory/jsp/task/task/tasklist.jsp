@@ -106,17 +106,17 @@
     </tr>
     <tr>
         <td>
-            <div id="divwidth"  style="overflow:auto;overflow-y:hidden;">
-                <table id="treeTable" class="TABLE" width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+            <div id="divwidth"  style="overflow:auto;overflow-y:hidden;overflow-x: auto;">
+                <table id="treeTable" class="table" width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                     <tr>
-                        <td width="200" height="20" bgcolor="d3eaef">
+                        <td width="40" height="20" bgcolor="d3eaef">
                         </td>
 
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">任务名称</span></div>
                         </td>
 
-                        <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                        <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">任务内容</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -126,12 +126,19 @@
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">附件</span></div>
                         </td>
+
                         <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成度</span></div>
+                        </td>
+                        <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">完成情况</span></div>
                         </td>
 
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成时间</span></div>
+                        </td>
+                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">评分</span></div>
                         </td>
 
                         <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -151,8 +158,27 @@
 
                             <td>${item.annexname}</td>
                             <td>${item.completely}%</td>
-                            <td>${item.finishdate}</td>
-                            <td><a href="/laboratory/task/task/taskinfo?taskId=${item.id}" class="button"> 查看任务详细</a></td>
+                            <td>${item.completion}</td>
+                            <td><fmt:formatDate value="${item.finishdate}"/></td>
+                            <td>
+                                <c:choose>
+                                    <c:when test="${item.ifscored==true}">
+                                        ${item.score}
+                                    </c:when>
+                                    <c:otherwise>
+                                        <c:choose>
+                                            <c:when test="${item.ifcompleted==true}">
+                                                <a class="button" href="/laboratory/jsp/task/taskscore/toscore?taskId=${item.id}">评分</a>
+                                            </c:when>
+                                            <c:otherwise>
+                                                尚未完成
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:otherwise>
+                                </c:choose>
+
+                            </td>
+                            <td><a href="/laboratory/jsp/task/task/toupdate?taskId=${item.id}" class="button"> 查看任务详细</a></td>
 
                         </tr>
                     </c:forEach>

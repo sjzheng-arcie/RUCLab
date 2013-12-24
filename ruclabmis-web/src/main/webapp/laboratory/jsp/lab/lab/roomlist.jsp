@@ -29,12 +29,14 @@
 
         function toAddRoom(){
             window.open("/laboratory/jsp/lab/lab/addroom?laboratoryId=${laboratoryInfo.id}", "设备库",
-                    "height=400, width=1000, toolbar=no, status=no ,location=no");
+                    "height=460, width=1000, toolbar=no, status=no ,location=no");
         }
         function freshWindow(){
             window.location.reload(true);
         }
-
+        function back(){
+            window.location.href="/laboratory/jsp/lab/lab/list"
+        }
     </script>
 
 </head>
@@ -121,7 +123,7 @@
                                 <td align="center">
                                     <input type="button" name="addEquipmentToDesk" value="添加房间" class="button" onclick="toAddRoom();"/>
                                     <input  class="button" type="button" name="return" value="返回" class="button"
-                                            onclick="window.history.go(-1);"/>
+                                            onclick="back();"/>
                                 </td>
                             </tr>
                         </table>
