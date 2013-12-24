@@ -1,0 +1,355 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="edu.ruc.labmgr.mapper.TaskMapper">
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.Task">
+    <id column="id" jdbcType="INTEGER" property="id" />
+    <result column="ifCompleted" jdbcType="BIT" property="ifcompleted" />
+    <result column="annexName" jdbcType="VARCHAR" property="annexname" />
+    <result column="content" jdbcType="VARCHAR" property="content" />
+    <result column="managerId" jdbcType="INTEGER" property="managerid" />
+    <result column="annexpath" jdbcType="VARCHAR" property="annexpath" />
+    <result column="taskName" jdbcType="VARCHAR" property="taskname" />
+    <result column="finishDate" jdbcType="TIMESTAMP" property="finishdate" />
+    <result column="limitDate" jdbcType="TIMESTAMP" property="limitdate" />
+    <result column="completion" jdbcType="VARCHAR" property="completion" />
+    <result column="completely" jdbcType="INTEGER" property="completely" />
+    <result column="score" jdbcType="INTEGER" property="score" />
+    <result column="ifscored" jdbcType="BIT" property="ifscored" />
+      <association column="managerId" javaType="User" property="manager"
+                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, ifCompleted, annexName, content, managerId, annexpath, taskName, finishDate, 
+    limitDate, completion, completely, score, ifscored
+  </sql>
+  <select id="selectByExample" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from task
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from task
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.TaskCriteria">
+    delete from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.Task">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task (ifCompleted, annexName, content, 
+      managerId, annexpath, taskName, 
+      finishDate, limitDate, completion, 
+      completely, score, ifscored
+      )
+    values (#{ifcompleted,jdbcType=BIT}, #{annexname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
+      #{managerid,jdbcType=INTEGER}, #{annexpath,jdbcType=VARCHAR}, #{taskname,jdbcType=VARCHAR}, 
+      #{finishdate,jdbcType=TIMESTAMP}, #{limitdate,jdbcType=TIMESTAMP}, #{completion,jdbcType=VARCHAR}, 
+      #{completely,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{ifscored,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Task">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into task
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="ifcompleted != null">
+        ifCompleted,
+      </if>
+      <if test="annexname != null">
+        annexName,
+      </if>
+      <if test="content != null">
+        content,
+      </if>
+      <if test="managerid != null">
+        managerId,
+      </if>
+      <if test="annexpath != null">
+        annexpath,
+      </if>
+      <if test="taskname != null">
+        taskName,
+      </if>
+      <if test="finishdate != null">
+        finishDate,
+      </if>
+      <if test="limitdate != null">
+        limitDate,
+      </if>
+      <if test="completion != null">
+        completion,
+      </if>
+      <if test="completely != null">
+        completely,
+      </if>
+      <if test="score != null">
+        score,
+      </if>
+      <if test="ifscored != null">
+        ifscored,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="ifcompleted != null">
+        #{ifcompleted,jdbcType=BIT},
+      </if>
+      <if test="annexname != null">
+        #{annexname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="managerid != null">
+        #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="annexpath != null">
+        #{annexpath,jdbcType=VARCHAR},
+      </if>
+      <if test="taskname != null">
+        #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="finishdate != null">
+        #{finishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitdate != null">
+        #{limitdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completion != null">
+        #{completion,jdbcType=VARCHAR},
+      </if>
+      <if test="completely != null">
+        #{completely,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="ifscored != null">
+        #{ifscored,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultType="java.lang.Integer">
+    select count(*) from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update task
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifcompleted != null">
+        ifCompleted = #{record.ifcompleted,jdbcType=BIT},
+      </if>
+      <if test="record.annexname != null">
+        annexName = #{record.annexname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.content != null">
+        content = #{record.content,jdbcType=VARCHAR},
+      </if>
+      <if test="record.managerid != null">
+        managerId = #{record.managerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.annexpath != null">
+        annexpath = #{record.annexpath,jdbcType=VARCHAR},
+      </if>
+      <if test="record.taskname != null">
+        taskName = #{record.taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="record.finishdate != null">
+        finishDate = #{record.finishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.limitdate != null">
+        limitDate = #{record.limitdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.completion != null">
+        completion = #{record.completion,jdbcType=VARCHAR},
+      </if>
+      <if test="record.completely != null">
+        completely = #{record.completely,jdbcType=INTEGER},
+      </if>
+      <if test="record.score != null">
+        score = #{record.score,jdbcType=INTEGER},
+      </if>
+      <if test="record.ifscored != null">
+        ifscored = #{record.ifscored,jdbcType=BIT},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update task
+    set id = #{record.id,jdbcType=INTEGER},
+      ifCompleted = #{record.ifcompleted,jdbcType=BIT},
+      annexName = #{record.annexname,jdbcType=VARCHAR},
+      content = #{record.content,jdbcType=VARCHAR},
+      managerId = #{record.managerid,jdbcType=INTEGER},
+      annexpath = #{record.annexpath,jdbcType=VARCHAR},
+      taskName = #{record.taskname,jdbcType=VARCHAR},
+      finishDate = #{record.finishdate,jdbcType=TIMESTAMP},
+      limitDate = #{record.limitdate,jdbcType=TIMESTAMP},
+      completion = #{record.completion,jdbcType=VARCHAR},
+      completely = #{record.completely,jdbcType=INTEGER},
+      score = #{record.score,jdbcType=INTEGER},
+      ifscored = #{record.ifscored,jdbcType=BIT}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Task">
+    update task
+    <set>
+      <if test="ifcompleted != null">
+        ifCompleted = #{ifcompleted,jdbcType=BIT},
+      </if>
+      <if test="annexname != null">
+        annexName = #{annexname,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null">
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="managerid != null">
+        managerId = #{managerid,jdbcType=INTEGER},
+      </if>
+      <if test="annexpath != null">
+        annexpath = #{annexpath,jdbcType=VARCHAR},
+      </if>
+      <if test="taskname != null">
+        taskName = #{taskname,jdbcType=VARCHAR},
+      </if>
+      <if test="finishdate != null">
+        finishDate = #{finishdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="limitdate != null">
+        limitDate = #{limitdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="completion != null">
+        completion = #{completion,jdbcType=VARCHAR},
+      </if>
+      <if test="completely != null">
+        completely = #{completely,jdbcType=INTEGER},
+      </if>
+      <if test="score != null">
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="ifscored != null">
+        ifscored = #{ifscored,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.Task">
+    update task
+    set ifCompleted = #{ifcompleted,jdbcType=BIT},
+      annexName = #{annexname,jdbcType=VARCHAR},
+      content = #{content,jdbcType=VARCHAR},
+      managerId = #{managerid,jdbcType=INTEGER},
+      annexpath = #{annexpath,jdbcType=VARCHAR},
+      taskName = #{taskname,jdbcType=VARCHAR},
+      finishDate = #{finishdate,jdbcType=TIMESTAMP},
+      limitDate = #{limitdate,jdbcType=TIMESTAMP},
+      completion = #{completion,jdbcType=VARCHAR},
+      completely = #{completely,jdbcType=INTEGER},
+      score = #{score,jdbcType=INTEGER},
+      ifscored = #{ifscored,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByExampleWithRowbounds" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from task
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+
+</mapper>
