@@ -44,7 +44,7 @@ public class BbsController {
 		List<CurriculumClass>  courseList = new ArrayList<CurriculumClass>();
 		if(currentUser.hasRole("student")){
 			courseList =curriculumClassService.getClassByCriteriaUserIdAndRole(id, Types.Role.STUDENT);
-		}else if (currentUser.hasRole("administrator")||currentUser.hasRole("lab_admin")){
+		}else if (currentUser.hasRole("administrators")||currentUser.hasRole("lab_admin")){
 			courseList = curriculumClassService.getClassByCriteriaUserIdAndRole(id, Types.Role.ADMIN);
 		}else
 			courseList = curriculumClassService.getClassByCriteriaUserIdAndRole(id, Types.Role.TEACHER);
@@ -72,7 +72,7 @@ public class BbsController {
 		List<Integer> sids = null;
 		if(currentUser.hasRole("student")){
 			sids =curriculumClassService.getPrivateSessionIds(id, Types.Role.STUDENT);
-		}else if (currentUser.hasRole("administrator")||currentUser.hasRole("lab_admin")){
+		}else if (currentUser.hasRole("administrators")||currentUser.hasRole("lab_admin")){
 			sids = curriculumClassService.getPrivateSessionIds(id, Types.Role.ADMIN);
 		}else
 			sids = curriculumClassService.getPrivateSessionIds(id, Types.Role.TEACHER);
@@ -82,10 +82,12 @@ public class BbsController {
 		List<BbsTopic> weeklyHotPostList = new ArrayList<BbsTopic>();
 		List<BbsTopic> newestTopicList = new ArrayList<BbsTopic>();
 		List<BbsTopic> lastReplylistList = new ArrayList<BbsTopic>();
-		daylyHotPostList = bbsService.getTodayHotList(sids);
-		weeklyHotPostList = bbsService.getWeekHotList(sids);
-		newestTopicList = bbsService.getNewestCreatList(sids);
-		lastReplylistList = bbsService.getNewestReplyList(sids);
+		if(sids!=null && sids.size()>0){
+			daylyHotPostList = bbsService.getTodayHotList(sids);
+			weeklyHotPostList = bbsService.getWeekHotList(sids);
+			newestTopicList = bbsService.getNewestCreatList(sids);
+			lastReplylistList = bbsService.getNewestReplyList(sids);
+		}
 
 		view.addObject("daylyHotPostList",daylyHotPostList);
 		view.addObject("weeklyHotPostList",weeklyHotPostList);
