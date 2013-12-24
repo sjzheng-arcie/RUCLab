@@ -27,6 +27,18 @@ public class Task {
 
     private Integer score;
 
+    private Boolean ifscored;
+
+	public User getManager() {
+		return manager;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+
+	private User manager;
+
     public Integer getId() {
         return id;
     }
@@ -121,5 +133,13 @@ public class Task {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Boolean getIfscored() {
+        return ifscored;
+    }
+
+    public void setIfscored(Boolean ifscored) {
+        this.ifscored = ifscored;
     }
 }

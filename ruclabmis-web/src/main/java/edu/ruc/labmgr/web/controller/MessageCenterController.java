@@ -86,6 +86,7 @@ public class MessageCenterController {
         int currentUserId = userService.getCurrentUserId();
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
+		currPage=currPage > 0 ? currPage : 1;
         String fatherPage = request.getParameter("fatherPage");
         MessageCriteria messageCriteria = new MessageCriteria();
         messageCriteria.setOrderByClause(" sendtime desc");

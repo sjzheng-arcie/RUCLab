@@ -874,6 +874,66 @@ public class TaskCriteria {
             addCriterion("score not between", value1, value2, "score");
             return (Criteria) this;
         }
+
+        public Criteria andIfscoredIsNull() {
+            addCriterion("ifscored is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredIsNotNull() {
+            addCriterion("ifscored is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredEqualTo(Boolean value) {
+            addCriterion("ifscored =", value, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredNotEqualTo(Boolean value) {
+            addCriterion("ifscored <>", value, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredGreaterThan(Boolean value) {
+            addCriterion("ifscored >", value, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("ifscored >=", value, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredLessThan(Boolean value) {
+            addCriterion("ifscored <", value, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredLessThanOrEqualTo(Boolean value) {
+            addCriterion("ifscored <=", value, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredIn(List<Boolean> values) {
+            addCriterion("ifscored in", values, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredNotIn(List<Boolean> values) {
+            addCriterion("ifscored not in", values, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredBetween(Boolean value1, Boolean value2) {
+            addCriterion("ifscored between", value1, value2, "ifscored");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfscoredNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("ifscored not between", value1, value2, "ifscored");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

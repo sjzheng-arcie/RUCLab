@@ -120,7 +120,11 @@
             }
         }
         function score() {
-            document.form1.action = "userscore.html";
+            document.form1.action = "leaderscore.html";
+            document.form1.submit();
+        }
+        function update() {
+            document.form1.action = "update.html";
             document.form1.submit();
         }
     </script>
@@ -138,7 +142,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">基础管理 > 组织架构管理</div>
+                    <div class="titlebt">审核管理 > 任务管理</div>
                 </td>
             </tr>
         </table>
@@ -153,15 +157,6 @@
 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
 <tr>
 <td valign="top" class="STYLE10">
-
-<span style="white-space:nowrap">&nbsp;&nbsp;组织编号:<input type="text" name="searchB1" id="searchB1" value=""
-                                                         style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;组织名称:<input type="text" name="searchB1" id="searchB1" value=""
-                                                         style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;级别:<input type="text" name="searchB1" id="searchB1" value=""
-                                                       style="width:100px;"/></span>
-<span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
-        src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
 
 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -179,7 +174,7 @@
                                             <div align="center"><img src="../../../../images/tb.gif" width="14"
                                                                      height="14"/></div>
                                         </td>
-                                        <td width="94%" valign="bottom"><span class="STYLE1" style="white-space:nowrap">组织结构</span>
+                                        <td width="94%" valign="bottom"><span class="STYLE1" style="white-space:nowrap">任务管理</span>
                                         </td>
                                     </tr>
                                 </table>
@@ -187,7 +182,7 @@
                             <td>
                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+						<a href="../task/add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>&nbsp;
       					<a href="#" onclick="toUpdate();"><img src="../../../../images/edit_min.gif" width="10"
                                                                height="10"
@@ -221,7 +216,7 @@
     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">完成时间</span></div>
     </td>
-    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">任务内容</span></div>
     </td>
     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -230,11 +225,11 @@
     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">备注</span></div>
     </td>
-    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+    <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
         <div align="center"><span class="STYLE10">完成度</span></div>
     </td>
-    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-        <div align="center"><span class="STYLE10">评分</span></div>
+    <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
+        <div align="center"><span class="STYLE10">操作</span></div>
     </td>
 </tr>
 
@@ -247,7 +242,8 @@
 
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="lby" data-tt-parent-id="rjgc">
-    <td height="20" align="left">陆伯言</td>
+    <td height="20" align="left">陆伯言<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
+    </td>
 
 
     <td colspan="7"></td>
@@ -263,12 +259,15 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
-
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="jby" data-tt-parent-id="rjgc">
-    <td height="20" align="left">姜伯约</td>
+    <td height="20" align="left">姜伯约<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
+    </td>
 
 
     <td colspan="7"></td>
@@ -284,8 +283,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
-
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="2" data-tt-parent-id="jby">
     <td height="20">任务二</td>
@@ -298,10 +299,14 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 <tr bgcolor="#ffffff" align="center" data-tt-id="gfx" data-tt-parent-id="rjgc">
-    <td height="20" align="left">郭奉孝</td>
+    <td height="20" align="left">郭奉孝<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
+    </td>
 
     <td colspan="7"></td>
 
@@ -317,7 +322,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="8" data-tt-parent-id="gfx">
@@ -331,8 +339,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
-
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="9" data-tt-parent-id="gfx">
     <td height="20">任务三</td>
@@ -344,7 +354,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="wlgc">
@@ -356,7 +369,8 @@
 
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="cmd" data-tt-parent-id="wlgc">
-    <td height="20" align="left">曹孟德</td>
+    <td height="20" align="left">曹孟德<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
+    </td>
 
 
     <td colspan="7"></td>
@@ -372,12 +386,16 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 
 </tr>
 
 <tr bgcolor="#ffffff" align="center" data-tt-id="zwy" data-tt-parent-id="wlgc">
-    <td height="20" align="left">张文远</td>
+    <td height="20" align="left">张文远<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
+    </td>
 
 
     <td colspan="7"></td>
@@ -394,7 +412,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="92" data-tt-parent-id="zwy">
@@ -408,10 +429,14 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 <tr bgcolor="#ffffff" align="center" data-tt-id="xwr" data-tt-parent-id="wlgc">
-    <td height="20" align="left">荀文若</td>
+    <td height="20" align="left">荀文若<input name="idcheckbox" type="checkbox" value="admin" onclick="checkOne(this)"/>
+    </td>
 
     <td colspan="7"></td>
 
@@ -427,7 +452,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 <tr bgcolor="#ffffff" align="center" class="STYLE19" data-tt-id="99" data-tt-parent-id="xwr">
     <td height="20">任务二</td>
@@ -439,7 +467,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 
 </tr>
@@ -453,7 +484,10 @@
     <td>设备部署帮助手册</td>
     <td>设备易损，注意安全</td>
     <td>30%</td>
-    <td><input type="button" value="评分" class="button" onclick="score();"/></td>
+    <td><input type="button" value="评分" class="button" onclick="score();"/>
+        <input type="button" value="编辑" class="button" onclick="update();"/>
+        <input type="button" value="删除" class="button" onclick="delete();"/>
+    </td>
 </tr>
 
 
@@ -474,43 +508,7 @@
 </tr>
 <tr>
     <td height="30">
-        <table width='100%' border='0' cellspacing='0' cellpadding='0' style='font-size:13px;'>
-            <tr>
-                <td><span align='left' class='STYLE22' style="white-space:nowrap">&nbsp;&nbsp;共有<strong>2</strong> 条记录，当前第<strong>1</strong> 页，共 <strong>1</strong> 页</span>
-				<span class='STYLE22' style="white-space:nowrap">
-				<table border='0' align='right' cellpadding='0' cellspacing='0' style='font-size:13px;'>
-                    <tr>
-                        <td width='49'>
-                            <div align='center'><img src='../../../../images/main_54.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../../images/main_56.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../../images/main_58.gif' width='45' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='49'>
-                            <div align='center'><img src='../../../../images/main_60.gif' width='40' height='15'
-                                                     border='0'/></div>
-                        </td>
-                        <td width='37' class='STYLE22'>
-                            <div align='center' style="white-space:nowrap">转到</div>
-                        </td>
-                        <td>
-                            <div align='left'><select
-                                    onchange=" document.forms[0].action='/NWSVN/sysint!find?page='+this.options[this.selectedIndex].value;document.forms[0].submit();">
-                                <option class='STYLE22' value="1" selected>第1页</option>
-                            </select></div>
-                        </td>
-                    </tr>
-                </table>
-					</span>
-                </td>
-            </tr>
-        </table>
+
     </td>
 </tr>
 </table>

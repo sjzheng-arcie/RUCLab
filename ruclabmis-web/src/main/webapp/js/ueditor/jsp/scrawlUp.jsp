@@ -8,8 +8,8 @@
 
     String param = request.getParameter("action");
     Uploader up = new Uploader(request);
-    String path = "upload";
-    up.setSavePath(path);
+    String documentPath = "upload";
+    up.setSavePath(documentPath);
     String[] fileType = {".gif", ".png", ".jpg", ".jpeg", ".bmp"};
     up.setAllowFiles(fileType);
     up.setMaxSize(10000); //单位KB

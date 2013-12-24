@@ -39,7 +39,7 @@
         function save() {
             var documentName = document.getElementById("documentName").value;
             if (!documentName) {
-                alert("未添加附件，请上传或从实验题库生成!");
+                alert("未添加附件，请先上传!");
                 return;
             }
 
@@ -49,27 +49,6 @@
 
             document.mainForm.action = "add";
             document.mainForm.submit();
-        }
-
-        function deleteFile() {
-            var id = document.getElementById("id").value;
-            window.location.href = "deleteFile?id=" + id;
-        }
-
-        function toAddSubject(){
-            var fileName = document.getElementById("name").value;
-            if (!fileName) {
-                alert("请输入指导书名称!");
-                return;
-            }
-
-            var name = document.getElementById("name").value;
-            window.open("/laboratory/jsp/res/instruction/toAddSubject?name="+name, "实验题库",
-                    "height=400, width=1000, toolbar=no, status=no");
-        }
-
-        function freshDocName(fileName){
-            $("#documentName").val(fileName);
         }
     </script>
 </head>
@@ -86,7 +65,7 @@
                 <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">指导书管理 > 添加指导书</div>
+                            <div class="titlebt">教学资源管理 > 添加教学资源</div>
                         </td>
                     </tr>
                 </table>
@@ -96,7 +75,7 @@
             </td>
         </tr>
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                     <tr>
@@ -114,13 +93,13 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加指导书</span></td>
+                                                                    class="STYLE1">添加教学资源</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
                                                 <td>
-                                                    <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                                            class="STYLE1"> &nbsp;</span></div>
+                                                    <div align="right"><span class="STYLE1"></span><span
+                                                            class="STYLE1"> </span></div>
                                                 </td>
                                             </tr>
                                         </table>
@@ -138,14 +117,14 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">指导书名称:</td>
+                                                <td align="right">教学资源名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required"
+                                                           style="width:254px" maxlength="20" valid="required"
                                                            errmsg="名称不能为空!" />
                                                     <span style="color:red;">*</span>
                                                 </td>
-                                                <td nowrap align="right">所属课程:</td>
+                                                <td align="right">所属课程:</td>
                                                 <td nowrap>
                                                     <select name="curriculumId">
                                                         <c:forEach items="${curriculumList}" var="item">
@@ -157,42 +136,28 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实验目的:</td>
-                                                <td colspan="3">
-                                                    <textarea name="purpose" style="width:90%;height:30px"
+                                                <td align="right">资源描述:</td>
+                                                <td colspan="6">
+                                                    <textarea id="content" name="content" style="width:90%;height:30px"
                                                               valid="required"
-                                                              errmsg="实验目的不能为空!">
-                                                    </textarea>
+                                                              errmsg="资源描述不能为空!"></textarea>
                                                     <span style="color:red;"> *</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实验说明:</td>
-                                                <td colspan="3">
-                                                    <textarea name="explanation" style="width:90%;height:60px"  valid="required"
-                                                              errmsg="实验说明不能为空!">
-                                                    </textarea>
-                                                    <span style="color:red;"> *</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">附件:</td>
+                                                <td align="right">附件:</td>
                                                 <td>
-                                                    <input id="documentName" name="documentName" readonly="true"
-                                                           value=""/>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td/>
-                                                <td colspan="2"> 从文件添加附件:
+                                                    <input id="documentName" name="documentName" readonly="true"/>
                                                     <input style="width:30%" type="file" name="file" id="file" class="bottom" value="浏览"/>
                                                     <input type="button" value="上传" class="bottom" onclick="return uploadFile();"/>
                                                 </td>
-                                            </tr>
-                                            <tr>
-                                                <td/>
-                                                <td>从实验题库生成附件:
-                                                    <input type="button" value="选择．．．" class="buttom" onclick="toAddSubject();"/>
+                                                <td align="right">下载权限:</td>
+                                                <td nowrap>
+                                                    <select name="downloadLimit">
+                                                        <option value="false">公开</option>
+                                                        <option value="true">班级内部</option>
+                                                    </select>
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                         </table>
@@ -214,7 +179,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
 
         <tr>

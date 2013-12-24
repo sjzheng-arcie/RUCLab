@@ -7,15 +7,23 @@ public class RelatedResources {
 
     private Integer curriculumId;
 
+    private String curriculumName;
+
     private Integer resourceType;
 
     private String name;
 
-    private String path;
+    private String documentName;
+
+    private String documentPath;
 
     private Date uploadDate;
 
-    private String uploadPerson;
+    private Integer uploadPerson;
+
+    private String uploadPersonName;
+
+    private String uploadPersonSn;
 
     private String content;
 
@@ -53,12 +61,20 @@ public class RelatedResources {
         this.name = name == null ? null : name.trim();
     }
 
-    public String getPath() {
-        return path;
+    public String getDocumentName() {
+        return documentName;
     }
 
-    public void setPath(String path) {
-        this.path = path == null ? null : path.trim();
+    public void setDocumentName(String documentName) {
+        this.documentName = documentName;
+    }
+
+    public String getDocumentPath() {
+        return documentPath;
+    }
+
+    public void setDocumentPath(String documentPath) {
+        this.documentPath = documentPath == null ? null : documentPath.trim();
     }
 
     public Date getUploadDate() {
@@ -69,12 +85,12 @@ public class RelatedResources {
         this.uploadDate = uploadDate;
     }
 
-    public String getUploadPerson() {
+    public Integer getUploadPerson() {
         return uploadPerson;
     }
 
-    public void setUploadPerson(String uploadPerson) {
-        this.uploadPerson = uploadPerson == null ? null : uploadPerson.trim();
+    public void setUploadPerson(Integer uploadPerson) {
+        this.uploadPerson = uploadPerson;
     }
 
     public String getContent() {
@@ -91,5 +107,29 @@ public class RelatedResources {
 
     public void setDownloadLimit(Boolean downloadLimit) {
         this.downloadLimit = downloadLimit;
+    }
+
+    public String getCurriculumName() {
+        return curriculumName;
+    }
+
+    public void setCurriculumName(String curriculumName) {
+        this.curriculumName = curriculumName;
+    }
+
+    public String getUploadPersonName() {
+        return uploadPersonName;
+    }
+
+    public void setUploadPersonName(String uploadPersonName) {
+        this.uploadPersonName = uploadPersonName;
+    }
+
+    public String getUploadPersonSn() {
+        return uploadPersonSn;
+    }
+
+    public void setUploadPersonSn(String uploadPersonSn) {
+        this.uploadPersonSn = uploadPersonSn;
     }
 }

@@ -8,6 +8,8 @@ import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 /**
  * Created with IntelliJ IDEA.
@@ -36,6 +38,17 @@ public class LaboratoryRoomService {
 	}
 	public void delete(LaboratoryRoomKey laboratoryRoomKey){
 		laboratoryRoomMapper.deleteByPrimaryKey(laboratoryRoomKey);
+	}
+	public List<Integer> getAllRoomIdByLaboratoryId(int laboratoryId){
+		LaboratoryRoomCriteria laboratoryRoomCriteria = new LaboratoryRoomCriteria();
+		LaboratoryRoomCriteria.Criteria criteria =laboratoryRoomCriteria.createCriteria();
+		criteria.andLaboratoryIdEqualTo(laboratoryId);
+		List<LaboratoryRoomKey> laboratoryRoomKeyList = laboratoryRoomMapper.selectByCriteria(laboratoryRoomCriteria);
+		List<Integer> allRoomIdList=new <Integer>ArrayList();
+		for(int i=0;i<laboratoryRoomKeyList.size();i++){
+			allRoomIdList.add(laboratoryRoomKeyList.get(i).getLaboratoryRoomId());
+		}
+		return  allRoomIdList;
 	}
 	public void deleteByCriteria(LaboratoryRoomCriteria criteria){
 		laboratoryRoomMapper.deleteByCriteria(criteria);
