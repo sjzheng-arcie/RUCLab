@@ -46,6 +46,19 @@
 
         }
 
+        function toDeleteEquipments(formName, checkBoxName) {
+            var selectedItems = getAllSelected(formName, checkBoxName);
+            if(selectedItems.length <= 0)
+            {
+                alert("未选择记录！");
+                return -1;
+            }
+            if (confirm("是否删除所选记录？")) {
+                document.forms[formName].action = "deleteEquipments?items=" + selectedItems;
+                document.forms[formName].submit();
+            }
+        }
+
         function Submit(url) {
             $.ajax({
                 type: "POST",
@@ -153,7 +166,7 @@
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">验收入库</span>
                                       </a>
-                                      <a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
+                                      <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false">
                                           <img src="../../../../images/del_min.gif" width="10" height="10"
                                                border="0"/> <span class="STYLE1">删除</span>
                                       </a>
@@ -219,23 +232,11 @@
                                             <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">单价</span></div>
                                             </td>
-                                            <td width="60" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">厂家</span></div>
-                                            </td>
-                                            <td width="60" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">出厂号</span></div>
-                                            </td>
-                                            <td width="65" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">出厂日期</span></div>
-                                            </td>
                                             <td width="80" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">存放地点</span></div>
                                             </td>
                                             <td width="65" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">购置日期</span></div>
-                                            </td>
-                                            <td width="65" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">报废日期</span></div>
                                             </td>
                                             <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">经费科目</span></div>
@@ -267,14 +268,8 @@
                                                 <td>${item.modelNumber}</td>
                                                 <td>${item.specifications}</td>
                                                 <td>${item.unitPrice}</td>
-                                                <td>${item.vender}</td>
-                                                <td>${item.factoryNumber}</td>
-                                                <td><fmt:formatDate value="${item.manufactureDate}"
-                                                                    pattern="yyyy-MM-dd"/></td>
                                                 <td>${item.location}</td>
                                                 <td><fmt:formatDate value="${item.acquisitionDate}"
-                                                                    pattern="yyyy-MM-dd"/></td>
-                                                <td><fmt:formatDate value="${item.scrapDate}"
                                                                     pattern="yyyy-MM-dd"/></td>
                                                 <td>${item.fundingSubject}</td>
                                                 <td>${item.useDirection}</td>

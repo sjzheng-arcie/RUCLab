@@ -91,7 +91,7 @@
                                                            value="${teacher.sn}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-                                                <td nowrap align="right">用户名:</td>
+                                                <td nowrap align="right">用户名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" class="text"
                                                            style="width:154px"

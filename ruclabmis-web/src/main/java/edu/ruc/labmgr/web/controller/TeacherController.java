@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.web.controller;
 
+import com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;

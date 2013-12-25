@@ -109,6 +109,8 @@ public class EquipmentController {
 
     @RequestMapping(value = "/equipment/jsp/dev/{applyType}/insert", method = RequestMethod.POST)
     public String insert(Equipment equipment, @PathVariable("applyType") String applyType) {
+        equipment.setStateId(Types.EquipState.NORMAL.getValue());
+
         serviceEquipment.insertEquipment(equipment);
         return "redirect:/equipment/jsp/dev/" + applyType + "/deviceList";
     }

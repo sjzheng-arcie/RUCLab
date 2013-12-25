@@ -165,15 +165,15 @@
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">单据状态</span></div>
                                             </td>
-                                            <td width="100" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">详细信息</span></div>
+                                            <td width="30" bgcolor="d3eaef">
+                                                <div align="center"><span class="STYLE10">详情</span></div>
                                             </td>
                                             <c:if test="${formType=='process'}">
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">已修缮</span></div>
+                                                <td width="30" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">修缮</span></div>
                                                 </td>
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">报废设备</span></div>
+                                                <td width="30" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">报废</span></div>
                                                 </td>
                                             </c:if>
                                         </tr>

@@ -115,7 +115,7 @@
                             <td align="center">单据号</td>
                             <td>
                                 <input name="sn" id="sn" value="${apply.applicationSn}" onblur="" class="text"
-                                       style="width:154px" maxlength="20"
+                                       maxlength="20" readonly style="color:#aaaaaa"
                                        valid="required"
                                        errmsg="单据号不能为空!"/>
                                 <span style="color:red;">*</span>
@@ -140,7 +140,9 @@
                             <td>
                                 <select id="annex" name="annex"
                                         style="width: 202px;height: 22px"
-                                        data-placeholder="选择对象...">
+                                        data-placeholder="选择对象..."
+                                        valid="required"
+                                        errmsg="接收人不能为空!"/>>
                                     <c:forEach items="${teacherList}" var="teacher">
                                         <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
                                     </c:forEach>

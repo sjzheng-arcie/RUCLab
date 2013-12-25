@@ -49,7 +49,6 @@ public class ExperimentInstructionsController {
         mav.addObject("curriculumList", curriculumList);
 
         return mav;
-
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)

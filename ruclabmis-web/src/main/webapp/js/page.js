@@ -108,7 +108,7 @@ function getSelectIndex(formName, checkBoxName) {
 }
 
 function toUpdate(formName, checkBoxName) {
-    selectedItem = getSelectIndex(formName, checkBoxName);
+    var selectedItem = getSelectIndex(formName, checkBoxName);
     if (selectedItem <= 0)
         return;
 
@@ -117,7 +117,7 @@ function toUpdate(formName, checkBoxName) {
 }
 
 function toUpdatePassword(formName, checkBoxName) {
-    selectedItem = getSelectIndex(formName, checkBoxName);
+    var selectedItem = getSelectIndex(formName, checkBoxName);
     if (selectedItem <= 0)
         return;
 
@@ -127,7 +127,11 @@ function toUpdatePassword(formName, checkBoxName) {
 
 function toDelete(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-
+    if(selectedItems.length <= 0)
+    {
+        alert("未选择记录！");
+        return -1;
+    }
     if (confirm("是否删除所选记录？")) {
         document.forms[formName].action = "delete?items=" + selectedItems;
         document.forms[formName].submit();

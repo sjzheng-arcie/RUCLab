@@ -6,11 +6,19 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title>系统异常</title>
-
 </head>
 
-
 <body>
-<h2>404 您访问的页面不存在</h2>
+<ul>
+    <li>
+        <h1> 名称或编号重复！</h1>
+        <h1>
+
+            <p><a href="#" onclick="window.history.go(-1);">返回</a></p>
+
+        </h1>
+    </li>
+</ul>
+
 </body>
 </html>
