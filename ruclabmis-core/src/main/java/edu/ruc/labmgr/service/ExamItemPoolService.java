@@ -69,24 +69,22 @@ public class ExamItemPoolService {
         if(listSubjectId.size() <= 0)
             return;
 
+        File file = new File(filePath);
+        if (!file.getParentFile().exists()) {
+            file.getParentFile().mkdirs();
+        }
+        String content = "";
+        for(int id : listSubjectId)
+        {
+            ExamItemPool subject = selectByPrimaryKey(id);
+            content += subject.getSubstance();
+            content += "\r\n";
+        }
 
-            File file = new File(filePath);
-            if (!file.getParentFile().exists()) {
-                file.getParentFile().mkdirs();
-            }
-            String content = "";
-            for(int id : listSubjectId)
-            {
-                ExamItemPool subject = selectByPrimaryKey(id);
-                content += subject.getSubstance();
-                content += "\r\n";
-            }
-
-            BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
-            bw.write(content);
-            bw.newLine();
-            bw.close();
-
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+        bw.write(content);
+        bw.newLine();
+        bw.close();
     }
 
 }
