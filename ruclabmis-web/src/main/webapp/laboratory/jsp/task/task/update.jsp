@@ -89,14 +89,14 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
-                                        <input type="hidden" name="taskId" value="${taskInfo.id}"/>
+                                        <input type="hidden" name="taskId" id="taskId" value="${taskInfo.id}"/>
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
                                                 <td nowrap align="right">任务名称:</td>
                                                 <td nowrap>
-                                                    <input name="taskName" id="taskName" class="text"
+                                                    <input type="text"name="taskName" id="taskName" class="text"
                                                            valid="required" errmsg="请输入任务名！"
                                                            value="${taskInfo.taskname}" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -104,7 +104,7 @@
                                                 </td>
                                                 <td nowrap align="right">执行人:</td>
                                                 <td nowrap>
-                                                    <input name="operator" id="operator" onblur="" class="text"
+                                                    <input type="text" name="operator" id="operator" onblur="" class="text"
                                                            style="width:154px" maxlength="20" readonly disabled="no"
                                                            value="${teacherInfo.name}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -114,18 +114,19 @@
                                             <tr>
                                                 <td nowrap align="right">完成进度:</td>
                                                 <td nowrap>
-                                                    <input name="completeness" id="" onblur="" class="text"
+                                                    <input type="text" name="completeness" id="" onblur="" class="text"
                                                            style="text-align: right;"size="2" valid="required|isNum"
                                                            errmsg="请输入完成进度（1~100之间的整数）|必须是1~100之间的整数！"
-                                                           value="${taskInfo.completely}" readonly/>%
+                                                           value="${taskInfo.completely}" readonly DISABLED="no"/>%
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
                                                 <td nowrap align="right">完成时间:</td>
                                                 <td nowrap>
-                                                    <input class="text" name="limitDate"
-                                                           value="<fmt:formatDate value="${taskInfo.limitdate}"/>"
-                                                            style="width:154px" maxlength="20" valid="isDate|required"
+                                                    <input type="text" class="text" name="limitDate"
+                                                           value="<fmt:formatDate pattern="yyyy-MM-dd" value="${taskInfo.limitdate}"/>"
+
+                                                           style="width:154px" maxlength="20" valid="isDate|required"
                                                             errmsg="日期只能为：XXXX-XX-XX|请填写日期"
                                                             onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -141,7 +142,7 @@
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">完成情况:</td>
-                                                <td colspan="3"><textarea name="note" style="width:70%;height:100px" value="" disabled="no">${taskInfo.completion}</textarea>
+                                                <td colspan="3"><textarea name="completion" style="width:70%;height:100px" value="" disabled="no">${taskInfo.completion}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

@@ -1,12 +1,10 @@
 package edu.ruc.labmgr.web.controller.lab;
 
-import edu.ruc.labmgr.domain.Task;
-import edu.ruc.labmgr.domain.TaskCriteria;
-import edu.ruc.labmgr.domain.Taskscore;
-import edu.ruc.labmgr.domain.TaskscoreCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.TaskscoreMapper;
 import edu.ruc.labmgr.service.TaskScoreService;
 import edu.ruc.labmgr.service.TaskService;
+import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +27,8 @@ public class TaskScoreController {
 	TaskScoreService taskScoreService;
 	@Autowired
 	TaskService taskService;
+	@Autowired
+	UserService userService;
 
 	@RequestMapping(value = "/scorelist", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getList(@RequestParam(value="teacherId", required = true,defaultValue = "0") int teacherId,
@@ -46,8 +46,53 @@ public class TaskScoreController {
 	@RequestMapping(value = "/toscore", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView toScore(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId){
 		Task task = taskService.getTaskById(taskId);
+		User user = userService.getCurrentUser();
+
 		ModelAndView modelAndView = new ModelAndView("/laboratory/jsp/task/taskscore/score");
 		modelAndView.addObject("taskInfo",task);
+		modelAndView.addObject("userInfo",user);
+		return  modelAndView;
+	}
+	@RequestMapping(value = "/score", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView Score(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId,
+							  @RequestParam(value="completelyScore", required = true,defaultValue = "0") int completelyScore,
+							  @RequestParam(value="spentScore", required = true,defaultValue = "0") int spentScore,
+							  @RequestParam(value="timelyScore", required = true,defaultValue = "0") int timelyScore,
+							  @RequestParam(value="qualityScore", required = true,defaultValue = "0") int qualityScore,
+							  @RequestParam(value="totalScore", required = true,defaultValue = "0") int totalScore){
+
+		Taskscore taskscore = new Taskscore();
+		taskscore.setTaskid(taskId);
+		taskscore.setMarkerid(userService.getCurrentUserId());
+		taskscore.setCompletelyscore(completelyScore);
+		taskscore.setOverallscore(totalScore);
+		taskscore.setQualityscore(qualityScore);
+		taskscore.setSpentscore(spentScore);
+		taskscore.setTimelyscore(timelyScore);
+
+		taskScoreService.add(taskscore);
+		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/taskscore/scorelist");
+		return  modelAndView;
+	}
+	@RequestMapping(value = "/leaderscore", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView leaderScore(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId,
+							  @RequestParam(value="completelyScore", required = true,defaultValue = "0") int completelyScore,
+							  @RequestParam(value="spentScore", required = true,defaultValue = "0") int spentScore,
+							  @RequestParam(value="timelyScore", required = true,defaultValue = "0") int timelyScore,
+							  @RequestParam(value="qualityScore", required = true,defaultValue = "0") int qualityScore,
+							  @RequestParam(value="totalScore", required = true,defaultValue = "0") int totalScore){
+
+		Taskscore taskscore = new Taskscore();
+		taskscore.setTaskid(taskId);
+		taskscore.setMarkerid(userService.getCurrentUserId());
+		taskscore.setCompletelyscore(completelyScore);
+		taskscore.setOverallscore(totalScore);
+		taskscore.setQualityscore(qualityScore);
+		taskscore.setSpentscore(spentScore);
+		taskscore.setTimelyscore(timelyScore);
+
+		taskScoreService.add(taskscore);
+		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/taskscore/scorelist");
 		return  modelAndView;
 	}
 }
