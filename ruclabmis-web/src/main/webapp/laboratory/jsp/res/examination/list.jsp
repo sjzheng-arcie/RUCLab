@@ -7,15 +7,15 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <title>实验指导书管理</title>
+    <title>实验考试管理</title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        function editorClass(instructorId) {
-            window.location.href = "toUpdate?id="+instructorId;
+        function editItem(id) {
+            window.location.href = "toUpdate?id="+id;
         }
 
-        function downloadFile(instructorId) {
-            window.location.href = "downloadFile?id=" + instructorId;
+        function downloadFile(id) {
+            window.location.href = "downloadFile?id=" + id;
         }
     </script>
 </head>
@@ -31,7 +31,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 实验指导书管理</div>
+                            <div class="titlebt">资源管理 > 考试管理</div>
                         </td>
                     </tr>
                 </table>
@@ -46,23 +46,14 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-                            <shiro:hasAnyRoles name="administrators">
-                            <span style="white-space:nowrap">所属课程:
-                          <select name="searchCurriculum" id="searchCurriculum">
-                              <option value="">所有</option>
-                              <c:forEach items="${curriculumList}" var="item">
-                                  <option value="${item.id}"
-                                          <c:if test="${item.id == param.searchCurriculum}"> selected</c:if>>${item.name}
-                                  </option>
-                              </c:forEach>
-                          </select>
+                              <span style="white-space:nowrap">考试名称:
+                                <input type="text" name="searchName" id="searchName"
+                                       value="${param.searchName}" style="width:100px;"/>
                             </span>
                           <span style="white-space:nowrap">
                                  <a href="javascript:void(0)" onclick="toFind('listForm');">
                                      <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
                           </span>
-
-                            </shiro:hasAnyRoles>
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -82,26 +73,20 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">指导书列表</span>
+                                                                                style="white-space:nowrap">考试列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
                                                             </td>
                                                             <td>
-                                                                <shiro:hasAnyRoles name="administrators,teacher,equipment_admin,lab_admin">
-                                                                 <div align="right">
+                                                                <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                  <a href="/laboratory/jsp/res/instruction/toAdd">
-                                                                      <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                      <span class="STYLE1">新增</span>
-                                                                  </a>
                                                                   <a href="#" onclick="toDelete('listForm', 'idcheckbox');">
                                                                       <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                       <span class="STYLE1">删除</span>
                                                                   </a>
                                                                  </span>
-                                                                    </div>
-                                                                </shiro:hasAnyRoles>
+                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -123,19 +108,16 @@
                                                         </div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">指导书名称</span></div>
+                                                        <div align="center"><span class="STYLE10">课程</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">所属课程</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验目的</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验说明</span></div>
+                                                        <div align="center"><span class="STYLE10">考试名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">附件名称</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">备注</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">操作</span></div>
@@ -146,18 +128,15 @@
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
+                                                        <td>${item.curriculumName}</td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.curriculumId}</td>
-                                                        <td>${item.purpose}</td>
-                                                        <td>${item.explanation}</td>
                                                         <td>${item.documentName}</td>
+                                                        <td>${item.comment}</td>
                                                         <td>
-                                                            <input type="button" onClick="editorClass(${item.id})"
-                                                                   class="button"
-                                                                   value="编辑"/>
+                                                            <input type="button" onClick="editItem(${item.id})"
+                                                                   class="button" value="编辑"/>
                                                             <input type="button" onClick="downloadFile(${item.id})"
-                                                                   class="button"
-                                                                   value="下载"/>
+                                                                   class="button" value="下载"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

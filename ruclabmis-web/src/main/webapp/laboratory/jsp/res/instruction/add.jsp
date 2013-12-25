@@ -51,11 +51,6 @@
             document.mainForm.submit();
         }
 
-        function deleteFile() {
-            var id = document.getElementById("id").value;
-            window.location.href = "deleteFile?id=" + id;
-        }
-
         function toAddSubject(){
             var fileName = document.getElementById("name").value;
             if (!fileName) {
@@ -161,8 +156,7 @@
                                                 <td colspan="3">
                                                     <textarea name="purpose" style="width:90%;height:30px"
                                                               valid="required"
-                                                              errmsg="实验目的不能为空!">
-                                                    </textarea>
+                                                              errmsg="实验目的不能为空!"></textarea>
                                                     <span style="color:red;"> *</span>
                                                 </td>
                                             </tr>
@@ -170,8 +164,7 @@
                                                 <td nowrap align="right">实验说明:</td>
                                                 <td colspan="3">
                                                     <textarea name="explanation" style="width:90%;height:60px"  valid="required"
-                                                              errmsg="实验说明不能为空!">
-                                                    </textarea>
+                                                              errmsg="实验说明不能为空!"></textarea>
                                                     <span style="color:red;"> *</span>
                                                 </td>
                                             </tr>
