@@ -88,26 +88,28 @@
                                                     <input name="sn" id="sn" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isAccount"
-                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"/>
+                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"
+                                                           value=""/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-                                                <td nowrap align="right">用户名:</td>
+                                                <td nowrap align="right">用户名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
                                                            valid="required|isEnglishChinese"
-                                                           errmsg="用户名不能为空!|用户名只能为中英文字符"/>
+                                                           errmsg="用户名不能为空!|用户名只能为中英文字符"
+                                                           value=""/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">账号密码:</td>
                                                 <td nowrap>
-                                                    <input name="password" id="password" value="" onblur=""
-                                                           class="text"
-                                                           style="width:154px" maxlength="16"
+                                                    <input name="password" id="password" onblur=""
+                                                           class="text" style="width:154px" maxlength="16"
                                                            valid="required|isPassword" type="password"
-                                                           errmsg="账号密码不能为空!|密码只能以字母数字下划线组成6至16位!"/>
+                                                           errmsg="账号密码不能为空!|密码只能以字母数字下划线组成6至16位!"
+                                                           value=""/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">邮箱：</td>
@@ -177,8 +179,7 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="comment" id="comment">
-                                                    </textarea>
+                                                    <textarea name="comment" id="comment"></textarea>
                                                 </td>
                                             </tr>
                                         </table>

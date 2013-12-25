@@ -104,7 +104,7 @@
                             <td align="center">单据号</td>
                             <td>
                                 <input name="sn" id="sn" value="${apply.applicationSn}" onblur="" class="text"
-                                       style="width:154px" maxlength="20"
+                                       maxlength="20" readonly style="color:#aaaaaa"
                                        valid="required"
                                        errmsg="单据号不能为空!"/>
                                 <span style="color:red;">*</span>

@@ -1,7 +1,6 @@
 <%@ page contentType="text/html;charset=UTF-8" isErrorPage="true" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="org.slf4j.Logger,org.slf4j.LoggerFactory" %>
-<%response.setStatus(200);%>
 
 <%
     Throwable ex = null;
@@ -13,8 +12,7 @@
     //记录日志
     Logger logger = LoggerFactory.getLogger("500.jsp");
     logger.error(ex.getMessage(), ex);
-    out.println(ex.getMessage());
-    ex.printStackTrace();
+
 %>
 
 <!DOCTYPE html>
@@ -25,8 +23,6 @@
 
 <body>
 <h2>500 - 系统发生内部错误.</h2>
-
-<p><a href="<c:url value="/index.jsp"/>">返回首页</a></p>
 
 <p><a href="#" onclick="window.history.go(-1);">返回</a></p>
 </body>

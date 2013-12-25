@@ -14,7 +14,7 @@
         if (!validator(document.mainForm)) {
             return;
         }
-        document.mainForm.action = "addEquipmentsToApply?application_id=" +${applicationId};
+        document.mainForm.action = "insert";
         document.mainForm.submit();
     }
 
@@ -30,7 +30,7 @@
         <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">设备信息管理 > 设备资产报增 > 添加设备</div>
+                    <div class="titlebt">设备信息管理 > 设备资产入库 > 添加设备</div>
                 </td>
             </tr>
         </table>
@@ -59,7 +59,7 @@
                                                                                  height="14"/></div>
                                                     </td>
                                                     <td width="94%" valign="bottom"><span
-                                                            class="STYLE1">固定资产报增单 > 添加设备</span>
+                                                            class="STYLE1">固定资产入库 > 添加设备</span>
                                                     </td>
                                                 </tr>
                                             </table>

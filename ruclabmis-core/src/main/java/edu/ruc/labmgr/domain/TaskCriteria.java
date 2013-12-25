@@ -934,6 +934,306 @@ public class TaskCriteria {
             addCriterion("ifscored not between", value1, value2, "ifscored");
             return (Criteria) this;
         }
+
+        public Criteria andOverallscoreIsNull() {
+            addCriterion("overallscore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreIsNotNull() {
+            addCriterion("overallscore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreEqualTo(Integer value) {
+            addCriterion("overallscore =", value, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreNotEqualTo(Integer value) {
+            addCriterion("overallscore <>", value, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreGreaterThan(Integer value) {
+            addCriterion("overallscore >", value, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("overallscore >=", value, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreLessThan(Integer value) {
+            addCriterion("overallscore <", value, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("overallscore <=", value, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreIn(List<Integer> values) {
+            addCriterion("overallscore in", values, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreNotIn(List<Integer> values) {
+            addCriterion("overallscore not in", values, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreBetween(Integer value1, Integer value2) {
+            addCriterion("overallscore between", value1, value2, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andOverallscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("overallscore not between", value1, value2, "overallscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreIsNull() {
+            addCriterion("completelyscore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreIsNotNull() {
+            addCriterion("completelyscore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreEqualTo(Integer value) {
+            addCriterion("completelyscore =", value, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreNotEqualTo(Integer value) {
+            addCriterion("completelyscore <>", value, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreGreaterThan(Integer value) {
+            addCriterion("completelyscore >", value, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("completelyscore >=", value, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreLessThan(Integer value) {
+            addCriterion("completelyscore <", value, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("completelyscore <=", value, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreIn(List<Integer> values) {
+            addCriterion("completelyscore in", values, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreNotIn(List<Integer> values) {
+            addCriterion("completelyscore not in", values, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreBetween(Integer value1, Integer value2) {
+            addCriterion("completelyscore between", value1, value2, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andCompletelyscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("completelyscore not between", value1, value2, "completelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreIsNull() {
+            addCriterion("timelyscore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreIsNotNull() {
+            addCriterion("timelyscore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreEqualTo(Integer value) {
+            addCriterion("timelyscore =", value, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreNotEqualTo(Integer value) {
+            addCriterion("timelyscore <>", value, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreGreaterThan(Integer value) {
+            addCriterion("timelyscore >", value, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("timelyscore >=", value, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreLessThan(Integer value) {
+            addCriterion("timelyscore <", value, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("timelyscore <=", value, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreIn(List<Integer> values) {
+            addCriterion("timelyscore in", values, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreNotIn(List<Integer> values) {
+            addCriterion("timelyscore not in", values, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreBetween(Integer value1, Integer value2) {
+            addCriterion("timelyscore between", value1, value2, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTimelyscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("timelyscore not between", value1, value2, "timelyscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreIsNull() {
+            addCriterion("qualityscore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreIsNotNull() {
+            addCriterion("qualityscore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreEqualTo(Integer value) {
+            addCriterion("qualityscore =", value, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreNotEqualTo(Integer value) {
+            addCriterion("qualityscore <>", value, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreGreaterThan(Integer value) {
+            addCriterion("qualityscore >", value, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("qualityscore >=", value, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreLessThan(Integer value) {
+            addCriterion("qualityscore <", value, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("qualityscore <=", value, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreIn(List<Integer> values) {
+            addCriterion("qualityscore in", values, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreNotIn(List<Integer> values) {
+            addCriterion("qualityscore not in", values, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreBetween(Integer value1, Integer value2) {
+            addCriterion("qualityscore between", value1, value2, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andQualityscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("qualityscore not between", value1, value2, "qualityscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreIsNull() {
+            addCriterion("spentscore is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreIsNotNull() {
+            addCriterion("spentscore is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreEqualTo(Integer value) {
+            addCriterion("spentscore =", value, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreNotEqualTo(Integer value) {
+            addCriterion("spentscore <>", value, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreGreaterThan(Integer value) {
+            addCriterion("spentscore >", value, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreGreaterThanOrEqualTo(Integer value) {
+            addCriterion("spentscore >=", value, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreLessThan(Integer value) {
+            addCriterion("spentscore <", value, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreLessThanOrEqualTo(Integer value) {
+            addCriterion("spentscore <=", value, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreIn(List<Integer> values) {
+            addCriterion("spentscore in", values, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreNotIn(List<Integer> values) {
+            addCriterion("spentscore not in", values, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreBetween(Integer value1, Integer value2) {
+            addCriterion("spentscore between", value1, value2, "spentscore");
+            return (Criteria) this;
+        }
+
+        public Criteria andSpentscoreNotBetween(Integer value1, Integer value2) {
+            addCriterion("spentscore not between", value1, value2, "spentscore");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {
