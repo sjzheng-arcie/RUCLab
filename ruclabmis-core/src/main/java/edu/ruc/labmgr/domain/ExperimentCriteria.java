@@ -1,6 +1,8 @@
 package edu.ruc.labmgr.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
 
 public class ExperimentCriteria {
@@ -102,6 +104,32 @@ public class ExperimentCriteria {
                 throw new RuntimeException("Between values for " + property + " cannot be null");
             }
             criteria.add(new Criterion(condition, value1, value2));
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
+            if (value == null) {
+                throw new RuntimeException("Value for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value.getTime()), property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
+            if (values == null || values.size() == 0) {
+                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
+            }
+            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
+            Iterator<Date> iter = values.iterator();
+            while (iter.hasNext()) {
+                dateList.add(new java.sql.Date(iter.next().getTime()));
+            }
+            addCriterion(condition, dateList, property);
+        }
+
+        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
+            if (value1 == null || value2 == null) {
+                throw new RuntimeException("Between values for " + property + " cannot be null");
+            }
+            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
         }
 
         public Criteria andIdIsNull() {
@@ -361,6 +389,186 @@ public class ExperimentCriteria {
 
         public Criteria andCurriculumIdNotBetween(Integer value1, Integer value2) {
             addCriterion("curriculum_id not between", value1, value2, "curriculumId");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNull() {
+            addCriterion("status is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIsNotNull() {
+            addCriterion("status is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusEqualTo(Boolean value) {
+            addCriterion("status =", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotEqualTo(Boolean value) {
+            addCriterion("status <>", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThan(Boolean value) {
+            addCriterion("status >", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("status >=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThan(Boolean value) {
+            addCriterion("status <", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusLessThanOrEqualTo(Boolean value) {
+            addCriterion("status <=", value, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusIn(List<Boolean> values) {
+            addCriterion("status in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotIn(List<Boolean> values) {
+            addCriterion("status not in", values, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusBetween(Boolean value1, Boolean value2) {
+            addCriterion("status between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andStatusNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("status not between", value1, value2, "status");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportIsNull() {
+            addCriterion("need_report is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportIsNotNull() {
+            addCriterion("need_report is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportEqualTo(Boolean value) {
+            addCriterion("need_report =", value, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportNotEqualTo(Boolean value) {
+            addCriterion("need_report <>", value, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportGreaterThan(Boolean value) {
+            addCriterion("need_report >", value, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("need_report >=", value, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportLessThan(Boolean value) {
+            addCriterion("need_report <", value, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportLessThanOrEqualTo(Boolean value) {
+            addCriterion("need_report <=", value, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportIn(List<Boolean> values) {
+            addCriterion("need_report in", values, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportNotIn(List<Boolean> values) {
+            addCriterion("need_report not in", values, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportBetween(Boolean value1, Boolean value2) {
+            addCriterion("need_report between", value1, value2, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andNeedReportNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("need_report not between", value1, value2, "needReport");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineIsNull() {
+            addCriterion("report_deadline is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineIsNotNull() {
+            addCriterion("report_deadline is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineEqualTo(Date value) {
+            addCriterionForJDBCDate("report_deadline =", value, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineNotEqualTo(Date value) {
+            addCriterionForJDBCDate("report_deadline <>", value, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineGreaterThan(Date value) {
+            addCriterionForJDBCDate("report_deadline >", value, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineGreaterThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("report_deadline >=", value, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineLessThan(Date value) {
+            addCriterionForJDBCDate("report_deadline <", value, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineLessThanOrEqualTo(Date value) {
+            addCriterionForJDBCDate("report_deadline <=", value, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineIn(List<Date> values) {
+            addCriterionForJDBCDate("report_deadline in", values, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineNotIn(List<Date> values) {
+            addCriterionForJDBCDate("report_deadline not in", values, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("report_deadline between", value1, value2, "reportDeadline");
+            return (Criteria) this;
+        }
+
+        public Criteria andReportDeadlineNotBetween(Date value1, Date value2) {
+            addCriterionForJDBCDate("report_deadline not between", value1, value2, "reportDeadline");
             return (Criteria) this;
         }
 

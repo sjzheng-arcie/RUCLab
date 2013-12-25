@@ -91,7 +91,7 @@
                             <li><a href="jsp/curriculum/pages_miyl/miyl01_ylsj/page01_ylya_new.html" onfocus="toFocus(this)"
                                    target="main">
                                 实验室预约</a></li>
-                            <li><a href="jsp/experiment/report/courselist" onfocus="toFocus(this)"
+                            <li><a href="jsp/experiment/experiment/courselist?page=1&view=report" onfocus="toFocus(this)"
                                    target="main">实验报告管理</a>
                             </li>
                             <li><a href="jsp/experiment/achievement/courselist" onfocus="toFocus(this)" target="main">

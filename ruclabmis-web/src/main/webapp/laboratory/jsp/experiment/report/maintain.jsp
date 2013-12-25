@@ -1,21 +1,35 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
+    <title></title>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 
-    <title></title>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+
     <script>
-        var baseHref = '/laboratory/jsp/experiment/experimentpaper/maintain';
-
-
+        function save(){
+            $.post("/laboratory/jsp/experiment/experiment/updateExpRep",{
+                id :$("#id").val(),
+                name:$("#name").val(),
+                status:$("#status").val(),
+                needReport:$("#needReport").val(),
+                reportDeadline:$("#reportDeadline").val(),
+                content:$("#content").val()
+            },function(data){
+                if(data.success){
+                    window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid=${cur.id}&view=report";
+                }else{
+                    alert(data.message);
+                }
+            });
+        }
         function update() {
             if (!validator(document.listForm)) {
                 return;
@@ -33,7 +47,7 @@
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
-
+    <input type="hidden" id="id" name="id" value="${exp.id}"/>
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
@@ -94,51 +108,40 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">实验编号:</td>
-                                                <td nowrap>${experiment.experimentNo}</td>
-                                                <td nowrap align="right">实验名称:</td>
-                                                <td nowrap>${experiment.experimentName}</td>
-
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">所属课程:</td>
-                                                <td nowrap>${experiment.courseList}</td>
-                                                <td nowrap align="right">指导老师:</td>
-                                                <td nowrap>${experiment.instructor}</td>
+                                                <td nowrap><input type="text" value="${cur.name}" disabled/></td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">实验指导书:</td>
-                                                <td nowrap>${experiment.instructor}</td>
-                                                <td nowrap align="right">实验报告书:</td>
-                                                <td nowrap>${experiment.experimentReport}</td>
+                                                <td nowrap align="right">实验名称:</td>
+                                                <td nowrap><input type="text" name="name" id="name" value="${exp.name}"/></td>
+                                                <td nowrap align="right">是否发布:</td>
+                                                <td nowrap><select name="status" id="status">
+                                                    <option value="false" <c:if test="${!exp.status}">selected="selected" </c:if>>待发布</option>
+                                                    <option value="true" <c:if test="${exp.status}">selected="selected" </c:if>>已发布</option>
+                                                </select></td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">是否提交实验报告:</td>
+                                                <td nowrap align="right">是否提交报告:</td>
                                                 <td nowrap>
-                                                    <select name="ifReported">
-                                                        <c:if test="${experiment.ifReported==null}">
-                                                            <option selected></option>
-                                                        </c:if>
-                                                        <c:if test="${experiment.ifReported==1}">
-                                                            <option value="0" selected>是</option>
-                                                        </c:if>
-                                                        <c:if test="${experiment.ifReported==0}">
-                                                            <option value="0" selected>否</option>
-                                                        </c:if>
+                                                    <select name="needReport" id="needReport">
+                                                        <option value="false" <c:if test="${!exp.needReport}">selected="selected" </c:if>>否</option>
+                                                        <option value="true" <c:if test="${exp.needReport}">selected="selected" </c:if>>是</option>
                                                     </select>
                                                 </td>
-                                                <td nowrap align="right">最后提交期限:</td>
-                                                <td nowrap>
-                                                    <input name="limitTime" id="manufactureDate"
-                                                           onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                           valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
-                                                           onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
-                                                           value="${experiment.limitTime}"/>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_spwd"></span>
+                                                <td nowrap align="right">报告提交期限:</td>
+                                                <td nowrap><input name="reportDeadline" id="reportDeadline"
+                                                                  onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                                  valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                                  onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"
+                                                                  value="<fmt:formatDate value='${exp.reportDeadline}'
+                                                                  pattern='yyyy-MM-dd'></fmt:formatDate>" /></td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">实验内容:</td>
+                                                <td>
+                                                    <textarea name="content" id="content" rows="3">${exp.content}</textarea>
                                                 </td>
                                             </tr>
-
                                         </table>
                                     </td>
                                 </tr>

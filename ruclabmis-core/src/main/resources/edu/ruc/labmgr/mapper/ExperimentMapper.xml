@@ -6,6 +6,9 @@
     <result column="name" property="name" jdbcType="VARCHAR" />
     <result column="content" property="content" jdbcType="VARCHAR" />
     <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="BIT" />
+    <result column="need_report" property="needReport" jdbcType="BIT" />
+    <result column="report_deadline" property="reportDeadline" jdbcType="DATE" />
     <result column="template_path" property="templatePath" jdbcType="VARCHAR" />
   </resultMap>
   <sql id="Example_Where_Clause" >
@@ -67,7 +70,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, name, content, curriculum_id, template_path
+    id, name, content, curriculum_id, status, need_report, report_deadline, template_path
   </sql>
   <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
     select
@@ -104,8 +107,10 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into experiment (name, content, curriculum_id, 
+      status, need_report, report_deadline, 
       template_path)
     values (#{name,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, #{curriculumId,jdbcType=INTEGER}, 
+      #{status,jdbcType=BIT}, #{needReport,jdbcType=BIT}, #{reportDeadline,jdbcType=DATE}, 
       #{templatePath,jdbcType=VARCHAR})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Experiment" >
@@ -123,6 +128,15 @@
       <if test="curriculumId != null" >
         curriculum_id,
       </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="needReport != null" >
+        need_report,
+      </if>
+      <if test="reportDeadline != null" >
+        report_deadline,
+      </if>
       <if test="templatePath != null" >
         template_path,
       </if>
@@ -136,6 +150,15 @@
       </if>
       <if test="curriculumId != null" >
         #{curriculumId,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=BIT},
+      </if>
+      <if test="needReport != null" >
+        #{needReport,jdbcType=BIT},
+      </if>
+      <if test="reportDeadline != null" >
+        #{reportDeadline,jdbcType=DATE},
       </if>
       <if test="templatePath != null" >
         #{templatePath,jdbcType=VARCHAR},
@@ -163,6 +186,15 @@
       <if test="record.curriculumId != null" >
         curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
       </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=BIT},
+      </if>
+      <if test="record.needReport != null" >
+        need_report = #{record.needReport,jdbcType=BIT},
+      </if>
+      <if test="record.reportDeadline != null" >
+        report_deadline = #{record.reportDeadline,jdbcType=DATE},
+      </if>
       <if test="record.templatePath != null" >
         template_path = #{record.templatePath,jdbcType=VARCHAR},
       </if>
@@ -177,6 +209,9 @@
       name = #{record.name,jdbcType=VARCHAR},
       content = #{record.content,jdbcType=VARCHAR},
       curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
+      status = #{record.status,jdbcType=BIT},
+      need_report = #{record.needReport,jdbcType=BIT},
+      report_deadline = #{record.reportDeadline,jdbcType=DATE},
       template_path = #{record.templatePath,jdbcType=VARCHAR}
     <if test="_parameter != null" >
       <include refid="Update_By_Example_Where_Clause" />
@@ -194,6 +229,15 @@
       <if test="curriculumId != null" >
         curriculum_id = #{curriculumId,jdbcType=INTEGER},
       </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=BIT},
+      </if>
+      <if test="needReport != null" >
+        need_report = #{needReport,jdbcType=BIT},
+      </if>
+      <if test="reportDeadline != null" >
+        report_deadline = #{reportDeadline,jdbcType=DATE},
+      </if>
       <if test="templatePath != null" >
         template_path = #{templatePath,jdbcType=VARCHAR},
       </if>
@@ -205,6 +249,9 @@
     set name = #{name,jdbcType=VARCHAR},
       content = #{content,jdbcType=VARCHAR},
       curriculum_id = #{curriculumId,jdbcType=INTEGER},
+      status = #{status,jdbcType=BIT},
+      need_report = #{needReport,jdbcType=BIT},
+      report_deadline = #{reportDeadline,jdbcType=DATE},
       template_path = #{templatePath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>

@@ -61,6 +61,10 @@ public class ExperimentService {
         experimentMapper.updateByPrimaryKey(exp);
     }
 
+    public void updateExperiment(Experiment exp){
+        experimentMapper.updateByPrimaryKeySelective(exp);
+    }
+
     /**
      * 获得课程对应的实验
      * @param cid
