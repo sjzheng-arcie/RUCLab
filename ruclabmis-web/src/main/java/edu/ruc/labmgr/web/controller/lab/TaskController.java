@@ -103,6 +103,15 @@ public class TaskController {
 		task.setContent(taskContent);
 		task.setLimitdate(limitDate);
 		task.setIfcompleted(false);
+		task.setCompletely(0);
+		task.setScore(0);
+		task.setSpentscore(0);
+		task.setQualityscore(0);
+		task.setTimelyscore(0);
+		task.setSpentscore(0);
+		task.setCompletelyscore(0);
+		task.setOverallscore(0);
+		task.setIfscored(false);
 		taskService.insert(task);
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist?teacherId="+teacherId);
 		return modelAndView;
@@ -120,8 +129,7 @@ public class TaskController {
 	@RequestMapping(value = "/update", method = ( RequestMethod.POST))
 	public ModelAndView updateTask(@RequestParam(value = "taskName", required = false) String taskName,
 								@RequestParam(value = "taskId", required = true ) int taskId,
-								@RequestParam(value = "ifCompleted", required = false, defaultValue = "0") int ifCompleted,
-								@RequestParam(value = "taskContent", required = false, defaultValue = "") String taskContent,
+								@RequestParam(value = "taskContent", required = false) String taskContent,
 								@RequestParam(value = "limitDate", required = false ) Date limitDate){
 
 		Task task = taskService.getTaskById(taskId);
@@ -133,13 +141,6 @@ public class TaskController {
 		}
 		if(limitDate!=null){
 			task.setLimitdate(limitDate);
-		}
-		if(ifCompleted==0){
-
-		}else if(ifCompleted==1){
-			task.setIfcompleted(true);
-		}else{
-
 		}
 		taskService.updateByPrimaryKey(task);
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist?teacherId="+task.getManagerid());
@@ -205,7 +206,6 @@ public class TaskController {
 		}
 		task.setFinishdate(new Date());
 		task.setIfcompleted(true);
-		task.setCompletely(100);
 		taskService.updateByPrimaryKey(task);
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/mytasklist?teacherId="+task.getManagerid());
 		return modelAndView;

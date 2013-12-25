@@ -15,8 +15,12 @@
     <result column="completely" jdbcType="INTEGER" property="completely" />
     <result column="score" jdbcType="INTEGER" property="score" />
     <result column="ifscored" jdbcType="BIT" property="ifscored" />
-      <association column="managerId" javaType="User" property="manager"
-                   select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
+    <result column="overallscore" jdbcType="INTEGER" property="overallscore" />
+    <result column="completelyscore" jdbcType="INTEGER" property="completelyscore" />
+    <result column="timelyscore" jdbcType="INTEGER" property="timelyscore" />
+    <result column="qualityscore" jdbcType="INTEGER" property="qualityscore" />
+    <result column="spentscore" jdbcType="INTEGER" property="spentscore" />
+      <association column="managerId" javaType="User" property="manager" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -78,7 +82,8 @@
   </sql>
   <sql id="Base_Column_List">
     id, ifCompleted, annexName, content, managerId, annexpath, taskName, finishDate, 
-    limitDate, completion, completely, score, ifscored
+    limitDate, completion, completely, score, ifscored, overallscore, completelyscore, 
+    timelyscore, qualityscore, spentscore
   </sql>
   <select id="selectByExample" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultMap="BaseResultMap">
     select
@@ -117,13 +122,15 @@
     insert into task (ifCompleted, annexName, content, 
       managerId, annexpath, taskName, 
       finishDate, limitDate, completion, 
-      completely, score, ifscored
-      )
+      completely, score, ifscored, 
+      overallscore, completelyscore, timelyscore, 
+      qualityscore, spentscore)
     values (#{ifcompleted,jdbcType=BIT}, #{annexname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
       #{managerid,jdbcType=INTEGER}, #{annexpath,jdbcType=VARCHAR}, #{taskname,jdbcType=VARCHAR}, 
       #{finishdate,jdbcType=TIMESTAMP}, #{limitdate,jdbcType=TIMESTAMP}, #{completion,jdbcType=VARCHAR}, 
-      #{completely,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{ifscored,jdbcType=BIT}
-      )
+      #{completely,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{ifscored,jdbcType=BIT}, 
+      #{overallscore,jdbcType=INTEGER}, #{completelyscore,jdbcType=INTEGER}, #{timelyscore,jdbcType=INTEGER}, 
+      #{qualityscore,jdbcType=INTEGER}, #{spentscore,jdbcType=INTEGER})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Task">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -167,6 +174,21 @@
       <if test="ifscored != null">
         ifscored,
       </if>
+      <if test="overallscore != null">
+        overallscore,
+      </if>
+      <if test="completelyscore != null">
+        completelyscore,
+      </if>
+      <if test="timelyscore != null">
+        timelyscore,
+      </if>
+      <if test="qualityscore != null">
+        qualityscore,
+      </if>
+      <if test="spentscore != null">
+        spentscore,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="ifcompleted != null">
@@ -204,6 +226,21 @@
       </if>
       <if test="ifscored != null">
         #{ifscored,jdbcType=BIT},
+      </if>
+      <if test="overallscore != null">
+        #{overallscore,jdbcType=INTEGER},
+      </if>
+      <if test="completelyscore != null">
+        #{completelyscore,jdbcType=INTEGER},
+      </if>
+      <if test="timelyscore != null">
+        #{timelyscore,jdbcType=INTEGER},
+      </if>
+      <if test="qualityscore != null">
+        #{qualityscore,jdbcType=INTEGER},
+      </if>
+      <if test="spentscore != null">
+        #{spentscore,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -255,6 +292,21 @@
       <if test="record.ifscored != null">
         ifscored = #{record.ifscored,jdbcType=BIT},
       </if>
+      <if test="record.overallscore != null">
+        overallscore = #{record.overallscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.completelyscore != null">
+        completelyscore = #{record.completelyscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.timelyscore != null">
+        timelyscore = #{record.timelyscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.qualityscore != null">
+        qualityscore = #{record.qualityscore,jdbcType=INTEGER},
+      </if>
+      <if test="record.spentscore != null">
+        spentscore = #{record.spentscore,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -274,7 +326,12 @@
       completion = #{record.completion,jdbcType=VARCHAR},
       completely = #{record.completely,jdbcType=INTEGER},
       score = #{record.score,jdbcType=INTEGER},
-      ifscored = #{record.ifscored,jdbcType=BIT}
+      ifscored = #{record.ifscored,jdbcType=BIT},
+      overallscore = #{record.overallscore,jdbcType=INTEGER},
+      completelyscore = #{record.completelyscore,jdbcType=INTEGER},
+      timelyscore = #{record.timelyscore,jdbcType=INTEGER},
+      qualityscore = #{record.qualityscore,jdbcType=INTEGER},
+      spentscore = #{record.spentscore,jdbcType=INTEGER}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -318,6 +375,21 @@
       <if test="ifscored != null">
         ifscored = #{ifscored,jdbcType=BIT},
       </if>
+      <if test="overallscore != null">
+        overallscore = #{overallscore,jdbcType=INTEGER},
+      </if>
+      <if test="completelyscore != null">
+        completelyscore = #{completelyscore,jdbcType=INTEGER},
+      </if>
+      <if test="timelyscore != null">
+        timelyscore = #{timelyscore,jdbcType=INTEGER},
+      </if>
+      <if test="qualityscore != null">
+        qualityscore = #{qualityscore,jdbcType=INTEGER},
+      </if>
+      <if test="spentscore != null">
+        spentscore = #{spentscore,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -334,7 +406,12 @@
       completion = #{completion,jdbcType=VARCHAR},
       completely = #{completely,jdbcType=INTEGER},
       score = #{score,jdbcType=INTEGER},
-      ifscored = #{ifscored,jdbcType=BIT}
+      ifscored = #{ifscored,jdbcType=BIT},
+      overallscore = #{overallscore,jdbcType=INTEGER},
+      completelyscore = #{completelyscore,jdbcType=INTEGER},
+      timelyscore = #{timelyscore,jdbcType=INTEGER},
+      qualityscore = #{qualityscore,jdbcType=INTEGER},
+      spentscore = #{spentscore,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultMap="BaseResultMap">
