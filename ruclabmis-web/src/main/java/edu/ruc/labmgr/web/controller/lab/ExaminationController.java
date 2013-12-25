@@ -16,10 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.OutputStream;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -81,13 +78,13 @@ public class ExaminationController {
     }
 
     @RequestMapping(value = "/addSubject", method = RequestMethod.POST)
-    public  @ResponseBody Result addSubject(String name, String structIds, HttpServletRequest request,HttpServletResponse response){
+    public  @ResponseBody Result addSubject(String name, String structIds, HttpServletRequest request,HttpServletResponse response) throws UnsupportedEncodingException {
         Result result = null;
         if(StringUtils.isNullOrEmpty(structIds))
             return result;
 
+        request.setCharacterEncoding("UTF-8");
         response.setHeader("content-type", "text/html;charset=UTF-8");
-
         try {
             String[] subjectIdArr = structIds.split(",");
             List<Integer> subjectIdList = new ArrayList<>();
@@ -95,9 +92,10 @@ public class ExaminationController {
                 subjectIdList.add(Integer.valueOf(idStr));
             }
 
+            String strName = new String(name.getBytes("ISO-8859-1"),"UTF-8");
             String filePath = "/WEB-INF/upload/examination/";
             String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
-            String fileName = "实验-" + name + "-试题.doc";
+            String fileName = "实验-" + strName + "-试题.doc";
             String fullFilePath = uploadPath + "\\" + fileName;
             examItemPoolService.generateDocument(fullFilePath, subjectIdList);
 
@@ -136,7 +134,8 @@ public class ExaminationController {
 
         response.setHeader("content-type", "text/html;charset=UTF-8");
         response.setContentType("multipart/form-data");
-        String header = "attachment;fileName=\""+fileName + "\"";
+        String strName = new String(fileName.getBytes("UTF-8"), "ISO_8859_1");
+        String header = "attachment;fileName=" + strName;
         response.setHeader("Content-Disposition", header);
 
         File file=new File(path);

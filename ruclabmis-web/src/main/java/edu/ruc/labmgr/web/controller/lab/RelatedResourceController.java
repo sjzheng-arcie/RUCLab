@@ -112,19 +112,21 @@ public class RelatedResourceController {
 
         response.setHeader("content-type", "text/html;charset=UTF-8");
         response.setContentType("multipart/form-data");
-        String header = "attachment;fileName=\""+relatedResource.getDocumentName() + "\"";
+        String strName = new String(relatedResource.getDocumentName().getBytes("GB2312"), "ISO_8859_1");
+
+        String header = "attachment;fileName="+ strName;
         response.setHeader("Content-Disposition", header);
 
-        File file = new File(path);
-        System.out.println(file.getAbsolutePath());
-        InputStream inputStream=new FileInputStream(file);
-        OutputStream os=response.getOutputStream();
-        byte[] b=new byte[2048];
-        int length;
-        while((length=inputStream.read(b))>0){
-            os.write(b,0,length);
-        }
-        inputStream.close();
+            File file = new File(path);
+            System.out.println(file.getAbsolutePath());
+            InputStream inputStream=new FileInputStream(file);
+            OutputStream os=response.getOutputStream();
+            byte[] b=new byte[2048];
+            int length;
+            while((length=inputStream.read(b))>0){
+                os.write(b,0,length);
+            }
+            inputStream.close();
 
     }
 }
