@@ -64,8 +64,8 @@ public class ExperimentInstructionsController {
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(ExperimentInstructions experimentInstructions, HttpServletRequest request) {
-        String filePath = "/WEB-INF/upload/generated/";
-        String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
+        String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
+        String uploadPath = request.getSession().getServletContext().getRealPath(path);
         String fullFilePath = uploadPath + "\\" + experimentInstructions.getDocumentName();
         experimentInstructions.setDocumentPath(fullFilePath);
 
@@ -87,8 +87,8 @@ public class ExperimentInstructionsController {
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
     public String update(ExperimentInstructions experimentInstructions, HttpServletRequest request) {
-        String filePath = "/WEB-INF/upload/generated/";
-        String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
+        String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
+        String uploadPath = request.getSession().getServletContext().getRealPath(path);
         String fullFilePath = uploadPath + "\\" + experimentInstructions.getDocumentName();
         experimentInstructions.setDocumentPath(fullFilePath);
 
@@ -127,9 +127,10 @@ public class ExperimentInstructionsController {
                 subjectIdList.add(Integer.valueOf(idStr));
             }
 
-            String filePath = "/WEB-INF/upload/generated/";
-            String uploadPath = request.getSession().getServletContext().getRealPath(filePath);
-            String fileName = "实验-" + instructionName + "-指导书.doc";
+            String strName = new String(instructionName.getBytes("ISO-8859-1"),"UTF-8");
+            String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
+            String uploadPath = request.getSession().getServletContext().getRealPath(path);
+            String fileName = "实验-" + strName + "-指导书.doc";
             String fullFilePath = uploadPath + "\\" + fileName;
             subjectService.generateDocument(fullFilePath, subjectIdList);
 
@@ -168,7 +169,8 @@ public class ExperimentInstructionsController {
 
         response.setHeader("content-type", "text/html;charset=UTF-8");
         response.setContentType("multipart/form-data");
-        String header = "attachment;fileName=\""+fileName + "\"";
+        String strName = new String(fileName.getBytes("UTF-8"), "ISO_8859_1");
+        String header = "attachment;fileName=" + strName;
         response.setHeader("Content-Disposition", header);
 
         File file=new File(path);

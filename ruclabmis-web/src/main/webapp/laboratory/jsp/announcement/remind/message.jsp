@@ -100,13 +100,13 @@
                                                              style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                             <p align="left" style="font-size: 12px">
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/message?page=0&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/message?page=1&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/unreadmessage?page=0&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/unreadmessage?page=1&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
                                                                    href="/messagecenter/laboratory/jsp/announcement/remind/readmessage?page=1&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/mysendmessage?page=0&&fatherPage=mysendmessage">我发送的消息</a>
+                                                                   href="/messagecenter/laboratory/jsp/announcement/remind/mysendmessage?page=1&&fatherPage=mysendmessage">我发送的消息</a>
                                                             </p>
                                                         </div>
                                                         <hr size="0" class="hr1">

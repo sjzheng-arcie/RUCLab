@@ -5,6 +5,9 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+
+    <script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
+
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
@@ -17,23 +20,34 @@
         var selectedItems = getAllSelected('listForm', 'idcheckbox');
         if(selectedItems.length <= 0 )
         {
-            alert("请选择要添加的的设备！");
+            alert("请选择要添加的的房间！");
             return;
         }
 
         if( id != "") //有父窗体则刷新父窗体，关闭自己
         {
-            document.forms["listForm"].action = "addtolaboratory?items=" + selectedItems;
-            document.forms["listForm"].submit();
+            var myUrl = "addtolaboratory?laboratoryId=${laboratoryInfo.id}&items=" + selectedItems;
+            Submit(myUrl);
 
-            window.opener.location.href=window.opener.location.href;
-            window.close();
         }
         else //无父窗体则跳转至表单页面
         {
-            document.forms["listForm"].action = "addtolaboratory?items=" + selectedItems;
+            document.forms["listForm"].action = "addtolaboratory?laboratoryId=${laboratoryInfo.id}&items=" + selectedItems;
             document.forms["listForm"].submit();
         }
+
+
+    }
+    function Submit(url) {
+        $.ajax({
+            type: "POST",
+            url: url,
+            data: $("#listForm").serialize(),
+            success: function (msg) {
+                window.opener.freshWindow();
+                window.close();
+            }
+        })
 
     }
 
@@ -61,7 +75,6 @@
             <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
-
         <tr>
             <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
             <td valign="top" bgcolor="#F7F8F9">
@@ -102,6 +115,14 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
+                                                                    <span class="STYLE1" style="white-space:nowrap">
+                                                                        <a href="javascript:void(0);"
+                                                                           onclick="toAdd();return false;">
+                                                                            <img src="../../../../images/add_min.gif" width="10"
+                                                                                 height="10" border="0"/>
+                                                                            <span class="STYLE1">添加选中</span>
+                                                                        </a>
+                                                                    </span>
                                                                 </div>
                                                             </td>
                                                         </tr>

@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,9 +12,6 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/task/task/mytasklist';
-    </script>
 
 </head>
 
@@ -36,7 +35,6 @@
             <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
-
         <tr>
             <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
             <td valign="top" bgcolor="#F7F8F9">
@@ -91,8 +89,8 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
-                                            <table id="hello" width="100%" class="table" border="0" cellpadding="0"
+                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;overflow-x: auto;">
+                                            <table id="table1" width="100%" class="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -116,15 +114,17 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">完成度</span></div>
                                                     </td>
+
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">评分</span></div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">详细</span></div>
                                                     </td>
-
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">完成任务</span></div>
+                                                    </td>
                                                 </tr>
-
                                                 <% int i = 1; %>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -132,16 +132,45 @@
                                                             <%=i++%>
                                                         </td>
                                                         <td>${item.taskname}</td>
-                                                        <td>${item.limitdate}</td>
+
+                                                        <td><fmt:formatDate value="${item.limitdate}"/></td>
                                                         <td>${item.content}</td>
                                                         <td>${item.annexname}</td>
                                                         <td>${item.completion}</td>
-                                                        <td>${item.completely}</td>
-                                                        <td>${item.score}</td>
+                                                        <td>${item.completely}%</td>
+                                                        <td>
+                                                            <c:choose>
+                                                                <c:when test="${item.ifscored==true}">
+                                                                    ${item.score}
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <c:choose>
+                                                                        <c:when test="${item.ifcompleted==true}">
+                                                                            尚未评分
+                                                                        </c:when>
+                                                                        <c:otherwise>
+                                                                            尚未完成
+                                                                        </c:otherwise>
+                                                                    </c:choose>
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </td>
                                                         <td><a href="/laboratory/jsp/task/task/mytask?taskId=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
+                                                        <td>
+                                                            <c:choose>
+                                                                <c:when test="${item.ifcompleted==true}">
+                                                                    已完成
+                                                                </c:when>
+                                                                <c:otherwise>
+                                                                    <a class="button" href="/laboratory/jsp/task/task/finishtask?taskId=${item.id}">完成任务</a>
+                                                                </c:otherwise>
+                                                            </c:choose>
+
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

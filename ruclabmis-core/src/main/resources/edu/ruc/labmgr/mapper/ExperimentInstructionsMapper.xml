@@ -155,7 +155,7 @@
                 #{explanation,jdbcType=VARCHAR},
             </if>
             <if test="documentName != null" >
-                document_name,
+                #{documentName,jdbcType=VARCHAR},
             </if>
             <if test="documentPath != null" >
                 #{documentPath,jdbcType=VARCHAR},

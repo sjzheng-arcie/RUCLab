@@ -128,7 +128,7 @@
                                 </li>
                                 <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">考试题库管理</a>
                                 </li>
-                                <li><a href="jsp/res/paper/list" onfocus="toFocus(this)" target="main">试卷管理</a>
+                                <li><a href="jsp/res/examination/list" onfocus="toFocus(this)" target="main">考试管理</a>
                                 </li>
                             </shiro:hasRole>
                         </ul>

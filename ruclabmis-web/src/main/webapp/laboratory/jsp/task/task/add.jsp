@@ -11,11 +11,14 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
-
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <title></title>
 
     <script>
         function save(){
+            if (!validator(document.mainForm)) {
+                return;
+            }
             document.mainForm.action="add";
             document.mainForm.submit();
         }
@@ -94,7 +97,7 @@
                                                 <td nowrap align="right">任务名称:</td>
                                                 <td nowrap>
                                                     <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required"/>
+                                                           style="width:154px" maxlength="20" valid="required" errmsg="请填写用户名！"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
@@ -112,7 +115,7 @@
                                                 <td nowrap>
                                                     <input name="limitDate" id="limitDate"
                                                            onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                           valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                           valid="isDate|required" errmsg="日期只能为：XXXX-XX-XX|请填写日期"
                                                            onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
 
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;

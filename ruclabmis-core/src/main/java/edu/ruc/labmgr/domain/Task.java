@@ -27,6 +27,28 @@ public class Task {
 
     private Integer score;
 
+    private Boolean ifscored;
+
+    private Integer overallscore;
+
+    private Integer completelyscore;
+
+    private Integer timelyscore;
+
+    private Integer qualityscore;
+
+    private Integer spentscore;
+
+	public User getManager() {
+		return manager;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+
+	private User manager;
+
     public Integer getId() {
         return id;
     }
@@ -121,5 +143,53 @@ public class Task {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Boolean getIfscored() {
+        return ifscored;
+    }
+
+    public void setIfscored(Boolean ifscored) {
+        this.ifscored = ifscored;
+    }
+
+    public Integer getOverallscore() {
+        return overallscore;
+    }
+
+    public void setOverallscore(Integer overallscore) {
+        this.overallscore = overallscore;
+    }
+
+    public Integer getCompletelyscore() {
+        return completelyscore;
+    }
+
+    public void setCompletelyscore(Integer completelyscore) {
+        this.completelyscore = completelyscore;
+    }
+
+    public Integer getTimelyscore() {
+        return timelyscore;
+    }
+
+    public void setTimelyscore(Integer timelyscore) {
+        this.timelyscore = timelyscore;
+    }
+
+    public Integer getQualityscore() {
+        return qualityscore;
+    }
+
+    public void setQualityscore(Integer qualityscore) {
+        this.qualityscore = qualityscore;
+    }
+
+    public Integer getSpentscore() {
+        return spentscore;
+    }
+
+    public void setSpentscore(Integer spentscore) {
+        this.spentscore = spentscore;
     }
 }

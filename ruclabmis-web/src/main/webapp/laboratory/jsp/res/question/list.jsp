@@ -48,8 +48,8 @@
                             <span style="white-space:nowrap">
                                 <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                                </a></span>
-
+                                </a>
+                            </span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>

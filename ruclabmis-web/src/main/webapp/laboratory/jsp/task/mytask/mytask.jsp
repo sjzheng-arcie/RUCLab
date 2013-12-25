@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,6 +11,7 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 
@@ -16,7 +19,17 @@
 
     <script>
         function save(){
-            document.mainForm.action="add";
+            if (!validator(document.mainForm)) {
+                return;
+            }
+            document.mainForm.action="updatecompletely";
+            document.mainForm.submit();
+        }
+        function finish(){
+            if (!validator(document.mainForm)) {
+                return;
+            }
+            document.mainForm.action="finishtask";
             document.mainForm.submit();
         }
 
@@ -90,11 +103,12 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;" bgcolor="#E3E9EE">
 
                                             <input type="hidden" name="teacherId"value="${teacherInfo.id}"/>
+                                            <input type="hidden" name="taskId"value="${taskInfo.id}"/>
                                             <tr>
                                                 <td nowrap align="right">任务名称:</td>
                                                 <td nowrap>
-                                                    <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required" value="${taskInfo.taskname}"/>
+                                                    <input name="taskName" id="taskName" onblur="" class="text"disabled="no"
+                                                           style="width:154px" maxlength="20"  value="${taskInfo.taskname}"/>
                                                 </td>
                                                 <td nowrap align="right">执行人:</td>
                                                 <td nowrap>
@@ -104,12 +118,18 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">完成时间:</td>
+                                                <td nowrap align="right">截止时间:</td>
                                                 <td nowrap>
-                                                    <input name="limitDate" value="${taskInfo.limitdate}" readonly>
+                                                    <input name="limitDate" value="<fmt:formatDate value="${taskInfo.limitdate}"/>" readonly disabled="no">
                                                 </td>
-                                                <td></td>
-                                                <td></td>
+                                                <td nowrap align="right">完成进度</td>
+                                                <td nowrap>
+                                                   <input class="text" style="text-align: right;" size="2" name="completely" id="completely"
+                                                          value="${taskInfo.completely}"
+                                                          valid="required" errmsg="请填写任务完成进度（0~100之间的整数）！"/>%
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_task_completely" ></span>
+                                                </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">任务内容:</td>
@@ -128,8 +148,8 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="reset" value="重置" class="button"  onclick="reset();"/>
+                                        <input type="button" name="Submit" value="保存进度" class="button" onclick="save();"/>
+                                        <input type="reset" name="reset" value="完成任务" class="button"  onclick="finish();"/>
                                         <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>

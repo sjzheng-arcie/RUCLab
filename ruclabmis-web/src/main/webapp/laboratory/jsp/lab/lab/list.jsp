@@ -39,16 +39,8 @@
 <tr>
 <td valign="top" class="STYLE10">
 
-
-        <span style="white-space:nowrap">&nbsp;&nbsp;所属专业:
-            <select name="theMajor" id="theMajor">
-                <c:forEach items="${majorList}" var="item">
-                    <option value="${item.id}">${item.name}</option>
-                </c:forEach>
-            </select>
-        </span>
         <span style="white-space:nowrap">&nbsp;&nbsp;实验室名称:
-            <input type="text" name="labName" id="labName" value=""
+            <input type="text" name="laboratoryName" id="laboratoryName" value=""
                 style="width:100px;"/>
         </span>
         <span style="white-space:nowrap">&nbsp;&nbsp;
@@ -74,7 +66,7 @@
                                                                          height="14"/></div>
                                             </td>
                                             <td width="94%" valign="bottom"><span class="STYLE1"
-                                                                                  style="white-space:nowrap">实验室组织结构</span>
+                                                                                  style="white-space:nowrap">实验室信息</span>
                                             </td>
                                         </tr>
                                     </table>

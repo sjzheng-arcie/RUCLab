@@ -8,12 +8,12 @@
 <%@ page import="java.util.List" %>
 <%
     //仅做示例用，请自行修改
-    String path = "upload";
+    String documentPath = "upload";
     String imgStr = "";
-    String realpath = getRealPath(request, path) + "/" + path;
+    String realpath = getRealPath(request, documentPath) + "/" + documentPath;
     List<File> files = getFiles(realpath, new ArrayList());
     for (File file : files) {
-        imgStr += file.getPath().replace(getRealPath(request, path), "") + "ue_separate_ue";
+        imgStr += file.getPath().replace(getRealPath(request, documentPath), "") + "ue_separate_ue";
     }
     if (imgStr != "") {
         imgStr = imgStr.substring(0, imgStr.lastIndexOf("ue_separate_ue")).replace(File.separator, "/").trim();
@@ -39,7 +39,7 @@
         return files;
     }
 
-    public String getRealPath(HttpServletRequest request, String path) {
+    public String getRealPath(HttpServletRequest request, String documentPath) {
         ServletContext application = request.getSession().getServletContext();
         String str = application.getRealPath(request.getServletPath());
         return new File(str).getParent();
