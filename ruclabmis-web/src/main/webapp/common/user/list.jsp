@@ -130,9 +130,6 @@
                                                            onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                 </div>
                                             </td>
-                                            <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">编号</span></div>
-                                            </td>
                                             <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">账号</span></div>
                                             </td>
@@ -176,7 +173,6 @@
                                                                        value="${item.id}"
                                                                        onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>${item.id}</td>
                                                 <td>${item.sn}</td>
                                                 <td>${item.name}</td>
                                                 <td>${item.role.displayName}</td>
