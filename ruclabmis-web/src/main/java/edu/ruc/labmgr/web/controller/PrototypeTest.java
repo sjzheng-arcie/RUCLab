@@ -325,51 +325,6 @@ public class PrototypeTest {
 
     }
 
-    @RequestMapping("jsp/experiment/experiment/paperinfo")
-    public ModelAndView paperInfo(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/detail");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/experiment/editpaper")
-		 public ModelAndView editpaper(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/editpaper");
-		return mav;
-	}
-
-    @RequestMapping("jsp/experiment/experiment/update")
-    public ModelAndView updatePaper(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/update");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/experiment/toupdate")
-    public ModelAndView updateToUpdate(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/update");
-        return mav;
-    }
-
-    @RequestMapping("jsp/experiment/experiment/addtopaper")
-    public ModelAndView add(HttpServletRequest request) {
-
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/addtopaper");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/experiment/detail")
-    public ModelAndView detail(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/detail");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/experiment/toadd")
-    public ModelAndView addPaper(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/experiment/add");
-        return mav;
-    }
     @RequestMapping("jsp/experiment/report/courselist")
     public ModelAndView courseListOfReport(HttpServletRequest request) {
 
@@ -448,13 +403,6 @@ public class PrototypeTest {
 	public ModelAndView newIndex(HttpServletRequest request) {
 
 		ModelAndView mav = new ModelAndView("/laboratory/new/index");
-		return mav;
-	}
-
-	@RequestMapping("jsp/bas/calendar/list")
-	public ModelAndView calenderList(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/calendar/list");
 		return mav;
 	}
 
