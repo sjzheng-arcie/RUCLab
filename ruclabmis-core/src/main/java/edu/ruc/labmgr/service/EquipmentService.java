@@ -50,9 +50,11 @@ public class EquipmentService {
         if (!StringUtils.isNullOrEmpty(equipment.getName()))
             ec.andNameLike("%" + equipment.getName() + "%");
         if (!StringUtils.isNullOrEmpty(equipment.getHolderName())) {
-
             List<Teacher> holders = serviceTeacher.getTeacherListNameLike(equipment.getHolderName());
             List<Integer> holderIds = new ArrayList<Integer>();
+            if(holders.isEmpty()){
+                holderIds.add(-1);
+            }
             for (Teacher holder : holders) {
                 holderIds.add(holder.getId());
             }
