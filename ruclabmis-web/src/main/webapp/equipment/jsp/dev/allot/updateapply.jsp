@@ -164,7 +164,6 @@
                         <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
                             <input type="button" name="addEquipmentsToApply" value="添加设备" class="button" onclick="toAddEquipment();"/>
                             <input type="button" name="Submit" value="保存并提交" class="button" onclick="update();"/>
-                            <input type="reset" name="reset" value="重置" class="button"/>
                         </shiro:hasAnyRoles>
                     </c:if>
                     <input   type="button" name="return" value="返回" class="button"

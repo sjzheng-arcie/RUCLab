@@ -255,9 +255,12 @@
                                                                        value="${item.id}" onclick="checkOne(this)"/>
                                                 </td>
                                                 <td>
-                                                    <c:if test="${applyType=='info'}"> <a href="toUpdate?id=${item.id}&formType=${formType}"></c:if>
-                                                        ${item.sn}
-                                                    <c:if test="${applyType=='info'}"> </a> </c:if>
+                                                    <c:choose>
+                                                        <c:when test="${applyType=='info'}">
+                                                            <a href="toUpdate?id=${item.id}&formType=${formType}">  ${item.sn} </a>
+                                                        </c:when>
+                                                        <c:otherwise> ${item.sn}</c:otherwise>
+                                                    </c:choose>
                                                 </td>
                                                 <td>${item.name}</td>
                                                 <td>${item.holderName}</td>
@@ -267,13 +270,10 @@
                                                 <td>${item.specifications}</td>
                                                 <td>${item.unitPrice}</td>
                                                 <td>${item.location}</td>
-                                                <td><fmt:formatDate value="${item.acquisitionDate}"
-                                                                    pattern="yyyy-MM-dd"/></td>
+                                                <td><fmt:formatDate value="${item.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
                                                 <td>${item.fundingSubject}</td>
                                                 <td>${item.useDirection}</td>
                                                 <td>${item.state}</td>
-
-
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>
