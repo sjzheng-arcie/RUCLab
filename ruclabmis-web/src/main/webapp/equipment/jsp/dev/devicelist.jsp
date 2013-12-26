@@ -89,7 +89,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">可申请设备</div>
+                    <div class="titlebt">设备列表</div>
                 </td>
             </tr>
         </table>
@@ -147,7 +147,7 @@
                                                                 </td>
                                                                 <td width="94%" valign="bottom"><span
                                                                         class="STYLE1"
-                                                                        style="white-space:nowrap">可用设备信息列表</span>
+                                                                        style="white-space:nowrap">设备信息列表</span>
                                                                 </td>
                                                             </tr>
                                                         </table>
@@ -164,7 +164,7 @@
                                       </a>
                                       <a href="/equipment/jsp/dev/info/toAdd">
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                          <span class="STYLE1">验收入库</span>
+                                          <span class="STYLE1">添加设备</span>
                                       </a>
                                       <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false">
                                           <img src="../../../../images/del_min.gif" width="10" height="10"

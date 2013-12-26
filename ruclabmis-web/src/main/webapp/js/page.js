@@ -110,7 +110,10 @@ function getSelectIndex(formName, checkBoxName) {
 function toUpdate(formName, checkBoxName) {
     var selectedItem = getSelectIndex(formName, checkBoxName);
     if (selectedItem <= 0)
-        return;
+    {
+        alert("未选择记录！");
+        return -1;
+    }
 
     document.forms[formName].action = "toUpdate?id=" + selectedItem;
     document.forms[formName].submit();
@@ -119,7 +122,10 @@ function toUpdate(formName, checkBoxName) {
 function toUpdatePassword(formName, checkBoxName) {
     var selectedItem = getSelectIndex(formName, checkBoxName);
     if (selectedItem <= 0)
-        return;
+    {
+        alert("未选择记录！");
+        return -1;
+    }
 
     document.forms[formName].action = "toUpdatePassword?id=" + selectedItem;
     document.forms[formName].submit();
@@ -140,21 +146,33 @@ function toDelete(formName, checkBoxName) {
 
 function toApprove(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-
+    if(selectedItems.length <= 0)
+    {
+        alert("未选择记录！");
+        return -1;
+    }
     document.forms[formName].action = "approve?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
 function toReject(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-
+    if(selectedItems.length <= 0)
+    {
+        alert("未选择记录！");
+        return -1;
+    }
     document.forms[formName].action = "reject?items=" + selectedItems;
     document.forms[formName].submit();
 }
 
 function toDispose(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-
+    if(selectedItems.length <= 0)
+    {
+        alert("未选择记录！");
+        return -1;
+    }
     document.forms[formName].action = "process?items=" + selectedItems;
     document.forms[formName].submit();
 }
