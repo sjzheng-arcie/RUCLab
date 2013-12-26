@@ -18,7 +18,7 @@
     {
         var id = "141";
         var selectedItems = getAllSelected('listForm', 'idcheckbox');
-        if(selectedItems.length <= 0 )
+        if(selectedItems < 0 || selectedItems.length <= 0 )
         {
             alert("请选择要添加的的房间！");
             return;

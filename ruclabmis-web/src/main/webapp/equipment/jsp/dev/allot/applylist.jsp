@@ -11,8 +11,6 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
-    <script>
-    </script>
 
 </head>
 
@@ -38,17 +36,17 @@
 </tr>
 
 <tr>
-    <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+    <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
             <tr>
                 <td valign="top" class="STYLE10">
                     <span style="white-space:nowrap">
-                        &nbsp;&nbsp;申请编号&nbsp;:&nbsp;<input type="text" name="searchSN"
-                                                            id="searchSN" value="${param.searchSN}"
-                                                            style="width:100px;"/>
+                        申请编号:<input type="text" name="searchSN"
+                                    id="searchSN" value="${param.searchSN}"
+                                    style="width:100px;"/>
                     </span>
-                    <span style="white-space:nowrap">&nbsp;&nbsp;申请状态:
+                    <span style="white-space:nowrap">申请状态:
                         <select id="searchState" name="searchState">
                             <option value="0">全部</option>
                             <c:forEach items="${states}" var="item">
@@ -94,15 +92,15 @@
                                        <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
                                                <a href="javascript:void(0);"
-                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/add_min.gif" width="10" height="10"
                                                         border="0"/>
-                                                   <span class="STYLE1">批准申请</span></a>&nbsp;
+                                                   <span class="STYLE1">批准申请</span></a>
                                                <a href="javascript:void(0);"
                                                   onclick="toReject('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/edit_min.gif" width="10" height="10"
                                                         border="0"/>
-                                                   <span class="STYLE1">驳回申请</span></a>&nbsp;
+                                                   <span class="STYLE1">驳回申请</span></a>
                                            </shiro:hasAnyRoles>
                                        </c:if>
                                         <c:if test="${formType=='apply'}">
@@ -111,7 +109,7 @@
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
                                                          border="0"/>
-                                                    <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
+                                                    <span class="STYLE1">删除申请</span></a>
                                             </shiro:hasAnyRoles>
                                         </c:if>
 	                                </span>
@@ -181,7 +179,7 @@
                                                 </c:if>
                                                 <td>
                                                     <a onblur="" href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
-                                                    ${item.sn}</a>
+                                                            ${item.sn}</a>
                                                 </td>
                                                 <td>${item.applicant.name}</td>
                                                 <td>${item.target}</td>
@@ -217,7 +215,7 @@
             </tr>
         </table>
     </td>
-    <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+    <td background="../../../../images/mail_rightbg.gif"></td>
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"

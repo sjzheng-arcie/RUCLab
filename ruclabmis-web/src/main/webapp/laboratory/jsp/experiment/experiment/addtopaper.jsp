@@ -17,7 +17,7 @@
         function toApply() {
             var id = "141";
             var selectedItems = getAllSelected('listForm', 'idcheckbox');
-            if (selectedItems.length <= 0) {
+            if (selectedItems < 0 || selectedItems.length <= 0) {
                 alert("请选择要添加的的题目！");
                 return;
             }
@@ -66,16 +66,16 @@
 
 
 <tr>
-    <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+    <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
             <tr>
                 <td valign="top" class="STYLE10">
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;题目内容:<input type="text" name="questionName"
+                        <span style="white-space:nowrap">题目内容:<input type="text" name="questionName"
                                                                                  id="questionName" value=""
                                                                                  style="width:100px;"/></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;题目类型:
+                        <span style="white-space:nowrap">题目类型:
                             <select id="questionTypeList" name="questionTypeList">
                                 <option value=""></option>
                                 <c:forEach items="${questionTypeList}" var="item">
@@ -84,7 +84,7 @@
                             </select>
                         </span>
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;题目难度:
+                        <span style="white-space:nowrap">题目难度:
                             <select id="difficultyList" name="difficultyList">
                                 <option value=""></option>
                                 <c:forEach items="${difficultyList}" var="item">
@@ -93,7 +93,7 @@
                             </select>
                         </span>
 
-                      <span style="white-space:nowrap">&nbsp;&nbsp;
+                      <span style="white-space:nowrap">
                              <a href="javascript:void(0)" onclick="toFind('listForm');">
                                  <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
                                  查询</a></span>
@@ -251,7 +251,7 @@
             </tr>
         </table>
     </td>
-    <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+    <td background="../../../../images/mail_rightbg.gif"></td>
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img src="../../../../images/buttom_left2.gif"

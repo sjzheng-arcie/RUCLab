@@ -15,16 +15,21 @@
     <script>
         function toReturn(formName, checkBoxName) {
             var selectedItems = getAllSelected(formName, checkBoxName);
-
+            if(selectedItems<0 || selectedItems.length <= 0)
+            {
+                alert("未选择记录！");
+                return -1;
+            }
             if (confirm("确认归还所选设备？")) {
                 document.forms[formName].action = "returnEquipments?items=" + selectedItems;
                 document.forms[formName].submit();
             }
         }
-        function toApply() {
+
+        function toApply(formName, checkBoxName) {
             var id = "${param.application_id}";
-            var selectedItems = getAllSelected('listForm', 'idcheckbox');
-            if (selectedItems.length <= 0) {
+            var selectedItems = getAllSelected(formName, checkBoxName);
+            if (selectedItems<0 || selectedItems<0 || selectedItems.length <= 0) {
                 alert("请选择要申请的设备！");
                 return;
             }
@@ -48,7 +53,7 @@
 
         function toDeleteEquipments(formName, checkBoxName) {
             var selectedItems = getAllSelected(formName, checkBoxName);
-            if(selectedItems.length <= 0)
+            if(selectedItems<0 || selectedItems.length <= 0)
             {
                 alert("未选择记录！");
                 return -1;
@@ -179,7 +184,7 @@
                                                             </c:when>
                                                             <c:otherwise>
                                                                 <a href="javascript:void(0);"
-                                                                   onclick="toApply();return false;">
+                                                                   onclick="toApply('listForm', 'idcheckbox');">
                                                                     <img src="../../../../images/add_min.gif" width="10"
                                                                          height="10" border="0"/>
                                                                     <span class="STYLE1">申 请</span>
