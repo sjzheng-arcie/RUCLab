@@ -19,7 +19,7 @@ public class OrganizationService {
 
     public List<Organization> selectListPage() {
         OrganizationCriteria criteria = new OrganizationCriteria();
-        criteria.setOrderByClause("id desc");
+        criteria.setOrderByClause("id");
         return organizationMapper.selectByCriteria(criteria);
     }
 
