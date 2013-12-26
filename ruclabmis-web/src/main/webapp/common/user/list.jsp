@@ -161,9 +161,6 @@
                                                 <div align="center"><span class="STYLE10">备注</span></div>
                                             </td>
                                             <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">详细信息</span></div>
-                                            </td>
-                                            <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">修改密码</span></div>
                                             </td>
                                         </tr>
@@ -173,7 +170,7 @@
                                                                        value="${item.id}"
                                                                        onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>${item.sn}</td>
+                                                <td><a href="toUpdate?id=${item.id}">${item.sn} </a></td>
                                                 <td>${item.name}</td>
                                                 <td>${item.role.displayName}</td>
                                                 <td>${item.major.name}</td>
@@ -183,10 +180,7 @@
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.email}</td>
                                                 <td>${item.comment}</td>
-                                                <td><a href="toUpdate?id=${item.id}">
-                                                    <img src="../../images/set2.gif" width="10"
-                                                         height="10" border="0"/>
-                                                </a></td>
+
                                                 <td><a href="toUpdatePassword?id=${item.id}">
                                                     <img src="../../images/edit_min.gif" width="10"
                                                          height="10" border="0"/>

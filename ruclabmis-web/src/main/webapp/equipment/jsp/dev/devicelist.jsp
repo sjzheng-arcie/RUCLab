@@ -247,20 +247,18 @@
                                             <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">设备状态</span></div>
                                             </td>
-                                            <c:if test="${applyType=='info'}">
-                                                <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                                    <td width="50" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
-                                                </shiro:hasAnyRoles>
-                                            </c:if>
+
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
                                                                        value="${item.id}" onclick="checkOne(this)"/>
                                                 </td>
-                                                <td>${item.sn}</td>
+                                                <td>
+                                                    <c:if test="${applyType=='info'}"> <a href="toUpdate?id=${item.id}&formType=${formType}"></c:if>
+                                                        ${item.sn}
+                                                    <c:if test="${applyType=='info'}"> </a> </c:if>
+                                                </td>
                                                 <td>${item.name}</td>
                                                 <td>${item.holderName}</td>
                                                 <td>${item.user}</td>
@@ -274,14 +272,8 @@
                                                 <td>${item.fundingSubject}</td>
                                                 <td>${item.useDirection}</td>
                                                 <td>${item.state}</td>
-                                                <c:if test="${applyType=='info'}">
-                                                    <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                                        <td><a href="toUpdate?id=${item.id}&formType=${formType}">
-                                                            <img src="../../../../images/edit_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
-                                                    </shiro:hasAnyRoles>
-                                                </c:if>
+
+
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>
