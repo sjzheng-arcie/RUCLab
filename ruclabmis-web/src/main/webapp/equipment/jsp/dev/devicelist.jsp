@@ -22,14 +22,14 @@
             }
         }
         function toApply() {
-            if (!confirm("确认添加所选设备并提交表单？")) {
-                return;
-            }
-
             var id = "${param.application_id}";
             var selectedItems = getAllSelected('listForm', 'idcheckbox');
             if (selectedItems.length <= 0) {
                 alert("请选择要申请的设备！");
+                return;
+            }
+
+            if (!confirm("确认添加所选设备并提交表单？")) {
                 return;
             }
 
@@ -124,9 +124,9 @@
                             </select>
                         </span>
                         <span class="noprint" style="white-space:nowrap">
-                            <a href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
+                            <button href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
                                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                            </a>
+                            </button>
                          </span>
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>

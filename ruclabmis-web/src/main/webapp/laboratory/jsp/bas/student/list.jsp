@@ -58,8 +58,8 @@
                         </select>
                     </span>
                      <span style="white-space:nowrap">
-                         <a href="javascript:void(0)" onclick="toFind('listForm');">
-                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                         <button href="javascript:void(0)" onclick="toFind('listForm');">
+                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</button>
                      </span>
 
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -149,9 +149,6 @@
                                             <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
-                                            <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">修改密码</span></div>
-                                            </td>
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -159,7 +156,7 @@
                                                                        value="${item.id}"
                                                                        onclick="checkOne('listForm', 'idcheckbox')"/>
                                                 </td>
-                                                <td>${item.sn}</td>
+                                                <td><a href="toUpdate?id=${item.id}">${item.sn}</a></td>
                                                 <td>${item.name}</td>
                                                 <td><c:choose>
                                                     <c:when test="${item.sex == false}">男</c:when>
@@ -173,10 +170,6 @@
                                                 <td>${item.email}</td>
                                                 <td>${item.phoneNum}</td>
                                                 <td>${item.comment}</td>
-                                                <td><a href="toUpdate?id=${item.id}">
-                                                    <img src="../../../../images/set2.gif" width="10"
-                                                         height="10" border="0"/>
-                                                </a></td>
                                                 <td><a href="toUpdatePassword?id=${item.id}">
                                                     <img src="../../../../images/edit_min.gif" width="10"
                                                          height="10" border="0"/>

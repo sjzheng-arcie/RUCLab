@@ -87,6 +87,14 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
+                                                <td nowrap align="right">分类号:</td>
+                                                <td nowrap>
+                                                    <input name="sn" id="sn" class="text" style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类号不能为空!"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
                                                 <td nowrap align="right">分类名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" class="text"
@@ -97,22 +105,11 @@
 
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
-                                                <td nowrap align="right">分类号:</td>
-                                                <td nowrap>
-                                                    <input name="sn" id="sn" class="text" style="width:154px"
-                                                           maxlength="20"
-                                                           valid="required"
-                                                           errmsg="分类号不能为空!"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                </td>
                                             </tr>
                                             <tr>
-
-
                                                 <td nowrap align="right">描述：</td>
-                                                <td nowrap align="left" colspan="3"><textarea name="description"
-                                                                                              id="description"
-                                                                                              style="width:70%;height:100"></textarea>
+                                                <td nowrap align="left" colspan="3">
+                                                    <textarea name="description" id="description" style="width:70%;height:100"></textarea>
                                                 </td>
                                             </tr>
 

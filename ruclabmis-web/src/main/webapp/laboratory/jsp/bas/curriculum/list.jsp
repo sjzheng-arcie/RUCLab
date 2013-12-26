@@ -55,9 +55,9 @@
                                 </select>
                             </span>
                             <span style="white-space:nowrap">
-                                <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
+                                <button href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                                </a>
+                                </button>
                             </span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -139,9 +139,6 @@
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">备注</span></div>
                                                     </td>
-                                                    <td width="50" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -150,7 +147,7 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm','idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.name}</td>
+                                                        <td><a href="toUpdate?id=${item.id}">${item.name}</a></td>
                                                         <td>${item.majorName}</td>
                                                         <td>${item.teacherName}</td>
                                                         <td>${item.period}</td>
@@ -161,10 +158,7 @@
                                                             </c:if>
                                                         </c:forEach>
                                                         <td>${item.comments}</td>
-                                                        <td><a href="toUpdate?id=${item.id}">
-                                                            <img src="../../../../images/edit_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

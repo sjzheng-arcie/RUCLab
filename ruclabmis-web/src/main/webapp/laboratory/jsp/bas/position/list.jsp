@@ -50,9 +50,9 @@
                                        value="${param.searchRank}" style="width:100px;"/>
                             </span>
                             <span style="white-space:nowrap">
-                                <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
+                                <button href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                                </a></span>
+                                </button></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -125,9 +125,6 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">职责说明</span></div>
                                                     </td>
-                                                    <td width="50" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -136,14 +133,10 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm','idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.name}</td>
+                                                        <td><a href="toUpdate?id=${item.id}">${item.name}  </a></td>
                                                         <td>${item.grade}</td>
                                                         <td>${item.shortName}</td>
                                                         <td>${item.description}</td>
-                                                        <td><a href="toUpdate?id=${item.id}">
-                                                            <img src="../../../../images/edit_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

@@ -58,8 +58,8 @@
                           </select>
                             </span>
                           <span style="white-space:nowrap">
-                                 <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                                 <button href="javascript:void(0)" onclick="toFind('listForm');">
+                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</button>
                           </span>
 
                             </shiro:hasAnyRoles>
