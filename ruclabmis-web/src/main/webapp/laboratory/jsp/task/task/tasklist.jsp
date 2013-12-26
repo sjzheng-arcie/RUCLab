@@ -168,7 +168,7 @@
                                     <c:otherwise>
                                         <c:choose>
                                             <c:when test="${item.ifcompleted==true}">
-                                                <a class="button" href="/laboratory/jsp/task/taskscore/toscore?taskId=${item.id}">评分</a>
+                                                <a class="button" href="/laboratory/jsp/task/taskscore/leaderscore?taskId=${item.id}">评分</a>
                                             </c:when>
                                             <c:otherwise>
                                                 尚未完成

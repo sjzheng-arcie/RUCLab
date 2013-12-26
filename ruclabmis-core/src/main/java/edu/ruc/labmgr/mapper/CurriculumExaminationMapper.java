@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface CurriculumExaminationMapper {
-    int countByCriteria(CurriculumExaminationCriteria criteria);
+    int countByExample(CurriculumExaminationCriteria example);
 
-    int deleteByCriteria(CurriculumExaminationCriteria criteria);
+    int deleteByExample(CurriculumExaminationCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface CurriculumExaminationMapper {
 
     int insertSelective(CurriculumExamination record);
 
-    List<CurriculumExamination> selectByCriteriaWithRowbounds(CurriculumExaminationCriteria criteria, RowBounds rowBounds);
+    List<CurriculumExamination> selectByExampleWithRowbounds(CurriculumExaminationCriteria example, RowBounds rowBounds);
 
-    List<CurriculumExamination> selectByCriteria(CurriculumExaminationCriteria criteria);
+    List<CurriculumExamination> selectByExample(CurriculumExaminationCriteria example);
 
     CurriculumExamination selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") CurriculumExamination record, @Param("criteria") CurriculumExaminationCriteria criteria);
+    int updateByExampleSelective(@Param("record") CurriculumExamination record, @Param("example") CurriculumExaminationCriteria example);
 
-    int updateByCriteria(@Param("record") CurriculumExamination record, @Param("criteria") CurriculumExaminationCriteria criteria);
+    int updateByExample(@Param("record") CurriculumExamination record, @Param("example") CurriculumExaminationCriteria example);
 
     int updateByPrimaryKeySelective(CurriculumExamination record);
 

@@ -11,14 +11,20 @@ public class CurriculumExamination {
 
     private String comment;
 
-    private String curriculumName;
-
     public Integer getId() {
         return id;
     }
 
     public void setId(Integer id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name == null ? null : name.trim();
     }
 
     public String getDocumentName() {
@@ -43,21 +49,5 @@ public class CurriculumExamination {
 
     public void setComment(String comment) {
         this.comment = comment == null ? null : comment.trim();
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getCurriculumName() {
-        return curriculumName;
-    }
-
-    public void setCurriculumName(String curriculumName) {
-        this.curriculumName = curriculumName;
     }
 }

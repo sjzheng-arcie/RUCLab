@@ -58,7 +58,9 @@
                                     我的预约申请</a></li>
                             </shiro:hasAnyRoles>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,administrators">
-                                <li><a href="jsp/task/mytask/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+                                <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务管理</a>
+                                </li>
+                                <li><a href="jsp/task/taskscore/taskscorelist" onfocus="toFocus(this)" target="main">任务评分</a>
                                 </li>
                                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
