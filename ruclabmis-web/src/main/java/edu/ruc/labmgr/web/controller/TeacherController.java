@@ -99,7 +99,10 @@ public class TeacherController {
     }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public String delete(@RequestParam("items") List<Integer> items) {
+    public String delete(@RequestParam("items") List<Integer> items) throws Exception {
+        if (items.contains(0))
+            throw new Exception("无法删除管理员账户");
+
         for (int id : items) {
             serviceTeacher.delete(id);
         }

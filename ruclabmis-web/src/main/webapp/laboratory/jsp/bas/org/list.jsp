@@ -56,7 +56,7 @@
                                                     <td>
                                                         <div align="right">
                                                             <span class="STYLE1" style="white-space:nowrap">
-                                                                <a href="/laboratory/jsp/bas/org/toAdd" >
+                                                                <a href="/laboratory/jsp/bas/org/toAdd" class="txt_bt">
                                                                     <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                     <span class="STYLE1">新增</span>
                                                                 </a>

@@ -37,7 +37,7 @@
 </tr>
 
 <tr>
-    <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+    <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
     <td valign="top" bgcolor="#F7F8F9">
         <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
             <tr>
@@ -91,21 +91,21 @@
 	            	            	<span class="STYLE1" style="white-space:nowrap">
                                        <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
-                                               <a href="javascript:void(0);"
-                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                               <a href="javascript:void(0);" class="txt_bt"
+                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/add_min.gif" width="10" height="10"
                                                         border="0"/>
-                                                   <span class="STYLE1">批准申请</span></a>&nbsp;
-                                               <a href="javascript:void(0);"
+                                                   <span class="STYLE1">批准申请</span></a>
+                                               <a href="javascript:void(0);" class="txt_bt"
                                                   onclick="toReject('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/edit_min.gif" width="10" height="10"
                                                         border="0"/>
-                                                   <span class="STYLE1">驳回申请</span></a>&nbsp;
+                                                   <span class="STYLE1">驳回申请</span></a>
                                            </shiro:hasAnyRoles>
                                        </c:if>
                                         <c:if test="${formType=='apply'}">
                                             <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
-                                                <a href="javascript:void(0);"
+                                                <a href="javascript:void(0);" class="txt_bt"
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
                                                          border="0"/>
@@ -210,7 +210,7 @@
             </tr>
         </table>
     </td>
-    <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+    <td background="../../../../images/mail_rightbg.gif"></td>
 </tr>
 <tr>
     <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

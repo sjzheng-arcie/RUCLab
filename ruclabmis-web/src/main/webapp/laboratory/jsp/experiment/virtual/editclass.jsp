@@ -277,11 +277,11 @@
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
                                                                         onclick="toFind('listForm')"><img
                                 src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand"
                                                                         onclick="deleteStudents()"><img
                                 src="/laboratory/../images/del_min.gif" width="15" height="15" border="0"/>
                             删除选课学生</a></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand"
                                                                         onclick="addStudents()"><img
                                 src="/laboratory/../images/add_min.gif" width="15" height="15" border="0"/>
                             添加学生</a></span>

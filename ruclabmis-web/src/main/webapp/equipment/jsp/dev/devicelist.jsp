@@ -15,16 +15,21 @@
     <script>
         function toReturn(formName, checkBoxName) {
             var selectedItems = getAllSelected(formName, checkBoxName);
-
+            if(selectedItems<0 || selectedItems.length <= 0)
+            {
+                alert("未选择记录！");
+                return -1;
+            }
             if (confirm("确认归还所选设备？")) {
                 document.forms[formName].action = "returnEquipments?items=" + selectedItems;
                 document.forms[formName].submit();
             }
         }
-        function toApply() {
+
+        function toApply(formName, checkBoxName) {
             var id = "${param.application_id}";
-            var selectedItems = getAllSelected('listForm', 'idcheckbox');
-            if (selectedItems.length <= 0) {
+            var selectedItems = getAllSelected(formName, checkBoxName);
+            if (selectedItems<0 || selectedItems<0 || selectedItems.length <= 0) {
                 alert("请选择要申请的设备！");
                 return;
             }
@@ -48,7 +53,7 @@
 
         function toDeleteEquipments(formName, checkBoxName) {
             var selectedItems = getAllSelected(formName, checkBoxName);
-            if(selectedItems.length <= 0)
+            if(selectedItems<0 || selectedItems.length <= 0)
             {
                 alert("未选择记录！");
                 return -1;
@@ -69,9 +74,7 @@
                     window.close();
                 }
             })
-
         }
-
     </script>
 </head>
 
@@ -127,7 +130,7 @@
                             <button href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
                                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
                             </button>
-                         </span>
+                        </span>
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                             <td height="30">
@@ -152,42 +155,40 @@
                                                             </tr>
                                                         </table>
                                                     </td>
-                                                    <td>
-                                                        <div align="right">
+                                                    <td><div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
                           <c:choose>
                               <c:when test="${applyType=='info'}">
                                   <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                      <a href="/equipment/jsp/dev/info/importEquipments">
+                                      <a href="/equipment/jsp/dev/info/importEquipments" class="txt_bt">
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">设备导入</span>
                                       </a>
-                                      <a href="/equipment/jsp/dev/info/toAdd">
+                                      <a href="/equipment/jsp/dev/info/toAdd" class="txt_bt">
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">添加设备</span>
                                       </a>
-                                      <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false">
+                                      <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false" class="txt_bt">
                                           <img src="../../../../images/del_min.gif" width="10" height="10"
                                                border="0"/> <span class="STYLE1">删除</span>
                                       </a>
-                                        <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif"
-                                                                                  width="10" height="10"
-                                                                                  border="0"/> <span
-                                                class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                </span>
-                                                            </shiro:hasAnyRoles>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <a href="javascript:void(0);"
-                                                                   onclick="toApply();return false;">
-                                                                    <img src="../../../../images/add_min.gif" width="10"
-                                                                         height="10" border="0"/>
-                                                                    <span class="STYLE1">申 请</span>
-                                                                </a>
-                                                            </c:otherwise>
-                                                            </c:choose>
-                                                            </span>
-                                                        </div>
+                                      <a href="#" onclick="window.print()" class="txt_bt">
+                                          <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                          <span class="STYLE1">打印</span>
+                                      </a>
+                                  </shiro:hasAnyRoles>
+                              </c:when>
+                              <c:otherwise>
+                                  <a href="javascript:void(0);" class="txt_bt"
+                                     onclick="toApply('listForm', 'idcheckbox');">
+                                      <img src="../../../../images/add_min.gif" width="10"
+                                           height="10" border="0"/>
+                                      <span class="STYLE1">申 请</span>
+                                  </a>
+                              </c:otherwise>
+                          </c:choose>
+                    </span>
+                                                    </div>
                                                     </td>
                                                 </tr>
                                             </table>

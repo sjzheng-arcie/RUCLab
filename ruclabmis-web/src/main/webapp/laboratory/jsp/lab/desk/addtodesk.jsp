@@ -11,31 +11,31 @@
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-    function toAdd()
-    {
-    var id = "141";
-    var selectedItems = getAllSelected('listForm', 'idcheckbox');
-    if(selectedItems.length <= 0 )
-    {
-    alert("请选择要添加的的设备！");
-    return;
-    }
+        function toAdd()
+        {
+            var id = "141";
+            var selectedItems = getAllSelected('listForm', 'idcheckbox');
+            if(selectedItems < 0 || selectedItems.length <= 0 )
+            {
+                alert("请选择要添加的的设备！");
+                return;
+            }
 
-    if( id != "") //有父窗体则刷新父窗体，关闭自己
-    {
-    document.forms["listForm"].action = "addequipment?questionId="+id+"&items=" + selectedItems;
-    document.forms["listForm"].submit();
+            if( id != "") //有父窗体则刷新父窗体，关闭自己
+            {
+                document.forms["listForm"].action = "addequipment?questionId="+id+"&items=" + selectedItems;
+                document.forms["listForm"].submit();
 
-    window.opener.location.href=window.opener.location.href;
-    window.close();
-    }
-    else //无父窗体则跳转至表单页面
-    {
-    document.forms["listForm"].action = "toApply?items=" + selectedItems;
-    document.forms["listForm"].submit();
-    }
+                window.opener.location.href=window.opener.location.href;
+                window.close();
+            }
+            else //无父窗体则跳转至表单页面
+            {
+                document.forms["listForm"].action = "toApply?items=" + selectedItems;
+                document.forms["listForm"].submit();
+            }
 
-    }
+        }
 
     </script>
 

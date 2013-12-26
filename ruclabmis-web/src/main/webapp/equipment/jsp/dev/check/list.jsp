@@ -36,7 +36,7 @@
         </tr>
 
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
@@ -70,18 +70,18 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-	            			<a href="/equipCheck/profitList?page=1"><img src="../../../../images/add_min.gif" width="10"
+	            			<a href="/equipCheck/profitList?page=1" class="txt_bt"><img src="../../../../images/add_min.gif" width="10"
                                                                          height="10"
-                                                                         border="0"/> <span class="STYLE1">盘盈</span></a>&nbsp;
-      					  <a href="/equipCheck/loseList?page=1"><img src="../../../../images/add_min.gif" width="10"
+                                                                         border="0"/> <span class="STYLE1">盘盈</span></a>
+      					  <a href="/equipCheck/loseList?page=1" class="txt_bt"><img src="../../../../images/add_min.gif" width="10"
                                                                      height="10"
-                                                                     border="0"/> <span class="STYLE1">盘亏</span></a>&nbsp;
-                  <a href="/equipCheck/importRealCheck"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                             border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
+                                                                     border="0"/> <span class="STYLE1">盘亏</span></a>
+                  <a href="/equipCheck/importRealCheck" class="txt_bt"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                             border="0"/> <span class="STYLE1">导入</span></a>
 <%--                  <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                           border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;--%>
-                  <a href="#" onclick="toPrint();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                        border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                                           border="0"/> <span class="STYLE1">导出</span></a>--%>
+                  <a href="#" onclick="toPrint();" class="txt_bt"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                        border="0"/> <span class="STYLE1">打印</span></a>
 	              </span>
                                                                 </div>
                                                             </td>
@@ -172,7 +172,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr class="noprint">
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

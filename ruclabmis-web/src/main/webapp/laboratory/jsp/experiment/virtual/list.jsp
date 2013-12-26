@@ -73,7 +73,7 @@
                                                                                      id="name" value=""
                                                                                      style="width:100px;"/></span>
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
+                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt"
                                                                             style="cursor:hand"
                                                                             onclick="toFind('listForm')"><img
                                     src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/>

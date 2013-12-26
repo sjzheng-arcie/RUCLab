@@ -93,12 +93,12 @@
 	            	            	<span class="STYLE1" style="white-space:nowrap">
                                        <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
-                                               <a href="javascript:void(0);"
+                                               <a href="javascript:void(0);" class="txt_bt"
                                                   onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
                                                    <img src="../../../../images/add_min.gif" width="10" height="10"
                                                         border="0"/>
                                                    <span class="STYLE1">批准申请</span></a>&nbsp;
-                                               <a href="javascript:void(0);"
+                                               <a href="javascript:void(0);" class="txt_bt"
                                                   onclick="toReject('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/edit_min.gif" width="10" height="10"
                                                         border="0"/>
@@ -107,7 +107,7 @@
                                        </c:if>
                                         <c:if test="${formType=='apply'}">
                                             <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
-                                                <a href="javascript:void(0);"
+                                                <a href="javascript:void(0);" class="txt_bt"
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
                                                          border="0"/>

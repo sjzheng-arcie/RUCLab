@@ -109,7 +109,7 @@ function getSelectIndex(formName, checkBoxName) {
 
 function toUpdate(formName, checkBoxName) {
     var selectedItem = getSelectIndex(formName, checkBoxName);
-    if (selectedItem <= 0)
+    if( selectedItem < 0 || selectedItem <= 0)
     {
         alert("未选择记录！");
         return -1;
@@ -121,7 +121,7 @@ function toUpdate(formName, checkBoxName) {
 
 function toUpdatePassword(formName, checkBoxName) {
     var selectedItem = getSelectIndex(formName, checkBoxName);
-    if (selectedItem <= 0)
+    if (selectedItem<0 || selectedItem <= 0)
     {
         alert("未选择记录！");
         return -1;
@@ -133,7 +133,7 @@ function toUpdatePassword(formName, checkBoxName) {
 
 function toDelete(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-    if(selectedItems.length <= 0)
+    if(selectedItems<0 || selectedItems.length <= 0)
     {
         alert("未选择记录！");
         return -1;
@@ -146,7 +146,7 @@ function toDelete(formName, checkBoxName) {
 
 function toApprove(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-    if(selectedItems.length <= 0)
+    if(selectedItems<0 || selectedItems.length <= 0)
     {
         alert("未选择记录！");
         return -1;
@@ -157,7 +157,7 @@ function toApprove(formName, checkBoxName) {
 
 function toReject(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-    if(selectedItems.length <= 0)
+    if(selectedItems<0 || selectedItems.length <= 0)
     {
         alert("未选择记录！");
         return -1;
@@ -168,7 +168,7 @@ function toReject(formName, checkBoxName) {
 
 function toDispose(formName, checkBoxName) {
     var selectedItems = getAllSelected(formName, checkBoxName);
-    if(selectedItems.length <= 0)
+    if(selectedItems<0 || selectedItems.length <= 0)
     {
         alert("未选择记录！");
         return -1;

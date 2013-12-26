@@ -20,6 +20,10 @@
     <result column="timelyscore" jdbcType="INTEGER" property="timelyscore" />
     <result column="qualityscore" jdbcType="INTEGER" property="qualityscore" />
     <result column="spentscore" jdbcType="INTEGER" property="spentscore" />
+    <result column="publisherId" jdbcType="INTEGER" property="publisherid" />
+    <result column="markerId" jdbcType="INTEGER" property="markerid" />
+    <result column="publisherDate" jdbcType="TIMESTAMP" property="publisherdate" />
+    <result column="ifwork" jdbcType="BIT" property="ifwork" />
       <association column="managerId" javaType="User" property="manager" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
   </resultMap>
   <sql id="Example_Where_Clause">
@@ -83,7 +87,7 @@
   <sql id="Base_Column_List">
     id, ifCompleted, annexName, content, managerId, annexpath, taskName, finishDate, 
     limitDate, completion, completely, score, ifscored, overallscore, completelyscore, 
-    timelyscore, qualityscore, spentscore
+    timelyscore, qualityscore, spentscore, publisherId, markerId, publisherDate, ifwork
   </sql>
   <select id="selectByExample" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultMap="BaseResultMap">
     select
@@ -124,13 +128,17 @@
       finishDate, limitDate, completion, 
       completely, score, ifscored, 
       overallscore, completelyscore, timelyscore, 
-      qualityscore, spentscore)
+      qualityscore, spentscore, publisherId, 
+      markerId, publisherDate, ifwork
+      )
     values (#{ifcompleted,jdbcType=BIT}, #{annexname,jdbcType=VARCHAR}, #{content,jdbcType=VARCHAR}, 
       #{managerid,jdbcType=INTEGER}, #{annexpath,jdbcType=VARCHAR}, #{taskname,jdbcType=VARCHAR}, 
       #{finishdate,jdbcType=TIMESTAMP}, #{limitdate,jdbcType=TIMESTAMP}, #{completion,jdbcType=VARCHAR}, 
       #{completely,jdbcType=INTEGER}, #{score,jdbcType=INTEGER}, #{ifscored,jdbcType=BIT}, 
       #{overallscore,jdbcType=INTEGER}, #{completelyscore,jdbcType=INTEGER}, #{timelyscore,jdbcType=INTEGER}, 
-      #{qualityscore,jdbcType=INTEGER}, #{spentscore,jdbcType=INTEGER})
+      #{qualityscore,jdbcType=INTEGER}, #{spentscore,jdbcType=INTEGER}, #{publisherid,jdbcType=INTEGER}, 
+      #{markerid,jdbcType=INTEGER}, #{publisherdate,jdbcType=TIMESTAMP}, #{ifwork,jdbcType=BIT}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Task">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -189,6 +197,18 @@
       <if test="spentscore != null">
         spentscore,
       </if>
+      <if test="publisherid != null">
+        publisherId,
+      </if>
+      <if test="markerid != null">
+        markerId,
+      </if>
+      <if test="publisherdate != null">
+        publisherDate,
+      </if>
+      <if test="ifwork != null">
+        ifwork,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
       <if test="ifcompleted != null">
@@ -241,6 +261,18 @@
       </if>
       <if test="spentscore != null">
         #{spentscore,jdbcType=INTEGER},
+      </if>
+      <if test="publisherid != null">
+        #{publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="markerid != null">
+        #{markerid,jdbcType=INTEGER},
+      </if>
+      <if test="publisherdate != null">
+        #{publisherdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifwork != null">
+        #{ifwork,jdbcType=BIT},
       </if>
     </trim>
   </insert>
@@ -307,6 +339,18 @@
       <if test="record.spentscore != null">
         spentscore = #{record.spentscore,jdbcType=INTEGER},
       </if>
+      <if test="record.publisherid != null">
+        publisherId = #{record.publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="record.markerid != null">
+        markerId = #{record.markerid,jdbcType=INTEGER},
+      </if>
+      <if test="record.publisherdate != null">
+        publisherDate = #{record.publisherdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.ifwork != null">
+        ifwork = #{record.ifwork,jdbcType=BIT},
+      </if>
     </set>
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
@@ -331,7 +375,11 @@
       completelyscore = #{record.completelyscore,jdbcType=INTEGER},
       timelyscore = #{record.timelyscore,jdbcType=INTEGER},
       qualityscore = #{record.qualityscore,jdbcType=INTEGER},
-      spentscore = #{record.spentscore,jdbcType=INTEGER}
+      spentscore = #{record.spentscore,jdbcType=INTEGER},
+      publisherId = #{record.publisherid,jdbcType=INTEGER},
+      markerId = #{record.markerid,jdbcType=INTEGER},
+      publisherDate = #{record.publisherdate,jdbcType=TIMESTAMP},
+      ifwork = #{record.ifwork,jdbcType=BIT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -390,6 +438,18 @@
       <if test="spentscore != null">
         spentscore = #{spentscore,jdbcType=INTEGER},
       </if>
+      <if test="publisherid != null">
+        publisherId = #{publisherid,jdbcType=INTEGER},
+      </if>
+      <if test="markerid != null">
+        markerId = #{markerid,jdbcType=INTEGER},
+      </if>
+      <if test="publisherdate != null">
+        publisherDate = #{publisherdate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="ifwork != null">
+        ifwork = #{ifwork,jdbcType=BIT},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -411,7 +471,11 @@
       completelyscore = #{completelyscore,jdbcType=INTEGER},
       timelyscore = #{timelyscore,jdbcType=INTEGER},
       qualityscore = #{qualityscore,jdbcType=INTEGER},
-      spentscore = #{spentscore,jdbcType=INTEGER}
+      spentscore = #{spentscore,jdbcType=INTEGER},
+      publisherId = #{publisherid,jdbcType=INTEGER},
+      markerId = #{markerid,jdbcType=INTEGER},
+      publisherDate = #{publisherdate,jdbcType=TIMESTAMP},
+      ifwork = #{ifwork,jdbcType=BIT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="edu.ruc.labmgr.domain.TaskCriteria" resultMap="BaseResultMap">

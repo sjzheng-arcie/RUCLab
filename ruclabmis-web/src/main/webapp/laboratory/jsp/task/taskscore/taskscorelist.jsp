@@ -1,56 +1,26 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
-    <script src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
-
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-    function toAdd()
-    {
-        var id = "141";
-        var selectedItems = getAllSelected('listForm', 'idcheckbox');
-        if(selectedItems < 0 || selectedItems.length <= 0 )
-        {
-            alert("请选择要添加的的房间！");
-            return;
-        }
-
-        if( id != "") //有父窗体则刷新父窗体，关闭自己
-        {
-            var myUrl = "addtolaboratory?laboratoryId=${laboratoryInfo.id}&items=" + selectedItems;
-            Submit(myUrl);
-
-        }
-        else //无父窗体则跳转至表单页面
-        {
-            document.forms["listForm"].action = "addtolaboratory?laboratoryId=${laboratoryInfo.id}&items=" + selectedItems;
-            document.forms["listForm"].submit();
-        }
-
-
-    }
-    function Submit(url) {
-        $.ajax({
-            type: "POST",
-            url: url,
-            data: $("#listForm").serialize(),
-            success: function (msg) {
-                window.opener.freshWindow();
-                window.close();
-            }
-        })
-
-    }
-
+        $(document).ready(function () {
+            $("#managerId").chosen({
+                no_results_text: "没有找到"
+            });
+        });
     </script>
 
 </head>
@@ -67,7 +37,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 添加实验房间</div>
+                            <div class="titlebt">任务管理 > 任务评分</div>
                         </td>
                     </tr>
                 </table>
@@ -81,14 +51,30 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-                            <span style="white-space:nowrap">&nbsp;&nbsp;房间名称:<input type="text" name="roomName"
-                                                                                     id="roomName" value=""
+
+                            <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;
-                                <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                                </a>
+
+                            <span style="white-space:nowrap">&nbsp;&nbsp;负责人:
+                            <select id="managerId" name="managerId"
+                                    style="width: 252px;height: 22px"
+                                    data-placeholder="选择负责人...">
+                                <option value=""></option>
+                                <c:forEach items="${managerList}" var="manager">
+                                    <option value="${manager.id}">${manager.name}(${manager.sn})</option>
+                                </c:forEach>
+                            </select>
                             </span>
+
+                            <span style="white-space:nowrap">&nbsp;&nbsp; 是否已完成:
+                            <select name="ifCompleted">
+                                <option value="3"></option>
+                                <option value="1">已完成</option>
+                                <option value="0">未完成</option>
+                            </select>
+                            </span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo(listForm)"><img
+                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -104,11 +90,11 @@
                                                                         <td width="6%" height="19" valign="bottom">
                                                                             <div align="center"><img
                                                                                     src="../../../../images/tb.gif"
-                                                                                    width="14" height="14"/></div>
+                                                                                    width="14"
+                                                                                    height="14"/></div>
                                                                         </td>
-                                                                        <td width="94%" valign="bottom"><span
-                                                                                class="STYLE1"
-                                                                                style="white-space:nowrap">配备设备信息列表</span>
+                                                                        <td width="94%" valign="bottom">
+                                                                            <span class="STYLE1" style="white-space:nowrap">待评分任务列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>
@@ -116,12 +102,6 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="javascript:void(0);" class="txt_bt"
-                                                                           onclick="toAdd();return false;">
-                                                                            <img src="../../../../images/add_min.gif" width="10"
-                                                                                 height="10" border="0"/>
-                                                                            <span class="STYLE1">添加选中</span>
-                                                                        </a>
                                                                     </span>
                                                                 </div>
                                                             </td>
@@ -134,46 +114,49 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
-                                            <table width="100%" class="table" id="table1" border="0" cellpadding="0"
+                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;overflow-x: auto;">
+                                            <table id="table1" width="100%" class="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                        <div align="center">
-                                                            <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
-                                                        </div>
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">房间名称</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">任务名称</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">类型</span></div>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">责任人</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">描述</span></div>
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">完成时间</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">任务内容</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">评分</span></div>
                                                     </td>
                                                 </tr>
-                                                <input name="laboratoryId" type="hidden" value="${laboratoryInfo.id}"/>
+                                                <% int i = 1; %>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        <td height="20">
+                                                            <%=i++%>
                                                         </td>
-                                                        <td>${item.name}</td>
+                                                        <td>${item.taskname}</td>
+                                                        <td>${item.manager.name}</td>
+                                                        <td><fmt:formatDate value="${item.limitdate}"/></td>
+                                                        <td>${item.content}</td>
                                                         <td>
                                                             <c:choose>
-                                                                <c:when test="${item.type==true}">
-                                                                    实验室
+                                                                <c:when test="${item.ifcompleted==true}">
+                                                                    <a class="button" href="/laboratory/jsp/task/taskscore/torescore?taskId=${item.id}">查看</a>
                                                                 </c:when>
                                                                 <c:otherwise>
-                                                                    会议室
+                                                                    <a class="button" href="/laboratory/jsp/task/taskscore/toscore?taskId=${item.id}">评分</a>
                                                                 </c:otherwise>
                                                             </c:choose>
-
                                                         </td>
-                                                        <td>${item.description}</td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -182,16 +165,6 @@
                                     </td>
                                 </tr>
                                 <%@ include file="../../common/pagetable.jsp" %>
-                            </table>
-                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                <tr>
-                                    <td align="center">
-                                        <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
-                                        <input type="button" name="Submit" value="添加房间到实验室" class="button"
-                                               onclick="toAdd();return false;"/>
-                                    </td>
-                                </tr>
                             </table>
                         </td>
                     </tr>

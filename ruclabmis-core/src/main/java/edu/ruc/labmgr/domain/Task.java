@@ -39,6 +39,14 @@ public class Task {
 
     private Integer spentscore;
 
+    private Integer publisherid;
+
+    private Integer markerid;
+
+    private Date publisherdate;
+
+    private Boolean ifwork;
+
 	public User getManager() {
 		return manager;
 	}
@@ -191,5 +199,37 @@ public class Task {
 
     public void setSpentscore(Integer spentscore) {
         this.spentscore = spentscore;
+    }
+
+    public Integer getPublisherid() {
+        return publisherid;
+    }
+
+    public void setPublisherid(Integer publisherid) {
+        this.publisherid = publisherid;
+    }
+
+    public Integer getMarkerid() {
+        return markerid;
+    }
+
+    public void setMarkerid(Integer markerid) {
+        this.markerid = markerid;
+    }
+
+    public Date getPublisherdate() {
+        return publisherdate;
+    }
+
+    public void setPublisherdate(Date publisherdate) {
+        this.publisherdate = publisherdate;
+    }
+
+    public Boolean getIfwork() {
+        return ifwork;
+    }
+
+    public void setIfwork(Boolean ifwork) {
+        this.ifwork = ifwork;
     }
 }

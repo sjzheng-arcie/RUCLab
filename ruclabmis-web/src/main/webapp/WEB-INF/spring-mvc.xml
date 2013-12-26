@@ -51,7 +51,7 @@
                 <prop key="org.apache.shiro.authz.UnauthorizedException">views/error/authorize</prop>
                 <prop key="org.springframework.dao.DuplicateKeyException">views/error/duplicate</prop>
                 <prop key="org.springframework.dao.DataIntegrityViolationException">views/error/violation</prop>
-                <!--<prop key="java.lang.Throwable">views/error/500</prop>-->
+                <prop key="java.lang.Throwable">views/error/500</prop>
             </props>
         </property>
     </bean>

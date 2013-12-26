@@ -17,7 +17,7 @@
         if (!validator(document.listForm)) {
             return;
         }
-        document.listForm.action="/laboratory/jsp/task/taskscore/score";
+        document.listForm.action="/laboratory/jsp/task/taskscore/rescore";
         document.listForm.submit();
     }
     </script>
@@ -179,6 +179,7 @@
                                 <table border="0" cellpadding="2" cellspacing="1"
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        bgcolor="#E3E9EE">
+                                    <input type="hidden" name="taskScoreId" value="${taskScoreInfo.id}"/>
                                     <tr>
                                         <td nowrap align="right">完成度评分:</td>
                                         <td nowrap>
@@ -248,7 +249,6 @@
                         <tr>
                             <td align="center">
                                 <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                <input type="reset" name="reset" value="重置" class="button" onclick="reset();"/>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
                             </td>

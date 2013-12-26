@@ -94,11 +94,11 @@
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
                                                                         <shiro:hasAnyRoles name="teacher,administrators">
-                                                                            <a href="/laboratory/jsp/res/book/toAdd">
+                                                                            <a href="/laboratory/jsp/res/book/toAdd" class="txt_bt">
                                                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span>
                                                                             </a>
-                                                                            <a href="#" onclick="toDelete('listForm', 'idcheckbox');">
+                                                                            <a href="#" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt">
                                                                                 <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span>
                                                                             </a>
