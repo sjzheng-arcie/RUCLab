@@ -115,7 +115,7 @@
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
                                                     <input name="email" id="email"
-                                                           valid="isEmail"
+                                                           valid="isEmail" maxlength="45"
                                                            errmsg="邮箱格式不正确!"/>
                                                 </td>
                                             </tr>
@@ -175,11 +175,11 @@
                                             <tr>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text">
+                                                    <input name="phoneNum" id="phoneNum" maxlength="20" type="text">
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="comment" id="comment"></textarea>
+                                                    <textarea name="comment" id="comment" maxlength="490"></textarea>
                                                 </td>
                                             </tr>
                                         </table>
