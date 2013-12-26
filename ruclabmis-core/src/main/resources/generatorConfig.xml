@@ -167,8 +167,15 @@
         <!--<table tableName="equipment_check">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <table tableName="curriculum_examination">
+<!--        <table tableName="curriculum_examination">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
+<!--        <table tableName="curriculum_schedule">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>
+        <table tableName="term_year">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
+
     </context>
 </generatorConfiguration>
