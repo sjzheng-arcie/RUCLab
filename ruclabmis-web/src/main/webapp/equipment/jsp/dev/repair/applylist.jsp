@@ -44,11 +44,10 @@
             <tr>
                 <td valign="top" class="STYLE10">
                     <span style="white-space:nowrap">
-                        &nbsp;&nbsp;申请编号&nbsp;:&nbsp;<input type="text" name="searchSN"
-                                                            id="searchSN" value="${param.searchSN}"
-                                                            style="width:100px;"/>
+                        申请编号<input type="text" name="searchSN" id="searchSN"
+                                   value="${param.searchSN}" style="width:100px;"/>
                     </span>
-                    <span style="white-space:nowrap">&nbsp;&nbsp;申请状态:
+                    <span style="white-space:nowrap">申请状态:
                         <select id="searchState" name="searchState">
                             <option value="0">全部</option>
                             <c:forEach items="${states}" var="item">
@@ -59,9 +58,10 @@
                         </select>
                     </span>
 
-                     <span style="white-space:nowrap">&nbsp;&nbsp;
-                         <a href="javascript:void(0)" onclick="toFind('listForm');">
-                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                     <span style="white-space:nowrap">
+                         <button href="javascript:void(0)" onclick="toFind('listForm');">
+                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                         </button>
                      </span>
 
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -111,7 +111,7 @@
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
                                                          border="0"/>
-                                                    <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
+                                                    <span class="STYLE1">删除申请</span></a>
                                             </shiro:hasAnyRoles>
                                         </c:if>
 	                                </span>
@@ -165,9 +165,6 @@
                                             <td width="100" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">单据状态</span></div>
                                             </td>
-                                            <td width="30" bgcolor="d3eaef">
-                                                <div align="center"><span class="STYLE10">详情</span></div>
-                                            </td>
                                             <c:if test="${formType=='process'}">
                                                 <td width="30" bgcolor="d3eaef">
                                                     <div align="center"><span class="STYLE10">修缮</span></div>
@@ -185,7 +182,10 @@
                                                                            onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
                                                 </c:if>
-                                                <td>${item.sn}</td>
+                                                <td>
+                                                    <a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
+                                                    ${item.sn}</a>
+                                                </td>
                                                 <td>${item.applicant.name}</td>
                                                 <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
                                                 <td>${item.annex}</td>
@@ -194,11 +194,6 @@
                                                 <td>${item.operator.name}</td>
                                                 <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
                                                 <td>${item.state.value}</td>
-                                                <td>
-                                                    <a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
-                                                        <img src="../../../../images/edit_min.gif" width="10"
-                                                             height="10" border="0"/>
-                                                    </a></td>
 
                                                 <c:if test="${formType=='process'}">
                                                     <td>

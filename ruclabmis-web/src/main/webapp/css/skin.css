@@ -240,26 +240,6 @@ body {
     list-style-image: none;
 }
 
-a:link {
-    font-size: 12px;
-    line-height: 20px;
-    color: #333333;
-    text-decoration: none;
-}
-
-a:hover {
-    font-size: 12px;
-    line-height: 20px;
-    color: #333333;
-    text-decoration: none;
-}
-
-a:visited {
-    font-size: 12px;
-    line-height: 20px;
-    color: #333333;
-    text-decoration: none;
-}
 
 .top_right_top a:link {
     font-size: 12px;

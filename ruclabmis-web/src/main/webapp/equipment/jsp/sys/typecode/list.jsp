@@ -33,24 +33,24 @@
         </tr>
 
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;分类名称<input type="text" name="searchName"
-                                                                                    id="searchName" value="${param.searchName}"
-                                                                                    style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;分类号<input type="text" name="searchId"
-                                                                                   id="searchId" value="${param.searchId}"
-                                                                                   style="width:100px;"/></span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);"
-                                                                            style="cursor:pointer"
-                                                                            onclick="toFind('listForm')"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
+                             <span style="white-space:nowrap">
+                                分类号<input type="text" name="searchId" id="searchId"
+                                          value="${param.searchId}" style="width:100px;"/>
+                            </span>
+                            <span style="white-space:nowrap">
+                                分类名称<input type="text" name="searchName" id="searchName"
+                                           value="${param.searchName}" style="width:100px;"/>
+                            </span>
+                            <span style="white-space:nowrap">
+                                <button href="javascript:void(0)" onclick="toFind('listForm');">
+                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                                </button>
+                            </span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -81,15 +81,13 @@
 	            	<span class="STYLE1" style="white-space:nowrap">
 						<a href="/equipment/jsp/sys/typecode/toAdd"><img src="../../../../images/add_min.gif" width="10"
                                                                          height="10" border="0"/>
-                            <span class="STYLE1">新增</span></a>&nbsp;
+                            <span class="STYLE1">新增</span></a>
       					<%--<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../../images/edit_min.gif" width="10" height="10"--%>
-                                                               <%--border="0"/> <span class="STYLE1">修改</span></a>&nbsp;--%>
+                                                               <%--border="0"/> <span class="STYLE1">修改</span></a>--%>
       					<a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img
                                 src="../../../../images/del_min.gif" width="10" height="10"
-                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-<%--                <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                     border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
-	                </span>--%>
+                                border="0"/> <span class="STYLE1">删除</span></a>
+
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -120,9 +118,6 @@
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">描述</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -130,15 +125,11 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.sn}</td>
+                                                        <td><a href="toUpdate?id=${item.id}">
+                                                                ${item.sn}</a>
+                                                        </td>
                                                         <td>${item.name}</td>
                                                         <td>${item.description}</td>
-                                                        <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                                            <td><a href="toUpdate?id=${item.id}">
-                                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                                     height="10" border="0"/>
-                                                            </a></td>
-                                                        </shiro:hasAnyRoles>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
@@ -152,7 +143,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
