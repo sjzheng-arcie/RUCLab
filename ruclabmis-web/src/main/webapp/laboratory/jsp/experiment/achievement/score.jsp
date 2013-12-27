@@ -1,20 +1,35 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/experiment/achievement/score';
-        function save() {
-            document.listForm.action = "score";
-            document.listForm.submit();
+        function save(classStudentId,vcId) {
+            var up = document.getElementById("usualPerformance").value,
+                    fg = document.getElementById("finalGrade").value;
+            var upInt = parseInt(up),
+                    fgInt = parseInt(fg);
+            if (isNaN(upInt) || isNaN(fgInt) || (upInt < 0 || upInt > 200) || (fgInt < 0 || fgInt > 200)) {
+                alert("请输出正确的分数值!");
+            } else {
+                $.post("/experiment/virtual/setClsStuScore", {
+                    id: classStudentId,
+                    usualPerformance: upInt,
+                    finalGrade: fgInt
+                }, function (data) {
+                    if (data.success) {
+                        window.location.href = "/experiment/virtual/classStudentScore?vcId=" + vcId + "&page=1&view=achievement";
+                    } else {
+                        alert(data.message);
+                    }
+                });
+            }
         }
     </script>
 
@@ -90,51 +105,18 @@
                                     <table width="100%" border="0" cellpadding="0" cellspacing="1"
                                            bgcolor="#a8c7ce">
                                         <tr>
-
-
-                                            </td>
-                                            <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">实验编号</span></div>
-                                            </td>
-                                            <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                            <td height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">实验名</span></div>
                                             </td>
-                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                            <td  height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">实验报告分数</span></div>
                                             </td>
-                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                <div align="center"><span class="STYLE10">签到情况</span></div>
-                                            </td>
-
-
                                         </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19">
 
-                                            <td>201312</td>
-                                            <td>编程实验</td>
-
-                                            <td>6</td>
-                                            <td>已签</td>
-
-
-                                        </tr>
-                                        <tr bgcolor="#ffffff" align="center" class="STYLE19">
-
-                                            <td>201312</td>
-                                            <td>编程实验</td>
-
-                                            <td>6</td>
-                                            <td>未签</td>
-
-
-                                        </tr>
-                                        <c:forEach items="${pageInfo.data}" var="item">
+                                        <c:forEach items="${expList}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
-
-                                                <td>${item.sn}</td>
                                                 <td>${item.name}</td>
-                                                <td>${item.reportScore}</td>
-                                                <td>${item.signIn}</td>
+                                                <td>${item.score}</td>
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>
@@ -197,26 +179,15 @@
                                     <tr>
                                         <td nowrap align="right">平日成绩:</td>
                                         <td nowrap align="left">
-                                            <input name="usualScore" class="text" value="${score.usualScore}"/>
+                                            <input name="usualPerformance" id="usualPerformance" class="text" value="${classStudent.usualPerformance}"/>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td nowrap align="right">期末成绩:</td>
-                                        <td nowrap align="left">
-                                            <input name="finalScore" class="text" value="${score.finalScore}"/>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td nowrap align="right">平日成绩所占比例:</td>
-                                        <td nowrap align="left">
-                                            <input name="proportion" class="text" value="${score.proportion}"/>
-                                        </td>
-                                    </tr>
+
                                     <tr>
                                         </td>
                                         <td nowrap align="right">最终成绩:</td>
                                         <td nowrap align="left">
-                                            <input name="totalScore" class="text" value="${score.totalScore}"/>
+                                            <input name="finalGrade" id="finalGrade" class="text" value="${classStudent.finalGrade}"/>
                                         </td>
                                     </tr>
                                 </table>
@@ -227,7 +198,8 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
+                                <input type="button" name="Submit" value="保存" class="button" onclick="save(${classStudent.id},
+                                ${classStudent.classId});"/>
                                 <input type="reset" name="reset" value="重置" class="button" onclick="reset();"/>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>

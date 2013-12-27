@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lcheng
@@ -88,6 +90,48 @@ public class CurriculumClassService {
         return classStudentMapper.selectByCriteriaWithStudent(criteria);
     }
 
+    public ClassStudent getClassStudentInfo(int cid,int stuId){
+        ClassStudentCriteria criteria = new ClassStudentCriteria();
+        criteria.or().andClassIdEqualTo(cid).andStudentIdEqualTo(stuId);
+        List<ClassStudent> list = classStudentMapper.selectByCriteria(criteria);
+        return (list!=null && list.size()>0) ? list.get(0) : null;
+    }
+
+    public PageInfo<Student> getPageClassStudent(int cid, String sn, String name, String major,int pageNum){
+        ClassStudentCriteria criteria = new ClassStudentCriteria();
+        ClassStudentCriteria.Criteria c = criteria.or();
+        c.andJoinUser().andJoinStudent().andJoinMajor().andClassIdEqualTo(cid);
+        if (StringUtils.isNotEmpty(sn))
+            c.andStudentSnLike("%" + sn + "%");
+        if (StringUtils.isNotEmpty(name))
+            c.andStudentNameLike("%" + name + "%");
+        if (StringUtils.isNotEmpty(major))
+            c.andStudentMajorLike("%" + major + "%");
+        int totalCount = classStudentMapper.countByCriteria(criteria);
+        PageInfo<Student> page = new PageInfo<>(totalCount,-1,pageNum);
+        List<Student> data = classStudentMapper.selectByCriteriaWithStudentWithRowbounds(criteria,
+                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+        page.setData(data);
+        return page;
+    }
+
+    public PageInfo<Map<String,?>> getPageClassStudentInfo(int cid, String sn, String name, String major,int pageNum){
+        Map<String,Object> param = new HashMap<>();
+        if (sn!=null)
+            param.put("sn","%"+sn+"%");
+        if (name!=null)
+            param.put("name","%"+name+"%");
+        if (major!=null)
+            param.put("major","%"+major+"%");
+        param.put("cid",cid);
+        int totalCount = classStudentMapper.countClassStudentInfo(param);
+        PageInfo<Map<String,?>> page = new PageInfo<>(totalCount,-1,pageNum);
+        List<Map<String,?>> data = classStudentMapper.selectClassStudentInfo(param,
+                new RowBounds(page.getCurrentResult(),page.getPageSize()));
+        page.setData(data);
+        return page;
+    }
+
     /**
      * 选出没有在某个班级的学生
      *
@@ -147,6 +191,12 @@ public class CurriculumClassService {
 
 		addBBSection(cid,clazz);
 
+    }
+
+    public void updateClassStudentScore(ClassStudent classStudent){
+       if (classStudent.getId()!=null){
+           classStudentMapper.updateByPrimaryKeySelective(classStudent);
+       }
     }
 
 	/**

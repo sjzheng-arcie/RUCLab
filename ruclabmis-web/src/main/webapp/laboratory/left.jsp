@@ -98,7 +98,7 @@
                             <li><a href="jsp/experiment/experiment/courselist?page=1&view=report" onfocus="toFocus(this)"
                                    target="main">实验报告管理</a>
                             </li>
-                            <li><a href="jsp/experiment/achievement/courselist" onfocus="toFocus(this)" target="main">
+                            <li><a href="jsp/experiment/experiment/courselist?page=1&view=achievement" onfocus="toFocus(this)" target="main">
                                 学期成绩评定</a></li>
                         </ul>
                     </div>

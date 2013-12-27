@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ClassStudentMapper {
     int countByCriteria(ClassStudentCriteria criteria);
@@ -26,6 +27,12 @@ public interface ClassStudentMapper {
     List<ClassStudent> selectByCriteria(ClassStudentCriteria criteria);
 
     List<Student> selectByCriteriaWithStudent(ClassStudentCriteria criteria);
+
+    List<Student> selectByCriteriaWithStudentWithRowbounds(ClassStudentCriteria criteria,RowBounds rowBounds);
+
+    List<Map<String,?>> selectClassStudentInfo(Map<String,?> param,RowBounds rowBounds);
+
+    int countClassStudentInfo(Map<String,?> param);
 
     List<Student> selectStudentNotInClassWithRowbounds(ClassStudentCriteria criteria,RowBounds rowBounds);
 

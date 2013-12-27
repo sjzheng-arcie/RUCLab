@@ -3,6 +3,7 @@ package edu.ruc.labmgr.web.controller.lab;
 import edu.ruc.labmgr.domain.Curriculum;
 import edu.ruc.labmgr.domain.CurriculumClass;
 import edu.ruc.labmgr.domain.Experiment;
+import edu.ruc.labmgr.domain.ExperimentDetail;
 import edu.ruc.labmgr.service.CurriculumClassService;
 import edu.ruc.labmgr.service.CurriculumService;
 import edu.ruc.labmgr.service.ExperimentService;
@@ -31,6 +32,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * User: sjzheng
@@ -57,6 +59,8 @@ public class ExperimentInfoController {
             mv = new ModelAndView("laboratory/jsp/experiment/experiment/courselist");
         } else if (view.equals("report")) {
             mv = new ModelAndView("laboratory/jsp/experiment/report/courselist");
+        } else if(view.equals("achievement")){
+            mv = new ModelAndView("laboratory/jsp/experiment/achievement/courselist");
         }
         Subject currentUser = SecurityUtils.getSubject();
         int id = userService.getCurrentUserId();
@@ -82,6 +86,13 @@ public class ExperimentInfoController {
         PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("cid", cid);
+        return mv;
+    }
+    @RequestMapping(value = "/studentClassExpList", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView studentExpList(Integer cid,Integer stuId){
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/achievement/myexperimentlist");
+        List<Map<String,?>> pageInfo = experimentService.getStudentClassExperimentInfo(cid,stuId);
+        mv.addObject("pageInfo",pageInfo);
         return mv;
     }
 
@@ -150,27 +161,8 @@ public class ExperimentInfoController {
         Experiment exp = experimentService.getExperiment(eid);
         if (exp != null) {
             String path = exp.getTemplatePath();
-            Path fp = Paths.get(path);
-            if (Files.exists(fp)) {
-                String fileName = path.substring(path.indexOf("_") + 1);
-                resp.setHeader("content-type", "text/html;charset=UTF-8");
-                resp.setContentType("multipart/form-data");
-                String header = "attachment;fileName=\"" + fileName + "\"";
-                resp.setHeader("Content-Disposition", header);
-
-                byte[] buffer = new byte[1024];
-                int read = 0;
-                try (FileInputStream fis = new FileInputStream(new File(path));
-                     InputStream is = new BufferedInputStream(fis);
-                     OutputStream os = resp.getOutputStream();) {
-                    while ((read = is.read(buffer)) > 0) {
-                        os.write(buffer, 0, read);
-                    }
-                    os.flush();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
+            String fileName = path.substring(path.indexOf("_") + 1);
+            download(path,fileName,resp);
         }
     }
 
@@ -182,42 +174,108 @@ public class ExperimentInfoController {
         mv.addObject("ac", ac);
         return mv;
     }
+
     @RequestMapping(value = {"/editExpRep"}, method = RequestMethod.GET)
-    public ModelAndView experimentDetailForReport(Integer cid,Integer eid){
+    public ModelAndView experimentDetailForReport(Integer cid, Integer eid) {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/report/maintain");
         Experiment e = experimentService.getExperiment(eid);
         Curriculum c = curriculumService.getCurriculum(cid);
-        mv.addObject("exp",e);
-        mv.addObject("cur",c);
+        mv.addObject("exp", e);
+        mv.addObject("cur", c);
         return mv;
     }
-    @RequestMapping(value = {"/updateExpRep"}, method = RequestMethod.POST,produces = "application/json")
-    public @ResponseBody Result experimentUpdateForReport(Experiment exp){
+
+    @RequestMapping(value = {"/updateExpRep"}, method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody  Result experimentUpdateForReport(Experiment exp) {
         Result r = null;
-        try{
+        try {
             experimentService.updateExperiment(exp);
-            r = new Result(true,"保存成功!");
-        }catch (Exception e){
-            r = new Result(false,"保存失败!");
+            r = new Result(true, "保存成功!");
+        } catch (Exception e) {
+            r = new Result(false, "保存失败!");
         }
         return r;
     }
 
-    @RequestMapping(value = {"/publishExpRep"}, method = RequestMethod.POST,produces = "application/json")
-    public @ResponseBody Result experimentPublishForReport(String ids){
+    @RequestMapping(value = {"/publishExpRep"}, method = RequestMethod.POST, produces = "application/json")
+    public @ResponseBody Result experimentPublishForReport(String ids) {
         Result r = null;
         String[] idArr = ids.split(",");
-        try{
-            for (String id : idArr){
+        try {
+            for (String id : idArr) {
                 Experiment exp = new Experiment();
                 exp.setId(Integer.valueOf(id));
                 exp.setStatus(true);
                 experimentService.updateExperiment(exp);
             }
-            r = new Result(true,"保存成功!");
-        }catch (Exception e){
-            r = new Result(false,"保存失败!");
+            r = new Result(true, "保存成功!");
+        } catch (Exception e) {
+            r = new Result(false, "保存失败!");
         }
         return r;
+    }
+
+    @RequestMapping(value = "/studentExpDetail", method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView listStudentExperimentDetail(int eid, int page) {
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/report/list");
+        PageInfo<Map<String,?>> pageInfo = experimentService.getStudentExperimentDetail(eid,page);
+        mv.addObject("pageInfo",pageInfo);
+        return mv;
+    }
+    @RequestMapping(value = "/studentAllExpDetail", method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView listStudentAllExperimentDetail(int stuId,int page){
+        //TODO
+        return null;
+    }
+
+    @RequestMapping(value = "/setStudentExpScore", method = RequestMethod.POST,produces = "application/json")
+    public @ResponseBody Result setStudentExpScore(String scores){
+        Result r = null;
+        String[] scoreArr = scores.split(",");
+        try {
+            for (int i = 0; i < scoreArr.length; i = i + 2) {
+                ExperimentDetail detail = new ExperimentDetail();
+                detail.setId(Integer.valueOf(scoreArr[i]));
+                detail.setScore(Short.valueOf(scoreArr[i + 1]));
+                experimentService.updateExperimentDetail(detail);
+            }
+            r = new Result(true, "");
+        } catch (Exception e) {
+            r = new Result(false, e.getMessage());
+        }
+        return r;
+    }
+    @RequestMapping(value = "/downloadStuExpReport",method = RequestMethod.POST)
+    public void downloadStudentExpReport(int eid,int stuId,HttpServletResponse resp){
+         ExperimentDetail detail = experimentService.getStudentExpDetail(eid,stuId);
+         if (detail!=null){
+             String path = detail.getReportPath();
+             String fileName = path.substring(path.indexOf("_") + 1);
+             download(path,fileName,resp);
+         }
+    }
+
+    private void download(String path,String fileName,HttpServletResponse resp){
+        Path fp = Paths.get(path);
+        if (Files.exists(fp)) {
+            //String fileName = path.substring(path.indexOf("_") + 1);
+            resp.setHeader("content-type", "text/html;charset=UTF-8");
+            resp.setContentType("multipart/form-data");
+            String header = "attachment;fileName=\"" + fileName + "\"";
+            resp.setHeader("Content-Disposition", header);
+
+            byte[] buffer = new byte[1024];
+            int read = 0;
+            try (FileInputStream fis = new FileInputStream(new File(path));
+                 InputStream is = new BufferedInputStream(fis);
+                 OutputStream os = resp.getOutputStream();) {
+                while ((read = is.read(buffer)) > 0) {
+                    os.write(buffer, 0, read);
+                }
+                os.flush();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
     }
 }

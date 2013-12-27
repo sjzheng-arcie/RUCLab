@@ -1,17 +1,18 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<html>
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/experiment/achievement/scorelist';
+           function score(cid,stuId){
+               window.location.href = "/experiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
+           }
     </script>
 
 </head>
@@ -43,11 +44,11 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="studentNo"
-                                                                                   id="studentNo" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="sn"
+                                                                                   id="sn" value=""
                                                                                    style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;姓名:<input type="text" name="studentName"
-                                                                                   id="studentName" value=""
+                            <span style="white-space:nowrap">&nbsp;&nbsp;姓名:<input type="text" name="name"
+                                                                                   id="name" value=""
                                                                                    style="width:100px;"/></span>
 
                               <span style="white-space:nowrap">&nbsp;&nbsp;
@@ -115,22 +116,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">评分</span></div>
                                                     </td>
-
-
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                           value="admin" onclick="checkOne(this)"/></td>
-
-                                                    <td>0101</td>
-                                                    <td>李小白</td>
-                                                    <td>${item.score}</td>
-                                                    <td><a class="button"
-                                                           href="toscore?studentId=${item.studentId}">评分</a></td>
-
-
-                                                </tr>
-
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
@@ -138,10 +124,10 @@
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.sn}</td>
-                                                        <td>${item.name}</td>
-                                                        <td>${item.score}</td>
+                                                        <td>${item.studentName}</td>
+                                                        <td>${item.final_grade}</td>
                                                         <td><a class="button"
-                                                               href="toscore?studentId=${item.studentId}">评分</a></td>
+                                                               href="#" onclick="score(${item.class_id},${item.student_id});">评分</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

@@ -1,8 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -10,8 +8,11 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script>
-        var baseHref = '/laboratory/jsp/experiment/virtual/list';
+    <script type="text/javascript">
+
+        function score(vcid){
+            window.location.href = "/experiment/virtual/classStudentScore?vcId="+vcid+"&page=1&view=achievement";
+        }
     </script>
 
 </head>
@@ -87,36 +88,36 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">班级名称</span></div>
                                                     </td>
-
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">查看成绩</span></div>
+                                                        <div align="center"><span class="STYLE10">学年</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
 
 
-                                                </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-
-                                                    <td title="">软件工程虚拟班级一</td>
-                                                    <td title="">软件工程</td>
-
-
-                                                    <td title=""><a class="button" href="scorelist?courseId=${item.id}">查看成绩</a>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">成绩评定</span></div>
                                                     </td>
+
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
+
                                                         <td>${item.className}</td>
-                                                        <td>${item.courseName}</td>
-                                                        <td title=""><a class="button"
-                                                                        href="scorelist?courseId=${item.id}">查看成绩</a>
+                                                        <td>${item.curriculumName}</td>
+                                                        <td>${item.classYear}</td>
+                                                        <td>${item.teacherName}</td>
+                                                        <td>
+                                                            <input type="button" onClick="score(${item.id});"
+                                                                   class="button" value="评定成绩"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
@@ -125,7 +126,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <%@ include file="../../common/pagetable.jsp" %>
+                                <%@include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>

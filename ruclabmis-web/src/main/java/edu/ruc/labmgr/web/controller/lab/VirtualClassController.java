@@ -1,9 +1,11 @@
 package edu.ruc.labmgr.web.controller.lab;
 
+import edu.ruc.labmgr.domain.ClassStudent;
 import edu.ruc.labmgr.domain.CurriculumClass;
 import edu.ruc.labmgr.domain.Student;
 import edu.ruc.labmgr.mapper.BbsSessionMapper;
 import edu.ruc.labmgr.service.CurriculumClassService;
+import edu.ruc.labmgr.service.ExperimentService;
 import edu.ruc.labmgr.service.StudentService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.Types;
@@ -22,6 +24,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author lcheng
@@ -38,6 +41,8 @@ public class VirtualClassController {
     private StudentService studentService;
 	@Autowired
 	private UserService userService;
+    @Autowired
+    private ExperimentService experimentService;
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView classList(@RequestParam int page,
@@ -182,6 +187,37 @@ public class VirtualClassController {
         } catch (Exception e) {
             r = new Result(true, "删除班级学生失败!");
             e.printStackTrace();
+        }
+        return r;
+    }
+
+    @RequestMapping(value = "/classStudentScore", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView classStudent(int vcId, String sn, String name, int page) {
+        String viewName = "laboratory/jsp/experiment/achievement/scorelist";
+        ModelAndView mv = new ModelAndView();
+        mv.setViewName(viewName);
+        PageInfo<Map<String,?>> pageInfo = classService.getPageClassStudentInfo(vcId,sn,name,null,page);
+        mv.addObject("pageInfo",pageInfo);
+        return mv;
+    }
+
+    @RequestMapping(value = "/scoreStudent", method = RequestMethod.GET)
+    public ModelAndView scoreStudent(int vcId, int stuId) {
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/achievement/score");
+        List<Map<String,?>> stuExpInfo = experimentService.getStudentClassExperimentInfo(vcId,stuId);
+        ClassStudent classStudent = classService.getClassStudentInfo(vcId,stuId);
+        mv.addObject("expList",stuExpInfo);
+        mv.addObject("classStudent",classStudent);
+        return mv;
+    }
+    @RequestMapping(value = "/setClsStuScore", method = RequestMethod.POST,produces = "application/json")
+    public @ResponseBody Result setClassStudentScore(ClassStudent cs){
+        Result r = null;
+        try{
+            classService.updateClassStudentScore(cs);
+            r = new Result(true,"");
+        }catch (Exception e){
+            r = new Result(false,"保存学生分数失败!");
         }
         return r;
     }

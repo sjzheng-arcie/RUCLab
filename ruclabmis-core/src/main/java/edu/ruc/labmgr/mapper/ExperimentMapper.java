@@ -3,6 +3,8 @@ package edu.ruc.labmgr.mapper;
 import edu.ruc.labmgr.domain.Experiment;
 import edu.ruc.labmgr.domain.ExperimentCriteria;
 import java.util.List;
+import java.util.Map;
+
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
@@ -20,6 +22,8 @@ public interface ExperimentMapper {
     List<Experiment> selectByExampleWithRowbounds(ExperimentCriteria example, RowBounds rowBounds);
 
     List<Experiment> selectByExample(ExperimentCriteria example);
+
+    List<Map<String,?>> selectStudentClassExpInfo(Map<String,?> param);
 
     Experiment selectByPrimaryKey(Integer id);
 
