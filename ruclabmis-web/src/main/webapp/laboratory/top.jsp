@@ -17,7 +17,6 @@
             var x = document.getElementsByTagName("li");
             for (var i = 0; i < x.length; i++) {
                 x[i].className = "";
-
             }
             if(document.getElementById(flag) != null)
                 document.getElementById(flag).className = "active";
@@ -28,7 +27,10 @@
                 parent.main.location.href = "teacher_welcome";
             }else if (flag=="student_homePage"){
                 parent.main.location.href = "student_welcome";
+            }else if (flag=="leader_homePage"){
+                parent.main.location.href = "leader_welcome";
             }
+
             else if(flag=="bbs"){
                 parent.main.location.href = "bbs/frame";
             }
@@ -42,7 +44,7 @@
     <div class="top_left"><img src="../images/logo_lab.gif" width="305" height="103"></div>
     <div class="top_right_top">
            <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
-            <a href="/messagecenter/laboratory/jsp/announcement/remind/message" target="">短消息(${unreadCount})</a>
+            <a href="/laboratory/jsp/announcement/remind/laboratory/message?page=1" target="">短消息(${unreadCount})</a>
             <a href="jsp/sys/user/password.jsp" target="">修改密码</a>
             [<a href="/login/laboratory/logout" target="_top">退出</a>]
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
@@ -56,6 +58,9 @@
             </shiro:hasRole>
             <shiro:hasRole name="teacher">
                 <li id="teacher_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('teacher_homePage')">首页</a></li>
+            </shiro:hasRole>
+            <shiro:hasRole name="leader">
+                <li id="leader_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('leader_homePage')">首页</a></li>
             </shiro:hasRole>
             <shiro:hasRole name="administrators">
                 <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
@@ -83,6 +88,11 @@
         <shiro:hasRole name="teacher">
             <script>
                 rs('teacher_homePage');
+            </script>
+        </shiro:hasRole>
+        <shiro:hasRole name="leader">
+            <script>
+                rs('leader_homePage');
             </script>
         </shiro:hasRole>
 </div>

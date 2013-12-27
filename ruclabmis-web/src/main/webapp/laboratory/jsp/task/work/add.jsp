@@ -14,7 +14,7 @@
 
     <script>
         function save(){
-            document.mainForm.href="jsp/task/task/add";
+            document.mainForm.action="/laboratory/jsp/task/work/add";
             document.mainForm.submit();
         }
 
@@ -88,51 +88,22 @@
                                                bgcolor="#E3E9EE">
                                             <tr>
 
-                                                <td nowrap align="right">任务名称:</td>
+                                                <td nowrap align="right">工作名称:</td>
                                                 <td nowrap>
-                                                    <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
+                                                    <input name="workTitle" id="workTitle" onblur="" class="text"
+                                                           style="width:154px" maxlength="20" valid="required" errmsg="请输入工作名称"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
-                                                <td nowrap align="right">附件:</td>
-                                                <td nowrap>
-                                                    <input name="annex" id="annex" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_work_annex"></span>
-                                                </td>
+
                                             </tr>
+
                                             <tr>
-                                                <td nowrap align="right">完成度:</td>
-                                                <td nowrap>
-                                                    <input name="completeness" id="completeness" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">完成时间:</td>
-                                                <td nowrap>
-                                                    <input name="limiteTime" id="limitTime" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount" />
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_limit_time"></span>
+                                                <td nowrap align="right">工作内容:</td>
+                                                <td colspan="3"><textarea name="workContent" style="width:70%;height:100px"></textarea>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">任务内容:</td>
-                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px"></textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_content"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">备注:</td>
-                                                <td colspan="3"><textarea name="note" style="width:70%;height:100px"></textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_note"></span>
-                                                </td>
-                                            </tr>
+
                                         </table>
                                     </td>
                                 </tr>

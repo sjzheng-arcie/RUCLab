@@ -3,7 +3,27 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
-<script type="text/javascript" src="/js/page.js"></script>
+<script type="text/javascript" >
+    function goPage(pageIndex, maxPage) {
+        if (pageIndex <= 0) {
+            alert("已到达首页！");
+            return;
+        }
+        if (pageIndex > maxPage) {
+            alert("已到达尾页！");
+            return;
+        }
+        var curUrl = window.location.href;
+        var flag = curUrl.indexOf('?'),
+                pageFlag = curUrl.indexOf("page=");
+        curUrl = (flag == -1) ? (curUrl + "?page=" + pageIndex) :
+                ((pageFlag == -1) ? (curUrl + "page=" + pageIndex) : (curUrl.replace(/page=\d+/, 'page=' + pageIndex)));
+
+        document.forms[0].action = curUrl;
+        document.forms[0].submit();
+    }
+
+</script>
 <tr>
     <td height="30">
         <table width='100%' border='0' cellspacing='0' cellpadding='0'

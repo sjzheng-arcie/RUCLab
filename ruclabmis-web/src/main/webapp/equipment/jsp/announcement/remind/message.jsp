@@ -12,7 +12,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/util.js"></script>
-    <script type="text/javascript" src="${pageContext.request.contextPath}/js/page.js"></script>
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <link href="${pageContext.request.contextPath}/laboratory/jsp/curriculum/css/style.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
@@ -100,13 +99,13 @@
                                                              style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                             <p align="left" style="font-size: 12px">
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/message?page=1&&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/message?page=1">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/unreadmessage?page=1&&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/unreadmessage?page=1">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/readmessage?page=1&&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/readmessage?page=1">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/mysendmessage?page=1&&fatherPage=mysendmessage">我发送的消息</a>
+                                                                   href="/messagecenter/equipment/jsp/announcement/remind/mysendmessage?page=1">我发送的消息</a>
                                                             </p>
                                                         </div>
                                                         <hr size="0" class="hr1">

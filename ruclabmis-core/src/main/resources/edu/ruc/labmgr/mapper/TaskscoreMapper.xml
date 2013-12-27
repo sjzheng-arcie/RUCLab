@@ -10,6 +10,7 @@
     <result column="timelyscore" jdbcType="INTEGER" property="timelyscore" />
     <result column="qualityscore" jdbcType="INTEGER" property="qualityscore" />
     <result column="spentscore" jdbcType="INTEGER" property="spentscore" />
+      <association column="markerId" javaType="User" property="manager" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>

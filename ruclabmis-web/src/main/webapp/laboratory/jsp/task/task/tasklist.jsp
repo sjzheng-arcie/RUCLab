@@ -126,23 +126,26 @@
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">附件</span></div>
                         </td>
-
                         <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成度</span></div>
                         </td>
                         <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成情况</span></div>
                         </td>
-
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成时间</span></div>
                         </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">评分</span></div>
                         </td>
-
+                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">评分列表</span></div>
+                        </td>
                         <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">操作</span></div>
+                        </td>
+                        <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">删除</span></div>
                         </td>
                     </tr>
                     <% int temp=1; %>
@@ -163,7 +166,7 @@
                             <td>
                                 <c:choose>
                                     <c:when test="${item.ifscored==true}">
-                                        ${item.score}
+                                        ${item.overallscore}
                                     </c:when>
                                     <c:otherwise>
                                         <c:choose>
@@ -178,7 +181,9 @@
                                 </c:choose>
 
                             </td>
+                            <td><a href="/laboratory/jsp/task/taskscore/teacherscorelist?taskId=${item.id}" class="button"> 评分列表</a></td>
                             <td><a href="/laboratory/jsp/task/task/toupdate?taskId=${item.id}" class="button"> 查看任务详细</a></td>
+                            <td><a href="/laboratory/jsp/task/task/delete?taskId=${item.id}" class="button"> 删除</a></td>
 
                         </tr>
                     </c:forEach>

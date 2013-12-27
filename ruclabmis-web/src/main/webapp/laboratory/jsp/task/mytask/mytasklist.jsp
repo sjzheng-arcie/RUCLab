@@ -44,10 +44,19 @@
 
                             <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
                                                                                      style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;任务完成时间:<input type="text" name="endTIme" id="endTime" value=""
-                                                                                       style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo()"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                               <span style="white-space:nowrap">
+                        是否完成：
+                        <select name="ifCompleted">
+                            <option value="3">全部</option>
+                            <option value="1">是</option>
+                            <option value="0">否</option>
+                        </select>
+                    </span>
+             <span style="white-space:nowrap">&nbsp;&nbsp;
+            <a href="javascript:void(0)" onclick="toFind('listForm');">
+                <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+            </a>
+        </span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -141,7 +150,7 @@
                                                         <td>
                                                             <c:choose>
                                                                 <c:when test="${item.ifscored==true}">
-                                                                    ${item.score}
+                                                                    ${item.overallscore}
                                                                 </c:when>
                                                                 <c:otherwise>
                                                                     <c:choose>

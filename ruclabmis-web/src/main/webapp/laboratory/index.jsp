@@ -31,6 +31,10 @@
             <frame src="welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
                    target="_self"/>
         </shiro:hasRole>
+        <shiro:hasRole name="leader">
+            <frame src="welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
+                   target="_self"/>
+        </shiro:hasRole>
     </frameset>
 </frameset>
 <script type="text/javascript">

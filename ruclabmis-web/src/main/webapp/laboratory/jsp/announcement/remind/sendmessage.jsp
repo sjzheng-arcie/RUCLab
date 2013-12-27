@@ -88,7 +88,7 @@
                                     <td align="center" bgcolor="#E3E9EE">
                                         <div id="">
                                             <div class="">
-                                                <form action="/messagecenter/laboratory/jsp/announcement/remind/addMessage"
+                                                <form action="/laboratory/jsp/announcement/remind/laboratory/addMessage"
                                                       method="post" name="mainForm">
                                                     <table style=" border:1px; width:80%;margin:auto;">
                                                         <tr>

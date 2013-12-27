@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
@@ -18,7 +20,7 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/messagecenter")
+@RequestMapping("/laboratory")
 public class MessageCenterController {
     @Autowired
     AnnouncementService serviceAnnouncement;
@@ -29,13 +31,10 @@ public class MessageCenterController {
 
     private int currPage = 0;
 
-	@RequestMapping("/{system}/jsp/announcement/remind/message")
-    public ModelAndView showMessage(@PathVariable String system,HttpServletRequest request) {
+	@RequestMapping(value = "/jsp/announcement/remind/{system}/message", method = {RequestMethod.GET,RequestMethod.POST})
+    public ModelAndView showMessage(@PathVariable String system,
+									@RequestParam(value = "page", required = true) int page) {
         int currentUserId = userService.getCurrentUserId();
-        currPage = request.getParameter("page") == null ?
-                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
-		currPage=currPage > 0 ? currPage : 1;
-        String fatherPage = request.getParameter("fatherPage");
         MessageCriteria messageCriteria = new MessageCriteria();
         messageCriteria.setOrderByClause(" sendtime desc");
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
@@ -45,15 +44,14 @@ public class MessageCenterController {
 		}else {
 			criteria.andSystemEqualTo(false);
 		}
-        PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria, currPage);
+        PageInfo<Message> pageInfo = messageService.selectListPage(messageCriteria, page);
 
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
         mav.addObject("pageInfo", pageInfo);
-        mav.addObject("fatherPage", fatherPage);
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/unreadmessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/unreadmessage")
     public ModelAndView showUnreadMessage(@PathVariable String system,HttpServletRequest request) {
         int userId = userService.getCurrentUserId();
 
@@ -81,7 +79,7 @@ public class MessageCenterController {
         mav.addObject("fatherPage", fatherPage);
         return mav;
     }
-    @RequestMapping("/{system}/jsp/announcement/remind/readmessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/readmessage")
     public ModelAndView showReadMessage(@PathVariable String system,HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
         currPage = request.getParameter("page") == null ?
@@ -104,7 +102,7 @@ public class MessageCenterController {
         mav.addObject("fatherPage", fatherPage);
         return mav;
     }
-    @RequestMapping("/{system}/jsp/announcement/remind/replyMessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/replyMessage")
     public ModelAndView replyMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessage");
@@ -112,7 +110,7 @@ public class MessageCenterController {
         mav.addObject("replySn", replySn);
         return mav;
     }
-    @RequestMapping("/{system}/jsp/announcement/remind/mysendmessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/mysendmessage")
     public ModelAndView showMySendMessage(@PathVariable String system,HttpServletRequest request) {
         int currentUserId = userService.getCurrentUserId();
 
@@ -137,7 +135,7 @@ public class MessageCenterController {
         mav.addObject("fatherPage", fatherPage);
         return mav;
     }
-    @RequestMapping("/{system}/jsp/announcement/remind/announcement")
+    @RequestMapping("/jsp/announcement/remind/{system}/announcement")
     public ModelAndView showAnnouncement(@PathVariable String system,HttpServletRequest request) {
         currPage = request.getParameter("page") == null ?
                 (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
@@ -151,18 +149,18 @@ public class MessageCenterController {
 		}
         announcementCriteria.setOrderByClause(" publish_time desc");
 		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcement");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/{system}/announcement");
         mav.addObject("pageInfo", pageInfo);
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/toaddannouncement")
+    @RequestMapping("/jsp/announcement/remind/{system}/toaddannouncement")
     public ModelAndView toaddAnnouncement(@PathVariable String system,HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/addannouncement");
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/sendmessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/sendmessage")
     public ModelAndView sendMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessage");
@@ -174,7 +172,7 @@ public class MessageCenterController {
     }
 
 
-    @RequestMapping("/{system}/jsp/announcement/remind/addAnnouncement")
+    @RequestMapping("/jsp/announcement/remind/{system}/addAnnouncement")
     public ModelAndView addAnnouncement(@PathVariable String system,HttpServletRequest request) {
         Announcement announcement = initFromRequest(request,system);
         int result = serviceAnnouncement.insert(announcement);
@@ -182,7 +180,7 @@ public class MessageCenterController {
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/announcementDetail")
+    @RequestMapping("/jsp/announcement/remind/{system}/announcementDetail")
     public ModelAndView getAnnouncement(@PathVariable String system,HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("announcementDetailId"));
         Announcement announcement = serviceAnnouncement.getAnnouncementById(id);
@@ -192,7 +190,7 @@ public class MessageCenterController {
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/messageDetail")
+    @RequestMapping("/jsp/announcement/remind/{system}/messageDetail")
     public ModelAndView getMessage(@PathVariable String system,HttpServletRequest request) {
         int id = Integer.parseInt(request.getParameter("messageDetailId"));
         currPage = request.getParameter("page") == null ?
@@ -209,7 +207,7 @@ public class MessageCenterController {
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/addMessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/addMessage")
     public ModelAndView addMessage(@PathVariable String system,HttpServletRequest request) {
         Message message = insertMessageIntoDB(request,system);
         messageService.insert(message);
@@ -217,7 +215,7 @@ public class MessageCenterController {
         return mav;
     }
 
-    @RequestMapping("/{system}/jsp/announcement/remind/deleteMessage")
+    @RequestMapping("/jsp/announcement/remind/{system}/deleteMessage")
     public ModelAndView deleteMessage(@PathVariable String system,HttpServletRequest request) {
         int messageId = Integer.parseInt(request.getParameter("deleteMessageId"));
         messageService.deleteById(messageId);

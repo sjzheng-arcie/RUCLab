@@ -8,18 +8,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
-        function back() {
-
-            document.mainForm.action = "/messagecenter/laboratory/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}";
-            document.mainForm.submit();
-        }
 
     </script>
 
 </head>
 <body style="background-color: #EEF2FB">
-<form name="mainForm" method="post" target="_self"
-      action="/messagecenter/laboratory/jsp/announcement/remind/${fatherPage}?page=0&&fatherPage=${fatherPage}">
+<form name="mainForm" method="post" target="_self">
     <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#FFFFFF">
         <tr>
             <td width="17" valign="top" background="${pageContext.request.contextPath}/images/mail_leftbg.gif">

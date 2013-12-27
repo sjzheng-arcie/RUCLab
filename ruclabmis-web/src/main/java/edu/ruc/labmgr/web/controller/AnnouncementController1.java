@@ -4,7 +4,6 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.AnnouncementService;
 import edu.ruc.labmgr.service.MessageService;
-import edu.ruc.labmgr.service.StudentService;
 import edu.ruc.labmgr.service.TeacherService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +16,8 @@ import java.util.Date;
 import java.util.List;
 
 @Controller
-@RequestMapping("/equipment/jsp/announcement/remind")
-public class AnnouncementController {
+@RequestMapping("/equipment/jsp/announcementd/remind")
+public class AnnouncementController1 {
 	@Autowired
 	AnnouncementService serviceAnnouncement;
 	@Autowired

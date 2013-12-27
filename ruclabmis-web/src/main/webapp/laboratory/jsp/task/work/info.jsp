@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,44 +11,11 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
-    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <title></title>
 
     <script>
-        function uploadFile(){
-            var file = document.getElementById("file").value;
-            if (!file) {
-                alert("请选择要上传的附件!");
-                return;
-            }
-
-            $.ajaxFileUpload({
-                //处理文件上传操作的服务器端地址(可以传参数,已亲测可用)
-                url:'/fileUploadController/fileUpload',
-                secureuri:false,                       //是否启用安全提交,默认为false
-                fileElementId:'file',           //文件选择框的id属性
-                dataType:'text',                       //服务器返回的格式,可以是json或xml等
-                success:function(data, status){        //服务器响应成功时的处理函数
-                    $("#documentName").val($("#file").val());
-                },
-                error:function(data, status, e){ //服务器响应失败时的处理函数
-                    alert('文件上传失败:'+e);
-                }
-            });
-        }
-
         function save(){
-            var documentName = document.getElementById("documentName").value;
-            if (!documentName) {
-                alert("未添加附件，请先上传!");
-                return;
-            }
-
-            if (!validator(document.mainForm)) {
-                return;
-            }
-            document.mainForm.action="add";
+            document.mainForm.action="/laboratory/jsp/task/work/info";
             document.mainForm.submit();
         }
 
@@ -68,7 +36,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">考核管理 > 添加工作任务</div>
+                            <div class="titlebt">考核管理 > 工作内容考核</div>
                         </td>
                     </tr>
                 </table>
@@ -96,7 +64,7 @@
                                                                                          width="14" height="14"/></div>
                                                             </td>
                                                             <td width="94%" valign="bottom"><span
-                                                                    class="STYLE1">添加任务</span></td>
+                                                                    class="STYLE1">工作内容</span></td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -116,55 +84,31 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
-
+                                        <input type="hidden" name="workId" value="${workInfo.id}"/>
                                         <table border="0" cellpadding="2" cellspacing="1"
-                                               style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;" bgcolor="#E3E9EE">
-
-                                            <input type="hidden" name="teacherId"value="${teacherInfo.id}"/>
+                                               style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
+                                               bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">任务名称:</td>
+
+                                                <td nowrap align="right">工作名称:</td>
                                                 <td nowrap>
-                                                    <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required" errmsg="请填写用户名！"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_name"></span>
-                                                </td>
-                                                <td nowrap align="right">执行人:</td>
-                                                <td nowrap>
-                                                    <input name="operator" id="operator" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" readonly disabled="no"
-                                                           value="${teacherInfo.name}"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_no"></span>
+                                                    <input name="workTitle" id="workTitle" onblur="" class="text" value="${workInfo.title}"
+                                                           disabled="no"
+                                                           style="width:154px" maxlength="20" valid="required" errmsg="请输入工作名称"/>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">完成时间:</td>
-                                                <td nowrap>
-                                                    <input name="limitDate" id="limitDate"
-                                                           onblur="" class="Mdate" style="width:154px" maxlength="10"
-                                                           valid="isDate|required" errmsg="日期只能为：XXXX-XX-XX|请填写日期"
-                                                           onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
-
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_limit_time"></span>
-                                                </td>
-
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">上传附件:</td>
-                                                <td>
-                                                    <input id="documentName" name="documentName" readonly="true"/>
-                                                    <input style="width:30%" type="file" name="file" id="file" class="bottom" value="浏览"/>
-                                                    <input type="button" value="上传" class="bottom" onclick="return uploadFile();"/>
-
+                                                <td nowrap align="right">发布日期:</td>
+                                                <td nowrap >
+                                                    <input disabled="no" value="<fmt:formatDate value="${workInfo.publishtime}"/>" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">任务内容:</td>
-                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px"></textarea>
+                                                <td nowrap align="right">工作内容:</td>
+                                                <td nowrap ><textarea disabled="no" name="workContent" style="width:70%;height:100px">${workInfo.content}</textarea>
                                                 </td>
                                             </tr>
+
                                         </table>
                                     </td>
                                 </tr>
@@ -172,8 +116,6 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                        <input type="reset" name="reset" value="重置" class="button"  onclick="reset();"/>
                                         <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>

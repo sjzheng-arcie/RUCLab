@@ -35,16 +35,17 @@ public class TaskScoreController {
 	@Autowired
 	TaskService taskService;
 
-	@RequestMapping(value = "/scorelist", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView getList(@RequestParam(value="teacherId", required = true,defaultValue = "0") int teacherId,
-								@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
-								@RequestParam(value="ifCompleted", required = false,defaultValue = "3") int ifCompleted,
+	@RequestMapping(value = "/teacherscorelist", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView getList(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId,
 								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
 		TaskscoreCriteria taskCriteria = new TaskscoreCriteria();
 		TaskscoreCriteria.Criteria criteria=taskCriteria.createCriteria();
+		criteria.andTaskidEqualTo(taskId);
+		Task task = taskService.getTaskById(taskId);
 		PageInfo<Taskscore> pageInfo =taskScoreService.selectListPage(taskCriteria, page);
-		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/task/scorelist");
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/teacherscorelist");
 		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("taskInfo",task);
 		return modelAndView;
 	}
 	@RequestMapping(value = "/taskscorelist", method = (RequestMethod.GET))
@@ -53,18 +54,17 @@ public class TaskScoreController {
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria =taskCriteria.createCriteria();
 		criteria.andIfworkEqualTo(false);
-
+		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
 		List<Taskscore> taskScoreList=taskScoreService.getListByMarkerId(userService.getCurrentUserId());
 		List<Teacher> managerList= teacherService.getAllTeacherList();
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 		List<Task> taskList=pageInfo.getData();
 		for(int i=0;i<taskList.size();i++){
+			taskList.get(i).setIfcompleted(false);
 			for(int j=0;j<taskScoreList.size();j++){
 				if (taskList.get(i).getId().equals(taskScoreList.get(j).getTaskid())){
 					taskList.get(i).setIfcompleted(true);
 					break;
-				}else{
-					taskList.get(i).setIfcompleted(false);
 				}
 			}
 		}
@@ -84,9 +84,9 @@ public class TaskScoreController {
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria =taskCriteria.createCriteria();
 		criteria.andIfworkEqualTo(false);
+		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
 		if(taskName!=null){
 		criteria.andTasknameLike(taskName);
-
 		}
 		if(managerId!=0){
 			criteria.andManageridEqualTo(managerId);
@@ -103,12 +103,11 @@ public class TaskScoreController {
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 		List<Task> taskList=pageInfo.getData();
 		for(int i=0;i<taskList.size();i++){
+			taskList.get(i).setIfcompleted(false);
 			for(int j=0;j<taskScoreList.size();j++){
 				if (taskList.get(i).getId()==taskScoreList.get(j).getTaskid()){
 					taskList.get(i).setIfcompleted(true);
 					break;
-				}else{
-					taskList.get(i).setIfcompleted(false);
 				}
 			}
 		}
@@ -130,7 +129,7 @@ public class TaskScoreController {
 		return  modelAndView;
 	}
 
-	@RequestMapping(value = "/torescore", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/torescore", method = (RequestMethod.GET))
 	public ModelAndView toRescore(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId){
 		Task task = taskService.getTaskById(taskId);
 		User user = userService.getCurrentUser();
@@ -142,7 +141,7 @@ public class TaskScoreController {
 		modelAndView.addObject("taskScoreInfo",taskScoreInfo);
 		return  modelAndView;
 	}
-	@RequestMapping(value = "/rescore", method = {RequestMethod.GET, RequestMethod.POST})
+	@RequestMapping(value = "/rescore", method = (RequestMethod.POST))
 	public ModelAndView reScore(@RequestParam(value="taskScoreId", required = true,defaultValue = "0") int taskScoreId,
 							  @RequestParam(value="completelyScore", required = true,defaultValue = "0") int completelyScore,
 							  @RequestParam(value="spentScore", required = true,defaultValue = "0") int spentScore,
@@ -211,7 +210,16 @@ public class TaskScoreController {
 		task.setTimelyscore(timelyScore);
 
 		taskService.updateByPrimaryKey(task);
-		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/taskscore/tasklist");
+		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist");
+		modelAndView.addObject("teacherId",task.getManagerid());
 		return  modelAndView;
 	}
+	@RequestMapping(value = "/delete", method = (RequestMethod.GET))
+	public void deleteTaskScoreByTaskId(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId){
+		TaskscoreCriteria taskscoreCriteria = new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria=taskscoreCriteria.createCriteria();
+		criteria.andTaskidEqualTo(taskId);
+		taskScoreService.deleteByCriteria(taskscoreCriteria);
+	}
+
 }
