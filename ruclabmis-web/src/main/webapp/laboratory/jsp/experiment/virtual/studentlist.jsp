@@ -73,7 +73,7 @@
                                                                     onclick="toFind('listForm')"><img
                             src="${pageContext.request.contextPath}/images/zoom.png" width="15" height="15"
                             border="0"/> 查询</a></span>
-                    <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
+                    <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand"
                                                                     onclick="addStudentToClass();"><img
                             src="/laboratory/../images/add_min.gif" width="15" height="15" border="0"/>
                         添加学生</a></span>

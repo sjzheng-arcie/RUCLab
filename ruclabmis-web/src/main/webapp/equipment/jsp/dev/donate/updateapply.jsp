@@ -69,13 +69,10 @@
                                 </table>
                             </td>
                             <td>
-                                <div align="right"><span class="STYLE1">&nbsp;</span><span
-                                        class="STYLE1"> &nbsp;</span>
-                                    <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif"
-                                                                              width="10" height="10"
-                                                                              border="0"/> <span
-                                            class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                    </span>
+                                <div align="right">
+                                    <a href="#" onclick="window.print()" class="txt_bt">
+                                        <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                        <span class="STYLE1">打印</span></a>
                                 </div>
                             </td>
                         </tr>
@@ -149,7 +146,6 @@
                             <input type="button" name="addEquipmentsToApply" value="添加设备" class="button"
                                    onclick="toAddEquipment();"/>
                             <input type="button" name="Submit" value="保存并提交" class="button" onclick="update();"/>
-                            <input type="reset" name="reset" value="重置" class="button"/>
                         </shiro:hasAnyRoles>
                     </c:if>
                     <input type="button" name="return" value="返回" class="button"

@@ -29,7 +29,7 @@ public class EquipmentCheckService {
 
     public PageInfo<EquipmentCheck> getPageEquipmentCheckByName(String name, int pageNum) {
         EquipmentCheckCriteria criteria = new EquipmentCheckCriteria();
-        criteria.setOrderByClause("sn");
+        criteria.setOrderByClause("id desc");
         if (!StringUtils.isEmpty(name)) {
             criteria.createCriteria().andNameLike("%" + name + "%");
         }

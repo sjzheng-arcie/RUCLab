@@ -46,29 +46,29 @@
                 <tr>
                     <td valign="top" height="500">
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
-                            <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
+                            <table width="100%" border="0" cellpadding="1" cellspacing="0" style="margin-top:0px" class="table1">
                                 <tr>
-                                    <td align="right" width="40%">课程表名称：</td>
-                                    <td width="60%">
+                                    <td align="right" width="50%" class="BGCblue" >课程表名称：</td>
+                                    <td width="50%"  class="BGCblue" >
                                         <input value="软件工程" type="text" name="textfield" id="textfield"/>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right">所属班级：</td>
+                                    <td align="right" class="BGCblue">所属班级：</td>
                                     <td>
                                         <input name="theTeacher" value="谢衣">
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="right">学年：</td>
+                                    <td align="right" class="BGCblue" >学年：</td>
                                     <td>
                                         <input name="theTeacher" value="谢衣">
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td align="right">学期：</td>
+                                    <td align="right" class="BGCblue" >学期：</td>
                                     <td>
                                         <select>
                                             <option>第一学期</option>
@@ -79,9 +79,10 @@
                             </table>
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
-                                    <td align="center"><input type="submit" value="保存"
-                                                              onclick="javascript:location.href='toaddlession'"/>
-                                    </td>
+<%--                                    <td align="center"><input type="submit" value="保存"
+                                                              onclick="javascript:location.href='toaddlession'"  />
+                                    </td>--%>
+                                    <th colspan="4" align="center"><button  onclick="javascript:location.href='toaddlession'"><img src="../../images/ico/16x16/page_save.png"  /> 保存</button></th>
                                 </tr>
                             </table>
                         </div>

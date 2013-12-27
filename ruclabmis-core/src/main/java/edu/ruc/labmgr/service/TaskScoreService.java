@@ -48,6 +48,20 @@ public class TaskScoreService {
 		Taskscore taskscore = taskscoreMapper.selectByPrimaryKey(id);
 		return taskscore;
 	}
+	public List<Taskscore> getListByMarkerId(int id){
+		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
+		criteria.andMarkeridEqualTo(id);
+		List<Taskscore> taskscoreList= taskscoreMapper.selectByExample(taskscoreCriteria);
+		return  taskscoreList;
+	}
+	public Taskscore getListByMarkerAndTask(int taskId,int markerId){
+		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
+		criteria.andMarkeridEqualTo(markerId);
+		criteria.andTaskidEqualTo(taskId);
+		return taskscoreMapper.selectByExample(taskscoreCriteria).get(0);
+	}
 
 
 }

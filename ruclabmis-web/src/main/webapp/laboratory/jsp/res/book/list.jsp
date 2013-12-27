@@ -62,9 +62,9 @@
                         </select>
                     </span>
                     <span style="white-space:nowrap">
-                        <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
+                        <button href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                        </a>
+                        </button>
                     </span>
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
@@ -94,11 +94,11 @@
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
                                                                         <shiro:hasAnyRoles name="teacher,administrators">
-                                                                            <a href="/laboratory/jsp/res/book/toAdd">
+                                                                            <a href="/laboratory/jsp/res/book/toAdd" class="txt_bt">
                                                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span>
                                                                             </a>
-                                                                            <a href="#" onclick="toDelete('listForm', 'idcheckbox');">
+                                                                            <a href="#" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt">
                                                                                 <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span>
                                                                             </a>

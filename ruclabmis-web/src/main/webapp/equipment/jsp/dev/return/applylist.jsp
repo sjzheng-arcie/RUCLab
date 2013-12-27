@@ -37,17 +37,16 @@
         </tr>
 
         <tr>
-            <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
+            <td valign="middle" background="../../../../images/mail_leftbg.gif"></td>
             <td valign="top" bgcolor="#F7F8F9">
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
                     <span style="white-space:nowrap">
-                        &nbsp;&nbsp;申请编号&nbsp;:&nbsp;<input type="text" name="searchSN"
-                                                            id="searchSN" value="${param.searchSN}"
-                                                            style="width:100px;"/>
+                        申请编号<input type="text" name="searchSN" id="searchSN"
+                                   value="${param.searchSN}" style="width:100px;"/>
                     </span>
-                    <span style="white-space:nowrap">&nbsp;&nbsp;申请状态:
+                    <span style="white-space:nowrap">申请状态:
                         <select id="searchState" name="searchState">
                             <option value="0">全部</option>
                             <c:forEach items="${states}" var="item">
@@ -58,9 +57,10 @@
                         </select>
                     </span>
 
-                     <span style="white-space:nowrap">&nbsp;&nbsp;
-                         <a href="javascript:void(0)" onclick="toFind('listForm');">
-                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a>
+                     <span style="white-space:nowrap">
+                         <button href="javascript:void(0)" onclick="toFind('listForm');">
+                             <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                         </button>
                      </span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -92,25 +92,25 @@
 	            	            	<span class="STYLE1" style="white-space:nowrap">
                                        <c:if test="${formType=='review'}">
                                            <shiro:hasAnyRoles name="administrators,leader">
-                                               <a href="javascript:void(0);"
-                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">&nbsp;
+                                               <a href="javascript:void(0);" class="txt_bt"
+                                                  onclick="toApprove('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/add_min.gif" width="10" height="10"
                                                         border="0"/>
-                                                   <span class="STYLE1">批准申请</span></a>&nbsp;
-                                               <a href="javascript:void(0);"
+                                                   <span class="STYLE1">批准申请</span></a>
+                                               <a href="javascript:void(0);" class="txt_bt"
                                                   onclick="toReject('listForm', 'idcheckbox');return false;">
                                                    <img src="../../../../images/edit_min.gif" width="10" height="10"
                                                         border="0"/>
-                                                   <span class="STYLE1">驳回申请</span></a>&nbsp;
+                                                   <span class="STYLE1">驳回申请</span></a>
                                            </shiro:hasAnyRoles>
                                        </c:if>
                                         <c:if test="${formType=='apply'}">
                                             <shiro:hasAnyRoles name="administrators,teacher,lab_admin,leader">
-                                                <a href="javascript:void(0);"
+                                                <a href="javascript:void(0);" class="txt_bt"
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
                                                          border="0"/>
-                                                    <span class="STYLE1">删除申请</span></a>&nbsp;&nbsp;
+                                                    <span class="STYLE1">删除申请</span></a>
                                             </shiro:hasAnyRoles>
                                         </c:if>
 	                                </span>
@@ -152,9 +152,7 @@
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">处理时间</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
+
                                                     <c:if test="${formType=='process'}">
                                                         <td width="100" bgcolor="d3eaef">
                                                             <div align="center"><span class="STYLE10">处理申请</span></div>
@@ -169,17 +167,14 @@
                                                                                    onclick="checkOne('listForm', 'idcheckbox')"/>
                                                             </td>
                                                         </c:if>
-                                                        <td>${item.sn}</td>
+                                                        <td>
+                                                            <a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
+                                                            ${item.sn}</a>
+                                                        </td>
                                                         <td>${item.applicant.name}</td>
                                                         <td><fmt:formatDate value="${item.applyTime}" type="both"/></td>
                                                         <td>${item.operator.name}</td>
-                                                        <td><fmt:formatDate value="${item.processTime}"
-                                                                            type="both"/></td>
-                                                        <td>
-                                                            <a href="toUpdateApplication?application_id=${item.id}&formType=${formType}">
-                                                                <img src="../../../../images/edit_min.gif" width="10"
-                                                                     height="10" border="0"/>
-                                                            </a></td>
+                                                        <td><fmt:formatDate value="${item.processTime}" type="both"/></td>
 
                                                         <c:if test="${formType=='process'}">
                                                             <td>
@@ -204,7 +199,7 @@
                     </tr>
                 </table>
             </td>
-            <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
+            <td background="../../../../images/mail_rightbg.gif"></td>
         </tr>
         <tr>
             <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img

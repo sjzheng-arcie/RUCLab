@@ -9,10 +9,17 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/task/task/userscore';
+    function save(){
+        if (!validator(document.listForm)) {
+            return;
+        }
+        document.listForm.action="/laboratory/jsp/task/taskscore/score";
+        document.listForm.submit();
+    }
     </script>
 
 </head>
@@ -80,6 +87,7 @@
                                 <table cellpadding="10" cellspacing="1"
                                        style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                        border="0px" bgcolor="#000000">
+                                    <input type="hidden" name="taskId" value="${taskInfo.id}"/>
                                     <tr height="" bgcolor="#ffffff">
                                         <td nowrap align="right">任务名称:</td>
                                         <td nowrap>
@@ -175,14 +183,18 @@
                                         <td nowrap align="right">完成度评分:</td>
                                         <td nowrap>
                                             <input name="completelyScore" id="completelyScore" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="6" readonly/>
+                                                   valid="isNum"
+                                                   errmsg="完成度评分必须是正整数！"
+                                                   style="width:154px" maxlength="20" value="${taskScoreInfo.completelyscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
                                         </td>
                                         <td nowrap align="right">即时度评分:</td>
                                         <td nowrap>
                                             <input name="timelyScore" id="timelyScore" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="7" readonly/>
+                                                   valid="isNum"
+                                                   errmsg="即时度评分必须是正整数！"
+                                                   style="width:154px" maxlength="20" value="${taskScoreInfo.timelyscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                         </td>
                                     </tr>
@@ -190,15 +202,19 @@
                                         <td nowrap align="right">完成质量评分:</td>
                                         <td nowrap>
                                             <input name="qualityScore" id="qualityScore" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="8" readonly/>
+                                                   valid="isNum"
+                                                   errmsg="质量评分必须是正整数！"
+                                                   style="width:154px" maxlength="20" value="${taskScoreInfo.qualityscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
 
                                         </td>
                                         <td nowrap align="right">花费资源评分:</td>
                                         <td nowrap>
-                                            <input name="spendScore" id="spendScore" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="9" readonly/>
+                                            <input name="spentScore" id="spentScore" onblur="" class="text"
+                                                   valid="isNum"
+                                                   errmsg="花费资源评分必须是正整数！"
+                                                   style="width:154px" maxlength="20" value="${taskScoreInfo.spentscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span>
                                         </td>
@@ -208,8 +224,9 @@
 
                                         <td nowrap align="right">任务整体评分:</td>
                                         <td nowrap>
-                                            <input name="totalScore" id="totalScore" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" value="8" readonly/>
+                                            <input name="totalScore" id="totalScore" onblur="" class="text" valid="isNum"
+                                                   errmsg="整体评分必须是正整数！"
+                                                   style="width:154px" maxlength="20" value="${taskScoreInfo.overallscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_total_score"></span>
                                         </td>
@@ -217,7 +234,7 @@
                                         <td nowrap>
                                             <input type="hidden" name ="markerId" id="makerId" value="${userInfo.id}">
                                             <input name="markerName" id="markerName" onblur="" class="text"
-                                                   style="width:154px" maxlength="20" valid="required|isAccount"
+                                                   style="width:154px" maxlength="20"
                                                    value="${userInfo.name}" readonly disabled="no"/>
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_manager_sname"></span>

@@ -78,17 +78,6 @@
                                                bgcolor="#E3E9EE">
                                             <input name="id" id="id" type="hidden" value="${typecode.id}">
                                             <tr>
-                                                <td nowrap align="right">分类名称:</td>
-                                                <td nowrap>
-                                                    <input name="name" id="name" class="text"
-                                                           style="width:154px"
-                                                           maxlength="20"
-                                                           valid="required"
-                                                           errmsg="分类名称不能为空!"
-                                                           value="${typecode.name}"/>
-
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                </td>
                                                 <td nowrap align="right">分类号:</td>
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
@@ -98,6 +87,17 @@
                                                            value="${typecode.sn}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
+                                                <td nowrap align="right">分类名称:</td>
+                                                <td nowrap>
+                                                    <input name="name" id="name" class="text"
+                                                           style="width:154px"
+                                                           maxlength="20"
+                                                           valid="required"
+                                                           errmsg="分类名称不能为空!"
+                                                           value="${typecode.name}"/>
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
+
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">描述：</td>
@@ -106,8 +106,6 @@
                                                               style="width:70%;height:100">${typecode.description}</textarea>
                                                 </td>
                                             </tr>
-
-
                                         </table>
                                     </td>
                                 </tr>

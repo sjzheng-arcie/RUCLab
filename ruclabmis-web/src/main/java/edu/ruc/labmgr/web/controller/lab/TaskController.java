@@ -1,10 +1,7 @@
 package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.*;
-import edu.ruc.labmgr.service.MajorService;
-import edu.ruc.labmgr.service.OrganizationService;
-import edu.ruc.labmgr.service.TaskService;
-import edu.ruc.labmgr.service.TeacherService;
+import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -33,6 +30,8 @@ public class TaskController {
 	@Autowired
 	TeacherService serviceTeacher;
 	@Autowired
+	UserService userService;
+	@Autowired
 	OrganizationService serviceOrganization;
 
 	@RequestMapping(value = "/tasklist", method = {RequestMethod.GET, RequestMethod.POST})
@@ -44,6 +43,7 @@ public class TaskController {
 		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
 		criteria.andManageridEqualTo(teacherId);
 		criteria.andTasknameLike("%"+taskName+"%");
+		criteria.andIfworkEqualTo(false);
 		if(ifCompleted==0){
 			criteria.andIfcompletedEqualTo(false);
 		}else if(ifCompleted==1){
@@ -103,6 +103,9 @@ public class TaskController {
 		task.setContent(taskContent);
 		task.setLimitdate(limitDate);
 		task.setIfcompleted(false);
+		task.setPublisherdate(new Date());
+		task.setPublisherid(userService.getCurrentUserId());
+		task.setIfwork(false);
 		task.setCompletely(0);
 		task.setScore(0);
 		task.setSpentscore(0);
@@ -147,14 +150,16 @@ public class TaskController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/mytasklist", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView getMyTaskList(@RequestParam(value="teacherId", required = false,defaultValue = "0") int teacherId,
-								@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
+	@RequestMapping(value = "/mytasklist", method = (RequestMethod.POST))
+	public ModelAndView getMyTaskList(@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
 								@RequestParam(value="ifCompleted", required = false,defaultValue = "3") int ifCompleted,
 								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
+
+		User user = userService.getCurrentUser();
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
-		criteria.andManageridEqualTo(teacherId);
+		criteria.andManageridEqualTo(user.getId());
+		criteria.andIfworkEqualTo(false);
 		criteria.andTasknameLike("%"+taskName+"%");
 		if(ifCompleted==0){
 			criteria.andIfcompletedEqualTo(false);
@@ -163,8 +168,23 @@ public class TaskController {
 		}else{
 
 		}
-		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(teacherId);
+		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(user.getId());
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/mytask/mytasklist");
+		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("teacherInfo",teacherInfo);
+		return modelAndView;
+	}
+	@RequestMapping(value = "/mytasklist", method = (RequestMethod.GET))
+	public ModelAndView getMyTaskList(){
+
+		User user = userService.getCurrentUser();
+		TaskCriteria taskCriteria = new TaskCriteria();
+		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
+		criteria.andManageridEqualTo(user.getId());
+		criteria.andIfworkEqualTo(false);
+		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(user.getId());
+		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, 1);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/mytask/mytasklist");
 		modelAndView.addObject("pageInfo",pageInfo);
 		modelAndView.addObject("teacherInfo",teacherInfo);

@@ -15,21 +15,26 @@
     <script>
         function toReturn(formName, checkBoxName) {
             var selectedItems = getAllSelected(formName, checkBoxName);
-
+            if(selectedItems<0 || selectedItems.length <= 0)
+            {
+                alert("未选择记录！");
+                return -1;
+            }
             if (confirm("确认归还所选设备？")) {
                 document.forms[formName].action = "returnEquipments?items=" + selectedItems;
                 document.forms[formName].submit();
             }
         }
-        function toApply() {
-            if (!confirm("确认添加所选设备并提交表单？")) {
+
+        function toApply(formName, checkBoxName) {
+            var id = "${param.application_id}";
+            var selectedItems = getAllSelected(formName, checkBoxName);
+            if (selectedItems<0 || selectedItems<0 || selectedItems.length <= 0) {
+                alert("请选择要申请的设备！");
                 return;
             }
 
-            var id = "${param.application_id}";
-            var selectedItems = getAllSelected('listForm', 'idcheckbox');
-            if (selectedItems.length <= 0) {
-                alert("请选择要申请的设备！");
+            if (!confirm("确认添加所选设备并提交表单？")) {
                 return;
             }
 
@@ -48,7 +53,7 @@
 
         function toDeleteEquipments(formName, checkBoxName) {
             var selectedItems = getAllSelected(formName, checkBoxName);
-            if(selectedItems.length <= 0)
+            if(selectedItems<0 || selectedItems.length <= 0)
             {
                 alert("未选择记录！");
                 return -1;
@@ -69,9 +74,7 @@
                     window.close();
                 }
             })
-
         }
-
     </script>
 </head>
 
@@ -89,7 +92,7 @@
                id="table2">
             <tr>
                 <td height="31">
-                    <div class="titlebt">可申请设备</div>
+                    <div class="titlebt">设备列表</div>
                 </td>
             </tr>
         </table>
@@ -124,10 +127,10 @@
                             </select>
                         </span>
                         <span class="noprint" style="white-space:nowrap">
-                            <a href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
+                            <button href="javascript:void(0);" style="cursor:pointer" onclick="toFind('listForm');">
                                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                            </a>
-                         </span>
+                            </button>
+                        </span>
                     <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                         <tr>
                             <td height="30">
@@ -147,47 +150,45 @@
                                                                 </td>
                                                                 <td width="94%" valign="bottom"><span
                                                                         class="STYLE1"
-                                                                        style="white-space:nowrap">可用设备信息列表</span>
+                                                                        style="white-space:nowrap">设备信息列表</span>
                                                                 </td>
                                                             </tr>
                                                         </table>
                                                     </td>
-                                                    <td>
-                                                        <div align="right">
+                                                    <td><div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
                           <c:choose>
                               <c:when test="${applyType=='info'}">
                                   <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                      <a href="/equipment/jsp/dev/info/importEquipments">
+                                      <a href="/equipment/jsp/dev/info/importEquipments" class="txt_bt">
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">设备导入</span>
                                       </a>
-                                      <a href="/equipment/jsp/dev/info/toAdd">
+                                      <a href="/equipment/jsp/dev/info/toAdd" class="txt_bt">
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                          <span class="STYLE1">验收入库</span>
+                                          <span class="STYLE1">添加设备</span>
                                       </a>
-                                      <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false">
+                                      <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false" class="txt_bt">
                                           <img src="../../../../images/del_min.gif" width="10" height="10"
                                                border="0"/> <span class="STYLE1">删除</span>
                                       </a>
-                                        <a href="#" onclick="window.print()"><img src="../../../../images/del_min.gif"
-                                                                                  width="10" height="10"
-                                                                                  border="0"/> <span
-                                                class="STYLE1">打印</span></a>&nbsp;&nbsp;
-                                                </span>
-                                                            </shiro:hasAnyRoles>
-                                                            </c:when>
-                                                            <c:otherwise>
-                                                                <a href="javascript:void(0);"
-                                                                   onclick="toApply();return false;">
-                                                                    <img src="../../../../images/add_min.gif" width="10"
-                                                                         height="10" border="0"/>
-                                                                    <span class="STYLE1">申 请</span>
-                                                                </a>
-                                                            </c:otherwise>
-                                                            </c:choose>
-                                                            </span>
-                                                        </div>
+                                      <a href="#" onclick="window.print()" class="txt_bt">
+                                          <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                          <span class="STYLE1">打印</span>
+                                      </a>
+                                  </shiro:hasAnyRoles>
+                              </c:when>
+                              <c:otherwise>
+                                  <a href="javascript:void(0);" class="txt_bt"
+                                     onclick="toApply('listForm', 'idcheckbox');">
+                                      <img src="../../../../images/add_min.gif" width="10"
+                                           height="10" border="0"/>
+                                      <span class="STYLE1">申 请</span>
+                                  </a>
+                              </c:otherwise>
+                          </c:choose>
+                    </span>
+                                                    </div>
                                                     </td>
                                                 </tr>
                                             </table>
@@ -247,20 +248,21 @@
                                             <td width="60" bgcolor="d3eaef">
                                                 <div align="center"><span class="STYLE10">设备状态</span></div>
                                             </td>
-                                            <c:if test="${applyType=='info'}">
-                                                <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                                    <td width="50" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
-                                                </shiro:hasAnyRoles>
-                                            </c:if>
+
                                         </tr>
                                         <c:forEach items="${pageInfo.data}" var="item">
                                             <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                 <td height="20"><input name="idcheckbox" type="checkbox"
                                                                        value="${item.id}" onclick="checkOne(this)"/>
                                                 </td>
-                                                <td>${item.sn}</td>
+                                                <td>
+                                                    <c:choose>
+                                                        <c:when test="${applyType=='info'}">
+                                                            <a href="toUpdate?id=${item.id}&formType=${formType}">  ${item.sn} </a>
+                                                        </c:when>
+                                                        <c:otherwise> ${item.sn}</c:otherwise>
+                                                    </c:choose>
+                                                </td>
                                                 <td>${item.name}</td>
                                                 <td>${item.holderName}</td>
                                                 <td>${item.user}</td>
@@ -269,19 +271,10 @@
                                                 <td>${item.specifications}</td>
                                                 <td>${item.unitPrice}</td>
                                                 <td>${item.location}</td>
-                                                <td><fmt:formatDate value="${item.acquisitionDate}"
-                                                                    pattern="yyyy-MM-dd"/></td>
+                                                <td><fmt:formatDate value="${item.acquisitionDate}" pattern="yyyy-MM-dd"/></td>
                                                 <td>${item.fundingSubject}</td>
                                                 <td>${item.useDirection}</td>
                                                 <td>${item.state}</td>
-                                                <c:if test="${applyType=='info'}">
-                                                    <shiro:hasAnyRoles name="administrators,equipment_admin">
-                                                        <td><a href="toUpdate?id=${item.id}&formType=${formType}">
-                                                            <img src="../../../../images/edit_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
-                                                    </shiro:hasAnyRoles>
-                                                </c:if>
                                             </tr>
                                         </c:forEach>
                                         <tr height="16px"></tr>

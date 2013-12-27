@@ -11,7 +11,7 @@
 
     <script type="text/javascript">
         window.onload=function(){
-            top.location.href = "../views/error/403.jsp"
+            top.location.href = "/views/error/403.jsp"
         }
     </script>
 

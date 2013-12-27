@@ -44,9 +44,9 @@
                                        value="${param.searchName}" style="width:100px;"/>
                             </span>
                             <span style="white-space:nowrap">
-                                <a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
+                                <button href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')">
                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
-                                </a></span>
+                                </button></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -76,11 +76,11 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="/laboratory/jsp/res/experimentsubject/toAdd">
+						<a href="/laboratory/jsp/res/experimentsubject/toAdd" class="txt_bt">
                             <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>
-      					<a href="#" onclick="toDelete('listForm','idcheckbox');">
+      					<a href="#" onclick="toDelete('listForm','idcheckbox');" class="txt_bt">
                             <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">删除</span>
                         </a>
@@ -109,9 +109,6 @@
                                                     <td width="300" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">名称</span></div>
                                                     </td>
-                                                    <td width="50" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">详细信息</span></div>
-                                                    </td>
                                                 </tr>
 
                                                 <c:forEach items="${pageInfo.data}" var="item">
@@ -120,11 +117,7 @@
                                                                                value="${item.id}"
                                                                                onclick="checkOne('listForm','idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.name}</td>
-                                                        <td><a href="toUpdate?id=${item.id}">
-                                                            <img src="../../../../images/edit_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
+                                                        <td><a href="toUpdate?id=${item.id}">${item.name}  </a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

@@ -55,8 +55,7 @@ public class TeacherService extends UserService {
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
         TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
-        if(!teacherIds.isEmpty())
-            ect.andIdIn(teacherIds);
+        ect.andIdIn(teacherIds);
         if (org != null && org >= 0)
             ect.andOrganizationIdEqualTo(org);
 

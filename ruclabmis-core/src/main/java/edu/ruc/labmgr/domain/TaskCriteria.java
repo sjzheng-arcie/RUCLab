@@ -1234,6 +1234,246 @@ public class TaskCriteria {
             addCriterion("spentscore not between", value1, value2, "spentscore");
             return (Criteria) this;
         }
+
+        public Criteria andPublisheridIsNull() {
+            addCriterion("publisherId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridIsNotNull() {
+            addCriterion("publisherId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridEqualTo(Integer value) {
+            addCriterion("publisherId =", value, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridNotEqualTo(Integer value) {
+            addCriterion("publisherId <>", value, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridGreaterThan(Integer value) {
+            addCriterion("publisherId >", value, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridGreaterThanOrEqualTo(Integer value) {
+            addCriterion("publisherId >=", value, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridLessThan(Integer value) {
+            addCriterion("publisherId <", value, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridLessThanOrEqualTo(Integer value) {
+            addCriterion("publisherId <=", value, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridIn(List<Integer> values) {
+            addCriterion("publisherId in", values, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridNotIn(List<Integer> values) {
+            addCriterion("publisherId not in", values, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridBetween(Integer value1, Integer value2) {
+            addCriterion("publisherId between", value1, value2, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisheridNotBetween(Integer value1, Integer value2) {
+            addCriterion("publisherId not between", value1, value2, "publisherid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridIsNull() {
+            addCriterion("markerId is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridIsNotNull() {
+            addCriterion("markerId is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridEqualTo(Integer value) {
+            addCriterion("markerId =", value, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridNotEqualTo(Integer value) {
+            addCriterion("markerId <>", value, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridGreaterThan(Integer value) {
+            addCriterion("markerId >", value, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridGreaterThanOrEqualTo(Integer value) {
+            addCriterion("markerId >=", value, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridLessThan(Integer value) {
+            addCriterion("markerId <", value, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridLessThanOrEqualTo(Integer value) {
+            addCriterion("markerId <=", value, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridIn(List<Integer> values) {
+            addCriterion("markerId in", values, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridNotIn(List<Integer> values) {
+            addCriterion("markerId not in", values, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridBetween(Integer value1, Integer value2) {
+            addCriterion("markerId between", value1, value2, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andMarkeridNotBetween(Integer value1, Integer value2) {
+            addCriterion("markerId not between", value1, value2, "markerid");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateIsNull() {
+            addCriterion("publisherDate is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateIsNotNull() {
+            addCriterion("publisherDate is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateEqualTo(Date value) {
+            addCriterion("publisherDate =", value, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateNotEqualTo(Date value) {
+            addCriterion("publisherDate <>", value, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateGreaterThan(Date value) {
+            addCriterion("publisherDate >", value, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateGreaterThanOrEqualTo(Date value) {
+            addCriterion("publisherDate >=", value, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateLessThan(Date value) {
+            addCriterion("publisherDate <", value, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateLessThanOrEqualTo(Date value) {
+            addCriterion("publisherDate <=", value, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateIn(List<Date> values) {
+            addCriterion("publisherDate in", values, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateNotIn(List<Date> values) {
+            addCriterion("publisherDate not in", values, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateBetween(Date value1, Date value2) {
+            addCriterion("publisherDate between", value1, value2, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andPublisherdateNotBetween(Date value1, Date value2) {
+            addCriterion("publisherDate not between", value1, value2, "publisherdate");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkIsNull() {
+            addCriterion("ifwork is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkIsNotNull() {
+            addCriterion("ifwork is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkEqualTo(Boolean value) {
+            addCriterion("ifwork =", value, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkNotEqualTo(Boolean value) {
+            addCriterion("ifwork <>", value, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkGreaterThan(Boolean value) {
+            addCriterion("ifwork >", value, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkGreaterThanOrEqualTo(Boolean value) {
+            addCriterion("ifwork >=", value, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkLessThan(Boolean value) {
+            addCriterion("ifwork <", value, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkLessThanOrEqualTo(Boolean value) {
+            addCriterion("ifwork <=", value, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkIn(List<Boolean> values) {
+            addCriterion("ifwork in", values, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkNotIn(List<Boolean> values) {
+            addCriterion("ifwork not in", values, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkBetween(Boolean value1, Boolean value2) {
+            addCriterion("ifwork between", value1, value2, "ifwork");
+            return (Criteria) this;
+        }
+
+        public Criteria andIfworkNotBetween(Boolean value1, Boolean value2) {
+            addCriterion("ifwork not between", value1, value2, "ifwork");
+            return (Criteria) this;
+        }
     }
 
     public static class Criteria extends GeneratedCriteria {

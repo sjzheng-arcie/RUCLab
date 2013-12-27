@@ -106,13 +106,13 @@
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
                                                     <input name="email" id="email" type="text"
-                                                           valid="isEmail"
+                                                           valid="isEmail" maxlength="45"
                                                            errmsg="邮箱格式不正确!"
                                                            value="${teacher.email}">
                                                 </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text"
+                                                    <input name="phoneNum" id="phoneNum" type="text" maxlength="20"
                                                            value="${teacher.phoneNum}">
                                                 </td>
                                             </tr>
@@ -173,7 +173,7 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="comment"
+                                                    <textarea name="comment"  maxlength="490"
                                                               id="comment">${teacher.comment}</textarea>
                                                 </td>
                                             </tr>

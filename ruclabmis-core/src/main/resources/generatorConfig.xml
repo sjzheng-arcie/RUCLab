@@ -103,9 +103,9 @@
         <!--  <table tableName="bbs_topic">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
-        <!--<table tableName="task">-->
-        <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
+        <!--<table tableName="task">
+        <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
         <!--<table tableName="taskscore">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
@@ -167,8 +167,8 @@
         <!--<table tableName="equipment_check">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <table tableName="curriculum_examination">
+        <!--<table tableName="curriculum_examination">
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

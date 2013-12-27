@@ -42,7 +42,7 @@ public class EquipmentService {
             return getPageEquipmentByCriteria(pageNum, null);
 
         EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
+        criteria.setOrderByClause("id desc");
         EquipmentCriteria.Criteria ec = criteria.createCriteria();
 
         if (!StringUtils.isNullOrEmpty(equipment.getSn()))
@@ -50,9 +50,11 @@ public class EquipmentService {
         if (!StringUtils.isNullOrEmpty(equipment.getName()))
             ec.andNameLike("%" + equipment.getName() + "%");
         if (!StringUtils.isNullOrEmpty(equipment.getHolderName())) {
-
             List<Teacher> holders = serviceTeacher.getTeacherListNameLike(equipment.getHolderName());
             List<Integer> holderIds = new ArrayList<Integer>();
+            if(holders.isEmpty()){
+                holderIds.add(-1);
+            }
             for (Teacher holder : holders) {
                 holderIds.add(holder.getId());
             }
@@ -90,7 +92,7 @@ public class EquipmentService {
     //分页过滤可用设备
     public PageInfo<Equipment> getPageAvaiableEquipments(String sn, String name, int useDirect, int pageNum) {
         EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
+        criteria.setOrderByClause("id desc");
         EquipmentCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
             ec.andSnLike("%" + sn + "%");
@@ -106,7 +108,7 @@ public class EquipmentService {
     //分页过滤用户名下的可用设备
     public PageInfo<Equipment> getUserPageBorrowedEquipments(String sn, String name, int useDirect, int userId, int pageNum) {
         EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
+        criteria.setOrderByClause("id desc");
         EquipmentCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
             ec.andSnLike("%" + sn + "%");
@@ -124,7 +126,7 @@ public class EquipmentService {
     //分页过滤可报减设备，可用或已损坏
     public PageInfo<Equipment> getPageToRepairEquipments(String sn, String name, int useDirect, int pageNum) {
         EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
+        criteria.setOrderByClause("id desc");
         EquipmentCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
             ec.andSnLike("%" + sn + "%");
@@ -144,7 +146,7 @@ public class EquipmentService {
     //分页过滤所有数据
     public PageInfo<Equipment> getPageEquipments(String sn, String name, int useDirect, int pageNum) {
         EquipmentCriteria criteria = new EquipmentCriteria();
-        criteria.setOrderByClause("sn");
+        criteria.setOrderByClause("id desc");
         EquipmentCriteria.Criteria ec = criteria.createCriteria();
         if (!StringUtils.isNullOrEmpty(sn))
             ec.andSnLike("%" + sn + "%");

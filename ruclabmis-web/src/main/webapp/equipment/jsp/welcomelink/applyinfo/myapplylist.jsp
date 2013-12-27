@@ -52,9 +52,9 @@
             </c:forEach>
         </select></span>
                             <span style="white-space:nowrap">&nbsp;&nbsp;
-                                <a href="javascript:void(0)" onclick="toFind('listForm');">
+                                <button href="javascript:void(0)" onclick="toFind('listForm');">
                                     <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
-                                    查询</a></span>
+                                    查询</button></span>
 
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -104,7 +104,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this);"/>
+                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
