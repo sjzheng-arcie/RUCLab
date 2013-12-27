@@ -50,10 +50,10 @@
                     <span style="white-space:nowrap">
                         专业<select name="searchMajor" id="searchMajor">
                         <option value="">所有</option>
-                        <c:forEach items="${majors}" var="item">
-                            <option value="${item.name}"
-                                    <c:if test="${item.name == param.searchMajor}"> selected</c:if>>${item.name}
-                            </option>
+                            <c:forEach items="${majors}" var="item">
+                                <option value="${item.name}"
+                                        <c:if test="${item.name == param.searchMajor}"> selected</c:if>>${item.name}
+                                </option>
                         </c:forEach>
                     </select>
                     </span>

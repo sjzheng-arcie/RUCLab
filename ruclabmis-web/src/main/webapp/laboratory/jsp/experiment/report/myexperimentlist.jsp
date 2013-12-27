@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
@@ -9,6 +9,7 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
+    <%@page language="java"  import="java.util.Date"%>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script type="text/javascript">
@@ -45,6 +46,10 @@
             if(need){
                 window.location.href="studentExpDetail?page=1&eid="+eid;
             }
+        }
+        function geCurrentTime(){
+            var currentdate = new Date();
+            return currentdate;
         }
     </script>
 
@@ -173,12 +178,25 @@
                                                         </c:choose></td>
                                                         <td><fmt:formatDate value="${item.reportDeadline}"
                                                                             pattern="yyyy-MM-dd"></fmt:formatDate></td>
+                                         <shiro:hasAnyRoles name="adminstrators,teacher">
                                                         <td><a href="#" onclick="viewReport(${item.id},${item.needReport});">
                                                             <c:choose>
                                                                 <c:when test="${item.needReport}">查看</c:when>
                                                                 <c:otherwise>--</c:otherwise>
                                                             </c:choose>
                                                         </a></td>
+                                         </shiro:hasAnyRoles>
+                                          <shiro:hasRole name="student">
+                                              <td>
+                                                  <c:set var="nowDate" value="<%=new Date()%>"></c:set>
+                                                  <c:choose>
+                                                    <c:when test="${item.reportDeadline>nowDate}">
+                                                          <input type="file" id="file" name="file" onclick="" value="上传报告"/></c:when>
+                                                      <c:otherwise>超过截止时间</c:otherwise>
+                                                  </c:choose>
+
+                                              </td>
+                                             </shiro:hasRole>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

@@ -120,7 +120,7 @@
                             <li><a href="jsp/res/book/list" onfocus="toFocus(this)" target="main">教学资源下载</a>
                             </li>
                             <shiro:hasRole name="student">
-                                <li><a href="jsp/experiment/report/uploadreport" onfocus="toFocus(this)" target="main">实验报告提交</a>
+                                <li><a href="jsp/experiment/experiment/courselist?page=1&view=report" onfocus="toFocus(this)" target="main">实验报告提交</a>
                                 </li>
                                 <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
                                     实验成绩查询</a></li>

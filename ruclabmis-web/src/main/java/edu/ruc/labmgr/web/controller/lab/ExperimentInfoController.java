@@ -91,7 +91,7 @@ public class ExperimentInfoController {
     @RequestMapping(value = "/studentClassExpList", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView studentExpList(Integer cid,Integer stuId){
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/achievement/myexperimentlist");
-        List<Map<String,?>> pageInfo = experimentService.getStudentClassExperimentInfo(cid,stuId);
+        List<Map<String,?>> pageInfo = experimentService.getStudentClassExperimentInfo(cid, stuId);
         mv.addObject("pageInfo",pageInfo);
         return mv;
     }
@@ -222,6 +222,11 @@ public class ExperimentInfoController {
         mv.addObject("pageInfo",pageInfo);
         return mv;
     }
+	@RequestMapping(value = "/studentUploadExpDetail")
+	public ModelAndView uploadExperimentDetail(){
+		ModelAndView view = new ModelAndView("");
+		return view;
+	}
     @RequestMapping(value = "/studentAllExpDetail", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView listStudentAllExperimentDetail(int stuId,int page){
         //TODO

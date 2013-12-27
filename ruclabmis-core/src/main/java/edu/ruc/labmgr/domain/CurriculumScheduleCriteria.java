@@ -524,6 +524,66 @@ public class CurriculumScheduleCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andWeekIsNull() {
+            addCriterion("week is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekIsNotNull() {
+            addCriterion("week is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekEqualTo(Byte value) {
+            addCriterion("week =", value, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekNotEqualTo(Byte value) {
+            addCriterion("week <>", value, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekGreaterThan(Byte value) {
+            addCriterion("week >", value, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekGreaterThanOrEqualTo(Byte value) {
+            addCriterion("week >=", value, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekLessThan(Byte value) {
+            addCriterion("week <", value, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekLessThanOrEqualTo(Byte value) {
+            addCriterion("week <=", value, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekIn(List<Byte> values) {
+            addCriterion("week in", values, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekNotIn(List<Byte> values) {
+            addCriterion("week not in", values, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekBetween(Byte value1, Byte value2) {
+            addCriterion("week between", value1, value2, "week");
+            return (Criteria) this;
+        }
+
+        public Criteria andWeekNotBetween(Byte value1, Byte value2) {
+            addCriterion("week not between", value1, value2, "week");
+            return (Criteria) this;
+        }
+
         public Criteria andWeekdayIsNull() {
             addCriterion("weekday is null");
             return (Criteria) this;

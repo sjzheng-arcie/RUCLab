@@ -15,6 +15,8 @@ public class CurriculumSchedule {
 
     private Byte amPm;
 
+    private Byte week;
+
     private Byte weekday;
 
     public Integer getId() {
@@ -71,6 +73,14 @@ public class CurriculumSchedule {
 
     public void setAmPm(Byte amPm) {
         this.amPm = amPm;
+    }
+
+    public Byte getWeek() {
+        return week;
+    }
+
+    public void setWeek(Byte week) {
+        this.week = week;
     }
 
     public Byte getWeekday() {

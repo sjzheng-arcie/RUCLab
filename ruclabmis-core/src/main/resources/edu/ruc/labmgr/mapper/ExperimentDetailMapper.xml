@@ -229,7 +229,7 @@
   </select>
 
   <select id="countStudentExperiment" resultType="int" parameterType="java.lang.Integer">
-      select count(ed.id) from experiment_detail ed, user u
-      where ed.class_student_id = u.id and ed.experiment_id = #{eid,jdbcType=INTEGER}
+      select count(ed.id) from  experiment_detail ed, user u,class_student cs
+      where ed.class_student_id = cs.id and cs.student_id = u.id and ed.experiment_id = #{eid,jdbcType=INTEGER}
   </select>
 </mapper>
