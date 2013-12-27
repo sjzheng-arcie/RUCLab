@@ -25,7 +25,7 @@
 <body>
 <ul>
     <li>
-        <h1> <%=ex.getMessage()%>！</h1>
+        <h3> <%=ex.getMessage()%>！</h3>
         <h1>
 
             <p><a href="#" onclick="window.history.go(-1);">返回</a></p>

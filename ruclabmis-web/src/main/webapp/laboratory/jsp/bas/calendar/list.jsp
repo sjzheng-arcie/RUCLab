@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -13,161 +14,12 @@
     <script>
         var baseHref = '/laboratory/jsp/bas/calendar/list';
     </script>
-    <link href='fullcalendar/jquery-ui.min.css' rel='stylesheet'/>
-    <link href='fullcalendar/fullcalendar.css' rel='stylesheet'/>
-    <link href='fullcalendar/fullcalendar.print.css' rel='stylesheet' media='print'/>
-    <script src='fullcalendar/jquery.min.js'></script>
-    <script src='fullcalendar/jquery-ui.custom.min.js'></script>
-    <script src='fullcalendar/fullcalendar.min.js'></script>
-    <script>
-
-        $(document).ready(function () {
-
-            var date = new Date();
-            var d = date.getDate();
-            var m = date.getMonth();
-            var y = date.getFullYear();
-
-            var calendar = $('#calendar').fullCalendar({
-                theme: true,
-                header: {
-                    left: 'prev,next today',
-                    center: 'title',
-                    right: 'month,agendaWeek,agendaDay'
-                },
-                selectable: true,
-                selectHelper: true,
-                select: function (start, end, allDay) {
-                    var title = prompt('Event Title:');
-                    if (title) {
-                        calendar.fullCalendar('renderEvent',
-                                {
-                                    title: title,
-                                    start: start,
-                                    end: end,
-                                    allDay: allDay
-                                },
-                                true // make the event "stick"
-                        );
-                    }
-                    calendar.fullCalendar('unselect');
-                },
-                editable: true,
-                events: [
-                    {
-                        title: 'All Day Event',
-                        start: new Date(y, m, 1)
-                    },
-                    {
-                        title: 'Long Event',
-                        start: new Date(y, m, d - 5),
-                        end: new Date(y, m, d - 2)
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d - 3, 16, 0),
-                        allDay: false
-                    },
-                    {
-                        id: 999,
-                        title: 'Repeating Event',
-                        start: new Date(y, m, d + 4, 16, 0),
-                        allDay: false
-                    },
-                    {
-                        title: 'Meeting',
-                        start: new Date(y, m, d, 10, 30),
-                        allDay: false
-                    },
-                    {
-                        title: 'Lunch',
-                        start: new Date(y, m, d, 12, 0),
-                        end: new Date(y, m, d, 14, 0),
-                        allDay: false
-                    },
-                    {
-                        title: 'Birthday Party',
-                        start: new Date(y, m, d + 1, 19, 0),
-                        end: new Date(y, m, d + 1, 22, 30),
-                        allDay: false
-                    },
-                    {
-                        title: 'Click for Google',
-                        start: new Date(y, m, 28),
-                        end: new Date(y, m, 29),
-                        url: 'http://google.com/'
-                    }
-                ]
-            });
-
-        });
-
-    </script>
-    <style>
-
-
-        #calendar {
-            width: 900px;
-            margin: 0 auto;
-        }
-
-    </style>
-
 
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
-
-
-<table width="98%" border="0" cellpadding="0" cellspacing="0">
-    <tr>
-        <td width="17" valign="top" background="../../../../images/mail_leftbg.gif"><img
-                src="../../../../images/left-top-right.gif" width="17" height="29"/></td>
-        <td valign="top" background="../../../../images/content-bg.gif">
-            <table width="100%" height="31" border="0" cellpadding="0" cellspacing="0" class="left_topbg" id="table3">
-                <tr>
-                    <td height="31">
-                        <div class="titlebt">基础信息管理 > 学期校历管理</div>
-                    </td>
-                </tr>
-            </table>
-        </td>
-        <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
-                src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
-    </tr>
-
-    <tr>
-        <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
-        <td valign="top" bgcolor="#ffffff">
-            <table align="center" class="table" style="width:100%">
-                <tr>
-                    <td>
-                        <div id="calendar">
-
-
-                        </div>
-                    </td>
-                </tr>
-            </table>
-
-        </td>
-        <td background="../../../../images/mail_rightbg.gif">&nbsp;</td>
-    </tr>
-    <tr>
-        <td valign="bottom" background="../../../../images/mail_leftbg.gif"><img
-                src="../../../../images/buttom_left2.gif"
-                width="17" height="17"/></td>
-        <td valign="bottom" background="../../../../images/buttom_bgs.gif"><img src="../../../../images/buttom_bgs.gif"
-                                                                                width="100%" height="17"/></td>
-        <td valign="bottom" background="../../../../images/mail_rightbg.gif"><img
-                src="../../../../images/buttom_right2.gif"
-                width="16" height="17"/></td>
-    </tr>
-</table>
-
 
 <table width="98%" border="0" cellpadding="0" cellspacing="0">
     <tr>
@@ -194,26 +46,9 @@
                     <td valign="top" class="STYLE10">
 
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;起始时间:<input type="text" name="beginTime"
-                                                                                 id="beginTime" value=""
-                                                                                 style="width:100px;"/></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;终止时间:<input type="text" name="endTime"
-                                                                                 id="endTime" value=""
-                                                                                 style="width:100px;"/></span>
-
-                        <span style="white-space:nowrap">&nbsp;&nbsp;是否休息:<select name="ifHoliday">
-                            <option>是</option>
-                            <option>否</option>
-                        </select></span>
-
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
-                                                                        onclick="findInfo()"><img
-                                src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
-
-                        <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
+                       <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
-                                <td height="30">
+                                <td height="40">
                                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                         <tr>
                                             <td height="24" bgcolor="#353c44">
@@ -238,21 +73,18 @@
                                                         <td>
                                                             <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="add.html"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="/laboratory/jsp/bas/calendar/toAdd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    <a href="update.html" onclick="toUpdate();"><img src="../../../../images/edit_min.gif"
-                                                                                                                     width="10"
-                                                                                                                     height="10" border="0"/> <span class="STYLE1">修改</span></a>&nbsp;
-                                                                    <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
+                                                                     <a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../../images/del_min.gif" width="10"
                                                                                                            height="10"
                                                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                    <a href="#" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10"
+     <%--                                                               <a href="#" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10"
                                                                                                             height="10"
                                                                                                             border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
                                                                     <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10"
                                                                                                              height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                                                                    <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
-                                                                                                         border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;
+                                           <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                                                 border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;--%>
                                                                 </span>
                                                             </div>
                                                         </td>
@@ -275,60 +107,38 @@
                                                                onclick="checkAll(this);"/>
                                                     </div>
                                                 </td>
-                                                <td width="40" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">序号</span></div>
-                                                </td>
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">日期区间名称</span></div>
+                                                    <div align="center"><span class="STYLE10">学期名称</span></div>
                                                 </td>
-                                                <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">起始时间</span></div>
+                                                <td width="60" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">开始周</span></div>
+                                                </td>
+                                                <td width="60" bgcolor="d3eaef">
+                                                    <div align="center"><span class="STYLE10">结束周</span></div>
                                                 </td>
 
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">结束时间</span></div>
+                                                    <div align="center"><span class="STYLE10">学期首日</span></div>
                                                 </td>
                                                 <td width="100" bgcolor="d3eaef">
-                                                    <div align="center"><span class="STYLE10">是否是休息日</span></div>
+                                                    <div align="center"><span class="STYLE10">学年</span></div>
                                                 </td>
 
 
                                             </tr>
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>1</td>
 
-                                                <td title="">国庆放假</td>
-
-                                                <td title="">2013-10-01</td>
-                                                <td title="">2013-10-07</td>
-                                                <td title="">是</td>
-
-
-                                            </tr>
-                                            <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                <td height="20"><input name="idcheckbox" type="checkbox" value="admin"
-                                                                       onclick="checkOne(this)"/></td>
-                                                <td>2</td>
-
-                                                <td title="">中秋放假</td>
-
-                                                <td title="">2013-09-18</td>
-                                                <td title="">2013-09-21</td>
-                                                <td title="">是</td>
-
-
-                                            </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                     <td height="20"><input name="idcheckbox" type="checkbox"
                                                                            value="${item.id}"
                                                                            onclick="checkOne('listForm', 'idcheckbox')"/>
                                                     </td>
-                                                    <td>${item.id}</td>
-                                                    <td>${item.sn}</td>
-                                                    <td>${item.name}</td>
+                                                    <td> <a href="toUpdate?id=${item.id}">${item.name}</a></td>
+                                                    <td>${item.startweek}</td>
+                                                    <td>${item.endweek}</td>
+                                                    <td><fmt:formatDate value="${item.begindate}"
+                                                                        pattern="yyyy-MM-dd"/></td>
+                                                    <td>${item.year}</td>
 
                                                 </tr>
                                             </c:forEach>

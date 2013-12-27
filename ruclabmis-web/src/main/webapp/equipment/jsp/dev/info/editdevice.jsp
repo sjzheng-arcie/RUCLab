@@ -67,7 +67,7 @@
                                             <div align="center"><img src="../../../../images/tb.gif" width="14"
                                                                      height="14"/></div>
                                         </td>
-                                        <td width="94%" valign="bottom"><span class="STYLE1">固定资产</span>
+                                        <td width="94%" valign="bottom"><span class="STYLE1">设备资产</span>
                                         </td>
                                     </tr>
                                 </table>

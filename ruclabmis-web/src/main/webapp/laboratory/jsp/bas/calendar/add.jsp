@@ -1,13 +1,24 @@
+<%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+<head>
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 <script>
     function save() {
-        document.form1.action = "listSysint.html";
-        document.form1.submit();
+        if (!validator(document.mainForm)) {
+            return;
+        }
+        document.mainForm.action = "add";
+        document.mainForm.submit();
     }
 
 </script>
+
+</head>
 <body>
 <form name="mainForm" method="post">
     <table width="100%" border="0" cellpadding="0" cellspacing="0">
@@ -20,7 +31,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">基础信息管理 > 学期日历管理</div>
+                            <div class="titlebt">基础信息管理 > 学年学期新增</div>
                         </td>
                     </tr>
                 </table>
@@ -71,41 +82,54 @@
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
-                                            <tr>
-                                                <td nowrap align="right">时间区间名称:</td>
+                                             <tr>
+                                                <td nowrap align="right">学期名称:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="国情放假" onblur="" class="text"
+                                                    <input name="name" id="name"  onblur="" class="text"
                                                            style="width:154px" maxlength="20" v/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
-                                                <td nowrap align="right">是否休息:</td>
+                                                <td nowrap align="right">学年</td>
                                                 <td nowrap>
-                                                    <select>
-                                                        <option>是</option>
-
-                                                        <option>否</option>
-                                                    </select>
+                                                    <input name="year" id="year"  onblur="" class="text"
+                                                           style="width:154px" maxlength="20"   valid="required|isNumber"
+                                                           errmsg="学年不能为空|学年只能是整数!
+                                                            />
+                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                    <span style="color:red;" id="errMsg_us_sno1"></span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">起始时间:</td>
+                                                <td nowrap align="right">开始周:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="2012-10-01" onblur=""
-                                                           class="text" style="width:154px" maxlength="20"/>
+                                                    <input name="startweek" id="startweek" onblur=""
+                                                           class="text" style="width:154px" maxlength="20"
+                                                           valid="required|isNumber"
+                                                           errmsg="开始周不能为空|开始周只能是整数!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
+                                                    <span style="color:red;" id="errMsg_us_sname3"></span>
                                                 </td>
-                                                <td nowrap align="right">入学季度:</td>
+                                                <td nowrap align="right">结束周:</td>
                                                 <td nowrap>
-                                                    <input name="us_sno" id="us_sno" value="2012-10-07" onblur=""
-                                                           class="text" style="width:154px" maxlength="20"/>
+                                                    <input name="endweek" id="endweek"  onblur=""
+                                                           class="text" style="width:154px" maxlength="20"
+                                                           valid ="required|isNumber"
+                                                           errmsg ="结束周不能为空|结束周只能是整数!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sname"></span>
+                                                    <span style="color:red;" id="errMsg_us_sname4"></span>
                                                 </td>
 
                                             </tr>
-
+                                            <tr>
+                                                <td align="right">学期首日</td>
+                                            <td>
+                                                <input name="begindate" id="begindate"
+                                                       onblur="" class="Mdate" style="width:154px" maxlength="10"
+                                                       valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
+                                                       onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                            </td>
+                                            </tr>
                                         </table>
                                     </td>
                                 </tr>

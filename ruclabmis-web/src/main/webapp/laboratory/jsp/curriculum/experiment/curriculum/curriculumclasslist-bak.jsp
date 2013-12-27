@@ -32,7 +32,7 @@
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
                             <tr>
-                                <td class="op_act" onclick="javascript:location.href='curriculumclasslist'">课程信息表一览</td>
+                                <td class="op_act" onclick="javascript:location.href='curriculumclasslist'">课表一览</td>
                             </tr>
                         </table>
                     </td>
@@ -42,23 +42,12 @@
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; ">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr height="25">
-                                    <td width="20px" bgcolor="#E3EFFF" >学年：
-                                        <input name="schoolYear" type="text"/></td>
-                                    <td width="20px" bgcolor="#E3EFFF" >老师：
-                                        <input name="semester" type="text"/></td>
-                                    <td width="20px" bgcolor="#E3EFFF" >房间：
-                                        <input name="major" type="text"/></td>
-                                    <td width="20px" bgcolor="#E3EFFF" >班级：
-                                        <input name="class" type="text"/></td>
-                                    <td width="20px" bgcolor="#E3EFFF" >
-                                        <input type="button"  value="  查询"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >学年：<input name="schoolYear"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >学期：<input name="semester"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >专业：<input name="major"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" >班级：<input name="class"type="text"/></td>
+                                    <td width="20px" bgcolor="#E3EFFF" ><input type="button" value="转到"/></td>
                                 </tr>
-                                   <tr>
-                                            <%@ include file="../../../../jsp/common/pagetable.jsp" %>
-                                     </tr>
-
-
-
                             </table>
                             <table width="100%" border="1" cellpadding="" cellspacing="0" style="font-size:25px;">
                                 <tr height="40">

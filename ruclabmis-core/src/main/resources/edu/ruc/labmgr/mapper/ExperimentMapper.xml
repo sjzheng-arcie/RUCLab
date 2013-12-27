@@ -171,6 +171,15 @@
       <include refid="Example_Where_Clause" />
     </if>
   </select>
+
+  <select id="selectStudentClassExpInfo" parameterType="map" resultType="map">
+     select e.id,e.name,e.status,e.need_report,ed.score
+     from class_student cs, experiment e,experiment_detail ed
+     where cs.class_id = #{vcId,jdbcType=INTEGER} and cs.student_id = #{stuId,jdbcType=INTEGER}
+     and e.id = ed.experiment_id
+     and ed.class_student_id = cs.id
+  </select>
+
   <update id="updateByExampleSelective" parameterType="map" >
     update experiment
     <set >

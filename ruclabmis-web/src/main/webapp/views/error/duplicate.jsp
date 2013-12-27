@@ -30,7 +30,7 @@
 <body>
 <ul>
     <li>
-        <h1> 名称或编号重复！</h1>
+        <h2> 名称或编号重复！</h2>
         <h1>
 
             <p><a href="#" onclick="window.history.go(-1);">返回</a></p>

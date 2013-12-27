@@ -132,7 +132,7 @@
                                                             </option>
                                                         </c:forEach>
                                                     </select>
-                                                        <span style="color:red;">*</span>
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -148,7 +148,7 @@
                                                 <td nowrap align="right">课程学分:</td>
                                                 <td nowrap>
                                                     <input name="score" id="score" class="text" value="${curriculum.score}"
-                                                    style="width:154px"
+                                                           style="width:154px"
                                                            valid="required|isNumber"
                                                            errmsg="课程学分不能为空!|课程学分只能为数字"/>
                                                     <span style="color:red;">*</span>

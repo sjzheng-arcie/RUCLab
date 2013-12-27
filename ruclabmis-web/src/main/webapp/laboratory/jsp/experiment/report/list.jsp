@@ -6,10 +6,54 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
-        var baseHref = '/laboratory/jsp/experiment/report/list';
+         function saveSore(){
+             var arr = new Array();
+             $.map($("input[id*=score]"),function(data){
+                 try{
+                     var id = parseInt($(data).attr("id").substring(6)),
+                         score = parseInt($(data).val());
+                     if(!(isNaN(score)) && score>=0 && score<=150){
+                         arr.push(id);
+                         arr.push(score);
+                     }else{
+                         alert("学生实验分数应为数字，并在0-200之间!");
+                     }
+                 }catch (e){
+                     alert("请为学生的分数填入正确的数字!");
+                 }
+             });
+             if(arr.length>0 && arr.length%2 ==0){
+                 $.post("setStudentExpScore",{
+                     scores :  arr.join(",")
+                 },function(data){
+                     if(data.success){
+                         window.location.href = window.location.href;
+                         alert("保存学生实验分数成功!");
+                     }else{
+                         alert(data.message);
+                     }
+                 });
+             }
+         }
+         function downloadFile(url, data, method) {
+             if (url && data) {
+                 data = typeof data == 'string' ? data : $.param(data);
+                 var inputs = '';
+                 $.each(data.split('&'), function () {
+                     var p = this.split('=');
+                     inputs += '<input type="hidden" name="' + p[0] + '" value="' + p[1] + '" />';
+                 });
+                 $('<form action="' + url + '" method="' + (method || 'post') +'" id="'+'downloadForm'+ '">' + inputs + '</form>').
+                         appendTo('body').submit().remove();
+             }
+         }
+         function download(eid,stuId){
+             downloadFile("/laboratory/jsp/experiment/experiment/downloadStuExpReport",{eid:eid,stuId:stuId});
+         }
     </script>
 
 </head>
@@ -43,27 +87,6 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学号:<input type="text" name="studentNoForSearch"
-                                                                                   id="studentNoForSearch" value=""
-                                                                                   style="width:100px;"/></span>
-
-                            <span style="white-space:nowrap">&nbsp;&nbsp;学生姓名:<input type="text"
-                                                                                     name="studentNameForSearch"
-                                                                                     id="studentNameForSearch" value=""
-                                                                                     style="width:100px;"/></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;是否已提交:<select id="ifUploaded"
-                                                                                       name="ifUploadedForSearch">
-                                <option></option>
-                                <option value="0">是</option>
-                                <option value="1">否</option>
-                            </select></span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;
-                                <a href="javascript:void(0)" onclick="toFind('listForm');">
-                                    <img src="../../../../images/zoom.png" width="15" height="15" border="0"/>
-                                    查询</a></span>
-
-
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -91,7 +114,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href=""><img
+                                                                        <a href="#" onclick="saveSore();"><img
                                                                                 src="../../../../images/add_min.gif"
                                                                                 width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">保存</span></a>&nbsp;
@@ -125,19 +148,13 @@
                                                         </div>
                                                     </td>
                                                 </tr>
-                                                <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                    <td>0901051803</td>
-                                                    <td>鲍尔默</td>
-                                                    <td><a href="">单频通讯实验报告书.doc</a></td>
-                                                    <td><input type="text" style="width: 30px"></td>
-                                                </tr>
+
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.report}</td>
-                                                        <td><input type="text" name="score['${item.id}']"
-                                                                   value="${item.score}" style="width: 30px"></td>
+                                                        <td><input type="button" class="button" onclick="download(${item.experiment_id},${item.class_student_id})" value="查看"/></td>
+                                                        <td><input type="text" id="score_${item.id}" value="${item.score}" style="width: 80px"></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>
