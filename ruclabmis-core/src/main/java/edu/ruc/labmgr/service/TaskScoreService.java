@@ -36,6 +36,10 @@ public class TaskScoreService {
 	public void deleteById(int id){
 		taskscoreMapper.deleteByPrimaryKey(id);
 	}
+	public void deleteByCriteria(TaskscoreCriteria criteria){
+		taskscoreMapper.deleteByExample(criteria);
+
+	}
 	public PageInfo<Taskscore> selectListPage(TaskscoreCriteria criteria, int pageNum) {
 		int totalCount = taskscoreMapper.countByExample(criteria);
 		PageInfo<Taskscore> page = new PageInfo<>(totalCount, -1, pageNum);

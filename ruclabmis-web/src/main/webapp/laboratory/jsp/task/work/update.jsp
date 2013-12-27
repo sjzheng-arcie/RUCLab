@@ -14,7 +14,7 @@
 
     <script>
         function save(){
-            document.mainForm.href="jsp/task/task/add";
+            document.mainForm.action="/laboratory/jsp/task/work/update";
             document.mainForm.submit();
         }
 
@@ -83,60 +83,26 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
+                                        <input type="hidden" name="workId" value="${workInfo.id}"/>
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
 
-                                                <td nowrap align="right">任务名称:</td>
+                                                <td nowrap align="right">工作名称:</td>
                                                 <td nowrap>
-                                                    <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="${work.name}" />
+                                                    <input name="workTitle" id="workTitle" onblur="" class="text" value="${workInfo.title}"
+                                                           style="width:154px" maxlength="20" valid="required" errmsg="请输入工作名称"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
-                                                <td nowrap align="right">附件:</td>
-                                                <td nowrap>
-                                                    <input name="annex" id="annex" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="${work.annex}" readonly/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_no"></span>
-                                                </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">完成度:</td>
-                                                <td nowrap>
-                                                    <input name="completeness" id="" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="${work.completeness}" />
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_us_sno"></span>
-                                                </td>
-                                                <td nowrap align="right">完成时间:</td>
-                                                <td nowrap>
-                                                    <input name="limiteTime" id="limitTime" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required|isAccount"
-                                                           value="${work.limitTime}" />
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_limit_time"></span>
+                                                <td nowrap align="right">工作内容:</td>
+                                                <td colspan="3"><textarea name="workContent" style="width:70%;height:100px">${workInfo.content}</textarea>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">任务内容:</td>
-                                                <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px" value="${work.content}"></textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_content"></span>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td nowrap align="right">备注:</td>
-                                                <td colspan="3"><textarea name="note" style="width:70%;height:100px" value="${work.note}"></textarea>
-                                                    <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                    <span style="color:red;" id="errMsg_task_note"></span>
-                                                </td>
-                                            </tr>
+
                                         </table>
                                     </td>
                                 </tr>

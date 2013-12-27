@@ -39,14 +39,14 @@
 <div class="indexMainCon">
     <div class="indexMainCon">
         <div class="indexNews">
-            <h3><a href="jsp/announcement/remind/remind?id=0&&page=0 " target="">更多>></a><span>系统公告</span></h3>
+            <h3><a href="/messagecenter/laboratory/jsp/announcement/remind/announcement" target="">更多>></a><span>系统公告</span></h3>
 
             <div class="indexNewsCon">
                 <ul>
                     <c:forEach items="${announcementList}" var="item">
                         <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
                             <a style="max-width: 200px"
-                               href="/equipment/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
+                               href="/messagecenter/laboratory/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
                         </li>
 
                     </c:forEach>
@@ -56,7 +56,8 @@
             </div>
         </div>
         <div class="indexNotice">
-            <h3><span>个人通知</span></h3>
+            <h3><a href="/messagecenter/laboratory/jsp/announcement/remind/message" target="">更多>></a><span>系统公告</span></h3>
+
 
             <div class="indexNoticeCon">
                 <ul>
@@ -64,7 +65,7 @@
                         <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
 
                             <a id="aa" style="max-width: 200px"
-                               href="/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
+                               href="/messagecenter/laboratory/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
 
                         </li>
 

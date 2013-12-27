@@ -33,6 +33,22 @@ public class TaskController {
 	UserService userService;
 	@Autowired
 	OrganizationService serviceOrganization;
+	@Autowired
+	TaskScoreService taskScoreService;
+
+
+
+	@RequestMapping(value = "/delete", method = (RequestMethod.GET))
+	public ModelAndView deleteTaskByTaskId(@RequestParam(value="taskId") int taskId){
+		int managerId=taskService.getTaskById(taskId).getManagerid();
+		TaskscoreCriteria taskscoreCriteria = new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria=taskscoreCriteria.createCriteria();
+		criteria.andTaskidEqualTo(taskId);
+		taskScoreService.deleteByCriteria(taskscoreCriteria);
+		taskService.deleteById(taskId);
+		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist?teacherId="+managerId);
+		return modelAndView;
+	}
 
 	@RequestMapping(value = "/tasklist", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getList(@RequestParam(value="teacherId", required = true,defaultValue = "0") int teacherId,
@@ -76,13 +92,6 @@ public class TaskController {
 		result.addObject("organizations", organizations);
 		return result;
 	}
-	@RequestMapping(value = "/delete", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView toDeleteTask(@RequestParam(value = "taskId", required = false, defaultValue = "") int taskId,
-									 @RequestParam(value = "teacherId", required = false, defaultValue = "") int teacherId){
-		serviceTeacher.delete(taskId);
-		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist?teacherId="+teacherId);
-		return modelAndView;
-	}
 	@RequestMapping(value = "/toadd", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView toAddTask(@RequestParam(value = "teacherId", required = false, defaultValue = "") int teacherId){
 		Teacher teacher = serviceTeacher.selectByPrimaryKey(teacherId);
@@ -103,7 +112,7 @@ public class TaskController {
 		task.setContent(taskContent);
 		task.setLimitdate(limitDate);
 		task.setIfcompleted(false);
-		task.setPublisherdate(new Date());
+		task.setPublishdate(new Date());
 		task.setPublisherid(userService.getCurrentUserId());
 		task.setIfwork(false);
 		task.setCompletely(0);
@@ -181,6 +190,7 @@ public class TaskController {
 		User user = userService.getCurrentUser();
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
+		taskCriteria.setOrderByClause("publishdate asc");
 		criteria.andManageridEqualTo(user.getId());
 		criteria.andIfworkEqualTo(false);
 		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(user.getId());
@@ -218,11 +228,17 @@ public class TaskController {
 	}
 	@RequestMapping(value = "/finishtask", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView finishTask(@RequestParam(value = "taskId", required = true)int taskId,
-										 @RequestParam(value = "completion", required = false) String completion) {
+								   @RequestParam(value = "completely", required = false)int completely,
+								   @RequestParam(value = "completion", required = false) String completion) {
 
 		Task task = taskService.getTaskById(taskId);
 		if(completion!=null){
 			task.setCompletion(completion);
+		}
+		if(completely>100){
+			task.setCompletely(completely/100);
+		}else{
+			task.setCompletely(completely);
 		}
 		task.setFinishdate(new Date());
 		task.setIfcompleted(true);

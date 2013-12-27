@@ -76,12 +76,6 @@
                                                                 </table>
                                                             </td>
                                                             <td>
-                                                                <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="toadd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-                                                                    </span>
-                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </table>
@@ -105,6 +99,9 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">工作名称</span></div>
                                                     </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">负责人</span></div>
+                                                    </td>
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">发布时间</span></div>
                                                     </td>
@@ -114,9 +111,6 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">详细</span></div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">删除</span></div>
-                                                    </td>
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
@@ -125,17 +119,13 @@
                                                                                onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.title}</td>
+                                                        <td>${item.worker.name}</td>
                                                         <td> <fmt:formatDate value="${item.publishtime}"/></td>
                                                         <td>${item.content}</td>
-                                                        <td><a href="toupdate?workId=${item.id}">
+                                                        <td><a href="info?workId=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
-                                                        <td><a href="delete?workId=${item.id}">
-                                                            <img src="../../../../images/del_min.gif" width="10"
-                                                                 height="10" border="0"/>
-                                                        </a></td>
-
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

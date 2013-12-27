@@ -21,6 +21,16 @@ public class Taskscore {
         return id;
     }
 
+	public User getManager() {
+		return manager;
+	}
+
+	public void setManager(User manager) {
+		this.manager = manager;
+	}
+
+	private User manager;
+
     public void setId(Integer id) {
         this.id = id;
     }

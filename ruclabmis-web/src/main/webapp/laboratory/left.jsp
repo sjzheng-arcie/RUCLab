@@ -33,7 +33,7 @@
     <tr>
         <td width="182" valign="top">
             <div id="container">
-                <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher">
+                <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher,leader">
                     <h1 class="type"><a href="javascript:void(0)">个人中心</a></h1>
 
                     <div class="content">
@@ -57,6 +57,15 @@
                                        target="main">
                                     我的预约申请</a></li>
                             </shiro:hasAnyRoles>
+                            <shiro:hasAnyRoles name="leader">
+
+                                <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+                                </li>
+
+                                <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
+                                </li>
+
+                            </shiro:hasAnyRoles>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,administrators">
                                 <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务管理</a>
                                 </li>
@@ -65,13 +74,14 @@
                                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
                             </shiro:hasAnyRoles>
-                            <shiro:hasAnyRoles name="student,teacher,equipment_admin,student">
+                            <shiro:hasAnyRoles name="teacher,equipment_admin,student">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
+                                <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
+                                       target="main">我的实验课程</a></li>
 
                             </shiro:hasAnyRoles>
-                            <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
-                                   target="main">我的实验课程</a></li>
+
 
                             <shiro:hasRole name="student">
                                 <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
@@ -153,6 +163,24 @@
                             <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>
                             </li>
                             <li><a href="jsp/bas/student/list" onfocus="toFocus(this)" target="main">学生信息管理</a>
+                            </li>
+                        </ul>
+                    </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="leader">
+                    <h1 class="type"><a href="javascript:void(0)">考核管理</a></h1>
+
+                    <div class="content">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
+                            </tr>
+                        </table>
+                        <ul class="MM">
+
+                            <li><a href="jsp/task/work/allworklist" onfocus="toFocus(this)" target="main">工作管理</a>
+                            </li>
+                            <li><a href="jsp/task/task/teacherlist" onfocus="toFocus(this)" target="main">任务管理</a>
                             </li>
                         </ul>
                     </div>

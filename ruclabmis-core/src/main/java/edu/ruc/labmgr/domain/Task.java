@@ -43,7 +43,7 @@ public class Task {
 
     private Integer markerid;
 
-    private Date publisherdate;
+    private Date publishdate;
 
     private Boolean ifwork;
 
@@ -217,12 +217,12 @@ public class Task {
         this.markerid = markerid;
     }
 
-    public Date getPublisherdate() {
-        return publisherdate;
+    public Date getPublishdate() {
+        return publishdate;
     }
 
-    public void setPublisherdate(Date publisherdate) {
-        this.publisherdate = publisherdate;
+    public void setPublishdate(Date publishdate) {
+        this.publishdate = publishdate;
     }
 
     public Boolean getIfwork() {

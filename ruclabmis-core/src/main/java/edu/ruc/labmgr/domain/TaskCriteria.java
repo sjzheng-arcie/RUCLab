@@ -1355,63 +1355,63 @@ public class TaskCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateIsNull() {
-            addCriterion("publisherDate is null");
+        public Criteria andPublishdateIsNull() {
+            addCriterion("publishDate is null");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateIsNotNull() {
-            addCriterion("publisherDate is not null");
+        public Criteria andPublishdateIsNotNull() {
+            addCriterion("publishDate is not null");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateEqualTo(Date value) {
-            addCriterion("publisherDate =", value, "publisherdate");
+        public Criteria andPublishdateEqualTo(Date value) {
+            addCriterion("publishDate =", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateNotEqualTo(Date value) {
-            addCriterion("publisherDate <>", value, "publisherdate");
+        public Criteria andPublishdateNotEqualTo(Date value) {
+            addCriterion("publishDate <>", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateGreaterThan(Date value) {
-            addCriterion("publisherDate >", value, "publisherdate");
+        public Criteria andPublishdateGreaterThan(Date value) {
+            addCriterion("publishDate >", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateGreaterThanOrEqualTo(Date value) {
-            addCriterion("publisherDate >=", value, "publisherdate");
+        public Criteria andPublishdateGreaterThanOrEqualTo(Date value) {
+            addCriterion("publishDate >=", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateLessThan(Date value) {
-            addCriterion("publisherDate <", value, "publisherdate");
+        public Criteria andPublishdateLessThan(Date value) {
+            addCriterion("publishDate <", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateLessThanOrEqualTo(Date value) {
-            addCriterion("publisherDate <=", value, "publisherdate");
+        public Criteria andPublishdateLessThanOrEqualTo(Date value) {
+            addCriterion("publishDate <=", value, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateIn(List<Date> values) {
-            addCriterion("publisherDate in", values, "publisherdate");
+        public Criteria andPublishdateIn(List<Date> values) {
+            addCriterion("publishDate in", values, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateNotIn(List<Date> values) {
-            addCriterion("publisherDate not in", values, "publisherdate");
+        public Criteria andPublishdateNotIn(List<Date> values) {
+            addCriterion("publishDate not in", values, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateBetween(Date value1, Date value2) {
-            addCriterion("publisherDate between", value1, value2, "publisherdate");
+        public Criteria andPublishdateBetween(Date value1, Date value2) {
+            addCriterion("publishDate between", value1, value2, "publishdate");
             return (Criteria) this;
         }
 
-        public Criteria andPublisherdateNotBetween(Date value1, Date value2) {
-            addCriterion("publisherDate not between", value1, value2, "publisherdate");
+        public Criteria andPublishdateNotBetween(Date value1, Date value2) {
+            addCriterion("publishDate not between", value1, value2, "publishdate");
             return (Criteria) this;
         }
 

@@ -34,9 +34,7 @@ public class TaskService {
 	}
 
 	public void deleteById(int id){
-		Task task = new Task();
-		task.setId(id);
-		taskMapper.insert(task);
+		taskMapper.deleteByPrimaryKey(id);
 	}
 
 	public List<Task> getTaskList(){
