@@ -408,52 +408,52 @@ public class PrototypeTest {
 
 	@RequestMapping("jsp/curriculum/experiment/curriculum/mycurriculumschedule")
 	public ModelAndView myCurriculumSchedule() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/mycurriculumschedule");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/mycurriculumschedule");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/listdeviceapply")
 	public ModelAndView listDeviceApply() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/listdeviceapply");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/listdeviceapply");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculumclasslist")
 	public ModelAndView curriculumClassList() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/curriculumclasslist");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/curriculumclasslist");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculumview")
 	public ModelAndView curriculumViewView() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/curriculumview");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/curriculumview");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/setcurriculum")
 	public ModelAndView setcurriculum() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/setcurriculum");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/setcurriculum");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/createcurriculum")
 	public ModelAndView createCurriculum() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/createcurriculum");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/createcurriculum");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/importcurriculum")
 	public ModelAndView importCurriculum() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/importcurriculum");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/importcurriculum");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/addlession")
 	public ModelAndView addLession() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/experiment/curriculum/addlession");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/addlession");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/toaddlession")
 	public ModelAndView toAddLession() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/experiment/curriculum/toaddlession");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/toaddlession");
 		return mav;
 	}
 	@RequestMapping("jsp/curriculum/experiment/curriculum/setlab")
 	public ModelAndView setLab() {
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/experiment/curriculum/setlab");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/setlab");
 		return mav;
 	}
 	@RequestMapping("/administrator_leftmenuorder")

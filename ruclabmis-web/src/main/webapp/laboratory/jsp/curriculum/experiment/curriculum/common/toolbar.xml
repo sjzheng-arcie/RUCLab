@@ -1,9 +1,0 @@
-<?xml version="1.0"?>
-<toolbar>
-    <item id="sep1" type="separator"/>
-    <item id="new" type="button" img="new.gif" imgdis="new_dis.gif" text="新建"/>
-    <item id="sep1" type="separator"/>
-    <item id="import" type="button" img="cut.gif" imgdis="cut_dis.gif" text="导入"/>
-    <item id="sep2" type="separator"/>
-
-</toolbar>
