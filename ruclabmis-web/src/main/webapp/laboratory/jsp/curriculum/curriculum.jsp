@@ -103,28 +103,7 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
-                            dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("/dhtmlx/dhtmlxToolbar/samples/dhtmlx/imgs/");
-                            dhxToolbar.loadXML("common/toolbar_fayl.xml?" + new Date().getTime());
-                            dhxToolbar.attachEvent("onClick", function (id) {
-                                switch (id) {
-                                    case 'save' :
-                                        alert("保存当前数据")
-                                        break;
-                                    case 'tijiao' :
-                                        alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply';
-                                        break;
-                                    case 'prev' :
-                                        window.location.href = 'listdeviceapply';
-                                        break;
-                                    case 'next' :
-                                        alert("已经到最后一步!")
-                                        break;
-                                    default:
-                                        alert("Button " + id + " was clicked!")
-                                }
-                            });
+
                             dhxLayout.cells("a").setText("课表一览");
                             dhxLayout.cells("a").attachObject("zuoxi");
 
