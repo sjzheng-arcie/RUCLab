@@ -8,7 +8,10 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
-
+        function back(){
+            document.mainForm.action="/laboratory/jsp/announcement/remind/laboratory/${fatherPage}?page=${page}";
+            document.mainForm.submit();
+        }
     </script>
 
 </head>
@@ -73,7 +76,7 @@
 
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);"/>
+                                        <input type="button" name="return" value="返回" class="button" onclick="back();"/>
                                     </td>
                                 </tr>
                             </table>

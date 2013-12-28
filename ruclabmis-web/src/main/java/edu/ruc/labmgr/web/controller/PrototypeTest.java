@@ -228,6 +228,7 @@ public class PrototypeTest {
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andReceiverIdEqualTo(currentUser.getId());
         criteria.andIfreadEqualTo(false);
+		criteria.andSystemEqualTo(true);
         int count=messageService.getCount(messageCriteria);
         ModelAndView mav = new ModelAndView("/laboratory/top");
         mav.addObject("unreadCount", count);

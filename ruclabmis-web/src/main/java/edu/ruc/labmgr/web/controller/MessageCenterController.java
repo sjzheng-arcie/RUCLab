@@ -48,6 +48,7 @@ public class MessageCenterController {
 
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
         mav.addObject("pageInfo", pageInfo);
+		mav.addObject("fatherPage", "message");
         return mav;
     }
 
@@ -105,9 +106,10 @@ public class MessageCenterController {
     @RequestMapping("/jsp/announcement/remind/{system}/replyMessage")
     public ModelAndView replyMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
+		List<Teacher> teacherList = userService.getAllTeacherList();
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessage");
-        mav.addObject("tabId", 3);
         mav.addObject("replySn", replySn);
+		mav.addObject("teacherList", teacherList);
         return mav;
     }
     @RequestMapping("/jsp/announcement/remind/{system}/mysendmessage")
@@ -122,7 +124,6 @@ public class MessageCenterController {
         messageCriteria.setOrderByClause(" sendtime desc");
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
         criteria.andSenderIdEqualTo(currentUserId);
-        criteria.andIfreadEqualTo(true);
 		if(system.equals("laboratory")){
 			criteria.andSystemEqualTo(true);
 		}else {
@@ -149,7 +150,7 @@ public class MessageCenterController {
 		}
         announcementCriteria.setOrderByClause(" publish_time desc");
 		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/{system}/announcement");
+        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcement");
         mav.addObject("pageInfo", pageInfo);
         return mav;
     }
@@ -176,7 +177,7 @@ public class MessageCenterController {
     public ModelAndView addAnnouncement(@PathVariable String system,HttpServletRequest request) {
         Announcement announcement = initFromRequest(request,system);
         int result = serviceAnnouncement.insert(announcement);
-        ModelAndView mav = new ModelAndView("redirect:/messagecenter/"+system+"/jsp/announcement/remind/announcement");
+        ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/announcement/remind/"+system+"/announcement");
         return mav;
     }
 
@@ -211,16 +212,17 @@ public class MessageCenterController {
     public ModelAndView addMessage(@PathVariable String system,HttpServletRequest request) {
         Message message = insertMessageIntoDB(request,system);
         messageService.insert(message);
-        ModelAndView mav = new ModelAndView("redirect:/messagecenter/"+system+"/jsp/announcement/remind/message");
+        ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/announcement/remind/"+system+"/message?page=1");
         return mav;
     }
 
     @RequestMapping("/jsp/announcement/remind/{system}/deleteMessage")
     public ModelAndView deleteMessage(@PathVariable String system,HttpServletRequest request) {
         int messageId = Integer.parseInt(request.getParameter("deleteMessageId"));
+		String fatherPage=request.getParameter("fatherPage");
+		int page =Integer.parseInt(request.getParameter("page"));
         messageService.deleteById(messageId);
-        ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/message");
-        mav.addObject("tabId", 1);
+        ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/announcement/remind/"+system+"/"+fatherPage+"?page="+page);
         return mav;
     }
 

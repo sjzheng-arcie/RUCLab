@@ -39,37 +39,29 @@
 <div class="indexMainCon">
     <div class="indexMainCon">
         <div class="indexNews">
-            <h3><a href="/messagecenter/laboratory/jsp/announcement/remind/announcement" target="">更多>></a><span>系统公告</span></h3>
+            <h3><a href="/laboratory/jsp/announcement/remind/laboratory/announcement" target="">更多>></a><span>系统公告</span></h3>
 
             <div class="indexNewsCon">
                 <ul>
                     <c:forEach items="${announcementList}" var="item">
                         <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
                             <a style="max-width: 200px"
-                               href="/messagecenter/laboratory/jsp/announcement/remind/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
+                               href="/laboratory/jsp/announcement/remind/laboratory/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
                         </li>
-
                     </c:forEach>
-
-
                 </ul>
             </div>
         </div>
         <div class="indexNotice">
-            <h3><a href="/messagecenter/laboratory/jsp/announcement/remind/message" target="">更多>></a><span>系统公告</span></h3>
+            <h3><a href="/laboratory/jsp/announcement/remind/laboratory/message" target="">更多>></a><span>系统公告</span></h3>
 
             <div class="indexNoticeCon">
                 <ul>
                     <c:forEach items="${messageList}" var="item">
                         <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
-
-                            <a id="aa" style="max-width: 200px"
-                               href="/messagecenter/laboratory/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">${item.content}</a>
-
+                            <a style="max-width: 200px"href="/laboratory/jsp/announcement/remind/laboratory/messageDetail?messageDetailId=${item.id}">${item.content}</a>
                         </li>
-
                     </c:forEach>
-
                 </ul>
             </div>
         </div>

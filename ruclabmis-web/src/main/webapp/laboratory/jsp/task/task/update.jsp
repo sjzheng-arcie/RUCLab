@@ -6,23 +6,49 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript" src="../../../../js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="../../../../js/ajaxfileupload.js"></script>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <title></title>
-
     <script>
+        function uploadFile(){
+            var file = document.getElementById("file").value;
+            if (!file) {
+                alert("请选择要上传的附件!");
+                return;
+            }
+
+            $.ajaxFileUpload({
+                //处理文件上传操作的服务器端地址(可以传参数,已亲测可用)
+                url:'/laboratory/jsp/task/task/fileUpload',
+                fileElementId:'file',           //文件选择框的id属性
+                dataType:'text',                       //服务器返回的格式,可以是json或xml等
+                success:function(data, status){        //服务器响应成功时的处理函数
+                    $("#documentName").val(data);
+                    //  $("#documentName").val(""+file.substr(file.lastIndexOf("\\")+1,file.length));
+                },
+                error:function(data, status, e){ //服务器响应失败时的处理函数
+                    alert('文件上传失败:'+e);
+                }
+            });
+        }
         function save(){
+            var documentName = document.getElementById("documentName").value;
             if (!validator(document.mainForm)) {
                 return;
             }
-            document.mainForm.action="update";
+            document.mainForm.action="add";
             document.mainForm.submit();
         }
+
+                function downloadFile(resourceId) {
+                    window.location.href = "downloadFile?id=" + resourceId;
+                }
 
     </script>
 </head>
@@ -131,6 +157,18 @@
                                                             onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_limit_time"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">上传附件:</td>
+                                                <td colspan="3">
+                                                    <input type="text" id="documentName" name="documentName" readonly="true" value="${taskInfo.annexname}"/>
+                                                    <input style="width:30%" type="file" name="file" id="file" class="bottom" value="浏览"/>
+                                                    <input type="button" value="上传" class="bottom" onclick="return uploadFile();"/>
+                                                    <c:if test="${taskInfo.annexname!=null}">
+                                                        <input type="button" onClick="downloadFile(${taskInfo.id})" value="下载"/>
+                                                    </c:if>
+
                                                 </td>
                                             </tr>
                                             <tr>

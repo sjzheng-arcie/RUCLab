@@ -10,10 +10,11 @@
 
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript" src="../../../../js/page.js"></script>
     <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/util.js"></script>
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
-    <link href="${pageContext.request.contextPath}/laboratory/jsp/curriculum/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <style type="text/css">
         .message {
             border: 1px solid #cbcbcb;
@@ -59,16 +60,34 @@
         }
     </style>
     <title>消息通知</title>
-    <script>
-        var replyFlag = "${replySn}";
+    <script type="text/javascript">
+        function goPage(pageIndex, maxPage) {
+            if (pageIndex <= 0) {
+                alert("已到达首页！");
+                return;
+            }
+            if (pageIndex > maxPage) {
+                alert("已到达尾页！");
+                return;
+            }
+            var curUrl = window.location.href;
+            var flag = curUrl.indexOf('?'),
+                    pageFlag = curUrl.indexOf("page=");
+            curUrl = (flag == -1) ? (curUrl + "?page=" + pageIndex) :
+                    ((pageFlag == -1) ? (curUrl + "&page=" + pageIndex) : (curUrl.replace(/page=\d+/, 'page=' + pageIndex)));
+
+            document.forms[0].action = curUrl;
+            document.forms[0].submit();
+        }
     </script>
+
 </head>
 <body  style="background-color:#EEF2FB;">
-<form name="mainForm" method="get">
+<form name="mainForm" method="post">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
-            <td class="op_act" onclick="javascript:location.href='message'">短消息</td>
+            <td class="op_act" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
         </tr>
@@ -99,13 +118,13 @@
                                                              style="border: 1px;background-color: #FFFFFF ;margin: 10px ;">
                                                             <p align="left" style="font-size: 12px">
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/message?page=1">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/laboratory/jsp/announcement/remind/equipment/message?page=1&fatherPage=message">全部消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/unreadmessage?page=1">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/laboratory/jsp/announcement/remind/equipment/unreadmessage?page=1&fatherPage=unreadmessage">未读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/readmessage?page=1">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
+                                                                   href="/laboratory/jsp/announcement/remind/equipment/readmessage?page=1&fatherPage=readmessage">已读消息</a>&nbsp&nbsp&nbsp|&nbsp&nbsp&nbsp
                                                                 <a class="A_See"
-                                                                   href="/messagecenter/equipment/jsp/announcement/remind/mysendmessage?page=1">我发送的消息</a>
+                                                                   href="/laboratory/jsp/announcement/remind/equipment/mysendmessage?page=1&fatherPage=mysendmessage">我发送的消息</a>
                                                             </p>
                                                         </div>
                                                         <hr size="0" class="hr1">
@@ -130,13 +149,11 @@
                                                                         </c:if>
                                                                         <p align="left" style="font-size: 12px">
                                                                             <a class="A_See"
-                                                                               href="/messagecenter/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}&&fatherPage=${fatherPage}">查看详细></a>
+                                                                               href="/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}&fatherPage=${fatherPage}&page=${pageInfo.getCurrentPage()}">查看详细></a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See"
-                                                                                                        target="_parent"
-                                                                                                        href="/messagecenter/equipment/jsp/announcement/remind/replyMessage?replyFlag=${item.sender.sn}">回复</a>
+                                                                                                        href="/laboratory/jsp/announcement/remind/equipment/replyMessage?replyFlag=${item.sender.sn}">回复</a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp<a class="A_See"
-                                                                                                        target="_parent"
-                                                                                                        href="/messagecenter/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
+                                                                                                        href="/laboratory/jsp/announcement/remind/equipment/deleteMessage?deleteMessageId=${item.id}&fatherPage=${fatherPage}&page=${pageInfo.getCurrentPage()}">删除该条信息</a>
                                                                         </p>
                                                                         <hr size="0"
                                                                             style="  border:none; border-bottom:1px dashed #ccc;">
@@ -157,10 +174,10 @@
                                                                         <p align="left">${item.content}</p>
                                                                         <p align="left" style="font-size: 12px"><a
                                                                                 class="A_See"
-                                                                                href="/messagecenter/equipment/jsp/announcement/remind/messageDetail?messageDetailId=${item.id}">查看详细></a>
+                                                                                href="/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}&fatherPage=${fatherPage}&page=${pageInfo.getCurrentPage()}">查看详细></a>
                                                                             &nbsp&nbsp&nbsp&nbsp&nbsp
                                                                             <a class="A_See"
-                                                                               href="/messagecenter/equipment/jsp/announcement/remind/deleteMessage?deleteMessageId=${item.id}">删除该条信息</a>
+                                                                               href="/laboratory/jsp/announcement/remind/equipment/deleteMessage?deleteMessageId=${item.id}&fatherPage=${fatherPage}&page=${pageInfo.getCurrentPage()}">删除该条信息</a>
                                                                         </p>
                                                                         <hr size="0"
                                                                             style="  border:none; border-bottom:1px dashed #ccc;">
@@ -179,8 +196,7 @@
                                 </tr>
                                 <tr align="center" bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE">
                                     <td align="center">
-                                        <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
+
                                     </td>
                                 </tr>
                             </table>

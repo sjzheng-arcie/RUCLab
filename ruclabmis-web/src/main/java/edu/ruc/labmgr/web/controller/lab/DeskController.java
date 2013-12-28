@@ -113,6 +113,22 @@ public class DeskController {
 	}
 	@RequestMapping(value = "/desklist", method = (RequestMethod.GET))
 	public ModelAndView roomList(@RequestParam(value = "roomId", required = true, defaultValue = "1") int roomId,
+								 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
+
+		Room room= roomService.getRoomById(roomId);
+
+		DeskCriteria deskCriteria=new DeskCriteria();
+		DeskCriteria.Criteria criteria=deskCriteria.createCriteria();
+		criteria.andLaboratoryRoomIdEqualTo(roomId);
+
+		PageInfo<Desk> pageInfo=deskService.selectListPage(deskCriteria,page);
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/desk/desklist");
+		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("roomInfo",room);
+		return modelAndView;
+	}
+	@RequestMapping(value = "/checkdesklist", method = (RequestMethod.GET))
+	public ModelAndView checkdesklist(@RequestParam(value = "roomId", required = true, defaultValue = "1") int roomId,
 								 @RequestParam(value = "laboratoryId", required = true, defaultValue = "1") int laboratoryId,
 								 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
 
@@ -124,7 +140,7 @@ public class DeskController {
 		criteria.andLaboratoryRoomIdEqualTo(roomId);
 
 		PageInfo<Desk> pageInfo=deskService.selectListPage(deskCriteria,page);
-		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/desk/desklist");
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/desk/checkdesklist");
 		modelAndView.addObject("pageInfo",pageInfo);
 		modelAndView.addObject("roomInfo",room);
 		modelAndView.addObject("laboratoryInfo",laboratory);

@@ -10,6 +10,11 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript">
+        function downloadFile(resourceId) {
+            window.location.href = "downloadFile?id=" + resourceId;
+        }
+    </script>
 
 </head>
 
@@ -90,10 +95,6 @@
                                             <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                             <span class="STYLE1">新增</span>
                                         </a>
-                                        <a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
-                                            <img src="../../../../images/del_min.gif" width="10" height="10"
-                                                 border="0"/> <span class="STYLE1">删除</span>
-                                        </a>
                                     </span>
                                     </div>
                                 </td>
@@ -116,9 +117,6 @@
                             <div align="center"><span class="STYLE10">任务名称</span></div>
                         </td>
 
-                        <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">任务内容</span></div>
-                        </td>
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成期限</span></div>
                         </td>
@@ -156,7 +154,6 @@
                             </td>
 
                             <td height="20">${item.taskname}</td>
-                            <td height="20">${item.content}</td>
                             <td><fmt:formatDate value="${item.limitdate}"></fmt:formatDate></td>
 
                             <td>${item.annexname}</td>
@@ -182,9 +179,14 @@
 
                             </td>
                             <td><a href="/laboratory/jsp/task/taskscore/teacherscorelist?taskId=${item.id}" class="button"> 评分列表</a></td>
-                            <td><a href="/laboratory/jsp/task/task/toupdate?taskId=${item.id}" class="button"> 查看任务详细</a></td>
-                            <td><a href="/laboratory/jsp/task/task/delete?taskId=${item.id}" class="button"> 删除</a></td>
-
+                            <td><a href="/laboratory/jsp/task/task/toupdate?taskId=${item.id}">
+                                <img src="../../../../images/edit_min.gif" width="10"
+                                     height="10" border="0"/>
+                            </a></td>
+                            <td><a href="/laboratory/jsp/task/task/delete?taskId=${item.id}">
+                                <img src="../../../../images/del_min.gif" width="10"
+                                     height="10" border="0"/>
+                            </a></td>
                         </tr>
                     </c:forEach>
 

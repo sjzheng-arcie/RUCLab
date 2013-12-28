@@ -12,6 +12,11 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript">
+        function downloadFile(resourceId) {
+            window.location.href = "downloadFile?id=" + resourceId;
+        }
+    </script>
 
 </head>
 
@@ -118,6 +123,9 @@
                                                         <div align="center"><span class="STYLE10">附件</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">附件下载</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">完成情况</span></div>
                                                     </td>
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -145,6 +153,12 @@
                                                         <td><fmt:formatDate value="${item.limitdate}"/></td>
                                                         <td>${item.content}</td>
                                                         <td>${item.annexname}</td>
+                                                        <td>
+                                                            <c:if test="${item.annexname!=null}">
+                                                                <input type="button" onClick="downloadFile(${item.id})"
+                                                                       class="button" value="下载"/>
+                                                            </c:if>
+                                                        </td>
                                                         <td>${item.completion}</td>
                                                         <td>${item.completely}%</td>
                                                         <td>

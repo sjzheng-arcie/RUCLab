@@ -225,6 +225,7 @@ public class RootController {
         MessageCriteria messageCriteria = new MessageCriteria();
         messageCriteria.setOrderByClause("sendtime desc");
         MessageCriteria.Criteria criteria = messageCriteria.createCriteria();
+		criteria.andSystemEqualTo(false);
         criteria.andReceiverIdEqualTo(currentUser.getId());
         criteria.andIfreadEqualTo(false);
         int count = messageService.getCount(messageCriteria);

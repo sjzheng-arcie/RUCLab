@@ -10,7 +10,7 @@
 <head>
 
     <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
-    <link href="${pageContext.request.contextPath}/laboratory/jsp/curriculum/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
@@ -70,7 +70,7 @@
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
-            <td class="op_nor" onclick="javascript:location.href='message'">短消息</td>
+            <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_act" onclick="javascript:location.href='sendmessage'">发送短消息</td>
         </tr>
@@ -97,7 +97,14 @@
                                                                         style="width: 252px;height: 22px"
                                                                         data-placeholder="选择人名...">
                                                                     <c:forEach items="${teacherList}" var="teacher">
-                                                                        <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
+                                                                        <c:choose>
+                                                                            <c:when test="${replySn==teacher.sn}">
+                                                                                <option value="${teacher.id}" selected>${teacher.name}(${teacher.sn})</option>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
                                                                     </c:forEach>
                                                                 </select>
                                                             </td>

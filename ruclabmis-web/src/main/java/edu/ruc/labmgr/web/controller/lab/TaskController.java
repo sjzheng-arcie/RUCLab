@@ -3,13 +3,19 @@ package edu.ruc.labmgr.web.controller.lab;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import edu.ruc.labmgr.web.controller.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 
@@ -37,7 +43,54 @@ public class TaskController {
 	TaskScoreService taskScoreService;
 
 
+	@RequestMapping(value="/fileUpload")
+	public @ResponseBody
+	String fileUpload( @RequestParam MultipartFile file,
+					   HttpServletRequest request) throws IOException {
 
+
+		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
+		String realPath = request.getSession().getServletContext().getRealPath(path);
+		String fullFilePath = realPath+"\\"+file.getOriginalFilename();
+		String result = file.getOriginalFilename();
+		File newFile = new File(fullFilePath);
+		if (!newFile.getParentFile().exists()) {
+			newFile.getParentFile().mkdirs();
+		}
+		try {
+			file.transferTo(newFile);
+		} catch (IOException e) {
+			e.printStackTrace();
+			result = "附件上传失败!";
+			return result;
+		}
+		return result;
+	}
+
+	@RequestMapping(value="/downloadFile",method=RequestMethod.GET)
+	public void downloadFile(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception{
+		Task task = taskService.getTaskById(id);
+		String path = task.getAnnexpath();
+
+		response.setHeader("content-type", "text/html;charset=UTF-8");
+		response.setContentType("multipart/form-data");
+		String strName = new String(task.getAnnexname().getBytes("GB2312"), "ISO_8859_1");
+
+		String header = "attachment;fileName="+ strName;
+		response.setHeader("Content-Disposition", header);
+
+		File file = new File(path);
+		System.out.println(file.getAbsolutePath());
+		InputStream inputStream=new FileInputStream(file);
+		OutputStream os=response.getOutputStream();
+		byte[] b=new byte[2048];
+		int length;
+		while((length=inputStream.read(b))>0){
+			os.write(b,0,length);
+		}
+		inputStream.close();
+
+	}
 	@RequestMapping(value = "/delete", method = (RequestMethod.GET))
 	public ModelAndView deleteTaskByTaskId(@RequestParam(value="taskId") int taskId){
 		int managerId=taskService.getTaskById(taskId).getManagerid();
@@ -57,6 +110,7 @@ public class TaskController {
 								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
+		taskCriteria.setOrderByClause("publishDate desc");
 		criteria.andManageridEqualTo(teacherId);
 		criteria.andTasknameLike("%"+taskName+"%");
 		criteria.andIfworkEqualTo(false);
@@ -101,10 +155,17 @@ public class TaskController {
 	}
 
 	@RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
-	public ModelAndView addTask(@RequestParam(value = "taskName", required = true, defaultValue = "") String taskName,
+	public ModelAndView addTask(HttpServletRequest request,
+								@RequestParam(value = "taskName", required = true, defaultValue = "") String taskName,
 								@RequestParam(value = "teacherId", required = true, defaultValue = "0") int teacherId,
+								@RequestParam(value = "documentName", required = false, defaultValue = "") String documentName,
 								@RequestParam(value = "taskContent", required = true, defaultValue = "") String taskContent,
 								@RequestParam(value = "limitDate", required = true ) Date limitDate){
+
+		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
+		String uploadPath = request.getSession().getServletContext().getRealPath(path);
+		String fullFilePath = uploadPath + "\\" + documentName;
+
 
 		Task task = new Task();
 		task.setTaskname(taskName);
@@ -117,6 +178,8 @@ public class TaskController {
 		task.setIfwork(false);
 		task.setCompletely(0);
 		task.setScore(0);
+		task.setAnnexname(documentName);
+		task.setAnnexpath(fullFilePath);
 		task.setSpentscore(0);
 		task.setQualityscore(0);
 		task.setTimelyscore(0);
@@ -139,10 +202,15 @@ public class TaskController {
 		return modelAndView;
 	}
 	@RequestMapping(value = "/update", method = ( RequestMethod.POST))
-	public ModelAndView updateTask(@RequestParam(value = "taskName", required = false) String taskName,
+	public ModelAndView updateTask(HttpServletRequest request,
+								   @RequestParam(value = "taskName", required = false) String taskName,
 								@RequestParam(value = "taskId", required = true ) int taskId,
+								@RequestParam(value = "documentName", required = false, defaultValue = "") String documentName,
 								@RequestParam(value = "taskContent", required = false) String taskContent,
 								@RequestParam(value = "limitDate", required = false ) Date limitDate){
+		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
+		String uploadPath = request.getSession().getServletContext().getRealPath(path);
+		String fullFilePath = uploadPath + "\\" + documentName;
 
 		Task task = taskService.getTaskById(taskId);
 		if(taskName!=null){
@@ -153,6 +221,10 @@ public class TaskController {
 		}
 		if(limitDate!=null){
 			task.setLimitdate(limitDate);
+		}
+		if(documentName!=null){
+			task.setAnnexname(documentName);
+			task.setAnnexpath(fullFilePath);
 		}
 		taskService.updateByPrimaryKey(task);
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist?teacherId="+task.getManagerid());

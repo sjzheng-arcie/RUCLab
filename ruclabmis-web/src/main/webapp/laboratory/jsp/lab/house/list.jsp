@@ -111,6 +111,9 @@
                                                 <div align="center"><span class="STYLE10">房间描述</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <div align="center"><span class="STYLE10">工作台</span></div>
+                                            </td>
+                                            <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                 <div align="center"><span class="STYLE10">详细信息</span></div>
                                             </td>
                                             <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -137,6 +140,9 @@
 
                                                 </td>
                                                 <td>${item.description}</td>
+                                                <td><a class="button" href="/laboratory/jsp/lab/desk/desklist?roomId=${item.id}">
+                                                    工作台
+                                                </a></td>
                                                 <td><a href="/laboratory/jsp/lab/house/update?id=${item.id}">
                                                     <img src="../../../../images/edit_min.gif" width="10"
                                                          height="10" border="0"/>

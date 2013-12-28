@@ -11,12 +11,12 @@
 
 
     <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
-    <link href="${pageContext.request.contextPath}/laboratory/jsp/curriculum/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
         function save(){
-            document.mainForm.action="addAnnouncement";
+            document.mainForm.action="/laboratory/jsp/announcement/remind/equipment/addAnnouncement";
             document.mainForm.submit();
         }
     </script>
@@ -61,7 +61,7 @@
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
             <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
-            <td class="op_nor" onclick="javascript:location.href='message'">短消息</td>
+            <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_act" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
         </tr>
