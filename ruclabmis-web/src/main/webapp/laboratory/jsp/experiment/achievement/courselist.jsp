@@ -13,6 +13,9 @@
         function score(vcid){
             window.location.href = "/experiment/virtual/classStudentScore?vcId="+vcid+"&page=1&view=achievement";
         }
+        function queryscore(cid,stuId){
+            window.location.href = "/experiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
+        }
     </script>
 
 </head>
@@ -103,7 +106,7 @@
 
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">成绩评定</span></div>
+                                                        <div align="center"><span class="STYLE10">成绩</span></div>
                                                     </td>
 
 
@@ -115,10 +118,21 @@
                                                         <td>${item.curriculumName}</td>
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
-                                                        <td>
-                                                            <input type="button" onClick="score(${item.id});"
-                                                                   class="button" value="评定成绩"/>
-                                                        </td>
+
+                                                            <td>
+                                                                <shiro:hasRole name="teacher">
+                                                                <input type="button" onClick="score(${item.id});"
+                                                                       class="button" value="评定成绩"/>
+                                                                </shiro:hasRole>
+                                                                <shiro:hasRole name="student">
+                                                                <input type="button" onClick="queryscore('${item.id}','${userId}');"
+                                                                       class="button" value="查询成绩"/>
+                                                                </shiro:hasRole>
+                                                            </td>
+
+
+
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

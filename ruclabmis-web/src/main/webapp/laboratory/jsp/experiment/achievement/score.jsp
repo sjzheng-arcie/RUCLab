@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <html>
 <head>
@@ -124,7 +125,6 @@
                                 </div>
                             </td>
                         </tr>
-                        <%@ include file="../../common/pagetable.jsp" %>
                     </table>
                 </td>
             </tr>
@@ -198,11 +198,15 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
+                             <shiro:hasAnyRoles name="admnistrators,teacher">
                                 <input type="button" name="Submit" value="保存" class="button" onclick="save(${classStudent.id},
                                 ${classStudent.classId});"/>
                                 <input type="reset" name="reset" value="重置" class="button" onclick="reset();"/>
+                             </shiro:hasAnyRoles>
+                                <shiro:hasRole name="student">
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
+                                </shiro:hasRole>
                             </td>
                         </tr>
                     </table>

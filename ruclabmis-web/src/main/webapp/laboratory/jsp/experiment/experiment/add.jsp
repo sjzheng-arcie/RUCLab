@@ -10,9 +10,9 @@
     }
     function addtopaper() {
         document.mainForm.action = "jsp/experiment/experiment/addtopaper";
-        document.mainForm.submit();
+        document.mainForm.submit()
+    var error = "${error}";;
     }
-    var error = "${error}";
     if(error.length>0){
         alert(error);
     }

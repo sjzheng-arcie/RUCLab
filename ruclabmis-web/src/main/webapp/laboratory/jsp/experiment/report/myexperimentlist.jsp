@@ -8,6 +8,7 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
+    <script type="text/javascript" src="../../../../js/ajaxfileupload.js"></script>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
     <%@page language="java"  import="java.util.Date"%>
     <title></title>
@@ -47,10 +48,38 @@
                 window.location.href="studentExpDetail?page=1&eid="+eid;
             }
         }
-        function geCurrentTime(){
-            var currentdate = new Date();
-            return currentdate;
+        function insertReportToDb(cid){
+            if(cid!=null){
+                var reportpath = document.getElementById("uploadmyreport").value;
+                alert(reportpath);
+                window.location.href="studentUploadExpDetail?eid="+cid+"&path="+reportpath;
+            }
         }
+        function uploadFile(cid,curriculumClassId,curriculumId){
+            var file = document.getElementById("file").value;
+            if (!file) {
+                alert("请选择要上传的附件!");
+                return;
+            }
+
+            $.ajaxFileUpload({
+                //处理文件上传操作的服务器端地址(可以传参数,已亲测可用)
+                url:'${pageContext.request.contextPath}/fileUploadControllerReturnPath/fileUpload',
+                secureuri:false,                       //是否启用安全提交,默认为false
+                fileElementId:'file',           //文件选择框的id属性
+                dataType:'text',                   //服务器返回的格式,可以是json或xml等
+                success:function(data){        //服务器响应成功时的处理函数
+                  //  $("#documentName").val($("#file").val());
+                    window.location.href="studentUploadExpDetail?eid="+cid+"&filename="+data+"&curriculumClassId="+curriculumClassId
+                                +"&curriculumId="+curriculumId;
+
+                },
+                error:function(data, status, e){ //服务器响应失败时的处理函数
+                    alert('文件上传失败:'+e);
+                }
+            });
+        }
+
     </script>
 
 </head>
@@ -83,7 +112,7 @@
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">
-
+                            <input name="curriculumClassId" id="curriculumClassId" type="hidden" value = "${curriculumClassId}">
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -190,8 +219,15 @@
                                               <td>
                                                   <c:set var="nowDate" value="<%=new Date()%>"></c:set>
                                                   <c:choose>
-                                                    <c:when test="${item.reportDeadline>nowDate}">
-                                                          <input type="file" id="file" name="file" onclick="" value="上传报告"/></c:when>
+                                                    <c:when test="${item.reportDeadline>nowDate&&item.needReport}">
+                                                        <input type="button" name="btnInsert" value="上传" onclick="uploadFile('${item.id}','${curriculumClassId}','${item.curriculumId}');"/>
+
+                                                          <input type="file" id="file" name="file" onclick="" />
+
+                                                    </c:when >
+                                                      <c:when test="${!item.needReport}">
+                                                          --
+                                                      </c:when >
                                                       <c:otherwise>超过截止时间</c:otherwise>
                                                   </c:choose>
 

@@ -72,11 +72,12 @@ public class ExperimentInfoController {
         else
             pageInfo = classService.getPageClassbyPageNum(page, id, Types.Role.TEACHER);
         mv.addObject("pageInfo", pageInfo);
+		mv.addObject("userId",id);
         return mv;
     }
 
     @RequestMapping(value = "/myexperimentlist", method = {RequestMethod.GET, RequestMethod.POST})
-    public ModelAndView experimentList(@RequestParam int page, Integer cid, String view) {
+    public ModelAndView experimentList(@RequestParam int page, Integer cid, String view,@RequestParam(required = false) String curriculumClassId) {
         ModelAndView mv = null;
         if (view == null) {
             mv = new ModelAndView("laboratory/jsp/experiment/experiment/myexperimentlist");
@@ -86,6 +87,8 @@ public class ExperimentInfoController {
         PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("cid", cid);
+		if(curriculumClassId!=null)
+			mv.addObject("curriculumClassId",curriculumClassId);
         return mv;
     }
     @RequestMapping(value = "/studentClassExpList", method = {RequestMethod.GET, RequestMethod.POST})
@@ -223,9 +226,18 @@ public class ExperimentInfoController {
         return mv;
     }
 	@RequestMapping(value = "/studentUploadExpDetail")
-	public ModelAndView uploadExperimentDetail(){
-		ModelAndView view = new ModelAndView("");
-		return view;
+	public String  uploadExperimentDetail(@RequestParam int eid,@RequestParam String filename,
+										  @RequestParam int curriculumClassId, @RequestParam int curriculumId ,HttpServletRequest request){
+		Subject currentUser = SecurityUtils.getSubject();
+		int stuId = userService.getCurrentUserId();
+		String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
+		String uploadPath = request.getSession().getServletContext().getRealPath(path);
+		String fullFilePath = uploadPath + "\\" + filename;
+
+		if(currentUser.hasRole("student")){
+			experimentService.addExperimentDetail(stuId,curriculumClassId,eid,fullFilePath);
+		}
+		return "redirect:/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid="+curriculumId+"&view=report&curriculumClassId="+curriculumClassId;
 	}
     @RequestMapping(value = "/studentAllExpDetail", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView listStudentAllExperimentDetail(int stuId,int page){

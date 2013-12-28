@@ -13,7 +13,8 @@
             window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
         }
         function editorInsturctor(vcid) {
-            window.location.href = "../../res/instructor/list?couseId="+vcid;
+
+            window.location.href = "/laboratory/jsp/res/instruction/list?searchCurriculum="+vcid;
         }
     </script>
 

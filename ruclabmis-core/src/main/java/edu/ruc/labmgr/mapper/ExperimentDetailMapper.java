@@ -24,6 +24,10 @@ public interface ExperimentDetailMapper {
     List<ExperimentDetail> selectByExampleWithRowbounds(ExperimentDetailCriteria example, RowBounds rowBounds);
 
     List<Map<String,?>> selectStudentExperimentsWithRowbound(@Param("eid") Integer eid,RowBounds rowBounds);
+	List<Map<String,?>> selectExperimentDetailByStuId(@Param("eid")Integer eid,@Param("stuId")Integer stuId);
+
+
+//	List<Map<String,?>> selectStudentExperimentsWithRowbound(@Param("eid") Integer eid,RowBounds rowBounds);
 
     List<ExperimentDetail> selectByExample(ExperimentDetailCriteria example);
 

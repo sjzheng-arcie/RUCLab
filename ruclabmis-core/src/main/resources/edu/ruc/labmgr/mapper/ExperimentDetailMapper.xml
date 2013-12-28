@@ -232,4 +232,9 @@
       select count(ed.id) from  experiment_detail ed, user u,class_student cs
       where ed.class_student_id = cs.id and cs.student_id = u.id and ed.experiment_id = #{eid,jdbcType=INTEGER}
   </select>
+
+    <select id="selectExperimentDetailByStuId" resultType="map" parameterType="java.lang.Integer">
+    select ed.*,u.sn,u.name   from  experiment_detail ed, user u,class_student cs
+      where ed.class_student_id = cs.id and cs.student_id = u.id and ed.experiment_id = #{eid,jdbcType=INTEGER} and u.id= #{stuId,jdbcType=INTEGER}
+  </select>
 </mapper>

@@ -127,7 +127,7 @@
                                                         <td>${item.studentName}</td>
                                                         <td>${item.final_grade}</td>
                                                         <td><a class="button"
-                                                               href="#" onclick="score(${item.class_id},${item.student_id});">评分</a></td>
+                                                               href="#" onclick="score('${item.class_id}','${item.student_id}');">评分</a></td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

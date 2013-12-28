@@ -10,8 +10,8 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script type="text/javascript">
 
-        function viewExperiment(vcid){
-            window.location.href = "myexperimentlist?cid="+vcid+"&page=1&view=report";
+        function viewExperiment(vcid,curriculumClassId){
+            window.location.href = "myexperimentlist?cid="+vcid+"&page=1&view=report"+"&curriculumClassId="+curriculumClassId;
         }
     </script>
 
@@ -116,7 +116,7 @@
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
                                                         <td>
-                                                            <input type="button" onClick="viewExperiment(${item.curriculumId});"
+                                                            <input type="button" onClick="viewExperiment('${item.curriculumId}','${item.id}');"
                                                                    class="button" value="查看实验"/>
                                                         </td>
                                                     </tr>

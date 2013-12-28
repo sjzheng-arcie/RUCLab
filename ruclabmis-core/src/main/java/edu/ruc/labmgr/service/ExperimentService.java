@@ -1,9 +1,6 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.Experiment;
-import edu.ruc.labmgr.domain.ExperimentCriteria;
-import edu.ruc.labmgr.domain.ExperimentDetail;
-import edu.ruc.labmgr.domain.ExperimentDetailCriteria;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.ExperimentDetailMapper;
 import edu.ruc.labmgr.mapper.ExperimentMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -29,6 +26,8 @@ public class ExperimentService {
     private ExperimentMapper experimentMapper;
     @Autowired
     private ExperimentDetailMapper expDetailMapper;
+	@Autowired
+	private CurriculumClassService curriculumClassService;
 
     public Experiment getExperiment(Integer id) {
         return experimentMapper.selectByPrimaryKey(id);
@@ -38,6 +37,30 @@ public class ExperimentService {
         experimentMapper.insert(exp);
     }
 
+	public void addExperimentDetail(int studentId,int curriculumClassId,int experimentId,String path){
+
+		ClassStudent cs = curriculumClassService.getClassStudentInfo(curriculumClassId,studentId);
+		int csId = cs.getId();
+
+		List<Map<String,?>> realDetail = expDetailMapper.selectExperimentDetailByStuId(experimentId,studentId);
+		if(realDetail!=null && realDetail.size()>0){
+			Map<String,?> temp = realDetail.get(0);
+			int exDaitaiId =Integer.valueOf(temp.get("id").toString());
+			ExperimentDetail  old = new ExperimentDetail();
+			old.setId(exDaitaiId);
+			old.setReportPath(path);
+			expDetailMapper.updateByPrimaryKeySelective(old);
+
+		}else{
+			ExperimentDetail exDetail = new ExperimentDetail();
+			exDetail.setClassStudentId(csId);
+			exDetail.setExperimentId(experimentId);
+			exDetail.setReportPath(path);
+			expDetailMapper.insert(exDetail);
+		}
+
+
+	}
     public void deleteExperiment(List<Integer> ids) {
         if (ids != null) {
             for (Integer id : ids) {
@@ -116,9 +139,18 @@ public class ExperimentService {
     }
 
     public ExperimentDetail getStudentExpDetail(int eid,int stuId){
+		//TODO
         ExperimentDetailCriteria criteria = new ExperimentDetailCriteria();
         criteria.or().andExperimentIdEqualTo(eid).andClassStudentIdEqualTo(stuId);
         List<ExperimentDetail> list = expDetailMapper.selectByExample(criteria);
         return (list!=null&& list.size()>0) ? list.get(0) : null;
     }
+	public ExperimentDetail getStudentExpDetailbyStuId(int eid,int stuId){
+		//TODO
+		ExperimentDetailCriteria criteria = new ExperimentDetailCriteria();
+		criteria.or().andExperimentIdEqualTo(eid).andClassStudentIdEqualTo(stuId);
+		List<ExperimentDetail> list = expDetailMapper.selectByExample(criteria);
+		return (list!=null&& list.size()>0) ? list.get(0) : null;
+	}
+
 }

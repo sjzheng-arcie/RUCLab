@@ -84,7 +84,7 @@
 
 
                             <shiro:hasRole name="student">
-                                <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
+                                <li><a href="jsp/experiment/experiment/courselist?page=1&view=achievement" onfocus="toFocus(this)" target="main">
                                     成绩查询</a></li>
                             </shiro:hasRole>
                         </ul>
@@ -132,8 +132,6 @@
                             <shiro:hasRole name="student">
                                 <li><a href="jsp/experiment/experiment/courselist?page=1&view=report" onfocus="toFocus(this)" target="main">实验报告提交</a>
                                 </li>
-                                <li><a href="jsp/experiment/achievement/myscore" onfocus="toFocus(this)" target="main">
-                                    实验成绩查询</a></li>
                             </shiro:hasRole>
                             <shiro:hasRole name="teacher">
                                 <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
