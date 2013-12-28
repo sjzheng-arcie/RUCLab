@@ -120,7 +120,7 @@
                                 </li>
                             </shiro:hasRole>
                             <shiro:hasRole name="teacher">
-                                <li><a href="jsp/res/experimentquestion/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
+                                <li><a href="jsp/res/experimentsubject/list" onfocus="toFocus(this)" target="main">实验题库管理</a>
                                 </li>
                                 <li><a href="jsp/res/question/list" onfocus="toFocus(this)" target="main">考试题库管理</a>
                                 </li>

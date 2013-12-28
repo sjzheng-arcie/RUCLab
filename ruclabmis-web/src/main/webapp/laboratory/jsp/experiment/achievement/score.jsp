@@ -203,10 +203,10 @@
                                 ${classStudent.classId});"/>
                                 <input type="reset" name="reset" value="重置" class="button" onclick="reset();"/>
                              </shiro:hasAnyRoles>
-                                <shiro:hasRole name="student">
+                                <shiro:hasAnyRoles name="student,admnistrators,teacher">
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
-                                </shiro:hasRole>
+                                </shiro:hasAnyRoles>
                             </td>
                         </tr>
                     </table>
