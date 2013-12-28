@@ -60,8 +60,8 @@
                             <shiro:hasAnyRoles name="teacher,equipment_admin,student">
                                 <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
-                                <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
-                                       target="main">我的实验课程</a></li>
+            <%--                    <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
+                                       target="main">我的实验课程</a></li>--%>
                                 <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist" onfocus="toFocus(this)"
                                        target="main">
                                     我的预约申请</a></li>
