@@ -52,16 +52,17 @@
 
     </div>
     <ul class="top_right_menu">
-        <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher,leader" >
+        <shiro:hasRole name="leader">
+            <li id="leader_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('leader_homePage')">首页</a></li>
+        </shiro:hasRole>
+        <shiro:hasAnyRoles name="administrators,equipment_admin,student,teacher" >
             <shiro:hasRole name="student">
                 <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
             </shiro:hasRole>
             <shiro:hasRole name="teacher">
                 <li id="teacher_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('teacher_homePage')">首页</a></li>
             </shiro:hasRole>
-            <shiro:hasRole name="leader">
-                <li id="leader_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('leader_homePage')">首页</a></li>
-            </shiro:hasRole>
+
             <shiro:hasRole name="administrators">
                 <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
                 <li id="administrator_leftmenubasinfo"><a href="administrator_leftmenubasinfo" target="leftFrame"onclick="rs('administrator_leftmenubasinfo')">基础信息管理</a></li>
