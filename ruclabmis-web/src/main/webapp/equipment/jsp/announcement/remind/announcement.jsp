@@ -45,6 +45,26 @@
             color: #000000;
         }
     </style>
+    <script type="text/javascript">
+        function goPage(pageIndex, maxPage) {
+            if (pageIndex <= 0) {
+                alert("已到达首页！");
+                return;
+            }
+            if (pageIndex > maxPage) {
+                alert("已到达尾页！");
+                return;
+            }
+            var curUrl = window.location.href;
+            var flag = curUrl.indexOf('?'),
+                    pageFlag = curUrl.indexOf("page=");
+            curUrl = (flag == -1) ? (curUrl + "?page=" + pageIndex) :
+                    ((pageFlag == -1) ? (curUrl + "&page=" + pageIndex) : (curUrl.replace(/page=\d+/, 'page=' + pageIndex)));
+
+            document.forms[0].action = curUrl;
+            document.forms[0].submit();
+        }
+    </script>
 
 </head>
 <body style="background-color: #EEF2FB">

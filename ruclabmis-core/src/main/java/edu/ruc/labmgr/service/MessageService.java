@@ -163,7 +163,7 @@ public class MessageService {
 
                 content += " <a href='" + listPath + "'>查看申请</a>";
                 message.setContent(content);
-                message.setSystem(true);
+                message.setSystem(false);
                 insert(message);
             }
         }
@@ -211,7 +211,7 @@ public class MessageService {
         content += " <a href='" + listPath + "'>查看申请</a>";
 
         message.setContent(content);
-        message.setSystem(true);
+        message.setSystem(false);
         insert(message);
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.EQUIPMENT_ADMIN);
@@ -256,7 +256,7 @@ public class MessageService {
         content += " <a href='" + listPath + "'>查看申请</a>";
 
         message.setContent(content);
-        message.setSystem(true);
+        message.setSystem(false);
         insert(message);
 
         List<Teacher> equpiAdmins = serviceTeacher.getRoleTeacherList(Types.Role.LEADER);

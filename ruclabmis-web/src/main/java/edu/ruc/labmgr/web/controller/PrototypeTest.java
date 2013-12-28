@@ -123,6 +123,12 @@ public class PrototypeTest {
 		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenusys");
 		return mav;
 	}
+	@RequestMapping("//administrator_leftmenuorder")
+	public ModelAndView administrator_leftmenuorder(HttpServletRequest request) {
+
+		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenuorder");
+		return mav;
+	}
 	@RequestMapping("/administrator_leftmenutask")
 	public ModelAndView admin_Leftmenutask(HttpServletRequest request) {
 
@@ -168,6 +174,39 @@ public class PrototypeTest {
 
         return mav;
     }
+	@RequestMapping("/leader_welcome")
+	public ModelAndView showLeaderWelcome(HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView("/laboratory/leader_welcome");
+		int currentUserId = userService.getCurrentUserId();
+
+		//获取当前用户的申请列表
+		ApplicationFormCriteria applicationFormCriteria = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria=applicationFormCriteria.createCriteria();
+		criteria.andApplicantIdEqualTo(currentUserId);
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> myApplyList = applicationFormService.selectListByState( applicationFormCriteria);
+		mav.addObject("myApplyList",myApplyList );
+		//获取当前用户需要进行审批的申请列表
+		ApplicationFormCriteria applicationFormCriteria02 = new ApplicationFormCriteria();
+		ApplicationFormCriteria.Criteria criteria02=applicationFormCriteria02.createCriteria();
+		criteria02.andApproverIdEqualTo(currentUserId);
+		applicationFormCriteria.or(criteria);
+		List<ApplicationForm> pendingApplyList = applicationFormService.selectListByState(applicationFormCriteria02);
+		mav.addObject("pendingApplyList", pendingApplyList );
+
+		//获取通知列表
+		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
+		announcementCriteria.setOrderByClause("publish_time desc");
+		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+		mav.addObject("announcementList",announcementList );
+		//获取消息列表
+		MessageCriteria messageCriteria = new MessageCriteria();
+		messageCriteria.setOrderByClause("sendtime desc");
+		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
+		mav.addObject("messageList",messageList);
+
+		return mav;
+	}
     @RequestMapping("/teacher_welcome")
     public ModelAndView showTeacherWelcome(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/laboratory/teacher_welcome");
@@ -194,7 +233,7 @@ public class PrototypeTest {
         return mav;
     }
     @RequestMapping("/student_welcome")
-    public ModelAndView showLeaderWelcome(HttpServletRequest request) {
+    public ModelAndView showStudentWelcome(HttpServletRequest request) {
         ModelAndView mav = new ModelAndView("/laboratory/student_welcome");
 
         int currentUserId = userService.getCurrentUserId();
@@ -297,21 +336,6 @@ public class PrototypeTest {
     }
 
 
-
-
-    @RequestMapping("jsp/experiment/achievement/myscore")
-    public ModelAndView myScore(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/myscore");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/report/uploadreport")
-    public ModelAndView myCourseList(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/uploadreport");
-        return mav;
-    }
-
     @RequestMapping("jsp/experiment/experiment/myexperimentlist")
     public ModelAndView myExperimentList(HttpServletRequest request) {
 
@@ -326,227 +350,9 @@ public class PrototypeTest {
 
     }
 
-    @RequestMapping("jsp/experiment/report/courselist")
-    public ModelAndView courseListOfReport(HttpServletRequest request) {
 
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/courselist");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/experiment/courselist")
-    public ModelAndView courseListForExperiment(HttpServletRequest request) {
 
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/experiment/courselist");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/report/list")
-    public ModelAndView reportList(HttpServletRequest request) {
 
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/list");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/report/experimentlist")
-    public ModelAndView markReport(HttpServletRequest request) {
 
-        ModelAndView mav = new ModelAndView("laboratory/jsp/experiment/report/experimentlist");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/report/maintain")
-    public ModelAndView maintain(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/maintain");
-        return mav;
-    }
-
-    @RequestMapping("jsp/experiment/report/studentlist")
-    public ModelAndView markStudentList(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/report/studentlist");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/achievement/scorelist")
-    public ModelAndView scoreList(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/scorelist");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/achievement/score")
-    public ModelAndView achievementScore(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/score");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/achievement/courselist")
-    public ModelAndView achievementCourseList() {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/courselist");
-        return mav;
-    }
-    @RequestMapping("jsp/experiment/achievement/toscore")
-    public ModelAndView toAchievementCourseList(HttpServletRequest request) {
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/experiment/achievement/score");
-        return mav;
-    }
-
-	@RequestMapping("jsp/bas/teachingmaterial/list")
-	public ModelAndView teachingMaterialList(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/teachingmaterial/list");
-		return mav;
-	}
-	@RequestMapping("new/left")
-	public ModelAndView newLeft(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/new/left");
-		return mav;
-	}
-	@RequestMapping("new/index")
-	public ModelAndView newIndex(HttpServletRequest request) {
-
-		ModelAndView mav = new ModelAndView("/laboratory/new/index");
-		return mav;
-	}
-
-	@RequestMapping("jsp/curriculum/experiment/curriculum/mycurriculumschedule")
-	public ModelAndView myCurriculumSchedule() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/mycurriculumschedule");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/listdeviceapply")
-	public ModelAndView listDeviceApply() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/listdeviceapply");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculumclasslist")
-	public ModelAndView curriculumClassList() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/curriculumclasslist");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/curriculumview")
-	public ModelAndView curriculumViewView() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/curriculumview");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/setcurriculum")
-	public ModelAndView setcurriculum() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/setcurriculum");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/createcurriculum")
-	public ModelAndView createCurriculum() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/createcurriculum");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/importcurriculum")
-	public ModelAndView importCurriculum() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/importcurriculum");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/addlession")
-	public ModelAndView addLession() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/addlession");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/toaddlession")
-	public ModelAndView toAddLession() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/toaddlession");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/experiment/curriculum/setlab")
-	public ModelAndView setLab() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/setlab");
-		return mav;
-	}
-	@RequestMapping("/administrator_leftmenuorder")
-	public ModelAndView leftMenuOrder() {
-		ModelAndView mav = new ModelAndView("/laboratory/administrator_leftmenuorder");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentbaseinfo")
-	public ModelAndView appointmentBaseInfo() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentbaseinfo");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentdate")
-	public ModelAndView appointmentDate() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentdate");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentdatecontent")
-	public ModelAndView appointmentDateContent() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentdatecontent");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/appointmentinfosubmit")
-	public ModelAndView appointmentInfoSubmit() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/appointmentinfosubmit");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/deviceapply")
-	public ModelAndView deviceApply() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/deviceapply");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/laboratoryapply")
-	public ModelAndView laboratoryApply() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/laboratoryapply");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/benchappointment")
-	public ModelAndView benchAppointment() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/benchappointment");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/benchappointmentcontent")
-	public ModelAndView benchAppointmentContent() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/benchappointmentcontent");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/laboratory/mydatelist")
-	public ModelAndView myDateList() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/laboratory/mydatelist");
-		return mav;
-	}
-
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentdate")
-	public ModelAndView meetingRoomAppointmentDate() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentdate");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentdatecontent")
-	public ModelAndView meetingRoomAppointmentDateContent() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentdatecontent");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentinfocommit")
-	public ModelAndView appointmentInfoCommit() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentinfocommit");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/deviceapply")
-	public ModelAndView meetingRoomDeviceApply() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/deviceapply");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/meetingroomappointment")
-	public ModelAndView meetingRoomAppointment() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/meetingroomappointment");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/meetingroomapply")
-	public ModelAndView meetingRoomApply() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/meetingroomapply");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/meetingroomappointmentbaseinfo")
-	public ModelAndView meetingRoomAppointmentBaseInfo() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/meetingroomappointmentbaseinfo");
-		return mav;
-	}
-	@RequestMapping("jsp/curriculum/appointment/meetingroom/appointmentbaseinfo")
-	public ModelAndView meetingAppointmentBaseInfo() {
-		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/appointment/meetingroom/appointmentbaseinfo");
-		return mav;
-	}
 
 }

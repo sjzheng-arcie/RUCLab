@@ -71,4 +71,7 @@ public class UserService {
 			return "";
 		return user.getSn();
 	}
+	public List<User> getAllUserList(){
+		return mapperUser.selectByCriteria(null);
+	}
 }

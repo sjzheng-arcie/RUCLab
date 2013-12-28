@@ -2,10 +2,7 @@ package edu.ruc.labmgr.web.controller;
 
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
-import edu.ruc.labmgr.service.AnnouncementService;
-import edu.ruc.labmgr.service.MessageService;
-import edu.ruc.labmgr.service.StudentService;
-import edu.ruc.labmgr.service.TeacherService;
+import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,7 +24,7 @@ public class MessageCenterController {
     @Autowired
     MessageService messageService;
     @Autowired
-    private TeacherService userService;
+    private UserService userService;
 
     private int currPage = 0;
 
@@ -106,10 +103,10 @@ public class MessageCenterController {
     @RequestMapping("/jsp/announcement/remind/{system}/replyMessage")
     public ModelAndView replyMessage(@PathVariable String system,HttpServletRequest request) {
         String replySn = request.getParameter("replyFlag");
-		List<Teacher> teacherList = userService.getAllTeacherList();
+		List<User> userList = userService.getAllUserList();
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessage");
         mav.addObject("replySn", replySn);
-		mav.addObject("teacherList", teacherList);
+		mav.addObject("teacherList", userList);
         return mav;
     }
     @RequestMapping("/jsp/announcement/remind/{system}/mysendmessage")
@@ -167,8 +164,8 @@ public class MessageCenterController {
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/sendmessage");
         if (replySn != null && replySn != "")
             mav.addObject("replySn", replySn);
-        List<Teacher> teacherList = userService.getAllTeacherList();
-        mav.addObject("teacherList", teacherList);
+        List<User> userList = userService.getAllUserList();
+        mav.addObject("teacherList", userList);
         return mav;
     }
 

@@ -44,34 +44,20 @@
                         </table>
                         <ul class="MM">
 
-                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/message" onfocus="toFocus(this)"
+                            <li><a href="/laboratory/jsp/announcement/remind/laboratory/message?page=1" onfocus="toFocus(this)"
                                    target="main">我的短消息</a>
                             </li>
-                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/announcement" onfocus="toFocus(this)"
+                            <li><a href="/laboratory/jsp/announcement/remind/laboratory/announcement" onfocus="toFocus(this)"
                                    target="main">我的通知</a>
                             </li>
-                            <shiro:hasAnyRoles name="teacher,equipment_admin,student">
-                                <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
-                                       onfocus="toFocus(this)" target="main">我的课程表</a></li>
-                                <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist" onfocus="toFocus(this)"
-                                       target="main">
-                                    我的预约申请</a></li>
-                            </shiro:hasAnyRoles>
-                            <shiro:hasAnyRoles name="leader">
-
+                            <shiro:hasAnyRoles name="leader,teacher,equipment_admin,administrators">
                                 <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
                                 </li>
-
                                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
-
                             </shiro:hasAnyRoles>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,administrators">
-                                <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务管理</a>
-                                </li>
                                 <li><a href="jsp/task/taskscore/taskscorelist" onfocus="toFocus(this)" target="main">任务评分</a>
-                                </li>
-                                <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
                             </shiro:hasAnyRoles>
                             <shiro:hasAnyRoles name="teacher,equipment_admin,student">
@@ -79,10 +65,10 @@
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
                                 <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
                                        target="main">我的实验课程</a></li>
-
+                                <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist" onfocus="toFocus(this)"
+                                       target="main">
+                                    我的预约申请</a></li>
                             </shiro:hasAnyRoles>
-
-
                             <shiro:hasRole name="student">
                                 <li><a href="jsp/experiment/experiment/courselist?page=1&view=achievement" onfocus="toFocus(this)" target="main">
                                     成绩查询</a></li>
@@ -155,7 +141,7 @@
                         </table>
                         <ul class="MM">
 
-                            <li><a href="/messagecenter/laboratory/jsp/announcement/remind/addannouncementTab?id=1" onfocus="toFocus(this)"
+                            <li><a href="/laboratory/jsp/announcement/remind/laboratory/toaddannouncement" onfocus="toFocus(this)"
                                    target="main">发布公告</a>
                             </li>
                             <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>

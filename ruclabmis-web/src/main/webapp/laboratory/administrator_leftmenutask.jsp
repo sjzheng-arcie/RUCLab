@@ -47,9 +47,11 @@
                     <ul class="MM">
                         <li><a href="jsp/task/task/teacherlist" onfocus="toFocus(this)" target="main">任务管理</a>
                         </li>
-                        <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务管理</a>
-                        </li>
                         <li><a href="jsp/task/work/allworklist" onfocus="toFocus(this)" target="main">工作报告管理</a>
+                        </li>
+                        <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+                        </li>
+                        <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                         </li>
                     </ul>
                 </div>

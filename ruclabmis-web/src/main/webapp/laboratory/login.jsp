@@ -113,7 +113,7 @@
                                                            height="143" id="table212">
                                                         <tr>
                                                             <td width="13%" height="38" class="top_hui_text"><span
-                                                                    class="login_txt">管理员：&nbsp;&nbsp; </span></td>
+                                                                    class="login_txt">用 &nbsp; 户： </span></td>
                                                             <td height="38" colspan="2" class="top_hui_text"><input
                                                                     name="username" class="editbox4"
                                                                     value="${preUserName}" size="20">
@@ -122,7 +122,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td width="13%" height="35" class="top_hui_text"><span
-                                                                    class="login_txt"> 密 码： &nbsp;&nbsp; </span></td>
+                                                                    class="login_txt">密 &nbsp; 码：  </span></td>
                                                             <td height="35" colspan="2" class="top_hui_text"><input
                                                                     class="editbox4" type="password" size="20"
                                                                     name="password">

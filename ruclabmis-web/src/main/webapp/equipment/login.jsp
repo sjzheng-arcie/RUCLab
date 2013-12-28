@@ -114,7 +114,7 @@
                                                                     <tr>
                                                                         <td width="13%" height="38"
                                                                             class="top_hui_text"><span
-                                                                                class="login_txt">管理员：&nbsp;&nbsp; </span>
+                                                                                class="login_txt">用 户：&nbsp;&nbsp; </span>
                                                                         </td>
                                                                         <td height="38" colspan="2"
                                                                             class="top_hui_text"><input name="username"
