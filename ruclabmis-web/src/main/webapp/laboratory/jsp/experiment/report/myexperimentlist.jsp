@@ -67,10 +67,12 @@
                 url:'${pageContext.request.contextPath}/fileUploadControllerReturnPath/fileUpload',
                 secureuri:false,                       //是否启用安全提交,默认为false
                 fileElementId:'file',           //文件选择框的id属性
-                dataType:'text',                   //服务器返回的格式,可以是json或xml等
-                success:function(data){        //服务器响应成功时的处理函数
+                dataType:'json',                   //服务器返回的格式,可以是json或xml等
+               success:function(data){        //服务器响应成功时的处理函数
                   //  $("#documentName").val($("#file").val());
-                    window.location.href="studentUploadExpDetail?eid="+cid+"&filename="+data+"&curriculumClassId="+curriculumClassId
+                   alert(data.message);
+                   $("#documentName").val(data.message);
+                    window.location.href="studentUploadExpDetail?eid="+cid+"&filename="+data.message+"&curriculumClassId="+curriculumClassId
                                 +"&curriculumId="+curriculumId;
 
                 },
@@ -138,6 +140,7 @@
                                                                 </table>
                                                             </td>
                                                             <td>
+                                                                <shiro:hasAnyRoles name="administrator,teacher">
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
                                                                     <a href="#" onclick="toMaintain();"><img
@@ -148,7 +151,7 @@
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;
-
+                                                                            </shiro:hasAnyRoles>
                                                                 </span>
                                                                 </div>
                                                             </td>
@@ -184,6 +187,12 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告提交期限</span></div>
                                                     </td>
+                                                    <shiro:hasRole name="student">
+
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验报告名称</span></div>
+                                                    </td>
+                                                    </shiro:hasRole>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
@@ -207,6 +216,12 @@
                                                         </c:choose></td>
                                                         <td><fmt:formatDate value="${item.reportDeadline}"
                                                                             pattern="yyyy-MM-dd"></fmt:formatDate></td>
+
+                                                        <shiro:hasRole name="student">
+                                                            <td><input id="documentName" name="documentName" readonly="true"
+                                                                       value=""/></td>
+                                                        </shiro:hasRole>
+
                                          <shiro:hasAnyRoles name="adminstrators,teacher">
                                                         <td><a href="#" onclick="viewReport(${item.id},${item.needReport});">
                                                             <c:choose>

@@ -10,8 +10,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.File;
 import java.io.IOException;
+import java.net.URL;
+import java.net.URLEncoder;
 
 @Controller
 @RequestMapping("/fileUploadControllerReturnPath")
@@ -19,10 +22,10 @@ public class FileUploadControllerReturnPath {
     @Autowired
     UserService userService;
 
-    @RequestMapping(value="/fileUpload")
+    @RequestMapping(value="/fileUpload",produces = ("application/json"))
     public @ResponseBody
-    String fileUpload( @RequestParam MultipartFile file,
-                      HttpServletRequest request) throws IOException {
+    Result fileUpload( @RequestParam MultipartFile file,
+                      HttpServletRequest request,HttpServletResponse response) throws IOException {
         Result result = null;
 
         String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
@@ -41,6 +44,8 @@ public class FileUploadControllerReturnPath {
             result = new Result(false, "文件上传失败!");
 
         }
-        return file.getOriginalFilename();
+		result = new Result(true,file.getOriginalFilename());
+
+		return result;
     }
 }
