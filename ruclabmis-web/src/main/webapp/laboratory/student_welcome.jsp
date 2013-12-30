@@ -53,7 +53,7 @@
             </div>
         </div>
         <div class="indexNotice">
-            <h3><a href="/laboratory/jsp/announcement/remind/laboratory/message" target="">更多>></a><span>系统公告</span></h3>
+            <h3><a href="/laboratory/jsp/announcement/remind/laboratory/message?page=1" target="">更多>></a><span>消息通知</span></h3>
 
             <div class="indexNoticeCon">
                 <ul>

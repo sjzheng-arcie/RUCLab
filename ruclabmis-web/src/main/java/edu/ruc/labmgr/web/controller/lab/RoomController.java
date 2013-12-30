@@ -41,7 +41,6 @@ public class RoomController {
 		if(roomTypeNum==1){
 			criteria.andTypeEqualTo(true);
 		}
-
 		PageInfo<Room> pageInfo =roomService.selectListPage(roomCriteria,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/house/list");
 		modelAndView.addObject("pageInfo",pageInfo);

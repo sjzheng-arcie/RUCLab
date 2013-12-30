@@ -64,6 +64,19 @@ public class AnnouncementService {
         return result;
     }
 
+	public int update(Announcement announcement) {
+		int result = 0;
+		try {
+			result = mapperAnnouncement.updateByPrimaryKey(announcement);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+	public void deleteAnnouncementById(int id){
+		mapperAnnouncement.deleteByPrimaryKey(id);
+	}
+
     public Announcement getAnnouncementById(int announcementId) {
         Announcement announcement = new Announcement();
         try {

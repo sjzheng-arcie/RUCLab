@@ -105,7 +105,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td align="center">
-                                    <a  class="button" href="/laboratory/jsp/lab/lab/roomlist?page=0" name="return"  class="button">返回</a>
+                                    <a  class="button" href="/laboratory/jsp/lab/house/list?page=${houseListPage}&roomId=${roomInfo.id}" name="return"  class="button">返回</a>
                                 </td>
                             </tr>
                         </table>

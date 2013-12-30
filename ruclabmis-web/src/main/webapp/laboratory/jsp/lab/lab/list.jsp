@@ -123,7 +123,7 @@
                             </td>
                             <td height="20">${item.name}</td>
                             <td>${item.director.name}</td>
-                            <td><a href="/laboratory/jsp/lab/lab/roomlist?id=${item.id}"  class="button">实验房间</a></td>
+                            <td><a href="/laboratory/jsp/lab/lab/roomlist?id=${item.id}&laboratoryListPage=${pageInfo.currentPage}"  class="button">实验房间</a></td>
                             <td>${item.description}</td>
                             <td><a href="/laboratory/jsp/lab/lab/update?id=${item.id}">
                                 <img src="../../../../images/edit_min.gif" width="10"

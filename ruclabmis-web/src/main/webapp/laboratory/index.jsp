@@ -23,6 +23,10 @@
             <frame src="teacher_welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
                    target="_self"/>
         </shiro:hasRole>
+        <shiro:hasRole name="equipment_admin">
+            <frame src="teacher_welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
+                   target="_self"/>
+        </shiro:hasRole>
         <shiro:hasRole name="student">
             <frame src="student_welcome" name="main" marginwidth="0" marginheight="0" frameborder="0" scrolling="auto"
                    target="_self"/>

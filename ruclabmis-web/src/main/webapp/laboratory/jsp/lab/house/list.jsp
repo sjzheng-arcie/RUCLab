@@ -140,7 +140,7 @@
 
                                                 </td>
                                                 <td>${item.description}</td>
-                                                <td><a class="button" href="/laboratory/jsp/lab/desk/desklist?roomId=${item.id}">
+                                                <td><a class="button" href="/laboratory/jsp/lab/desk/desklist?roomId=${item.id}&houseListPage=${pageInfo.currentPage}">
                                                     工作台
                                                 </a></td>
                                                 <td><a href="/laboratory/jsp/lab/house/update?id=${item.id}">

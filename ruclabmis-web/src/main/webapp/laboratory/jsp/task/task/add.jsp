@@ -26,11 +26,12 @@
 
             $.ajaxFileUpload({
                 //处理文件上传操作的服务器端地址(可以传参数,已亲测可用)
-                url:'/laboratory/jsp/task/task/fileUpload',
-                fileElementId:'file',           //文件选择框的id属性
-                dataType:'text',                       //服务器返回的格式,可以是json或xml等
+                url:'${pageContext.request.contextPath}/fileUploadControllerReturnPath/fileUpload',
+                secureuri:false,                       //是否启用安全提交,默认为false
+                fileElementId:'file',                   //文件选择框的id属性
+                dataType:'json',                       //服务器返回的格式,可以是json或xml等
                 success:function(data, status){        //服务器响应成功时的处理函数
-                    $("#documentName").val(data);
+                    $("#documentName").val(data.message);
                   //  $("#documentName").val(""+file.substr(file.lastIndexOf("\\")+1,file.length));
                 },
                 error:function(data, status, e){ //服务器响应失败时的处理函数
@@ -157,7 +158,7 @@
                                                 <td nowrap align="right">上传附件:</td>
                                                 <td colspan="3">
                                                     <input type="text" id="documentName" name="documentName" readonly="true"/>
-                                                    <input style="width:30%" type="file" name="file" id="file" class="bottom" value="浏览"/>
+                                                    <input style="width:30%" type="file" name="file" id="file" class="" value="浏览"/>
                                                     <input type="button" value="上传" class="bottom" onclick="return uploadFile();"/>
 
                                                 </td>

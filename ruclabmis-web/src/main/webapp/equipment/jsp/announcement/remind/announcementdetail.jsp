@@ -4,9 +4,9 @@
 
 <html>
 <head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
 
     </script>
@@ -37,7 +37,8 @@
                                                     <div class="message"
                                                          style="border: 1px;background: #FFFFFF ;height: 800px ;width: 95%">
                                                         <p style="height:30px">
-
+                                                         <span style="float: right"><input type="button" name="return" value="返回" class="button"
+                                                                                           onclick="window.history.go(-1);"/></span>
                                                         <p>
 
                                                         <h1 style="text-align: center;margin: 20px">${announcementDetailFlag.title}</h1>

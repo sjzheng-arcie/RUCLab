@@ -101,8 +101,9 @@ public class LaboratoryController {
 		String mdl="redirect:/laboratory/jsp/lab/lab/list";
 		return mdl;
 	}
-	@RequestMapping(value = "/roomlist", method = (RequestMethod.GET))
+	@RequestMapping(value = "/roomlist", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView roomList(@RequestParam(value = "id", required = true, defaultValue = "1") int id,
+								 @RequestParam(value = "laboratoryListPage", required = false, defaultValue = "1") int laboratoryListPage,
 								 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
 
 		Laboratory laboratory = laboratoryService.getLaboratoryById(id);
@@ -113,6 +114,7 @@ public class LaboratoryController {
 		PageInfo<LaboratoryRoomKey> pageInfo=laboratoryRoomServiceService.selectListPage(laboratoryRoomCriteria,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/lab/roomlist");
 		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("laboratoryListPage",laboratoryListPage);
 		modelAndView.addObject("laboratoryInfo",laboratory);
 		return modelAndView;
 	}
@@ -125,7 +127,9 @@ public class LaboratoryController {
 		List<Integer> list=laboratoryRoomServiceService.getAllRoomIdByLaboratoryId(laboratoryId);
 		RoomCriteria roomCriteria = new RoomCriteria();
 		RoomCriteria.Criteria criteria = roomCriteria.createCriteria();
-		criteria.andIdNotIn(list);
+		if(list!=null){
+			criteria.andIdNotIn(list);
+		}
 		criteria.andNameLike("%"+roomName+"%");
 		PageInfo<Room> pageInfo = roomService.selectListPage(roomCriteria ,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/lab/addroom");
