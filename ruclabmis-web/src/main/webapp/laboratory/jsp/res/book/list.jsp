@@ -168,8 +168,10 @@
                                                             <c:if test="${item.downloadLimit}">班级内部</c:if>
                                                         </td>
                                                         <td>
+                                                            <shiro:hasAnyRoles name="administrator,teacher">
                                                             <input type="button" onClick="editItem(${item.id})"
                                                                    class="button" value="编辑"/>
+                                                            </shiro:hasAnyRoles>
                                                             <input type="button" onClick="downloadFile(${item.id})"
                                                                    class="button" value="下载"/>
                                                         </td>

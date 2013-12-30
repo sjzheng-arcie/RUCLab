@@ -27,7 +27,7 @@
 </DIV>
 <form name="listForm" method="post">
 <DIV>
-    <%@ include file="../jsp/common/toppagetable.jsp" %>
+    <%@ include file="../jsp/common/pagetable.jsp" %>
     <DIV class="t">
         <INPUT type="hidden" name="courseId" value="${courseId}}"/>
         <TABLE cellSpacing="0" cellPadding="0" width="100%">
@@ -56,7 +56,7 @@
             </c:forEach>
         </TABLE>
     </DIV>
-    <%@ include file="../jsp/common/toppagetable.jsp" %>
+    <%@ include file="../jsp/common/pagetable.jsp" %>
 </DIV>
 </form>
 </BODY>
