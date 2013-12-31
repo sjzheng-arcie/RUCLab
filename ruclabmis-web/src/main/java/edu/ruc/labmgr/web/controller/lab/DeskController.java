@@ -111,8 +111,9 @@ public class DeskController {
 		String mdl="redirect:/laboratory/jsp/lab/desk/desklist?roomId";
 		return mdl;
 	}
-	@RequestMapping(value = "/desklist", method = (RequestMethod.GET))
+	@RequestMapping(value = "/desklist", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView roomList(@RequestParam(value = "roomId", required = true, defaultValue = "1") int roomId,
+								 @RequestParam(value = "houseListPage", required = false, defaultValue = "1") int houseListPage,
 								 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
 
 		Room room= roomService.getRoomById(roomId);
@@ -125,9 +126,10 @@ public class DeskController {
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/lab/desk/desklist");
 		modelAndView.addObject("pageInfo",pageInfo);
 		modelAndView.addObject("roomInfo",room);
+		modelAndView.addObject("houseListPage",houseListPage);
 		return modelAndView;
 	}
-	@RequestMapping(value = "/checkdesklist", method = (RequestMethod.GET))
+	@RequestMapping(value = "/checkdesklist", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView checkdesklist(@RequestParam(value = "roomId", required = true, defaultValue = "1") int roomId,
 								 @RequestParam(value = "laboratoryId", required = true, defaultValue = "1") int laboratoryId,
 								 @RequestParam(value = "page", required = false, defaultValue = "1") int page){

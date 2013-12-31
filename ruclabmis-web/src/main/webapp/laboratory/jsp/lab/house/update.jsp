@@ -112,9 +112,7 @@
                                             <tr>
                                                 <td nowrap align="right">描述：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="roomDescription" id="roomDescription"style="width:70%;height:100">
-                                                        ${roomInfo.description}
-                                                    </textarea>
+                                                    <textarea name="roomDescription" id="roomDescription"style="width:70%;height:100">${roomInfo.description}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

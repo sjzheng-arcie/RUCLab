@@ -44,9 +44,9 @@
     <div class="top_left"><img src="../images/logo_lab.gif" width="305" height="103"></div>
     <div class="top_right_top">
            <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
-            <a style="color: #ffffff" href="/laboratory/jsp/announcement/remind/laboratory/message?page=1" target="">短消息(${unreadCount})</a>
+            <a style="color: #ffffff" href="/laboratory/jsp/announcement/remind/laboratory/message?page=1" target="main">短消息(${unreadCount})</a>
             <a style="color: #ffffff" href="jsp/sys/user/password.jsp" target="">修改密码</a>
-            [<a  style="color: #ffffff" href="/login/laboratory/logout" target="_top">退出</a>]
+            [<a style="color: #ffffff" href="/login/laboratory/logout" target="_top">退出</a>]
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
             </span>
 
@@ -59,7 +59,7 @@
             <shiro:hasRole name="student">
                 <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
             </shiro:hasRole>
-            <shiro:hasRole name="teacher">
+            <shiro:hasRole name="teacher,equipment_admin">
                 <li id="teacher_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('teacher_homePage')">首页</a></li>
             </shiro:hasRole>
 
@@ -86,7 +86,7 @@
                 rs('student_homePage');
             </script>
         </shiro:hasRole>
-        <shiro:hasRole name="teacher">
+        <shiro:hasRole name="teacher,equipment_admin">
             <script>
                 rs('teacher_homePage');
             </script>

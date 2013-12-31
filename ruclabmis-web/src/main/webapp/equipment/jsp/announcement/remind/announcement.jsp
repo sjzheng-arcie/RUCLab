@@ -113,9 +113,15 @@
                                                                             ${item.title}
                                                                     </a>
                                                                 </span>
-                                                                <span style="float:right">
-                                                                    <fmt:formatDate value="${item.publishTime}"></fmt:formatDate>
-                                                                </span>
+                                                               <span style="float:right">
+                                                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${item.publishTime}"></fmt:formatDate>
+                                                                    </span>
+                                                                    <shiro:hasRole name="administrators">
+                                                                    <c:if test="${currentUserInfo.id==item.publisherId}">
+                                                                    <span style="float:right"> <a class="button" href="/laboratory/jsp/announcement/remind/equipment/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
+                                                                    <span style="float:right"><a class="button" href="/laboratory/jsp/announcement/remind/equipment/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
+                                                                    </c:if>
+                                                                    </shiro:hasRole>
                                                             </div>
                                                         </c:forEach>
                                                     </div>

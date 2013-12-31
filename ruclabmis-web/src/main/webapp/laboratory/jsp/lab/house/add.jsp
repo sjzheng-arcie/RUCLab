@@ -105,8 +105,7 @@
                                             <tr>
                                                 <td nowrap align="right">描述：</td>
                                                 <td nowrap colspan="3" align="left">
-                                                    <textarea name="roomDescription"id="roomDescription" style="width:70%;height:100">
-                                                    </textarea>
+                                                    <textarea name="roomDescription"id="roomDescription" style="width:70%;height:100"></textarea>
                                                 </td>
                                             </tr>
                                         </table>

@@ -100,6 +100,9 @@ public class MessageService {
         PageInfo<Message> page = new PageInfo<>(totalCount, -1, pageNum);
         List<Message> data = messageMapper.selectByCriteriaWithRowbounds(criteria,
                 new RowBounds(page.getCurrentResult(), page.getPageSize()));
+		if(data.size()==0){
+			page.setCurrentPage(0);
+		}
         page.setData(data);
         return page;
     }

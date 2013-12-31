@@ -35,7 +35,7 @@
             window.location.reload(true);
         }
         function back(){
-            window.location.href="/laboratory/jsp/lab/lab/list"
+            window.location.href="/laboratory/jsp/lab/lab/list?page=${laboratoryListPage}";
         }
     </script>
 
@@ -225,7 +225,7 @@
                                                         </c:choose>
                                                     </td>
                                                     <td>${item.room.description}</td>
-                                                    <td><a class="button" href="/laboratory/jsp/lab/desk/checkdesklist?roomId=${item.room.id}&page=0&laboratoryId=${laboratoryInfo.id}">
+                                                    <td><a class="button" href="/laboratory/jsp/lab/desk/checkdesklist?roomId=${item.room.id}&page=1&laboratoryId=${laboratoryInfo.id}">
                                                         工作台
                                                     </a></td>
                                                     <td><a href="/laboratory/jsp/lab/lab/remove?roomId=${item.room.id}&laboratoryId=${laboratoryInfo.id}">

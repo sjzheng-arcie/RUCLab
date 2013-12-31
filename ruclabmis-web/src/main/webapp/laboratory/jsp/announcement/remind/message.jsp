@@ -86,7 +86,7 @@
 <form name="mainForm" method="post">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
+            <td class="op_nor" onclick="javascript:location.href='announcement'">通知</td>
             <td class="op_act" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>

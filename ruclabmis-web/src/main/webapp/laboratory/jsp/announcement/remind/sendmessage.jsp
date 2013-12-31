@@ -69,7 +69,7 @@
 <body  style="background-color:#EEF2FB;">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
+            <td class="op_nor" onclick="javascript:location.href='announcement'">通知</td>
             <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_act" onclick="javascript:location.href='sendmessage'">发送短消息</td>
@@ -93,20 +93,25 @@
                                                     <table style=" border:1px; width:80%;margin:auto;">
                                                         <tr>
                                                             <td align="left">
-                                                                <select id="target" name="target"
-                                                                        style="width: 252px;height: 22px"
-                                                                        data-placeholder="选择人名...">
-                                                                    <c:forEach items="${teacherList}" var="teacher">
-                                                                        <c:choose>
-                                                                            <c:when test="${replySn==teacher.sn}">
-                                                                                <option value="${teacher.id}" selected>${teacher.name}(${teacher.sn})</option>
-                                                                            </c:when>
-                                                                            <c:otherwise>
-                                                                                <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
-                                                                            </c:otherwise>
-                                                                        </c:choose>
-                                                                    </c:forEach>
-                                                                </select>
+                                                               <c:choose>
+                                                                   <c:when test="${userInfo.sn!=null}">
+                                                                       <input type="text" value="${userInfo.name}" disabled="no"/>
+                                                                       <input type="hidden"  name="target"  value="${userInfo.id}"/>
+                                                                   </c:when>
+                                                                   <c:otherwise>
+                                                                       <select id="target" name="target"
+                                                                               style="width: 252px;height: 22px"
+                                                                               data-placeholder="选择人名...">
+                                                                           <c:forEach items="${teacherList}" var="teacher">
+                                                                               <c:forEach items="${teacherList}" var="teacher">
+                                                                                   <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
+                                                                               </c:forEach>
+                                                                           </c:forEach>
+                                                                       </select>
+                                                                   </c:otherwise>
+
+                                                               </c:choose>
+
                                                             </td>
                                                         </tr>
                                                         <tr>

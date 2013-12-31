@@ -8,15 +8,16 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 
 <head>
-
-
     <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
     <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
         function save(){
-            document.mainForm.action="/laboratory/jsp/announcement/remind/equipment/addAnnouncement";
+            if (!validator(document.mainForm)) {
+                return;
+            }
+            document.mainForm.action="updateAnnouncement?announcementId=${announcementInfo.id}";
             document.mainForm.submit();
         }
     </script>
@@ -57,13 +58,11 @@
     </style>
 </head>
 <body style="background-color: #EEF2FB">
-<form name="mainForm" method="get">
+<form name="mainForm" method="post">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
-            <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
-            <td class="op_act" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
-            <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
+
+            <td class="op_act">修改通知</td>
         </tr>
     </table>
     <table width="100%"  border="0" cellpadding="0" cellspacing="0" >
@@ -78,10 +77,11 @@
                                 <tr bgcolor="#FFFFFF" >
                                     <td  align="center"  bgcolor="#FFFFFF" >
                                         <table border="0" cellpadding="2" cellspacing="1" style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
+                                            <td style="height: 20px"></td>
                                             <tr>
                                                 <td nowrap align="right"  >通知标题:</td>
                                                 <td nowrap >
-                                                    <input id="announcementTitle" name="announcementTitle" style="width:154px" maxlength="20" valid="required" errmsg="标题不能为空"/>
+                                                    <input id="announcementTitle" name="announcementTitle" value="${announcementInfo.title}" style="width:154px" maxlength="20" valid="required" errmsg="标题不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
@@ -90,7 +90,7 @@
                                                 <td nowrap align="left">
                                                     <div id="innerId">
                                                         <span>
-                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2"></textarea>
+                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">${announcementInfo.content}</textarea>
                                                         </span>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
@@ -105,8 +105,14 @@
                                             </tr>
                                             <tr>
                                                 <td></td>
-                                                <td  align="center">
+                                                <td style="text-align: center" align="center">
                                                     <input type="button" name="Submit" value="发布" class="button" onclick="save();"/>
+                                                </td>
+                                            </tr>
+                                            <tr align="center" bgcolor="#E3E9EE" style=" height: 10px;background-color: #E3E9EE">
+                                                <td align="center">
+                                                    <input type="button" name="return" value="返回" class="button"
+                                                           onclick="window.history.go(-1);"/>
                                                 </td>
                                             </tr>
                                         </table>

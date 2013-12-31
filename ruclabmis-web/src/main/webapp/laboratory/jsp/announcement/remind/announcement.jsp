@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 <html>
 <head>
@@ -82,7 +83,7 @@
 <form name="listForm" method="post">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_act" onclick="javascript:location.href='announcement'">公告</td>
+            <td class="op_act" onclick="javascript:location.href='announcement'">通知</td>
             <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
@@ -124,9 +125,16 @@
                                                                             ${item.title}
                                                                     </a>
                                                                 </span>
-                                                                <span style="float:right">
-                                                                    <fmt:formatDate value="${item.publishTime}"></fmt:formatDate>
-                                                                </span>
+                                                                    <span style="float:right">
+                                                                        <fmt:formatDate pattern="yyyy-MM-dd" value="${item.publishTime}"></fmt:formatDate>
+                                                                    </span>
+                                                                        <shiro:hasRole name="administrators">
+                                                                            <c:if test="${currentUserInfo.id==item.publisherId}">
+                                                                                <span style="float:right"> <a class="button" href="/laboratory/jsp/announcement/remind/laboratory/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
+                                                                                <span style="float:right"><a class="button" href="/laboratory/jsp/announcement/remind/laboratory/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
+                                                                            </c:if>
+                                                                        </shiro:hasRole>
+
                                                             </div>
                                                         </c:forEach>
                                                         <hr size="0"

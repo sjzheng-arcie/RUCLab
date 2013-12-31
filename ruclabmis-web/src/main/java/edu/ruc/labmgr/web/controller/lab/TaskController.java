@@ -162,7 +162,7 @@ public class TaskController {
 								@RequestParam(value = "taskContent", required = true, defaultValue = "") String taskContent,
 								@RequestParam(value = "limitDate", required = true ) Date limitDate){
 
-		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
+		String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
 		String uploadPath = request.getSession().getServletContext().getRealPath(path);
 		String fullFilePath = uploadPath + "\\" + documentName;
 

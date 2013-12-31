@@ -14,6 +14,9 @@
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
         function save(){
+            if (!validator(document.mainForm)) {
+                return;
+            }
             document.mainForm.action="addAnnouncement";
             document.mainForm.submit();
         }
@@ -58,7 +61,7 @@
 <form name="mainForm" method="post">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
+            <td class="op_nor" onclick="javascript:location.href='announcement'">通知</td>
             <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_act" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
@@ -79,7 +82,7 @@
                                             <tr>
                                                 <td nowrap align="right"  >通知标题:</td>
                                                 <td nowrap >
-                                                    <input id="title" name="title" style="width:154px" maxlength="20" />
+                                                    <input id="announcementTitle" name="announcementTitle" value="${announcementInfo.title}" style="width:154px" maxlength="20" valid="required" errmsg="标题不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
@@ -88,8 +91,7 @@
                                                 <td nowrap align="left">
                                                     <div id="innerId">
                                                         <span>
-                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">
-                                                            </textarea>
+                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">${announcementInfo.content}</textarea>
                                                         </span>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
