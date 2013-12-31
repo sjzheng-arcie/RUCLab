@@ -147,7 +147,7 @@
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.name}</td>
-                                                        <td>${item.curriculumId}</td>
+                                                        <td>${item.curriculum_name}</td>
                                                         <td>${item.purpose}</td>
                                                         <td>${item.explanation}</td>
                                                         <td>${item.documentName}</td>

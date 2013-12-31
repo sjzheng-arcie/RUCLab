@@ -11,6 +11,8 @@ import edu.ruc.labmgr.service.ExperimentSubjectService;
 import edu.ruc.labmgr.service.UserService;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import edu.ruc.labmgr.web.controller.Result;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,10 +44,16 @@ public class ExperimentInstructionsController {
     public ModelAndView pageList(@RequestParam(value = "searchCurriculum", required = false) Integer searchCurriculum,
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("laboratory/jsp/res/instruction/list");
-        PageInfo<ExperimentInstructions> pageInfo = experimentInstructionsService.selectListPage(searchCurriculum, page);
+		List<Curriculum> curriculumList =null;
+		Subject currentUser = SecurityUtils.getSubject();
+		if (currentUser.hasRole("teacher")){
+			curriculumList =curriculumService.getCurriculum(null,userService.getCurrentUserId(),true);
+		}else{
+			curriculumList=curriculumService.getCurriculum(null,userService.getCurrentUserId(),false);
+		}
+        PageInfo<ExperimentInstructions> pageInfo = experimentInstructionsService.selectListPage(searchCurriculum, page,curriculumList);
         mav.addObject("pageInfo", pageInfo);
 
-        List<Curriculum> curriculumList = curriculumService.selectAllCurriculums();
         mav.addObject("curriculumList", curriculumList);
 
         return mav;
@@ -54,8 +62,13 @@ public class ExperimentInstructionsController {
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
         ModelAndView mav = new ModelAndView("laboratory/jsp/res/instruction/add");
-
-        List<Curriculum> curriculumList = curriculumService.selectAllCurriculums();
+		List<Curriculum> curriculumList =null;
+		Subject currentUser = SecurityUtils.getSubject();
+		if (currentUser.hasRole("teacher")){
+			curriculumList =curriculumService.getCurriculum(null,userService.getCurrentUserId(),true);
+		}else{
+			curriculumList=curriculumService.getCurriculum(null,userService.getCurrentUserId(),false);
+		}
         mav.addObject("curriculumList", curriculumList);
 
         return mav;

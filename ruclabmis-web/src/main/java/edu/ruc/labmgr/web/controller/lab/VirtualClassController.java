@@ -185,7 +185,7 @@ public class VirtualClassController {
             classService.deleteClassStudent(vcId, stiArr);
             r = new Result(true, "删除班级学生成功!");
         } catch (Exception e) {
-            r = new Result(true, "删除班级学生失败!");
+            r = new Result(false, "删除班级学生失败!");
             e.printStackTrace();
         }
         return r;

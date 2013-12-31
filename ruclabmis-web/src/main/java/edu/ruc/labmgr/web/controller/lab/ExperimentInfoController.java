@@ -226,8 +226,8 @@ public class ExperimentInfoController {
         return mv;
     }
 	@RequestMapping(value = "/studentUploadExpDetail")
-	public String  uploadExperimentDetail(@RequestParam int eid,@RequestParam String filename,
-										  @RequestParam int curriculumClassId, @RequestParam int curriculumId ,HttpServletRequest request){
+	public @ResponseBody Result  uploadExperimentDetail( int eid, String filename,
+										  int curriculumClassId,  int curriculumId ,HttpServletRequest request){
 		Subject currentUser = SecurityUtils.getSubject();
 		int stuId = userService.getCurrentUserId();
 		String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
@@ -237,7 +237,8 @@ public class ExperimentInfoController {
 		if(currentUser.hasRole("student")){
 			experimentService.addExperimentDetail(stuId,curriculumClassId,eid,fullFilePath);
 		}
-		return "redirect:/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid="+curriculumId+"&view=report&curriculumClassId="+curriculumClassId;
+		Result result = new Result(true,"文件上传成功");
+		return result;
 	}
     @RequestMapping(value = "/studentAllExpDetail", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView listStudentAllExperimentDetail(int stuId,int page){

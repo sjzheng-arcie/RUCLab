@@ -50,7 +50,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">教学实验管理 > 虚拟班级</div>
+                            <div class="titlebt">实验教学管理 > 虚拟班级</div>
                         </td>
                     </tr>
                 </table>

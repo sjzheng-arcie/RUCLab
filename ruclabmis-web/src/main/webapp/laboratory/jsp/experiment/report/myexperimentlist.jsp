@@ -70,10 +70,21 @@
                 dataType:'json',                   //服务器返回的格式,可以是json或xml等
                success:function(data){        //服务器响应成功时的处理函数
                   //  $("#documentName").val($("#file").val());
-                   alert(data.message);
-                   $("#documentName").val(data.message);
-                    window.location.href="studentUploadExpDetail?eid="+cid+"&filename="+data.message+"&curriculumClassId="+curriculumClassId
-                                +"&curriculumId="+curriculumId;
+                  $("#documentName").val(data.message);
+
+
+                   $.post("studentUploadExpDetail",{
+                       'eid':cid,
+                       'filename':data.message,
+                        'curriculumClassId':curriculumClassId,
+                       'curriculumId':curriculumId
+                     },function (result) {
+                       if (result.success) {
+                           alert(result.message);
+                       }
+                   });
+                    /*window.location.href="studentUploadExpDetail?eid="+cid+"&filename="+data.message+"&curriculumClassId="+curriculumClassId
+                                +"&curriculumId="+curriculumId;*/
 
                 },
                 error:function(data, status, e){ //服务器响应失败时的处理函数
@@ -174,22 +185,22 @@
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验名称</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">发布状态</span></div>
                                                     </td>
 
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">是否提交实验报告</span></div>
+                                                    <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">是否需要提交报告</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">实验报告提交期限</span></div>
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">提交期限</span></div>
                                                     </td>
                                                     <shiro:hasRole name="student">
 
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告名称</span></div>
                                                     </td>
                                                     </shiro:hasRole>
@@ -235,9 +246,11 @@
                                                   <c:set var="nowDate" value="<%=new Date()%>"></c:set>
                                                   <c:choose>
                                                     <c:when test="${item.reportDeadline>nowDate&&item.needReport}">
+
+                                                        <input style="width:40%" style="float:left" type="file" name="file" id="file"  value="浏览"/>
                                                         <input type="button" name="btnInsert" value="上传" onclick="uploadFile('${item.id}','${curriculumClassId}','${item.curriculumId}');"/>
 
-                                                          <input type="file" id="file" name="file" onclick="" />
+
 
                                                     </c:when >
                                                       <c:when test="${!item.needReport}">

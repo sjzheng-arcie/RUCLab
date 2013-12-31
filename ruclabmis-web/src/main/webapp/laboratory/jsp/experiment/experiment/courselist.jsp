@@ -119,10 +119,10 @@
                                                              <td>${item.classYear}</td>
                                                              <td>${item.teacherName}</td>
                                                         <td>
-                                                            <input type="button" onClick="editorInsturctor(${item.curriculumId})"
+                                                            <input type="button" onClick="editorInsturctor('${item.curriculumId}')"
                                                                    class="button"
                                                                    value="查看实验指导书"/>
-                                                            <input type="button" onClick="editorClass(${item.curriculumId},'${item.curriculumName}');"
+                                                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
                                                                    class="button"
                                                                    value="查看所属实验"/>
                                                         </td>

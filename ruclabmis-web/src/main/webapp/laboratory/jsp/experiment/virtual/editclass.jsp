@@ -9,6 +9,7 @@
     <link href="/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="/js/util.js"></script>
     <script type="text/javascript" src="/js/page.js"></script>
+    <script type="text/javascript " src="/js/valid.js"></script>
     <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
     <script>
@@ -23,7 +24,7 @@
             }
         }
         function initCurriculumSelect() {
-            $.getJSON("/curriculum/list", {name: ""}, function (data) {
+            $.getJSON("/laboratory/jsp/bas/curriculum/list", {name: ""}, function (data) {
                 $.each(data, function (idx, item) {
                     createCurriculumOption("curriculumId", item);
                 });
@@ -55,11 +56,19 @@
                     'vcId': $("#vcId").val(),
                     'stIds': idStr
                 }, function (data) {
-                    window.location.reload(true);
+                    if(data.success){
+                        window.location.reload(true);
+                    }else{
+                        alert(data.message);
+                    }
+
                 });
             }
         }
         function updateClass() {
+            if (!validator(document.listForm)) {
+                return;
+            }
             var classId = $("#curriculumId").val(),
                     classSn = $("#classSn").val(),
                     className = $("#className").val(),
@@ -164,14 +173,18 @@
                                             <td nowrap align="right">班级编号:</td>
                                             <td nowrap>
                                                 <input id="classSn" name="classSn" class="text"
-                                                       value="${vClass.classSn}"/>
+                                                       value="${vClass.classSn}"
+                                                       valid="required"
+                                                       errmsg="班级编号不能为空!" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
 
                                             </td>
                                             <td nowrap align="right">班级名称:</td>
                                             <td nowrap>
                                                 <input id="className" name="className" class="text"
-                                                       value="${vClass.className}"/>
+                                                       value="${vClass.className}"
+                                                       valid="required"
+                                                       errmsg="班级名称不能为空! />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_name"></span>
                                             </td>
@@ -201,9 +214,10 @@
                                             <td nowrap align="right">学年:</td>
                                             <td nowrap>
                                                 <input id="classYear" name="classYear" class="text"
-                                                       value="${vClass.classYear}"/>
-                                                <span style="color:red;"> *</span> &nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_year"></span>
+                                                       value="${vClass.classYear}"
+                                                       valid="isNum"
+                                                       errmsg="学年只能为数字!" />
+
                                             </td>
                                         </tr>
                                     </table>

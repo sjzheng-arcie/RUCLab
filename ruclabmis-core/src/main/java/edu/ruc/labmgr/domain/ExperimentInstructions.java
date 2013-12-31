@@ -17,6 +17,16 @@ public class ExperimentInstructions {
 
     private Integer curriculumId;
 
+
+	public String getCurriculum_name() {
+		return curriculum_name;
+	}
+
+	public void setCurriculum_name(String curriculum_name) {
+		this.curriculum_name = curriculum_name;
+	}
+
+	private String curriculum_name;
     List<ExperimentSubject> subjects;
 
     public Integer getId() {

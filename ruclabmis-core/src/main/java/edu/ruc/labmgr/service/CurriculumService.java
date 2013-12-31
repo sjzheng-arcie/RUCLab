@@ -29,12 +29,19 @@ public class CurriculumService {
     @Autowired
     private ExperimentMapper experimentMapper;
 
-    public List<Curriculum> getCurriculum(String name) {
+    public List<Curriculum> getCurriculum(String name,int teacherId,boolean ifteacher) {
         CurriculumCriteria criteria = new CurriculumCriteria();
+
         if (!StringUtils.isNullOrEmpty(name)) {
-            criteria.or().andNameLike(name).andJoinMajor().andJoinTeacher();
+			if(ifteacher)
+            	criteria.or().andNameLike(name).andJoinMajor().andJoinTeacher().andTeacherIdEqualTo(teacherId);
+			else
+				criteria.or().andNameLike(name).andJoinMajor().andJoinTeacher();
         } else {
-            criteria.or().andJoinMajor().andJoinTeacher();
+			if (ifteacher)
+            	criteria.or().andJoinMajor().andJoinTeacher().andTeacherIdEqualTo(teacherId);
+			else
+				criteria.or().andJoinMajor().andJoinTeacher();
         }
         return curriculumMapper.selectByCriteria(criteria);
     }

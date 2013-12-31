@@ -1,6 +1,7 @@
 package edu.ruc.labmgr.service;
 
 import com.mysql.jdbc.StringUtils;
+import edu.ruc.labmgr.domain.Curriculum;
 import edu.ruc.labmgr.domain.ExperimentInstructions;
 import edu.ruc.labmgr.domain.ExperimentInstructions;
 import edu.ruc.labmgr.domain.ExperimentInstructionsCriteria;
@@ -11,6 +12,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @SuppressWarnings("ALL")
@@ -19,10 +21,17 @@ public class ExperimentInstructionsService {
     @Autowired
     private ExperimentInstructionsMapper mapper;
 
-    public PageInfo<ExperimentInstructions> selectListPage(Integer curriculumId,int PageNum) {
-        ExperimentInstructionsCriteria criteria = new ExperimentInstructionsCriteria();
-        criteria.setOrderByClause("curriculum_id");
-        ExperimentInstructionsCriteria.Criteria ec = criteria.createCriteria();
+    public PageInfo<ExperimentInstructions> selectListPage(Integer curriculumId,int PageNum,List<Curriculum> curriculums) {
+		List<Integer>  cmIds = new ArrayList<Integer>();
+		ExperimentInstructionsCriteria criteria = new ExperimentInstructionsCriteria();
+		criteria.setOrderByClause("curriculum_id");
+		ExperimentInstructionsCriteria.Criteria ec = criteria.createCriteria();
+		if (curriculums!=null && curriculums.size()>0){
+			for (Curriculum cm :curriculums){
+				cmIds.add(cm.getId());
+			}
+			ec.andCurriculumIdIn(cmIds);
+		}
         if (curriculumId != null)
             ec.andCurriculumIdEqualTo(curriculumId);
 

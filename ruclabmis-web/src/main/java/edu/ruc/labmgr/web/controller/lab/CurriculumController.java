@@ -4,12 +4,11 @@ import edu.ruc.labmgr.domain.Classif;
 import edu.ruc.labmgr.domain.Curriculum;
 import edu.ruc.labmgr.domain.Major;
 import edu.ruc.labmgr.domain.Teacher;
-import edu.ruc.labmgr.service.ClassifService;
-import edu.ruc.labmgr.service.CurriculumService;
-import edu.ruc.labmgr.service.MajorService;
-import edu.ruc.labmgr.service.TeacherService;
+import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -31,9 +30,16 @@ public class CurriculumController {
     ClassifService serviceClassif;
     @Autowired
     TeacherService serviceTeacher;
+	@Autowired
+	UserService  userService;
 	@RequestMapping(value = "/list", produces = "application/json")
 	public @ResponseBody List<Curriculum> list(String name) {
-		return curriculumService.getCurriculum(name);
+		int uid = userService.getCurrentUser().getId();
+		Subject currentUser = SecurityUtils.getSubject();
+		if (currentUser.hasRole("teacher")){
+			 return curriculumService.getCurriculum(name,uid,true);
+		}else
+		return curriculumService.getCurriculum(name,uid,false);
 	}
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchName", required = false) String name,

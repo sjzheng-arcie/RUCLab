@@ -8,7 +8,10 @@
         <result column="explanation" property="explanation" jdbcType="VARCHAR" />
         <result column="document_path" property="documentPath" jdbcType="VARCHAR" />
         <result column="document_name" property="documentName" jdbcType="VARCHAR" />
+
         <result column="curriculum_id" property="curriculumId" jdbcType="INTEGER" />
+        <result column="curriculum_name" property="curriculum_name" jdbcType="VARCHAR" />
+
         <collection  ofType="edu.ruc.labmgr.domain.ExperimentSubject" property="subjects">
             <id column="subject_id" property="id" jdbcType="INTEGER"/>
             <result column="subject_name" property="name" jdbcType="VARCHAR"/>
@@ -84,7 +87,7 @@
             distinct
         </if>
         <include refid="Base_Column_List" />
-        from view_instruction_subject
+        ,curriculum_name from view_instruction_subject
         <if test="_parameter != null" >
             <include refid="Criteria_Where_Clause" />
         </if>
@@ -95,7 +98,7 @@
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
         select
         <include refid="Base_Column_List" />
-        from view_instruction_subject
+        ,curriculum_name from view_instruction_subject
         where id = #{id,jdbcType=INTEGER}
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
@@ -253,7 +256,7 @@
             distinct
         </if>
         <include refid="Base_Column_List" />
-        from view_instruction_subject
+        ,curriculum_name from view_instruction_subject
         <if test="_parameter != null" >
             <include refid="Criteria_Where_Clause" />
         </if>
