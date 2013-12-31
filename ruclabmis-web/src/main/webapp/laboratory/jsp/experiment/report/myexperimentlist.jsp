@@ -71,16 +71,16 @@
                 dataType:'json',                   //服务器返回的格式,可以是json或xml等
                success:function(data){        //服务器响应成功时的处理函数
                   //  $("#documentName").val($("#file").val());
-                  $("#documentName").val(data.message);
+                   $("#documentName").val(data.message);
 
 
                    $.post("studentUploadExpDetail",{
                        'eid':cid,
                        'filename':data.message,
-                        'curriculumClassId':curriculumClassId,
+                       'curriculumClassId':curriculumClassId,
                        'curriculumId':curriculumId
                      },function (result) {
-                       if (result.success) {
+                      if (result.success) {
                            alert(result.message);
                        }
                    });
