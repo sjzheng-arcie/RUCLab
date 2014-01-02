@@ -82,7 +82,8 @@
                                             <tr>
                                                 <td nowrap align="right"  >通知标题:</td>
                                                 <td nowrap >
-                                                    <input id="announcementTitle" name="announcementTitle" value="${announcementInfo.title}" style="width:154px" maxlength="20" valid="required" errmsg="标题不能为空"/>
+                                                    <input id="announcementTitle" name="announcementTitle" value="${announcementInfo.title}" style="width:154px" maxlength="20"
+                                                           valid="required" errmsg="标题不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
@@ -91,7 +92,7 @@
                                                 <td nowrap align="left">
                                                     <div id="innerId">
                                                         <span>
-                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">${announcementInfo.content}</textarea>
+                                                            <textarea id= "content" valid="required" errmsg="通知内容不能为空" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2">${announcementInfo.content}</textarea>
                                                         </span>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.config.js"></script>
                                                         <script type="text/javascript" src="${pageContext.request.contextPath}/js/ueditor/ueditor.all.js"></script>
@@ -100,6 +101,7 @@
                                                             var editor = new baidu.editor.ui.Editor();
                                                             editor.render('content');
                                                         </script>
+                                                        <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     </div>
 
                                                 </td>

@@ -179,7 +179,12 @@
                                     <tr>
                                         <td nowrap align="right">平日成绩:</td>
                                         <td nowrap align="left">
-                                            <input name="usualPerformance" id="usualPerformance" class="text" value="${classStudent.usualPerformance}"/>
+                                            <input name="usualPerformance" id="usualPerformance"
+                                                    <shiro:hasRole name="student">
+                                                        readonly="true"
+                                                    </shiro:hasRole>
+
+                                                   class="text" value="${classStudent.usualPerformance}"/>
                                         </td>
                                     </tr>
 
@@ -187,7 +192,11 @@
                                         </td>
                                         <td nowrap align="right">最终成绩:</td>
                                         <td nowrap align="left">
-                                            <input name="finalGrade" id="finalGrade" class="text" value="${classStudent.finalGrade}"/>
+                                            <input name="finalGrade" id="finalGrade"
+                                                    <shiro:hasRole name="student">
+                                                        readonly="true"
+                                                    </shiro:hasRole>
+                                                   class="text" value="${classStudent.finalGrade}"/>
                                         </td>
                                     </tr>
                                 </table>

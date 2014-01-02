@@ -43,7 +43,7 @@ public class FileUploadControllerReturnPath {
 		result = new Result(true,file.getOriginalFilename());
 		response.setContentType("text/html");
 		String json = "{success:true,message:'"+file.getOriginalFilename()+"'}";
-		response.getOutputStream().write(json.getBytes());
+		response.getOutputStream().write(json.getBytes("utf-8"));
 		response.getOutputStream().flush();
     }
 }

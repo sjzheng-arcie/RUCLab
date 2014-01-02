@@ -5,6 +5,8 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function save() {
+        if(!validator(document.mainForm))
+            return;
         document.mainForm.action = "add";
         document.mainForm.submit();
     }
@@ -91,7 +93,10 @@
                                                 <td nowrap align="right">实验名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="" class="text"
-                                                           style="width:154px" maxlength="20" />
+                                                           style="width:154px" maxlength="20"
+                                                            valid = "required" errmsg = "实验名称不能为空"
+                                                            />
+
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
 

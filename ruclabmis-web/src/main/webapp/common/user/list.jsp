@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
@@ -8,6 +8,12 @@
     <script type="text/javascript" src="../../js/util.js"></script>
     <script type="text/javascript" src="../../js/page.js"></script>
     <title></title>
+    <% String currentpath = request.getContextPath();
+        boolean flag = false;
+           if(currentpath.contains("laboratory"))
+               flag = true;
+
+    %>
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
@@ -22,6 +28,9 @@
                        id="table2">
                     <tr>
                         <td height="31">
+                           <c:choose>
+                               <c:if test=" ${currentpath.}"
+                           </c:choose>
                             <div class="titlebt">系统管理 > 用户管理</div>
                         </td>
                     </tr>
