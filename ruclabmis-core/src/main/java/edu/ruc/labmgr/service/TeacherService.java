@@ -55,7 +55,15 @@ public class TeacherService extends UserService {
         TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
         teacherCriteriaCriteria.setOrderByClause("id");
         TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
-        ect.andIdIn(teacherIds);
+		if(teacherIds.size()>0)
+			ect.andIdIn(teacherIds);
+		else{
+			int totalCount = 0;
+			PageInfo<Teacher> page = new PageInfo<>(0, -1, pageNum);
+			List<Teacher> data = new ArrayList<>();
+			page.setData(data);
+			return  page;
+		}
         if (org != null && org >= 0)
             ect.andOrganizationIdEqualTo(org);
 
@@ -63,11 +71,11 @@ public class TeacherService extends UserService {
     }
 
     private PageInfo<Teacher> getPageTeacherByCriteria(int pageNum, TeacherCriteria criteria) {
-        int totalCount = mapperTeacher.countByCriteria(criteria);
-        PageInfo<Teacher> page = new PageInfo<>(totalCount, -1, pageNum);
-        List<Teacher> data = mapperTeacher.selectByCriteriaWithRowbounds(criteria,
-                new RowBounds(page.getCurrentResult(), page.getPageSize()));
-        page.setData(data);
+			int totalCount = mapperTeacher.countByCriteria(criteria);
+		PageInfo<Teacher> page = new PageInfo<>(totalCount, -1, pageNum);
+		List<Teacher> data = mapperTeacher.selectByCriteriaWithRowbounds(criteria,
+				new RowBounds(page.getCurrentResult(), page.getPageSize()));
+		page.setData(data);
         return page;
     }
 

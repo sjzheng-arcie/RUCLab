@@ -43,7 +43,7 @@ public class TeacherController {
         PageInfo<Teacher> pageInfo = serviceTeacher.selectListPage(sn, name, major, org, page);
 
         result.addObject("pageInfo", pageInfo);
-        result.addObject("majors", majors);
+        result.	addObject("majors", majors);
         result.addObject("organizations", organizations);
         return result;
     }

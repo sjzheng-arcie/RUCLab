@@ -59,9 +59,9 @@
             <shiro:hasRole name="student">
                 <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
             </shiro:hasRole>
-            <shiro:hasRole name="teacher,equipment_admin">
+            <shiro:hasAnyRoles name="teacher,equipment_admin">
                 <li id="teacher_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('teacher_homePage')">首页</a></li>
-            </shiro:hasRole>
+            </shiro:hasAnyRoles>
 
             <shiro:hasRole name="administrators">
                 <li id="homePage" class="active"><a href="left" target="leftFrame" onclick="rs('homePage')">首页</a></li>
@@ -86,11 +86,11 @@
                 rs('student_homePage');
             </script>
         </shiro:hasRole>
-        <shiro:hasRole name="teacher,equipment_admin">
+        <shiro:hasAnyRoles name="teacher,equipment_admin">
             <script>
                 rs('teacher_homePage');
             </script>
-        </shiro:hasRole>
+        </shiro:hasAnyRoles>
         <shiro:hasRole name="leader">
             <script>
                 rs('leader_homePage');

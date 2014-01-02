@@ -16,7 +16,10 @@
     <title></title>
 
     <script>
-
+        function ifdelte(id){
+            if(confirm("是否删除所选记录"))
+                window.location.href = "delete?items="+id;
+        }
     </script>
 </head>
 
@@ -89,7 +92,7 @@
                                                         <td >${item.sn}</td>
                                                         <td ><a href="toUpdate?id=${item.id}">${item.name}</a></td>
                                                         <td >${item.director}</td>
-                                                        <td><a href="delete?items=${item.id}">
+                                                        <td><a href="#" onclick="ifdelte('${item.id}')">
                                                             <img src="../../../../images/del_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>

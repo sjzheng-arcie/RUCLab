@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
@@ -8,12 +9,6 @@
     <script type="text/javascript" src="../../js/util.js"></script>
     <script type="text/javascript" src="../../js/page.js"></script>
     <title></title>
-    <% String currentpath = request.getContextPath();
-        boolean flag = false;
-           if(currentpath.contains("laboratory"))
-               flag = true;
-
-    %>
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
@@ -28,10 +23,13 @@
                        id="table2">
                     <tr>
                         <td height="31">
+                            <div class="titlebt">
+                           <c:set var="p" value="<%=application.getServletContextName()%>"></c:set>
                            <c:choose>
-                               <c:if test=" ${currentpath.}"
+                               <c:when test="${fn:contains(p,'实验室')}"> 基础信息管理>教职工信息管理 </c:when>
+                               <c:otherwise>  系统管理>用户管理</c:otherwise>
                            </c:choose>
-                            <div class="titlebt">系统管理 > 用户管理</div>
+                                   </div>
                         </td>
                     </tr>
                 </table>

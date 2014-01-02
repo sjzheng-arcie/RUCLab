@@ -141,7 +141,7 @@
                                                     <input name="period" id="period"  value="${curriculum.period}"  onblur=""
                                                            class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isNumber"
+                                                           valid="required|isInt"
                                                            errmsg="课程学时不能为空!|课程学时只能为数字"/>
                                                     <span style="color:red;">*</span>
                                                 </td>
@@ -149,7 +149,7 @@
                                                 <td nowrap>
                                                     <input name="score" id="score" class="text" value="${curriculum.score}"
                                                            style="width:154px"
-                                                           valid="required|isNumber"
+                                                           valid="required|isInt"
                                                            errmsg="课程学分不能为空!|课程学分只能为数字"/>
                                                     <span style="color:red;">*</span>
                                                 </td>

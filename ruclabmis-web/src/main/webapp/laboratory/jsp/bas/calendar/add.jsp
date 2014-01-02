@@ -86,16 +86,16 @@
                                                 <td nowrap align="right">学期名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name"  onblur="" class="text"
-                                                           style="width:154px" maxlength="20" v/>
+                                                           style="width:154px" maxlength="20"
+                                                            valid="required" errmsg= "学期名称不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno"></span>
                                                 </td>
                                                 <td nowrap align="right">学年</td>
                                                 <td nowrap>
                                                     <input name="year" id="year"  onblur="" class="text"
-                                                           style="width:154px" maxlength="20"   valid="required|isNumber"
-                                                           errmsg="学年不能为空|学年只能是整数!
-                                                            />
+                                                           style="width:154px" maxlength="20"   valid="required|isInt"
+                                                           errmsg="学年不能为空|学年只能是整数!"   />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sno1"></span>
                                                 </td>
@@ -105,7 +105,7 @@
                                                 <td nowrap>
                                                     <input name="startweek" id="startweek" onblur=""
                                                            class="text" style="width:154px" maxlength="20"
-                                                           valid="required|isNumber"
+                                                           valid="required|isInt"
                                                            errmsg="开始周不能为空|开始周只能是整数!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sname3"></span>
@@ -114,7 +114,7 @@
                                                 <td nowrap>
                                                     <input name="endweek" id="endweek"  onblur=""
                                                            class="text" style="width:154px" maxlength="20"
-                                                           valid ="required|isNumber"
+                                                           valid ="required|isInt"
                                                            errmsg ="结束周不能为空|结束周只能是整数!"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_us_sname4"></span>
@@ -128,6 +128,7 @@
                                                        onblur="" class="Mdate" style="width:154px" maxlength="10"
                                                        valid="isDate" errmsg="日期只能为：XXXX-XX-XX"
                                                        onClick="WdatePicker({dateFmt:'yyyy-MM-dd'})"/>
+                                                <span style="color:red;">*</span>&nbsp;&nbsp;
                                             </td>
                                             </tr>
                                         </table>

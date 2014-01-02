@@ -137,7 +137,7 @@
     </DIV>
     <DIV>
         <TABLE cellSpacing="0" cellPadding="0" width="100%">
-            <%@ include file="../jsp/common/toppagetable.jsp" %>
+            <%@ include file="../jsp/common/pagetable.jsp" %>
             <TR>
                 <TH class="h">主题：${bbsTopic.title}
                  </TH>
@@ -208,7 +208,7 @@
     </c:forEach>
     <DIV>
         <TABLE cellSpacing="0" cellPadding="0" width="100%">
-            <%@ include file="../jsp/common/toppagetable.jsp" %>
+            <%@ include file="../jsp/common/pagetable.jsp" %>
         </TABLE>
     </DIV>
 </DIV>

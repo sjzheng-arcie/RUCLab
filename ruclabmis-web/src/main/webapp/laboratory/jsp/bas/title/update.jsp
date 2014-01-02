@@ -83,14 +83,16 @@
                                                 <td nowrap>
                                                     <input name="name" id="name" value="${title.name}" onblur=""
                                                            class="text"
-                                                           style="width:154px" maxlength="20"/>
+                                                           style="width:154px" maxlength="20"
+                                                           valid= "required" errmsg="职称名称不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                                 <td nowrap align="right">职称级别:</td>
                                                 <td nowrap>
                                                     <input name="grade" id="grade" value="${title.grade}" onblur=""
                                                            class="text"
-                                                           style="width:154px" maxlength="20"/>
+                                                           style="width:154px" maxlength="20"
+                                                           valid= "required" errmsg="职称级别不能为空" />
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
                                             </tr>
@@ -101,8 +103,7 @@
                                                     <input name="shortName" id="shortName" value="${title.shortName}"
                                                            onblur="" class="text"
                                                            style="width:154px" maxlength="20"/>
-                                                    <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                </td>
+                                                                       </td>
                                                 <td nowrap align="right">职称描述:</td>
                                                 <td nowrap>
                                                     <input name="description" id="description"
