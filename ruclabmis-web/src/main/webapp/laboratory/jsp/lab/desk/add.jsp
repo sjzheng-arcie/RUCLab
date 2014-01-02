@@ -7,6 +7,9 @@
 <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
 <script>
     function addEquipment(){
+        if (!validator(document.mainForm)) {
+            return;
+        }
         document.mainForm.action = "add";
         document.mainForm.submit();
     }

@@ -1,10 +1,7 @@
 package edu.ruc.labmgr.web.controller.lab;
 
-import edu.ruc.labmgr.domain.CurriculumSchedule;
-import edu.ruc.labmgr.domain.CurriculumScheduleCriteria;
-import edu.ruc.labmgr.service.CurriculumScheduleService;
-import edu.ruc.labmgr.service.TeacherService;
-import edu.ruc.labmgr.service.UserService;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -29,6 +26,12 @@ public class CurriculumSheduleController {
 	UserService userService;
 	@Autowired
 	CurriculumScheduleService curriculumScheduleService;
+	@Autowired
+	CurriculumClassService curriculumClassService;
+	@Autowired
+	SchoolCalenderService schoolCalenderService;
+
+
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public String delete(@RequestParam("items") List<Integer> items) {
@@ -38,12 +41,19 @@ public class CurriculumSheduleController {
 	public ModelAndView curriculumClassList(@RequestParam(required = false,defaultValue = "") String roomName,
 											@RequestParam(value="page",required = false,defaultValue = "1") int page){
 
-		CurriculumScheduleCriteria curriculumScheduleCriteria= new CurriculumScheduleCriteria();
-		CurriculumScheduleCriteria.Criteria criteria =curriculumScheduleCriteria.createCriteria();
-
-		PageInfo<CurriculumSchedule> pageInfo=curriculumScheduleService.selectListPage(curriculumScheduleCriteria,page);
+		PageInfo<CurriculumClass> pageInfo=curriculumClassService.getPageClasses(page, null, null);
+		List<CurriculumClass> curriculumClassList=pageInfo.getData();
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumclasslist");
-		mav.addObject("pageInfo",pageInfo);
+		mav.addObject("curriculumClassList",curriculumClassList);
+		return mav;
+	}
+	@RequestMapping(value = "/newcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView newCurriculumSchedule(@RequestParam(value="page",required = false,defaultValue = "1") int page){
+		PageInfo<CurriculumClass> pageInfo=curriculumClassService.getPageClasses(page,null,null);
+		List<CurriculumClass> curriculumClassList=pageInfo.getData();
+		//List<TermYear> termYearList=schoolCalenderService.getPageListbyNum()
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/newcurriculumschedule");
+		mav.addObject("curriculumClassList",curriculumClassList);
 		return mav;
 	}
 	@RequestMapping(value = "/addlession", method = {RequestMethod.GET,RequestMethod.POST})

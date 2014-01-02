@@ -102,11 +102,9 @@
                                                                        <select id="target" name="target"
                                                                                style="width: 252px;height: 22px"
                                                                                data-placeholder="选择人名...">
-                                                                           <c:forEach items="${teacherList}" var="teacher">
                                                                                <c:forEach items="${teacherList}" var="teacher">
                                                                                    <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
                                                                                </c:forEach>
-                                                                           </c:forEach>
                                                                        </select>
                                                                    </c:otherwise>
 

@@ -21,6 +21,13 @@
         function freshWindow(){
             window.location.reload(true);
         }
+        function deleteClasses(id) {
+           if(window.confirm("确实要删除该工作台吗？")){
+                    document.mainForm.action="/laboratory/jsp/lab/desk/remove?deskId="+id;
+
+           }
+        }
+
 
     </script>
 
@@ -66,7 +73,7 @@
                                                                                      width="14" height="14"/></div>
                                                         </td>
                                                         <td width="94%" valign="bottom"><span
-                                                                class="STYLE1">添加房间</span></td>
+                                                                class="STYLE1">房间管理</span></td>
                                                     </tr>
                                                 </table>
                                             </td>
@@ -201,7 +208,7 @@
                                                         <img src="../../../../images/edit_min.gif" width="10"
                                                              height="10" border="0"/>
                                                     </a></td>
-                                                    <td><a href="/laboratory/jsp/lab/desk/remove?deskId=${item.id}">
+                                                    <td><a href="#" onclick="deleteClasses('${item.id}');">
                                                         <img src="../../../../images/del_min.gif" width="10"
                                                              height="10" border="0"/>
                                                     </a></td>

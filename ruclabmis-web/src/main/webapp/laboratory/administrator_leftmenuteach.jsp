@@ -46,6 +46,8 @@
                         </li>
                         <li><a href="jsp/curriculum/curriculumclasslist" onfocus="toFocus(this)"
                                target="main">课程信息管理</a></li>
+                        <li><a href="jsp/curriculum/list" onfocus="toFocus(this)"
+                               target="main">课程信息list</a></li>
                         <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)" target="main">
                             实验信息管理</a></li>
 

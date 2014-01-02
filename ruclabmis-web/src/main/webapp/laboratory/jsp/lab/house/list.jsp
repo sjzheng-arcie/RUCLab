@@ -7,6 +7,15 @@
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script>
+        function deleteClasses(id) {
+            if(window.confirm("确实要删除该房间吗？该房间将会从实验室中移除。")){
+                if(window.confirm("删除该实房间将会删除该房间内的工作台！")){
+                    window.location.href="/laboratory/jsp/lab/house/delete?id="+id;
+                }
+            }
+        }
+    </script>
 </head>
 <body onload="getWidth()" onresize="getWidth()">
 <form name="listForm" method="post">
@@ -147,7 +156,7 @@
                                                     <img src="../../../../images/edit_min.gif" width="10"
                                                          height="10" border="0"/>
                                                 </a></td>
-                                                <td><a href="/laboratory/jsp/lab/house/delete?id=${item.id}">
+                                                <td><a href="#" onclick="deleteClasses('${item.id}');">
                                                     <img src="../../../../images/del_min.gif" width="10"
                                                          height="10" border="0"/>
                                                 </a></td>

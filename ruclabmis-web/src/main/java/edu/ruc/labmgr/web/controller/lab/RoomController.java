@@ -27,6 +27,8 @@ public class RoomController {
 	private RoomService roomService;
 	@Autowired
 	private DeskService deskService;
+	@Autowired
+	private LaboratoryRoomService laboratoryRoomService;
 
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView list(@RequestParam(required = false,defaultValue = "") String roomName,
@@ -66,6 +68,10 @@ public class RoomController {
 	}
 	@RequestMapping(value="/delete",method=RequestMethod.GET)
 	public String add(@RequestParam int id){
+		LaboratoryRoomCriteria laboratoryRoomCriteria = new LaboratoryRoomCriteria();
+		LaboratoryRoomCriteria.Criteria criteria= laboratoryRoomCriteria.createCriteria();
+		criteria.andLaboratoryRoomIdEqualTo(id);
+		laboratoryRoomService.deleteByCriteria(laboratoryRoomCriteria);
 		roomService.deleteById(id);
 		String mdl="redirect:/laboratory/jsp/lab/house/list";
 		return mdl;
