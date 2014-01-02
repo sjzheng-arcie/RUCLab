@@ -26,6 +26,9 @@ public class SchoolCalenderService {
 		return  getPageListbyCriteria(pageNum, criteria);
 
 	}
+	public List<TermYear> getAllTermYear(){
+		return termYearMapper.selectByCriteria(null);
+	}
 	public TermYear getTermYearByPk(int id){
 		TermYear termYear = null;
 		termYear = termYearMapper.selectByPrimaryKey(id);

@@ -49,11 +49,14 @@ public class CurriculumSheduleController {
 	}
 	@RequestMapping(value = "/newcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView newCurriculumSchedule(@RequestParam(value="page",required = false,defaultValue = "1") int page){
-		PageInfo<CurriculumClass> pageInfo=curriculumClassService.getPageClasses(page,null,null);
-		List<CurriculumClass> curriculumClassList=pageInfo.getData();
+
+		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+
 		//List<TermYear> termYearList=schoolCalenderService.getPageListbyNum()
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/newcurriculumschedule");
 		mav.addObject("curriculumClassList",curriculumClassList);
+		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
 	@RequestMapping(value = "/addlession", method = {RequestMethod.GET,RequestMethod.POST})

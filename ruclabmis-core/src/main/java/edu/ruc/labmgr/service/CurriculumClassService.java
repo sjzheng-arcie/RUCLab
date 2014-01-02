@@ -31,6 +31,8 @@ public class CurriculumClassService {
     private UserMapper userMapper;
 	@Autowired
 	private BbsSessionMapper bbsSessionMapper;
+	@Autowired
+	private CurriculumClassMapper curriculumClassMapper;
 
     /**
      * 获得分页的虚拟班级列表
@@ -61,6 +63,9 @@ public class CurriculumClassService {
 			c.andClassNameLike("%" + name + "%");
 		}
 		return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
+	}
+	public List<CurriculumClass> getAllCurriculumClass() {
+		return curriculumClassMapper.selectByCriteria(null);
 	}
     /**
      * @param id
