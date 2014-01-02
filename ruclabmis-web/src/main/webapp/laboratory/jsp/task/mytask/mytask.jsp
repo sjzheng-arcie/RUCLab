@@ -8,11 +8,13 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
-    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript" src="../../../../js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="../../../../js/ajaxfileupload.js"></script>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
 
     <title></title>
@@ -32,7 +34,9 @@
             document.mainForm.action="finishtask";
             document.mainForm.submit();
         }
-
+        function downloadFile(resourceId) {
+            window.location.href = "downloadFile?id=" + resourceId;
+        }
     </script>
 </head>
 
@@ -98,7 +102,6 @@
                             <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
-
                                         <table border="0" cellpadding="2" cellspacing="1"
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;" bgcolor="#E3E9EE">
 
@@ -131,6 +134,14 @@
                                                     <span style="color:red;" id="errMsg_task_completely" ></span>
                                                 </td>
                                             </tr>
+                                                <c:if test="${taskInfo.annexname!=null&&taskInfo.annexname!=''}">
+                                                    <tr>
+                                                        <td  nowrap align="right">附件:</td>
+                                                        <td  nowrap><input type="text" value="${taskInfo.annexname}" disabled="no"/> </td>
+                                                        <td  nowrap><input type="button" onClick="downloadFile(${taskInfo.id})" value="下载"/></td>
+                                                        <td  nowrap></td>
+                                                    </tr>
+                                                </c:if>
                                             <tr>
                                                 <td nowrap align="right">任务内容:</td>
                                                 <td colspan="3"><textarea name="taskContent" style="width:70%;height:100px" readonly disabled="no">${taskInfo.content}</textarea>
@@ -169,8 +180,6 @@
                     src="../../../../images/buttom_right2.gif" width="16" height="17"/></td>
         </tr>
     </table>
-
-
 </form>
 </body>
 </html>

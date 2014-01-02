@@ -43,29 +43,29 @@ public class TaskController {
 	TaskScoreService taskScoreService;
 
 
-	@RequestMapping(value="/fileUpload")
-	public @ResponseBody
-	String fileUpload( @RequestParam MultipartFile file,
-					   HttpServletRequest request) throws IOException {
-
-
-		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
-		String realPath = request.getSession().getServletContext().getRealPath(path);
-		String fullFilePath = realPath+"\\"+file.getOriginalFilename();
-		String result = file.getOriginalFilename();
-		File newFile = new File(fullFilePath);
-		if (!newFile.getParentFile().exists()) {
-			newFile.getParentFile().mkdirs();
-		}
-		try {
-			file.transferTo(newFile);
-		} catch (IOException e) {
-			e.printStackTrace();
-			result = "附件上传失败!";
-			return result;
-		}
-		return result;
-	}
+//	@RequestMapping(value="/fileUpload")
+//	public @ResponseBody
+//	String fileUpload( @RequestParam MultipartFile file,
+//					   HttpServletRequest request) throws IOException {
+//
+//
+//		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
+//		String realPath = request.getSession().getServletContext().getRealPath(path);
+//		String fullFilePath = realPath+"\\"+file.getOriginalFilename();
+//		String result = file.getOriginalFilename();
+//		File newFile = new File(fullFilePath);
+//		if (!newFile.getParentFile().exists()) {
+//			newFile.getParentFile().mkdirs();
+//		}
+//		try {
+//			file.transferTo(newFile);
+//		} catch (IOException e) {
+//			e.printStackTrace();
+//			result = "附件上传失败!";
+//			return result;
+//		}
+//		return result;
+//	}
 
 	@RequestMapping(value="/downloadFile",method=RequestMethod.GET)
 	public void downloadFile(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception{
@@ -262,7 +262,7 @@ public class TaskController {
 		User user = userService.getCurrentUser();
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
-		taskCriteria.setOrderByClause("publishdate asc");
+		taskCriteria.setOrderByClause("publishdate desc");
 		criteria.andManageridEqualTo(user.getId());
 		criteria.andIfworkEqualTo(false);
 		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(user.getId());
@@ -298,10 +298,20 @@ public class TaskController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/mytasklist?teacherId="+task.getManagerid());
 		return modelAndView;
 	}
-	@RequestMapping(value = "/finishtask", method = {RequestMethod.GET,RequestMethod.POST})
+	@RequestMapping(value = "/finishtask", method = (RequestMethod.GET))
+	public ModelAndView finishTask(@RequestParam(value = "taskId", required = true)int taskId) {
+
+		Task task = taskService.getTaskById(taskId);
+		task.setFinishdate(new Date());
+		task.setIfcompleted(true);
+		taskService.updateByPrimaryKey(task);
+		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/mytasklist?teacherId="+task.getManagerid());
+		return modelAndView;
+	}
+	@RequestMapping(value = "/finishtask", method = RequestMethod.POST)
 	public ModelAndView finishTask(@RequestParam(value = "taskId", required = true)int taskId,
-								   @RequestParam(value = "completely", required = false)int completely,
-								   @RequestParam(value = "completion", required = false) String completion) {
+								   @RequestParam(value = "completely", required = false,defaultValue = "0")int completely,
+								   @RequestParam(value = "completion", required = false,defaultValue = "") String completion) {
 
 		Task task = taskService.getTaskById(taskId);
 		if(completion!=null){
@@ -318,4 +328,5 @@ public class TaskController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/mytasklist?teacherId="+task.getManagerid());
 		return modelAndView;
 	}
+
 }

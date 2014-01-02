@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created with IntelliJ IDEA.
@@ -78,10 +79,18 @@ public class WorkController {
 		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/work/myworklist");
 		return modelAndView;
 	}
-	@RequestMapping(value = "/delete", method = (RequestMethod.GET))
+	@RequestMapping(value = "/toDelete", method = RequestMethod.GET)
 	public String delete(@RequestParam(value="workId") int workId){
 		workService.deleteById(workId);
 		return 	"redirect:/laboratory/jsp/task/work/myworklist";
+	}
+	@RequestMapping(value="/delete",method={RequestMethod.GET,RequestMethod.POST})
+	public String toDelete( @RequestParam("items") List<Integer> items,@RequestParam(value="pageForDelete",required = false,defaultValue = "0") int pageForDelete){
+
+		for(int i=0;i<items.size();i++){
+			workService.deleteById(items.get(i));
+		}
+		return "redirect:/laboratory/jsp/task/work/myworklist?page="+pageForDelete;
 	}
 	@RequestMapping(value = "/update", method = (RequestMethod.POST))
 	public String updateWork(@RequestParam(value="workTitle") String workTitle,
@@ -110,6 +119,7 @@ public class WorkController {
 		modelAndView.addObject("workInfo",work);
 		return modelAndView;
 	}
+
 
 
 }

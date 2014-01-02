@@ -90,12 +90,6 @@
                                             <table id="hello" width="100%" class="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                        <div align="center">
-                                                            <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this,'listForm', 'idcheckbox');"/>
-                                                        </div>
-                                                    </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">工作名称</span></div>
                                                     </td>
@@ -114,11 +108,7 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
-                                                        </td>
-                                                        <td>${item.title}</td>
+                                                        <td height="20">${item.title}</td>
                                                         <td>${item.worker.name}</td>
                                                         <td> <fmt:formatDate value="${item.publishtime}"/></td>
                                                         <td>${item.content}</td>

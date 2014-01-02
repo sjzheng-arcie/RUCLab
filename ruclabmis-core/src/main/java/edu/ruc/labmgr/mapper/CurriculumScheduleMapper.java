@@ -7,19 +7,27 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface CurriculumScheduleMapper {
-    int countByCriteria(CurriculumScheduleCriteria example);
+    int countByExample(CurriculumScheduleCriteria example);
 
-    int deleteByCriteria(CurriculumScheduleCriteria example);
+    int deleteByExample(CurriculumScheduleCriteria example);
+
+    int deleteByPrimaryKey(Integer id);
 
     int insert(CurriculumSchedule record);
 
     int insertSelective(CurriculumSchedule record);
 
-    List<CurriculumSchedule> selectByCriteriaWithRowbounds(CurriculumScheduleCriteria example, RowBounds rowBounds);
+    List<CurriculumSchedule> selectByExampleWithRowbounds(CurriculumScheduleCriteria example, RowBounds rowBounds);
 
-    List<CurriculumSchedule> selectByCriteria(CurriculumScheduleCriteria example);
+    List<CurriculumSchedule> selectByExample(CurriculumScheduleCriteria example);
 
-    int updateByCriteriaSelective(@Param("record") CurriculumSchedule record, @Param("example") CurriculumScheduleCriteria example);
+    CurriculumSchedule selectByPrimaryKey(Integer id);
 
-    int updateByCriteria(@Param("record") CurriculumSchedule record, @Param("example") CurriculumScheduleCriteria example);
+    int updateByExampleSelective(@Param("record") CurriculumSchedule record, @Param("example") CurriculumScheduleCriteria example);
+
+    int updateByExample(@Param("record") CurriculumSchedule record, @Param("example") CurriculumScheduleCriteria example);
+
+    int updateByPrimaryKeySelective(CurriculumSchedule record);
+
+    int updateByPrimaryKey(CurriculumSchedule record);
 }

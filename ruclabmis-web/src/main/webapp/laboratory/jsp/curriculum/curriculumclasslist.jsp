@@ -7,12 +7,12 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="/css/style.css" rel="stylesheet" type="text/css"/>
-<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
-<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
-<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
-<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
-<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
+<link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css"/>
+<script src="${pageContext.request.contextPath}/dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
+<script src="${pageContext.request.contextPath}/dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
+<script src="${pageContext.request.contextPath}/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
 
 
 <body onload="doOnLoad();" style="background-color: #eef2fb">
@@ -31,7 +31,7 @@
                 </tr>
                 <tr>
                     <td valign="top" height="600">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; ">
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none; ">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr height="25">
                                     <td width="20px" bgcolor="#E3EFFF" >学年：
@@ -81,6 +81,30 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
+
+                            dhxToolbar = dhxLayout.attachToolbar();
+                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.loadXML("common/toolbar_fayl.xml?" + new Date().getTime());
+                            dhxToolbar.attachEvent("onClick", function (id) {
+                                switch (id) {
+                                    case 'save' :
+                                        alert("保存当前数据")
+                                        break;
+                                    case 'tijiao' :
+                                        alert("方案已提交相关领导审批!")
+                                        window.location.href = 'listapply';
+                                        break;
+                                    case 'prev' :
+                                        window.location.href = 'listdeviceapply';
+                                        break;
+                                    case 'next' :
+                                        alert("已经到最后一步!")
+                                        break;
+                                    default:
+                                        alert("Button " + id + " was clicked!")
+                                }
+                            });
+
                             dhxLayout.cells("a").setText("课表一览");
                             dhxLayout.cells("a").attachObject("zuoxi");
                         }</script>

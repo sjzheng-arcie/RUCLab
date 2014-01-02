@@ -204,7 +204,8 @@ public class MessageCenterController {
 		Announcement announcement = serviceAnnouncement.getAnnouncementById(announcementId);
 		announcement.setContent(announcementContent);
 		announcement.setTitle(announcementTitle);
-		int result = serviceAnnouncement.update(announcement);
+		announcement.setPublishTime(new Date());
+		serviceAnnouncement.update(announcement);
 
 		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/announcement/remind/"+system+"/announcement");
 		return mav;

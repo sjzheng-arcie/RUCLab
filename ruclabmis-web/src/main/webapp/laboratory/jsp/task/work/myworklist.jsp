@@ -81,6 +81,11 @@
                                                                         <a href="toadd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">新增</span></a>&nbsp;
                                                                     </span>
+                                                                    <a href="#" onclick="toDelete('listForm','idcheckbox');">
+                                                                        <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
+                                                                        <span class="STYLE1">删除</span>
+                                                                        <input type="hidden" name="pageForDelete" value="${pageInfo.currentPage}"/>
+                                                                    </a>&nbsp;&nbsp;
                                                                 </div>
                                                             </td>
                                                         </tr>
@@ -120,18 +125,18 @@
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idcheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idcheckbox')"/>
+                                                        <td height="20">
+                                                            <input name="idcheckbox" type="checkbox"value="${item.id}"
+                                                                   onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
-                                                        <td>${item.title}</td>
-                                                        <td> <fmt:formatDate value="${item.publishtime}"/></td>
-                                                        <td>${item.content}</td>
-                                                        <td><a href="toupdate?workId=${item.id}">
+                                                        <td height="20">${item.title}</td>
+                                                        <td height="20"> <fmt:formatDate value="${item.publishtime}"/></td>
+                                                        <td height="20">${item.content}</td>
+                                                        <td height="20"><a href="toupdate?workId=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
-                                                        <td><a href="delete?workId=${item.id}">
+                                                        <td height="20"><a href="toDelete?workId=${item.id}">
                                                             <img src="../../../../images/del_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>

@@ -174,7 +174,7 @@
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
 
-<!--        <table tableName="curriculum_schedule">
+        <!--<table tableName="curriculum_schedule">
         <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
          </table>-->
     </context>

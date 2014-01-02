@@ -41,11 +41,6 @@
         }
 
         function save(){
-            var documentName = document.getElementById("documentName").value;
-            if (!documentName) {
-                alert("未添加附件，请先上传!");
-                return;
-            }
 
             if (!validator(document.mainForm)) {
                 return;

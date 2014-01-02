@@ -19,6 +19,55 @@ public class CurriculumSchedule {
 
     private Byte weekday;
 
+	public ClassStudent getClassStudent() {
+		return classStudent;
+	}
+
+	public void setClassStudent(ClassStudent classStudent) {
+		this.classStudent = classStudent;
+	}
+
+	public Curriculum getCurriculum() {
+		return curriculum;
+	}
+
+	public void setCurriculum(Curriculum curriculum) {
+		this.curriculum = curriculum;
+	}
+
+	public TermYear getTermYear() {
+		return termYear;
+	}
+
+	public void setTermYear(TermYear termYear) {
+		this.termYear = termYear;
+	}
+
+	public Room getRoom() {
+		return room;
+	}
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
+	}
+
+	private Teacher teacher;
+	private ClassStudent classStudent;
+
+	private Curriculum curriculum;
+
+	private TermYear termYear;
+
+	private Room room;
+
     public Integer getId() {
         return id;
     }

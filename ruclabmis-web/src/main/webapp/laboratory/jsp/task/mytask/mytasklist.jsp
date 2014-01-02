@@ -107,9 +107,6 @@
                                             <table id="table1" width="100%" class="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">序号</span></div>
-                                                    </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任务名称</span></div>
                                                     </td>
@@ -121,9 +118,6 @@
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">附件</span></div>
-                                                    </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">附件下载</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">完成情况</span></div>
@@ -142,26 +136,16 @@
                                                         <div align="center"><span class="STYLE10">完成任务</span></div>
                                                     </td>
                                                 </tr>
-                                                <% int i = 1; %>
+                                                <%int i = 1; %>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
+                                                        <td height="20">${item.taskname}</td>
+                                                        <td height="20"><fmt:formatDate value="${item.limitdate}"/></td>
+                                                        <td height="20">${item.content}</td>
+                                                        <td height="20"><a href="#" onclick="downloadFile(${item.id})">${item.annexname}</a></td>
+                                                        <td height="20">${item.completion}</td>
+                                                        <td height="20">${item.completely}%</td>
                                                         <td height="20">
-                                                            <%=i++%>
-                                                        </td>
-                                                        <td>${item.taskname}</td>
-
-                                                        <td><fmt:formatDate value="${item.limitdate}"/></td>
-                                                        <td>${item.content}</td>
-                                                        <td>${item.annexname}</td>
-                                                        <td>
-                                                            <c:if test="${item.annexname!=null}">
-                                                                <input type="button" onClick="downloadFile(${item.id})"
-                                                                       class="button" value="下载"/>
-                                                            </c:if>
-                                                        </td>
-                                                        <td>${item.completion}</td>
-                                                        <td>${item.completely}%</td>
-                                                        <td>
                                                             <c:choose>
                                                                 <c:when test="${item.ifscored==true}">
                                                                     ${item.overallscore}
@@ -177,13 +161,12 @@
                                                                     </c:choose>
                                                                 </c:otherwise>
                                                             </c:choose>
-
                                                         </td>
-                                                        <td><a href="/laboratory/jsp/task/task/mytask?taskId=${item.id}">
+                                                        <td height="20"><a href="/laboratory/jsp/task/task/mytask?taskId=${item.id}">
                                                             <img src="../../../../images/edit_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>
-                                                        <td>
+                                                        <td height="20">
                                                             <c:choose>
                                                                 <c:when test="${item.ifcompleted==true}">
                                                                     已完成
@@ -192,7 +175,6 @@
                                                                     <a class="button" href="/laboratory/jsp/task/task/finishtask?taskId=${item.id}">完成任务</a>
                                                                 </c:otherwise>
                                                             </c:choose>
-
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
