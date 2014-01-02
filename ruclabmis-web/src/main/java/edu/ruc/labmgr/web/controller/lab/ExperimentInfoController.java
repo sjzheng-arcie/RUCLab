@@ -111,16 +111,21 @@ public class ExperimentInfoController {
     public String addExperimentData(Experiment exp, MultipartFile file,
                                     final RedirectAttributes redirectAttributes, HttpServletRequest request) {
         if (!file.isEmpty()) {
-            String name = System.currentTimeMillis() + "_" + file.getOriginalFilename();
-            String path = request.getSession().getServletContext().getRealPath("/") + "/data/" + name;
-            File local = new File(path);
+			String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
+			String realPath = request.getSession().getServletContext().getRealPath(path);
+			String fullFilePath = realPath+"\\"+file.getOriginalFilename();
+
+			File newFile = new File(fullFilePath);
+			if (!newFile.getParentFile().exists()) {
+				newFile.getParentFile().mkdirs();
+			}
             try {
-                file.transferTo(local);
+                file.transferTo(newFile);
                 if (exp.getId() == null) {
-                    exp.setTemplatePath(path);
+                    exp.setTemplatePath(fullFilePath);
                     experimentService.addExperiment(exp);
                 } else {
-                    experimentService.updateExperiment(exp, path);
+                    experimentService.updateExperiment(exp, fullFilePath);
                 }
                 return "redirect:/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid=" + exp.getCurriculumId();
             } catch (IOException e) {
