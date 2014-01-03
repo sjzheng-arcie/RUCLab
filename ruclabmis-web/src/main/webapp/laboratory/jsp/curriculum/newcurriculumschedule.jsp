@@ -32,14 +32,17 @@
         $("#target").chosen({
             no_results_text: "没有找到"
         });
+        $("#termYear").chosen({
+            no_results_text: "没有找到"
+        });
     });
 </script>
 <body onload="doOnLoad();">
-<form>
+<form action="curriculumclasslist">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
     <tr>
         <td valign="top" height="100%">
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <table width="100%" border="0" cellspacing="0" bgcolor="#E3EFFF" cellpadding="0">
                 <tr>
                     <td height="27">
                         <table border="0" cellspacing="0" cellpadding="0">
@@ -51,19 +54,21 @@
                 </tr>
                 <tr>
                     <td valign="top" height="500">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;">
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;bgcolor:#E3EFFF;">
 
-                            <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
+                            <table width="100%" border="0" cellpadding="1" bgcolor="#E3EFFF"cellspacing="1" style="margin-top:20px">
+
                                 <tr>
-                                    <td align="right">学年：</td>
-                                    <td><input type="text" name="schoolYear"/></td>
-                                </tr>
-                                <tr>
-                                    <td align="right">学期：</td>
-                                    <td><select>
-                                        <option>第一学期</option>
-                                        <option>第二学期</option>
-                                    </select></td>
+                                    <td align="right">学期学年：</td>
+                                    <td>
+                                        <select id="termYear" name="termYear"
+                                                style="width: 252px;height: 22px"
+                                                data-placeholder="选择学年学期...">
+                                            <c:forEach items="${termYearList}" var="termYear">
+                                                <option value="${termYear.id}">${termYear.name}(${termYear.year}年)</option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td align="right">班级：</td>
@@ -78,22 +83,41 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td align="right">课程：</td>
-                                    <td><select>
-                                        <option>软件工程导论</option>
-                                        <option>网络工程基础</option>
-                                    </select></td>
+                                    <td align="right" width="30%">星期：</td>
+                                    <td>
+                                        <select name="weekDay">
+                                            <option value="1">星期一</option>
+                                            <option value="2">星期二</option>
+                                            <option value="3">星期三</option>
+                                            <option value="4">星期四</option>
+                                            <option value="5">星期五</option>
+                                            <option value="6">星期六</option>
+                                            <option value="7">星期天</option>
+                                        </select>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td align="right" width="30%">节次：</td>
+                                    <td>
+                                        <select name="classSection">
+                                            <option value="1">上午一二节</option>
+                                            <option value="2" >上午三四节</option>
+                                            <option value="3">下午五六节</option>
+                                            <option value="4">下午七八节</option>
+                                            <option value="5">晚上九十节</option>
+                                        </select>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td align="right" width="30%">开始时间：</td>
-                                    <td width="70%">第<select>
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
+                                    <td width="70%">第<select name="beginWeek">
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
                                         <option>8</option>
                                         <option>9</option>
                                         <option>10</option>
@@ -107,11 +131,17 @@
                                         <option>18</option>
                                         <option>19</option>
                                         <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
                                     </select>周</td>
                                 </tr>
                                 <tr>
                                     <td align="right" width="30%">结束时间：</td>
-                                    <td width="70%">第<select>
+                                    <td width="70%">第<select name="endWeek">
                                         <option>1</option>
                                         <option>2</option>
                                         <option>3</option>
@@ -132,11 +162,273 @@
                                         <option>18</option>
                                         <option>19</option>
                                         <option>20</option>
+                                        <option>21</option>
+                                        <option>22</option>
+                                        <option>23</option>
+                                        <option>24</option>
+                                        <option>25</option>
+                                        <option>26</option>
                                     </select>周</td>
                                 </tr>
+                            </table>
 
+                            <table width="100%" border="0" cellspacing="0" bgcolor="#E3EFFF" cellpadding="0">
+                                <tr bgcolor="#E3EFFF">
+                                    <td width="20%">楼栋:<input type="text"></td>
+                                    <td width="20%">房间:<input type="text"></td>
+                                    <td width="20%"><input type="button" value="搜索"></td>
+                                    <td width="20%"></td>
+                                    <td width="20%"></td>
+                                </tr>
 
                             </table>
+                            <table width="100%" border="0" cellspacing="1" cellpadding="0">
+                            <tr>
+                                <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><p><img src="/images/door_open.png" width="64"
+                                                                                   height="64"/><br/>
+                                                <span class="title">101</span></p></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">102</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">103</span></td>
+                                            <td><p>已占用<br/>
+                                                子网划分实验<br/>
+                                                张磊<br/>
+                                                2013-2-26 13:00:00 至 <br/>
+                                                2013-2-28 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">104</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">201</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">202</span></td>
+                                            <td><p>已占用<br/>
+                                                继承与接口<br/>
+                                                周慧<br/>
+                                                2013-2-25 13:00:00 至<br/>
+                                                2013-2-28 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">203</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">204</span></td>
+                                            <td><p> 空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">301</span></td>
+                                            <td><p>已占用<br/>
+                                                网络监听与端口扫描<br/>
+                                                方浩<br/>
+                                                2013-2-24 13:00:00至<br/>
+                                                2013-2-28 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">302</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">303</span></td>
+                                            <td><p>已占用<br/>
+                                                8255A并行口实验 输出方波<br/>
+                                                郑名明<br/>
+                                                2013-2-27 13:00:00至<br/>
+                                                2013-2-28 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">304</span></td>
+                                            <td><p> 已占用<br/>
+                                                基于Servlet的MVC模式<br/>
+                                                周敏<br/>
+                                                2013-2-26 13:00:00至<br/>
+                                                2013-2-30 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">401</span></td>
+                                            <td><p>已占用<br/>
+                                                了解Linux内核及内核模块<br/>
+                                                王伟<br/>
+                                                2013-2-24 13:00:00至<br/>
+                                                2013-2-28 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">402</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='curriculumclasslist'"
+                                    style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door_open.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">403</span></td>
+                                            <td><p>空闲<br/>
+                                                <br/>
+                                                <br/>
+                                                <br/>
+                                            </p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                                <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                        <tr>
+                                            <td width="40%" align="center"><img src="/images/door.png" width="64"
+                                                                                height="64"/><br/>
+                                                <span class="title">404</span></td>
+                                            <td><p> 已占用<br/>
+                                                汇编语言程序的调试与运行<br/>
+                                                吴敬力<br/>
+                                                2013-2-26 13:00:00至<br/>
+                                                2013-2-30 17:00:00</p></td>
+                                        </tr>
+                                    </table>
+                                </td>
+                            </tr>
+
+                            </table>
+
+
+
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
                                     <td align="center"><input type="submit" value="保存"

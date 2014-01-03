@@ -82,7 +82,7 @@
                                     <td bgcolor="#F7F7F7">网络工程09-1</td>
                                     <td bgcolor="#F7F7F7">江湖入门基础</td>
                                     <td bgcolor="#F7F7F7">李三刀</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">点击安排实验室</td>
+                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">修改课表信息记录</td>
                                 </tr>
                                 <c:forEach items="${pageInfo.data}" var="item">
                                     <tr>
