@@ -86,10 +86,12 @@
                                 </tr>
                                 <c:forEach items="${pageInfo.data}" var="item">
                                     <tr>
-                                        <td bgcolor="#F7F7F7">${item.classYear}</td>
-                                        <td bgcolor="#F7F7F7">${item.c}</td>
-                                        <td bgcolor="#F7F7F7">${item.major}</td>
-                                        <td bgcolor="#F7F7F7">${item.className}</td>
+                                        <td bgcolor="#F7F7F7">${item.termYear.year}</td>
+                                        <td bgcolor="#F7F7F7">${item.termYear.name}</td>
+                                        <td bgcolor="#F7F7F7">${item.curriculum.major.name}</td>
+                                        <td bgcolor="#F7F7F7">${item.curriculumClass.className}</td>
+                                        <td bgcolor="#F7F7F7">${item.curriculum.name}</td>
+                                        <td bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
                                         <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview?scheduleId=${item.id}'">点击安排实验室</td>
                                     </tr>
                                 </c:forEach>

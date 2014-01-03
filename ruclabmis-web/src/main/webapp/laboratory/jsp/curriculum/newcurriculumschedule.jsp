@@ -38,7 +38,7 @@
     });
 </script>
 <body onload="doOnLoad();">
-<form action="curriculumclasslist">
+<form action="addcurriculumschedule" method="post">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
     <tr>
         <td valign="top" height="100%">
@@ -61,7 +61,7 @@
                                 <tr>
                                     <td align="right">学期学年：</td>
                                     <td>
-                                        <select id="termYear" name="termYear"
+                                        <select id="termYear" name="termYearId"
                                                 style="width: 252px;height: 22px"
                                                 data-placeholder="选择学年学期...">
                                             <c:forEach items="${termYearList}" var="termYear">
@@ -73,7 +73,7 @@
                                 <tr>
                                     <td align="right">班级：</td>
                                     <td>
-                                        <select id="target" name="target"
+                                        <select id="target" name="curriculumClassId"
                                                 style="width: 252px;height: 22px"
                                                 data-placeholder="选择班级...">
                                             <c:forEach items="${curriculumClassList}" var="curriculumClass">
@@ -118,56 +118,56 @@
                                         <option value="5">5</option>
                                         <option value="6">6</option>
                                         <option value="7">7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>
-                                        <option>11</option>
-                                        <option>12</option>
-                                        <option>13</option>
-                                        <option>14</option>
-                                        <option>15</option>
-                                        <option>16</option>
-                                        <option>17</option>
-                                        <option>18</option>
-                                        <option>19</option>
-                                        <option>20</option>
-                                        <option>21</option>
-                                        <option>22</option>
-                                        <option>23</option>
-                                        <option>24</option>
-                                        <option>25</option>
-                                        <option>26</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
                                     </select>周</td>
                                 </tr>
                                 <tr>
                                     <td align="right" width="30%">结束时间：</td>
                                     <td width="70%">第<select name="endWeek">
-                                        <option>1</option>
-                                        <option>2</option>
-                                        <option>3</option>
-                                        <option>4</option>
-                                        <option>5</option>
-                                        <option>6</option>
-                                        <option>7</option>
-                                        <option>8</option>
-                                        <option>9</option>
-                                        <option>10</option>
-                                        <option>11</option>
-                                        <option>12</option>
-                                        <option>13</option>
-                                        <option>14</option>
-                                        <option>15</option>
-                                        <option>16</option>
-                                        <option>17</option>
-                                        <option>18</option>
-                                        <option>19</option>
-                                        <option>20</option>
-                                        <option>21</option>
-                                        <option>22</option>
-                                        <option>23</option>
-                                        <option>24</option>
-                                        <option>25</option>
-                                        <option>26</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value="6">6</option>
+                                        <option value="7">7</option>
+                                        <option value="8">8</option>
+                                        <option value="9">9</option>
+                                        <option value="10">10</option>
+                                        <option value="11">11</option>
+                                        <option value="12">12</option>
+                                        <option value="13">13</option>
+                                        <option value="14">14</option>
+                                        <option value="15">15</option>
+                                        <option value="16">16</option>
+                                        <option value="17">17</option>
+                                        <option value="18">18</option>
+                                        <option value="19">19</option>
+                                        <option value="20">20</option>
+                                        <option value="21">21</option>
+                                        <option value="22">22</option>
+                                        <option value="23">23</option>
+                                        <option value="24">24</option>
+                                        <option value="25">25</option>
+                                        <option value="26">26</option>
                                     </select>周</td>
                                 </tr>
                             </table>

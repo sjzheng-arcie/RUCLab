@@ -31,6 +31,16 @@ public class Curriculum {
 
     private String comments;
 
+	public Major getMajor() {
+		return major;
+	}
+
+	public void setMajor(Major major) {
+		this.major = major;
+	}
+
+	private Major major;
+
     public Integer getId() {
         return id;
     }

@@ -12,7 +12,7 @@
     <result column="week" jdbcType="TINYINT" property="week" />
     <result column="weekday" jdbcType="TINYINT" property="weekday" />
       <association column="room_Id" javaType="Room" property="room" select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
-      <association column="class_Id" javaType="ClassStudent" property="class" select="edu.ruc.labmgr.mapper.ClassStudentMapper.selectByPrimaryKey" />
+      <association column="class_Id" javaType="CurriculumClass" property="curriculumClass" select="edu.ruc.labmgr.mapper.CurriculumClassMapper.selectByPrimaryKey" />
       <association column="teacher_Id" javaType="Teacher" property="teacher" select="edu.ruc.labmgr.mapper.TeacherMapper.selectByPrimaryKey" />
       <association column="curriculum_Id" javaType="Curriculum" property="curriculum" select="edu.ruc.labmgr.mapper.CurriculumMapper.selectByPrimaryKey" />
       <association column="term_yearId" javaType="TermYear" property="termYear" select="edu.ruc.labmgr.mapper.TermYearMapper.selectByPrimaryKey" />

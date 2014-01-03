@@ -30,6 +30,8 @@ public class CurriculumSheduleController {
 	CurriculumClassService curriculumClassService;
 	@Autowired
 	SchoolCalenderService schoolCalenderService;
+	@Autowired
+	CurriculumService curriculumService;
 
 
 
@@ -41,10 +43,11 @@ public class CurriculumSheduleController {
 	public ModelAndView curriculumClassList(@RequestParam(required = false,defaultValue = "") String roomName,
 											@RequestParam(value="page",required = false,defaultValue = "1") int page){
 
-		PageInfo<CurriculumClass> pageInfo=curriculumClassService.getPageClasses(page, null, null);
-		List<CurriculumClass> curriculumClassList=pageInfo.getData();
+		//PageInfo<CurriculumClass> pageInfo=curriculumClassService.getPageClasses(page, null, null);
+		//List<CurriculumClass> curriculumClassList=pageInfo.getData();
+		PageInfo<CurriculumSchedule>pageInfo=curriculumScheduleService.selectListPage(null,page);
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumclasslist");
-		mav.addObject("curriculumClassList",curriculumClassList);
+		mav.addObject("pageInfo",pageInfo);
 		return mav;
 	}
 	@RequestMapping(value = "/newcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
@@ -53,10 +56,36 @@ public class CurriculumSheduleController {
 		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
 		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
 
-		//List<TermYear> termYearList=schoolCalenderService.getPageListbyNum()
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/newcurriculumschedule");
 		mav.addObject("curriculumClassList",curriculumClassList);
 		mav.addObject("termYearList",termYearList);
+		return mav;
+	}
+	@RequestMapping(value = "/addcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView addCurriculumSchedule(@RequestParam(value="termYearId",required = true) int teamYearId,
+											  @RequestParam(value="curriculumClassId",required = true) int curriculumClassId,
+											  @RequestParam(value="weekDay",required = true) Byte weekDay,
+											  @RequestParam(value="beginWeek",required = true) Byte beginWeek,
+											  @RequestParam(value="endWeek",required = true) Byte endWeek,
+											  @RequestParam(value="classSection",required = true) Byte classSection ){
+
+		CurriculumClass curriculumClass= curriculumClassService.getVirtualClass(curriculumClassId);
+		Curriculum curriculum= curriculumService.getCurriculum(curriculumClass.getCurriculumId());
+
+
+		for(Byte i=0;i<(endWeek-beginWeek);i++){
+			CurriculumSchedule curriculumSchedule = new CurriculumSchedule();
+			curriculumSchedule.setTermYearid(teamYearId);
+			curriculumSchedule.setCurriculumId(curriculumClass.getCurriculumId());
+			curriculumSchedule.setWeekday(weekDay);
+			curriculumSchedule.setClassId(curriculumClassId);
+			curriculumSchedule.setTeacherid(curriculum.getId());
+			curriculumSchedule.setAmPm(classSection);
+			curriculumSchedule.setWeek(i);
+			curriculumScheduleService.add(curriculumSchedule);
+		}
+		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist");
+
 		return mav;
 	}
 	@RequestMapping(value = "/addlession", method = {RequestMethod.GET,RequestMethod.POST})

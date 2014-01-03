@@ -17,6 +17,7 @@
         <result column="c_comments" property="comments" jdbcType="VARCHAR"/>
         <result column="c_major_name" property="majorName" jdbcType="VARCHAR"/>
         <result column="c_teacher_name" property="teacherName" jdbcType="VARCHAR"/>
+        <association column="c_major_id" javaType="Major" property="major" select="edu.ruc.labmgr.mapper.MajorMapper.selectByPrimaryKey" />
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>
