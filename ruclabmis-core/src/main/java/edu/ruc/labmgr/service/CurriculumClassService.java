@@ -19,20 +19,21 @@ import java.util.Map;
  * @version 1.0
  *          ${tags}
  */
+@SuppressWarnings("ALL")
 @Service
 public class CurriculumClassService {
     @Autowired
-    private CurriculumClassMapper classMapper;
+    CurriculumClassMapper classMapper;
     @Autowired
-    private ClassStudentMapper classStudentMapper;
+    ClassStudentMapper classStudentMapper;
     @Autowired
-    private CurriculumMapper curriculumMapper;
+    CurriculumMapper curriculumMapper;
     @Autowired
-    private UserMapper userMapper;
+    UserMapper userMapper;
 	@Autowired
-	private BbsSessionMapper bbsSessionMapper;
+	BbsSessionMapper bbsSessionMapper;
 	@Autowired
-	private CurriculumClassMapper curriculumClassMapper;
+	CurriculumClassMapper curriculumClassMapper;
 
     /**
      * 获得分页的虚拟班级列表

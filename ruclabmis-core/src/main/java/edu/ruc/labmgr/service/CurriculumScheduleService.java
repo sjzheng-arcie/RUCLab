@@ -1,9 +1,7 @@
 package edu.ruc.labmgr.service;
 
-import edu.ruc.labmgr.domain.ClassStudent;
-import edu.ruc.labmgr.domain.CurriculumClassCriteria;
-import edu.ruc.labmgr.domain.CurriculumSchedule;
-import edu.ruc.labmgr.domain.CurriculumScheduleCriteria;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.mapper.ClassStudentMapper;
 import edu.ruc.labmgr.mapper.CurriculumScheduleMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -25,6 +23,8 @@ import java.util.List;
 public class CurriculumScheduleService {
 	@Autowired
 	CurriculumScheduleMapper curriculumScheduleMapper;
+	@Autowired
+	ClassStudentMapper classStudentMapper;
 
 	public void deleteById(int id){
 		curriculumScheduleMapper.deleteByPrimaryKey(id);
@@ -62,5 +62,20 @@ public class CurriculumScheduleService {
 	public List<CurriculumSchedule> getCurriculumScheduleList(CurriculumScheduleCriteria criteria){
 		List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByExample(criteria);
 		return curriculumScheduleList;
+	}
+
+	public List<Integer> getClassIdListByStudentId(int id){
+		List<Integer> classList=new ArrayList<>();
+		ClassStudentCriteria classStudentCriteria = new ClassStudentCriteria();
+		ClassStudentCriteria.Criteria criteria= classStudentCriteria.createCriteria();
+		criteria.andStudentIdEqualTo(id);
+		List<ClassStudent> classStudentList=classStudentMapper.selectByCriteria(classStudentCriteria);
+
+		for(int i=0;i<classStudentList.size();i++){
+			classList.add(i,classStudentList.get(i).getClassId());
+		}
+		return classList;
+
+
 	}
 }
