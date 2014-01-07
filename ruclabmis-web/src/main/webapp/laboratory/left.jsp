@@ -48,11 +48,11 @@
                                    target="main">我的短消息</a>
                             </li>
                             <li><a href="/laboratory/jsp/announcement/remind/laboratory/announcement" onfocus="toFocus(this)"
-                                   target="main">我的通知</a>
+                                   target="main">查看公告</a>
                             </li>
                             <shiro:hasAnyRoles name="leader">
-                                <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
-                                </li>
+ <%--                               <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+                                </li>--%>
                                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
                             </shiro:hasAnyRoles>
@@ -119,7 +119,7 @@
                         </ul>
                     </div>
                 </shiro:hasAnyRoles>
-                <shiro:hasAnyRoles name="equipment_admin,student,teacher">
+                <shiro:hasAnyRoles name="equipment_admin,student,teacher,administrators">
                     <h1 class="type"><a href="javascript:void(0)">教学资源管理</a></h1>
 
                     <div class="content">
@@ -129,10 +129,22 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="jsp/res/instruction/list" onfocus="toFocus(this)" target="main">实验指导书管理</a>
-                            </li>
-                            <li><a href="jsp/res/book/list" onfocus="toFocus(this)" target="main">教学资源下载</a>
-                            </li>
+                            <shiro:hasRole name="student">
+                                <li><a href="jsp/res/instruction/list" onfocus="toFocus(this)" target="main">实验指导书下载</a>
+                                </li>
+                            </shiro:hasRole>
+
+                            <shiro:hasRole name="student">
+                                <li><a href="jsp/res/book/list" onfocus="toFocus(this)" target="main">教学资源下载</a>
+                                </li>
+                            </shiro:hasRole>
+                            <shiro:hasAnyRoles name="teacher,administrators,equipment_admin">
+                                <li><a href="jsp/res/instruction/list" onfocus="toFocus(this)" target="main">实验指导书管理</a>
+                                </li>
+                                <li><a href="jsp/res/book/list" onfocus="toFocus(this)" target="main">教学资源维护</a>
+                                </li>
+                            </shiro:hasAnyRoles>
+
                             <shiro:hasRole name="student">
                                 <li><a href="jsp/experiment/experiment/courselist?page=1&view=report" onfocus="toFocus(this)" target="main">实验报告提交</a>
                                 </li>

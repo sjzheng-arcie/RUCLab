@@ -1,8 +1,6 @@
 package edu.ruc.labmgr.domain;
 
 import java.util.ArrayList;
-import java.util.Date;
-import java.util.Iterator;
 import java.util.List;
 
 public class ArrangementCriteria {
@@ -106,32 +104,6 @@ public class ArrangementCriteria {
             criteria.add(new Criterion(condition, value1, value2));
         }
 
-        protected void addCriterionForJDBCDate(String condition, Date value, String property) {
-            if (value == null) {
-                throw new RuntimeException("Value for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value.getTime()), property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, List<Date> values, String property) {
-            if (values == null || values.size() == 0) {
-                throw new RuntimeException("Value list for " + property + " cannot be null or empty");
-            }
-            List<java.sql.Date> dateList = new ArrayList<java.sql.Date>();
-            Iterator<Date> iter = values.iterator();
-            while (iter.hasNext()) {
-                dateList.add(new java.sql.Date(iter.next().getTime()));
-            }
-            addCriterion(condition, dateList, property);
-        }
-
-        protected void addCriterionForJDBCDate(String condition, Date value1, Date value2, String property) {
-            if (value1 == null || value2 == null) {
-                throw new RuntimeException("Between values for " + property + " cannot be null");
-            }
-            addCriterion(condition, new java.sql.Date(value1.getTime()), new java.sql.Date(value2.getTime()), property);
-        }
-
         public Criteria andIdIsNull() {
             addCriterion("id is null");
             return (Criteria) this;
@@ -192,126 +164,6 @@ public class ArrangementCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andDateIsNull() {
-            addCriterion("date is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateIsNotNull() {
-            addCriterion("date is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateEqualTo(Date value) {
-            addCriterionForJDBCDate("date =", value, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateNotEqualTo(Date value) {
-            addCriterionForJDBCDate("date <>", value, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateGreaterThan(Date value) {
-            addCriterionForJDBCDate("date >", value, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateGreaterThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("date >=", value, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateLessThan(Date value) {
-            addCriterionForJDBCDate("date <", value, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateLessThanOrEqualTo(Date value) {
-            addCriterionForJDBCDate("date <=", value, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateIn(List<Date> values) {
-            addCriterionForJDBCDate("date in", values, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateNotIn(List<Date> values) {
-            addCriterionForJDBCDate("date not in", values, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("date between", value1, value2, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andDateNotBetween(Date value1, Date value2) {
-            addCriterionForJDBCDate("date not between", value1, value2, "date");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIsNull() {
-            addCriterion("period is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIsNotNull() {
-            addCriterion("period is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodEqualTo(Date value) {
-            addCriterion("period =", value, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodNotEqualTo(Date value) {
-            addCriterion("period <>", value, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodGreaterThan(Date value) {
-            addCriterion("period >", value, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodGreaterThanOrEqualTo(Date value) {
-            addCriterion("period >=", value, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodLessThan(Date value) {
-            addCriterion("period <", value, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodLessThanOrEqualTo(Date value) {
-            addCriterion("period <=", value, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodIn(List<Date> values) {
-            addCriterion("period in", values, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodNotIn(List<Date> values) {
-            addCriterion("period not in", values, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodBetween(Date value1, Date value2) {
-            addCriterion("period between", value1, value2, "period");
-            return (Criteria) this;
-        }
-
-        public Criteria andPeriodNotBetween(Date value1, Date value2) {
-            addCriterion("period not between", value1, value2, "period");
-            return (Criteria) this;
-        }
-
         public Criteria andStateIsNull() {
             addCriterion("state is null");
             return (Criteria) this;
@@ -322,113 +174,53 @@ public class ArrangementCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStateEqualTo(Short value) {
+        public Criteria andStateEqualTo(Byte value) {
             addCriterion("state =", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotEqualTo(Short value) {
+        public Criteria andStateNotEqualTo(Byte value) {
             addCriterion("state <>", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThan(Short value) {
+        public Criteria andStateGreaterThan(Byte value) {
             addCriterion("state >", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateGreaterThanOrEqualTo(Short value) {
+        public Criteria andStateGreaterThanOrEqualTo(Byte value) {
             addCriterion("state >=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThan(Short value) {
+        public Criteria andStateLessThan(Byte value) {
             addCriterion("state <", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateLessThanOrEqualTo(Short value) {
+        public Criteria andStateLessThanOrEqualTo(Byte value) {
             addCriterion("state <=", value, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateIn(List<Short> values) {
+        public Criteria andStateIn(List<Byte> values) {
             addCriterion("state in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotIn(List<Short> values) {
+        public Criteria andStateNotIn(List<Byte> values) {
             addCriterion("state not in", values, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateBetween(Short value1, Short value2) {
+        public Criteria andStateBetween(Byte value1, Byte value2) {
             addCriterion("state between", value1, value2, "state");
             return (Criteria) this;
         }
 
-        public Criteria andStateNotBetween(Short value1, Short value2) {
+        public Criteria andStateNotBetween(Byte value1, Byte value2) {
             addCriterion("state not between", value1, value2, "state");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdIsNull() {
-            addCriterion("room_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdIsNotNull() {
-            addCriterion("room_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdEqualTo(Integer value) {
-            addCriterion("room_id =", value, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdNotEqualTo(Integer value) {
-            addCriterion("room_id <>", value, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdGreaterThan(Integer value) {
-            addCriterion("room_id >", value, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("room_id >=", value, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdLessThan(Integer value) {
-            addCriterion("room_id <", value, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdLessThanOrEqualTo(Integer value) {
-            addCriterion("room_id <=", value, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdIn(List<Integer> values) {
-            addCriterion("room_id in", values, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdNotIn(List<Integer> values) {
-            addCriterion("room_id not in", values, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdBetween(Integer value1, Integer value2) {
-            addCriterion("room_id between", value1, value2, "roomId");
-            return (Criteria) this;
-        }
-
-        public Criteria andRoomIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("room_id not between", value1, value2, "roomId");
             return (Criteria) this;
         }
 

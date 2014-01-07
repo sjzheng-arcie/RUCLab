@@ -16,6 +16,10 @@
         function editItem(resourceId) {
             window.location.href = "toUpdate?id="+resourceId;
         }
+        function deleteItem(resourceId) {
+            if(confirm('是否确定删除该资源'))
+             window.location.href =  "deleteItem?items=" +resourceId;
+        }
 
         function downloadFile(resourceId) {
             window.location.href = "downloadFile?id=" + resourceId;
@@ -33,7 +37,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">资源管理 > 教学资源管理</div>
+                            <div class="titlebt">资源管理 > 教学资源</div>
                         </td>
                     </tr>
                 </table>
@@ -98,10 +102,12 @@
                                                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span>
                                                                             </a>
+                                                                            <shiro:hasRole name="administrators">
                                                                             <a href="#" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt">
                                                                                 <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span>
                                                                             </a>
+                                                                            </shiro:hasRole>
                                                                         </shiro:hasAnyRoles>
                                                                     </span>
                                                                 </div>
@@ -168,12 +174,21 @@
                                                             <c:if test="${item.downloadLimit}">班级内部</c:if>
                                                         </td>
                                                         <td>
-                                                            <shiro:hasAnyRoles name="administrator,teacher">
-                                                            <input type="button" onClick="editItem(${item.id})"
-                                                                   class="button" value="编辑"/>
+                                                            <shiro:hasAnyRoles name="administrators,teacher,student">
+                                                                <input type="button" onClick="downloadFile(${item.id})"
+                                                                       class="button" value="下载"/>
+
+
+
+
+                                                                  <c:if test="${item.uploadPersonSn==currentUserSn}">
+                                                                  <input type="button" onClick="deleteItem('${item.id}')"
+                                                                         class="button" value="删除"/>
+                                                                      <input type="button" onClick="editItem('${item.id}')"
+                                                                             class="button" value="编辑"/>
+                                                                  </c:if>
                                                             </shiro:hasAnyRoles>
-                                                            <input type="button" onClick="downloadFile(${item.id})"
-                                                                   class="button" value="下载"/>
+
                                                         </td>
                                                     </tr>
                                                 </c:forEach>

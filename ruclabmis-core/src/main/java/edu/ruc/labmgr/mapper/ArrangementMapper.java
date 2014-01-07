@@ -2,15 +2,14 @@ package edu.ruc.labmgr.mapper;
 
 import edu.ruc.labmgr.domain.Arrangement;
 import edu.ruc.labmgr.domain.ArrangementCriteria;
+import java.util.List;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
-import java.util.List;
-
 public interface ArrangementMapper {
-    int countByCriteria(ArrangementCriteria criteria);
+    int countByCriteria(ArrangementCriteria example);
 
-    int deleteByCriteria(ArrangementCriteria criteria);
+    int deleteByCriteria(ArrangementCriteria example);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -18,15 +17,15 @@ public interface ArrangementMapper {
 
     int insertSelective(Arrangement record);
 
-    List<Arrangement> selectByCriteriaWithRowbounds(ArrangementCriteria criteria, RowBounds rowBounds);
+    List<Arrangement> selectByCriteriaWithRowbounds(ArrangementCriteria example, RowBounds rowBounds);
 
-    List<Arrangement> selectByCriteria(ArrangementCriteria criteria);
+    List<Arrangement> selectByCriteria(ArrangementCriteria example);
 
     Arrangement selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Arrangement record, @Param("criteria") ArrangementCriteria criteria);
+    int updateByCriteriaSelective(@Param("record") Arrangement record, @Param("example") ArrangementCriteria example);
 
-    int updateByCriteria(@Param("record") Arrangement record, @Param("criteria") ArrangementCriteria criteria);
+    int updateByCriteria(@Param("record") Arrangement record, @Param("example") ArrangementCriteria example);
 
     int updateByPrimaryKeySelective(Arrangement record);
 

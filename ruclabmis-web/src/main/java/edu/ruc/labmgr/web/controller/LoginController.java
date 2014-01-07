@@ -28,7 +28,7 @@ public class LoginController {
     }
     @RequestMapping("/{system}/excutelogin")
     public String login(@PathVariable String system,HttpServletRequest request) {
-        String result = "redirect:/"+system+"/index";
+        String result = system+"/login";
         String userSn = request.getParameter("username");
         String password = CipherUtil.generatePassword(request.getParameter("password"));
         UsernamePasswordToken token = new UsernamePasswordToken(userSn, password);
@@ -57,7 +57,9 @@ public class LoginController {
                 result = "redirect:/equipment/leader_index";
             } else if (currentUser.hasRole("equipment_admin")) {
                 result = "redirect:/equipment/admin_index";
-            }
+            }else{
+				request.setAttribute("userNameNotExist","* 您无权进入本系统");
+			}
         }else {
             token.setRememberMe(false);
             try {
@@ -86,7 +88,9 @@ public class LoginController {
                 result = "redirect:/laboratory/index";
             }else if (currentUser.hasRole(Types.Role.LAB_ADMIN.getName())){
                 result = "redirect:/laboratory/index";
-            }
+            }else{
+				request.setAttribute("userNameNotExist","* 您无权进入本系统");
+			}
         }
         return result;
     }

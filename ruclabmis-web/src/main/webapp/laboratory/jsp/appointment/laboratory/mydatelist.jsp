@@ -7,19 +7,21 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/dhtmlxlayout.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
-<script src="../../common/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxGrid/codebase/dhtmlxgrid.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
-<script src="../../common/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
-<script src="../../common/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
-<script src="../../common/dhtmlxGrid/codebase/excells/dhtmlxgrid_excell_link.js"></script>
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css">
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxGrid/codebase/skins/dhtmlx   grid_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxcommon.js"></script>
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
+<script src="/dhtmlx/dhtmlxGrid/codebase/excells/dhtmlxgrid_excell_link.js"></script>
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
+
 
 <body onload="doOnLoad();">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
@@ -62,11 +64,12 @@
                         </div>
                         <div id="parentId"
                              style="position: relative; top: 0px; left: 0px; width: 100%; height: 100%; aborder: #B5CDE4 1px solid;"></div>
-                        <script>var dhxLayout, dhxToolbar, dhxTree, editor;
+
+                        <script>var dhxLayout, dhxToolbar, dhxGrid,dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "2E");
                             dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.setIconsPath("/dhtmlx/dhtmlxToolbar/samples/common/imgs/");
                             dhxToolbar.loadXML("common/toolbar_list.xml?" + new Date().getTime());
                             dhxToolbar.attachEvent("onClick", function (id) {
                                 switch (id) {
@@ -87,7 +90,7 @@
 
                             dhxLayout.cells("b").setText("查询结果");
                             dhxGrid = dhxLayout.cells("b").attachGrid();
-                            dhxGrid.setImagePath("../../common/dhtmlxGrid/codebase/imgs/");
+                            dhxGrid.setImagePath("/dhtmlx/dhtmlxGrid/codebase/imgs/");
                             dhxGrid.setHeader("选择,实验名称,实验类型,预约时间,申请时间,申请人,审核状态,编辑,审核");
                             dhxGrid.setInitWidths("50,*,100,100,100,100,100,50,50")
                             dhxGrid.setColAlign("center,left,left,left,left,left,left,center,center");

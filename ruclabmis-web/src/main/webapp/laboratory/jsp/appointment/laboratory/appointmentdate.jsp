@@ -7,17 +7,17 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
 
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/dhtmlxlayout.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlxLayout/codebase/dhtmlxlayout.css">
+<link rel="stylesheet" type="text/css" href="/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
-<script src="../../common/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
 
 <body onload="doOnLoad();">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
@@ -51,8 +51,8 @@
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1C");
                             dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
-                            dhxToolbar.loadXML("common/toolbar.xml?" + new Date().getTime());
+                            dhxToolbar.setIconsPath("../../../../../dhtmlx//dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.loadXML("../common/toolbar.xml?" + new Date().getTime());
                             dhxToolbar.attachEvent("onClick", function (id) {
                                 switch (id) {
                                     case 'save' :

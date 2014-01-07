@@ -36,7 +36,7 @@
     <tr>
         <td width="182" valign="top">
             <div id="container">
-                <h1 class="type"><a href="javascript:void(0)">教学资源管理</a></h1>
+                <h1 class="type"><a href="javascript:void(0)">考核管理</a></h1>
 
                 <div class="content">
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -47,7 +47,7 @@
                     <ul class="MM">
                         <li><a href="jsp/task/task/teacherlist" onfocus="toFocus(this)" target="main">任务管理</a>
                         </li>
-                        <li><a href="jsp/task/work/allworklist" onfocus="toFocus(this)" target="main">工作报告管理</a>
+                        <li><a href="jsp/task/work/allworklist" onfocus="toFocus(this)" target="main">工作管理</a>
                         </li>
                         <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
                         </li>

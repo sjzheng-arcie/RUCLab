@@ -88,8 +88,7 @@ function dhtmlXGridObject(a) {
     this.hdrBox.style.overflow =
         "hidden";
     this.hdrBox.className = "xhdr";
-    this.preload..
-    /imagesAr = [];
+  //  this.preload../imagesAr = [];
     this.sortImg = document.createElement("IMG");
     this.sortImg.style.display = "none";
     this.hdrBox.appendChild(this.sortImg);
@@ -376,8 +375,7 @@ function dhtmlXGridObject(a) {
     this.enableMultiselect = function (a) {
         this.selMultiRows = convertStringToBoolean(a)
     };
-    this.set..
-    /imagesPath = this.setImagePath = function (a) {
+    this.setimagesPath = this.setImagePath = function (a) {
     this.imgURL = a
 };
 this.setIconsPath = this.setIconPath = function (a) {
@@ -924,12 +922,10 @@ this.setColumnLabel = function (a, b, c, d) {
         g.cells[h].innerHTML = "<img src='" + this.imgURL + "" + b + "' onerror='this.src = \"" + this.imgURL + "imageloaderror.gif\"'>";
         var l = new Image;
         l.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".des$1");
-        this.preload..
-        /imagesAr[this.preload../imagesAr.length] = l;
+        this.preloadimagesAr[this.preloadimagesAr.length] = l;
         var k = new Image;
         k.src = this.imgURL + "" + b.replace(/(\.[a-z]+)/, ".asc$1");
-        this.preload..
-        /imagesAr[this.preload../imagesAr.length] = k
+        this.preloadimagesAr[this.preloadimagesAr.length] = k
     } else {
         var m = "<div class='hdrcell'>";
         if (b.indexOf("img:[") != -1) {
@@ -1885,8 +1881,8 @@ dhtmlXGridObject.prototype = {getRowAttribute: function (a, b) {
             var b = a.splice(0, 1)[0].split(this.csv.cell);
             this._csvAID || b.splice(0, 1);
             this.setHeader(b.join(this.delim));
-            this.init()
-        }
+        this.init()
+    }
         for (var c = 0; c < a.length; c++)if (a[c] || c != a.length - 1) {
             if (this._csvAID) {
                 var d = c + 1;
