@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="edu.ruc.labmgr.mapper.ArrangementScheduleMapper" >
+  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.ArrangementSchedule" >
+    <result column="arrangement_id" property="arrangementId" jdbcType="INTEGER" />
+    <result column="curriculumshedule_id" property="curriculumsheduleId" jdbcType="INTEGER" />
+  </resultMap>
+  <sql id="Criteria_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Criteria_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    arrangement_id, curriculumshedule_id
+  </sql>
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementScheduleCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from arrangement_schedule
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ArrangementScheduleCriteria" >
+    delete from arrangement_schedule
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="edu.ruc.labmgr.domain.ArrangementSchedule" >
+    insert into arrangement_schedule (arrangement_id, curriculumshedule_id
+      )
+    values (#{arrangementId,jdbcType=INTEGER}, #{curriculumsheduleId,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.ArrangementSchedule" >
+    insert into arrangement_schedule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="arrangementId != null" >
+        arrangement_id,
+      </if>
+      <if test="curriculumsheduleId != null" >
+        curriculumshedule_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="arrangementId != null" >
+        #{arrangementId,jdbcType=INTEGER},
+      </if>
+      <if test="curriculumsheduleId != null" >
+        #{curriculumsheduleId,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ArrangementScheduleCriteria" resultType="java.lang.Integer" >
+    select count(*) from arrangement_schedule
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByCriteriaSelective" parameterType="map" >
+    update arrangement_schedule
+    <set >
+      <if test="record.arrangementId != null" >
+        arrangement_id = #{record.arrangementId,jdbcType=INTEGER},
+      </if>
+      <if test="record.curriculumsheduleId != null" >
+        curriculumshedule_id = #{record.curriculumsheduleId,jdbcType=INTEGER},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByCriteria" parameterType="map" >
+    update arrangement_schedule
+    set arrangement_id = #{record.arrangementId,jdbcType=INTEGER},
+      curriculumshedule_id = #{record.curriculumsheduleId,jdbcType=INTEGER}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Criteria_Where_Clause" />
+    </if>
+  </update>
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementScheduleCriteria" id="selectByCriteriaWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from arrangement_schedule
+    <if test="_parameter != null" >
+      <include refid="Criteria_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>

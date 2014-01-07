@@ -44,6 +44,9 @@ public class RelatedResourceController {
         List<Curriculum> curriculumList = curriculumService.selectAllCurriculums();
         mav.addObject("curriculumList", curriculumList);
 
+		String currentUserSn = userService.getCurrentUser().getSn();
+		mav.addObject("currentUserSn",currentUserSn);
+
         return mav;
     }
 
@@ -103,7 +106,11 @@ public class RelatedResourceController {
         relatedResourceService.delete(items);
         return "redirect:/laboratory/jsp/res/book/list";
     }
-
+	@RequestMapping(value = "/deleteItem", method = RequestMethod.GET)
+	public String delete(@RequestParam("items") int id) {
+		relatedResourceService.delete(id);
+		return "redirect:/laboratory/jsp/res/book/list";
+	}
 
     @RequestMapping(value="/downloadFile",method=RequestMethod.GET)
     public void downloadFile(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception{

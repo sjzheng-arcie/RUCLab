@@ -7,22 +7,22 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/dhtmlxlayout.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
-<script src="../../common/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxTree/codebase/dhtmlxtree.css">
-<script src="../../common/dhtmlxTree/codebase/dhtmlxtree.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxGrid/codebase/dhtmlxgrid.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
-<script src="../../common/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
-<script src="../../common/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
-<script src="../../common/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxTree/codebase/dhtmlxtree.css">
+<script src="/dhtmlx/dhtmlxTree/codebase/dhtmlxtree.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css">
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
 
 <body onload="doOnLoad();">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
@@ -132,7 +132,7 @@
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
                             dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.setIconsPath("/dhtmlx/dhtmlxToolbar/samples/common/imgs/");
                             dhxToolbar.loadXML("common/toolbar_fayl.xml?" + new Date().getTime());
                             dhxToolbar.attachEvent("onClick", function (id) {
                                 switch (id) {

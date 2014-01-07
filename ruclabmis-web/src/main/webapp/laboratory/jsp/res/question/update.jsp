@@ -81,10 +81,10 @@
                                                bgcolor="#E3E9EE">
                                             <input name="id" id="id" type="hidden" value="${examItemPool.id}">
                                             <tr>
-                                                <td  align="right">考试题名称:</td>
+                                                <td  align="right" width="30%">考试题名称:</td>
                                                 <td >
                                                     <input name="name" id="name" value="${examItemPool.name}" onblur="" class="text"
-                                                           style="width:400px"/>
+                                                           style="width:300px"/>
                                                     <span style="color:red;">*</span>
                                                 </td>
                                             </tr>

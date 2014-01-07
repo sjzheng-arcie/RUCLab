@@ -49,9 +49,12 @@
         <!--<table tableName="application_form">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
-        <!--<table tableName="arrangement">-->
-        <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
-        <!--</table>-->
+<!--        <table tableName="arrangement">
+        <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>
+        <table tableName="arrangement_schedule">
+            <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
+        </table>-->
         <!--<table tableName="arrangement_desk">-->
         <!--<generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>-->
         <!--</table>-->
@@ -174,8 +177,8 @@
             <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
         </table>-->
 
-        <table tableName="curriculum_schedule">
+<!--        <table tableName="curriculum_schedule">
         <generatedKey column="id" sqlStatement="SELECT LAST_INSERT_ID()" identity="true"/>
-        </table>
+        </table>-->
     </context>
 </generatorConfiguration>

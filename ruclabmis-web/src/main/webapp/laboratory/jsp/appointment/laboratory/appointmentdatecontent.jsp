@@ -7,10 +7,10 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
-<link rel="stylesheet" href="../../common/dhtmlxScheduler/codebase/dhtmlxscheduler.css" type="text/css" media="screen"
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="/dhtmlx/dhtmlxScheduler/codebase/dhtmlxscheduler.css" type="text/css" media="screen"
       title="no title" charset="utf-8">
-<script src="../../common/dhtmlxScheduler/codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
+<script src="/dhtmlx/dhtmlxScheduler/codebase/dhtmlxscheduler.js" type="text/javascript" charset="utf-8"></script>
 
 <style type="text/css" media="screen">
     html, body {
@@ -25,7 +25,7 @@
         scheduler.config.multi_day = true;
         scheduler.config.xml_date = "%Y-%m-%d %H:%i";
         scheduler.init('scheduler_here', new Date(2013, 2, 5), "month");
-        scheduler.load("common/events.xml");
+        scheduler.load("../common/events.xml");
 
     }
 </script>

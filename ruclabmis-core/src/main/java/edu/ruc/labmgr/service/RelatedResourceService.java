@@ -67,6 +67,9 @@ public class RelatedResourceService {
             mapper.deleteByPrimaryKey(id);
         }
     }
+	public void  delete(int id){
+		mapper.deleteByPrimaryKey(id);
+	}
 
 
 }

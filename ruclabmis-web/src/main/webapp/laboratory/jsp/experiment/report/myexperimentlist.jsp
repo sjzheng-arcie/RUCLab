@@ -7,8 +7,8 @@
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
-<%--    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>--%>
-    <script type="text/javascript" src="../../../../js/jquery-1.4.2.js"></script>
+    <script type="text/javascript" src="../../../../js/autocomplete/jquery-1.9.1.js"></script>
+<%--    <script type="text/javascript" src="../../../../js/jquery-1.4.2.js"></script>--%>
     <script type="text/javascript" src="../../../../js/ajaxfileupload.js"></script>
     <script src="../../../../js/DatePicker/WdatePicker.js" type=text/javascript></script>
     <%@page language="java"  import="java.util.Date"%>

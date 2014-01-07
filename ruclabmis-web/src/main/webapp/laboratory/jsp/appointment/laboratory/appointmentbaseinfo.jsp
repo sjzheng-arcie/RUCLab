@@ -7,27 +7,27 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../css/style.css" rel="stylesheet" type="text/css"/>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
+<script src="../../../../dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
+<script src="../../../../dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/dhtmlxlayout.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
-<script src="../../common/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
+<script src="../../../../dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
-<script src="../../common/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
+<script src="../../../../dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxTree/codebase/dhtmlxtree.css">
-<script src="../../common/dhtmlxTree/codebase/dhtmlxtree.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxTree/codebase/dhtmlxtree.css">
+<script src="../../../../dhtmlx/dhtmlxTree/codebase/dhtmlxtree.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxGrid/codebase/dhtmlxgrid.css">
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
-<script src="../../common/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
-<script src="../../common/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css">
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
+<script src="../../../../dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
+<script src="../../../../dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
 
-<link rel="stylesheet" type="text/css" href="../../common/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
-<script src="../../common/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
+<link rel="stylesheet" type="text/css" href="../../../../dhtmlx/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
+<script src="../../../../dhtmlx/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
 
 <body onload="doOnLoad();">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
@@ -40,9 +40,9 @@
                             <tr>
                                 <td class="op_act" >预约基本信息</td>
                                 <td class="op_nor" >预约日程</td>
-                                <td class="op_nor" >实验室申请</td>
+                                <td class="op_nor" curor="pointer" onclick="javascript:location.href='laboratoryapply'" >实验室申请</td>
                                 <td class="op_nor" >实验设备申请</td>
-                                <td class="op_nor" >预约信息提交</td>
+                                <td class="op_nor"  onclick="javascript:location.href='appointmentinfosubmit'" >预约信息提交</td>
                             </tr>
                         </table>
                     </td>
@@ -50,12 +50,32 @@
                 <tr>
                     <td valign="top" height="420">
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
-                            <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
-                                <tr>
-                                    <td align="right" width="30%">实验名称：</td>
-                                    <td width="70%"><input value="软中断程序设计实验" type="text" name="textfield"
-                                                           id="textfield"/></td>
+                            <table width="100%" border="0" cellpadding="1" cellspacing="1">
+                                <tr height="25">
+                                    <td colspan="4" align="center" bgcolor="#e3efff"><strong>预约信息</strong></td>
                                 </tr>
+                                <tr>
+                                    <td width="15%" align="right" bgcolor="#e3efff">实验名称：</td>
+                                    <td width="35%" bgcolor="#f7f7f7">软中断程序设计实验</td>
+                                    <td width="15%" align="right" bgcolor="#e3efff">申请类型：</td>
+                                    <td width="35%" bgcolor="#f7f7f7">实验室</td>
+                                </tr>
+                                <tr>
+                                    <td  width="15%" align="right" bgcolor="#e3efff">实验名称：</td>
+                                    <td width="30%" bgcolor="#f7f7f7" ><input value="软中断程序设计实验" type="text" name="textfield"
+                                                           id="textfield"/></td>
+                                    <td width="15%" align="right" bgcolor="#f7f7f7">课程名称：</td>
+                                    <td width="35% ">
+                                        <select name="select" id="select1">
+                                        <option>汇编语言程序设计</option>
+                                        <option>编译原理</option>
+                                        <option>面向对象程序设计基础</option>
+                                        <option>软件工程</option>
+                                        <option>实用组网技术</option>
+                                    </select>
+                                    </td>
+                                </tr>
+
                                 <tr>
                                     <td align="right">课程名称：</td>
                                     <td><select name="select" id="select">
@@ -101,15 +121,15 @@
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
                             dhxToolbar = dhxLayout.attachToolbar();
-                            dhxToolbar.setIconsPath("../../common/dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.setIconsPath("../../../../dhtmlx/dhtmlxToolbar/samples/common/imgs/");
                             dhxToolbar.loadXML("common/toolbar.xml?" + new Date().getTime());
                             dhxToolbar.attachEvent("onClick", function (id) {
                                 switch (id) {
                                     case 'save' :
-                                        alert("保存当前数据!")
+                                        alert("保存当前数据!");
                                         break;
                                     case 'prev' :
-                                        alert("已经是第一步!")
+                                        alert("已经是第一步!");
                                         break;
                                     case 'next' :
                                         window.location.href = 'appointmentdate';
@@ -117,10 +137,10 @@
                                     default:
                                         alert("Button " + id + " was clicked!")
                                 }
-                            });
+                        });
 
-                            dhxLayout.cells("a").setText("创建预案");
-                            dhxLayout.cells("a").attachObject("zuoxi");
+                        dhxLayout.cells("a").setText("创建预案");
+                        dhxLayout.cells("a").attachObject("zuoxi");
 
                         }</script>
                     </td>

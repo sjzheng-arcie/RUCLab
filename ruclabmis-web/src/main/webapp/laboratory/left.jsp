@@ -48,7 +48,7 @@
                                    target="main">短消息</a>
                             </li>
                             <li><a href="/laboratory/jsp/announcement/remind/laboratory/announcement" onfocus="toFocus(this)"
-                                   target="main">公告</a>
+                                   target="main">我的通知</a>
                             </li>
                             <shiro:hasAnyRoles name="leader">
                                 <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
