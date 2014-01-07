@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -61,7 +62,7 @@
 <form name="mainForm" method="post">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_nor" onclick="javascript:location.href='announcement'">通知</td>
+            <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
             <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
             <td class="op_act" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
             <td class="op_nor" onclick="javascript:location.href='sendmessage'">发送短消息</td>
@@ -85,6 +86,34 @@
                                                     <input id="announcementTitle" name="announcementTitle" value="${announcementInfo.title}" style="width:154px" maxlength="20"
                                                            valid="required" errmsg="标题不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right"  >接收范围:</td>
+                                                <td nowrap >
+                                                    <shiro:hasAnyRoles name="teacher,equip_admin">
+                                                        <select name="limit">
+                                                            <c:forEach items="${curriculumList}" var="item" >
+                                                                <option value="${item.id}">${item.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </shiro:hasAnyRoles>
+
+                                                    <shiro:hasAnyRoles name="administrators">
+                                                        <select name="limit">
+                                                            <option value="">全网可见</option>
+                                                            <option value="">学生不可见</option>
+                                                            <c:forEach items="${curriculumList}" var="item" >
+                                                                <option value="${item.id}">${item.name}</option>
+                                                            </c:forEach>
+                                                        </select>
+                                                    </shiro:hasAnyRoles>
+                                                    <shiro:hasAnyRoles name="leader">
+                                                        <select name="limit">
+                                                            <option value="">全网可见</option>
+                                                            <option value="">学生不可见</option>
+                                                        </select>
+                                                    </shiro:hasAnyRoles>
                                                 </td>
                                             </tr>
                                             <tr>

@@ -10,6 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -31,6 +32,9 @@ public class CurriculumScheduleService {
 	public void add(CurriculumSchedule curriculumSchedule){
 		curriculumScheduleMapper.insert(curriculumSchedule);
 	}
+	public CurriculumSchedule getCurriculumScheduleById(int id){
+		return  curriculumScheduleMapper.selectByPrimaryKey(id);
+	}
 	public void update(CurriculumSchedule curriculumSchedule){
 		curriculumScheduleMapper.updateByPrimaryKey(curriculumSchedule);
 	}
@@ -41,5 +45,22 @@ public class CurriculumScheduleService {
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;
+	}
+	public List<CurriculumSchedule> getCurriculumScheduleList(){
+		return curriculumScheduleMapper.selectByExample(null);
+	}
+	public List<Integer> getRoomListIdList(CurriculumScheduleCriteria criteria){
+		List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByExample(criteria);
+		List<Integer> roomIdList=new ArrayList<>();
+		for(int i=0;i<curriculumScheduleList.size();i++){
+			if(curriculumScheduleList.get(i).getRoomId()!=null){
+				roomIdList.add(curriculumScheduleList.get(i).getRoomId());
+			}
+		}
+		return roomIdList;
+	}
+	public List<CurriculumSchedule> getCurriculumScheduleList(CurriculumScheduleCriteria criteria){
+		List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByExample(criteria);
+		return curriculumScheduleList;
 	}
 }

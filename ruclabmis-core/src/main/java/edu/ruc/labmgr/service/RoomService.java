@@ -39,4 +39,13 @@ public class RoomService {
 		page.setData(data);
 		return page;
 	}
+	public List<Room> getAllRoomListByIdList(List<Integer> roomIdList){
+
+		RoomCriteria roomCriteria= new RoomCriteria();
+		RoomCriteria.Criteria criteria= roomCriteria.createCriteria();
+		if(roomIdList.size()!=0){
+			criteria.andIdNotIn(roomIdList);
+		}
+		return mapper.selectByCriteria(roomCriteria);
+	}
 }

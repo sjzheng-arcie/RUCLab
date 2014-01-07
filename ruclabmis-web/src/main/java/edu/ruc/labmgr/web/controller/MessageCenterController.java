@@ -26,6 +26,8 @@ public class MessageCenterController {
     MessageService messageService;
     @Autowired
     private UserService userService;
+	@Autowired
+	private CurriculumService curriculumService;
 
     private int currPage = 0;
 
@@ -158,7 +160,14 @@ public class MessageCenterController {
 
     @RequestMapping("/jsp/announcement/remind/{system}/toaddannouncement")
     public ModelAndView toaddAnnouncement(@PathVariable String system,HttpServletRequest request) {
+		User user= userService.getCurrentUser();
+
+
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/addannouncement");
+		if(user.getRole().getName().equals("teacher")){
+			List<Curriculum>curriculumList=curriculumService.getCurriculum("",user.getId(),true);
+			mav.addObject("curriculumList",curriculumList);
+		}
         return mav;
     }
 

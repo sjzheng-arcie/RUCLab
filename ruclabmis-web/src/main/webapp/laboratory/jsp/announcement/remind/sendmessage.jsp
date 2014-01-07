@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
@@ -69,9 +70,11 @@
 <body  style="background-color:#EEF2FB;">
     <table border="0" cellspacing="0" cellpadding="0">
         <tr>
-            <td class="op_nor" onclick="javascript:location.href='announcement'">通知</td>
+            <td class="op_nor" onclick="javascript:location.href='announcement'">公告</td>
             <td class="op_nor" onclick="javascript:location.href='message?page=1'">短消息</td>
-            <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
+            <shiro:lacksRole name="student">
+                <td class="op_nor" onclick="javascript:location.href='toaddannouncement'">发布公告</td>
+            </shiro:lacksRole>
             <td class="op_act" onclick="javascript:location.href='sendmessage'">发送短消息</td>
         </tr>
     </table>
@@ -107,9 +110,7 @@
                                                                                </c:forEach>
                                                                        </select>
                                                                    </c:otherwise>
-
                                                                </c:choose>
-
                                                             </td>
                                                         </tr>
                                                         <tr>

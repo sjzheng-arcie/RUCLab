@@ -61,5 +61,8 @@ public class LaboratoryRoomService {
 		page.setData(data);
 		return page;
 	}
+	public List<LaboratoryRoomKey> getAllLaboratoryList(){
+		return laboratoryRoomMapper.selectByCriteria(null);
+	}
 
 }

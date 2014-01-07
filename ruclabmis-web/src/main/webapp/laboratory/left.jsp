@@ -45,10 +45,10 @@
                         <ul class="MM">
 
                             <li><a href="/laboratory/jsp/announcement/remind/laboratory/message?page=1" onfocus="toFocus(this)"
-                                   target="main">我的短消息</a>
+                                   target="main">短消息</a>
                             </li>
                             <li><a href="/laboratory/jsp/announcement/remind/laboratory/announcement" onfocus="toFocus(this)"
-                                   target="main">我的通知</a>
+                                   target="main">公告</a>
                             </li>
                             <shiro:hasAnyRoles name="leader">
                                 <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
@@ -58,7 +58,7 @@
                             </shiro:hasAnyRoles>
 
                             <shiro:hasAnyRoles name="teacher,equipment_admin,student">
-                                <li><a href="jsp/curriculum/experiment/curriculum/mycurriculumschedule"
+                                <li><a href="jsp/curriculum/myteachercurriculumschedule"
                                        onfocus="toFocus(this)" target="main">我的课程表</a></li>
             <%--                    <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
                                        target="main">我的实验课程</a></li>--%>

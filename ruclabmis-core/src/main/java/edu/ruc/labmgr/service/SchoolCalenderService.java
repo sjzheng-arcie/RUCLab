@@ -16,6 +16,7 @@ import java.util.List;
  * Time: 下午2:38
  * Des:
  */
+@SuppressWarnings("ALL")
 @Service
 public class SchoolCalenderService {
 	@Autowired

@@ -64,7 +64,7 @@
                             </table>
                             <table width="100%" border="1" cellpadding="" cellspacing="0" style="font-size:25px;">
                                 <tr height="40">
-                                    <td colspan="7" align="center" bgcolor="#e3efff"><strong>课表内容信息一览</strong></td>
+                                    <td colspan="8" align="center" bgcolor="#e3efff"><strong>课表内容信息一览</strong></td>
                                 </tr>
                                 <tr align="center" height="40">
                                     <td width="12.5%" bgcolor="#E3EFFF">学年</td>
@@ -73,26 +73,19 @@
                                     <td width="12.5%" bgcolor="#E3EFFF">班级</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">课程</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">教师</td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">详细</td>
-                                </tr>
-                                <tr height="40" align="center">
-                                    <td bgcolor="#F7F7F7">2012</td>
-                                    <td bgcolor="#F7F7F7">1</td>
-                                    <td bgcolor="#F7F7F7">网络工程</td>
-                                    <td bgcolor="#F7F7F7">网络工程09-1</td>
-                                    <td bgcolor="#F7F7F7">江湖入门基础</td>
-                                    <td bgcolor="#F7F7F7">李三刀</td>
-                                    <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview'">修改课表信息记录</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">修改</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">安排实验室</td>
                                 </tr>
                                 <c:forEach items="${pageInfo.data}" var="item">
                                     <tr>
-                                        <td bgcolor="#F7F7F7">${item.termYear.year}</td>
-                                        <td bgcolor="#F7F7F7">${item.termYear.name}</td>
-                                        <td bgcolor="#F7F7F7">${item.curriculum.major.name}</td>
-                                        <td bgcolor="#F7F7F7">${item.curriculumClass.className}</td>
-                                        <td bgcolor="#F7F7F7">${item.curriculum.name}</td>
-                                        <td bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
-                                        <td bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview?scheduleId=${item.id}'">点击安排实验室</td>
+                                        <td align="center" bgcolor="#F7F7F7">${item.termYear.year}</td>
+                                        <td align="center" bgcolor="#F7F7F7">${item.termYear.name}</td>
+                                        <td align="center" bgcolor="#F7F7F7">${item.curriculum.major.name}</td>
+                                        <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.className}</td>
+                                        <td align="center" bgcolor="#F7F7F7">${item.curriculum.name}</td>
+                                        <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
+                                        <td align="center" bgcolor="#F7F7F7" onclick="javascript:location.href='curriculumview?scheduleId=${item.id}'">修改</td>
+                                        <td align="center" bgcolor="#F7F7F7" onclick="javascript:location.href='tosetlab?curriculumScheduleId=${item.id}'">点击安排实验室</td>
                                     </tr>
                                 </c:forEach>
                             </table>
@@ -110,19 +103,6 @@
                                     case 'new' :
                                         alert("新建课表信息!")
                                         window.location.href = 'newcurriculumschedule';
-                                        break;
-                                    case 'save' :
-                                        alert("保存当前数据")
-                                        break;
-                                    case 'tijiao' :
-                                        alert("方案已提交相关领导审批!")
-                                        window.location.href = 'listapply';
-                                        break;
-                                    case 'prev' :
-                                        window.location.href = 'listdeviceapply';
-                                        break;
-                                    case 'next' :
-                                        alert("已经到最后一步!")
                                         break;
                                     default:
                                         alert("Button " + id + " was clicked!")
