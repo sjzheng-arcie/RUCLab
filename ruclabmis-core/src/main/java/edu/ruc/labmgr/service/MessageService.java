@@ -187,7 +187,7 @@ public class MessageService {
             content += " <a href='" + listPath + "'>查看申请</a>";
 
             message.setContent(content);
-            message.setSystem(true);
+            message.setSystem(false);
             insert(message);
         }
     }
@@ -233,7 +233,7 @@ public class MessageService {
             adminContent += " <a href='" + listAdminPath + "'>查看申请</a>";
 
             message.setContent(adminContent);
-            message.setSystem(true);
+            message.setSystem(false);
             insert(message);
         }
     }
@@ -273,7 +273,7 @@ public class MessageService {
             adminContent += "处理了 " + apply.getApplicantName() + " 的 " + type.getTitle() + " 申请，表单号 " + Integer.toString(appId) + " : ";
             adminContent += " <a href='" + listPath + "'>查看申请</a>";
             message.setContent(adminContent);
-            message.setSystem(true);
+            message.setSystem(false);
             insert(message);
         }
     }

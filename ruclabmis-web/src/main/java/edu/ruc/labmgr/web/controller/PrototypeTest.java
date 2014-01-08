@@ -74,6 +74,7 @@ public class PrototypeTest {
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         announcementCriteria.setOrderByClause("publish_time desc");
         AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
+		criteria1.andSystemEqualTo(true);
         List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
         mav.addObject("announcementList",announcementList );
         //获取消息列表
@@ -81,7 +82,9 @@ public class PrototypeTest {
 
         MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
         criteria2.andReceiverIdEqualTo(currentUserId);
+		criteria2.andSystemEqualTo(true);
         messageCriteria.setOrderByClause("sendtime desc");
+
         List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
         mav.addObject("messageList",messageList);
 
@@ -164,11 +167,17 @@ public class PrototypeTest {
 
         //获取通知列表
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
-        announcementCriteria.setOrderByClause("publish_time desc");
+
+		AnnouncementCriteria.Criteria announcementCriteriaCriteria = announcementCriteria.createCriteria();
+		announcementCriteriaCriteria.andSystemEqualTo(true);
+		announcementCriteria.setOrderByClause("publish_time desc");
         List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria messageCriteria1 = messageCriteria.createCriteria();
+		messageCriteria1.andSystemEqualTo(true);
+		messageCriteria1.andReceiverIdEqualTo(currentUserId);
         messageCriteria.setOrderByClause("sendtime desc");
         List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
         mav.addObject("messageList",messageList);
@@ -202,7 +211,11 @@ public class PrototypeTest {
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria messageCriteria1 = messageCriteria.createCriteria();
+		messageCriteria1.andSystemEqualTo(true);
+		messageCriteria1.andReceiverIdEqualTo(currentUserId);
 		messageCriteria.setOrderByClause("sendtime desc");
+
 		List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
 		mav.addObject("messageList",messageList);
 
@@ -227,6 +240,9 @@ public class PrototypeTest {
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria messageCriteria1 = messageCriteria.createCriteria();
+		messageCriteria1.andSystemEqualTo(true);
+		messageCriteria1.andReceiverIdEqualTo(currentUserId);
         messageCriteria.setOrderByClause("sendtime desc");
         List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
         mav.addObject("messageList",messageList);
@@ -253,6 +269,9 @@ public class PrototypeTest {
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
+		MessageCriteria.Criteria messageCriteria1 = messageCriteria.createCriteria();
+		messageCriteria1.andSystemEqualTo(true);
+		messageCriteria1.andReceiverIdEqualTo(currentUserId);
         messageCriteria.setOrderByClause("sendtime desc");
         List<Message> messageList = messageService.getMessageListByCriteia(messageCriteria);
         mav.addObject("messageList",messageList);

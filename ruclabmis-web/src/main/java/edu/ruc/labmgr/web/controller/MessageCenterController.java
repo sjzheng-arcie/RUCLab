@@ -221,19 +221,16 @@ public class MessageCenterController {
 	}
 
     @RequestMapping("/jsp/announcement/remind/{system}/messageDetail")
-    public ModelAndView getMessage(@PathVariable String system,HttpServletRequest request) {
-        int id = Integer.parseInt(request.getParameter("messageDetailId"));
-        currPage = request.getParameter("page") == null ?
-                (currPage > 0 ? currPage : 1) : Integer.parseInt(request.getParameter("page"));
-		currPage=currPage > 0 ? currPage : 1;
-        String fatherPage = request.getParameter("fatherPage");
-        Message message = messageService.selectById(id);
+    public ModelAndView getMessage(@PathVariable String system,@RequestParam int messageDetailId,
+								   @RequestParam(required = false,defaultValue = "1") int page,
+								   @RequestParam(required = false,defaultValue = "message") String fatherPage) {
+        Message message = messageService.selectById(messageDetailId);
         message.setIfread(true);
         messageService.updateByMessage(message);
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/messagedetail");
         mav.addObject("messageDetailFlag", message);
         mav.addObject("fatherPage", fatherPage);
-        mav.addObject("page", currPage);
+        mav.addObject("page", page);
         return mav;
     }
 
