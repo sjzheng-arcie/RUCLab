@@ -75,7 +75,7 @@
 
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="return" value="返回" class="button" onclick="back();"/>
+                                        <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>
                             </table>

@@ -4,9 +4,9 @@
 
 <html>
 <head>
-    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css"/>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script src="../../../../js/valid.js" type=text/javascript></script>
+    <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
         function save() {
 
@@ -123,7 +123,7 @@
                                 <tr>
                                     <td align="center">
                                         <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
+                                               onclick="window.location.go(-1);"/>
                                     </td>
                                 </tr>
                             </table>
