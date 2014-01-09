@@ -33,8 +33,7 @@
         <table border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td class="op_nor" >预约基本信息</td>
-                <td class="op_nor" >预约日程</td>
-                <td class="op_act" onclick="javascript:location.href='laboratoryapply'" >实验室申请</td>
+                <td class="op_act" onclick="javascript:location.href='laboratoryapply'" >房间申请</td>
                 <td class="op_nor" >预约信息提交</td>
             </tr>
         </table>
@@ -293,8 +292,8 @@
 function doOnLoad() {
     dhxLayout = new dhtmlXLayoutObject("parentId", "1C");
     dhxToolbar = dhxLayout.attachToolbar();
-    dhxToolbar.setIconsPath("/dhtmlx/dhtmlxToolbar/samples/common/imgs/");
-    dhxToolbar.loadXML("../common/toolbar.xml?" + new Date().getTime());
+    dhxToolbar.setIconsPath("../../../../dhtmlx/dhtmlxToolbar/samples/common/imgs/");
+    dhxToolbar.loadXML("common/toolbar.xml?" + new Date().getTime());
     dhxToolbar.attachEvent("onClick", function (id) {
         switch (id) {
             case 'save' :

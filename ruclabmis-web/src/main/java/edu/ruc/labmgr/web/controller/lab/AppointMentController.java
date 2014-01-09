@@ -76,16 +76,7 @@ public class AppointMentController {
 		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentbaseinfo");
 		return mav;
 	}
-	@RequestMapping(value ="/laboratory/appointmentdate",method = RequestMethod.GET)
-	public ModelAndView appointdate(){
-		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdate");
-		return mav;
-	}
-	@RequestMapping(value ="/laboratory/appointmentdatecontent",method = RequestMethod.GET)
-		 public ModelAndView appointmentdatecontent(){
-		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdatecontent");
-		return mav;
-	}
+
 	@RequestMapping(value ="/laboratory/laboratoryapply",method = RequestMethod.GET)
 	public ModelAndView laboratoryapply(){
 		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/laboratoryapply");
@@ -99,6 +90,18 @@ public class AppointMentController {
 	@RequestMapping(value ="/laboratory/mydatelist",method = RequestMethod.GET)
 	public ModelAndView mydatelist(){
 		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/mydatelist");
+		return mav;
+	}
+
+
+	@RequestMapping(value ="/laboratory/appointmentdate",method = RequestMethod.GET)
+	public ModelAndView appointdate(){
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdate");
+		return mav;
+	}
+	@RequestMapping(value ="/laboratory/appointmentdatecontent",method = RequestMethod.GET)
+	public ModelAndView appointmentdatecontent(){
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdatecontent");
 		return mav;
 	}
 
