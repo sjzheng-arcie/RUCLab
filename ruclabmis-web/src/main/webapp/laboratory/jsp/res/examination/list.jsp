@@ -111,6 +111,9 @@
                                                         <div align="center"><span class="STYLE10">课程</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">任课老师</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">考试名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -129,6 +132,7 @@
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
                                                         </td>
                                                         <td>${item.curriculumName}</td>
+                                                        <td>${item.teachername}</td>
                                                         <td>${item.name}</td>
                                                         <td>${item.documentName}</td>
                                                         <td>${item.comment}</td>

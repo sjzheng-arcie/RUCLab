@@ -8,6 +8,9 @@
         <result column="document_name" property="documentName" jdbcType="VARCHAR" />
         <result column="document_path" property="documentPath" jdbcType="VARCHAR" />
         <result column="comment" property="comment" jdbcType="VARCHAR" />
+        <result column="teacher_id" property="teacherId" jdbcType="INTEGER" />
+        <result column="teachername" property="teachername" jdbcType="VARCHAR" />
+
     </resultMap>
     <sql id="Criteria_Where_Clause" >
         <where >
@@ -68,7 +71,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, name, document_name, document_path, comment, curriculum_name
+    id, name, document_name, document_path, comment, curriculum_name ,teacher_id,teachername
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumExaminationCriteria" >
         select

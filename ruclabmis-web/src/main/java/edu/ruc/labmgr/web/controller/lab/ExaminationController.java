@@ -6,6 +6,8 @@ import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import edu.ruc.labmgr.web.controller.Result;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -35,6 +37,24 @@ public class ExaminationController {
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView mav = new ModelAndView("laboratory/jsp/res/examination/list");
         PageInfo<CurriculumExamination> pageInfo = examinationService.selectListPage(searchName, page);
+		Subject currentUser = SecurityUtils.getSubject();
+		List<String> adminroles = new ArrayList<String>();
+		adminroles.add("administrators");
+		adminroles.add("lab_admin");
+		if (!(currentUser.hasRole("administrators")||currentUser.hasRole("lab_admin"))){
+			if (pageInfo.getData().size()>0){
+				int curId = userService.getCurrentUserId();
+				List<CurriculumExamination> trimdates = pageInfo.getData();
+				List<CurriculumExamination>  realdatas = new ArrayList<>();
+				for(CurriculumExamination ce:trimdates){
+					if(ce.getTeacherId().equals(curId+"")){
+						realdatas.add(ce);
+					}
+				}
+				pageInfo.setData(realdatas);
+			}
+		}
+
         mav.addObject("pageInfo", pageInfo);
 
         return mav;

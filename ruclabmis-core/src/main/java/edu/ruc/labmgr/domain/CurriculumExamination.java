@@ -13,6 +13,14 @@ public class CurriculumExamination {
 
     private String curriculumName;
 
+
+
+	private String teachername;
+
+
+
+	private String teacherId;
+
     public Integer getId() {
         return id;
     }
@@ -60,4 +68,18 @@ public class CurriculumExamination {
     public void setCurriculumName(String curriculumName) {
         this.curriculumName = curriculumName;
     }
+	public String getTeacherId() {
+		return teacherId;
+	}
+
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
+	}
+	public String getTeachername() {
+		return teachername;
+	}
+
+	public void setTeachername(String teachername) {
+		this.teachername = teachername;
+	}
 }
