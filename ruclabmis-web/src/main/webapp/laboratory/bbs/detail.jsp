@@ -151,7 +151,20 @@
             <TR class="tr1">
                 <TH style="WIDTH: 20%">
                     <B>${poster}</B><BR/>
-                    <img src="images/head/1.gif"/>
+                    <c:choose>
+                    <c:when test="${role=='teacher'}">
+                        <img src="images/head/4.gif"/>
+                    </c:when>
+                    <c:when test="${role=='administrators'}">
+                        <img src="images/head/13.gif"/>
+                    </c:when>
+                    <c:when test="${role=='student'}">
+                        <img src="images/head/1.gif"/>
+                    </c:when>
+                    <c:otherwise>
+                        <img src="images/head/7.gif"/>
+                    </c:otherwise>
+                    </c:choose>
                 </TH>
                 <TH>
                     <H3>${bbsTopic.title}</H3>

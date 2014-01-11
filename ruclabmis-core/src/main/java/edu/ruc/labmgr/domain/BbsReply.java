@@ -17,6 +17,16 @@ public class BbsReply {
 	private String replyUsersn;
 	private String replyUserName;
 
+	public String getReplyUserRole() {
+		return replyUserRole;
+	}
+
+	public void setReplyUserRole(String replyUserRole) {
+		this.replyUserRole = replyUserRole;
+	}
+
+	private String replyUserRole;
+
 	public String getReplyUsersn() {
 		return replyUsersn;
 	}

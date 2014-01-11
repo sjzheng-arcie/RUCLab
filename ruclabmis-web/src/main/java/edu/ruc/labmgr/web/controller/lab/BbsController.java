@@ -136,6 +136,7 @@ public class BbsController {
 		view.addObject("bbsTopic",bbsTopic);
 		view.addObject("sessionTitle",sessionTitle);
 		view.addObject("poster",poster);
+		view.addObject("role",userService.getUserbyId(posterId).getRole().getName());
 		view.addObject("userSn",userSn);
 		view.addObject("pageInfo",pageInfo);
 		view.addObject("currentSn",currentSn);

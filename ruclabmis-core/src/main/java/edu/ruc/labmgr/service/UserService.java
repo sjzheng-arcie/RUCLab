@@ -21,7 +21,9 @@ public class UserService {
     public User getUserByLoginSn(String loginSn) {
         return mapperUser.selectUserByLoginSn(loginSn);
     }
-
+	public User getUserbyId(int id){
+		return  mapperUser.selectByPrimaryKey(id);
+	}
     public User getCurrentUser() {
         Subject currentUser = SecurityUtils.getSubject();
         if (currentUser == null) {

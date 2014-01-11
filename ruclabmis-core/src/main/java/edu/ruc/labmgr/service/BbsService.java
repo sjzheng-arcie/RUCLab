@@ -27,6 +27,8 @@ public class BbsService {
 	BbsSessionMapper bbsSessionMapper;
 	@Autowired
 	BbsReplyMapper bbsReplyMapper;
+	@Autowired
+	UserService userService;
 
 
 	public PageInfo<BbsTopic> getPageTopicbyCouseId(int courseId,int pageNum){
@@ -68,6 +70,10 @@ public class BbsService {
 		List<BbsReply> bbsReplyList = new ArrayList<BbsReply>();
 		bbsReplyList = bbsReplyMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(p.getCurrentResult(),p.getPageSize()));
+		for (BbsReply br: bbsReplyList){
+			User usr = userService.getUserbyId(br.getReplyuserid());
+			br.setReplyUserRole(usr.getRole().getName());
+		}
 		p.setData(bbsReplyList);
 		return  p;
 
