@@ -82,7 +82,7 @@
                                         <table border="0" cellpadding="2" cellspacing="1" style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"  bgcolor="#E3E9EE">
                                             <tr>
                                                 <td nowrap align="right"  >通知标题:</td>
-                                                <td nowrap >
+                                                <td nowrap align="left">
                                                     <input id="announcementTitle" name="announcementTitle" value="${announcementInfo.title}" style="width:154px" maxlength="20"
                                                            valid="required" errmsg="标题不能为空"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -90,28 +90,21 @@
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right"  >接收范围:</td>
-                                                <td nowrap >
-                                                    <shiro:hasAnyRoles name="teacher,equip_admin">
-                                                        <select name="limit">
-                                                            <c:forEach items="${curriculumList}" var="item" >
-                                                                <option value="${item.id}">${item.name}</option>
-                                                            </c:forEach>
-                                                        </select>
-                                                    </shiro:hasAnyRoles>
+                                                <td nowrap align="left" >
 
-                                                    <shiro:hasAnyRoles name="administrators">
+                                                    <shiro:hasAnyRoles name="administrators,teacher,equip_admin">
                                                         <select name="limit">
-                                                            <option value="">全网可见</option>
-                                                            <option value="">学生不可见</option>
-                                                            <c:forEach items="${curriculumList}" var="item" >
-                                                                <option value="${item.id}">${item.name}</option>
+                                                            <option value="0">全网可见</option>
+                                                            <option value="-1">仅老师可见</option>
+                                                            <c:forEach items="${currclassList}" var="item" >
+                                                                <option value="${item.id}">班级：${item.className}</option>
                                                             </c:forEach>
                                                         </select>
                                                     </shiro:hasAnyRoles>
                                                     <shiro:hasAnyRoles name="leader">
                                                         <select name="limit">
-                                                            <option value="">全网可见</option>
-                                                            <option value="">学生不可见</option>
+                                                            <option value="0">全网可见</option>
+                                                            <option value="-1">仅老师可见</option>
                                                         </select>
                                                     </shiro:hasAnyRoles>
                                                 </td>

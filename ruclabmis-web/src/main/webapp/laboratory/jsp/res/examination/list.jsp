@@ -83,7 +83,7 @@
                                                                 <span class="STYLE1" style="white-space:nowrap">
                                                                   <a href="#" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt">
                                                                       <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
-                                                                      <span class="STYLE1">删除</span>
+                                                                      <span class="STYLE1">删除考试信息</span>
                                                                   </a>
                                                                  </span>
                                                                 </div>

@@ -71,10 +71,10 @@
                     <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
                         <c:if test="${item.ifread==false}">
                             <a style="font-weight: bold "
-                               href="/laboratory/jsp/announcement/remind/equipment/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                               href="/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}">${item.content}</a>
                         </c:if>
                         <c:if test="${item.ifread==true}">
-                            <a href="/laboratory/jsp/announcement/remind/equipment/messageDetail?fatherPage=welcome&&messageDetailId=${item.id}&&page=1">${item.content}</a>
+                            <a href="/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}">${item.content}</a>
                         </c:if>
                     </li>
 

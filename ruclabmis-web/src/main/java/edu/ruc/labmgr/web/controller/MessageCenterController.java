@@ -3,6 +3,7 @@ package edu.ruc.labmgr.web.controller;
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -28,6 +29,8 @@ public class MessageCenterController {
     private UserService userService;
 	@Autowired
 	private CurriculumService curriculumService;
+	@Autowired
+	private CurriculumClassService curriculumClassService;
 
     private int currPage = 0;
 
@@ -144,14 +147,16 @@ public class MessageCenterController {
 		currPage=currPage > 0 ? currPage : 1;
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
+		boolean islaborEquip = false;
 		if(system.equals("laboratory")){
-			criteria.andSystemEqualTo(true);
+			islaborEquip = true;
 		}else {
-			criteria.andSystemEqualTo(false);
+			islaborEquip = false;;
 		}
 		User currentUserInfo=userService.getCurrentUser();
         announcementCriteria.setOrderByClause(" publish_time desc");
-		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage);
+		PageInfo<Announcement> pageInfo = serviceAnnouncement.selectListPage(announcementCriteria, currPage,userService.getCurrentUserRole(),
+				userService.getCurrentUserId(),islaborEquip);
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/announcement");
         mav.addObject("pageInfo", pageInfo);
 		mav.addObject("currentUserInfo", currentUserInfo);
@@ -162,12 +167,10 @@ public class MessageCenterController {
     public ModelAndView toaddAnnouncement(@PathVariable String system,HttpServletRequest request) {
 		User user= userService.getCurrentUser();
 
-
         ModelAndView mav = new ModelAndView("/"+system+"/jsp/announcement/remind/addannouncement");
-		if(user.getRole().getName().equals("teacher")){
-			List<Curriculum>curriculumList=curriculumService.getCurriculum("",user.getId(),true);
-			mav.addObject("curriculumList",curriculumList);
-		}
+
+		List<CurriculumClass> cces = curriculumClassService.getPrivateCurricumClasses(user.getId(),userService.getCurrentUserRole());
+		mav.addObject("currclassList",cces);
         return mav;
     }
 

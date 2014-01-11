@@ -4,6 +4,7 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.User;
 import edu.ruc.labmgr.domain.UserCriteria;
 import edu.ruc.labmgr.mapper.UserMapper;
+import edu.ruc.labmgr.utils.Types;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -73,5 +74,22 @@ public class UserService {
 	}
 	public List<User> getAllUserList(){
 		return mapperUser.selectByCriteria(null);
+	}
+	public Types.Role getCurrentUserRole(){
+		String rolename = getCurrentUser().getRole().getName();
+		Types.Role role = null;
+		if(rolename.equals(Types.Role.ADMIN.getName()))
+			role = Types.Role.ADMIN;
+		else if(rolename.equals(Types.Role.TEACHER.getName()))
+			role = Types.Role.TEACHER;
+		else if(rolename.equals(Types.Role.STUDENT.getName()))
+			role = Types.Role.STUDENT;
+		else if(rolename.equals(Types.Role.LAB_ADMIN.getName()))
+			role = Types.Role.LAB_ADMIN;
+		else if(rolename.equals(Types.Role.EQUIPMENT_ADMIN.getName()))
+			role = Types.Role.EQUIPMENT_ADMIN;
+		else if(rolename.equals(Types.Role.LEADER.getName()))
+			role = Types.Role.LEADER;
+		return  role;
 	}
 }

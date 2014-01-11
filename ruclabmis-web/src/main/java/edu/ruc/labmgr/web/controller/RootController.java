@@ -57,7 +57,7 @@ public class RootController {
 
         //获取通知列表
 
-        mav.addObject("announcementList", getAnnouncementList());
+        mav.addObject("announcementList", getAnnouncementList(false));
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
 
@@ -88,11 +88,16 @@ public class RootController {
         return pendingApplyList;
     }
 
-    public List<Announcement> getAnnouncementList() {
+	/**
+	 *
+	 * @param isLaborEquip false:设备 true: 实验室
+	 * @return
+	 */
+    public List<Announcement> getAnnouncementList(boolean isLaborEquip) {
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         announcementCriteria.setOrderByClause("publish_time desc");
         AnnouncementCriteria.Criteria criteria1 = announcementCriteria.createCriteria();
-        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria, isLaborEquip);
         return announcementList;
     }
 
@@ -130,7 +135,7 @@ public class RootController {
         mav.addObject("pendingApplyList", getPendingApplyList(currentUserId));
         //获取通知列表
 
-        mav.addObject("announcementList", getAnnouncementList());
+        mav.addObject("announcementList", getAnnouncementList(false));
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
         MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
@@ -172,7 +177,7 @@ public class RootController {
         //获取当前用户的申请列表
         mav.addObject("myApplyList", getMyApplyList(currentUserId));
         //获取通知列表
-        mav.addObject("announcementList", getAnnouncementList());
+        mav.addObject("announcementList", getAnnouncementList(false));
         //获取消息列表
 
         MessageCriteria messageCriteria = new MessageCriteria();
@@ -208,7 +213,7 @@ public class RootController {
         //获取当前用户需要进行审批的申请列表
         mav.addObject("pendingApplyList", getPendingApplyList(currentUserId));
         //获取通知列表
-        mav.addObject("announcementList", getAnnouncementList());
+        mav.addObject("announcementList", getAnnouncementList(false));
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
         MessageCriteria.Criteria criteria2 = messageCriteria.createCriteria();
@@ -266,9 +271,10 @@ public class RootController {
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
-        criteria.andPublishLimitEqualTo(0);
+       // criteria.andPublishLimitEqualTo(0);
         announcementCriteria.or(criteria);
-        ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria);
+        ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria,
+				userService.getCurrentUserRole(),userService.getCurrentUserId(),false);
         System.out.print(pageInfo.getListObject().size());
         ModelAndView mav = new ModelAndView("/equipment/welcome");
         mav.addObject("announcementLists", pageInfo.getListObject());

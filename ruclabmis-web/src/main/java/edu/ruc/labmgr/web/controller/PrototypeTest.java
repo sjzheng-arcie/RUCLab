@@ -75,7 +75,8 @@ public class PrototypeTest {
         announcementCriteria.setOrderByClause("publish_time desc");
         AnnouncementCriteria.Criteria criteria1=announcementCriteria.createCriteria();
 		criteria1.andSystemEqualTo(true);
-        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+        List<Announcement> announcementList = announcementService.getAnnounceListByUserForWelcome(announcementCriteria,userService.getCurrentUserRole(),
+				currentUserId,true);
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
@@ -169,9 +170,9 @@ public class PrototypeTest {
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 
 		AnnouncementCriteria.Criteria announcementCriteriaCriteria = announcementCriteria.createCriteria();
-		announcementCriteriaCriteria.andSystemEqualTo(true);
 		announcementCriteria.setOrderByClause("publish_time desc");
-        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+        List<Announcement> announcementList = announcementService.getAnnounceListByUserForWelcome(announcementCriteria,userService.getCurrentUserRole(),
+				currentUserId,true);
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
@@ -207,7 +208,8 @@ public class PrototypeTest {
 		//获取通知列表
 		AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
 		announcementCriteria.setOrderByClause("publish_time desc");
-		List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+		List<Announcement> announcementList = announcementService.getAnnounceListByUserForWelcome(announcementCriteria,userService.getCurrentUserRole(),
+				currentUserId,true);
 		mav.addObject("announcementList",announcementList );
 		//获取消息列表
 		MessageCriteria messageCriteria = new MessageCriteria();
@@ -236,7 +238,8 @@ public class PrototypeTest {
         //获取通知列表
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         announcementCriteria.setOrderByClause("publish_time desc");
-        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+        List<Announcement> announcementList = announcementService.getAnnounceListByUserForWelcome(announcementCriteria,userService.getCurrentUserRole(),
+				currentUserId,true);
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
@@ -265,7 +268,8 @@ public class PrototypeTest {
         //获取通知列表
         AnnouncementCriteria announcementCriteria = new AnnouncementCriteria();
         announcementCriteria.setOrderByClause("publish_time desc");
-        List<Announcement> announcementList = announcementService.getAnnouncementListByCriteriaForWelcome(announcementCriteria);
+        List<Announcement> announcementList = announcementService.getAnnounceListByUserForWelcome(announcementCriteria,userService.getCurrentUserRole(),
+				currentUserId,true);
         mav.addObject("announcementList",announcementList );
         //获取消息列表
         MessageCriteria messageCriteria = new MessageCriteria();
@@ -325,10 +329,10 @@ public class PrototypeTest {
         AnnouncementCriteria announcementCriteria =  new AnnouncementCriteria();
         AnnouncementCriteria.Criteria criteria = announcementCriteria.createCriteria();
 
-        criteria.andPublishLimitEqualTo(0);
+      //  criteria.andPublishLimitEqualTo(0);
         announcementCriteria.or(criteria);
-        ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria);
-        System.out.print(pageInfo .getListObject().size());
+        ObjectListPage<Announcement> pageInfo = announcementService.selectListPage(currPage, announcementCriteria,
+				userService.getCurrentUserRole(),userService.getCurrentUserId(),true);
         ModelAndView mav = new ModelAndView("/laboratory/welcome");
         mav.addObject("announcementLists", pageInfo.getListObject());
         mav.addObject("page", pageInfo.getPageInfo());

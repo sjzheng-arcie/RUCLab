@@ -315,11 +315,11 @@ public class CurriculumClassService {
         }
 
     }
-	public List<Integer> getPrivateSessionIds(int id, Types.Role role){
+	public List<CurriculumClass> getPrivateCurricumClasses(int id, Types.Role role){
 		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
 		CurriculumClassCriteria.Criteria c = criteria.or();
 		List<CurriculumClass> data = new ArrayList<CurriculumClass>();
-		List<Integer> sessionIds = new ArrayList<Integer>();
+
 		if (role == Types.Role.STUDENT) {
 			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
 			data =classMapper.selectByCriteriaAndClsStudent(criteria);
@@ -333,10 +333,33 @@ public class CurriculumClassService {
 			data =classMapper.selectByCriteria(criteria);
 
 		}
+		return  data;
+	}
+	public List<Integer> getPrivateSessionIds(int id, Types.Role role){
+		List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
+		List<Integer> sessionIds = new ArrayList<Integer>();
 		for(CurriculumClass cc : data){
 			sessionIds.add(cc.getId());
 		}
 		return sessionIds;
+	}
+	public List<Integer> getPrivateCurricumClassIds(int id, Types.Role role){
+		List<Integer> CurricumIds = new ArrayList<Integer>();
+		List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
+		for(CurriculumClass cc : data){
+			CurricumIds.add(cc.getId());
+		}
+		return  CurricumIds;
+
+	}
+	public List<Integer> getPrivateCurricumIds(int id, Types.Role role){
+		List<Integer> CurricumIds = new ArrayList<Integer>();
+		List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
+		for(CurriculumClass cc : data){
+			CurricumIds.add(cc.getCurriculumId());
+		}
+		return  CurricumIds;
+
 	}
 	public List<CurriculumClass> getClassByCriteriaUserIdAndRole(int id, Types.Role role) {
 		CurriculumClassCriteria criteria = new CurriculumClassCriteria();

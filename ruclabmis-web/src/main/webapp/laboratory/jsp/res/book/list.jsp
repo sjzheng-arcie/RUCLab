@@ -174,19 +174,28 @@
                                                             <c:if test="${item.downloadLimit}">班级内部</c:if>
                                                         </td>
                                                         <td>
-                                                            <shiro:hasAnyRoles name="administrators,teacher,student">
+
                                                                 <input type="button" onClick="downloadFile(${item.id})"
                                                                        class="button" value="下载"/>
 
 
 
+                                                            <shiro:hasAnyRoles name="administrators,teacher,lab_admin,equipment_admin">
+                                                                <shiro:hasRole name="administrators">
+                                                                    <input type="button" onClick="deleteItem('${item.id}')"
+                                                                           class="button" value="删除"/>
+                                                                    <input type="button" onClick="editItem('${item.id}')"
+                                                                           class="button" value="编辑"/>
+                                                                </shiro:hasRole>
+                                                                <shiro:hasAnyRoles name="teacher,equipment_admin">
+                                                                    <c:if test="${item.uploadPersonSn==currentUserSn}">
+                                                                        <input type="button" onClick="deleteItem('${item.id}')"
+                                                                               class="button" value="删除"/>
+                                                                        <input type="button" onClick="editItem('${item.id}')"
+                                                                               class="button" value="编辑"/>
+                                                                    </c:if>
+                                                                </shiro:hasAnyRoles>
 
-                                                                  <c:if test="${item.uploadPersonSn==currentUserSn}">
-                                                                  <input type="button" onClick="deleteItem('${item.id}')"
-                                                                         class="button" value="删除"/>
-                                                                      <input type="button" onClick="editItem('${item.id}')"
-                                                                             class="button" value="编辑"/>
-                                                                  </c:if>
                                                             </shiro:hasAnyRoles>
 
                                                         </td>
