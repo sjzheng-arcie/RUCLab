@@ -17,6 +17,10 @@
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
+
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
+
 <script>
 
 
@@ -29,7 +33,7 @@
         });
     });
     function add(){
-        document.mainForm.action="addcurriculumschdedule";
+        document.mainForm.action="addcurriculumschedule";
         document.mainForm.submit();
     }
 </script>

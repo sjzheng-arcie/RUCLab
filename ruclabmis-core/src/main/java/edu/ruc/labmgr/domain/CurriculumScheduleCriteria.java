@@ -524,123 +524,123 @@ public class CurriculumScheduleCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andWeekIsNull() {
-            addCriterion("week is null");
+        public Criteria andWeeknumIsNull() {
+            addCriterion("weekNum is null");
             return (Criteria) this;
         }
 
-        public Criteria andWeekIsNotNull() {
-            addCriterion("week is not null");
+        public Criteria andWeeknumIsNotNull() {
+            addCriterion("weekNum is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWeekEqualTo(Byte value) {
-            addCriterion("week =", value, "week");
+        public Criteria andWeeknumEqualTo(Byte value) {
+            addCriterion("weekNum =", value, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekNotEqualTo(Byte value) {
-            addCriterion("week <>", value, "week");
+        public Criteria andWeeknumNotEqualTo(Byte value) {
+            addCriterion("weekNum <>", value, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekGreaterThan(Byte value) {
-            addCriterion("week >", value, "week");
+        public Criteria andWeeknumGreaterThan(Byte value) {
+            addCriterion("weekNum >", value, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekGreaterThanOrEqualTo(Byte value) {
-            addCriterion("week >=", value, "week");
+        public Criteria andWeeknumGreaterThanOrEqualTo(Byte value) {
+            addCriterion("weekNum >=", value, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekLessThan(Byte value) {
-            addCriterion("week <", value, "week");
+        public Criteria andWeeknumLessThan(Byte value) {
+            addCriterion("weekNum <", value, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekLessThanOrEqualTo(Byte value) {
-            addCriterion("week <=", value, "week");
+        public Criteria andWeeknumLessThanOrEqualTo(Byte value) {
+            addCriterion("weekNum <=", value, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekIn(List<Byte> values) {
-            addCriterion("week in", values, "week");
+        public Criteria andWeeknumIn(List<Byte> values) {
+            addCriterion("weekNum in", values, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekNotIn(List<Byte> values) {
-            addCriterion("week not in", values, "week");
+        public Criteria andWeeknumNotIn(List<Byte> values) {
+            addCriterion("weekNum not in", values, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekBetween(Byte value1, Byte value2) {
-            addCriterion("week between", value1, value2, "week");
+        public Criteria andWeeknumBetween(Byte value1, Byte value2) {
+            addCriterion("weekNum between", value1, value2, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekNotBetween(Byte value1, Byte value2) {
-            addCriterion("week not between", value1, value2, "week");
+        public Criteria andWeeknumNotBetween(Byte value1, Byte value2) {
+            addCriterion("weekNum not between", value1, value2, "weeknum");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayIsNull() {
-            addCriterion("weekday is null");
+        public Criteria andWeekdaysIsNull() {
+            addCriterion("weekdays is null");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayIsNotNull() {
-            addCriterion("weekday is not null");
+        public Criteria andWeekdaysIsNotNull() {
+            addCriterion("weekdays is not null");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayEqualTo(Byte value) {
-            addCriterion("weekday =", value, "weekday");
+        public Criteria andWeekdaysEqualTo(Byte value) {
+            addCriterion("weekdays =", value, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayNotEqualTo(Byte value) {
-            addCriterion("weekday <>", value, "weekday");
+        public Criteria andWeekdaysNotEqualTo(Byte value) {
+            addCriterion("weekdays <>", value, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayGreaterThan(Byte value) {
-            addCriterion("weekday >", value, "weekday");
+        public Criteria andWeekdaysGreaterThan(Byte value) {
+            addCriterion("weekdays >", value, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayGreaterThanOrEqualTo(Byte value) {
-            addCriterion("weekday >=", value, "weekday");
+        public Criteria andWeekdaysGreaterThanOrEqualTo(Byte value) {
+            addCriterion("weekdays >=", value, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayLessThan(Byte value) {
-            addCriterion("weekday <", value, "weekday");
+        public Criteria andWeekdaysLessThan(Byte value) {
+            addCriterion("weekdays <", value, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayLessThanOrEqualTo(Byte value) {
-            addCriterion("weekday <=", value, "weekday");
+        public Criteria andWeekdaysLessThanOrEqualTo(Byte value) {
+            addCriterion("weekdays <=", value, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayIn(List<Byte> values) {
-            addCriterion("weekday in", values, "weekday");
+        public Criteria andWeekdaysIn(List<Byte> values) {
+            addCriterion("weekdays in", values, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayNotIn(List<Byte> values) {
-            addCriterion("weekday not in", values, "weekday");
+        public Criteria andWeekdaysNotIn(List<Byte> values) {
+            addCriterion("weekdays not in", values, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayBetween(Byte value1, Byte value2) {
-            addCriterion("weekday between", value1, value2, "weekday");
+        public Criteria andWeekdaysBetween(Byte value1, Byte value2) {
+            addCriterion("weekdays between", value1, value2, "weekdays");
             return (Criteria) this;
         }
 
-        public Criteria andWeekdayNotBetween(Byte value1, Byte value2) {
-            addCriterion("weekday not between", value1, value2, "weekday");
+        public Criteria andWeekdaysNotBetween(Byte value1, Byte value2) {
+            addCriterion("weekdays not between", value1, value2, "weekdays");
             return (Criteria) this;
         }
     }

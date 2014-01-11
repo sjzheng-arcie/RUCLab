@@ -56,10 +56,20 @@
                                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                                 </li>
                             </shiro:hasAnyRoles>
+                            <shiro:hasAnyRoles name="teacher">
+                                <li><a href="jsp/curriculum/mycurriculumschedule?weekNum=1"
+                                       onfocus="toFocus(this)" target="main">我的课程表</a></li>
+
+                            </shiro:hasAnyRoles>
+                            <shiro:hasAnyRoles name="student">
+                                <li><a href="jsp/curriculum/mycurriculumschedule?weekNum=1"
+                                       onfocus="toFocus(this)" target="main">我的课程表</a></li>
+
+                            </shiro:hasAnyRoles>
+
 
                             <shiro:hasAnyRoles name="teacher,equipment_admin,student">
-                                <li><a href="jsp/curriculum/myteachercurriculumschedule"
-                                       onfocus="toFocus(this)" target="main">我的课程表</a></li>
+
             <%--                    <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)"
                                        target="main">我的实验课程</a></li>--%>
                                 <li><a href="new/pages_miyl/miyl01_ylsj/mydatelist" onfocus="toFocus(this)"

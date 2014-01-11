@@ -15,16 +15,16 @@ public class CurriculumSchedule {
 
     private Byte amPm;
 
-    private Byte week;
+    private Byte weeknum;
 
-    private Byte weekday;
+    private Byte weekdays;
 
-	public Teacher getTeacher() {
-		return teacher;
+	public Room getRoom() {
+		return room;
 	}
 
-	public void setTeacher(Teacher teacher) {
-		this.teacher = teacher;
+	public void setRoom(Room room) {
+		this.room = room;
 	}
 
 	public CurriculumClass getCurriculumClass() {
@@ -33,6 +33,14 @@ public class CurriculumSchedule {
 
 	public void setCurriculumClass(CurriculumClass curriculumClass) {
 		this.curriculumClass = curriculumClass;
+	}
+
+	public Teacher getTeacher() {
+		return teacher;
+	}
+
+	public void setTeacher(Teacher teacher) {
+		this.teacher = teacher;
 	}
 
 	public Curriculum getCurriculum() {
@@ -51,22 +59,12 @@ public class CurriculumSchedule {
 		this.termYear = termYear;
 	}
 
-	public Room getRoom() {
-		return room;
-	}
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-	private Teacher teacher;
+	private Room room;
 	private CurriculumClass curriculumClass;
 
+	private Teacher teacher;
 	private Curriculum curriculum;
-
-	private TermYear termYear;
-
-	private Room room;
+	private  TermYear termYear;
 
     public Integer getId() {
         return id;
@@ -124,19 +122,19 @@ public class CurriculumSchedule {
         this.amPm = amPm;
     }
 
-    public Byte getWeek() {
-        return week;
+    public Byte getWeeknum() {
+        return weeknum;
     }
 
-    public void setWeek(Byte week) {
-        this.week = week;
+    public void setWeeknum(Byte weeknum) {
+        this.weeknum = weeknum;
     }
 
-    public Byte getWeekday() {
-        return weekday;
+    public Byte getWeekdays() {
+        return weekdays;
     }
 
-    public void setWeekday(Byte weekday) {
-        this.weekday = weekday;
+    public void setWeekdays(Byte weekdays) {
+        this.weekdays = weekdays;
     }
 }

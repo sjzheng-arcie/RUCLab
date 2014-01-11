@@ -37,18 +37,75 @@ public class CurriculumSheduleController {
 	LaboratoryRoomService laboratoryRoomService;
 	@Autowired
 	RoomService roomService;
+	@Autowired
+	TeacherService teacherService;
 
 
-	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public String delete(@RequestParam("items") List<Integer> items) {
+	@RequestMapping(value = "/toDelete", method = RequestMethod.POST)
+	public String toDelete(@RequestParam("items") List<Integer> items) {
 		return "redirect:/laboratory/jsp/bas/curriculum/list";
 	}
-	@RequestMapping(value = "/curriculumclasslist", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView curriculumClassList(@RequestParam(required = false,defaultValue = "") String roomName,
-											@RequestParam(value="page",required = false,defaultValue = "1") int page){
-		PageInfo<CurriculumSchedule>pageInfo=curriculumScheduleService.selectListPage(null,page);
+	@RequestMapping(value = "/deleteById", method = RequestMethod.GET)
+	public String deleteById(@RequestParam("curriculumScheduleId") int curriculumScheduleId) {
+		curriculumScheduleService.deleteById(curriculumScheduleId);
+		return "redirect:/laboratory/jsp/curriculum/curriculumclasslist?page=1";
+	}
+	@RequestMapping(value = "/curriculumclasslist", method = (RequestMethod.GET))
+	public ModelAndView curriculumClassList(@RequestParam(value="page",required = true) int page){
+
+		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+		List<Teacher> teacherList= teacherService.getAllTeacherList();
+		List<Room> roomList = roomService.getAllRoomList();
+		CurriculumScheduleCriteria scheduleCriteria = new CurriculumScheduleCriteria();
+		CurriculumScheduleCriteria.Criteria sCriteria = scheduleCriteria.createCriteria();
+		List<CurriculumSchedule> curriculumScheduleList= curriculumScheduleService.getCurriculumScheduleListGroupByWeek(scheduleCriteria);
+
+		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
+		PageInfo<CurriculumSchedule>pageInfo=curriculumScheduleService.selectListPage(curriculumScheduleCriteria,page);
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumclasslist");
 		mav.addObject("pageInfo",pageInfo);
+		mav.addObject("curriculumClassList",curriculumClassList);
+		mav.addObject("termYearList",termYearList);
+		mav.addObject("teacherList",teacherList);
+		mav.addObject("roomList",roomList);
+		return mav;
+	}
+	@RequestMapping(value = "/curriculumclasslist", method = (RequestMethod.POST))
+	public ModelAndView curriculumClassList(@RequestParam(required = false,defaultValue = "") String roomName,
+											@RequestParam(value="page",required = true) int page,
+											@RequestParam(value="teacherId",required = false,defaultValue = "-1") int teacherId,
+											@RequestParam(value="classId",required = false,defaultValue = "-1") int classId,
+											@RequestParam(value="weekNum",required = false,defaultValue = "-1") byte weekNum,
+											@RequestParam(value="ampmNum",required = false,defaultValue = "-1") byte ampmNum,
+											@RequestParam(value="termYearId",required = false,defaultValue = "-1") int termYearId){
+
+		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+		List<Teacher> teacherList= teacherService.getAllTeacherList();
+		List<Room> roomList = roomService.getAllRoomList();
+
+		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+		curriculumScheduleCriteria.setDistinct(true);
+		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
+		if(classId!=-1)
+			criteria.andClassIdEqualTo(classId);
+		if(teacherId!=-1)
+			criteria.andTeacheridEqualTo(teacherId);
+		if(termYearId!=-1)
+			criteria.andTermYearidEqualTo(termYearId);
+		if(weekNum!=-1)
+			criteria.andWeeknumEqualTo(weekNum);
+		if(ampmNum!=-1)
+			criteria.andAmPmEqualTo(ampmNum);
+		PageInfo<CurriculumSchedule>pageInfo=curriculumScheduleService.selectListPage(curriculumScheduleCriteria,page);
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumclasslist");
+		mav.addObject("pageInfo",pageInfo);
+		mav.addObject("curriculumClassList",curriculumClassList);
+		mav.addObject("termYearList",termYearList);
+		mav.addObject("teacherList",teacherList);
+		mav.addObject("roomList",roomList);
 		return mav;
 	}
 	@RequestMapping(value = "/newcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
@@ -62,18 +119,41 @@ public class CurriculumSheduleController {
 		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
-	@RequestMapping(value = "/updatecurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView updateCurriculumSchedule(@RequestParam(value="page",required = false,defaultValue = "1") int page,
-												 @RequestParam(value="curriculumscheduleId",required = false,defaultValue = "1") int curriculumscheduleId){
+	@RequestMapping(value = "/toupdatecurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView toUpdateCurriculumSchedule(@RequestParam(value="curriculumScheduleId",required = true) int curriculumScheduleId){
 
-		CurriculumSchedule curriculumSchedule= curriculumScheduleService.getCurriculumScheduleById(curriculumscheduleId);
+		CurriculumSchedule curriculumSchedule= curriculumScheduleService.getCurriculumScheduleById(curriculumScheduleId);
 		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
 		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/newcurriculumschedule");
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/updatecurriculumschedule");
 		mav.addObject("curriculumClassList",curriculumClassList);
 		mav.addObject("termYearList",termYearList);
 		mav.addObject("curriculumSchedule",curriculumSchedule);
+		return mav;
+	}
+	@RequestMapping(value = "/updatecurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView updateCurriculumSchedule(@RequestParam(value="page",required = false,defaultValue = "1") int page,
+												 @RequestParam(value="curriculumscheduleId",required = false,defaultValue = "1") int curriculumscheduleId,
+												 @RequestParam(value="termYearId",required = true) int termYearId,
+												 @RequestParam(value="curriculumClassId",required = true) int curriculumClassId,
+												 @RequestParam(value="weekDay",required = true) Byte weekDay,
+												 @RequestParam(value="weekNum",required = true) Byte weekNum,
+												 @RequestParam(value="classSection",required = true) Byte classSection ){
+
+		CurriculumSchedule curriculumSchedule= curriculumScheduleService.getCurriculumScheduleById(curriculumscheduleId);
+		if(curriculumClassId!=-1)
+			curriculumSchedule.setClassId(curriculumClassId);
+		if(termYearId!=-1)
+			curriculumSchedule.setTermYearid(termYearId);
+		if(weekDay!=-1)
+			curriculumSchedule.setWeekdays(weekDay);
+		if(weekNum!=-1)
+			curriculumSchedule.setWeeknum(weekNum);
+		if(classSection!=-1)
+			curriculumSchedule.setAmPm(classSection);
+		curriculumScheduleService.update(curriculumSchedule);
+		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist?page=1");
 		return mav;
 	}
 	@RequestMapping(value = "/addcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
@@ -87,20 +167,19 @@ public class CurriculumSheduleController {
 		CurriculumClass curriculumClass = curriculumClassService.getVirtualClass(curriculumClassId);
 		Curriculum curriculum = curriculumService.getCurriculum(curriculumClass.getCurriculumId());
 
-		for(Byte i=0;i<(endWeek-beginWeek);i++){
+		for(Byte i=beginWeek;i<=endWeek;i++){
 			CurriculumSchedule curriculumSchedule = new CurriculumSchedule();
 			curriculumSchedule.setTermYearid(teamYearId);
 			curriculumSchedule.setCurriculumId(curriculumClass.getCurriculumId());
-			curriculumSchedule.setWeekday(weekDay);
+			curriculumSchedule.setWeekdays(weekDay);
 			curriculumSchedule.setClassId(curriculumClassId);
-			curriculumSchedule.setTeacherid(curriculum.getId());
+			curriculumSchedule.setTeacherid(curriculum.getTeacherId());
 			curriculumSchedule.setAmPm(classSection);
-			curriculumSchedule.setWeek(i);
+			curriculumSchedule.setWeeknum(i);
 			curriculumScheduleService.add(curriculumSchedule);
 		}
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/setlab");
+		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist?page=1");
 		mav.addObject("",endWeek);
-
 		return mav;
 	}
 	@RequestMapping(value = "/tosetlab", method = {RequestMethod.GET,RequestMethod.POST})
@@ -110,8 +189,8 @@ public class CurriculumSheduleController {
 		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
 		CurriculumScheduleCriteria.Criteria criteria=curriculumScheduleCriteria.createCriteria();
 		criteria.andAmPmEqualTo(curriculumSchedule.getAmPm());
-		criteria.andWeekdayEqualTo(curriculumSchedule.getWeekday());
-		criteria.andWeekEqualTo(curriculumSchedule.getWeek());
+		criteria.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+		criteria.andWeeknumEqualTo(curriculumSchedule.getWeeknum());
 		criteria.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
 		List<Integer> roomIdList=curriculumScheduleService.getRoomListIdList(curriculumScheduleCriteria);
 		List<Room> roomList= roomService.getAllRoomListByIdList(roomIdList);
@@ -134,121 +213,318 @@ public class CurriculumSheduleController {
 		CurriculumSchedule curriculumSchedule=curriculumScheduleService.getCurriculumScheduleById(curriculumScheduleId);
 		curriculumSchedule.setRoomId(roomId);
 		curriculumScheduleService.update(curriculumSchedule);
-		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist");
+		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist?page=1");
 		return mav;
 	}
-	@RequestMapping(value = "/myteachercurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView myteachercurruculumschedule(){
 
-		List<CurriculumSchedule> curriculumScheduleList = new ArrayList<CurriculumSchedule>();
-		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
-		CurriculumScheduleCriteria.Criteria criteria= curriculumScheduleCriteria.createCriteria();
-		Byte weekNum=1;
-		criteria.andWeekEqualTo(weekNum);
-		criteria.andTeacheridEqualTo(userService.getCurrentUserId());
-		for(Byte i=0;i<5;i++){
-			criteria.andAmPmEqualTo(i);
+	@RequestMapping(value = "/allcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView allCurruculumschedule(@RequestParam(value="termYearId",required = true) int termYearId,
+											  @RequestParam(value="teacherId",required = false,defaultValue = "-1") int teacherId,
+											  @RequestParam(value="studentId",required = false,defaultValue = "-1") int studentId,
+											  @RequestParam(value="curriculumClassId",required = false,defaultValue = "-1") int classId,
+											  @RequestParam(value="roomId",required = false,defaultValue = "-1") int roomId){
 
-			for(Byte j=0;j<5;j++){
-				criteria.andWeekdayEqualTo(j);
-				if(curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria).size()!=0){
-					curriculumScheduleList.add(i*5+j,curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria).get(0));
-
-				}else {
-					curriculumScheduleList.add(i*5+j,new CurriculumSchedule());
+		List<List<String>>  strCurriculumScheduleListStr= new ArrayList<>();
+		for(byte i=0;i<5;i++){
+			for(byte j=0;j<7;j++){
+				List<String> strCurriculumSchedule = new ArrayList<String>();
+				CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+				CurriculumScheduleCriteria.Criteria criteria= curriculumScheduleCriteria.createCriteria();
+				if(teacherId!=-1){
+					criteria.andTeacheridEqualTo(teacherId);
+				}else if(roomId!=-1){
+					criteria.andRoomIdEqualTo(roomId);
+				}else if(classId!=-1){
+					criteria.andClassIdEqualTo(classId);
 				}
+				criteria.andTermYearidEqualTo(termYearId);
+				criteria.andAmPmEqualTo((byte)(i+1));
+				criteria.andWeekdaysEqualTo((byte)(j+1));
+				if(curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria).size()!=0){
+					List<CurriculumSchedule> curriculumScheduleLists= curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria);
+					for(int k=0;k<curriculumScheduleLists.size();k++){
+						CurriculumSchedule curriculumSchedule = curriculumScheduleLists.get(k);
+						CurriculumScheduleCriteria curriculumScheduleCriteria1= new CurriculumScheduleCriteria();
+						CurriculumScheduleCriteria.Criteria criteria1= curriculumScheduleCriteria1.createCriteria();
+						curriculumScheduleCriteria1.setOrderByClause("weekNum asc");
+						criteria1.andAmPmEqualTo(curriculumSchedule.getAmPm());
 
+						if(roomId!=-1){
+							criteria1.andRoomIdEqualTo(roomId);
+						}else{
+							if(curriculumSchedule.getRoomId()!=null){
+								criteria1.andRoomIdEqualTo(curriculumSchedule.getRoomId());
+							}else{
+								criteria1.andRoomIdIsNull();
+							}
+						}
+						if(termYearId!=-1){
+							criteria.andTermYearidEqualTo(termYearId);
+						}
+						criteria1.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
+						criteria1.andClassIdEqualTo(curriculumSchedule.getClassId());
+						criteria1.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+						criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
+						criteria1.andCurriculumIdEqualTo(curriculumSchedule.getCurriculumId());
+						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
+						int tempBegin=0;
+						if(tempList.size()==1){
+							String strClassSchedule=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+							if(tempList.get(0).getRoom()!=null){
+								strClassSchedule=strClassSchedule+" "+tempList.get(0).getRoom().getName();
+							}else{
+								strClassSchedule=strClassSchedule+" 房间待分配 ";
+							}
+							strClassSchedule=strClassSchedule+"(第"+tempList.get(0).getWeeknum()+"周)";
+							strCurriculumSchedule.add(strClassSchedule);
+						}else{
+
+							for(int m=1;m<tempList.size();m++){
+								String tempString=new String();
+								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1){
+									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+									if(tempList.get(0).getRoom()!=null){
+										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+									}else{
+										tempString=tempString+" 房间待分配 ";
+									}
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempBegin=m;
+									strCurriculumSchedule.add(tempString);
+								}if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
+									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+									if(tempList.get(0).getRoom()!=null){
+										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+									}else{
+										tempString=tempString+" 房间待分配 ";
+									}
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempBegin=m;
+									strCurriculumSchedule.add(tempString);
+								}
+							}
+						}
+					}
+					strCurriculumScheduleListStr.add(i*7+j,strCurriculumSchedule);
+				}else {
+
+					strCurriculumScheduleListStr.add(i*7+j,strCurriculumSchedule);
+				}
 			}
 		}
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/myteachercurriculumschedule");
-		mav.addObject("curriculumScheduleList",curriculumScheduleList);
-		return mav;
-	}
-	@RequestMapping(value = "/addlession", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView addLession(@RequestParam(required = false,defaultValue = "") String roomName){
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/addlession");
-		return mav;
-	}
-	@RequestMapping(value = "/createcurriculum", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView createCurriculum(@RequestParam(required = false,defaultValue = "") String roomName){
+		ModelAndView mav = new ModelAndView();
+		if(teacherId!=-1){
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/createcurriculum");
-		return mav;
-	}
+			mav= new ModelAndView("/laboratory/jsp/curriculum/searchcurriculumschedulebyteacher");
+			mav.addObject("teacherInfo",teacherService.selectByPrimaryKey(teacherId));
+			mav.addObject("teacherList",teacherService.getAllTeacherList());
+		}
+		if(classId!=-1){
+			mav= new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyclassid");
+			mav.addObject("classInfo",curriculumClassService.getVirtualClass(classId));
+			mav.addObject("curriculumClassList",curriculumClassService.getAllCurriculumClass());
+		}
 
-	@RequestMapping(value = "/curriculum", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView Curriculum(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculum");
-		return mav;
-	}
-	@RequestMapping(value = "/curriculumclasslist-bak", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView curriculumClassListBak(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumclasslist-bak");
-		return mav;
-	}
-
-	@RequestMapping(value = "/curriculumview", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView curriculumview(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumview");
-		return mav;
-	}
-
-	@RequestMapping(value = "/importcurriculum", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView importcurriculum(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/importcurriculum");
-		return mav;
-	}
-
-	@RequestMapping(value = "/list", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView list(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/list");
-		return mav;
-	}
-
-	@RequestMapping(value = "/listapply", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView listApply(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/listapply");
-		return mav;
-	}
-
-	@RequestMapping(value = "/listcommit", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView listCommit(@RequestParam(required = false,defaultValue = "") String roomName){
-
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/listcommit");
+		if(roomId!=-1){
+			mav= new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyroom");
+			mav.addObject("roomInfo",roomService.getRoomById(roomId));
+			mav.addObject("roomList",roomService.getAllRoomList());
+		}
+		mav.addObject("termYearInfo",schoolCalenderService.getTermYearByPk(termYearId));
+		mav.addObject("strCurriculumScheduleListStr",strCurriculumScheduleListStr);
+		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
 
 	@RequestMapping(value = "/mycurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView mycurriculumschedule(@RequestParam(required = false,defaultValue = "") String roomName){
+	public ModelAndView mycurruculumschedule(@RequestParam(value="termYearId",required = false,defaultValue = "-1") int termYearId){
+		List<CurriculumSchedule> curriculumScheduleList = new ArrayList<CurriculumSchedule>();
+
+		List<List<String>>  strCurriculumScheduleListStr= new ArrayList<>();
+		List<Teacher> teacherList = teacherService.getAllTeacherList();
+		for(byte i=0;i<5;i++){
+			for(byte j=0;j<7;j++){
+				List<String> strCurriculumSchedule = new ArrayList<String>();
+				CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+				CurriculumScheduleCriteria.Criteria criteria= curriculumScheduleCriteria.createCriteria();
+				if (userService.getCurrentUser().getRole().getName().equals("student")){
+					criteria.andClassIdIn(curriculumScheduleService.getClassIdListByStudentId(userService.getCurrentUserId()));
+				}else if (userService.getCurrentUser().getRole().getName().equals("teacher")){
+					criteria.andTeacheridEqualTo(userService.getCurrentUserId());
+				}
+				if(termYearId!=-1){
+					criteria.andTermYearidEqualTo(termYearId);
+				}
+				criteria.andAmPmEqualTo((byte)(i+1));
+				criteria.andWeekdaysEqualTo((byte)(j+1));
+				if(curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria).size()!=0){
+					List<CurriculumSchedule> curriculumScheduleLists= curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria);
+					for(int k=0;k<curriculumScheduleLists.size();k++){
+						CurriculumSchedule curriculumSchedule = curriculumScheduleLists.get(k);
+						CurriculumScheduleCriteria curriculumScheduleCriteria1= new CurriculumScheduleCriteria();
+						CurriculumScheduleCriteria.Criteria criteria1= curriculumScheduleCriteria1.createCriteria();
+						curriculumScheduleCriteria1.setOrderByClause("weekNum asc");
+						criteria1.andAmPmEqualTo(curriculumSchedule.getAmPm());
+						if(curriculumSchedule.getRoomId()!=null){
+							criteria1.andRoomIdEqualTo(curriculumSchedule.getRoomId());
+						}else{
+							criteria1.andRoomIdIsNull();
+						}
+						if(termYearId!=-1){
+							criteria.andTermYearidEqualTo(termYearId);
+						}
+						criteria1.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
+						criteria1.andClassIdEqualTo(curriculumSchedule.getClassId());
+						criteria1.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+						criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
+						criteria1.andCurriculumIdEqualTo(curriculumSchedule.getCurriculumId());
+						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
+						int tempBegin=0;
+						if(tempList.size()==1){
+							String strClassSchedule=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+							if(tempList.get(0).getRoom()!=null){
+								strClassSchedule=strClassSchedule+" "+tempList.get(0).getRoom().getName();
+							}else{
+								strClassSchedule=strClassSchedule+" 房间待分配 ";
+							}
+							strClassSchedule=strClassSchedule+"(第"+tempList.get(0).getWeeknum()+"周)";
+							strCurriculumSchedule.add(strClassSchedule);
+						}else{
+
+							for(int m=1;m<tempList.size();m++){
+								String tempString=new String();
+								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1){
+									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+									if(tempList.get(0).getRoom()!=null){
+										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+									}else{
+										tempString=tempString+" 房间待分配 ";
+									}
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempBegin=m;
+									strCurriculumSchedule.add(tempString);
+								}if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
+									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+									if(tempList.get(0).getRoom()!=null){
+										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+									}else{
+										tempString=tempString+" 房间待分配 ";
+									}
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempBegin=m;
+									strCurriculumSchedule.add(tempString);
+								}
+							}
+						}
+					}
+					strCurriculumScheduleListStr.add(i*7+j,strCurriculumSchedule);
+				}else {
+
+					strCurriculumScheduleListStr.add(i*7+j,strCurriculumSchedule);
+				}
+			}
+		}
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
 
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/mycurriculumschedule");
+		mav.addObject("strCurriculumScheduleListStr",strCurriculumScheduleListStr);
+		mav.addObject("termYearInfo",schoolCalenderService.getTermYearByPk(termYearId));
+		mav.addObject("termYearList",termYearList);
+		mav.addObject("teacherList",teacherList);
 		return mav;
 	}
 
-	@RequestMapping(value = "/setcurriculum", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView setcurriculum(@RequestParam(required = false,defaultValue = "") String roomName){
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/setcurriculum");
+	@RequestMapping(value = "/toSearchByClassId", method = (RequestMethod.GET))
+	public ModelAndView toSearchByClassId(){
+
+		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+		List<String> tempStrList = new ArrayList<String>();
+		tempStrList.add(0,"");
+		List<List<String>>  strCurriculumScheduleListStr= new ArrayList<>();
+		for(byte i=0;i<5;i++){
+			for(byte j=0;j<7;j++){
+				strCurriculumScheduleListStr.add(i*7+j,tempStrList);
+			}
+		}
+
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyclassid");
+		mav.addObject("curriculumClassList",curriculumClassList);
+		mav.addObject("curriculumScheduleListList",strCurriculumScheduleListStr);
+		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
+	@RequestMapping(value = "/toSearchByRoomId", method = (RequestMethod.GET))
+	public ModelAndView toSearchByRoomId(){
 
-	@RequestMapping(value = "/toaddlession", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView toaddlession(@RequestParam(required = false,defaultValue = "") String roomName){
+		List<Room> roomList=roomService.getAllRoomList();
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+		List<String> tempStrList = new ArrayList<String>();
+		tempStrList.add(0,"");
+		List<List<String>>  strCurriculumScheduleListStr= new ArrayList<>();
+		for(byte i=0;i<5;i++){
+			for(byte j=0;j<7;j++){
+				strCurriculumScheduleListStr.add(i*7+j,tempStrList);
+			}
+		}
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/toaddlession");
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyroom");
+		mav.addObject("roomList",roomList);
+		mav.addObject("curriculumScheduleListList",strCurriculumScheduleListStr);
+		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
-	@RequestMapping(value = "/view", method = {RequestMethod.GET,RequestMethod.POST})
-	public ModelAndView view(@RequestParam(required = false,defaultValue = "") String roomName){
+	@RequestMapping(value = "/toSearchByTeacherId", method = (RequestMethod.GET))
+	public ModelAndView toSearchByTeacherId(){
 
-		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/view");
+		List<Teacher> teacherList = teacherService.getAllTeacherList();
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+		List<String> tempStrList = new ArrayList<String>();
+		tempStrList.add(0,"");
+		List<List<String>>  strCurriculumScheduleListStr= new ArrayList<>();
+		for(byte i=0;i<5;i++){
+			for(byte j=0;j<7;j++){
+				strCurriculumScheduleListStr.add(i*7+j,tempStrList);
+			}
+		}
+		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyteacher");
+		mav.addObject("teacherList",teacherList);
+		mav.addObject("strCurriculumScheduleListStr",strCurriculumScheduleListStr);
+		mav.addObject("termYearList",termYearList);
+		return mav;
+	}
+	@RequestMapping(value = "/searchByTeacherId", method = (RequestMethod.POST))
+	public ModelAndView searchByTeacherId(@RequestParam(value="termYearId",required = true) int termYearId,
+												   @RequestParam(value="teacherId",required = true) int teacherId){
+		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
+		List<Teacher> teacherList = teacherService.getAllTeacherList();
+		List<CurriculumSchedule> curriculumScheduleList = new ArrayList<CurriculumSchedule>();
+		curriculumScheduleList.add(0,new CurriculumSchedule());
+		List<List<CurriculumSchedule>>  curriculumScheduleListList= new ArrayList<>();
+		for(byte i=0;i<5;i++){
+			for(byte j=0;j<7;j++){
+				CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+				CurriculumScheduleCriteria.Criteria criteria= curriculumScheduleCriteria.createCriteria();
+				criteria.andTeacheridEqualTo(teacherId);
+				criteria.andTermYearidEqualTo(termYearId);
+				criteria.andAmPmEqualTo((byte)(i+1));
+				criteria.andWeekdaysEqualTo((byte)(j+1));
+				if(curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria).size()!=0){
+					curriculumScheduleListList.add(i*7+j,curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria));
+
+				}else {
+					curriculumScheduleListList.add(i*7+j,curriculumScheduleList);
+				}
+			}
+		}
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/searchcurriculumschedulebyteacher");
+		mav.addObject("curriculumScheduleTitle","教师"+teacherService.selectByPrimaryKey(teacherId).getName()+"于"+schoolCalenderService.getTermYearByPk(termYearId).getName()+"学期的课表");
+		mav.addObject("curriculumScheduleListList",curriculumScheduleListList);
+		mav.addObject("termYearList",termYearList);
+		mav.addObject("teacherList",teacherList);
 		return mav;
 	}
 }

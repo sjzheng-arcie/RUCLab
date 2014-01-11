@@ -66,7 +66,10 @@ public class CurriculumClassService {
 		return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
 	}
 	public List<CurriculumClass> getAllCurriculumClass() {
-		return curriculumClassMapper.selectByCriteria(null);
+		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+		CurriculumClassCriteria.Criteria c = criteria.or();
+		c.andJoinCurriculum().andJoinUser();
+		return curriculumClassMapper.selectByCriteria(criteria);
 	}
     /**
      * @param id
@@ -354,7 +357,7 @@ public class CurriculumClassService {
 	}
 	public List<Integer> getPrivateCurricumIds(int id, Types.Role role){
 		List<Integer> CurricumIds = new ArrayList<Integer>();
-		List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
+		List<CurriculumClass> data = getPrivateCurricumClasses(id, role);
 		for(CurriculumClass cc : data){
 			CurricumIds.add(cc.getCurriculumId());
 		}

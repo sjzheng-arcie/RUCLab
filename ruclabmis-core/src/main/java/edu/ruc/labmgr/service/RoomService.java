@@ -48,4 +48,7 @@ public class RoomService {
 		}
 		return mapper.selectByCriteria(roomCriteria);
 	}
+	public List<Room> getAllRoomList(){
+		return mapper.selectByCriteria(null);
+	}
 }

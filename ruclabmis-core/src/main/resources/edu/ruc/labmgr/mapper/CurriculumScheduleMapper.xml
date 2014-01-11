@@ -9,11 +9,11 @@
     <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
     <result column="term_yearId" jdbcType="INTEGER" property="termYearid" />
     <result column="am_pm" jdbcType="TINYINT" property="amPm" />
-    <result column="week" jdbcType="TINYINT" property="week" />
-    <result column="weekday" jdbcType="TINYINT" property="weekday" />
+    <result column="weekNum" jdbcType="TINYINT" property="weeknum" />
+    <result column="weekdays" jdbcType="TINYINT" property="weekdays" />
       <association column="room_Id" javaType="Room" property="room" select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
       <association column="class_Id" javaType="CurriculumClass" property="curriculumClass" select="edu.ruc.labmgr.mapper.CurriculumClassMapper.selectByPrimaryKey" />
-      <association column="teacher_Id" javaType="Teacher" property="teacher" select="edu.ruc.labmgr.mapper.TeacherMapper.selectByPrimaryKey" />
+      <association column="teacherId" javaType="Teacher" property="teacher" select="edu.ruc.labmgr.mapper.TeacherMapper.selectByPrimaryKey" />
       <association column="curriculum_Id" javaType="Curriculum" property="curriculum" select="edu.ruc.labmgr.mapper.CurriculumMapper.selectByPrimaryKey" />
       <association column="term_yearId" javaType="TermYear" property="termYear" select="edu.ruc.labmgr.mapper.TermYearMapper.selectByPrimaryKey" />
   </resultMap>
@@ -76,7 +76,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, room_id, class_id, teacherId, curriculum_id, term_yearId, am_pm, week, weekday
+    id, room_id, class_id, teacherId, curriculum_id, term_yearId, am_pm, weekNum, weekdays
   </sql>
   <select id="selectByExample" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
     select
@@ -114,10 +114,10 @@
     </selectKey>
     insert into curriculum_schedule (room_id, class_id, teacherId, 
       curriculum_id, term_yearId, am_pm, 
-      week, weekday)
+      weekNum, weekdays)
     values (#{roomId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{teacherid,jdbcType=INTEGER}, 
       #{curriculumId,jdbcType=INTEGER}, #{termYearid,jdbcType=INTEGER}, #{amPm,jdbcType=TINYINT}, 
-      #{week,jdbcType=TINYINT}, #{weekday,jdbcType=TINYINT})
+      #{weeknum,jdbcType=TINYINT}, #{weekdays,jdbcType=TINYINT})
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
     <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
@@ -143,11 +143,11 @@
       <if test="amPm != null">
         am_pm,
       </if>
-      <if test="week != null">
-        week,
+      <if test="weeknum != null">
+        weekNum,
       </if>
-      <if test="weekday != null">
-        weekday,
+      <if test="weekdays != null">
+        weekdays,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -169,11 +169,11 @@
       <if test="amPm != null">
         #{amPm,jdbcType=TINYINT},
       </if>
-      <if test="week != null">
-        #{week,jdbcType=TINYINT},
+      <if test="weeknum != null">
+        #{weeknum,jdbcType=TINYINT},
       </if>
-      <if test="weekday != null">
-        #{weekday,jdbcType=TINYINT},
+      <if test="weekdays != null">
+        #{weekdays,jdbcType=TINYINT},
       </if>
     </trim>
   </insert>
@@ -207,11 +207,11 @@
       <if test="record.amPm != null">
         am_pm = #{record.amPm,jdbcType=TINYINT},
       </if>
-      <if test="record.week != null">
-        week = #{record.week,jdbcType=TINYINT},
+      <if test="record.weeknum != null">
+        weekNum = #{record.weeknum,jdbcType=TINYINT},
       </if>
-      <if test="record.weekday != null">
-        weekday = #{record.weekday,jdbcType=TINYINT},
+      <if test="record.weekdays != null">
+        weekdays = #{record.weekdays,jdbcType=TINYINT},
       </if>
     </set>
     <if test="_parameter != null">
@@ -227,8 +227,8 @@
       curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
       term_yearId = #{record.termYearid,jdbcType=INTEGER},
       am_pm = #{record.amPm,jdbcType=TINYINT},
-      week = #{record.week,jdbcType=TINYINT},
-      weekday = #{record.weekday,jdbcType=TINYINT}
+      weekNum = #{record.weeknum,jdbcType=TINYINT},
+      weekdays = #{record.weekdays,jdbcType=TINYINT}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -254,11 +254,11 @@
       <if test="amPm != null">
         am_pm = #{amPm,jdbcType=TINYINT},
       </if>
-      <if test="week != null">
-        week = #{week,jdbcType=TINYINT},
+      <if test="weeknum != null">
+        weekNum = #{weeknum,jdbcType=TINYINT},
       </if>
-      <if test="weekday != null">
-        weekday = #{weekday,jdbcType=TINYINT},
+      <if test="weekdays != null">
+        weekdays = #{weekdays,jdbcType=TINYINT},
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
@@ -271,8 +271,8 @@
       curriculum_id = #{curriculumId,jdbcType=INTEGER},
       term_yearId = #{termYearid,jdbcType=INTEGER},
       am_pm = #{amPm,jdbcType=TINYINT},
-      week = #{week,jdbcType=TINYINT},
-      weekday = #{weekday,jdbcType=TINYINT}
+      weekNum = #{weeknum,jdbcType=TINYINT},
+      weekdays = #{weekdays,jdbcType=TINYINT}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select id="selectByExampleWithRowbounds" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
@@ -289,4 +289,13 @@
       order by ${orderByClause}
     </if>
   </select>
+    <select id="getAllCurriculumNameList" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from curriculum_schedule
+        <if test="_parameter != null">
+            <include refid="Example_Where_Clause" />
+        </if>
+        group by class_id,teacherId,curriculum_id,term_yearId,am_pm,weekdays,room_Id
+    </select>
 </mapper>

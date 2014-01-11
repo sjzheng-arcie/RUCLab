@@ -3,4 +3,9 @@
     <item id="sep1" type="separator"/>
     <item id="new" type="button" img="new.gif" imgdis="new_dis.gif" text="新建"/>
     <item id="sep2" type="separator"/>
+    <item id="searchbyclassid" type="button" img="cut.gif" imgdis="cut_dis.gif" text="按班级查询课表"/>
+    <item id="sep3" type="separator"/>
+    <item id="searchbyteacher" type="button" img="cut.gif" imgdis="cut_dis.gif" text="按教师查询课表"/>
+    <item id="sep4" type="separator"/>
+    <item id="searchbyroom" type="button" img="cut.gif" imgdis="cut_dis.gif" text="按房间查询课表"/>
 </toolbar>

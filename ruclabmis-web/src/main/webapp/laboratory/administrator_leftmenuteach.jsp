@@ -44,10 +44,8 @@
 
                         <li><a href="/experiment/virtual/list?page=1" onfocus="toFocus(this)" target="main">虚拟班级</a>
                         </li>
-                        <li><a href="jsp/curriculum/curriculumclasslist" onfocus="toFocus(this)"
+                        <li><a href="jsp/curriculum/curriculumclasslist?page=1" onfocus="toFocus(this)"
                                target="main">课程信息管理</a></li>
-                        <li><a href="jsp/curriculum/list" onfocus="toFocus(this)"
-                               target="main">课程信息list</a></li>
                         <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)" target="main">
                             实验信息管理</a></li>
 

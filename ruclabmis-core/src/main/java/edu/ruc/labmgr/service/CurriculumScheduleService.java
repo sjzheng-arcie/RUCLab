@@ -49,6 +49,9 @@ public class CurriculumScheduleService {
 	public List<CurriculumSchedule> getCurriculumScheduleList(){
 		return curriculumScheduleMapper.selectByExample(null);
 	}
+	public List<CurriculumSchedule> getCurriculumScheduleListGroupByWeek(CurriculumScheduleCriteria criteria){
+		return curriculumScheduleMapper.getAllCurriculumNameList(criteria);
+	}
 	public List<Integer> getRoomListIdList(CurriculumScheduleCriteria criteria){
 		List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByExample(criteria);
 		List<Integer> roomIdList=new ArrayList<>();
@@ -77,5 +80,11 @@ public class CurriculumScheduleService {
 		return classList;
 
 
+	}
+	public String getCurriculumScheduleBy(){
+
+
+
+		return null;
 	}
 }

@@ -25,6 +25,7 @@
 <script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
+<script type="text/javascript" src="../../../js/page.js"></script>
 <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
@@ -33,17 +34,18 @@
         $("#termYearId").chosen({
             no_results_text: "没有找到"
         });
+        $("#roomId").chosen({
+            no_results_text: "没有找到"
+        });
     });
     function search(){
-        document.mainForm.action="mycurriculumschedule";
+        document.mainForm.action="allcurriculumschedule";
         document.mainForm.submit();
     }
 </script>
 
 <body onload="doOnLoad();"style="background-color: #eef2fb">
-<form name="mainForm" method="post" action="mycurriculumschedule">
-
-
+<form name="mainForm" method="post" action="allcurriculumschedule">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
     <tr>
         <td valign="top" height="100%">
@@ -60,18 +62,37 @@
                 </tr>
                 <tr>
                     <td valign="top" height="580">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
-                            <table width="100%" border="0" cellpadding="0" cellspacing="0">
-                                <tr height="25">
-                                    <td width="20px" bgcolor="#E3EFFF" >学年：
-                                        <select id="termYear" name="termYearId"
-                                               style="width: 200px;height: 22px"
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; ">
+                            <table style="background-color: #E3EFFF;"cellpadding="0"cellspacing="0" width="100%" >
+                                <tr>
+                                    <td  bgcolor="#E3EFFF" >学年：
+                                        <select id="termYearId" name="termYearId"
+                                                style="width: 200px;height: 22px"
                                                 data-placeholder="选择学年学期...">
                                             <c:forEach items="${termYearList}" var="termYear">
+
                                                 <option <c:if test="${termYearInfo.id==termYear.id}"> selected </c:if> value="${termYear.id}">${termYear.name}(${termYear.year}年)</option>
                                             </c:forEach>
                                         </select></td>
-                                    <td width="20px" bgcolor="#E3EFFF" >
+                                    <td width="20px" bgcolor="#E3EFFF" >房间：
+                                        <select id="roomId" name="roomId"
+                                                style="width: 200px;height: 22px"
+                                                data-placeholder="房间...">
+                                            <c:forEach items="${roomList}" var="room">
+                                                <option
+                                                        <c:if test="${roomInfo.id==room.id}"> selected </c:if>
+                                                        value="${room.id}">${room.name}<c:choose>
+                                                    <c:when test="${room.type==true}">
+                                                        (实验室)
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        (会议室)
+                                                    </c:otherwise>
+                                                    </c:choose></option>
+                                            </c:forEach>
+                                        </select>
+                                    </td>
+                                    <td  bgcolor="#E3EFFF" >
                                         <input type="button"  value=" 查询"  onclick="search();" /></td>
                                 </tr>
                             </table>
@@ -81,8 +102,8 @@
                                 </tr>
                                 <tr height="25" align="center">
 
-                                    <td width="6.75%" bgcolor="#E3EFFF"></td>
-                                    <td width="6.75%" bgcolor="#E3EFFF">节次</td>
+                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
+                                    <td width="12.5%" bgcolor="#E3EFFF">节次</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周一</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周二</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周三</td>

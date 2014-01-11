@@ -20,6 +20,7 @@ public interface CurriculumScheduleMapper {
     List<CurriculumSchedule> selectByExampleWithRowbounds(CurriculumScheduleCriteria example, RowBounds rowBounds);
 
     List<CurriculumSchedule> selectByExample(CurriculumScheduleCriteria example);
+	List<CurriculumSchedule> getAllCurriculumNameList(CurriculumScheduleCriteria example);
 
     CurriculumSchedule selectByPrimaryKey(Integer id);
 
