@@ -90,7 +90,7 @@
                             </table>
                             <table width="100%" border="1" cellpadding="1" cellspacing="0">
                                 <tr height="25">
-                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>软件工程09-1课程表</strong></td>
+                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong></strong></td>
                                 </tr>
                                 <tr height="25" align="center">
 
