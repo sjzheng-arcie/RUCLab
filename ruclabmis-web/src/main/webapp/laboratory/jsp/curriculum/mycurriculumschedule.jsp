@@ -28,6 +28,7 @@
 <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/valid.js"></script>
 <script>
     $(document).ready(function () {
         $("#termYearId").chosen({
@@ -60,11 +61,11 @@
                 </tr>
                 <tr>
                     <td valign="top" height="580">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr height="25">
                                     <td width="20px" bgcolor="#E3EFFF" >学年：
-                                        <select id="termYear" name="termYearId"
+                                        <select id="termYearId" name="termYearId"
                                                style="width: 200px;height: 22px"
                                                 data-placeholder="选择学年学期...">
                                             <c:forEach items="${termYearList}" var="termYear">
@@ -77,7 +78,7 @@
                             </table>
                             <table width="100%" border="1" cellpadding="1" cellspacing="0">
                                 <tr height="25">
-                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>软件工程09-1课程表</strong></td>
+                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong></strong></td>
                                 </tr>
                                 <tr height="25" align="center">
 
@@ -153,10 +154,7 @@
                                     </c:forEach>
                                 </tr>
                             </table>
-
                         </div>
-
-
                         <div id="parentId"
                              style="position: relative; top: 0px; left: 0px; width: 100%; height: 100%; aborder: #B5CDE4 1px solid;"></div>
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;

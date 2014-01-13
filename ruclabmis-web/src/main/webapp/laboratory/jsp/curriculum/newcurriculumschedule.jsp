@@ -20,6 +20,7 @@
 
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/valid.js"></script>
 
 <script>
 
@@ -33,6 +34,12 @@
         });
     });
     function add(){
+        var a = window.document.getElementById("beginWeek").value;
+        var b = window.document.getElementById("endWeek").value;
+        if(a>b){
+            alert("结束时间不能早于开始时间！");
+            return;
+        }
         document.mainForm.action="addcurriculumschedule";
         document.mainForm.submit();
     }
@@ -63,7 +70,7 @@
                                     <td align="right">学期学年：</td>
                                     <td>
                                         <select id="termYear" name="termYearId"
-                                                style="width: 252px;height: 22px"
+                                                style="width: 252px;height: 22px" valid="requierd" errmsg="请选择学年"
                                                 data-placeholder="选择学年学期...">
                                             <c:forEach items="${termYearList}" var="termYear">
                                                 <option value="${termYear.id}">${termYear.name}(${termYear.year}年)</option>
@@ -111,64 +118,18 @@
                                 </tr>
                                 <tr>
                                     <td align="right" width="30%">开始时间：</td>
-                                    <td width="70%">第<select name="beginWeek">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
+                                    <td width="70%">第<select  id ="beginWeek"  name="beginWeek">
+                                        <c:forEach var="temp" begin="1" end="26" step="1">
+                                            <option value="${temp}">${temp}</option>
+                                        </c:forEach>
                                     </select>周</td>
                                 </tr>
                                 <tr>
                                     <td align="right" width="30%">结束时间：</td>
-                                    <td width="70%">第<select name="endWeek">
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                        <option value="6">6</option>
-                                        <option value="7">7</option>
-                                        <option value="8">8</option>
-                                        <option value="9">9</option>
-                                        <option value="10">10</option>
-                                        <option value="11">11</option>
-                                        <option value="12">12</option>
-                                        <option value="13">13</option>
-                                        <option value="14">14</option>
-                                        <option value="15">15</option>
-                                        <option value="16">16</option>
-                                        <option value="17">17</option>
-                                        <option value="18">18</option>
-                                        <option value="19">19</option>
-                                        <option value="20">20</option>
-                                        <option value="21">21</option>
-                                        <option value="22">22</option>
-                                        <option value="23">23</option>
-                                        <option value="24">24</option>
-                                        <option value="25">25</option>
-                                        <option value="26">26</option>
+                                    <td width="70%">第<select id="endWeek" name="endWeek">
+                                        <c:forEach var="temp" begin="1" end="26" step="1">
+                                            <option value="${temp}">${temp}</option>
+                                        </c:forEach>
                                     </select>周</td>
                                 </tr>
                             </table>

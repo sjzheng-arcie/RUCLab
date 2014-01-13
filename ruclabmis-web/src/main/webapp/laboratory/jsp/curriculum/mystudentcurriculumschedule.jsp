@@ -24,6 +24,7 @@
 <script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/valid.js"></script>
 <script>
     function search(weekNum){
         document.mainForm.action="mystudentcurriculumschedule?weekNum="+weekNum;
@@ -65,12 +66,12 @@
                             <%--</table>--%>
                             <table width="100%" border="1" cellpadding="1" cellspacing="0">
                                 <tr height="25">
-                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>软件工程09-1课程表</strong></td>
+                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>课程表</strong></td>
                                 </tr>
                                 <tr height="25" align="center">
 
-                                    <td width="12.5%" bgcolor="#E3EFFF"></td>
-                                    <td width="12.5%" bgcolor="#E3EFFF">节次</td>
+                                    <td width="6.75%" bgcolor="#E3EFFF"></td>
+                                    <td width="6.75%" bgcolor="#E3EFFF">节次</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周一</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周二</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周三</td>
