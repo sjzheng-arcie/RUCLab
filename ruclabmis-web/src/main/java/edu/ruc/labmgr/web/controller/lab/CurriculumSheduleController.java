@@ -76,7 +76,8 @@ public class CurriculumSheduleController {
 	public ModelAndView curriculumClassList(@RequestParam(required = false,defaultValue = "") String roomName,
 											@RequestParam(value="page",required = true) int page,
 											@RequestParam(value="teacherId",required = false,defaultValue = "-1") int teacherId,
-											@RequestParam(value="classId",required = false,defaultValue = "-1") int classId,
+											@RequestParam(value="roomId",required = false,defaultValue = "-1") int roomId,
+											@RequestParam(value="curriculumClassId",required = false,defaultValue = "-1") int classId,
 											@RequestParam(value="weekNum",required = false,defaultValue = "-1") byte weekNum,
 											@RequestParam(value="ampmNum",required = false,defaultValue = "-1") byte ampmNum,
 											@RequestParam(value="termYearId",required = false,defaultValue = "-1") int termYearId){
@@ -85,7 +86,6 @@ public class CurriculumSheduleController {
 		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
 		List<Teacher> teacherList= teacherService.getAllTeacherList();
 		List<Room> roomList = roomService.getAllRoomList();
-
 		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
 		curriculumScheduleCriteria.setDistinct(true);
 		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
@@ -93,6 +93,8 @@ public class CurriculumSheduleController {
 			criteria.andClassIdEqualTo(classId);
 		if(teacherId!=-1)
 			criteria.andTeacheridEqualTo(teacherId);
+		if(roomId!=-1)
+			criteria.andRoomIdEqualTo(roomId);
 		if(termYearId!=-1)
 			criteria.andTermYearidEqualTo(termYearId);
 		if(weekNum!=-1)
@@ -113,7 +115,6 @@ public class CurriculumSheduleController {
 
 		List<CurriculumClass> curriculumClassList=curriculumClassService.getAllCurriculumClass();
 		List<TermYear> termYearList=schoolCalenderService.getAllTermYear();
-
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/newcurriculumschedule");
 		mav.addObject("curriculumClassList",curriculumClassList);
 		mav.addObject("termYearList",termYearList);
@@ -156,6 +157,7 @@ public class CurriculumSheduleController {
 		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist?page=1");
 		return mav;
 	}
+
 	@RequestMapping(value = "/addcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView addCurriculumSchedule(@RequestParam(value="termYearId",required = true) int teamYearId,
 											  @RequestParam(value="curriculumClassId",required = true) int curriculumClassId,
@@ -166,7 +168,8 @@ public class CurriculumSheduleController {
 
 		CurriculumClass curriculumClass = curriculumClassService.getVirtualClass(curriculumClassId);
 		Curriculum curriculum = curriculumService.getCurriculum(curriculumClass.getCurriculumId());
-
+		List<CurriculumSchedule> exsitedCurriculumScheduleList= new ArrayList();
+		List<CurriculumSchedule> curriculumScheduleList= new ArrayList();
 		for(Byte i=beginWeek;i<=endWeek;i++){
 			CurriculumSchedule curriculumSchedule = new CurriculumSchedule();
 			curriculumSchedule.setTermYearid(teamYearId);
@@ -176,9 +179,26 @@ public class CurriculumSheduleController {
 			curriculumSchedule.setTeacherid(curriculum.getTeacherId());
 			curriculumSchedule.setAmPm(classSection);
 			curriculumSchedule.setWeeknum(i);
-			curriculumScheduleService.add(curriculumSchedule);
+			if(curriculumScheduleService.ifCurriculumScheduleExistd(curriculumSchedule)){
+				curriculumSchedule.setTeacher(teacherService.selectByPrimaryKey(teamYearId));
+				curriculumSchedule.setCurriculum(curriculumService.getCurriculum(curriculumClassService.getVirtualClass(curriculumClassId).getCurriculumId()));
+				curriculumSchedule.setCurriculumClass(curriculumClassService.getVirtualClass(curriculumClassId));
+				curriculumSchedule.setTermYear(schoolCalenderService.getTermYearByPk(teamYearId));
+				exsitedCurriculumScheduleList.add(curriculumSchedule);
+			}else{
+				curriculumScheduleList.add(curriculumSchedule);
+			}
+		}
+		if(exsitedCurriculumScheduleList.size()==0){
+			for(int i=0;i<curriculumScheduleList.size();i++){
+				curriculumScheduleService.add(curriculumScheduleList.get(i));
+			}
 		}
 		ModelAndView mav = new ModelAndView("redirect:/laboratory/jsp/curriculum/curriculumclasslist?page=1");
+		if(exsitedCurriculumScheduleList.size()>0){
+			mav.setViewName("/laboratory/jsp/curriculum/existedcurriculumschedule");
+			mav.addObject("exsitedCurriculumScheduleList",exsitedCurriculumScheduleList);
+		}
 		mav.addObject("",endWeek);
 		return mav;
 	}
@@ -269,36 +289,37 @@ public class CurriculumSheduleController {
 						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
 						int tempBegin=0;
 						if(tempList.size()==1){
-							String strClassSchedule=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+							String strClassSchedule=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 							if(tempList.get(0).getRoom()!=null){
-								strClassSchedule=strClassSchedule+" "+tempList.get(0).getRoom().getName();
+								strClassSchedule=strClassSchedule+"<br>"+tempList.get(0).getRoom().getName()+"<br>";
 							}else{
-								strClassSchedule=strClassSchedule+" 房间待分配 ";
+								strClassSchedule=strClassSchedule+"房间待分配<br>";
 							}
-							strClassSchedule=strClassSchedule+"(第"+tempList.get(0).getWeeknum()+"周)";
+							strClassSchedule=strClassSchedule+"(第"+tempList.get(0).getWeeknum()+"周)<br>";
 							strCurriculumSchedule.add(strClassSchedule);
 						}else{
 
 							for(int m=1;m<tempList.size();m++){
 								String tempString=new String();
 								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1){
-									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
-										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+										tempString=tempString+""+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
-										tempString=tempString+" 房间待分配 ";
+										tempString=tempString+" 房间待分配<br>";
 									}
-									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+"至"+tempList.get(m-1).getWeeknum()+"周)<br>";
 									tempBegin=m;
 									strCurriculumSchedule.add(tempString);
-								}if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
-									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+								}
+								if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
+									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
-										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+										tempString=tempString+"<br>"+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
-										tempString=tempString+" 房间待分配 ";
+										tempString=tempString+"房间待分配<br>";
 									}
-									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+"至"+tempList.get(m).getWeeknum()+"周)<br>";
 									tempBegin=m;
 									strCurriculumSchedule.add(tempString);
 								}
@@ -320,24 +341,26 @@ public class CurriculumSheduleController {
 			mav= new ModelAndView("/laboratory/jsp/curriculum/searchcurriculumschedulebyteacher");
 			mav.addObject("teacherInfo",teacherService.selectByPrimaryKey(teacherId));
 			mav.addObject("teacherList",teacherService.getAllTeacherList());
+			mav.addObject("curriculumScheduleTitle",teacherService.selectByPrimaryKey(teacherId).getName()+"老师的课表");
 		}
 		if(classId!=-1){
 			mav= new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyclassid");
 			mav.addObject("classInfo",curriculumClassService.getVirtualClass(classId));
 			mav.addObject("curriculumClassList",curriculumClassService.getAllCurriculumClass());
+			mav.addObject("curriculumScheduleTitle","班级"+curriculumClassService.getVirtualClass(classId).getClassName()+" 的课表");
 		}
 
 		if(roomId!=-1){
 			mav= new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyroom");
 			mav.addObject("roomInfo",roomService.getRoomById(roomId));
 			mav.addObject("roomList",roomService.getAllRoomList());
+			mav.addObject("curriculumScheduleTitle","房间"+roomService.getRoomById(roomId).getName()+" 的课表");
 		}
 		mav.addObject("termYearInfo",schoolCalenderService.getTermYearByPk(termYearId));
 		mav.addObject("strCurriculumScheduleListStr",strCurriculumScheduleListStr);
 		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
-
 	@RequestMapping(value = "/mycurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView mycurruculumschedule(@RequestParam(value="termYearId",required = false,defaultValue = "-1") int termYearId){
 		List<CurriculumSchedule> curriculumScheduleList = new ArrayList<CurriculumSchedule>();
@@ -383,36 +406,37 @@ public class CurriculumSheduleController {
 						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
 						int tempBegin=0;
 						if(tempList.size()==1){
-							String strClassSchedule=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+							String strClassSchedule=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 							if(tempList.get(0).getRoom()!=null){
-								strClassSchedule=strClassSchedule+" "+tempList.get(0).getRoom().getName();
+								strClassSchedule=strClassSchedule+"<br>"+tempList.get(0).getRoom().getName()+"<br>";
 							}else{
-								strClassSchedule=strClassSchedule+" 房间待分配 ";
+								strClassSchedule=strClassSchedule+"房间待分配<br>";
 							}
-							strClassSchedule=strClassSchedule+"(第"+tempList.get(0).getWeeknum()+"周)";
+							strClassSchedule=strClassSchedule+"(第"+tempList.get(0).getWeeknum()+"周)<br>";
 							strCurriculumSchedule.add(strClassSchedule);
 						}else{
 
 							for(int m=1;m<tempList.size();m++){
 								String tempString=new String();
-								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1){
-									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1&&m!=tempList.size()){
+									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
-										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+										tempString=tempString+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
-										tempString=tempString+" 房间待分配 ";
+										tempString=tempString+"房间待分配<br>";
 									}
-									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+"至"+tempList.get(m-1).getWeeknum()+"周)<br>";
 									tempBegin=m;
 									strCurriculumSchedule.add(tempString);
-								}if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
-									tempString=tempList.get(0).getCurriculum().getName()+""+tempList.get(0).getTeacher().getName();
+								}
+								if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
+									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
-										tempString=tempString+" "+tempList.get(0).getRoom().getName();
+										tempString=tempString+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
-										tempString=tempString+" 房间待分配 ";
+										tempString=tempString+"房间待分配<br>";
 									}
-									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+" 至 "+tempList.get(m-1).getWeeknum()+"周)";
+									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+"至"+tempList.get(m).getWeeknum()+"周)<br>";
 									tempBegin=m;
 									strCurriculumSchedule.add(tempString);
 								}
@@ -436,7 +460,6 @@ public class CurriculumSheduleController {
 		return mav;
 	}
 
-
 	@RequestMapping(value = "/toSearchByClassId", method = (RequestMethod.GET))
 	public ModelAndView toSearchByClassId(){
 
@@ -453,10 +476,11 @@ public class CurriculumSheduleController {
 
 		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyclassid");
 		mav.addObject("curriculumClassList",curriculumClassList);
-		mav.addObject("curriculumScheduleListList",strCurriculumScheduleListStr);
+		mav.addObject("strCurriculumScheduleListStr",strCurriculumScheduleListStr);
 		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
+
 	@RequestMapping(value = "/toSearchByRoomId", method = (RequestMethod.GET))
 	public ModelAndView toSearchByRoomId(){
 
@@ -473,10 +497,11 @@ public class CurriculumSheduleController {
 
 		ModelAndView mav = new ModelAndView("laboratory/jsp/curriculum/searchcurriculumschedulebyroom");
 		mav.addObject("roomList",roomList);
-		mav.addObject("curriculumScheduleListList",strCurriculumScheduleListStr);
+		mav.addObject("strCurriculumScheduleListStr",strCurriculumScheduleListStr);
 		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
+
 	@RequestMapping(value = "/toSearchByTeacherId", method = (RequestMethod.GET))
 	public ModelAndView toSearchByTeacherId(){
 
@@ -496,6 +521,7 @@ public class CurriculumSheduleController {
 		mav.addObject("termYearList",termYearList);
 		return mav;
 	}
+
 	@RequestMapping(value = "/searchByTeacherId", method = (RequestMethod.POST))
 	public ModelAndView searchByTeacherId(@RequestParam(value="termYearId",required = true) int termYearId,
 												   @RequestParam(value="teacherId",required = true) int teacherId){

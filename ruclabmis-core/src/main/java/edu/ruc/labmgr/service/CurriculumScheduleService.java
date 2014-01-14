@@ -38,6 +38,32 @@ public class CurriculumScheduleService {
 	public void update(CurriculumSchedule curriculumSchedule){
 		curriculumScheduleMapper.updateByPrimaryKey(curriculumSchedule);
 	}
+	public boolean ifCurriculumScheduleExistd (CurriculumSchedule curriculumSchedule){
+		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
+		CurriculumScheduleCriteria.Criteria criteria1 = curriculumScheduleCriteria.createCriteria();
+
+		criteria.andAmPmEqualTo(curriculumSchedule.getAmPm());
+		criteria.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+		criteria.andWeeknumEqualTo(curriculumSchedule.getWeeknum());
+		criteria.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
+		criteria.andClassIdEqualTo(curriculumSchedule.getClassId());
+
+		criteria1.andAmPmEqualTo(curriculumSchedule.getAmPm());
+		criteria1.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+		criteria1.andWeeknumEqualTo(curriculumSchedule.getWeeknum());
+		criteria1.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
+		criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
+
+		curriculumScheduleCriteria.or(criteria);
+		curriculumScheduleCriteria.or(criteria1);
+
+		boolean flag=false;
+		if(curriculumScheduleMapper.selectByExample(curriculumScheduleCriteria).size()>0){
+			flag=true;
+		}
+		return flag;
+	}
 	public PageInfo<CurriculumSchedule> selectListPage(CurriculumScheduleCriteria criteria, int pageNum) {
 		int totalCount = curriculumScheduleMapper.countByExample(criteria);
 		PageInfo<CurriculumSchedule> page = new PageInfo<>(totalCount, -1, pageNum);

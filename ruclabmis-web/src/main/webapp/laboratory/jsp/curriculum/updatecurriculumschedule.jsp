@@ -34,7 +34,7 @@
     }
 </script>
 
-<body onload="doOnLoad();">
+<body onload="doOnLoad();" style="background-color: #eef2fb">
 <form name="mainForm" action="updatecurriculumschedule" method="post">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0" >
     <tr>
@@ -51,7 +51,7 @@
                 </tr>
                 <tr>
                     <td valign="top" height="500">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;bgcolor:#ffffff;">
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;background-color: #e3efff;">
 
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
 
@@ -89,13 +89,13 @@
                                     <td align="right" width="30%">星期：</td>
                                     <td>
                                         <select name="weekDay">
-                                            <option <c:if test="${curriculumSchedule.weekday==1}" >selected</c:if> value="1">星期一</option>
-                                            <option <c:if test="${curriculumSchedule.weekday==2}" >selected</c:if> value="2">星期二</option>
-                                            <option <c:if test="${curriculumSchedule.weekday==3}" >selected</c:if> value="3">星期三</option>
-                                            <option <c:if test="${curriculumSchedule.weekday==4}" >selected</c:if> value="4">星期四</option>
-                                            <option <c:if test="${curriculumSchedule.weekday==5}" >selected</c:if> value="5">星期五</option>
-                                            <option <c:if test="${curriculumSchedule.weekday==6}" >selected</c:if> value="6">星期六</option>
-                                            <option <c:if test="${curriculumSchedule.weekday==7}" >selected</c:if> value="7">星期天</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==1}" >selected</c:if> value="1">星期一</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==2}" >selected</c:if> value="2">星期二</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==3}" >selected</c:if> value="3">星期三</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==4}" >selected</c:if> value="4">星期四</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==5}" >selected</c:if> value="5">星期五</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==6}" >selected</c:if> value="6">星期六</option>
+                                            <option <c:if test="${curriculumSchedule.weekdays==7}" >selected</c:if> value="7">星期天</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -103,8 +103,7 @@
                                     <td align="right" width="30%">节次：</td>
                                     <td>
                                         <select name="classSection">
-                                            <option
-                                                    <c:if test="${curriculumSchedule.amPm==1}" >selected</c:if> value="1">上午一二节</option>
+                                            <option <c:if test="${curriculumSchedule.amPm==1}" >selected</c:if> value="1">上午一二节</option>
                                             <option  <c:if test="${curriculumSchedule.amPm==2}" >selected</c:if> value="2" >上午三四节</option>
                                             <option <c:if test="${curriculumSchedule.amPm==3}" >selected</c:if> value="3">下午五六节</option>
                                             <option <c:if test="${curriculumSchedule.amPm==4}" >selected</c:if> value="4">下午七八节</option>
@@ -117,7 +116,7 @@
                                     <td width="70%">第<select name="beginWeek">
                                         <c:forEach var="temp" begin="1" end="26" step="1">
                                             <option
-                                                    <c:if test="${curriculumSchedule.week==temp}" >selected</c:if>
+                                                    <c:if test="${curriculumSchedule.weeknum==temp}" >selected</c:if>
                                                     value="${temp}">
                                                     ${temp}
                                             </option>
@@ -128,7 +127,9 @@
                             </table>
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
-                                    <td align="center"><input type="submit" value="保存"onclick="add();"/>
+                                    <td align="center"><input type="button" name="return" value="返回" class="button"
+                                                              onclick="window.history.go(-1);"/></td>
+                                    <td align=""><input type="submit" value="保存"onclick="add();"/>
                                     </td>
                                 </tr>
                             </table>
@@ -147,6 +148,7 @@
         </td>
     </tr>
 </table>
+
 </form>
 </body>
 </html>

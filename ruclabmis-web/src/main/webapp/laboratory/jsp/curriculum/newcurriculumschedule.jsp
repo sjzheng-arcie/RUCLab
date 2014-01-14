@@ -45,7 +45,7 @@
     }
 </script>
 
-<body onload="doOnLoad();">
+<body onload="doOnLoad();" style="background-color: #eef2fb">
 <form name="mainForm" action="addcurriculumschedule" method="post">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0" >
     <tr>
@@ -60,11 +60,11 @@
                         </table>
                     </td>
                 </tr>
-                <tr>
+                <tr bgcolor="">
                     <td valign="top" height="500">
-                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;bgcolor:#ffffff;">
+                        <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;background-color: #e3efff">
 
-                            <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
+                            <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px;background-color:#e3efff ">
 
                                 <tr>
                                     <td align="right">学期学年：</td>
@@ -132,10 +132,14 @@
                                         </c:forEach>
                                     </select>周</td>
                                 </tr>
+
+
                             </table>
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
-                                    <td align="center"><input type="submit" value="保存"onclick="add();"/>
+                                    <td align="center"><input type="button" name="return" value="返回" class="button"
+                                                              onclick="window.history.go(-1);"/></td>
+                                    <td align=""><input type="submit" value="保存"onclick="add();"/>
                                     </td>
                                 </tr>
                             </table>

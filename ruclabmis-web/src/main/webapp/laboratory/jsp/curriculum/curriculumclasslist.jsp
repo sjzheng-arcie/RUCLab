@@ -66,12 +66,12 @@
                     </td>
                 </tr>
                 <tr>
-                    <td valign="top" height="600">
+                    <td valign="top" height="425">
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;">
                             <table width="100%" border="0" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td>
-                                        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+                                        <table width="100%" border="0" style="background-color:#E3EFFF;"   cellpadding="0" cellspacing="0">
                                             <tr height="25">
                                                 <td width="20px" bgcolor="#E3EFFF" >学年：
                                                     <select id="termYear" name="termYearId"
@@ -105,14 +105,16 @@
                                                             data-placeholder="房间...">
                                                         <option></option>
                                                         <c:forEach items="${roomList}" var="room">
-                                                            <option value="${room.id}">${room.name}<c:choose>
-                                                                <c:when test="${room.type==true}">
-                                                                    (实验室)
-                                                                </c:when>
-                                                                <c:otherwise>
-                                                                    (会议室)
-                                                                </c:otherwise>
-                                                            </c:choose></option>
+                                                            <option value="${room.id}">${room.name}(${room.description})
+                                                                <%--<c:choose>--%>
+                                                                <%--<c:when test="${room.type==true}">--%>
+                                                                    <%--(实验室)--%>
+                                                                <%--</c:when>--%>
+                                                                <%--<c:otherwise>--%>
+                                                                    <%--(会议室)--%>
+                                                                <%--</c:otherwise>--%>
+                                                            <%--</c:choose>--%>
+                                                            </option>
                                                         </c:forEach>
                                                     </select>
                                                 </td>
@@ -129,15 +131,17 @@
                                                     <input type="button"  value=" 查询"  onclick="search();" /></td>
                                             </tr>
                                         </table>
-                                        <table width="100%" border="1" cellpadding="" cellspacing="0" style="font-size:25px;">
+                                        <table width="100%" border="1" cellpadding="" cellspacing="0" style="bgcolor:#E3EFFF;font-size:25px;">
                                             <tr height="40">
                                                 <td colspan="9" align="center" bgcolor="#e3efff"><strong>课表内容信息一览</strong></td>
                                             </tr>
                                             <tr align="center" height="40">
                                                 <td width="12.5%" bgcolor="#E3EFFF">学年</td>
-                                                <td width="12.5%" bgcolor="#E3EFFF">学期</td>
+
                                                 <td width="12.5%" bgcolor="#E3EFFF">专业</td>
+
                                                 <td width="12.5%" bgcolor="#E3EFFF">班级</td>
+                                                <td width="12.5%" bgcolor="#E3EFFF">周次</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">课程</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">教师</td>
 
@@ -147,10 +151,10 @@
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr>
-                                                    <td align="center" bgcolor="#F7F7F7">${item.termYear.year}</td>
-                                                    <td align="center" bgcolor="#F7F7F7">${item.termYear.name}</td>
+                                                    <td align="center" bgcolor="#F7F7F7">${item.termYear.name}(${item.termYear.year})</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.major.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.className}</td>
+                                                    <td align="center" bgcolor="#F7F7F7">${item.weeknum}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
                                                     <td align="center" bgcolor="#F7F7F7" onclick="javascript:location.href='tosetlab?curriculumScheduleId=${item.id}'">点击安排实验室</td>

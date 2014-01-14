@@ -5,7 +5,6 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <title></title>
 </head>
@@ -40,11 +39,8 @@
         document.mainForm.submit();
     }
 </script>
-
 <body onload="doOnLoad();"style="background-color: #eef2fb">
 <form name="mainForm" method="post" action="mycurriculumschedule">
-
-
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
     <tr>
         <td valign="top" height="100%">
@@ -78,10 +74,9 @@
                             </table>
                             <table width="100%" border="1" cellpadding="1" cellspacing="0">
                                 <tr height="25">
-                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong></strong></td>
+                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>我的课表</strong></td>
                                 </tr>
                                 <tr height="25" align="center">
-
                                     <td width="6.75%" bgcolor="#E3EFFF"></td>
                                     <td width="6.75%" bgcolor="#E3EFFF">节次</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周一</td>
@@ -91,7 +86,6 @@
                                     <td width="12.5%" bgcolor="#E3EFFF">周五</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周六</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周天</td>
-
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">上午</td>
@@ -130,14 +124,12 @@
                                     </c:forEach>
                                 </tr>
                                 <tr height="100" align="center">
-
                                     <td bgcolor="#F7F7F7">七、八节</td>
                                     <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="21" end="27" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">
                                                 ${item}<br/>
                                             </c:forEach>
-
                                         </td>
                                     </c:forEach>
                                 </tr>
