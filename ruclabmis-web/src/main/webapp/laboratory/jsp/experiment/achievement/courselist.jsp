@@ -16,6 +16,9 @@
         function queryscore(cid,stuId){
             window.location.href = "/experiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
         }
+        function editorClass(vcid,curricumname,instructName) {
+            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+        }
     </script>
 
 </head>
@@ -103,6 +106,11 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
+                                                    <shiro:hasRole name="student">
+                                                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                            <div align="center"><span class="STYLE10">查看实验</span></div>
+                                                        </td>
+                                                    </shiro:hasRole>
 
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -118,6 +126,15 @@
                                                         <td>${item.curriculumName}</td>
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
+
+                                                        <shiro:hasRole name="student">
+                                                        <td>
+                                                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
+                                                                   class="button"
+                                                                   value="查看所属实验"/>
+                                                        </td>
+                                                        </shiro:hasRole>
+
 
                                                             <td>
                                                                 <shiro:hasRole name="teacher">

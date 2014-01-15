@@ -268,7 +268,6 @@ public class CurriculumSheduleController {
 						CurriculumScheduleCriteria.Criteria criteria1= curriculumScheduleCriteria1.createCriteria();
 						curriculumScheduleCriteria1.setOrderByClause("weekNum asc");
 						criteria1.andAmPmEqualTo(curriculumSchedule.getAmPm());
-
 						if(roomId!=-1){
 							criteria1.andRoomIdEqualTo(roomId);
 						}else{
@@ -291,7 +290,7 @@ public class CurriculumSheduleController {
 						if(tempList.size()==1){
 							String strClassSchedule=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 							if(tempList.get(0).getRoom()!=null){
-								strClassSchedule=strClassSchedule+"<br>"+tempList.get(0).getRoom().getName()+"<br>";
+								strClassSchedule=strClassSchedule+tempList.get(0).getRoom().getName()+"<br>";
 							}else{
 								strClassSchedule=strClassSchedule+"房间待分配<br>";
 							}
@@ -304,9 +303,9 @@ public class CurriculumSheduleController {
 								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1){
 									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
-										tempString=tempString+""+tempList.get(0).getRoom().getName()+"<br>";
+										tempString=tempString+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
-										tempString=tempString+" 房间待分配<br>";
+										tempString=tempString+"房间待分配<br>";
 									}
 									tempString=tempString+"(第"+tempList.get(tempBegin).getWeeknum()+"至"+tempList.get(m-1).getWeeknum()+"周)<br>";
 									tempBegin=m;
@@ -315,7 +314,7 @@ public class CurriculumSheduleController {
 								if(m==tempList.size()-1&&tempBegin<tempList.size()-1&&tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()==1){
 									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
-										tempString=tempString+"<br>"+tempList.get(0).getRoom().getName()+"<br>";
+										tempString=tempString+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
 										tempString=tempString+"房间待分配<br>";
 									}
@@ -328,7 +327,6 @@ public class CurriculumSheduleController {
 					}
 					strCurriculumScheduleListStr.add(i*7+j,strCurriculumSchedule);
 				}else {
-
 					strCurriculumScheduleListStr.add(i*7+j,strCurriculumSchedule);
 				}
 			}

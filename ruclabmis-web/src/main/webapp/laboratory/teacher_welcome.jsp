@@ -15,6 +15,7 @@
         var indexMainCon_height = pageHeight();
         $(".indexMainCon").height(indexMainCon_height);
         $(".indexNews").height(indexMainCon_height / 2 - 12);
+        $(".indexteacherapply").height(indexMainCon_height / 2 - 12);
         $(".indexNotice").height(indexMainCon_height / 2 - 12);
         $(window).resize(function () {
             $(".indexMainCon").height(pageHeight());
@@ -29,7 +30,15 @@
             }
         }
 
-    })
+    });
+    function editorClass(vcid,curricumname,instructName) {
+        window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+    }
+    function editorInsturctor(vcid) {
+
+        window.location.href = "/laboratory/jsp/res/instruction/list?searchCurriculum="+vcid;
+    }
+
 
 
 </script>
@@ -64,90 +73,44 @@
                 </ul>
             </div>
         </div>
-        <div class="indextrends indexNews">
-            <h3><a href="javascript:void(0)">更多>></a><span>我的课程单</span></h3>
+        <div class="indextrends indexteacherapply">
+            <h3><a href="jsp/experiment/experiment/courselist?page=1">更多>></a><span>我的实验课程</span></h3>
             <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
                 <tr class="title">
-                    <td width="8%" height="24" align="center">序号</td>
-                    <td width="32%" align="center">课程编号</td>
-                    <td width="32%" align="center">课程名称</td>
-                    <td width="20%" align="center">所有实验</td>
+                    <td height="24" align="center">序号</td>
+                    <td align="center">班级名称</td>
+                    <td align="center">课程名称</td>
+                    <td align="center">学年</td>
+                    <td align="center">任课老师</td>
+                    <td align="center">查看实验</td>
+                    <td align="center">查看实验指导书</td>
+                </tr>
+                <% int i=0;%>
+                <c:forEach items="${curriculumClassList}" var="item">
+                    <% i++; %>
+                    <tr align="center">
+                        <td><%=i%></td>
+                        <td>${item.className}</td>
+                        <td>${item.curriculumName}</td>
+                        <td>${item.classYear}</td>
+                        <td>${item.teacherName}</td>
+                        <td>
+                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
+                                   class="button"
+                                   value="查看所属实验"/>
+                        </td>
+                        <td>
+                            <input type="button" onClick="editorInsturctor('${item.curriculumId}')"
+                                   class="button"
+                                   value="查看实验指导书"/>
+                        </td>
 
-                    <td align="center">详细</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">1</td>
-                    <td align="center">RJ0001</td>
-                    <td align="center">软件工程</td>
-                    <td align="center"><a href="jsp/experiment/experimentpaper/list.html">所有实验</a></td>
-                    <td align="center"><a href="jsp/dev/store/applyinfo.html"/> 详细</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">2</td>
-                    <td align="center">RJ0002</td>
-                    <td align="center">软件测试</td>
-                    <td align="center"><a href="jsp/experiment/experimentpaper/list.html">所有实验</a></td>
-                    <td align="center"><a href="jsp/dev/store/applyinfo.html"/> 详细</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">3</td>
-                    <td align="center">RJ0003</td>
-                    <td align="center">软件工具</td>
-                    <td align="center"><a href="jsp/experiment/experimentpaper/list.html">所有实验</a></td>
-                    <td align="center"><a href="jsp/dev/store/applyinfo.html"/> 详细</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">4</td>
-                    <td align="center">RJ0004</td>
-                    <td align="center">软件工程导论</td>
-                    <td align="center"><a href="jsp/experiment/experimentpaper/list.html">所有实验</a></td>
-                    <td align="center"><a href="jsp/dev/store/applyinfo.html"/> 详细</td>
-                </tr>
+                    </tr>
+
+                </c:forEach>
             </table>
-
-
         </div>
-        <div class="indexNotice">
-            <h3><a href="javascript:void(0)">更多>></a><span>实验报告管理</span></h3>
-            <table width="100%" border="0" cellspacing="0" style="border-color:#eeefff">
-                <tr class="title">
-                    <td width="8%" height="24" align="center">序号</td>
-                    <td width="32%" align="center">实验</td>
-                    <td width="20%" align="center">所属课程</td>
-                    <td width="20%" align="center">提交截止日期</td>
-                    <td align="center">查看</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">1</td>
-                    <td align="center">C语言编程实验一</td>
-                    <td align="center">编程语言</td>
-                    <td align="center">2012-02-12</td>
-                    <td align="center"><a href="jsp/experiment/report/list.html"/> 查看</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">2</td>
-                    <td align="center">面向对象实验二</td>
-                    <td align="center">Java入门</td>
-                    <td align="center">2012-02-12</td>
-                    <td align="center"><a href="jsp/experiment/report/list.html"/> 查看</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">3</td>
-                    <td align="center">用例图实画</td>
-                    <td align="center">软件测试</td>
-                    <td align="center">2012-02-12</td>
-                    <td align="center"><a href="jsp/experiment/report/list.html"/> 查看</td>
-                </tr>
-                <tr>
-                    <td height="24" align="center">4</td>
-                    <td align="center">水晶头接线实验</td>
-                    <td align="center">网络工程</td>
-                    <td align="center">2012-02-12</td>
-                    <td align="center"><a href="jsp/experiment/report/list.html"/> 查看</td>
-                </tr>
-            </table>
-
-        </div>
+    </div>
     </div>
 </body>
 </html>
