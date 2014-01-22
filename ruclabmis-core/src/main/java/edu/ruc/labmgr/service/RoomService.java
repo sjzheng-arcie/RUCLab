@@ -49,7 +49,7 @@ public class RoomService {
 	}
 	public List<Room> getAllRoomList(){
         RoomCriteria roomCriteria= new RoomCriteria();
-        roomCriteria.setOrderByClause("name");
+        roomCriteria.setOrderByClause("id, type, name");
 		return mapper.selectByCriteria(roomCriteria);
 	}
 }

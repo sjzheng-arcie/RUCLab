@@ -17,11 +17,11 @@
 
 <body>
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
-    <%--<c:forEach items="${rooms}" var="room" varStatus="status">--%>
+
     <c:forEach var="row" begin="0" end="${rooms.size()%4==0?rooms.size()/4-1:rooms.size()/4}">
         <tr>
             <c:forEach var="col" begin="1" end="4">
-                <c:if test="${row*4+col < rooms.size()}">
+                <c:if test="${row*4+col <= rooms.size()}">
                     <c:set var="currRoom" value="${rooms.get(row*4+col-1)}" />
                     <c:set var="index" value="-1" />
                     <c:forEach var="roomId" items="${occupiedRoomIds}" varStatus="status">
@@ -39,10 +39,9 @@
                                             <img src="/images/door.png" width="64" height="64"/><br/>
                                             <span class="title">${currRoom.getName()}</span>
                                         </td>
-                                        <td>
-                                            已占用<br/>
-                                            ${schedules.get(index).getCurriculum().getName()}<br/>
-                                            ${schedules.get(index).getTeacher().getName()}<br/>
+                                        <td> 已占用<br/>
+                                                ${schedules.get(index).getCurriculum().getName()}<br/>
+                                                ${schedules.get(index).getTeacher().getName()}<br/>
                                         </td>
                                     </tr>
                                 </table>
@@ -70,8 +69,6 @@
             </c:forEach>
         </tr>
     </c:forEach>
-
-
 
 </table>
 

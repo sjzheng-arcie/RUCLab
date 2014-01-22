@@ -37,7 +37,7 @@
                     style="width: 180px;height: 22px"
                     data-placeholder="选择学年学期...">
                 <c:forEach items="${years}" var="var">
-                   <c:if test="${var.year==currYear}">
+                   <c:if test="${var.year >= currYear}">
                        <option value="${var.id}">${var.name}</option>
                    </c:if>
                 </c:forEach>

@@ -38,7 +38,7 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="jsp/appointment/add" onfocus="toFocus(this)"
+                            <li><a href="jsp/appointment/add.jsp" onfocus="toFocus(this)"
                                    target="main">预约申请</a></li>
                             <li><a href="jsp/appointment/mylist" onfocus="toFocus(this)"
                                    target="main">我的预约</a></li>
