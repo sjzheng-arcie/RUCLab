@@ -111,6 +111,19 @@ public class CurriculumService {
         return curriculumMapper.selectByCriteria(criteria);
     }
 
+    public List<Curriculum> selectCurriculumsById(List<Integer> ids) {
+        if(ids.size() <= 0)
+            return null;
+
+        CurriculumCriteria criteria = new CurriculumCriteria();
+        criteria.setOrderByClause("c_name");
+        CurriculumCriteria.Criteria ec = criteria.createCriteria();
+        ec.andJoinMajor().andJoinTeacher();
+        ec.andIdIn(ids);
+
+        return curriculumMapper.selectByCriteria(criteria);
+    }
+
     public void delete(List<Integer> ids) {
         for(int id : ids){
             curriculumMapper.deleteByPrimaryKey(id);

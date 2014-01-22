@@ -105,8 +105,7 @@ public class CurriculumScheduleService {
         return classList;
     }
 
-    //按时间查询已占用房间信息
-    public  List<CurriculumSchedule>  selectOccupiedRooms(int year, Byte week, Byte wDay, Byte section){
+    public  List<CurriculumSchedule>  selectSchedulesByTime(int year, Byte week, Byte wDay, Byte section){
         CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
         CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
         criteria.andTermYearidEqualTo(year);
@@ -118,13 +117,24 @@ public class CurriculumScheduleService {
         return schedules;
     }
 
-    //按时间查询已占用房间信息
+    //按时间查询已占用房间编号
     public  List<Integer> selectOccupiedRoomIds(int year, Byte week, Byte wDay, Byte section){
-        List<CurriculumSchedule> schedules =selectOccupiedRooms(year, week, wDay, section);
+        List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay, section);
 
         List<Integer> retIds = new ArrayList<>();
         for(int i=0;i<schedules.size();i++){
             retIds.add(i,schedules.get(i).getRoomId());
+        }
+        return retIds;
+    }
+
+    //按时间查询课程
+    public  List<Curriculum> selectCurriculums(int year, Byte week, Byte wDay, Byte section){
+        List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay, section);
+
+        List<Curriculum> retIds = new ArrayList<>();
+        for(int i=0;i<schedules.size();i++){
+            retIds.add(i,schedules.get(i).getCurriculum());
         }
         return retIds;
     }

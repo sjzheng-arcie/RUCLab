@@ -23,15 +23,15 @@
             <c:forEach var="col" begin="1" end="4">
                 <c:if test="${row*4+col < rooms.size()}">
                     <c:set var="currRoom" value="${rooms.get(row*4+col-1)}" />
-                    <c:set var="iscontain" value="false" />
-                    <c:forEach var="item" items="${scheduledIds}">
-                        <c:if test="${item eq currRoom.getId()}">
-                            <c:set var="iscontain" value="true" />
+                    <c:set var="index" value="-1" />
+                    <c:forEach var="roomId" items="${occupiedRoomIds}" varStatus="status">
+                        <c:if test="${roomId eq currRoom.getId()}">
+                            <c:set var="index" value="${status.index}" />
                         </c:if>
                     </c:forEach>
 
                     <c:choose>
-                        <c:when test="${iscontain}">
+                        <c:when test="${index >= 0}">
                             <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
                                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                     <tr>
@@ -39,11 +39,11 @@
                                             <img src="/images/door.png" width="64" height="64"/><br/>
                                             <span class="title">${currRoom.getName()}</span>
                                         </td>
-                                        <td><p>已占用<br/>
-                                            子网划分实验<br/>
-                                            张磊<br/>
-                                            2013-2-26 13:00:00 至 <br/>
-                                            2013-2-28 17:00:00</p></td>
+                                        <td>
+                                            已占用<br/>
+                                            ${schedules.get(index).getCurriculum().getName()}<br/>
+                                            ${schedules.get(index).getTeacher().getName()}<br/>
+                                        </td>
                                     </tr>
                                 </table>
                             </td>
