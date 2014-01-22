@@ -38,13 +38,12 @@
                             </tr>
                         </table>
                         <ul class="MM">
-                            <li><a href="jsp/appointment/laboratory/appointmentbaseinfo" onfocus="toFocus(this)"
-                                   target="main">实验室室预约申请</a></li>
-                            <li><a href="jsp/appointment/laboratory/mydatelist" onfocus="toFocus(this)"
-                                   target="main">实验室预约管理</a></li>
-                            <li><a href="jsp/appointment/meetingroom/appointmentbaseinfo" onfocus="toFocus(this)"
-                                   target="main">会议室预约申请</a></li>
-                            <li><a href="jsp/appointment/meetingroom/meetingroomappointmentbaseinfo" onfocus="toFocus(this)" target="main">会议室预约管理</a>
+                            <li><a href="jsp/appointment/add" onfocus="toFocus(this)"
+                                   target="main">预约申请</a></li>
+                            <li><a href="jsp/appointment/mylist" onfocus="toFocus(this)"
+                                   target="main">我的预约</a></li>
+                            <li><a href="jsp/appointment/list" onfocus="toFocus(this)"
+                                   target="main">预约管理</a></li>
                             </li>
                         </ul>
                     </div>

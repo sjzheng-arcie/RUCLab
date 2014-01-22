@@ -40,7 +40,6 @@ public class RoomService {
 		return page;
 	}
 	public List<Room> getAllRoomListByIdList(List<Integer> roomIdList){
-
 		RoomCriteria roomCriteria= new RoomCriteria();
 		RoomCriteria.Criteria criteria= roomCriteria.createCriteria();
 		if(roomIdList.size()!=0){
@@ -49,6 +48,8 @@ public class RoomService {
 		return mapper.selectByCriteria(roomCriteria);
 	}
 	public List<Room> getAllRoomList(){
-		return mapper.selectByCriteria(null);
+        RoomCriteria roomCriteria= new RoomCriteria();
+        roomCriteria.setOrderByClause("name");
+		return mapper.selectByCriteria(roomCriteria);
 	}
 }
