@@ -91,21 +91,21 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">班级名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学年</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="70" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
 
 
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="200" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">查看实验</span></div>
                                                     </td>
 
