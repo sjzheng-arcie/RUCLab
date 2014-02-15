@@ -38,9 +38,9 @@ public class WorkService {
 		return workMapper.selectByPrimaryKey(id);
 	}
 	public PageInfo<Work> selectListPage(WorkCriteria criteria, int pageNum) {
-		int totalCount = workMapper.countByExample(criteria);
+		int totalCount = workMapper.countByCriteria(criteria);
 		PageInfo<Work> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Work> data = workMapper.selectByExampleWithRowbounds(criteria,
+		List<Work> data = workMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;

@@ -109,9 +109,9 @@ public class ExperimentService {
     public PageInfo<Experiment> getCurriculumExperiment(int cid, int pageNum) {
         ExperimentCriteria criteria = new ExperimentCriteria();
         criteria.or().andCurriculumIdEqualTo(cid);
-        int totalCount = experimentMapper.countByExample(criteria);
+        int totalCount = experimentMapper.countByCriteria(criteria);
         PageInfo<Experiment> page = new PageInfo<>(totalCount, -1, pageNum);
-        List<Experiment> data = experimentMapper.selectByExampleWithRowbounds(criteria,
+        List<Experiment> data = experimentMapper.selectByCriteriaWithRowbounds(criteria,
                 new RowBounds(page.getCurrentResult(), page.getPageSize()));
         page.setData(data);
         return page;
@@ -142,14 +142,14 @@ public class ExperimentService {
 		//TODO
         ExperimentDetailCriteria criteria = new ExperimentDetailCriteria();
         criteria.or().andExperimentIdEqualTo(eid).andClassStudentIdEqualTo(stuId);
-        List<ExperimentDetail> list = expDetailMapper.selectByExample(criteria);
+        List<ExperimentDetail> list = expDetailMapper.selectByCriteria(criteria);
         return (list!=null&& list.size()>0) ? list.get(0) : null;
     }
 	public ExperimentDetail getStudentExpDetailbyStuId(int eid,int stuId){
 		//TODO
 		ExperimentDetailCriteria criteria = new ExperimentDetailCriteria();
 		criteria.or().andExperimentIdEqualTo(eid).andClassStudentIdEqualTo(stuId);
-		List<ExperimentDetail> list = expDetailMapper.selectByExample(criteria);
+		List<ExperimentDetail> list = expDetailMapper.selectByCriteria(criteria);
 		return (list!=null&& list.size()>0) ? list.get(0) : null;
 	}
 

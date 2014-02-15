@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface TaskMapper {
-    int countByExample(TaskCriteria example);
+    int countByCriteria(TaskCriteria criteria);
 
-    int deleteByExample(TaskCriteria example);
+    int deleteByCriteria(TaskCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface TaskMapper {
 
     int insertSelective(Task record);
 
-    List<Task> selectByExampleWithRowbounds(TaskCriteria example, RowBounds rowBounds);
+    List<Task> selectByCriteriaWithRowbounds(TaskCriteria criteria, RowBounds rowBounds);
 
-    List<Task> selectByExample(TaskCriteria example);
+    List<Task> selectByCriteria(TaskCriteria criteria);
 
     Task selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Task record, @Param("example") TaskCriteria example);
+    int updateByCriteriaSelective(@Param("record") Task record, @Param("criteria") TaskCriteria criteria);
 
-    int updateByExample(@Param("record") Task record, @Param("example") TaskCriteria example);
+    int updateByCriteria(@Param("record") Task record, @Param("criteria") TaskCriteria criteria);
 
     int updateByPrimaryKeySelective(Task record);
 

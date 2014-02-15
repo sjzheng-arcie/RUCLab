@@ -37,13 +37,13 @@ public class TaskScoreService {
 		taskscoreMapper.deleteByPrimaryKey(id);
 	}
 	public void deleteByCriteria(TaskscoreCriteria criteria){
-		taskscoreMapper.deleteByExample(criteria);
+		taskscoreMapper.deleteByCriteria(criteria);
 
 	}
 	public PageInfo<Taskscore> selectListPage(TaskscoreCriteria criteria, int pageNum) {
-		int totalCount = taskscoreMapper.countByExample(criteria);
+		int totalCount = taskscoreMapper.countByCriteria(criteria);
 		PageInfo<Taskscore> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Taskscore> data = taskscoreMapper.selectByExampleWithRowbounds(criteria,
+		List<Taskscore> data = taskscoreMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;
@@ -56,7 +56,7 @@ public class TaskScoreService {
 		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
 		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
 		criteria.andMarkeridEqualTo(id);
-		List<Taskscore> taskscoreList= taskscoreMapper.selectByExample(taskscoreCriteria);
+		List<Taskscore> taskscoreList= taskscoreMapper.selectByCriteria(taskscoreCriteria);
 		return  taskscoreList;
 	}
 	public Taskscore getListByMarkerAndTask(int taskId,int markerId){
@@ -64,7 +64,7 @@ public class TaskScoreService {
 		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
 		criteria.andMarkeridEqualTo(markerId);
 		criteria.andTaskidEqualTo(taskId);
-		return taskscoreMapper.selectByExample(taskscoreCriteria).get(0);
+		return taskscoreMapper.selectByCriteria(taskscoreCriteria).get(0);
 	}
 
 

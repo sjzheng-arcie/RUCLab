@@ -36,9 +36,9 @@ public class DeskService {
 	}
 
 	public PageInfo<Desk> selectListPage(DeskCriteria criteria, int pageNum) {
-		int totalCount = deskMapper.countByExample(criteria);
+		int totalCount = deskMapper.countByCriteria(criteria);
 		PageInfo<Desk> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Desk> data = deskMapper.selectByExampleWithRowbounds(criteria,
+		List<Desk> data = deskMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;

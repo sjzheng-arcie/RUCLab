@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface ArrangementMapper {
-    int countByCriteria(ArrangementCriteria example);
+    int countByCriteria(ArrangementCriteria criteria);
 
-    int deleteByCriteria(ArrangementCriteria example);
+    int deleteByCriteria(ArrangementCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface ArrangementMapper {
 
     int insertSelective(Arrangement record);
 
-    List<Arrangement> selectByCriteriaWithRowbounds(ArrangementCriteria example, RowBounds rowBounds);
+    List<Arrangement> selectByCriteriaWithRowbounds(ArrangementCriteria criteria, RowBounds rowBounds);
 
-    List<Arrangement> selectByCriteria(ArrangementCriteria example);
+    List<Arrangement> selectByCriteria(ArrangementCriteria criteria);
 
     Arrangement selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") Arrangement record, @Param("example") ArrangementCriteria example);
+    int updateByCriteriaSelective(@Param("record") Arrangement record, @Param("criteria") ArrangementCriteria criteria);
 
-    int updateByCriteria(@Param("record") Arrangement record, @Param("example") ArrangementCriteria example);
+    int updateByCriteria(@Param("record") Arrangement record, @Param("criteria") ArrangementCriteria criteria);
 
     int updateByPrimaryKeySelective(Arrangement record);
 

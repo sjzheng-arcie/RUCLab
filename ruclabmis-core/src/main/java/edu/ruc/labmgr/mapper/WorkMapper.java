@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface WorkMapper {
-    int countByExample(WorkCriteria example);
+    int countByCriteria(WorkCriteria criteria);
 
-    int deleteByExample(WorkCriteria example);
+    int deleteByCriteria(WorkCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface WorkMapper {
 
     int insertSelective(Work record);
 
-    List<Work> selectByExampleWithRowbounds(WorkCriteria example, RowBounds rowBounds);
+    List<Work> selectByCriteriaWithRowbounds(WorkCriteria criteria, RowBounds rowBounds);
 
-    List<Work> selectByExample(WorkCriteria example);
+    List<Work> selectByCriteria(WorkCriteria criteria);
 
     Work selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Work record, @Param("example") WorkCriteria example);
+    int updateByCriteriaSelective(@Param("record") Work record, @Param("criteria") WorkCriteria criteria);
 
-    int updateByExample(@Param("record") Work record, @Param("example") WorkCriteria example);
+    int updateByCriteria(@Param("record") Work record, @Param("criteria") WorkCriteria criteria);
 
     int updateByPrimaryKeySelective(Work record);
 

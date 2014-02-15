@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface DeskMapper {
-    int countByExample(DeskCriteria example);
+    int countByCriteria(DeskCriteria criteria);
 
-    int deleteByExample(DeskCriteria example);
+    int deleteByCriteria(DeskCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface DeskMapper {
 
     int insertSelective(Desk record);
 
-    List<Desk> selectByExampleWithRowbounds(DeskCriteria example, RowBounds rowBounds);
+    List<Desk> selectByCriteriaWithRowbounds(DeskCriteria criteria, RowBounds rowBounds);
 
-    List<Desk> selectByExample(DeskCriteria example);
+    List<Desk> selectByCriteria(DeskCriteria criteria);
 
     Desk selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Desk record, @Param("example") DeskCriteria example);
+    int updateByCriteriaSelective(@Param("record") Desk record, @Param("criteria") DeskCriteria criteria);
 
-    int updateByExample(@Param("record") Desk record, @Param("example") DeskCriteria example);
+    int updateByCriteria(@Param("record") Desk record, @Param("criteria") DeskCriteria criteria);
 
     int updateByPrimaryKeySelective(Desk record);
 

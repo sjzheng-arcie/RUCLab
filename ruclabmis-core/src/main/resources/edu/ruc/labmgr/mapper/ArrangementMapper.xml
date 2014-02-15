@@ -8,6 +8,10 @@
     <result column="user_id" property="userId" jdbcType="INTEGER" />
     <result column="description" property="description" jdbcType="VARCHAR" />
     <result column="approval_opinion" property="approvalOpinion" jdbcType="VARCHAR" />
+    <result column="term_year" property="termYear" jdbcType="INTEGER" />
+    <result column="week" property="week" jdbcType="INTEGER" />
+    <result column="wDay" property="wday" jdbcType="INTEGER" />
+    <result column="section" property="section" jdbcType="INTEGER" />
   </resultMap>
   <sql id="Criteria_Where_Clause" >
     <where >
@@ -40,7 +44,7 @@
   </sql>
   <sql id="Update_By_Criteria_Where_Clause" >
     <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -68,7 +72,8 @@
     </where>
   </sql>
   <sql id="Base_Column_List" >
-    id, state, approval_id, user_id, description, approval_opinion
+    id, state, approval_id, user_id, description, approval_opinion, term_year, week, 
+    wDay, section
   </sql>
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" >
     select
@@ -105,9 +110,13 @@
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into arrangement (state, approval_id, user_id, 
-      description, approval_opinion)
+      description, approval_opinion, term_year, 
+      week, wDay, section
+      )
     values (#{state,jdbcType=TINYINT}, #{approvalId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
-      #{description,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR})
+      #{description,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{termYear,jdbcType=INTEGER}, 
+      #{week,jdbcType=INTEGER}, #{wday,jdbcType=INTEGER}, #{section,jdbcType=INTEGER}
+      )
   </insert>
   <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Arrangement" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
@@ -130,6 +139,18 @@
       <if test="approvalOpinion != null" >
         approval_opinion,
       </if>
+      <if test="termYear != null" >
+        term_year,
+      </if>
+      <if test="week != null" >
+        week,
+      </if>
+      <if test="wday != null" >
+        wDay,
+      </if>
+      <if test="section != null" >
+        section,
+      </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides="," >
       <if test="state != null" >
@@ -146,6 +167,18 @@
       </if>
       <if test="approvalOpinion != null" >
         #{approvalOpinion,jdbcType=VARCHAR},
+      </if>
+      <if test="termYear != null" >
+        #{termYear,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        #{week,jdbcType=INTEGER},
+      </if>
+      <if test="wday != null" >
+        #{wday,jdbcType=INTEGER},
+      </if>
+      <if test="section != null" >
+        #{section,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
@@ -176,6 +209,18 @@
       <if test="record.approvalOpinion != null" >
         approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR},
       </if>
+      <if test="record.termYear != null" >
+        term_year = #{record.termYear,jdbcType=INTEGER},
+      </if>
+      <if test="record.week != null" >
+        week = #{record.week,jdbcType=INTEGER},
+      </if>
+      <if test="record.wday != null" >
+        wDay = #{record.wday,jdbcType=INTEGER},
+      </if>
+      <if test="record.section != null" >
+        section = #{record.section,jdbcType=INTEGER},
+      </if>
     </set>
     <if test="_parameter != null" >
       <include refid="Update_By_Criteria_Where_Clause" />
@@ -188,7 +233,11 @@
       approval_id = #{record.approvalId,jdbcType=INTEGER},
       user_id = #{record.userId,jdbcType=INTEGER},
       description = #{record.description,jdbcType=VARCHAR},
-      approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR}
+      approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR},
+      term_year = #{record.termYear,jdbcType=INTEGER},
+      week = #{record.week,jdbcType=INTEGER},
+      wDay = #{record.wday,jdbcType=INTEGER},
+      section = #{record.section,jdbcType=INTEGER}
     <if test="_parameter != null" >
       <include refid="Update_By_Criteria_Where_Clause" />
     </if>
@@ -211,6 +260,18 @@
       <if test="approvalOpinion != null" >
         approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
       </if>
+      <if test="termYear != null" >
+        term_year = #{termYear,jdbcType=INTEGER},
+      </if>
+      <if test="week != null" >
+        week = #{week,jdbcType=INTEGER},
+      </if>
+      <if test="wday != null" >
+        wDay = #{wday,jdbcType=INTEGER},
+      </if>
+      <if test="section != null" >
+        section = #{section,jdbcType=INTEGER},
+      </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
@@ -220,7 +281,11 @@
       approval_id = #{approvalId,jdbcType=INTEGER},
       user_id = #{userId,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
-      approval_opinion = #{approvalOpinion,jdbcType=VARCHAR}
+      approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
+      term_year = #{termYear,jdbcType=INTEGER},
+      week = #{week,jdbcType=INTEGER},
+      wDay = #{wday,jdbcType=INTEGER},
+      section = #{section,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>
   <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" id="selectByCriteriaWithRowbounds" >

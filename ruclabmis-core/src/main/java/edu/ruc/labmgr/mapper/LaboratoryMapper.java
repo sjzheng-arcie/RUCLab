@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface LaboratoryMapper {
-    int countByExample(LaboratoryCriteria example);
+    int countByCriteria(LaboratoryCriteria criteria);
 
-    int deleteByExample(LaboratoryCriteria example);
+    int deleteByCriteria(LaboratoryCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface LaboratoryMapper {
 
     int insertSelective(Laboratory record);
 
-    List<Laboratory> selectByExampleWithRowbounds(LaboratoryCriteria example, RowBounds rowBounds);
+    List<Laboratory> selectByCriteriaWithRowbounds(LaboratoryCriteria criteria, RowBounds rowBounds);
 
-    List<Laboratory> selectByExample(LaboratoryCriteria example);
+    List<Laboratory> selectByCriteria(LaboratoryCriteria criteria);
 
     Laboratory selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Laboratory record, @Param("example") LaboratoryCriteria example);
+    int updateByCriteriaSelective(@Param("record") Laboratory record, @Param("criteria") LaboratoryCriteria criteria);
 
-    int updateByExample(@Param("record") Laboratory record, @Param("example") LaboratoryCriteria example);
+    int updateByCriteria(@Param("record") Laboratory record, @Param("criteria") LaboratoryCriteria criteria);
 
     int updateByPrimaryKeySelective(Laboratory record);
 

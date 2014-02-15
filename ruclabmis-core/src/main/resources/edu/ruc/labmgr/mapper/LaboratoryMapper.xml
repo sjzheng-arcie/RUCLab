@@ -11,7 +11,7 @@
       <association column="major_Id" javaType="Major" property="major"
                    select="edu.ruc.labmgr.mapper.MajorMapper.selectByPrimaryKey" />
   </resultMap>
-  <sql id="Example_Where_Clause">
+  <sql id="Criteria_Where_Clause">
     <where>
       <foreach collection="oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
@@ -40,9 +40,9 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause">
+  <sql id="Update_By_Criteria_Where_Clause">
     <where>
-      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
         <if test="criteria.valid">
           <trim prefix="(" prefixOverrides="and" suffix=")">
             <foreach collection="criteria.criteria" item="criterion">
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List">
     id, name, director_id, description
   </sql>
-  <select id="selectByExample" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria" resultMap="BaseResultMap">
+  <select id="selectByCriteria" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -80,7 +80,7 @@
     <include refid="Base_Column_List" />
     from laboratory
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}
@@ -96,10 +96,10 @@
     delete from laboratory
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria">
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria">
     delete from laboratory
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Laboratory">
@@ -139,13 +139,13 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria" resultType="java.lang.Integer">
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria" resultType="java.lang.Integer">
     select count(*) from laboratory
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </select>
-  <update id="updateByExampleSelective" parameterType="map">
+  <update id="updateByCriteriaSelective" parameterType="map">
     update laboratory
     <set>
       <if test="record.id != null">
@@ -162,17 +162,17 @@
       </if>
     </set>
     <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map">
+  <update id="updateByCriteria" parameterType="map">
     update laboratory
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
       director_id = #{record.directorId,jdbcType=INTEGER},
       description = #{record.description,jdbcType=VARCHAR}
     <if test="_parameter != null">
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Laboratory">
@@ -197,7 +197,7 @@
       description = #{description,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByExampleWithRowbounds" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria" resultMap="BaseResultMap">
+  <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.LaboratoryCriteria" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
@@ -205,7 +205,7 @@
     <include refid="Base_Column_List" />
     from laboratory
     <if test="_parameter != null">
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null">
       order by ${orderByClause}

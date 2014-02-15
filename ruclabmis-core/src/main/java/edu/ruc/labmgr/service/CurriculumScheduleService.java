@@ -56,29 +56,29 @@ public class CurriculumScheduleService {
         curriculumScheduleCriteria.or(criteria1);
 
         boolean flag=false;
-        if(curriculumScheduleMapper.selectByExample(curriculumScheduleCriteria).size()>0){
+        if(curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria).size()>0){
             flag=true;
         }
         return flag;
     }
 
     public PageInfo<CurriculumSchedule> selectListPage(CurriculumScheduleCriteria criteria, int pageNum) {
-        int totalCount = curriculumScheduleMapper.countByExample(criteria);
+        int totalCount = curriculumScheduleMapper.countByCriteria(criteria);
         PageInfo<CurriculumSchedule> page = new PageInfo<>(totalCount, -1, pageNum);
-        List<CurriculumSchedule> data = curriculumScheduleMapper.selectByExampleWithRowbounds(criteria,
+        List<CurriculumSchedule> data = curriculumScheduleMapper.selectByCriteriaWithRowbounds(criteria,
                 new RowBounds(page.getCurrentResult(), page.getPageSize()));
         page.setData(data);
         return page;
     }
 
     public List<CurriculumSchedule> getCurriculumScheduleList(){
-        return curriculumScheduleMapper.selectByExample(null);
+        return curriculumScheduleMapper.selectByCriteria(null);
     }
     public List<CurriculumSchedule> getCurriculumScheduleListGroupByWeek(CurriculumScheduleCriteria criteria){
         return curriculumScheduleMapper.getAllCurriculumNameList(criteria);
     }
     public List<Integer> getRoomListIdList(CurriculumScheduleCriteria criteria){
-        List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByExample(criteria);
+        List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByCriteria(criteria);
         List<Integer> roomIdList=new ArrayList<>();
         for(int i=0;i<curriculumScheduleList.size();i++){
             if(curriculumScheduleList.get(i).getRoomId()!=null){
@@ -88,7 +88,7 @@ public class CurriculumScheduleService {
         return roomIdList;
     }
     public List<CurriculumSchedule> getCurriculumScheduleList(CurriculumScheduleCriteria criteria){
-        List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByExample(criteria);
+        List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByCriteria(criteria);
         return curriculumScheduleList;
     }
 
@@ -113,7 +113,7 @@ public class CurriculumScheduleService {
         criteria.andWeekdaysEqualTo(wDay);
         criteria.andAmPmEqualTo(section);
 
-        List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByExample(curriculumScheduleCriteria);
+        List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria);
         return schedules;
     }
 

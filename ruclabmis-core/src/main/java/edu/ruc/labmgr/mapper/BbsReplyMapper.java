@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface BbsReplyMapper {
-    int countByCriteria(BbsReplyCriteria example);
+    int countByCriteria(BbsReplyCriteria criteria);
 
-    int deleteByCriteria(BbsReplyCriteria example);
+    int deleteByCriteria(BbsReplyCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface BbsReplyMapper {
 
     int insertSelective(BbsReply record);
 
-    List<BbsReply> selectByCriteriaWithRowbounds(BbsReplyCriteria example, RowBounds rowBounds);
+    List<BbsReply> selectByCriteriaWithRowbounds(BbsReplyCriteria criteria, RowBounds rowBounds);
 
-    List<BbsReply> selectByCriteria(BbsReplyCriteria example);
+    List<BbsReply> selectByCriteria(BbsReplyCriteria criteria);
 
     BbsReply selectByPrimaryKey(Integer id);
 
-    int updateByCriteriaSelective(@Param("record") BbsReply record, @Param("example") BbsReplyCriteria example);
+    int updateByCriteriaSelective(@Param("record") BbsReply record, @Param("criteria") BbsReplyCriteria criteria);
 
-    int updateByCriteria(@Param("record") BbsReply record, @Param("example") BbsReplyCriteria example);
+    int updateByCriteria(@Param("record") BbsReply record, @Param("criteria") BbsReplyCriteria criteria);
 
     int updateByPrimaryKeySelective(BbsReply record);
 

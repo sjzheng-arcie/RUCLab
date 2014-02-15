@@ -7,9 +7,9 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface AnnouncementMapper {
-    int countByCriteria(AnnouncementCriteria example);
+    int countByCriteria(AnnouncementCriteria criteria);
 
-    int deleteByExample(AnnouncementCriteria example);
+    int deleteByCriteria(AnnouncementCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -17,15 +17,15 @@ public interface AnnouncementMapper {
 
     int insertSelective(Announcement record);
 
-    List<Announcement> selectByCriteriaWithRowbounds(AnnouncementCriteria example, RowBounds rowBounds);
+    List<Announcement> selectByCriteriaWithRowbounds(AnnouncementCriteria criteria, RowBounds rowBounds);
 
-    List<Announcement> selectByExample(AnnouncementCriteria example);
+    List<Announcement> selectByCriteria(AnnouncementCriteria criteria);
 
     Announcement selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") Announcement record, @Param("example") AnnouncementCriteria example);
+    int updateByCriteriaSelective(@Param("record") Announcement record, @Param("criteria") AnnouncementCriteria criteria);
 
-    int updateByExample(@Param("record") Announcement record, @Param("example") AnnouncementCriteria example);
+    int updateByCriteria(@Param("record") Announcement record, @Param("criteria") AnnouncementCriteria criteria);
 
     int updateByPrimaryKeySelective(Announcement record);
 

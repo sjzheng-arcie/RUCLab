@@ -45,7 +45,7 @@
 <table width="100%" border="0" cellspacing="1" cellpadding="0">
 <tr>
     <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><p><img src="/images/door_open.png" width="64"
@@ -60,7 +60,7 @@
         </table>
     </td>
     <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -74,7 +74,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"
@@ -89,7 +89,7 @@
         </table>
     </td>
     <td width="25%" height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -106,7 +106,7 @@
 </tr>
 <tr>
     <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -120,7 +120,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"
@@ -135,7 +135,7 @@
         </table>
     </td>
     <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -150,7 +150,7 @@
         </table>
     </td>
     <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -166,7 +166,7 @@
     </td>
 </tr>
 <tr>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"
@@ -181,7 +181,7 @@
         </table>
     </td>
     <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -195,7 +195,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"
@@ -209,7 +209,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"
@@ -225,7 +225,7 @@
     </td>
 </tr>
 <tr>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"
@@ -240,7 +240,7 @@
         </table>
     </td>
     <td height="110" bgcolor="#e4ffaa" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -255,7 +255,7 @@
         </table>
     </td>
     <td height="110" bgcolor="#E4FFAA" onclick="javascript:location.href='page01_ylya_zx2.html'"
-        style="cursor:hand;">
+        style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -269,7 +269,7 @@
             </tr>
         </table>
     </td>
-    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:hand;">
+    <td height="110" bgcolor="#aae4ff" onclick="javascript:alert('当前教室已被占用!')" style="cursor:pointer;">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
                 <td width="40%" align="center"><img src="/images/door.png" width="64"

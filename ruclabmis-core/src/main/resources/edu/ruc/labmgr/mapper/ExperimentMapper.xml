@@ -11,7 +11,7 @@
     <result column="report_deadline" property="reportDeadline" jdbcType="DATE" />
     <result column="template_path" property="templatePath" jdbcType="VARCHAR" />
   </resultMap>
-  <sql id="Example_Where_Clause" >
+  <sql id="Criteria_Where_Clause" >
     <where >
       <foreach collection="oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
@@ -40,9 +40,9 @@
       </foreach>
     </where>
   </sql>
-  <sql id="Update_By_Example_Where_Clause" >
+  <sql id="Update_By_Criteria_Where_Clause" >
     <where >
-      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+      <foreach collection="criteria.oredCriteria" item="criteria" separator="or" >
         <if test="criteria.valid" >
           <trim prefix="(" suffix=")" prefixOverrides="and" >
             <foreach collection="criteria.criteria" item="criterion" >
@@ -72,7 +72,7 @@
   <sql id="Base_Column_List" >
     id, name, content, curriculum_id, status, need_report, report_deadline, template_path
   </sql>
-  <select id="selectByExample" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
+  <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
     select
     <if test="distinct" >
       distinct
@@ -80,7 +80,7 @@
     <include refid="Base_Column_List" />
     from experiment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}
@@ -96,10 +96,10 @@
     delete from experiment
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByExample" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
+  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" >
     delete from experiment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </delete>
   <insert id="insert" parameterType="edu.ruc.labmgr.domain.Experiment" >
@@ -165,10 +165,10 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" resultType="java.lang.Integer" >
+  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" resultType="java.lang.Integer" >
     select count(*) from experiment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
   </select>
 
@@ -180,7 +180,7 @@
      and ed.class_student_id = cs.id
   </select>
 
-  <update id="updateByExampleSelective" parameterType="map" >
+  <update id="updateByCriteriaSelective" parameterType="map" >
     update experiment
     <set >
       <if test="record.id != null" >
@@ -209,10 +209,10 @@
       </if>
     </set>
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
-  <update id="updateByExample" parameterType="map" >
+  <update id="updateByCriteria" parameterType="map" >
     update experiment
     set id = #{record.id,jdbcType=INTEGER},
       name = #{record.name,jdbcType=VARCHAR},
@@ -223,7 +223,7 @@
       report_deadline = #{record.reportDeadline,jdbcType=DATE},
       template_path = #{record.templatePath,jdbcType=VARCHAR}
     <if test="_parameter != null" >
-      <include refid="Update_By_Example_Where_Clause" />
+      <include refid="Update_By_Criteria_Where_Clause" />
     </if>
   </update>
   <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.Experiment" >
@@ -264,7 +264,7 @@
       template_path = #{templatePath,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" id="selectByExampleWithRowbounds" >
+  <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ExperimentCriteria" id="selectByCriteriaWithRowbounds" >
     select
     <if test="distinct" >
       distinct
@@ -272,7 +272,7 @@
     <include refid="Base_Column_List" />
     from experiment
     <if test="_parameter != null" >
-      <include refid="Example_Where_Clause" />
+      <include refid="Criteria_Where_Clause" />
     </if>
     <if test="orderByClause != null" >
       order by ${orderByClause}

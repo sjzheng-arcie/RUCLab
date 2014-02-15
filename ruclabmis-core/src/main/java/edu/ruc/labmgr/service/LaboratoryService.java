@@ -37,15 +37,15 @@ public class LaboratoryService {
 	}
 
 	public PageInfo<Laboratory> selectListPage(LaboratoryCriteria criteria, int pageNum) {
-		int totalCount = laboratoryMapper.countByExample(criteria);
+		int totalCount = laboratoryMapper.countByCriteria(criteria);
 		PageInfo<Laboratory> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Laboratory> data = laboratoryMapper.selectByExampleWithRowbounds(criteria,
+		List<Laboratory> data = laboratoryMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;
 	}
 	public List<Laboratory> getAllLaboratory(){
-		List<Laboratory> laboratoryList=laboratoryMapper.selectByExample(null);
+		List<Laboratory> laboratoryList=laboratoryMapper.selectByCriteria(null);
 		return laboratoryList;
 	}
 }

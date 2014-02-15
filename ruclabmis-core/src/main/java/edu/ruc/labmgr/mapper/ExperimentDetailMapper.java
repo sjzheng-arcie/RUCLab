@@ -9,11 +9,11 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface ExperimentDetailMapper {
-    int countByExample(ExperimentDetailCriteria example);
+    int countByCriteria(ExperimentDetailCriteria criteria);
 
     int countStudentExperiment(@Param("eid")Integer eid);
 
-    int deleteByExample(ExperimentDetailCriteria example);
+    int deleteByCriteria(ExperimentDetailCriteria criteria);
 
     int deleteByPrimaryKey(Integer id);
 
@@ -21,7 +21,7 @@ public interface ExperimentDetailMapper {
 
     int insertSelective(ExperimentDetail record);
 
-    List<ExperimentDetail> selectByExampleWithRowbounds(ExperimentDetailCriteria example, RowBounds rowBounds);
+    List<ExperimentDetail> selectByCriteriaWithRowbounds(ExperimentDetailCriteria criteria, RowBounds rowBounds);
 
     List<Map<String,?>> selectStudentExperimentsWithRowbound(@Param("eid") Integer eid,RowBounds rowBounds);
 	List<Map<String,?>> selectExperimentDetailByStuId(@Param("eid")Integer eid,@Param("stuId")Integer stuId);
@@ -29,13 +29,13 @@ public interface ExperimentDetailMapper {
 
 //	List<Map<String,?>> selectStudentExperimentsWithRowbound(@Param("eid") Integer eid,RowBounds rowBounds);
 
-    List<ExperimentDetail> selectByExample(ExperimentDetailCriteria example);
+    List<ExperimentDetail> selectByCriteria(ExperimentDetailCriteria criteria);
 
     ExperimentDetail selectByPrimaryKey(Integer id);
 
-    int updateByExampleSelective(@Param("record") ExperimentDetail record, @Param("example") ExperimentDetailCriteria example);
+    int updateByCriteriaSelective(@Param("record") ExperimentDetail record, @Param("criteria") ExperimentDetailCriteria criteria);
 
-    int updateByExample(@Param("record") ExperimentDetail record, @Param("example") ExperimentDetailCriteria example);
+    int updateByCriteria(@Param("record") ExperimentDetail record, @Param("criteria") ExperimentDetailCriteria criteria);
 
     int updateByPrimaryKeySelective(ExperimentDetail record);
 

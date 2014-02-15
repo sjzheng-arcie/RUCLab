@@ -38,13 +38,13 @@ public class TaskService {
 	}
 
 	public List<Task> getTaskList(){
-		List<Task> taskList = taskMapper.selectByExample(null);
+		List<Task> taskList = taskMapper.selectByCriteria(null);
 		return taskList;
 	}
 	public PageInfo<Task> selectListPage(TaskCriteria criteria, int pageNum) {
-		int totalCount = taskMapper.countByExample(criteria);
+		int totalCount = taskMapper.countByCriteria(criteria);
 		PageInfo<Task> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Task> data = taskMapper.selectByExampleWithRowbounds(criteria,
+		List<Task> data = taskMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;

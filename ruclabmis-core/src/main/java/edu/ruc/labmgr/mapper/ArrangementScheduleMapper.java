@@ -7,19 +7,19 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 
 public interface ArrangementScheduleMapper {
-    int countByCriteria(ArrangementScheduleCriteria example);
+    int countByCriteria(ArrangementScheduleCriteria criteria);
 
-    int deleteByCriteria(ArrangementScheduleCriteria example);
+    int deleteByCriteria(ArrangementScheduleCriteria criteria);
 
     int insert(ArrangementSchedule record);
 
     int insertSelective(ArrangementSchedule record);
 
-    List<ArrangementSchedule> selectByCriteriaWithRowbounds(ArrangementScheduleCriteria example, RowBounds rowBounds);
+    List<ArrangementSchedule> selectByCriteriaWithRowbounds(ArrangementScheduleCriteria criteria, RowBounds rowBounds);
 
-    List<ArrangementSchedule> selectByCriteria(ArrangementScheduleCriteria example);
+    List<ArrangementSchedule> selectByCriteria(ArrangementScheduleCriteria criteria);
 
-    int updateByCriteriaSelective(@Param("record") ArrangementSchedule record, @Param("example") ArrangementScheduleCriteria example);
+    int updateByCriteriaSelective(@Param("record") ArrangementSchedule record, @Param("criteria") ArrangementScheduleCriteria criteria);
 
-    int updateByCriteria(@Param("record") ArrangementSchedule record, @Param("example") ArrangementScheduleCriteria example);
+    int updateByCriteria(@Param("record") ArrangementSchedule record, @Param("criteria") ArrangementScheduleCriteria criteria);
 }
