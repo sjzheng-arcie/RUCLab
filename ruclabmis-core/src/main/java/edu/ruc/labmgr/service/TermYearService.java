@@ -29,4 +29,8 @@ public class TermYearService {
         yearCriteria.setOrderByClause("name");
         return mapper.selectByCriteria(yearCriteria);
     }
+
+    public TermYear getTermYearById(Integer id){
+        return mapper.selectByPrimaryKey(id);
+    }
 }

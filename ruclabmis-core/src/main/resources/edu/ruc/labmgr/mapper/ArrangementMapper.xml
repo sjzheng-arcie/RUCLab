@@ -12,6 +12,7 @@
     <result column="week" property="week" jdbcType="INTEGER" />
     <result column="wDay" property="wday" jdbcType="INTEGER" />
     <result column="section" property="section" jdbcType="INTEGER" />
+
   </resultMap>
   <sql id="Criteria_Where_Clause" >
     <where >
@@ -75,6 +76,7 @@
     id, state, approval_id, user_id, description, approval_opinion, term_year, week, 
     wDay, section
   </sql>
+
   <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" >
     select
     <if test="distinct" >

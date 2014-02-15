@@ -81,13 +81,13 @@
                                                 <td  width="100"  align="right" >星期：</td>
                                                 <td width="100">
                                                     <select id="day" name="day" style="width: 180px;height: 22px">
-                                                        <option value="1"<c:if test="${2==currDay}"> selected</c:if>>星期一</option>
-                                                        <option value="2"<c:if test="${3==currDay}"> selected</c:if>>星期二</option>
-                                                        <option value="3"<c:if test="${4==currDay}"> selected</c:if>>星期三</option>
-                                                        <option value="4"<c:if test="${5==currDay}"> selected</c:if>>星期四</option>
-                                                        <option value="5"<c:if test="${6==currDay}"> selected</c:if>>星期五</option>
-                                                        <option value="6"<c:if test="${7==currDay}"> selected</c:if>>星期六</option>
-                                                        <option value="7"<c:if test="${1==currDay}"> selected</c:if>>星期日</option>
+                                                        <option value="1"<c:if test="${1==currDay}"> selected</c:if>>星期日</option>
+                                                        <option value="2"<c:if test="${2==currDay}"> selected</c:if>>星期一</option>
+                                                        <option value="3"<c:if test="${3==currDay}"> selected</c:if>>星期二</option>
+                                                        <option value="4"<c:if test="${4==currDay}"> selected</c:if>>星期三</option>
+                                                        <option value="5"<c:if test="${5==currDay}"> selected</c:if>>星期四</option>
+                                                        <option value="6"<c:if test="${6==currDay}"> selected</c:if>>星期五</option>
+                                                        <option value="7"<c:if test="${7==currDay}"> selected</c:if>>星期六</option>
                                                     </select>
                                                 </td>
                                             </tr>

@@ -13,7 +13,7 @@
 
 <script>
     function save() {
-        document.mainForm.action = "add";
+        document.mainForm.action = "/laboratory/jsp/appointment/add";
         document.mainForm.submit();
     }
 </script>

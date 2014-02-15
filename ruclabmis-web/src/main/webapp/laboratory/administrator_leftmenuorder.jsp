@@ -40,10 +40,10 @@
                         <ul class="MM">
                             <li><a href="jsp/appointment/frame.jsp" onfocus="toFocus(this)"
                                    target="main">预约申请</a></li>
-                            <li><a href="jsp/appointment/mylist" onfocus="toFocus(this)"
-                                   target="main">我的预约</a></li>
                             <li><a href="jsp/appointment/list" onfocus="toFocus(this)"
-                                   target="main">预约管理</a></li>
+                                   target="main">申请中的预约</a></li>
+                            <li><a href="jsp/appointment/list?formType=history" onfocus="toFocus(this)"
+                                   target="main">预约结果</a></li>
                             </li>
                         </ul>
                     </div>

@@ -97,14 +97,31 @@
                             </li>
                             <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)" target="main">
                                 实验信息管理</a></li>
-                            <li><a href="jsp/curriculum/pages_miyl/miyl01_ylsj/page01_ylya_new.html" onfocus="toFocus(this)"
-                                   target="main">
-                                实验室预约</a></li>
                             <li><a href="jsp/experiment/experiment/courselist?page=1&view=report" onfocus="toFocus(this)"
                                    target="main">实验报告管理</a>
                             </li>
                             <li><a href="jsp/experiment/experiment/courselist?page=1&view=achievement" onfocus="toFocus(this)" target="main">
                                 学期成绩评定</a></li>
+                        </ul>
+                    </div>
+                </shiro:hasAnyRoles>
+                <shiro:hasAnyRoles name="teacher">
+                    <h1 class="type"><a href="javascript:void(0)">预约管理</a></h1>
+
+                    <div class="content">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
+                            </tr>
+                        </table>
+                        <ul class="MM">
+                            <li><a href="jsp/appointment/frame.jsp" onfocus="toFocus(this)"
+                                   target="main">预约申请</a></li>
+                            <li><a href="jsp/appointment/list" onfocus="toFocus(this)"
+                                   target="main">申请中的预约</a></li>
+                            <li><a href="jsp/appointment/list?formType=history" onfocus="toFocus(this)"
+                                   target="main">预约结果</a></li>
+                            </li>
                         </ul>
                     </div>
                 </shiro:hasAnyRoles>

@@ -1,11 +1,17 @@
 package edu.ruc.labmgr.domain;
 
+import java.util.Date;
+
 public class Arrangement {
     private Integer id;
 
     private Byte state;
 
+    private Classif stateClassif;
+
     private Integer approvalId;
+
+    private String approvalName;
 
     private Integer userId;
 
@@ -20,6 +26,10 @@ public class Arrangement {
     private Integer wday;
 
     private Integer section;
+
+    private Date scheduleDate;
+
+    private  CurriculumSchedule curriculumSchedule;
 
     public Integer getId() {
         return id;
@@ -99,5 +109,37 @@ public class Arrangement {
 
     public void setSection(Integer section) {
         this.section = section;
+    }
+
+    public Date getScheduleDate() {
+        return scheduleDate;
+    }
+
+    public void setScheduleDate(Date scheduleDate) {
+        this.scheduleDate = scheduleDate;
+    }
+
+    public CurriculumSchedule getCurriculumSchedule() {
+        return curriculumSchedule;
+    }
+
+    public void setCurriculumSchedule(CurriculumSchedule curriculumSchedule) {
+        this.curriculumSchedule = curriculumSchedule;
+    }
+
+    public Classif getStateClassif() {
+        return stateClassif;
+    }
+
+    public void setStateClassif(Classif stateClassif) {
+        this.stateClassif = stateClassif;
+    }
+
+    public String getApprovalName() {
+        return approvalName;
+    }
+
+    public void setApprovalName(String approvalName) {
+        this.approvalName = approvalName;
     }
 }
