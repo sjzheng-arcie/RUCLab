@@ -11,8 +11,6 @@ public class Arrangement {
 
     private Integer approvalId;
 
-    private String approvalName;
-
     private Integer userId;
 
     private String description;
@@ -27,9 +25,15 @@ public class Arrangement {
 
     private Integer section;
 
+    private Integer roomId;
+
     private Date scheduleDate;
 
-    private  CurriculumSchedule curriculumSchedule;
+    private Room room;
+
+    private User user;
+
+    private User approval;
 
     public Integer getId() {
         return id;
@@ -119,14 +123,6 @@ public class Arrangement {
         this.scheduleDate = scheduleDate;
     }
 
-    public CurriculumSchedule getCurriculumSchedule() {
-        return curriculumSchedule;
-    }
-
-    public void setCurriculumSchedule(CurriculumSchedule curriculumSchedule) {
-        this.curriculumSchedule = curriculumSchedule;
-    }
-
     public Classif getStateClassif() {
         return stateClassif;
     }
@@ -135,11 +131,35 @@ public class Arrangement {
         this.stateClassif = stateClassif;
     }
 
-    public String getApprovalName() {
-        return approvalName;
+    public Integer getRoomId() {
+        return roomId;
     }
 
-    public void setApprovalName(String approvalName) {
-        this.approvalName = approvalName;
+    public void setRoomId(Integer roomId) {
+        this.roomId = roomId;
+    }
+
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    public User getApproval() {
+        return approval;
+    }
+
+    public void setApproval(User approval) {
+        this.approval = approval;
     }
 }

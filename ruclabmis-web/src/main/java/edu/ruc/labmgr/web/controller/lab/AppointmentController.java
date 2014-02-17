@@ -150,7 +150,7 @@ public class AppointmentController {
     public
     @ResponseBody
     Result add(Arrangement arrangement,
-                       @RequestParam(required = true) Integer roomId) {
+               @RequestParam(required = true) Integer roomId) {
         Result result = null;
         try {
             arrangement.setUserId(userService.getCurrentUserId());
@@ -227,6 +227,7 @@ public class AppointmentController {
                 pageInfo = arrangementService.pageCurrArrangementsByUser(page, userService.getCurrentUserId());
             }
         }
+
         for(Arrangement arrangement : pageInfo.getData()){
             Calendar calendar = Calendar.getInstance();
             TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
@@ -235,18 +236,9 @@ public class AppointmentController {
 
             arrangement.setScheduleDate(scheduleDate);
 
-            int scheduleId = arrangementScheduleService.getSecheduleIdByArrangementId(arrangement.getId());
-
-            CurriculumSchedule curriculumSchedule = curriculumScheduleService.getCurriculumScheduleById(scheduleId);
-            arrangement.setCurriculumSchedule(curriculumSchedule);
-
             Classif stateClassif = classifService.getClassifItem(arrangement.getState());
             arrangement.setStateClassif(stateClassif);
 
-            if(arrangement.getApprovalId() != null){
-                String approvalName = userService.getUserbyId(arrangement.getApprovalId()).getName();
-                arrangement.setApprovalName(approvalName);
-            }
         }
         ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/list");
         mav.addObject("pageInfo", pageInfo);
@@ -267,7 +259,7 @@ public class AppointmentController {
     }
 
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
-        public String approve(@RequestParam("items") List<Integer> items) {
+    public String approve(@RequestParam("items") List<Integer> items) {
         for(int id : items){
             Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
             arrangement.setState((byte)Types.ApplyState.PASS.getValue());

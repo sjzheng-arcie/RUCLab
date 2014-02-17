@@ -59,7 +59,7 @@
             <shiro:hasRole name="student">
                 <li id="student_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('student_homePage')">首页</a></li>
             </shiro:hasRole>
-            <shiro:hasAnyRoles name="teacher,equipment_admin">
+            <shiro:hasAnyRoles name="teacher,equipment_admin,lab_admin">
                 <li id="teacher_homePage" class="active"><a href="left" target="leftFrame" onclick="rs('teacher_homePage')">首页</a></li>
             </shiro:hasAnyRoles>
 

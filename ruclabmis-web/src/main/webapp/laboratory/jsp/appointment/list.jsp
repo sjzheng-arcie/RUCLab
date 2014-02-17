@@ -83,7 +83,7 @@
                                                     <span class="STYLE1">驳回申请</span></a>
                                             </shiro:hasAnyRoles>
 
-                                            <shiro:hasAnyRoles name="administrators,teacher">
+                                            <shiro:hasAnyRoles name="administrators,teacher,equipment_admin,student">
                                                 <a href="javascript:void(0);" class="txt_bt"
                                                    onclick="toDelete('listForm', 'idcheckbox');return false;">
                                                     <img src="../../../../images/del_min.gif" width="10" height="10"
@@ -127,6 +127,9 @@
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请时间</span></div>
                                                     </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请描述</span></div>
+                                                    </td>
                                                     <c:if test="${formType=='history'}">
                                                         <td width="100" bgcolor="d3eaef">
                                                             <div align="center"><span class="STYLE10">处理人</span></div>
@@ -141,12 +144,19 @@
                                                                                    onclick="checkOne('listForm', 'idcheckbox')"/>
                                                             </td>
                                                         </c:if>
-                                                        <td>${item.curriculumSchedule.room.name}</td>
-                                                        <td>${item.curriculumSchedule.teacher.name}</td>
+                                                        <td>${item.room.name}</td>
+                                                        <td>${item.user.name}</td>
                                                         <td>${item.stateClassif.value}</td>
-                                                        <td><fmt:formatDate value="${item.scheduleDate}" pattern="yyyy-MM-dd"/></td>
+                                                        <td><fmt:formatDate value="${item.scheduleDate}" pattern="yyyy-MM-dd"/>
+                                                            <c:if test="${item.section==1}">上午一二节</c:if>
+                                                            <c:if test="${item.section==2}">上午三四节</c:if>
+                                                            <c:if test="${item.section==3}">下午五六节</c:if>
+                                                            <c:if test="${item.section==4}">下午七八节</c:if>
+                                                            <c:if test="${item.section==5}">晚上九十节节</c:if>
+                                                        </td>
+                                                        <td>${item.description}</td>
                                                         <c:if test="${formType=='history'}">
-                                                            <td>${item.approvalName}</td>
+                                                            <td>${item.approval.name}</td>
                                                         </c:if>
                                                     </tr>
                                                 </c:forEach>
