@@ -177,30 +177,6 @@ public class AppointmentController {
         }
         return result;
     }
-//
-//    @RequestMapping(value = "/add", method = RequestMethod.POST)
-//    String add(Arrangement arrangement,
-//               @RequestParam(required = true) Integer roomId) {
-//        arrangement.setUserId(userService.getCurrentUserId());
-//        arrangement.setState((byte) Types.ApplyState.WAITING.getValue());
-//        arrangementService.insert(arrangement);
-//
-//        CurriculumSchedule schedule = new CurriculumSchedule();
-//        schedule.setTeacherid(userService.getCurrentUserId());
-//        schedule.setRoomId(roomId);
-//        schedule.setAmPm(arrangement.getSection().byteValue());
-//        schedule.setTermYearid(arrangement.getTermYear());
-//        schedule.setWeeknum(arrangement.getWeek().byteValue());
-//        schedule.setWeekdays(arrangement.getWday().byteValue());
-//        curriculumScheduleService.add(schedule);
-//
-//        ArrangementSchedule arrangementSchedule = new ArrangementSchedule();
-//        arrangementSchedule.setArrangementId(arrangement.getId());
-//        arrangementSchedule.setCurriculumsheduleId(schedule.getId());
-//        arrangementScheduleService.insert(arrangementSchedule);
-//
-//        return "redirect:/laboratory/jsp/appointment/list";
-//    }
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList( @RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -240,12 +216,28 @@ public class AppointmentController {
             arrangement.setStateClassif(stateClassif);
 
         }
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/list");
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/appointment/list");
         mav.addObject("pageInfo", pageInfo);
         mav.addObject("formType", formType);
         return mav;
     }
 
+    @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
+    public ModelAndView toUpdate(@RequestParam("id") int id) {
+        Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
+
+        Calendar calendar = Calendar.getInstance();
+        TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
+        calendar.setWeekDate(termYear.getYear(), arrangement.getWeek(), arrangement.getWday());
+        Date scheduleDate = calendar.getTime();
+
+        arrangement.setScheduleDate(scheduleDate);
+
+
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/appointment/detail");
+        mav.addObject("arrangement", arrangement);
+        return mav;
+    }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) {

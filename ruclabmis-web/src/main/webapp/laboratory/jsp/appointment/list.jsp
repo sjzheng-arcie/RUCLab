@@ -116,6 +116,9 @@
                                                         </td>
                                                     </c:if>
                                                     <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请编号</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请房间</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
@@ -144,6 +147,7 @@
                                                                                    onclick="checkOne('listForm', 'idcheckbox')"/>
                                                             </td>
                                                         </c:if>
+                                                        <td><a href="toUpdate?id=${item.id}">${item.id}</a></td>
                                                         <td>${item.room.name}</td>
                                                         <td>${item.user.name}</td>
                                                         <td>${item.stateClassif.value}</td>
