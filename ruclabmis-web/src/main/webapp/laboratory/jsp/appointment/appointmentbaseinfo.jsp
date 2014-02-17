@@ -20,7 +20,7 @@
     }
 </script>
 <body>
-<form name="mainForm" method="post">
+<form name="mainForm" method="post" onLoad="seekStatus()">
     <table style="width:100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
