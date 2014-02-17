@@ -165,7 +165,7 @@
                                                 <td  colspan="4">
                                                     <textarea name="description" id="description"
                                                              cols="60" rows="10"
-                                                              style="width: 90%;height: 90%"></textarea>
+                                                              style="width: 90%;height: 350"></textarea>
                                                 </td>
                                             </tr>
                                         </table>

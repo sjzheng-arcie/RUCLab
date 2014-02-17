@@ -19,8 +19,8 @@
         parent.statusFrame.location = getStr;
     }
 </script>
-<body>
-<form name="mainForm" method="post" onLoad="seekStatus()">
+<body onload="seekStatus()">
+<form name="mainForm" method="post">
     <table style="width:100%" border="0" cellpadding="0" cellspacing="0">
         <tr>
             <td width="17" valign="top" background="../../../../images/mail_leftbg.gif">
@@ -68,7 +68,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td width="100"  align="right" >第几周：</td>
+                                                <td width="100"  align="right" >周次：</td>
                                                 <td width="100">
                                                     <select id="week" name="week" style="width: 180px;height: 22px">
                                                         <c:forEach begin="0" end ="22" var="i">
