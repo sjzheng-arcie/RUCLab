@@ -103,15 +103,6 @@
                                                     </select>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td align="right"  align="right" >申请类型：</td>
-                                                <td><select name="type" id="type" style="width: 180px;height: 22px">
-                                                    <option value= "0">实验室</option>
-                                                    <option value= "1">会议室</option>
-                                                    <option>工位</option>
-                                                </select></td>
-                                            </tr>
-
                                         </table>
                                     </td>
                                 </tr>

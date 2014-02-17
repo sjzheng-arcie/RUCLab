@@ -10,12 +10,36 @@
 <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 <script src="../../../../js/valid.js" type=text/javascript></script>
+<script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
 
 <script>
     function save() {
-        document.mainForm.action = "/laboratory/jsp/appointment/add";
-        document.mainForm.submit();
+        if (!validator(document.mainForm)) {
+            return;
+        }
+
+        $.post("/laboratory/jsp/appointment/add", {
+            termYear :$("#termYear").val(),
+            week :$("#week").val(),
+            wday :$("#wday").val(),
+            section :$("#section").val(),
+            description :$("#description").val(),
+            roomId :$("#roomId").val()
+        }, function (data) {
+            alert(data.message);
+            if (data.success) {
+                parent.location.href = "/laboratory/jsp/appointment/list";
+            }
+        });
     }
+//
+//    function save() {
+//        document.mainForm.action = "/laboratory/jsp/appointment/add";
+//        document.mainForm.submit();
+//
+//        parent.location.href = "/laboratory/jsp/appointment/list";
+//    }
 </script>
 <body>
 <form name="mainForm" method="post">
