@@ -35,7 +35,10 @@
                     ids:ids.join(",")
                 },function(data){
                     if(data.success){
-                        windown.location.href = window.location.href;
+                        var cid = ${cid};
+                        ///laboratory/jsp/experiment/experiment/myexperimentlist?cid=2&page=1&view=report&curriculumClassId=23
+                        window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?cid="+cid+"&page=1&view=report&curriculumClassId="+${curriculumClassId};
+                       // window.location.href = window.location.href;
                     }else{
                         alert(data.message);
                     }
@@ -159,7 +162,7 @@
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">维护</span></a>&nbsp;
-                                                                    <a href="" onclick="toPublic();"><img
+                                                                    <a href="#" onclick="toPublic();"><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;
@@ -235,7 +238,7 @@
                                                         </shiro:hasRole>
 
                                          <shiro:hasAnyRoles name="adminstrators,teacher">
-                                                        <td><a href="#" onclick="viewReport(${item.id},${item.needReport});">
+                                                        <td><a href="#" onclick="viewReport('${item.id}','${item.needReport}');">
                                                             <c:choose>
                                                                 <c:when test="${item.needReport}">查看</c:when>
                                                                 <c:otherwise>--</c:otherwise>
