@@ -396,15 +396,24 @@ public class CurriculumSheduleController {
 						if(termYearId!=-1){
 							criteria.andTermYearidEqualTo(termYearId);
 						}
-						criteria1.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
-						criteria1.andClassIdEqualTo(curriculumSchedule.getClassId());
-						criteria1.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
-						criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
-						criteria1.andCurriculumIdEqualTo(curriculumSchedule.getCurriculumId());
+						if (curriculumSchedule.getTermYearid()!=null)
+							criteria1.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
+						if(curriculumSchedule.getClassId()!=null)
+							criteria1.andClassIdEqualTo(curriculumSchedule.getClassId());
+						if(curriculumSchedule.getWeekdays()!=null)
+							criteria1.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+						if(curriculumSchedule.getTeacherid()!=null)
+							criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
+						if(curriculumSchedule.getCurriculumId()!=null)
+							criteria1.andCurriculumIdEqualTo(curriculumSchedule.getCurriculumId());
 						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
 						int tempBegin=0;
 						if(tempList.size()==1){
-							String strClassSchedule=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
+							String strClassSchedule = "";
+							if(tempList.get(0).getCurriculum()!=null){
+								strClassSchedule =tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
+
+							}
 							if(tempList.get(0).getRoom()!=null){
 								strClassSchedule=strClassSchedule+"<br>"+tempList.get(0).getRoom().getName()+"<br>";
 							}else{
