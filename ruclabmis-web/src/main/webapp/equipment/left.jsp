@@ -115,6 +115,10 @@
             <li><a href="jsp/dev/return/applyList?formType=apply" onfocus="toFocus(this)" target="main">设备归还申请</a>
             </li>
         </shiro:hasAnyRoles>
+        <shiro:hasAnyRoles name="administrators,leader">
+            <li><a href="jsp/dev/return/applyList?formType=review" onfocus="toFocus(this)" target="main">设备归还审核</a>
+            </li>
+        </shiro:hasAnyRoles>
         <shiro:hasAnyRoles name="administrators,equipment_admin">
             <li><a href="jsp/dev/return/applyList?formType=process" onfocus="toFocus(this)" target="main">设备归还执行</a>
             </li>
