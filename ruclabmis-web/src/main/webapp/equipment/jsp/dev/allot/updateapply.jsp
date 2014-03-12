@@ -141,9 +141,11 @@
                                         style="width: 202px;height: 22px"
                                         data-placeholder="选择对象..."
                                         valid="required"
-                                        errmsg="接收人不能为空!"/>>
+                                        errmsg="接收人不能为空!">
                                     <c:forEach items="${teacherList}" var="teacher">
-                                        <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
+                                        <option value="${teacher.id}"
+                                            <c:if test="${apply.annex == teacher.id}"> selected</c:if>>${teacher.name}(${teacher.sn})
+                                        </option>
                                     </c:forEach>
                                 </select>
                             </td>

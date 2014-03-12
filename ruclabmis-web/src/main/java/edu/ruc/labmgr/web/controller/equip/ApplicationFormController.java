@@ -71,10 +71,10 @@ public class ApplicationFormController {
         ModelAndView mav = new ModelAndView("/equipment/jsp/dev/" + applyType + "/updateapply");
 
         if (Types.ApplyType.ALLOT.getName().equalsIgnoreCase(applyType)) {
-            if (!StringUtils.isNullOrEmpty(apply.getAnnex())) {
+/*            if (!StringUtils.isNullOrEmpty(apply.getAnnex())) {*/
                 List<Teacher> teacherList = serviceTeacher.getAllTeacherList();
                 mav.addObject("teacherList", teacherList);
-            }
+/*            }*/
         }
 
         mav.addObject("formType", formType);
