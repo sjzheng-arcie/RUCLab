@@ -15,9 +15,9 @@
 <script>
     function deleteClasses(id) {
         if(window.confirm("确实要删除该实验室吗？")){
-            if(window.confirm("删除该实验室将会删除该实验室下的房间即房间内的工作台！")){
+
                 window.location.href="/laboratory/jsp/lab/lab/delete?id="+id;
-            }
+
         }
     }
 

@@ -116,18 +116,18 @@
                                                 </td>
                                                 <td nowrap align="right">籍贯：</td>
                                                 <td nowrap align="left">
-                                                    <input name="originPlace" id="originPlace" type="text">
+                                                    <input name="originPlace" id="originPlace" type="text" maxlength="20" >
                                                 </td>
                                             <tr>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input name="email" id="email" type="text"
+                                                    <input name="email" id="email" type="text" maxlength="40"
                                                            valid="isEmail"
                                                            errmsg="邮箱格式不正确!">
                                                 </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text">
+                                                    <input name="phoneNum" id="phoneNum" type="text" maxlength="20" >
                                                 </td>
                                             </tr>
                                             <tr>
@@ -158,7 +158,7 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left" colspan="3">
-                                                    <textarea name="comment" id="comment"></textarea>
+                                                    <textarea name="comment" id="comment" maxlength="500"></textarea>
                                                 </td>
                                             </tr>
                                         </table>

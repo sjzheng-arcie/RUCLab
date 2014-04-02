@@ -157,10 +157,13 @@
                                                     <td align="center" bgcolor="#F7F7F7">${item.weeknum}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
-                                                    <td align="center" bgcolor="#F7F7F7" onclick="javascript:location.href='tosetlab?curriculumScheduleId=${item.id}'">点击安排实验室</td>
-                                                    <td align="center" bgcolor="#F7F7F7" onclick="javascript:location.href='toupdatecurriculumschedule?curriculumScheduleId=${item.id}'">修改</td>
-                                                    <td align="center" bgcolor="#F7F7F7" onclick="javascript:location.href='deleteById?curriculumScheduleId=${item.id}'">删除</td>
-                                                </tr>
+                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="tosetlab?curriculumScheduleId=${item.id}">点击安排实验室  </a>
+                                                       </td>
+                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="toupdatecurriculumschedule?curriculumScheduleId=${item.id}">修改  </a>
+                                                    </td>
+                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="deleteById?curriculumScheduleId=${item.id}">删除  </a>
+                                                    </td>
+                                                                                       </tr>
                                             </c:forEach>
                                         </table>
                                     </td>

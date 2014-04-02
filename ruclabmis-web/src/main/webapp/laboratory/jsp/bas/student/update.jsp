@@ -119,20 +119,20 @@
                                                 </td>
                                                 <td nowrap align="right">籍贯：</td>
                                                 <td nowrap align="left">
-                                                    <input name="originPlace" id="originPlace" type="text"
+                                                    <input name="originPlace" id="originPlace" type="text" maxlength="20"
                                                            value="${student.originPlace}">
                                                 </td>
                                             <tr>
                                                 <td nowrap align="right">邮箱：</td>
                                                 <td nowrap align="left">
-                                                    <input name="email" id="email" type="text"
+                                                    <input name="email" id="email" type="text" maxlength="30"
                                                            valid="isEmail"
                                                            errmsg="邮箱格式不正确!"
                                                            value="${student.email}">
                                                 </td>
                                                 <td nowrap align="right">电话：</td>
                                                 <td nowrap align="left">
-                                                    <input name="phoneNum" id="phoneNum" type="text"
+                                                    <input name="phoneNum" id="phoneNum" type="text" maxlength="20"
                                                            value="${student.phoneNum}">
                                                 </td>
                                             </tr>
@@ -167,7 +167,7 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left" colspan="3">
-                                                    <textarea name="comment"
+                                                    <textarea name="comment" maxlength="500"
                                                               id="comment">${student.comment}</textarea>
                                                 </td>
                                             </tr>

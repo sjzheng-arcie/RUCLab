@@ -107,7 +107,7 @@
                                                 <td nowrap align="right">职称描述:</td>
                                                 <td nowrap>
                                                     <input name="description" id="description"
-                                                           value="${title.description}" class="text"
+                                                           value="${title.description}" class="text" maxlength="85"
                                                            style="width:154px"/>
                                                 </td>
                                             </tr>

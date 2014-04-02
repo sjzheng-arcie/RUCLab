@@ -129,7 +129,7 @@ public class LaboratoryController {
 		List<Integer> list=laboratoryRoomServiceService.getAllRoomIdByLaboratoryId(laboratoryId);
 		RoomCriteria roomCriteria = new RoomCriteria();
 		RoomCriteria.Criteria criteria = roomCriteria.createCriteria();
-		if(list!=null){
+		if(list!=null && list.size()>0){
 			criteria.andIdNotIn(list);
 		}
 		criteria.andNameLike("%"+roomName+"%");
