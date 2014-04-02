@@ -54,7 +54,7 @@
                 style="width:100px;"/>
         </span>
         <span style="white-space:nowrap">&nbsp;&nbsp;
-            <a href="javascript:void(0)" onclick="toFind('listForm');">
+            <a href="javascript:void(0)" onclick="toFind('listForm');" class="txt_bt">
                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
             </a>
         </span>
@@ -84,7 +84,7 @@
                                 <td>
                                     <div align="right">
                                         <span class="STYLE1" style="white-space:nowrap">
-                                            <a href="add">
+                                            <a href="add" class="txt_bt">
                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                 <span class="STYLE1">新增</span>
                                             </a>&nbsp;

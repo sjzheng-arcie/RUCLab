@@ -107,7 +107,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="/experiment/virtual/showAdd?page=1"><img
+                                                                        <a href="/experiment/virtual/showAdd?page=1" class="txt_bt"><img
                                                                                 src="/laboratory/../images/add_min.gif"
                                                                                 width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">新增</span></a>&nbsp;
@@ -118,7 +118,7 @@
                                                                                 border="0"/> <span
                                                                                 class="STYLE1">编辑</span></a>&nbsp;--%>
 
-                                                                        <a href="#" onclick="deleteClasses();"><img
+                                                                        <a href="#" onclick="deleteClasses();" class="txt_bt" ><img
                                                                                 src="/laboratory/../images/del_min.gif"
                                                                                 width="10" height="10"
                                                                                 border="0"/> <span

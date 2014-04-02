@@ -77,10 +77,12 @@ public class LaboratoryController {
 		return modelAndView;
 	}
 	@RequestMapping(value="/update",method=RequestMethod.POST)
-	public String update(@RequestParam String laboratoryName,
+	public String update(@RequestParam int laboratoryId,
+			@RequestParam String laboratoryName,
 					  @RequestParam int theDirector,
 					  @RequestParam String laboratoryDescription){
 		Laboratory laboratory= new Laboratory();
+		laboratory.setId(laboratoryId);
 		laboratory.setName(laboratoryName);
 		laboratory.setDirectorId(theDirector);
 		laboratory.setDescription(laboratoryDescription);

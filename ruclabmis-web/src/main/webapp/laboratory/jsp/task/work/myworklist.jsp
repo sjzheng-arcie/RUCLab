@@ -47,7 +47,7 @@
 
                         <span style="white-space:nowrap">&nbsp;&nbsp;工作名称:<input type="text" name="workTitle" id="workTitle" value=""
                                                                                  style="width:100px;"/></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')"><img
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand" onclick="toFind('listForm')"><img
                                 src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -78,10 +78,10 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="toadd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                        <a href="toadd" class="txt_bt"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"  />
                                                                             <span class="STYLE1">新增</span></a>&nbsp;
                                                                     </span>
-                                                                    <a href="#" onclick="toDelete('listForm','idcheckbox');">
+                                                                    <a href="#" onclick="toDelete('listForm','idcheckbox');" class="txt_bt" >
                                                                         <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">删除</span>
                                                                         <input type="hidden" name="pageForDelete" value="${pageInfo.currentPage}"/>

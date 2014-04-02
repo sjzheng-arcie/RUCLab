@@ -30,8 +30,9 @@ public class LaboratoryService {
 		laboratoryMapper.insert(laboratory);
 	}
 	public void updateLaboratory(Laboratory laboratory){
-		laboratoryMapper.updateByPrimaryKey(laboratory);
+		laboratoryMapper.updateByPrimaryKeySelective(laboratory);
 	}
+
 	public void deleteById(int id){
 		laboratoryMapper.deleteByPrimaryKey(id);
 	}

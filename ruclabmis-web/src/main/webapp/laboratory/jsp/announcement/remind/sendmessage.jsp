@@ -116,8 +116,12 @@
                                                         <tr>
                                                             <td align="left">
 
-                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content" rows="20" cols="90"tabIndex="2"></textarea>
-
+                                                            <textarea id= "content" style="WIDTH: 500px; height: 300px" name="content"
+                                                                      rows="20" cols="90"tabIndex="2"
+                                                                      valid="required"
+                                                                      errmsg="消息内容不能为空!"
+                                                                    ></textarea>
+                                                                <span style="color:red;">*</span>&nbsp;&nbsp;
                                                             </td>
                                                         </tr>
                                                         <tr>

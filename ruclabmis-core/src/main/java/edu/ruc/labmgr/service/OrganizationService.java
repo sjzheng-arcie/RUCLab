@@ -19,7 +19,7 @@ public class OrganizationService {
 
     public List<Organization> selectListPage() {
         OrganizationCriteria criteria = new OrganizationCriteria();
-        criteria.setOrderByClause("id");
+        criteria.setOrderByClause("parent_id");
         return organizationMapper.selectByCriteria(criteria);
     }
 
@@ -46,7 +46,12 @@ public class OrganizationService {
     }
 
     public void delete(List<Integer> equipmentIds) {
-        for (int id : equipmentIds)
-            organizationMapper.deleteByPrimaryKey(id);
+        for (int id : equipmentIds){
+			organizationMapper.deleteByPrimaryKey(id);
+
+		}
     }
+	public void delete (Integer id ){
+		organizationMapper.deleteByPrimaryKey(id);
+	}
 }

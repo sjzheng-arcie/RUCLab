@@ -47,7 +47,7 @@
 
                         <span style="white-space:nowrap">&nbsp;&nbsp;工作名称:<input type="text" name="workTitle" id="workTitle" value=""
                                                                                  style="width:100px;"/></span>
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="toFind('listForm')"><img
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand" onclick="toFind('listForm')"><img
                                 src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
 
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">

@@ -99,11 +99,11 @@
                                                                 <div align="right">
                                                                     <shiro:hasAnyRoles name="administrators,teacher">
                                                                         <span class="STYLE1" style="white-space:nowrap">
-                                                                            <a href="add?cid=${cid}&cName=${cName}"><img
+                                                                            <a href="add?cid=${cid}&cName=${cName}" class="txt_bt" ><img
                                                                                     src="../../../../images/add_min.gif"
                                                                                     width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">新增</span></a>&nbsp;
-                                                                            <a href="#" onclick="deleteExperiment(${cid});"><img
+                                                                            <a href="#" onclick="deleteExperiment(${cid});" class="txt_bt"><img
                                                                                     src="../../../../images/del_min.gif"
                                                                                     width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
@@ -154,9 +154,9 @@
                                                     </td>
                                                     <td>${item.name}</td>
                                                     <td>${item.content}</td>
-                                                    <td><a href="detail?eid=${item.id}&ac=show"> 查看</a>
+                                                    <td><a href="detail?eid=${item.id}&ac=show" class="txt_bt"> 查看</a>
                                                         <shiro:hasAnyRoles name="administrators,teacher">
-                                                        /<a href="edit?eid=${item.id}&ac=edit">编辑</a></td>
+                                                        /<a href="edit?eid=${item.id}&ac=edit" class="txt_bt">编辑</a></td>
                                                     </shiro:hasAnyRoles>
                                                     </td>
                                                 </tr>

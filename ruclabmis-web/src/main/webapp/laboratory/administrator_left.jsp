@@ -62,7 +62,7 @@
                     <ul class="MM">
                         <li><a href="../equipment/jsp/announcement/remind/remind?id=2" onfocus="toFocus(this)" target="main">发布公告</a>
                         </li>
-                        <li><a href="../common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>
+                        <li><a href="jsp/common/user/list" onfocus="toFocus(this)" target="main">教职工信息管理</a>
                         </li>
                         <li><a href="jsp/bas/student/list" onfocus="toFocus(this)" target="main">学生信息管理</a>
                         </li>

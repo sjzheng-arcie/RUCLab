@@ -72,7 +72,7 @@
                     </span>
 
         <span style="white-space:nowrap">&nbsp;&nbsp;
-            <a href="javascript:void(0)" onclick="toFind('listForm');">
+            <a href="javascript:void(0)" onclick="toFind('listForm');" class="txt_bt">
                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
             </a>
         </span>

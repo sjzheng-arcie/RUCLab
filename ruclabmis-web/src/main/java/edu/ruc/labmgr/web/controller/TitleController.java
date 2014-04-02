@@ -33,14 +33,14 @@ public class TitleController {
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
-        ModelAndView mav = new ModelAndView("laboratory/jsp/bas/title/add");
+        ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/title/add");
         return mav;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
     public String add(Title title) {
         titleService.insert(title);
-        return "redirect:/laboratory/jsp/bas/title/list";
+        return "redirect:list";
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)

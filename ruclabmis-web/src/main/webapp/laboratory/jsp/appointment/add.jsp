@@ -177,7 +177,7 @@
                                     <td align="center">
                                         <input type="button" name="Submit" value="提交申请" class="button" onclick="save();"/>
                                         <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
+                                               onclick="window.history.go(-1);" />
                                     </td>
                                 </tr>
                             </table>

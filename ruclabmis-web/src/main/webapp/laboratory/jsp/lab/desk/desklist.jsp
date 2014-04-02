@@ -157,11 +157,11 @@
                                                         <td>
                                                             <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="toadd?roomId=${roomInfo.id}&laboratoryId=${laboratoryInfo.id}">
+                                                                        <a href="toadd?roomId=${roomInfo.id}&laboratoryId=${laboratoryInfo.id}" class="txt_bt">
                                                                             <img src="../../../../images/add_min.gif" width="10" height="10"border="0"/>
                                                                             <span class="STYLE1">添加</span>
                                                                         </a>&nbsp;
-                                                                         <a href="#" onclick="toDelete('mainForm','idcheckbox');">
+                                                                         <a href="#" onclick="toDelete('mainForm','idcheckbox');" class="txt_bt">
                                                                              <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                              <span class="STYLE1">删除</span>
                                                                          </a>&nbsp;&nbsp;

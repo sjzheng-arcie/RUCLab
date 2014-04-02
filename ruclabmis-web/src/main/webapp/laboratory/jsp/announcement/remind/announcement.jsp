@@ -130,10 +130,20 @@
                                                                     <span style="float:right">
                                                                         <fmt:formatDate pattern="yyyy-MM-dd" value="${item.publishTime}"></fmt:formatDate>
                                                                     </span>
+                                                                    <c:choose>
+                                                                                <c:when test="${currentUserInfo.role.name=='administrators'}" >
+                                                                                        <span style="float:right"> <a class="button" href="/laboratory/jsp/announcement/remind/laboratory/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
+                                                                                     <span style="float:right"><a class="button" href="/laboratory/jsp/announcement/remind/laboratory/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
+                                                                                </c:when>
+                                                                    <c:otherwise>
                                                                             <c:if test="${currentUserInfo.id==item.publisherId}">
-                                                                                <span style="float:right"> <a class="button" href="/laboratory/jsp/announcement/remind/laboratory/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
-                                                                                <span style="float:right"><a class="button" href="/laboratory/jsp/announcement/remind/laboratory/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
-                                                                            </c:if>
+                                                                            <span style="float:right"> <a class="button" href="/laboratory/jsp/announcement/remind/laboratory/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
+                                                                            <span style="float:right"><a class="button" href="/laboratory/jsp/announcement/remind/laboratory/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
+                                                                         </c:if>
+                                                                    </c:otherwise>
+                                                                    </c:choose>
+
+
 
                                                             </div>
                                                         </c:forEach>

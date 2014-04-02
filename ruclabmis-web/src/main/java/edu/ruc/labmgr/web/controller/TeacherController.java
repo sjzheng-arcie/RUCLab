@@ -28,6 +28,8 @@ public class TeacherController {
     PositionService servicePosition;
     @Autowired
     OrganizationService serviceOrganization;
+	@Autowired
+	UserService userService;
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList(@RequestParam(value = "searchSN", required = false, defaultValue = "") String sn,
@@ -100,11 +102,16 @@ public class TeacherController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) throws Exception {
+		int currentId = userService.getCurrentUserId();
         if (items.contains(0))
-            throw new Exception("无法删除管理员账户");
+            throw new RuntimeException("无法删除管理员账户");
+
 
         for (int id : items) {
-            serviceTeacher.delete(id);
+			if(id!=currentId)
+            	serviceTeacher.delete(id);
+			else
+				throw new RuntimeException("无法删除当前登陆账户");
         }
         return "redirect:/common/user/list";
     }

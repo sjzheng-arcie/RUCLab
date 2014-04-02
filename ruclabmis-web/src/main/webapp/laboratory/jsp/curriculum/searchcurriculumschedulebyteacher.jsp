@@ -29,6 +29,9 @@
 <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="/js/util.js"></script>
+<script type="text/javascript" src="/js/page.js"></script>
+<script type="text/javascript " src="/js/valid.js"></script>
 <script>
     $(document).ready(function () {
         $("#termYearId").chosen({
@@ -39,6 +42,9 @@
         });
     });
     function search(){
+        if (!validator(document.mainForm)) {
+            return;
+        }
         document.mainForm.action="allcurriculumschedule";
         document.mainForm.submit();
     }
@@ -68,21 +74,29 @@
                                     <td  bgcolor="#E3EFFF" >学年：
                                         <select id="termYearId" name="termYearId"
                                                 style="width: 200px;height: 22px"
-                                                data-placeholder="选择学年学期...">
+                                                data-placeholder="选择学年学期..."
+                                                valid="required"
+                                                errmsg="请选择学年" >
                                             <option></option>
                                             <c:forEach items="${termYearList}" var="termYear">
 
                                                 <option <c:if test="${termYearInfo.id==termYear.id}"> selected </c:if> value="${termYear.id}">${termYear.name}(${termYear.year}年)</option>
                                             </c:forEach>
+                                            <span style="color:red;">*</span>&nbsp;&nbsp;
+                                            <span style="color:red;" id="errMsg_curriculum"></span>
                                         </select></td>
                                     <td width="20px" bgcolor="#E3EFFF" >老师：
                                         <select id="teacherId" name="teacherId"
                                                 style="width: 200px;height: 22px"
-                                                data-placeholder="老师...">
+                                                data-placeholder="老师..."
+                                                valid="required"
+                                                errmsg="请选择老师!">
                                             <option></option>
                                             <c:forEach items="${teacherList}" var="teacher">
                                                 <option <c:if test="${teacherInfo.id==teacher.id}">selected </c:if>  value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
                                             </c:forEach>
+                                            <span style="color:red;">*</span>&nbsp;&nbsp;
+                                            <span style="color:red;" id="errMsg_curriculum"></span>
                                         </select></td>
                                     <td  bgcolor="#E3EFFF" >
                                         <input type="button"  value=" 查询"  onclick="search();" /></td>

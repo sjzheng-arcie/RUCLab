@@ -30,10 +30,10 @@
 <body>
 <ul>
     <li>
-        <h2> 名称或编号重复！</h2>
+        <h2> 账户名、名称或编号重复,请检查或者账户名，编号是否重复！</h2>
         <h1>
 
-            <p><a href="#" onclick="window.history.go(-1);">返回</a></p>
+            <p><a href="#" onclick="window.history.go(-2);">返回</a></p>
 
         </h1>
     </li>

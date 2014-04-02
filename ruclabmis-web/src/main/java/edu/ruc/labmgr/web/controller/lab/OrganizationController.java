@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.ArrayList;
 import java.util.List;
 
 @Controller
@@ -24,12 +25,34 @@ public class OrganizationController {
     public ModelAndView pageList() {
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/org/list");
         List<Organization> organizations = organizationService.selectListPage();
-        mav.addObject("organizations", organizations);
+		List<Organization> sortList = new ArrayList<>();
+		for(Organization org : organizations){
+			if (org.getId()==org.getParentId()){
+				sortList.add(org);
+				getTreeChildByParentId(org.getId(),organizations,sortList);
+				}
+
+		}
+
+
+
+        mav.addObject("organizations", sortList);
         return mav;
 
     }
+	private void getTreeChildByParentId(int parentId ,List<Organization> oldList,List<Organization> newList){
+		for(Organization inorg : oldList){
+			if(inorg.getParentId()==parentId && parentId!=inorg.getId()){
+				newList.add(inorg);
+				getTreeChildByParentId(inorg.getId(),oldList,newList);
+			}
 
-    @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
+
+		}
+
+	}
+
+	@RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
         List<Organization> organizations = organizationService.selectAllOrganizations();
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/org/add");
@@ -61,7 +84,22 @@ public class OrganizationController {
 
     @RequestMapping(value = "/delete", method = RequestMethod.GET)
     public String delete(@RequestParam("items") List<Integer> items) {
-        organizationService.delete(items);
+		if(items!=null && items.size()>0){
+			for(Integer id : items){
+				organizationService.delete(getTreeChildIds(id));
+				organizationService.delete(id);
+			}
+		}
         return "redirect:/laboratory/jsp/bas/org/list";
     }
+	private List<Integer> getTreeChildIds(int parentID){
+		List<Integer> childId = new ArrayList<>();
+		List<Organization> organizations = organizationService.selectListPage();
+		for (Organization org:organizations){
+			if(org.getParentId()==parentID && org.getId()!=org.getParentId())
+				childId.add(org.getId());
+		}
+		return childId;
+
+	}
 }

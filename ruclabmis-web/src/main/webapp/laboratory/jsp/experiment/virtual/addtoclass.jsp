@@ -52,6 +52,11 @@
                     className = $("#className").val(),
                     classYear = $("#classYear").val(),
                     teacherId = $("#curriculum option:selected").attr('teacherId');
+            if(classId==-1){
+                alert("请选择课程!");
+                return;
+
+            }
             var sids = new Array();
             $.each($("input[name='stCheckbox']:checked"), function (idx, data) {
                 sids.push($(data).val());
@@ -176,7 +181,9 @@
                                             <td nowrap>
                                                 <select id="curriculumId" name="curriculumId"
                                                         style="width: 152px;height: 22px"
-                                                        data-placeholder="请选择课程...">
+                                                        data-placeholder="请选择课程..."
+                                                        valid="required"
+                                                        errmsg="所属课程不能为空!" >
                                                     <option value="-1"></option>
                                                 </select>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;

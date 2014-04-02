@@ -82,6 +82,7 @@
                     <tr valign="top">
                         <td>
                             <table width="100%" border="0" cellpadding="0" cellspacing="0" bgcolor="#a8c7ce">
+                                <INPUT type="hidden" name="laboratoryId" value="${laboratoryInfo.id}"/>
                                 <tr bgcolor="#FFFFFF">
                                     <td bgcolor="#FFFFFF">
                                         <table border="0" cellpadding="2" cellspacing="1"
