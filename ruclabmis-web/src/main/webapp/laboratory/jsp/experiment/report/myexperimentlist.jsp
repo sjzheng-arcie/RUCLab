@@ -158,11 +158,11 @@
                                                                 <shiro:hasAnyRoles name="administrator,teacher">
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="#" onclick="toMaintain();"><img
+                                                                    <a href="#" onclick="toMaintain();" class="txt_bt" ><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">维护</span></a>&nbsp;
-                                                                    <a href="#" onclick="toPublic();"><img
+                                                                    <a href="#" onclick="toPublic();" class="txt_bt" ><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;
@@ -238,9 +238,10 @@
                                                         </shiro:hasRole>
 
                                          <shiro:hasAnyRoles name="adminstrators,teacher">
-                                                        <td><a href="#" onclick="viewReport('${item.id}','${item.needReport}');">
+                                                        <td>
                                                             <c:choose>
-                                                                <c:when test="${item.needReport}">查看</c:when>
+                                                                <c:when test="${item.needReport}">
+                                                                <a href="#" onclick="viewReport('${item.id}','${item.needReport}');"  >查看</c:when>
                                                                 <c:otherwise>--</c:otherwise>
                                                             </c:choose>
                                                         </a></td>
