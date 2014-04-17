@@ -81,10 +81,16 @@
             });
 
         }
+        function addStudents(){
+            var vcId = $("#vcId").val();
+            window.open("/experiment/virtual/editClassAddStudent?vcId="+vcId+"&pageNum=1", "学生信息",
+                    "height=400, width=800, toolbar=no, status=no");
+        }
 
         $(document).ready(function () {
             initCurriculumSelect();
         });
+
     </script>
 
 </head>
@@ -92,7 +98,7 @@
 <body onload="getWidth()" onresize="getWidth()">
 
 <form name="listForm" method="post">
-
+<input type="hidden" id="vcId" name="vcId" value="${vClass.id}">
 <table width="100%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td width="17" valign="top" background="/laboratory/../images/mail_leftbg.gif">
@@ -217,7 +223,7 @@
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td align="center">
-                                    <input type="button" name="Submit" value="添加课程和学生" class="button"
+                                    <input type="button" name="Submit" value="保存班级" class="button"
                                            onclick="addNewClass();"/>
                                     <input type="button" name="return" value="返回" class="button"
                                            onclick="window.history.go(-1);">
@@ -244,7 +250,7 @@
 </table>
 
 
-<table width="98%" border="0" cellpadding="0" cellspacing="0">
+<%--<table width="98%" border="0" cellpadding="0" cellspacing="0">
     <tr>
         <td width="17" valign="top" background="/laboratory/../images/mail_leftbg.gif"><img
                 src="/laboratory/../images/left-top-right.gif" width="17" height="29"/></td>
@@ -278,10 +284,13 @@
                                                                                  id="major" value=""
                                                                                  style="width:100px;"/></span>
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand"
                                                                         onclick="toFind('listForm')"><img
                                 src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
-
+                        <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" class="txt_bt" style="cursor:hand"
+                                                                        onclick="addStudents()"><img
+                                src="/laboratory/../images/add_min.gif" width="15" height="15" border="0"/>
+                            添加学生</a></span>
 
                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                             <tr>
@@ -384,7 +393,7 @@
         <td valign="bottom" background="/laboratory/../images/mail_rightbg.gif"><img
                 src="/laboratory/../images/buttom_right2.gif" width="16" height="17"/></td>
     </tr>
-</table>
+</table>--%>
 </form>
 </body>
 </html>
