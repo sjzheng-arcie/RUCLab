@@ -76,6 +76,36 @@ public class ExperimentInfoController {
         return mv;
     }
 
+    @RequestMapping(value = "/listbycourse", method = RequestMethod.GET)
+    public ModelAndView courseListByCourse(int page, String view, Integer curriculumId) {
+        if(page <= 0 )
+            page = 1;
+
+        ModelAndView mv = null;
+        if (view == null) {
+            mv = new ModelAndView("laboratory/jsp/experiment/courselist");
+        }else if (view.equals("experiment")) {
+            mv = new ModelAndView("laboratory/jsp/experiment/experiment/listbycourse");
+        }  else if (view.equals("report")) {
+            mv = new ModelAndView("laboratory/jsp/experiment/report/listbycourse");
+        } else if(view.equals("achievement")){
+            mv = new ModelAndView("laboratory/jsp/experiment/achievement/listbycourse");
+        }
+        Subject currentUser = SecurityUtils.getSubject();
+        int id = userService.getCurrentUserId();
+        PageInfo<CurriculumClass> pageInfo = null;
+        if (currentUser.hasRole("student"))
+            pageInfo = classService.getPageCourseClassbyPageNum(page, id, curriculumId, Types.Role.STUDENT);
+        else if (currentUser.hasRole("administrators"))
+            pageInfo = classService.getPageCourseClassbyPageNum(page, id, curriculumId, Types.Role.ADMIN);
+        else
+            pageInfo = classService.getPageCourseClassbyPageNum(page, id, curriculumId, Types.Role.TEACHER);
+        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("userId",id);
+        mv.addObject("curriculumId",curriculumId);
+        return mv;
+    }
+
     @RequestMapping(value = "/myexperimentlist", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView experimentList(@RequestParam int page, Integer cid, String view,@RequestParam(required = false) String curriculumClassId) {
         ModelAndView mv = null;
@@ -91,11 +121,19 @@ public class ExperimentInfoController {
 			mv.addObject("curriculumClassId",curriculumClassId);
         return mv;
     }
+
     @RequestMapping(value = "/studentClassExpList", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView studentExpList(Integer cid,Integer stuId){
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/achievement/myexperimentlist");
         List<Map<String,?>> pageInfo = experimentService.getStudentClassExperimentInfo(cid, stuId);
         mv.addObject("pageInfo",pageInfo);
+        return mv;
+    }
+
+    @RequestMapping(value = "/courseindex", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView courseIndex(Integer curriculumId){
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/courseindex");
+        mv.addObject("curriculumId",curriculumId);
         return mv;
     }
 

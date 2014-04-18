@@ -3,6 +3,8 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
@@ -10,15 +12,28 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script type="text/javascript">
 
-        function viewExperiment(vcid,curriculumClassId){
-            window.location.href = "myexperimentlist?cid="+vcid+"&page=1&view=report"+"&curriculumClassId="+curriculumClassId;
+        function score(vcid){
+            window.location.href = "/experiment/virtual/classStudentScore?vcId="+vcid+"&page=1&view=achievement";
+        }
+        function queryscore(cid,stuId){
+            window.location.href = "/experiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
+        }
+        function editorClass(vcid,curricumname,instructName) {
+            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
         }
     </script>
 
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
-
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td class="op_nor" onclick="javascript:location.href='/experiment/virtual/listbycource?page=1&curriculumId='+${curriculumId}">虚拟班级管理</td>
+        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=experiment&curriculumId='+${curriculumId}">实验信息管理</td>
+        <td class="op_act" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=report&curriculumId='+${curriculumId}">实验报告管理</td>
+        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=achievement&curriculumId='+${curriculumId}">学期成绩评定</td>
+    </tr>
+</table>
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
@@ -29,7 +44,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验信息管理 > 实验报告</div>
+                            <div class="titlebt">实验成绩管理> 成绩评定</div>
                         </td>
                     </tr>
                 </table>
@@ -100,10 +115,15 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
+                                                    <shiro:hasRole name="student">
+                                                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                            <div align="center"><span class="STYLE10">查看实验</span></div>
+                                                        </td>
+                                                    </shiro:hasRole>
 
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">查看实验</span></div>
+                                                        <div align="center"><span class="STYLE10">成绩</span></div>
                                                     </td>
 
 
@@ -115,10 +135,30 @@
                                                         <td>${item.curriculumName}</td>
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
+
+                                                        <shiro:hasRole name="student">
                                                         <td>
-                                                            <input type="button" onClick="viewExperiment('${item.curriculumId}','${item.id}');"
-                                                                   class="button" value="查看实验"/>
+                                                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
+                                                                   class="button"
+                                                                   value="查看所属实验"/>
                                                         </td>
+                                                        </shiro:hasRole>
+
+
+                                                            <td>
+                                                                <shiro:hasRole name="teacher">
+                                                                <input type="button" onClick="score(${item.id});"
+                                                                       class="button" value="评定成绩"/>
+                                                                </shiro:hasRole>
+                                                                <shiro:hasRole name="student">
+                                                                <input type="button" onClick="queryscore('${item.id}','${userId}');"
+                                                                       class="button" value="查询成绩"/>
+                                                                </shiro:hasRole>
+                                                            </td>
+
+
+
+
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

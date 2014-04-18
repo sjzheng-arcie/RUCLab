@@ -3,22 +3,34 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <script type="text/javascript">
+    <script>
+        function editorClass(vcid,curricumname,instructName) {
+            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+        }
+        function editorInsturctor(vcid) {
 
-        function viewExperiment(vcid,curriculumClassId){
-            window.location.href = "myexperimentlist?cid="+vcid+"&page=1&view=report"+"&curriculumClassId="+curriculumClassId;
+            window.location.href = "/laboratory/jsp/res/instruction/list?searchCurriculum="+vcid;
         }
     </script>
 
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
-
+<table border="0" cellspacing="0" cellpadding="0">
+    <tr>
+        <td class="op_nor" onclick="javascript:location.href='/experiment/virtual/listbycource?page=1&curriculumId='+${curriculumId}">虚拟班级管理</td>
+        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=experiment&curriculumId='+${curriculumId}">实验信息管理</td>
+        <td class="op_act" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=report&curriculumId='+${curriculumId}">实验报告管理</td>
+        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=achievement&curriculumId='+${curriculumId}">学期成绩评定</td>
+    </tr>
+</table>
 <form name="listForm" method="post">
     <table width="98%" border="0" cellpadding="0" cellspacing="0">
         <tr>
@@ -29,7 +41,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验信息管理 > 实验报告</div>
+                            <div class="titlebt">实验信息管理 > 实验课程</div>
                         </td>
                     </tr>
                 </table>
@@ -88,21 +100,21 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">班级名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学年</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="70" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
 
 
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="200" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">查看实验</span></div>
                                                     </td>
 
@@ -111,13 +123,17 @@
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
 
-                                                        <td>${item.className}</td>
-                                                        <td>${item.curriculumName}</td>
-                                                        <td>${item.classYear}</td>
-                                                        <td>${item.teacherName}</td>
+                                                            <td>${item.className}</td>
+                                                            <td>${item.curriculumName}</td>
+                                                             <td>${item.classYear}</td>
+                                                             <td>${item.teacherName}</td>
                                                         <td>
-                                                            <input type="button" onClick="viewExperiment('${item.curriculumId}','${item.id}');"
-                                                                   class="button" value="查看实验"/>
+                                                            <input type="button" onClick="editorInsturctor('${item.curriculumId}')"
+                                                                   class="button"
+                                                                   value="查看实验指导书"/>
+                                                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
+                                                                   class="button"
+                                                                   value="查看所属实验"/>
                                                         </td>
                                                     </tr>
                                                 </c:forEach>
