@@ -1,15 +1,17 @@
 package edu.ruc.labmgr.service;
 
 import edu.ruc.labmgr.domain.*;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.List;
 import edu.ruc.labmgr.mapper.ClassStudentMapper;
 import edu.ruc.labmgr.mapper.CurriculumScheduleMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
+import org.apache.commons.lang3.time.DateUtils;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 
 @SuppressWarnings("ALL")
 @Service
@@ -117,9 +119,98 @@ public class CurriculumScheduleService {
         return schedules;
     }
 
+    public  List<CurriculumSchedule>  selectSchedulesByTime(Date startTime, Date endTime){
+
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(new Date());
+
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(startTime);
+        CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+        CurriculumScheduleCriteria.Criteria criteriaLab = curriculumScheduleCriteria.createCriteria();
+        criteriaLab.andTermYearidEqualTo(cal.get(java.util.Calendar.YEAR)).
+                andWeeknumEqualTo((byte) calendar.get(java.util.Calendar.WEEK_OF_YEAR)).
+                andWeekdaysEqualTo((byte) calendar.get(java.util.Calendar.DAY_OF_WEEK));
+        List<Byte> sections = getSectionByTime(startTime, endTime);
+        if(sections.size() > 0)
+            criteriaLab.andAmPmIn(sections);
+
+        curriculumScheduleCriteria.or().andMeetSTimeBetween(startTime, endTime);
+        curriculumScheduleCriteria.or().andMeetETimeBetween(startTime, endTime);
+        curriculumScheduleCriteria.or().andMeetETimeGreaterThan(endTime).andMeetSTimeLessThan(startTime);
+
+
+        List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria);
+        return schedules;
+    }
+
+    private List<Byte> getSectionByTime(Date startTime, Date endTime){
+        List<Byte> sections = new ArrayList<Byte>();
+        Calendar calStart = Calendar.getInstance();
+        calStart.setTime(startTime);
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(endTime);
+
+        int startHour = calStart.get(Calendar.HOUR);
+        int endHour =  calEnd.get(Calendar.HOUR);
+        if( 7 <= startHour &&  startHour  < 9){
+            if(7 <= endHour &&  endHour  < 9)
+                sections.add((byte)1);
+            if(9 <= endHour &&  endHour  < 11)
+                sections.add((byte)2);
+            if(13 <= endHour &&  endHour  < 15)
+                sections.add((byte)3);
+            if(15 <= endHour &&  endHour  < 17)
+                sections.add((byte)4);
+            if(19 <= endHour &&  endHour  < 21)
+                sections.add((byte)5);
+        }
+        else if( 9 <= startHour &&  startHour  < 11){
+            if(9 <= endHour &&  endHour  < 11)
+                sections.add((byte)2);
+            if(13 <= endHour &&  endHour  < 15)
+                sections.add((byte)3);
+            if(15 <= endHour &&  endHour  < 17)
+                sections.add((byte)4);
+            if(19 <= endHour &&  endHour  < 21)
+                sections.add((byte)5);
+        }
+        else if( 13 <= startHour &&  startHour  < 15){
+            if(13 <= endHour &&  endHour  < 15)
+                sections.add((byte)3);
+            if(15 <= endHour &&  endHour  < 17)
+                sections.add((byte)4);
+            if(19 <= endHour &&  endHour  < 21)
+                sections.add((byte)5);
+        }
+        else if( 15 <= startHour &&  startHour  < 17){
+            if(15 <= endHour &&  endHour  < 17)
+                sections.add((byte)4);
+            if(19 <= endHour &&  endHour  < 21)
+                sections.add((byte)5);
+        }
+        else if( 19 <= startHour &&  startHour  < 21){
+            if(19 <= endHour &&  endHour  < 21)
+                sections.add((byte)5);
+        }
+        return sections;
+    }
+
     //按时间查询已占用房间编号
     public  List<Integer> selectOccupiedRoomIds(int year, Byte week, Byte wDay, Byte section){
         List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay, section);
+
+        List<Integer> retIds = new ArrayList<>();
+        for(int i=0;i<schedules.size();i++){
+            retIds.add(i,schedules.get(i).getRoomId());
+        }
+        return retIds;
+    }
+
+
+    //按时间查询已占用房间编号
+    public  List<Integer> selectOccupiedRoomIds(Date startTime, Date endTime){
+        List<CurriculumSchedule> schedules =selectSchedulesByTime(startTime, endTime);
 
         List<Integer> retIds = new ArrayList<>();
         for(int i=0;i<schedules.size();i++){

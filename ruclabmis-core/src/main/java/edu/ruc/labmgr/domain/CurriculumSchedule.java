@@ -1,5 +1,7 @@
 package edu.ruc.labmgr.domain;
 
+import java.util.Date;
+
 public class CurriculumSchedule {
     private Integer id;
 
@@ -18,6 +20,10 @@ public class CurriculumSchedule {
     private Byte weeknum;
 
     private Byte weekdays;
+
+    private Date meetSTime;
+
+    private Date meetETime;
 
 	public Room getRoom() {
 		return room;
@@ -136,5 +142,21 @@ public class CurriculumSchedule {
 
     public void setWeekdays(Byte weekdays) {
         this.weekdays = weekdays;
+    }
+
+    public Date getMeetSTime() {
+        return meetSTime;
+    }
+
+    public void setMeetSTime(Date meetSTime) {
+        this.meetSTime = meetSTime;
+    }
+
+    public Date getMeetETime() {
+        return meetETime;
+    }
+
+    public void setMeetETime(Date meetETime) {
+        this.meetETime = meetETime;
     }
 }

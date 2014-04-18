@@ -170,7 +170,7 @@
                                     </td>
                                 </tr>
 
-                                <%@ include file="../../../include/pagetable.jsp" %>
+                                <%@ include file="../../../../include/pagetable.jsp" %>
 
                             </table>
                         </td>

@@ -9,7 +9,7 @@
 <script src="../../../../js/valid.js" type=text/javascript></script>
 <script>
     function selectTable(roomIndex) {
-        var getStr =  "/laboratory/jsp/appointment/toAdd?";
+        var getStr =  "/laboratory/jsp/appointment/laboratory/toAdd?";
         getStr +=  "year=" +${year};
         getStr +=  "&week=" + ${week};
         getStr +=  "&wDay=" +${wDay};

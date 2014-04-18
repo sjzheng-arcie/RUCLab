@@ -3,6 +3,7 @@ package edu.ruc.labmgr.web.controller.lab;
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
+import edu.ruc.labmgr.utils.SysUtil;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import edu.ruc.labmgr.web.controller.Result;
@@ -10,9 +11,13 @@ import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -24,9 +29,9 @@ import java.util.List;
  * Des:
  */
 @Controller
-@RequestMapping(value = "/laboratory/jsp/appointment")
+@RequestMapping(value = "/laboratory/jsp/appointment/meetingroom")
 
-public class AppointmentController {
+public class AppointmentMController {
     @Autowired
     CurriculumScheduleService curriculumScheduleService;
     @Autowired
@@ -55,7 +60,7 @@ public class AppointmentController {
 
         List<TermYear> years = yearService.getAllTermYearList();
 
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/appointmentbaseinfo");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/appointmentbaseinfo");
         mav.addObject("currYear", currYear);
         mav.addObject("currWeek", currWeek);
         mav.addObject("currDay", currDay);
@@ -64,84 +69,58 @@ public class AppointmentController {
     }
 
     @RequestMapping(value = "/roomstatus", method = RequestMethod.GET)
-    ModelAndView roomStatus(@RequestParam(required = false,defaultValue = "") String year,
-                            @RequestParam(required = false,defaultValue = "") String week,
-                            @RequestParam(required = false,defaultValue = "") String wDay,
-                            @RequestParam(required = false,defaultValue = "") String section) {
-        Calendar calendar = Calendar.getInstance();
-        calendar.setTime(new Date());
+    ModelAndView roomStatus(@RequestParam(required = false,defaultValue = "") Date meetDate,
+                            @RequestParam(required = false,defaultValue = "") String stime,
+                            @RequestParam(required = false,defaultValue = "") String etime) {
+        if(meetDate == null)
+            meetDate = new Date();
+        if(StringUtils.isNullOrEmpty(stime))
+            stime = "07:00";
+        if(StringUtils.isNullOrEmpty(etime))
+            etime = "07:30";
 
-        Integer inYear;
-        if(StringUtils.isNullOrEmpty(year)){
-            inYear = calendar.get(Calendar.YEAR);
-        }
-        else{
-            inYear = Integer.parseInt(year);
-        }
+        Calendar calStart = Calendar.getInstance();
+        calStart.setTime(meetDate);
+        int hour, minute;
+        hour = Integer.parseInt(stime.split(":")[0]);
+        minute = Integer.parseInt(stime.split(":")[1]);
+        calStart.set(Calendar.HOUR, hour);
+        calStart.set(Calendar.MINUTE, minute);
 
-        Byte inWeek;
-        if(StringUtils.isNullOrEmpty(week)){
-            byte bWeek = (byte)calendar.get(Calendar.WEEK_OF_YEAR);
-            inWeek = bWeek;
-        }
-        else{
-            inWeek = Byte.parseByte(week);
-        }
+        Calendar calEnd = Calendar.getInstance();
+        calEnd.setTime(meetDate);
+        hour =  Integer.parseInt(etime.split(":")[0]);
+        minute = Integer.parseInt(etime.split(":")[1]);
+        calEnd.set(Calendar.HOUR, hour);
+        calEnd.set(Calendar.MINUTE, minute);
 
-        Byte inDay;
-        if(StringUtils.isNullOrEmpty(wDay)){
-            byte bDay = (byte)calendar.get(Calendar.DAY_OF_WEEK);
-            inDay = bDay;
-        }
-        else{
-            inDay = Byte.parseByte(wDay);
-        }
 
-        Byte inSection;
-        if(StringUtils.isNullOrEmpty(section)){
-            inSection = (byte)1;
-        }
-        else{
-            inSection = Byte.parseByte(section);
-        }
+        List<CurriculumSchedule> schedules = curriculumScheduleService.selectSchedulesByTime(calStart.getTime(), calEnd.getTime());
 
-        List<CurriculumSchedule> schedules = curriculumScheduleService.selectSchedulesByTime(inYear, inWeek, inDay, inSection);
-
-        List<Integer> occupiedRoomIds = curriculumScheduleService.selectOccupiedRoomIds(inYear, inWeek, inDay, inSection);
+        List<Integer> occupiedRoomIds = curriculumScheduleService.selectOccupiedRoomIds(calStart.getTime(), calEnd.getTime());
 
         List<Room> rooms = roomService.getAllRoomList();
 
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/roomstatus");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/roomstatus");
         mav.addObject("rooms", rooms);
         mav.addObject("occupiedRoomIds", occupiedRoomIds);
         mav.addObject("schedules", schedules);
-        mav.addObject("year", inYear);
-        mav.addObject("week", inWeek);
-        mav.addObject("wDay", inDay);
-        mav.addObject("section", inSection);
+        mav.addObject("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calStart.getTime()));
+        mav.addObject("endTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calEnd.getTime()));
         return mav;
     }
 
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
-    ModelAndView toAdd(@RequestParam(required = true) Integer year,
-                       @RequestParam(required = true) Integer week,
-                       @RequestParam(required = true) Integer wDay,
-                       @RequestParam(required = true) Integer section,
+    ModelAndView toAdd(@RequestParam(required = false,defaultValue = "") Date startTime,
+                       @RequestParam(required = false,defaultValue = "") Date endTime,
                        @RequestParam(required = true) Integer roomId) {
-        Calendar calendar = Calendar.getInstance();
-        TermYear termYear = yearService.getTermYearById(year);
-        calendar.setWeekDate(termYear.getYear(), week, wDay);
-        Date scheduleDate = calendar.getTime();
 
         Room room = roomService.getRoomById(roomId);
 
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/add");
-        mav.addObject("scheduleDate", scheduleDate);
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/add");
         mav.addObject("room", room);
-        mav.addObject("year", year);
-        mav.addObject("week", week);
-        mav.addObject("wDay", wDay);
-        mav.addObject("section", section);
+        mav.addObject("startTime", startTime );
+        mav.addObject("endTime",  endTime );
 
         return mav;
     }
@@ -150,20 +129,23 @@ public class AppointmentController {
     public
     @ResponseBody
     Result add(Arrangement arrangement,
+               @RequestParam(required = true) String startTime,
+               @RequestParam(required = true) String endTime,
                @RequestParam(required = true) Integer roomId) {
         Result result = null;
         try {
             arrangement.setUserId(userService.getCurrentUserId());
             arrangement.setState((byte) Types.ApplyState.WAITING.getValue());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            arrangement.setMeetSTime(sdf.parse(startTime));
+            arrangement.setMeetETime(sdf.parse(endTime));
             arrangementService.insert(arrangement);
 
             CurriculumSchedule schedule = new CurriculumSchedule();
             schedule.setTeacherid(userService.getCurrentUserId());
             schedule.setRoomId(roomId);
-            schedule.setAmPm(arrangement.getSection().byteValue());
-            schedule.setTermYearid(arrangement.getTermYear());
-            schedule.setWeeknum(arrangement.getWeek().byteValue());
-            schedule.setWeekdays(arrangement.getWday().byteValue());
+            schedule.setMeetSTime(sdf.parse(startTime));
+            schedule.setMeetETime(sdf.parse(endTime));
             curriculumScheduleService.add(schedule);
 
             ArrangementSchedule arrangementSchedule = new ArrangementSchedule();
@@ -173,7 +155,7 @@ public class AppointmentController {
 
             result = new Result(true, "预约成功!");
         } catch (Exception e) {
-            result = new Result(false, "预约失败!");
+            result = new Result(false, "预约失败!\r\n" + e.toString());
         }
         return result;
     }
@@ -186,37 +168,37 @@ public class AppointmentController {
         if (subject.hasRole(Types.Role.ADMIN.getName()) || subject.hasRole(Types.Role.LAB_ADMIN.getName()) ) {
             if(formType.equalsIgnoreCase("history")){
                 //管理员历史
-                pageInfo = arrangementService.pageAllHistoryArrangements(page);
+                pageInfo = arrangementService.pageAllHistoryArrangMeetings(page);
             }
             else{
                 //管理员查看所有
-                pageInfo = arrangementService.pageAllCurrArrangements(page);
+                pageInfo = arrangementService.pageAllCurrArrangMeetings(page);
             }
         }
         else{
             if(formType.equalsIgnoreCase("history")){
                 //用户历史
-                pageInfo = arrangementService.pageHistoryArrangementsByUser(page, userService.getCurrentUserId());
+                pageInfo = arrangementService.pageHistoryArrangMeetingsByUser(page, userService.getCurrentUserId());
             }
             else{
                 //用户申请中
-                pageInfo = arrangementService.pageCurrArrangementsByUser(page, userService.getCurrentUserId());
+                pageInfo = arrangementService.pageCurrArrangMeetingsByUser(page, userService.getCurrentUserId());
             }
         }
 
         for(Arrangement arrangement : pageInfo.getData()){
-            Calendar calendar = Calendar.getInstance();
-            TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
-            calendar.setWeekDate(termYear.getYear(), arrangement.getWeek(), arrangement.getWday());
-            Date scheduleDate = calendar.getTime();
-
-            arrangement.setScheduleDate(scheduleDate);
+//            Calendar calendar = Calendar.getInstance();
+//            TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
+//            calendar.setWeekDate(termYear.getYear(), arrangement.getWeek(), arrangement.getWday());
+//            Date scheduleDate = calendar.getTime();
+//
+//            arrangement.setScheduleDate(scheduleDate);
 
             Classif stateClassif = classifService.getClassifItem(arrangement.getState());
             arrangement.setStateClassif(stateClassif);
 
         }
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/appointment/list");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/list");
         mav.addObject("pageInfo", pageInfo);
         mav.addObject("formType", formType);
         return mav;
@@ -226,15 +208,7 @@ public class AppointmentController {
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
 
-        Calendar calendar = Calendar.getInstance();
-        TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
-        calendar.setWeekDate(termYear.getYear(), arrangement.getWeek(), arrangement.getWday());
-        Date scheduleDate = calendar.getTime();
-
-        arrangement.setScheduleDate(scheduleDate);
-
-
-        ModelAndView mav = new ModelAndView("/laboratory/jsp/appointment/detail");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/detail");
         mav.addObject("arrangement", arrangement);
         return mav;
     }
@@ -247,7 +221,7 @@ public class AppointmentController {
             curriculumScheduleService.deleteById(scheduleId);
             arrangementService.delete(id);
         }
-        return "redirect:/laboratory/jsp/appointment/list";
+        return "redirect:/laboratory/jsp/appointment/meetingroom/list";
     }
 
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
@@ -258,7 +232,7 @@ public class AppointmentController {
             arrangement.setApprovalId(userService.getCurrentUserId());
             arrangementService.update(arrangement);
         }
-        return "redirect:/laboratory/jsp/appointment/list";
+        return "redirect:/laboratory/jsp/appointment/meetingroom/list";
     }
 
     @RequestMapping(value = "/reject", method = RequestMethod.POST)
@@ -273,40 +247,40 @@ public class AppointmentController {
             arrangementScheduleService.delete(id, scheduleId);
             curriculumScheduleService.deleteById(scheduleId);
         }
-        return "redirect:/laboratory/jsp/appointment/list";
+        return "redirect:/laboratory/jsp/appointment/meetingroom/list";
     }
 
-    @RequestMapping(value = "/laboratory/appointmentbaseinfo")
-    public ModelAndView appointmentBaseInfo() {
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentbaseinfo");
-        return mav;
-    }
+//    @RequestMapping(value = "/appointmentbaseinfo")
+//    public ModelAndView appointmentBaseInfo() {
+//        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/appointmentbaseinfo");
+//        return mav;
+//    }
 
-    @RequestMapping(value ="/laboratory/laboratoryapply",method = RequestMethod.GET)
-    public ModelAndView laboratoryapply(){
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/laboratoryapply");
+    @RequestMapping(value ="/meetingroomapply",method = RequestMethod.GET)
+    public ModelAndView meetingroomapply(){
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/meetingroomapply");
         return mav;
     }
-    @RequestMapping(value ="/laboratory/appointmentinfosubmit",method = RequestMethod.GET)
+    @RequestMapping(value ="/appointmentinfosubmit",method = RequestMethod.GET)
     public ModelAndView appointmentinfosubmit(){
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentinfosubmit");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/appointmentinfosubmit");
         return mav;
     }
 
-    @RequestMapping(value ="/laboratory/mydatelist",method = RequestMethod.GET)
+    @RequestMapping(value ="/mydatelist",method = RequestMethod.GET)
     public ModelAndView mydatelist(){
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/mydatelist");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/mydatelist");
         return mav;
     }
 
-    @RequestMapping(value ="/laboratory/appointmentdate",method = RequestMethod.GET)
+    @RequestMapping(value ="/appointmentdate",method = RequestMethod.GET)
     public ModelAndView appointdate(){
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdate");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/appointmentdate");
         return mav;
     }
-    @RequestMapping(value ="/laboratory/appointmentdatecontent",method = RequestMethod.GET)
+    @RequestMapping(value ="/appointmentdatecontent",method = RequestMethod.GET)
     public ModelAndView appointmentdatecontent(){
-        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdatecontent");
+        ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/meetingroom/appointmentdatecontent");
         return mav;
     }
 

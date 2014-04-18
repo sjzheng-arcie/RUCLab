@@ -16,7 +16,7 @@
     <script src="${pageContext.request.contextPath}/js/valid.js" type=text/javascript></script>
     <script>
         function save(){
-            document.mainForm.action="/laboratory/jsp/announcement/remind/equipment/addAnnouncement";
+            document.mainForm.action="/appointment/laboratory/jsp/announcement/remind/equipment/addAnnouncement";
             document.mainForm.submit();
         }
     </script>

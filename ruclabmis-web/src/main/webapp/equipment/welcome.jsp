@@ -46,14 +46,14 @@
 <body style="width:100%;">
 <div class="indexMainCon">
     <div class="indexNews">
-        <h3><a href="/laboratory/jsp/announcement/remind/equipment/announcement" target="">更多>></a><span>系统公告</span></h3>
+        <h3><a href="/appointment/laboratory/jsp/announcement/remind/equipment/announcement" target="">更多>></a><span>系统公告</span></h3>
 
         <div class="indexNewsCon">
             <ul>
                 <c:forEach items="${announcementList}" var="item">
                     <li><span><fmt:formatDate value="${item.publishTime}"></fmt:formatDate></span>
                         <a style="max-width: 200px"
-                           href="/laboratory/jsp/announcement/remind/equipment/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
+                           href="/appointment/laboratory/jsp/announcement/remind/equipment/announcementDetail?announcementDetailId=${item.id}">${item.title}</a>
                     </li>
 
                 </c:forEach>
@@ -63,7 +63,7 @@
         </div>
     </div>
     <div class="indexNotice">
-        <h3><a href="/laboratory/jsp/announcement/remind/equipment/message" target="">更多>></a><span>个人通知</span></h3>
+        <h3><a href="/appointment/laboratory/jsp/announcement/remind/equipment/message" target="">更多>></a><span>个人通知</span></h3>
 
         <div class="indexNoticeCon">
             <ul>
@@ -71,10 +71,10 @@
                     <li><span><fmt:formatDate value="${item.sendtime}"></fmt:formatDate></span>
                         <c:if test="${item.ifread==false}">
                             <a style="font-weight: bold "
-                               href="/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}">${item.content}</a>
+                               href="/appointment/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}">${item.content}</a>
                         </c:if>
                         <c:if test="${item.ifread==true}">
-                            <a href="/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}">${item.content}</a>
+                            <a href="/appointment/laboratory/jsp/announcement/remind/equipment/messageDetail?messageDetailId=${item.id}">${item.content}</a>
                         </c:if>
                     </li>
 

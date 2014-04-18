@@ -13,6 +13,8 @@
         <result column="wDay" property="wday" jdbcType="INTEGER" />
         <result column="section" property="section" jdbcType="INTEGER" />
         <result column="room_id" property="roomId" jdbcType="INTEGER" />
+        <result column="meet_stime" property="meetSTime" jdbcType="TIMESTAMP"/>
+        <result column="meet_etime" property="meetETime" jdbcType="TIMESTAMP"/>
         <association column="room_id" javaType="Room" property="room" select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
         <association column="user_id" javaType="User" property="user" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
         <association column="approval_id" javaType="User" property="approval" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
@@ -77,7 +79,7 @@
     </sql>
     <sql id="Base_Column_List" >
     id, state, approval_id, user_id, description, approval_opinion, term_year, week, 
-    wDay, section, room_id
+    wDay, section, meet_stime, meet_etime, room_id
   </sql>
 
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" >
@@ -116,11 +118,12 @@
         </selectKey>
         insert into arrangement (state, approval_id, user_id,
         description, approval_opinion, term_year,
-        week, wDay, section, room_id
+        week, wDay, section, meet_stime, meet_etime, room_id
         )
         values (#{state,jdbcType=TINYINT}, #{approvalId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
         #{description,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{termYear,jdbcType=INTEGER},
-        #{week,jdbcType=INTEGER}, #{wday,jdbcType=INTEGER}, #{section,jdbcType=INTEGER}, #{roomId,jdbcType=INTEGER}
+        #{week,jdbcType=INTEGER}, #{wday,jdbcType=INTEGER}, #{section,jdbcType=INTEGER},
+        #{meetSTime,jdbcType=TIMESTAMP},#{meetETime,jdbcType=TIMESTAMP},#{roomId,jdbcType=INTEGER}
         )
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Arrangement" >
@@ -156,6 +159,12 @@
             <if test="section != null" >
                 section,
             </if>
+            <if test="meetSTime != null" >
+                meet_stime,
+            </if>
+            <if test="meetETime != null" >
+                meet_etime,
+            </if>
             <if test="roomId != null" >
                 room_id,
             </if>
@@ -187,6 +196,12 @@
             </if>
             <if test="section != null" >
                 #{section,jdbcType=INTEGER},
+            </if>
+            <if test="meetSTime != null" >
+                #{meetSTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="meetETime != null" >
+                #{meetETime,jdbcType=TIMESTAMP},
             </if>
             <if test="roomId != null" >
                 #{roomId,jdbcType=INTEGER},
@@ -232,6 +247,12 @@
             <if test="record.section != null" >
                 section = #{record.section,jdbcType=INTEGER},
             </if>
+            <if test="record.meetSTime != null" >
+                meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.meetETime != null" >
+                meet_etime = #{record.meetSTime,jdbcType=TIMESTAMP},
+            </if>
             <if test="record.roomId != null" >
                 room_id = #{record.roomId,jdbcType=INTEGER},
             </if>
@@ -252,6 +273,8 @@
         week = #{record.week,jdbcType=INTEGER},
         wDay = #{record.wday,jdbcType=INTEGER},
         section = #{record.section,jdbcType=INTEGER},
+        meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
+        meet_etime = #{record.meetETime,jdbcType=TIMESTAMP},
         room_id = #{record.roomId,jdbcType=INTEGER}
         <if test="_parameter != null" >
             <include refid="Update_By_Criteria_Where_Clause" />
@@ -287,6 +310,12 @@
             <if test="section != null" >
                 section = #{section,jdbcType=INTEGER},
             </if>
+            <if test="meetSTime != null" >
+                meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="meetETime != null" >
+                meet_etime = #{meetETime,jdbcType=TIMESTAMP},
+            </if>
             <if test="roomId != null" >
                 room_id = #{roomId,jdbcType=INTEGER},
             </if>
@@ -304,6 +333,8 @@
       week = #{week,jdbcType=INTEGER},
       wDay = #{wday,jdbcType=INTEGER},
       section = #{section,jdbcType=INTEGER},
+       meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
+        meet_etime = #{meetETime,jdbcType=TIMESTAMP},
       room_id = #{roomId,jdbcType=INTEGER}
     where id = #{id,jdbcType=INTEGER}
   </update>

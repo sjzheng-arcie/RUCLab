@@ -44,7 +44,7 @@ public class ArrangementService {
     public  PageInfo<Arrangement> pageAllCurrArrangements(int pageNum) {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
-        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue());
+        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
         arrangementCriteria.setOrderByClause("id");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
@@ -54,7 +54,27 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
-        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue());
+        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
+        arrangementCriteria.setOrderByClause("id");
+
+        return getPageArrangementByCriteria(pageNum, arrangementCriteria);
+    }
+
+
+    public  PageInfo<Arrangement> pageAllCurrArrangMeetings(int pageNum) {
+        ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
+        ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
+        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        arrangementCriteria.setOrderByClause("id");
+
+        return getPageArrangementByCriteria(pageNum, arrangementCriteria);
+    }
+
+    public  PageInfo<Arrangement> pageCurrArrangMeetingsByUser(int pageNum, Integer userId) {
+        ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
+        ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
         arrangementCriteria.setOrderByClause("id");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
@@ -63,7 +83,7 @@ public class ArrangementService {
     public  PageInfo<Arrangement> pageAllHistoryArrangements(int pageNum) {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
-        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue());
+        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
         arrangementCriteria.setOrderByClause("id");
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -72,11 +92,30 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
-        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue());
+        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
         arrangementCriteria.setOrderByClause("id");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
+
+    public  PageInfo<Arrangement> pageAllHistoryArrangMeetings(int pageNum) {
+        ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
+        ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
+        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        arrangementCriteria.setOrderByClause("id");
+        return getPageArrangementByCriteria(pageNum, arrangementCriteria);
+    }
+
+    public  PageInfo<Arrangement> pageHistoryArrangMeetingsByUser(int pageNum, Integer userId) {
+        ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
+        ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
+        criteria.andUserIdEqualTo(userId);
+        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        arrangementCriteria.setOrderByClause("id");
+
+        return getPageArrangementByCriteria(pageNum, arrangementCriteria);
+    }
+
     private PageInfo<Arrangement> getPageArrangementByCriteria(int pageNum, ArrangementCriteria criteria) {
         int totalCount = arrangementMapper.countByCriteria(criteria);
         PageInfo<Arrangement> page = new PageInfo<>(totalCount, -1, pageNum);

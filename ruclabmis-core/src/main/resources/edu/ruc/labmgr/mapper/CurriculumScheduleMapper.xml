@@ -1,269 +1,296 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.ruc.labmgr.mapper.CurriculumScheduleMapper">
-  <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.CurriculumSchedule">
-    <id column="id" jdbcType="INTEGER" property="id" />
-    <result column="room_id" jdbcType="INTEGER" property="roomId" />
-    <result column="class_id" jdbcType="INTEGER" property="classId" />
-    <result column="teacherId" jdbcType="INTEGER" property="teacherid" />
-    <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
-    <result column="term_yearId" jdbcType="INTEGER" property="termYearid" />
-    <result column="am_pm" jdbcType="TINYINT" property="amPm" />
-    <result column="weekNum" jdbcType="TINYINT" property="weeknum" />
-    <result column="weekdays" jdbcType="TINYINT" property="weekdays" />
-      <association column="room_Id" javaType="Room" property="room" select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
-      <association column="class_Id" javaType="CurriculumClass" property="curriculumClass" select="edu.ruc.labmgr.mapper.CurriculumClassMapper.selectByPrimaryKey" />
-      <association column="teacherId" javaType="Teacher" property="teacher" select="edu.ruc.labmgr.mapper.TeacherMapper.selectByPrimaryKey" />
-      <association column="curriculum_Id" javaType="Curriculum" property="curriculum" select="edu.ruc.labmgr.mapper.CurriculumMapper.selectByPrimaryKey" />
-      <association column="term_yearId" javaType="TermYear" property="termYear" select="edu.ruc.labmgr.mapper.TermYearMapper.selectByPrimaryKey" />
-  </resultMap>
-  <sql id="Criteria_Where_Clause">
-    <where>
-      <foreach collection="oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+    <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.CurriculumSchedule">
+        <id column="id" jdbcType="INTEGER" property="id" />
+        <result column="room_id" jdbcType="INTEGER" property="roomId" />
+        <result column="class_id" jdbcType="INTEGER" property="classId" />
+        <result column="teacherId" jdbcType="INTEGER" property="teacherid" />
+        <result column="curriculum_id" jdbcType="INTEGER" property="curriculumId" />
+        <result column="term_yearId" jdbcType="INTEGER" property="termYearid" />
+        <result column="am_pm" jdbcType="TINYINT" property="amPm" />
+        <result column="weekNum" jdbcType="TINYINT" property="weeknum" />
+        <result column="weekdays" jdbcType="TINYINT" property="weekdays" />
+        <result column="meet_stime" property="meetSTime" jdbcType="TIMESTAMP"/>
+        <result column="meet_etime" property="meetETime" jdbcType="TIMESTAMP"/>
+        <association column="room_Id" javaType="Room" property="room" select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
+        <association column="class_Id" javaType="CurriculumClass" property="curriculumClass" select="edu.ruc.labmgr.mapper.CurriculumClassMapper.selectByPrimaryKey" />
+        <association column="teacherId" javaType="Teacher" property="teacher" select="edu.ruc.labmgr.mapper.TeacherMapper.selectByPrimaryKey" />
+        <association column="curriculum_Id" javaType="Curriculum" property="curriculum" select="edu.ruc.labmgr.mapper.CurriculumMapper.selectByPrimaryKey" />
+        <association column="term_yearId" javaType="TermYear" property="termYear" select="edu.ruc.labmgr.mapper.TermYearMapper.selectByPrimaryKey" />
+    </resultMap>
+    <sql id="Criteria_Where_Clause">
+        <where>
+            <foreach collection="oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
-        </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Update_By_Criteria_Where_Clause">
-    <where>
-      <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
-        <if test="criteria.valid">
-          <trim prefix="(" prefixOverrides="and" suffix=")">
-            <foreach collection="criteria.criteria" item="criterion">
-              <choose>
-                <when test="criterion.noValue">
-                  and ${criterion.condition}
-                </when>
-                <when test="criterion.singleValue">
-                  and ${criterion.condition} #{criterion.value}
-                </when>
-                <when test="criterion.betweenValue">
-                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
-                </when>
-                <when test="criterion.listValue">
-                  and ${criterion.condition}
-                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
-                    #{listItem}
-                  </foreach>
-                </when>
-              </choose>
+        </where>
+    </sql>
+    <sql id="Update_By_Criteria_Where_Clause">
+        <where>
+            <foreach collection="criteria.oredCriteria" item="criteria" separator="or">
+                <if test="criteria.valid">
+                    <trim prefix="(" prefixOverrides="and" suffix=")">
+                        <foreach collection="criteria.criteria" item="criterion">
+                            <choose>
+                                <when test="criterion.noValue">
+                                    and ${criterion.condition}
+                                </when>
+                                <when test="criterion.singleValue">
+                                    and ${criterion.condition} #{criterion.value}
+                                </when>
+                                <when test="criterion.betweenValue">
+                                    and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                                </when>
+                                <when test="criterion.listValue">
+                                    and ${criterion.condition}
+                                    <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                                        #{listItem}
+                                    </foreach>
+                                </when>
+                            </choose>
+                        </foreach>
+                    </trim>
+                </if>
             </foreach>
-          </trim>
+        </where>
+    </sql>
+    <sql id="Base_Column_List">
+    id, room_id, class_id, teacherId, curriculum_id, term_yearId, am_pm, weekNum, weekdays, meet_stime, meet_etime
+  </sql>
+    <select id="selectByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
         </if>
-      </foreach>
-    </where>
-  </sql>
-  <sql id="Base_Column_List">
-    id, room_id, class_id, teacherId, curriculum_id, term_yearId, am_pm, weekNum, weekdays
-  </sql>
-  <select id="selectByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from curriculum_schedule
-    <if test="_parameter != null">
-      <include refid="Criteria_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
-  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
-    select 
-    <include refid="Base_Column_List" />
-    from curriculum_schedule
-    where id = #{id,jdbcType=INTEGER}
-  </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+        <include refid="Base_Column_List" />
+        from curriculum_schedule
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
+    <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from curriculum_schedule
+        where id = #{id,jdbcType=INTEGER}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from curriculum_schedule
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria">
-    delete from curriculum_schedule
-    <if test="_parameter != null">
-      <include refid="Criteria_Where_Clause" />
-    </if>
-  </delete>
-  <insert id="insert" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into curriculum_schedule (room_id, class_id, teacherId, 
-      curriculum_id, term_yearId, am_pm, 
-      weekNum, weekdays)
-    values (#{roomId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{teacherid,jdbcType=INTEGER}, 
-      #{curriculumId,jdbcType=INTEGER}, #{termYearid,jdbcType=INTEGER}, #{amPm,jdbcType=TINYINT}, 
-      #{weeknum,jdbcType=TINYINT}, #{weekdays,jdbcType=TINYINT})
-  </insert>
-  <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
-      SELECT LAST_INSERT_ID()
-    </selectKey>
-    insert into curriculum_schedule
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="roomId != null">
-        room_id,
-      </if>
-      <if test="classId != null">
-        class_id,
-      </if>
-      <if test="teacherid != null">
-        teacherId,
-      </if>
-      <if test="curriculumId != null">
-        curriculum_id,
-      </if>
-      <if test="termYearid != null">
-        term_yearId,
-      </if>
-      <if test="amPm != null">
-        am_pm,
-      </if>
-      <if test="weeknum != null">
-        weekNum,
-      </if>
-      <if test="weekdays != null">
-        weekdays,
-      </if>
-    </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="roomId != null">
-        #{roomId,jdbcType=INTEGER},
-      </if>
-      <if test="classId != null">
-        #{classId,jdbcType=INTEGER},
-      </if>
-      <if test="teacherid != null">
-        #{teacherid,jdbcType=INTEGER},
-      </if>
-      <if test="curriculumId != null">
-        #{curriculumId,jdbcType=INTEGER},
-      </if>
-      <if test="termYearid != null">
-        #{termYearid,jdbcType=INTEGER},
-      </if>
-      <if test="amPm != null">
-        #{amPm,jdbcType=TINYINT},
-      </if>
-      <if test="weeknum != null">
-        #{weeknum,jdbcType=TINYINT},
-      </if>
-      <if test="weekdays != null">
-        #{weekdays,jdbcType=TINYINT},
-      </if>
-    </trim>
-  </insert>
-  <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultType="java.lang.Integer">
-    select count(*) from curriculum_schedule
-    <if test="_parameter != null">
-      <include refid="Criteria_Where_Clause" />
-    </if>
-  </select>
-  <update id="updateByCriteriaSelective" parameterType="map">
-    update curriculum_schedule
-    <set>
-      <if test="record.id != null">
-        id = #{record.id,jdbcType=INTEGER},
-      </if>
-      <if test="record.roomId != null">
+    <delete id="deleteByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria">
+        delete from curriculum_schedule
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause" />
+        </if>
+    </delete>
+    <insert id="insert" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into curriculum_schedule (room_id, class_id, teacherId,
+        curriculum_id, term_yearId, am_pm, weekNum, weekdays, meet_stime, meet_etime)
+        values (#{roomId,jdbcType=INTEGER}, #{classId,jdbcType=INTEGER}, #{teacherid,jdbcType=INTEGER},
+        #{curriculumId,jdbcType=INTEGER}, #{termYearid,jdbcType=INTEGER}, #{amPm,jdbcType=TINYINT},
+        #{weeknum,jdbcType=TINYINT}, #{weekdays,jdbcType=TINYINT}, #{meetSTime,jdbcType=TIMESTAMP},#{meetETime,jdbcType=TIMESTAMP})
+    </insert>
+    <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
+        <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        insert into curriculum_schedule
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="roomId != null">
+                room_id,
+            </if>
+            <if test="classId != null">
+                class_id,
+            </if>
+            <if test="teacherid != null">
+                teacherId,
+            </if>
+            <if test="curriculumId != null">
+                curriculum_id,
+            </if>
+            <if test="termYearid != null">
+                term_yearId,
+            </if>
+            <if test="amPm != null">
+                am_pm,
+            </if>
+            <if test="weeknum != null">
+                weekNum,
+            </if>
+            <if test="weekdays != null">
+                weekdays,
+            </if>
+            <if test="meetSTime != null" >
+                meet_stime,
+            </if>
+            <if test="meetETime != null" >
+                meet_etime,
+            </if>
+        </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="roomId != null">
+                #{roomId,jdbcType=INTEGER},
+            </if>
+            <if test="classId != null">
+                #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="teacherid != null">
+                #{teacherid,jdbcType=INTEGER},
+            </if>
+            <if test="curriculumId != null">
+                #{curriculumId,jdbcType=INTEGER},
+            </if>
+            <if test="termYearid != null">
+                #{termYearid,jdbcType=INTEGER},
+            </if>
+            <if test="amPm != null">
+                #{amPm,jdbcType=TINYINT},
+            </if>
+            <if test="weeknum != null">
+                #{weeknum,jdbcType=TINYINT},
+            </if>
+            <if test="weekdays != null">
+                #{weekdays,jdbcType=TINYINT},
+            </if>
+            <if test="meetSTime != null" >
+                #{meetSTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="meetETime != null" >
+                #{meetETime,jdbcType=TIMESTAMP},
+            </if>
+        </trim>
+    </insert>
+    <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultType="java.lang.Integer">
+        select count(*) from curriculum_schedule
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause" />
+        </if>
+    </select>
+    <update id="updateByCriteriaSelective" parameterType="map">
+        update curriculum_schedule
+        <set>
+            <if test="record.id != null">
+                id = #{record.id,jdbcType=INTEGER},
+            </if>
+            <if test="record.roomId != null">
+                room_id = #{record.roomId,jdbcType=INTEGER},
+            </if>
+            <if test="record.classId != null">
+                class_id = #{record.classId,jdbcType=INTEGER},
+            </if>
+            <if test="record.teacherid != null">
+                teacherId = #{record.teacherid,jdbcType=INTEGER},
+            </if>
+            <if test="record.curriculumId != null">
+                curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
+            </if>
+            <if test="record.termYearid != null">
+                term_yearId = #{record.termYearid,jdbcType=INTEGER},
+            </if>
+            <if test="record.amPm != null">
+                am_pm = #{record.amPm,jdbcType=TINYINT},
+            </if>
+            <if test="record.weeknum != null">
+                weekNum = #{record.weeknum,jdbcType=TINYINT},
+            </if>
+            <if test="record.weekdays != null">
+                weekdays = #{record.weekdays,jdbcType=TINYINT},
+            </if>
+            <if test="record.meetSTime != null" >
+                meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="record.meetETime != null" >
+                meet_etime = #{record.meetSTime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByCriteria" parameterType="map">
+        update curriculum_schedule
+        set id = #{record.id,jdbcType=INTEGER},
         room_id = #{record.roomId,jdbcType=INTEGER},
-      </if>
-      <if test="record.classId != null">
         class_id = #{record.classId,jdbcType=INTEGER},
-      </if>
-      <if test="record.teacherid != null">
         teacherId = #{record.teacherid,jdbcType=INTEGER},
-      </if>
-      <if test="record.curriculumId != null">
         curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-      </if>
-      <if test="record.termYearid != null">
         term_yearId = #{record.termYearid,jdbcType=INTEGER},
-      </if>
-      <if test="record.amPm != null">
         am_pm = #{record.amPm,jdbcType=TINYINT},
-      </if>
-      <if test="record.weeknum != null">
         weekNum = #{record.weeknum,jdbcType=TINYINT},
-      </if>
-      <if test="record.weekdays != null">
         weekdays = #{record.weekdays,jdbcType=TINYINT},
-      </if>
-    </set>
-    <if test="_parameter != null">
-      <include refid="Update_By_Criteria_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByCriteria" parameterType="map">
-    update curriculum_schedule
-    set id = #{record.id,jdbcType=INTEGER},
-      room_id = #{record.roomId,jdbcType=INTEGER},
-      class_id = #{record.classId,jdbcType=INTEGER},
-      teacherId = #{record.teacherid,jdbcType=INTEGER},
-      curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-      term_yearId = #{record.termYearid,jdbcType=INTEGER},
-      am_pm = #{record.amPm,jdbcType=TINYINT},
-      weekNum = #{record.weeknum,jdbcType=TINYINT},
-      weekdays = #{record.weekdays,jdbcType=TINYINT}
-    <if test="_parameter != null">
-      <include refid="Update_By_Criteria_Where_Clause" />
-    </if>
-  </update>
-  <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
-    update curriculum_schedule
-    <set>
-      <if test="roomId != null">
-        room_id = #{roomId,jdbcType=INTEGER},
-      </if>
-      <if test="classId != null">
-        class_id = #{classId,jdbcType=INTEGER},
-      </if>
-      <if test="teacherid != null">
-        teacherId = #{teacherid,jdbcType=INTEGER},
-      </if>
-      <if test="curriculumId != null">
-        curriculum_id = #{curriculumId,jdbcType=INTEGER},
-      </if>
-      <if test="termYearid != null">
-        term_yearId = #{termYearid,jdbcType=INTEGER},
-      </if>
-      <if test="amPm != null">
-        am_pm = #{amPm,jdbcType=TINYINT},
-      </if>
-      <if test="weeknum != null">
-        weekNum = #{weeknum,jdbcType=TINYINT},
-      </if>
-      <if test="weekdays != null">
-        weekdays = #{weekdays,jdbcType=TINYINT},
-      </if>
-    </set>
-    where id = #{id,jdbcType=INTEGER}
-  </update>
-  <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
+        meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
+        meet_etime = #{record.meetETime,jdbcType=TIMESTAMP}
+        <if test="_parameter != null">
+            <include refid="Update_By_Criteria_Where_Clause" />
+        </if>
+    </update>
+    <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
+        update curriculum_schedule
+        <set>
+            <if test="roomId != null">
+                room_id = #{roomId,jdbcType=INTEGER},
+            </if>
+            <if test="classId != null">
+                class_id = #{classId,jdbcType=INTEGER},
+            </if>
+            <if test="teacherid != null">
+                teacherId = #{teacherid,jdbcType=INTEGER},
+            </if>
+            <if test="curriculumId != null">
+                curriculum_id = #{curriculumId,jdbcType=INTEGER},
+            </if>
+            <if test="termYearid != null">
+                term_yearId = #{termYearid,jdbcType=INTEGER},
+            </if>
+            <if test="amPm != null">
+                am_pm = #{amPm,jdbcType=TINYINT},
+            </if>
+            <if test="weeknum != null">
+                weekNum = #{weeknum,jdbcType=TINYINT},
+            </if>
+            <if test="weekdays != null">
+                weekdays = #{weekdays,jdbcType=TINYINT},
+            </if>
+            <if test="meetSTime != null" >
+                meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
+            </if>
+            <if test="meetETime != null" >
+                meet_etime = #{meetETime,jdbcType=TIMESTAMP},
+            </if>
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+    <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.CurriculumSchedule">
     update curriculum_schedule
     set room_id = #{roomId,jdbcType=INTEGER},
       class_id = #{classId,jdbcType=INTEGER},
@@ -272,23 +299,25 @@
       term_yearId = #{termYearid,jdbcType=INTEGER},
       am_pm = #{amPm,jdbcType=TINYINT},
       weekNum = #{weeknum,jdbcType=TINYINT},
-      weekdays = #{weekdays,jdbcType=TINYINT}
+      weekdays = #{weekdays,jdbcType=TINYINT},
+       meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
+        meet_etime = #{meetETime,jdbcType=TIMESTAMP}
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
-    select
-    <if test="distinct">
-      distinct
-    </if>
-    <include refid="Base_Column_List" />
-    from curriculum_schedule
-    <if test="_parameter != null">
-      <include refid="Criteria_Where_Clause" />
-    </if>
-    <if test="orderByClause != null">
-      order by ${orderByClause}
-    </if>
-  </select>
+    <select id="selectByCriteriaWithRowbounds" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
+        select
+        <if test="distinct">
+            distinct
+        </if>
+        <include refid="Base_Column_List" />
+        from curriculum_schedule
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause" />
+        </if>
+        <if test="orderByClause != null">
+            order by ${orderByClause}
+        </if>
+    </select>
     <select id="getAllCurriculumNameList" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List" />
