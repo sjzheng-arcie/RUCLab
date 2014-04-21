@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -64,20 +65,14 @@ public class AppointmentLController {
     }
 
     @RequestMapping(value = "/roomstatus", method = RequestMethod.GET)
-    ModelAndView roomStatus(@RequestParam(required = false,defaultValue = "") String year,
+    ModelAndView roomStatus(@RequestParam(required = true,defaultValue = "") String year,
                             @RequestParam(required = false,defaultValue = "") String week,
                             @RequestParam(required = false,defaultValue = "") String wDay,
                             @RequestParam(required = false,defaultValue = "") String section) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
 
-        Integer inYear;
-        if(StringUtils.isNullOrEmpty(year)){
-            inYear = calendar.get(Calendar.YEAR);
-        }
-        else{
-            inYear = Integer.parseInt(year);
-        }
+        Integer inYear = Integer.parseInt(year);
 
         Byte inWeek;
         if(StringUtils.isNullOrEmpty(week)){

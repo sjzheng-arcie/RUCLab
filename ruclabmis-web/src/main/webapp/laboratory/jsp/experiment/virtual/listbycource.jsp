@@ -43,9 +43,9 @@
 <body onload="getWidth()" onresize="getWidth()">
 <table border="0" cellspacing="0" cellpadding="0">
     <tr>
-        <td class="op_nor" onclick="javascript:location.href='/experiment/virtual/listbycource?page=1&curriculumId='+${curriculumId}">虚拟班级管理</td>
+        <td class="op_act" onclick="javascript:location.href='/experiment/virtual/listbycource?page=1&curriculumId='+${curriculumId}">虚拟班级管理</td>
         <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=experiment&curriculumId='+${curriculumId}">实验信息管理</td>
-        <td class="op_act" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=report&curriculumId='+${curriculumId}">实验报告管理</td>
+        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=report&curriculumId='+${curriculumId}">实验报告管理</td>
         <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/listbycourse?page=1&view=achievement&curriculumId='+${curriculumId}">学期成绩评定</td>
     </tr>
 </table>

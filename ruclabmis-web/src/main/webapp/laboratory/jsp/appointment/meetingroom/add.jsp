@@ -105,7 +105,7 @@
                                             <tr>
                                                 <td nowrap align="right">预约房间:</td>
                                                 <td nowrap>
-                                                    <input name="roomId" id="roomId" hidden value="${room.getId()}"/>
+                                                    <input name="roomId" id="roomId" type="hidden" value="${room.getId()}"/>
                                                     <input name="roomName" id="roomName" value="${room.getName()}" onblur=""
                                                            class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                     <span style="color:red;">*</span>

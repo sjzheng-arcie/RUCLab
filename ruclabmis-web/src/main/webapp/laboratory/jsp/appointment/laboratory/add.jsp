@@ -112,9 +112,9 @@
                                                     value="<fmt:formatDate value="${scheduleDate}" pattern="yyyy-MM-dd"/>"
                                                    />
                                                     <span style="color:red;">*</span>
-                                                    <input name="termYear" id="termYear" hidden value="${year}"/>
-                                                    <input name="week" id="week" hidden value="${week}"/>
-                                                    <input name="wday" id="wday" hidden value="${wDay}"/>
+                                                    <input name="termYear" id="termYear" type="hidden" value="${year}"/>
+                                                    <input name="week" id="week" type="hidden" value="${week}"/>
+                                                    <input name="wday" id="wday" type="hidden" value="${wDay}"/>
                                                 </td>
 
                                                 <td nowrap align="right">预约时间段:</td>
@@ -129,14 +129,14 @@
                                                                 <c:when test="${section eq 5}"> value="晚上九十节"  </c:when>
                                                             </c:choose>
                                                             />
-                                                    <input name="section" id="section" hidden value="${section}"/>
+                                                    <input name="section" id="section" type="hidden" value="${section}"/>
                                                     <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">预约房间:</td>
                                                 <td nowrap>
-                                                    <input name="roomId" id="roomId" hidden value="${room.getId()}"/>
+                                                    <input name="roomId" id="roomId" type="hidden" value="${room.getId()}"/>
                                                     <input name="roomName" id="roomName" value="${room.getName()}" onblur=""
                                                            class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                     <span style="color:red;">*</span>

@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import edu.ruc.labmgr.mapper.ClassStudentMapper;
 import edu.ruc.labmgr.mapper.CurriculumScheduleMapper;
+import edu.ruc.labmgr.mapper.TermYearMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.commons.lang3.time.DateUtils;
 import org.apache.ibatis.session.RowBounds;
@@ -20,6 +21,8 @@ public class CurriculumScheduleService {
     CurriculumScheduleMapper curriculumScheduleMapper;
     @Autowired
     ClassStudentMapper classStudentMapper;
+    @Autowired
+    TermYearService yearService;
 
     public void deleteById(int id){
         curriculumScheduleMapper.deleteByPrimaryKey(id);
@@ -123,17 +126,22 @@ public class CurriculumScheduleService {
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
         calendar.setTime(new Date());
-
         Calendar cal = Calendar.getInstance();
         cal.setTime(startTime);
+
+        Integer year = cal.get(java.util.Calendar.YEAR);
+        List<Integer> yearIds = yearService.getIdByYear(year);
+
+
         CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
         CurriculumScheduleCriteria.Criteria criteriaLab = curriculumScheduleCriteria.createCriteria();
-        criteriaLab.andTermYearidEqualTo(cal.get(java.util.Calendar.YEAR)).
-                andWeeknumEqualTo((byte) calendar.get(java.util.Calendar.WEEK_OF_YEAR)).
-                andWeekdaysEqualTo((byte) calendar.get(java.util.Calendar.DAY_OF_WEEK));
         List<Byte> sections = getSectionByTime(startTime, endTime);
         if(sections.size() > 0)
-            criteriaLab.andAmPmIn(sections);
+        {
+            criteriaLab.andAmPmIn(sections).andTermYearidIn(yearIds).
+                andWeeknumEqualTo((byte) calendar.get(java.util.Calendar.WEEK_OF_YEAR)).
+                andWeekdaysEqualTo((byte) calendar.get(java.util.Calendar.DAY_OF_WEEK));
+        }
 
         curriculumScheduleCriteria.or().andMeetSTimeBetween(startTime, endTime);
         curriculumScheduleCriteria.or().andMeetETimeBetween(startTime, endTime);
@@ -151,46 +159,46 @@ public class CurriculumScheduleService {
         Calendar calEnd = Calendar.getInstance();
         calEnd.setTime(endTime);
 
-        int startHour = calStart.get(Calendar.HOUR);
-        int endHour =  calEnd.get(Calendar.HOUR);
+        int startHour = calStart.get(Calendar.HOUR_OF_DAY);
+        int endHour =  calEnd.get(Calendar.HOUR_OF_DAY);
         if( 7 <= startHour &&  startHour  < 9){
-            if(7 <= endHour &&  endHour  < 9)
+            if(endHour > 7)
                 sections.add((byte)1);
-            if(9 <= endHour &&  endHour  < 11)
+            if(  endHour > 9)
                 sections.add((byte)2);
-            if(13 <= endHour &&  endHour  < 15)
+            if(endHour > 13)
                 sections.add((byte)3);
-            if(15 <= endHour &&  endHour  < 17)
-                sections.add((byte)4);
-            if(19 <= endHour &&  endHour  < 21)
+            if(endHour > 17)
+                sections.add((byte)2);
+            if(endHour > 19)
                 sections.add((byte)5);
         }
         else if( 9 <= startHour &&  startHour  < 11){
-            if(9 <= endHour &&  endHour  < 11)
+            if(  endHour > 9)
                 sections.add((byte)2);
-            if(13 <= endHour &&  endHour  < 15)
+            if(endHour > 13)
                 sections.add((byte)3);
-            if(15 <= endHour &&  endHour  < 17)
-                sections.add((byte)4);
-            if(19 <= endHour &&  endHour  < 21)
+            if(endHour > 17)
+                sections.add((byte)2);
+            if(endHour > 19)
                 sections.add((byte)5);
         }
         else if( 13 <= startHour &&  startHour  < 15){
-            if(13 <= endHour &&  endHour  < 15)
+            if(endHour > 14)
                 sections.add((byte)3);
-            if(15 <= endHour &&  endHour  < 17)
-                sections.add((byte)4);
-            if(19 <= endHour &&  endHour  < 21)
+            if(endHour > 17)
+                sections.add((byte)2);
+            if(endHour > 19)
                 sections.add((byte)5);
         }
         else if( 15 <= startHour &&  startHour  < 17){
-            if(15 <= endHour &&  endHour  < 17)
-                sections.add((byte)4);
-            if(19 <= endHour &&  endHour  < 21)
+            if(endHour > 17)
+                sections.add((byte)2);
+            if(endHour > 19)
                 sections.add((byte)5);
         }
         else if( 19 <= startHour &&  startHour  < 21){
-            if(19 <= endHour &&  endHour  < 21)
+            if(endHour > 19)
                 sections.add((byte)5);
         }
         return sections;

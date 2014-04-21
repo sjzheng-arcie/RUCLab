@@ -151,8 +151,8 @@
                                                         <td>${item.room.name}</td>
                                                         <td>${item.user.name}</td>
                                                         <td>${item.stateClassif.value}</td>
-                                                        <td><fmt:formatDate value="${item.meetSTime}" pattern="yyyy-MM-dd HH:mm:dd"/>
-                                                         - <fmt:formatDate value="${item.meetETime}" pattern="yyyy-MM-dd HH:mm:dd"/></td>
+                                                        <td><fmt:formatDate value="${item.meetSTime}" pattern="yyyy-MM-dd HH:mm"/>
+                                                         - <fmt:formatDate value="${item.meetETime}" pattern="yyyy-MM-dd HH:mm"/></td>
                                                         <td>${item.description}</td>
                                                         <c:if test="${formType=='history'}">
                                                             <td>${item.approval.name}</td>
