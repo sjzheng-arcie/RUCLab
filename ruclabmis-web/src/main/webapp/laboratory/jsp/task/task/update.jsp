@@ -43,13 +43,69 @@
             if (!validator(document.mainForm)) {
                 return;
             }
-            document.mainForm.action="add";
+            document.mainForm.action="update?userIdList="+$('body').data('userIdlistBody').join(",");
             document.mainForm.submit();
         }
 
                 function downloadFile(resourceId) {
                     window.location.href = "downloadFile?id=" + resourceId;
                 }
+
+
+
+
+        function toAddCharger(){
+            window.open("/laboratory/jsp/task/task/userlist?page=1&projectId=${projectId}", "人员信息",
+                    "height=450, width=1000, toolbar=no, status=no");
+        }
+        function setUser(selectedUser) {
+
+            var userIdNameList=new Array();
+            userIdNameList=selectedUser.toString().split(',');
+            var idList=new Array();
+            var nameList=new Array();
+            var i=0;
+            for(i=0;i<userIdNameList.length;i++){
+                var tempUser=userIdNameList[i].toString();
+                var tempUserId=tempUser.substring(0,tempUser.indexOf('+'));
+                var tempUserName=tempUser.substring(tempUser.indexOf('+')+1,tempUser.length);
+                idList[i]=tempUserId;
+                nameList[i]=tempUserName;
+                $('#userShowArea').append(formatUserDisplay(tempUserId,tempUserName));
+            }
+            $("body").data('userIdlistBody').push(idList);
+        }
+        function formatUserDisplay(userId,userName) {
+
+            return '<span>' + userName+ ' <a href="#" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
+        }
+        function userDelete() {
+            var src = window.event.srcElement;
+            var userId = src.getAttribute("userId");
+            var index = $.inArray(userId,$("body").data('userIdlistBody'));
+            if(index>=0){
+                $("body").data('userIdlistBody').splice(index,1);
+            }
+
+            $(src).parent().next().remove();
+            $(src).parent().remove();
+
+            window.event.stopPropagation();
+
+        }
+        $(document).ready(function () {
+            var userIdStr = '${userIdListToBody}';
+            if(userIdStr.length==0){
+                $('body').data('userIdlistBody', new Array());
+            }else{
+                if(userIdStr.charAt(userIdStr.length-1)==','){
+                    userIdStr = userIdStr.substring(0,userIdStr.length-1);
+                }
+                $('body').data('userIdlistBody', userIdStr.split(","));
+            }
+            init();
+        });
+
 
     </script>
 </head>
@@ -129,7 +185,7 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
-                                                <td nowrap align="right">执行人:</td>
+                                                <td nowrap align="right">任务添加人:</td>
                                                 <td nowrap>
                                                     <input type="text" name="operator" id="operator" onblur="" class="text"
                                                            style="width:154px" maxlength="20" readonly disabled="no"
@@ -138,6 +194,25 @@
                                                     <span style="color:red;" id="errMsg_task_no"></span>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td nowrap align="right" >添加课题组成员：</td>
+                                                <td nowrap  align="left" colspan="3">
+                                                    <input type="button" name="aa" value="添加课题组成员" onclick="toAddCharger();" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right" >课题组成员</td>
+                                                <td nowrap  align="left" colspan="3">
+                                                    <div id="userShowArea" name="userShowArea">
+
+                                                        <c:forEach items="${taskChargerList}" var="charger">
+                                                            <span>${charger.charger.name}  <a href="#" userId="${charger.chargerid}" onclick="userDelete();">删除</a></span><br/>
+
+                                                        </c:forEach>
+                                                    </div>
+                                                </td>
+                                            </tr>
+
                                             <tr>
                                                 <td nowrap align="right">完成进度:</td>
                                                 <td nowrap>
@@ -160,6 +235,7 @@
                                                     <span style="color:red;" id="errMsg_limit_time"></span>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <td nowrap align="right">上传附件:</td>
                                                 <td colspan="3">

@@ -51,7 +51,7 @@
                    target="main">我的通知</a>
             </li>
             <shiro:hasAnyRoles name="leader">
-                <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+                <li><a href="jsp/task/task/mylist" onfocus="toFocus(this)" target="main">我的任务</a>
                 </li>
                 <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
                 </li>
@@ -154,10 +154,11 @@
             </tr>
         </table>
         <ul class="MM">
-            <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我的任务</a>
+            <li><a href="jsp/task/task/mylist?currentUserId=1" onfocus="toFocus(this)" target="main">我的任务</a>
+            </li>
+            <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我原来的的任务</a>
             </li>
             <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
-
             </li>
             <li><a href="jsp/task/taskscore/taskscorelist" onfocus="toFocus(this)" target="main">任务评分</a>
             </li>
@@ -215,7 +216,7 @@
         </ul>
     </div>
 </shiro:hasAnyRoles>
-<shiro:hasAnyRoles name="leader">
+
     <h1 class="type"><a href="javascript:void(0)">考核管理</a></h1>
 
     <div class="content">
@@ -228,11 +229,16 @@
 
             <li><a href="jsp/task/work/allworklist" onfocus="toFocus(this)" target="main">工作管理</a>
             </li>
-            <li><a href="jsp/task/task/teacherlist" onfocus="toFocus(this)" target="main">任务管理</a>
+            <li><a href="jsp/task/task/list" onfocus="toFocus(this)" target="main">任务管理</a>
             </li>
+            <li><a href="jsp/task/task/teacherlist" onfocus="toFocus(this)" target="main">教职工任务</a>
+            </li>
+            <li><a href="jsp/task/tasktype/list" onfocus="toFocus(this)" target="main">管理任务类型</a>
+            </li>
+
         </ul>
     </div>
-</shiro:hasAnyRoles>
+
 </div>
 <script type="text/javascript">
     var contents = document.getElementsByClassName('content');

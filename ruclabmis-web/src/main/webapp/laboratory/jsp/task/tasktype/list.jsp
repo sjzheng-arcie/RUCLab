@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -9,6 +10,11 @@
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
+    <script type="text/javascript">
+        function downloadFile(resourceId) {
+            window.location.href = "downloadFile?id=" + resourceId;
+        }
+    </script>
 
 </head>
 
@@ -40,36 +46,12 @@
 <td valign="top" class="STYLE10">
 
                     <span style="white-space:nowrap">
-                        员工编号<input type="text" name="searchSN"
-                                 id="searchSN" value=""
-                                 style="width:100px;"/>
-                    </span>
-                    <span style="white-space:nowrap">
-                        用户名<input type="text" name="searchName"
-                                  id="searchName" value=""
+                        任务名<input type="text" name="typeName"
+                                  id="typeName" value=""
                                   style="width:100px;"/>
                     </span>
-                    <span style="white-space:nowrap">
-                        专业<select name="searchMajor" id="searchMajor">
-                        <option value="">所有</option>
-                        <c:forEach items="${majors}" var="item">
-                            <option value="${item.id}"
-                                    <c:if test="${item.id == param.searchMajor}"> selected</c:if>>${item.name}
-                            </option>
-                        </c:forEach>
-                    </select>
 
-                    </span>
-                    <span style="white-space:nowrap">
-                        部门 <select name="searchOrg" id="searchOrg">
-                        <option value="-1">所有</option>
-                        <c:forEach items="${organizations}" var="item">
-                            <option value="${item.id}"
-                                    <c:if test="${item.id == param.searchOrg}"> selected</c:if>>${item.name}
-                            </option>
-                        </c:forEach>
-                    </select>
-                    </span>
+
 
         <span style="white-space:nowrap">&nbsp;&nbsp;
             <a href="javascript:void(0)" onclick="toFind('listForm');" class="txt_bt">
@@ -94,13 +76,19 @@
                                                                          height="14"/></div>
                                             </td>
                                             <td width="94%" valign="bottom"><span class="STYLE1"
-                                                                                  style="white-space:nowrap">教职工信息</span>
+                                                                                  style="white-space:nowrap">任务信息</span>
                                             </td>
                                         </tr>
                                     </table>
                                 </td>
                                 <td>
                                     <div align="right">
+                                        <span class="STYLE1" style="white-space:nowrap">
+                                        <a href="toadd?teacherId=${teacherInfo.id}" class="txt_bt">
+                                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                            <span class="STYLE1">新增</span>
+                                        </a>
+                                    </span>
                                     </div>
                                 </td>
                             </tr>
@@ -112,29 +100,20 @@
     </tr>
     <tr>
         <td>
-            <div id="divwidth"  style="overflow:auto;overflow-y:hidden;">
-                <table id="treeTable" class="TABLE" width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
+            <div id="divwidth"  style="overflow:auto;overflow-y:hidden;overflow-x: auto;">
+                <table id="treeTable" class="table" width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#a8c7ce">
                     <tr>
-                        <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">序号</span></div>
+                        <td width="40" height="20" bgcolor="d3eaef">
                         </td>
-                        <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">教职工编号</span></div>
-                        </td>
+
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">姓名</span></div>
+                            <div align="center"><span class="STYLE10">任务名称</span></div>
                         </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">专业</span></div>
+                        <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">操作</span></div>
                         </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">职位</span></div>
-                        </td>
-                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">职称</span></div>
-                        </td>
-                        <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">查看任务</span></div>
+                        <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">删除</span></div>
                         </td>
                     </tr>
                     <% int temp=1; %>
@@ -143,13 +122,15 @@
                             <td height="20">
                                 <%=temp++%>
                             </td>
-                            <td height="20">${item.sn}</td>
-                            <td height="20">${item.name}</td>
-                            <td>${item.major.name}</td>
-                            <td>${item.positionName}</td>
-                            <td>${item.titleName}</td>
-                            <td><a href="/laboratory/jsp/task/task/oneslist?teacherId=${item.id}" class="button"> 查看任务</a></td>
-
+                            <td height="20">${item.typeName}</td>
+                            <td><a href="/laboratory/jsp/task/tasktype/toupdate?id=${item.id}">
+                                <img src="../../../../images/edit_min.gif" width="10"
+                                     height="10" border="0"/>
+                            </a></td>
+                            <td><a href="/laboratory/jsp/task/tasktype/delete?id=${item.id}">
+                                <img src="../../../../images/del_min.gif" width="10"
+                                     height="10" border="0"/>
+                            </a></td>
                         </tr>
                     </c:forEach>
 
