@@ -156,8 +156,6 @@
         <ul class="MM">
             <li><a href="jsp/task/task/mylist?currentUserId=1" onfocus="toFocus(this)" target="main">我的任务</a>
             </li>
-            <li><a href="jsp/task/task/mytasklist" onfocus="toFocus(this)" target="main">我原来的的任务</a>
-            </li>
             <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
             </li>
             <li><a href="jsp/task/taskscore/taskscorelist" onfocus="toFocus(this)" target="main">任务评分</a>

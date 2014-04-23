@@ -77,7 +77,7 @@
         }
         function formatUserDisplay(userId,userName) {
 
-            return '<span>' + userName+ ' <a href="#" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
+            return '<span>' + userName+ ' <a href="#" class="button" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
         }
         function userDelete() {
             var src = window.event.srcElement;
@@ -206,7 +206,7 @@
                                                     <div id="userShowArea" name="userShowArea">
 
                                                         <c:forEach items="${taskChargerList}" var="charger">
-                                                            <span>${charger.charger.name}  <a href="#" userId="${charger.chargerid}" onclick="userDelete();">删除</a></span><br/>
+                                                            <span>${charger.charger.name}  <a href="#" class="button" userId="${charger.chargerid}" onclick="userDelete();">删除</a></span><br/>
 
                                                         </c:forEach>
                                                     </div>

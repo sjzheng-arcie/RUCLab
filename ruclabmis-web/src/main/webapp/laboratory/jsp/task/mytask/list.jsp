@@ -51,6 +51,15 @@
                                   style="width:100px;"/>
                     </span>
                     <span style="white-space:nowrap">
+                                    任务类型：
+                                    <select name="typeId" id="typeId">
+                                        <option ></option>
+                                        <c:forEach items="${taskTypeList}" var="taskType">
+                                            <option value="${taskType.id}"> ${taskType.typeName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </span>
+                    <span style="white-space:nowrap">
                         是否完成：
                         <select name="ifCompleted">
                             <option value="3">全部</option>
@@ -110,6 +119,9 @@
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">任务名称</span></div>
                         </td>
+                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">任务类型</span></div>
+                        </td>
 
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成期限</span></div>
@@ -138,6 +150,7 @@
                             </td>
 
                             <td height="20">${item.task.taskname}</td>
+                            <td height="20">${item.task.taskType.typeName}</td>
                             <td><fmt:formatDate value="${item.task.limitdate}"></fmt:formatDate></td>
                             <td>${item.task.completely}%</td>
                             <td>${item.task.completion}</td>

@@ -47,16 +47,26 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
-                                                                                     style="width:100px;"/></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value="" style="width:100px;"/></span>
+
+
+                                   <span style="white-space:nowrap">
+                                    任务类型：
+                                    <select name="typeId" id="typeId">
+                                        <option ></option>
+                                        <c:forEach items="${taskTypeList}" var="taskType">
+                                            <option value="${taskType.id}"> ${taskType.typeName}</option>
+                                        </c:forEach>
+                                    </select>
+                                </span>
                                <span style="white-space:nowrap">
-                        是否完成：
-                        <select name="ifCompleted">
-                            <option value="3">全部</option>
-                            <option value="1">是</option>
-                            <option value="0">否</option>
-                        </select>
-                    </span>
+                                是否完成：
+                                <select name="ifCompleted">
+                                    <option value="3">全部</option>
+                                    <option value="1">是</option>
+                                    <option value="0">否</option>
+                                </select>
+                            </span>
              <span style="white-space:nowrap">&nbsp;&nbsp;
             <a href="javascript:void(0)" onclick="toFind('listForm');" class="txt_bt">
                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询

@@ -109,6 +109,18 @@
                                         </td>
                                     </tr>
                                     <tr bgcolor="#ffffff">
+                                        <td nowrap align="right">任务执行人:</td>
+                                        <td nowrap colspan="3">
+                                            <c:forEach items="${taskChargerList}" var="item">
+                                                ${item.charger.name}、
+                                            </c:forEach>
+                                        </td>
+                                        <%--<td nowrap align="right">完成时间时间:</td>--%>
+                                        <%--<td nowrap>--%>
+                                        <%--<fmt:formatDate value="${taskInfo.finishdate}"/>--%>
+                                        <%--</td>--%>
+                                    </tr>
+                                    <tr bgcolor="#ffffff">
                                         <td nowrap align="right">完成度:</td>
                                         <td nowrap colspan="3">
                                             ${taskInfo.completely}%

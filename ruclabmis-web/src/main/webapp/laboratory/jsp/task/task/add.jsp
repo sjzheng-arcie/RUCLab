@@ -62,7 +62,7 @@
 
         function formatUserDisplay(userId,userName) {
 
-            return '<span>' + userName+ ' <a href="#" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
+            return '<span>' + userName+ ' <a href="#" class="button" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
         }
         function uploadFile(){
             var file = document.getElementById("file").value;
@@ -101,19 +101,6 @@
             $('body').data('userIdlistBody', new Array());
             init();
         });
-        <%--$(document).ready(function () {--%>
-            <%--var userIdStr = '${userIdListToBody}';--%>
-            <%--if(userIdStr.length==0){--%>
-                <%--$('body').data('userIdlistBody', new Array());--%>
-            <%--}else{--%>
-                <%--if(userIdStr.charAt(userIdStr.length-1)==','){--%>
-                    <%--userIdStr = userIdStr.substring(0,userIdStr.length-1);--%>
-                <%--}--%>
-                <%--$('body').data('userIdlistBody', userIdStr.split(","));--%>
-            <%--}--%>
-            <%--init();--%>
-        <%--});--%>
-
     </script>
 </head>
 
@@ -188,7 +175,7 @@
                                                 <td nowrap align="right">任务名称:</td>
                                                 <td nowrap>
                                                     <input name="taskName" id="taskName" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" valid="required" errmsg="请填写用户名！"/>
+                                                           style="width:154px" maxlength="20" valid="required" errmsg="请填写任务名！"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
