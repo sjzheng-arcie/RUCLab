@@ -95,23 +95,24 @@
             document.mainForm.action="add?userIdList="+$('body').data('userIdlistBody').join(",");
             document.mainForm.submit();
         }
-//        $(document).ready(function () {
-//            $('body').data('filelist', new Array());
-//            init();
-//            $('body').data('userIdlistBody', new Array());
-//        });
         $(document).ready(function () {
-            var userIdStr = '${userIdListToBody}';
-            if(userIdStr.length==0){
-                $('body').data('userIdlistBody', new Array());
-            }else{
-                if(userIdStr.charAt(userIdStr.length-1)==','){
-                    userIdStr = userIdStr.substring(0,userIdStr.length-1);
-                }
-                $('body').data('userIdlistBody', userIdStr.split(","));
-            }
+            $('body').data('filelist', new Array());
+
+            $('body').data('userIdlistBody', new Array());
             init();
         });
+        <%--$(document).ready(function () {--%>
+            <%--var userIdStr = '${userIdListToBody}';--%>
+            <%--if(userIdStr.length==0){--%>
+                <%--$('body').data('userIdlistBody', new Array());--%>
+            <%--}else{--%>
+                <%--if(userIdStr.charAt(userIdStr.length-1)==','){--%>
+                    <%--userIdStr = userIdStr.substring(0,userIdStr.length-1);--%>
+                <%--}--%>
+                <%--$('body').data('userIdlistBody', userIdStr.split(","));--%>
+            <%--}--%>
+            <%--init();--%>
+        <%--});--%>
 
     </script>
 </head>
