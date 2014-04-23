@@ -120,6 +120,20 @@
                                         <%--<fmt:formatDate value="${taskInfo.finishdate}"/>--%>
                                         <%--</td>--%>
                                     </tr>
+                                    <c:if test="${taskInfo.ifscored==true}">
+                                        <tr bgcolor="#ffffff">
+                                            <td nowrap align="right">整体评分:</td>
+                                            <td nowrap colspan="3">
+
+                                                    ${taskInfo.overallscore}
+
+                                            </td>
+                                                <%--<td nowrap align="right">完成时间时间:</td>--%>
+                                                <%--<td nowrap>--%>
+                                                <%--<fmt:formatDate value="${taskInfo.finishdate}"/>--%>
+                                                <%--</td>--%>
+                                        </tr>
+                                    </c:if>
                                     <tr bgcolor="#ffffff">
                                         <td nowrap align="right">完成度:</td>
                                         <td nowrap colspan="3">
