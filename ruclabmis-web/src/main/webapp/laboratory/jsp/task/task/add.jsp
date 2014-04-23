@@ -39,6 +39,7 @@
                 $('#userShowArea').append(formatUserDisplay(tempUserId,tempUserName));
             }
             $("body").data('userIdlistBody').push(idList);
+
         }
 
             function userDelete() {
@@ -96,9 +97,22 @@
         }
         $(document).ready(function () {
             $('body').data('filelist', new Array());
-            init();
+
             $('body').data('userIdlistBody', new Array());
+            init();
         });
+        <%--$(document).ready(function () {--%>
+            <%--var userIdStr = '${userIdListToBody}';--%>
+            <%--if(userIdStr.length==0){--%>
+                <%--$('body').data('userIdlistBody', new Array());--%>
+            <%--}else{--%>
+                <%--if(userIdStr.charAt(userIdStr.length-1)==','){--%>
+                    <%--userIdStr = userIdStr.substring(0,userIdStr.length-1);--%>
+                <%--}--%>
+                <%--$('body').data('userIdlistBody', userIdStr.split(","));--%>
+            <%--}--%>
+            <%--init();--%>
+        <%--});--%>
 
     </script>
 </head>
@@ -190,13 +204,13 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right" >添加课题组成员：</td>
+                                                <td nowrap align="right" >添加任务成员：</td>
                                                 <td nowrap  align="left" colspan="3">
-                                                    <input type="button" name="aa" value="添加课题组成员" onclick="toAddCharger();" />
+                                                    <input type="button" name="aa" value="添加任务成员" onclick="toAddCharger();" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right" >课题组成员</td>
+                                                <td nowrap align="right" >任务成员</td>
                                                 <td nowrap  align="left" colspan="3">
                                                     <div id="userShowArea" name="userShowArea">
 

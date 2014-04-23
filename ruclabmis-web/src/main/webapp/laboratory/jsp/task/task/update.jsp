@@ -195,13 +195,13 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right" >添加课题组成员：</td>
+                                                <td nowrap align="right" >添加任务成员：</td>
                                                 <td nowrap  align="left" colspan="3">
-                                                    <input type="button" name="aa" value="添加课题组成员" onclick="toAddCharger();" />
+                                                    <input type="button" name="aa" value="添加任务成员" onclick="toAddCharger();" />
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right" >课题组成员</td>
+                                                <td nowrap align="right" >任务成员</td>
                                                 <td nowrap  align="left" colspan="3">
                                                     <div id="userShowArea" name="userShowArea">
 
