@@ -148,7 +148,7 @@
                             <td>${item.major.name}</td>
                             <td>${item.positionName}</td>
                             <td>${item.titleName}</td>
-                            <td><a href="/laboratory/jsp/task/task/tasklist?teacherId=${item.id}" class="button"> 查看任务</a></td>
+                            <td><a href="/laboratory/jsp/task/task/oneslist?teacherId=${item.id}" class="button"> 查看任务</a></td>
 
                         </tr>
                     </c:forEach>

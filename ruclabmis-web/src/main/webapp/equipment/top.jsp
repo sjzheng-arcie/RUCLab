@@ -37,7 +37,7 @@
     <div class="top_right">
         <div class="top_right_top">
            <span style="float:right;">您好！<a>${user.name}</a>[${user.role.name}]
-            <a style="color: #ffffff"href="/laboratory/jsp/announcement/remind/equipment/message?page=1" target="">短消息(${unreadCount})</a>
+            <a style="color: #ffffff"href="/appointment/laboratory/jsp/announcement/remind/equipment/message?page=1" target="">短消息(${unreadCount})</a>
             <a style="color: #ffffff"href="/common/user/toUpdatePassword" target="">修改密码</a>
             [<a style="color: #ffffff"href="/login/equipment/logout" target="_top">退出</a>]
             &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp

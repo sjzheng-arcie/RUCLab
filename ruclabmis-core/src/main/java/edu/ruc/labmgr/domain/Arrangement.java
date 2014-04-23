@@ -29,6 +29,10 @@ public class Arrangement {
 
     private Date scheduleDate;
 
+    private Date meetSTime;
+
+    private Date meetETime;
+
     private Room room;
 
     private User user;
@@ -161,5 +165,21 @@ public class Arrangement {
 
     public void setApproval(User approval) {
         this.approval = approval;
+    }
+
+    public Date getMeetSTime() {
+        return meetSTime;
+    }
+
+    public void setMeetSTime(Date meetSTime) {
+        this.meetSTime = meetSTime;
+    }
+
+    public Date getMeetETime() {
+        return meetETime;
+    }
+
+    public void setMeetETime(Date meetETime) {
+        this.meetETime = meetETime;
     }
 }

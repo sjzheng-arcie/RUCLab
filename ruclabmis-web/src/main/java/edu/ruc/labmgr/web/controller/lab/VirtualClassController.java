@@ -3,7 +3,6 @@ package edu.ruc.labmgr.web.controller.lab;
 import edu.ruc.labmgr.domain.ClassStudent;
 import edu.ruc.labmgr.domain.CurriculumClass;
 import edu.ruc.labmgr.domain.Student;
-import edu.ruc.labmgr.mapper.BbsSessionMapper;
 import edu.ruc.labmgr.service.CurriculumClassService;
 import edu.ruc.labmgr.service.ExperimentService;
 import edu.ruc.labmgr.service.StudentService;
@@ -39,8 +38,8 @@ public class VirtualClassController {
     private CurriculumClassService classService;
     @Autowired
     private StudentService studentService;
-	@Autowired
-	private UserService userService;
+    @Autowired
+    private UserService userService;
     @Autowired
     private ExperimentService experimentService;
 
@@ -51,17 +50,39 @@ public class VirtualClassController {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/list");
 /*
         PageInfo<CurriculumClass> pageInfo = classService.getPageClasses(page, sn, name);*/
-		Subject currentUser = SecurityUtils.getSubject();
-		int id = userService.getCurrentUserId();
-		PageInfo<CurriculumClass> pageInfo = null;
-		if(currentUser.hasRole("student"))
-			pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.STUDENT);
-		else if (currentUser.hasRole("administrators"))
-			pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id,Types.Role.ADMIN);
-		else
-			pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.TEACHER);
+        Subject currentUser = SecurityUtils.getSubject();
+        int id = userService.getCurrentUserId();
+        PageInfo<CurriculumClass> pageInfo = null;
+        if(currentUser.hasRole("student"))
+            pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.STUDENT);
+        else if (currentUser.hasRole("administrators"))
+            pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id,Types.Role.ADMIN);
+        else
+            pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.TEACHER);
         mv.addObject("pageInfo", pageInfo);
-		return mv;
+        return mv;
+    }
+
+    @RequestMapping(value = "/listbycource", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView classListByCource(@RequestParam int page,
+                                          @RequestParam(value = "sn", required = false, defaultValue = "") String sn,
+                                          @RequestParam(value = "name", required = false, defaultValue = "") String name,
+                                          @RequestParam(value = "curriculumId", required = false, defaultValue = "") Integer curriculumId) {
+        ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/listbycource");
+/*
+        PageInfo<CurriculumClass> pageInfo = classService.getPageClasses(page, sn, name);*/
+        Subject currentUser = SecurityUtils.getSubject();
+        int id = userService.getCurrentUserId();
+        PageInfo<CurriculumClass> pageInfo = null;
+        if(currentUser.hasRole("student"))
+            pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.STUDENT, curriculumId);
+        else if (currentUser.hasRole("administrators"))
+            pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id,Types.Role.ADMIN, curriculumId);
+        else
+            pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.TEACHER, curriculumId);
+        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("curriculumId", curriculumId);
+        return mv;
     }
 
     @RequestMapping(value = "/showAdd", method = {RequestMethod.GET, RequestMethod.POST})

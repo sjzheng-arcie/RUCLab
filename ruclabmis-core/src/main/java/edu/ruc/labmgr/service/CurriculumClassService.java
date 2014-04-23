@@ -65,6 +65,20 @@ public class CurriculumClassService {
 		}
 		return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
 	}
+    public PageInfo<CurriculumClass> getPageClassbyPageNumUseQuery(String sn,String name,int pageNum, int id, Types.Role role, Integer curriculumId) {
+        CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+        CurriculumClassCriteria.Criteria c = criteria.or();
+        if (!StringUtils.isEmpty(sn)) {
+            c.andClassSnLike("%" + sn + "%");
+        }
+        if (!StringUtils.isEmpty(name)) {
+            c.andClassNameLike("%" + name + "%");
+        }
+        if (curriculumId != null && curriculumId >0 ) {
+            c.andCurriculumIdEqualTo(curriculumId);
+        }
+        return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
+    }
 	public List<CurriculumClass> getAllCurriculumClass() {
 		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
 		CurriculumClassCriteria.Criteria c = criteria.or();
@@ -79,6 +93,16 @@ public class CurriculumClassService {
     public PageInfo<CurriculumClass> getPageClassbyPageNum(int pageNum, int id, Types.Role role) {
         CurriculumClassCriteria criteria = new CurriculumClassCriteria();
         CurriculumClassCriteria.Criteria c = criteria.or();
+        return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
+    }
+
+    public PageInfo<CurriculumClass> getPageCourseClassbyPageNum(int pageNum, int id, Integer curriculumId, Types.Role role) {
+        CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+
+        CurriculumClassCriteria.Criteria c = criteria.or();
+        if(curriculumId != null && curriculumId > 0 )
+            c.andCurriculumIdEqualTo(curriculumId);
+
         return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
     }
 

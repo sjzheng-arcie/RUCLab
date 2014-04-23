@@ -1,6 +1,7 @@
 package edu.ruc.labmgr.domain;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class CurriculumScheduleCriteria {
@@ -643,6 +644,128 @@ public class CurriculumScheduleCriteria {
             addCriterion("weekdays not between", value1, value2, "weekdays");
             return (Criteria) this;
         }
+
+        public Criteria andMeetSTimeIsNull() {
+            addCriterion("meet_stime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeIsNotNull() {
+            addCriterion("meet_stime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeEqualTo(Date value) {
+            addCriterion("meet_stime =", value, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeNotEqualTo(Date value) {
+            addCriterion("meet_stime <>", value, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeGreaterThan(Date value) {
+            addCriterion("meet_stime >", value, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("meet_stime >=", value, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeLessThan(Date value) {
+            addCriterion("meet_stime <", value, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeLessThanOrEqualTo(Date value) {
+            addCriterion("meet_stime <=", value, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeIn(List<Date> values) {
+            addCriterion("meet_stime in", values, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeNotIn(List<Date> values) {
+            addCriterion("meet_stime not in", values, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeBetween(Date value1, Date value2) {
+            addCriterion("meet_stime between", value1, value2, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetSTimeNotBetween(Date value1, Date value2) {
+            addCriterion("meet_stime not between", value1, value2, "meetSTime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeIsNull() {
+            addCriterion("meet_etime is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeIsNotNull() {
+            addCriterion("meet_etime is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeEqualTo(Date value) {
+            addCriterion("meet_etime =", value, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeNotEqualTo(Date value) {
+            addCriterion("meet_etime <>", value, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeGreaterThan(Date value) {
+            addCriterion("meet_etime >", value, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeGreaterThanOrEqualTo(Date value) {
+            addCriterion("meet_etime >=", value, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeLessThan(Date value) {
+            addCriterion("meet_etime <", value, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeLessThanOrEqualTo(Date value) {
+            addCriterion("meet_etime <=", value, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeIn(List<Date> values) {
+            addCriterion("meet_etime in", values, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeNotIn(List<Date> values) {
+            addCriterion("meet_etime not in", values, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeBetween(Date value1, Date value2) {
+            addCriterion("meet_etime between", value1, value2, "meetETime");
+            return (Criteria) this;
+        }
+
+        public Criteria andMeetETimeNotBetween(Date value1, Date value2) {
+            addCriterion("meet_etime not between", value1, value2, "meetETime");
+            return (Criteria) this;
+        }
+
+
     }
 
     public static class Criteria extends GeneratedCriteria {

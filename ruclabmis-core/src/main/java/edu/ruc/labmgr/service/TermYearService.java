@@ -8,6 +8,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 
@@ -32,5 +33,19 @@ public class TermYearService {
 
     public TermYear getTermYearById(Integer id){
         return mapper.selectByPrimaryKey(id);
+    }
+
+
+    public List<Integer> getIdByYear(Integer year){
+        TermYearCriteria yearCriteria = new TermYearCriteria();
+        TermYearCriteria.Criteria ec = yearCriteria.createCriteria();
+        ec.andYearEqualTo(year);
+        List<TermYear> years = mapper.selectByCriteria(yearCriteria);
+        List<Integer> retVals = new ArrayList<Integer>();
+        for(TermYear termYear : years)
+        {
+            retVals.add(termYear.getId());
+        }
+        return retVals;
     }
 }

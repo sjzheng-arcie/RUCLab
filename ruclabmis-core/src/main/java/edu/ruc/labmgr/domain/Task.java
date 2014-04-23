@@ -27,6 +27,8 @@ public class Task {
 
     private Integer score;
 
+    private Integer type;
+
     private Boolean ifscored;
 
     private Integer overallscore;
@@ -47,6 +49,18 @@ public class Task {
 
     private Boolean ifwork;
 
+	private User manager;
+
+	public TaskType getTaskType() {
+		return taskType;
+	}
+
+	public void setTaskType(TaskType taskType) {
+		this.taskType = taskType;
+	}
+
+	private TaskType taskType;
+
 	public User getManager() {
 		return manager;
 	}
@@ -55,7 +69,7 @@ public class Task {
 		this.manager = manager;
 	}
 
-	private User manager;
+
 
     public Integer getId() {
         return id;
@@ -151,6 +165,14 @@ public class Task {
 
     public void setScore(Integer score) {
         this.score = score;
+    }
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
     }
 
     public Boolean getIfscored() {

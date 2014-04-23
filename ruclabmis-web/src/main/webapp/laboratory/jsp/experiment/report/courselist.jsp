@@ -29,7 +29,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验信息管理 > 实验课程</div>
+                            <div class="titlebt">实验信息管理 > 实验报告</div>
                         </td>
                     </tr>
                 </table>

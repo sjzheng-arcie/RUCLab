@@ -17,6 +17,52 @@
     <title></title>
 
     <script>
+
+
+
+        function toAddCharger(){
+            window.open("/laboratory/jsp/task/task/userlist?page=1&projectId=${projectId}", "人员信息",
+                    "height=450, width=1000, toolbar=no, status=no");
+        }
+        function setUser(selectedUser) {
+            var userIdNameList=new Array();
+            userIdNameList=selectedUser.toString().split(',');
+            var idList=new Array();
+            var nameList=new Array();
+            var i=0;
+            for(i=0;i<userIdNameList.length;i++){
+                var tempUser=userIdNameList[i].toString();
+                var tempUserId=tempUser.substring(0,tempUser.indexOf('+'));
+                var tempUserName=tempUser.substring(tempUser.indexOf('+')+1,tempUser.length);
+                idList[i]=tempUserId;
+                nameList[i]=tempUserName;
+                $('#userShowArea').append(formatUserDisplay(tempUserId,tempUserName));
+            }
+            $("body").data('userIdlistBody').push(idList);
+        }
+
+            function userDelete() {
+                var src = window.event.srcElement;
+                var userId = src.getAttribute("userId");
+
+                alert(userId);
+                var index = $.inArray(userId,$("body").data('userIdlistBody'));
+                alert(index);
+                if(index>=0){
+                    $("body").data('userIdlistBody').splice(index,1);
+                }
+
+                $(src).parent().next().remove();
+                $(src).parent().remove();
+
+                window.event.stopPropagation();
+
+            }
+
+        function formatUserDisplay(userId,userName) {
+
+            return '<span>' + userName+ ' <a href="#" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
+        }
         function uploadFile(){
             var file = document.getElementById("file").value;
             if (!file) {
@@ -45,9 +91,14 @@
             if (!validator(document.mainForm)) {
                 return;
             }
-            document.mainForm.action="add";
+            document.mainForm.action="add?userIdList="+$('body').data('userIdlistBody').join(",");
             document.mainForm.submit();
         }
+        $(document).ready(function () {
+            $('body').data('filelist', new Array());
+            init();
+            $('body').data('userIdlistBody', new Array());
+        });
 
     </script>
 </head>
@@ -127,13 +178,30 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
-                                                <td nowrap align="right">执行人:</td>
+                                                <td nowrap align="right">类型:</td>
                                                 <td nowrap>
-                                                    <input name="operator" id="operator" onblur="" class="text"
-                                                           style="width:154px" maxlength="20" readonly disabled="no"
-                                                           value="${teacherInfo.name}"/>
+                                                    <select name="typeId" id="typeId">
+                                                        <c:forEach items="${taskTypeList}" var="item">
+                                                            <option value="${item.id}"> ${item.typeName}</option>
+                                                        </c:forEach>
+                                                    </select>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_no"></span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right" >添加课题组成员：</td>
+                                                <td nowrap  align="left" colspan="3">
+                                                    <input type="button" name="aa" value="添加课题组成员" onclick="toAddCharger();" />
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right" >课题组成员</td>
+                                                <td nowrap  align="left" colspan="3">
+                                                    <div id="userShowArea" name="userShowArea">
+
+
+                                                    </div>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -146,6 +214,9 @@
 
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_limit_time"></span>
+                                                </td>
+                                                <td nowrap align="right"></td>
+                                                <td nowrap>
                                                 </td>
 
                                             </tr>

@@ -30,7 +30,7 @@ public class TaskService {
 		return taskMapper.selectByPrimaryKey(taskId);
 	}
 	public void updateByPrimaryKey(Task task){
-		taskMapper.updateByPrimaryKey(task);
+		taskMapper.updateByPrimaryKeySelective(task);
 	}
 
 	public void deleteById(int id){
@@ -38,13 +38,13 @@ public class TaskService {
 	}
 
 	public List<Task> getTaskList(){
-		List<Task> taskList = taskMapper.selectByCriteria(null);
+		List<Task> taskList = taskMapper.selectByExample(null);
 		return taskList;
 	}
 	public PageInfo<Task> selectListPage(TaskCriteria criteria, int pageNum) {
-		int totalCount = taskMapper.countByCriteria(criteria);
+		int totalCount = taskMapper.countByExample(criteria);
 		PageInfo<Task> page = new PageInfo<>(totalCount, -1, pageNum);
-		List<Task> data = taskMapper.selectByCriteriaWithRowbounds(criteria,
+		List<Task> data = taskMapper.selectByExampleWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
 		page.setData(data);
 		return page;

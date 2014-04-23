@@ -113,7 +113,7 @@
                                                     <input name="taskName" id="taskName" onblur="" class="text"disabled="no"
                                                            style="width:154px" maxlength="20"  value="${taskInfo.taskname}"/>
                                                 </td>
-                                                <td nowrap align="right">执行人:</td>
+                                                <td nowrap align="right">任务指派人:</td>
                                                 <td nowrap>
                                                     <input name="operator" id="operator" onblur="" class="text"
                                                            style="width:154px" maxlength="20" readonly disabled="no"
@@ -128,6 +128,11 @@
                                                 <td nowrap align="right">完成进度</td>
                                                 <td nowrap>
                                                    <input class="text" style="text-align: right;" size="2" name="completely" id="completely"
+
+                                                          <c:if test="${taskInfo.ifcompleted==true}">
+                                                                readonly disabled="no"
+                                                          </c:if>
+
                                                           value="${taskInfo.completely}"
                                                           valid="required" errmsg="请填写任务完成进度（0~100之间的整数）！"/>%
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
@@ -149,7 +154,11 @@
                                             </tr>
                                             <tr>
                                                 <td nowrap align="right">完成情况:</td>
-                                                <td colspan="3"><textarea name="completion" style="width:70%;height:100px">${taskInfo.completion}</textarea>
+                                                <td colspan="3"><textarea name="completion"
+                                                        <c:if test="${taskInfo.ifcompleted}">
+                                                            readonly disabled="no"
+                                                        </c:if>
+                                                                          style="width:70%;height:100px">${taskInfo.completion}</textarea>
                                                 </td>
                                             </tr>
                                         </table>
@@ -159,8 +168,10 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td align="center">
-                                        <input type="button" name="Submit" value="保存进度" class="button" onclick="save();"/>
-                                        <input type="reset" name="reset" value="完成任务" class="button"  onclick="finish();"/>
+                                        <c:if test="${taskInfo.ifcompleted!=true}">
+                                            <input type="button" name="Submit" value="保存进度" class="button" onclick="save();"/>
+                                            <input type="reset" name="reset" value="完成任务" class="button"  onclick="finish();"/>
+                                        </c:if>
                                         <input type="button" name="return" value="返回" class="button" onclick="window.history.go(-1);"/>
                                     </td>
                                 </tr>

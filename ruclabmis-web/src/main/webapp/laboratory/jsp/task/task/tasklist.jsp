@@ -116,6 +116,9 @@
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">任务名称</span></div>
                         </td>
+                        <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                            <div align="center"><span class="STYLE10">任务类型</span></div>
+                        </td>
 
                         <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">完成期限</span></div>
@@ -142,9 +145,7 @@
                         <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
                             <div align="center"><span class="STYLE10">操作</span></div>
                         </td>
-                        <td width="120" height="20" bgcolor="d3eaef" class="STYLE6">
-                            <div align="center"><span class="STYLE10">删除</span></div>
-                        </td>
+
                     </tr>
                     <% int temp=1; %>
                     <c:forEach items="${pageInfo.data}" var="item">
@@ -154,6 +155,7 @@
                             </td>
 
                             <td height="20">${item.taskname}</td>
+                            <td height="20">${item.taskType.typeName}</td>
                             <td><fmt:formatDate value="${item.limitdate}"></fmt:formatDate></td>
 
                             <td>${item.annexname}</td>
@@ -171,7 +173,7 @@
                                                 <a class="button" href="/laboratory/jsp/task/taskscore/leaderscore?taskId=${item.id}">评分</a>
                                             </c:when>
                                             <c:otherwise>
-                                                尚未完成
+                                                 尚未完成
                                             </c:otherwise>
                                         </c:choose>
                                     </c:otherwise>
@@ -182,8 +184,7 @@
                             <td><a href="/laboratory/jsp/task/task/toupdate?taskId=${item.id}">
                                 <img src="../../../../images/edit_min.gif" width="10"
                                      height="10" border="0"/>
-                            </a></td>
-                            <td><a href="/laboratory/jsp/task/task/delete?taskId=${item.id}">
+                            </a><a href="/laboratory/jsp/task/task/delete?taskId=${item.id}">
                                 <img src="../../../../images/del_min.gif" width="10"
                                      height="10" border="0"/>
                             </a></td>

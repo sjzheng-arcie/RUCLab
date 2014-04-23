@@ -120,8 +120,8 @@
                                                                     </span>
                                                                     <shiro:hasRole name="administrators">
                                                                     <c:if test="${currentUserInfo.id==item.publisherId}">
-                                                                    <span style="float:right"> <a class="button" href="/laboratory/jsp/announcement/remind/equipment/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
-                                                                    <span style="float:right"><a class="button" href="/laboratory/jsp/announcement/remind/equipment/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
+                                                                    <span style="float:right"> <a class="button" href="/appointment/laboratory/jsp/announcement/remind/equipment/toUpdateAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">修改</a></span>
+                                                                    <span style="float:right"><a class="button" href="/appointment/laboratory/jsp/announcement/remind/equipment/deleteAnnouncement?announcementId=${item.id}&page=${pageInfo.currentPage}">删除</a></span>
                                                                     </c:if>
                                                                     </shiro:hasRole>
                                                             </div>
