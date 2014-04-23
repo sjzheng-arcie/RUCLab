@@ -65,6 +65,15 @@
                                 <%--</c:forEach>--%>
                             <%--</select>--%>
                             <%--</span>--%>
+                            <span style="white-space:nowrap">
+                        任务类型：
+                        <select name="typeId" id="typeId">
+                            <option ></option>
+                            <c:forEach items="${taskTypeList}" var="taskType">
+                                <option value="${taskType.id}"> ${taskType.typeName}</option>
+                            </c:forEach>
+                        </select>
+                    </span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp; 是否已完成:
                             <select name="ifCompleted">
@@ -126,6 +135,9 @@
                                                         <div align="center"><span class="STYLE10">任务名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">类型</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任务发起人</span></div>
                                                     </td>
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -145,6 +157,7 @@
                                                             <%=i++%>
                                                         </td>
                                                         <td>${item.taskname}</td>
+                                                        <td>${item.taskType.typeName}</td>
                                                         <td>${item.manager.name}</td>
                                                         <td><fmt:formatDate value="${item.limitdate}"/></td>
                                                         <td>${item.content}</td>

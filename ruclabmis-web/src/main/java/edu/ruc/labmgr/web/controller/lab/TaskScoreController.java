@@ -33,6 +33,8 @@ public class TaskScoreController {
 	TaskService taskService;
 	@Autowired
 	TaskChargerService taskChargerService;
+	@Autowired
+	TaskTypeService taskTypeService;
 
 	@RequestMapping(value = "/teacherscorelist", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getList(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId,
@@ -60,10 +62,12 @@ public class TaskScoreController {
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/taskscorelist");
 		modelAndView.addObject("pageInfo",pageInfo);
 		modelAndView.addObject("managerList",managerList);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return modelAndView;
 	}
 	@RequestMapping(value = "/taskscorelist", method = ( RequestMethod.POST))
 	public ModelAndView getScoreList(@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
+									 @RequestParam(value="typeId", required = true,defaultValue = "0") int typeId,
 									 @RequestParam(value="ifCompleted", required = false,defaultValue = "3") int ifCompleted,
 									 @RequestParam(value="managerId", required = false,defaultValue = "0") int managerId,
 									 @RequestParam(value = "page", required = false, defaultValue = "1") int page){
@@ -85,12 +89,16 @@ public class TaskScoreController {
 		}else{
 
 		}
+		if(typeId!=0){
+			criteria.andTypeEqualTo(typeId);
+		}
 		List<Teacher> managerList= teacherService.getAllTeacherList();
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/taskscorelist");
 		modelAndView.addObject("pageInfo",pageInfo);
 		modelAndView.addObject("managerList",managerList);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 //		modelAndView.addObject("taskScoreList",taskScoreList);
 		return modelAndView;
 	}
