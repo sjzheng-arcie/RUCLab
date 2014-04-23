@@ -93,7 +93,7 @@
                                         <td nowrap>
                                             ${taskInfo.taskname}
                                         </td>
-                                        <td nowrap align="right">负责人:</td>
+                                        <td nowrap align="right">任务发起人:</td>
                                         <td nowrap>
                                             ${taskInfo.manager.name}
                                         </td>
@@ -108,6 +108,32 @@
                                             <fmt:formatDate value="${taskInfo.finishdate}"/>
                                         </td>
                                     </tr>
+                                    <tr bgcolor="#ffffff">
+                                        <td nowrap align="right">任务执行人:</td>
+                                        <td nowrap colspan="3">
+                                            <c:forEach items="${taskChargerList}" var="item">
+                                                ${item.charger.name}、
+                                            </c:forEach>
+                                        </td>
+                                        <%--<td nowrap align="right">完成时间时间:</td>--%>
+                                        <%--<td nowrap>--%>
+                                        <%--<fmt:formatDate value="${taskInfo.finishdate}"/>--%>
+                                        <%--</td>--%>
+                                    </tr>
+                                    <c:if test="${taskInfo.ifscored==true}">
+                                        <tr bgcolor="#ffffff">
+                                            <td nowrap align="right">整体评分:</td>
+                                            <td nowrap colspan="3">
+
+                                                    ${taskInfo.overallscore}
+
+                                            </td>
+                                                <%--<td nowrap align="right">完成时间时间:</td>--%>
+                                                <%--<td nowrap>--%>
+                                                <%--<fmt:formatDate value="${taskInfo.finishdate}"/>--%>
+                                                <%--</td>--%>
+                                        </tr>
+                                    </c:if>
                                     <tr bgcolor="#ffffff">
                                         <td nowrap align="right">完成度:</td>
                                         <td nowrap colspan="3">
@@ -248,7 +274,9 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
+                                <c:if test="${taskInfo.ifscored!=true}">
                                 <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
+                                </c:if>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
                             </td>

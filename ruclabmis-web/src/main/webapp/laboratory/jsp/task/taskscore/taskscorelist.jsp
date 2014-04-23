@@ -55,16 +55,25 @@
                             <span style="white-space:nowrap">&nbsp;&nbsp;任务名称:<input type="text" name="taskName" id="taskName" value=""
                                                                                      style="width:100px;"/></span>
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp;负责人:
-                            <select id="managerId" name="managerId"
-                                    style="width: 252px;height: 22px"
-                                    data-placeholder="选择负责人...">
-                                <option value=""></option>
-                                <c:forEach items="${managerList}" var="manager">
-                                    <option value="${manager.id}">${manager.name}(${manager.sn})</option>
-                                </c:forEach>
-                            </select>
-                            </span>
+                            <%--<span style="white-space:nowrap">&nbsp;&nbsp;负责人:--%>
+                            <%--<select id="managerId" name="managerId"--%>
+                                    <%--style="width: 252px;height: 22px"--%>
+                                    <%--data-placeholder="选择负责人...">--%>
+                                <%--<option value=""></option>--%>
+                                <%--<c:forEach items="${managerList}" var="manager">--%>
+                                    <%--<option value="${manager.id}">${manager.name}(${manager.sn})</option>--%>
+                                <%--</c:forEach>--%>
+                            <%--</select>--%>
+                            <%--</span>--%>
+                            <span style="white-space:nowrap">
+                        任务类型：
+                        <select name="typeId" id="typeId">
+                            <option ></option>
+                            <c:forEach items="${taskTypeList}" var="taskType">
+                                <option value="${taskType.id}"> ${taskType.typeName}</option>
+                            </c:forEach>
+                        </select>
+                    </span>
 
                             <span style="white-space:nowrap">&nbsp;&nbsp; 是否已完成:
                             <select name="ifCompleted">
@@ -73,8 +82,9 @@
                                 <option value="0">未完成</option>
                             </select>
                             </span>
-                            <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand" onclick="findInfo(listForm)"><img
-                                    src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
+                            <span style="white-space:nowrap">&nbsp;&nbsp;  <a href="javascript:void(0)" onclick="toFind('listForm');" class="txt_bt">
+                                <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
+                            </a></span>
                             <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0">
                                 <tr>
                                     <td height="30">
@@ -125,7 +135,10 @@
                                                         <div align="center"><span class="STYLE10">任务名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">责任人</span></div>
+                                                        <div align="center"><span class="STYLE10">类型</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">任务发起人</span></div>
                                                     </td>
                                                     <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">完成时间</span></div>
@@ -144,12 +157,13 @@
                                                             <%=i++%>
                                                         </td>
                                                         <td>${item.taskname}</td>
+                                                        <td>${item.taskType.typeName}</td>
                                                         <td>${item.manager.name}</td>
                                                         <td><fmt:formatDate value="${item.limitdate}"/></td>
                                                         <td>${item.content}</td>
                                                         <td>
                                                             <c:choose>
-                                                                <c:when test="${item.ifcompleted==true}">
+                                                                <c:when test="${item.ifscored==true}">
                                                                     <a class="button" href="/laboratory/jsp/task/taskscore/torescore?taskId=${item.id}">查看</a>
                                                                 </c:when>
                                                                 <c:otherwise>

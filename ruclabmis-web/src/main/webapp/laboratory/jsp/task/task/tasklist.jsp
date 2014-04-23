@@ -50,6 +50,15 @@
                                   id="taskName" value=""
                                   style="width:100px;"/>
                     </span>
+     <span style="white-space:nowrap">
+                        任务类型：
+                        <select name="typeId" id="typeId">
+                            <option ></option>
+                            <c:forEach items="${taskTypeList}" var="taskType">
+                                <option value="${taskType.id}"> ${taskType.typeName}</option>
+                            </c:forEach>
+                        </select>
+                    </span>
                     <span style="white-space:nowrap">
                         是否完成：
                         <select name="ifCompleted">

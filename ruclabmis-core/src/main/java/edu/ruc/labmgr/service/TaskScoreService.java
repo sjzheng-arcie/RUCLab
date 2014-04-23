@@ -64,7 +64,10 @@ public class TaskScoreService {
 		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
 		criteria.andMarkeridEqualTo(markerId);
 		criteria.andTaskidEqualTo(taskId);
-		return taskscoreMapper.selectByCriteria(taskscoreCriteria).get(0);
+		if(taskscoreMapper.selectByCriteria(taskscoreCriteria)!=null&&taskscoreMapper.selectByCriteria(taskscoreCriteria).size()>0){
+			return taskscoreMapper.selectByCriteria(taskscoreCriteria).get(0);
+		}
+		return new Taskscore();
 	}
 
 

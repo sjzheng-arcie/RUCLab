@@ -114,6 +114,7 @@ public class TaskController {
 
 	@RequestMapping(value = "/tasklist", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getList(@RequestParam(value="teacherId", required = true,defaultValue = "0") int teacherId,
+								@RequestParam(value="typeId", required = true,defaultValue = "0") int typeId,
 								@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
 								@RequestParam(value="ifCompleted", required = false,defaultValue = "3") int ifCompleted,
 								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
@@ -127,14 +128,16 @@ public class TaskController {
 			criteria.andIfcompletedEqualTo(false);
 		}else if(ifCompleted==1){
 			criteria.andIfcompletedEqualTo(true);
-		}else{
-
+		}
+		if(typeId!=0){
+			criteria.andTypeEqualTo(typeId);
 		}
 		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(teacherId);
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/task/tasklist");
 		modelAndView.addObject("pageInfo",pageInfo);
 		modelAndView.addObject("teacherInfo",teacherInfo);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return modelAndView;
 	}
 
@@ -153,6 +156,7 @@ public class TaskController {
 		PageInfo<TaskCharger> taskChargerPageInfo= taskChargerService.selectListPage("%"+taskName+"%",userService.getCurrentUserId(),typeId,ifCompleted,ifScored,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/mytask/list");
 		modelAndView.addObject("pageInfo",taskChargerPageInfo);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return  modelAndView;
 	}
 	@RequestMapping(value = "/oneslist", method = {RequestMethod.GET, RequestMethod.POST})
@@ -166,6 +170,7 @@ public class TaskController {
 		PageInfo<TaskCharger> taskChargerPageInfo= taskChargerService.selectListPage("%"+taskName+"%",chargerId,typeId,ifCompleted,ifScored,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/task/list");
 		modelAndView.addObject("pageInfo",taskChargerPageInfo);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return  modelAndView;
 	}
 
@@ -174,6 +179,7 @@ public class TaskController {
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getTaskList(@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
 								@RequestParam(value="ifCompleted", required = false,defaultValue = "3") int ifCompleted,
+								@RequestParam(value="typeId", required = false,defaultValue = "0") int typeId,
 								@RequestParam(value="ifScored", required = false,defaultValue = "3") int ifScored,
 								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
 		TaskCriteria taskCriteria = new TaskCriteria();
@@ -195,10 +201,13 @@ public class TaskController {
 		}else{
 
 		}
-
+		if(typeId!=0){
+			criteria.andTypeEqualTo(typeId);
+		}
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/task/tasklist");
 		modelAndView.addObject("pageInfo",pageInfo);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 
 		return modelAndView;
 	}
@@ -220,51 +229,7 @@ public class TaskController {
 		result.addObject("organizations", organizations);
 		return result;
 	}
-//	@RequestMapping(value = "/toadd", method = {RequestMethod.GET, RequestMethod.POST})
-//	public ModelAndView toAddTask(@RequestParam(value = "teacherId", required = false, defaultValue = "") int teacherId){
-//		Teacher teacher = serviceTeacher.selectByPrimaryKey(teacherId);
-//		ModelAndView modelAndView = new ModelAndView("/laboratory/jsp/task/task/add");
-//		modelAndView.addObject("teacherInfo",teacher);
-//		return modelAndView;
-//	}
-//
-//	@RequestMapping(value = "/add", method = {RequestMethod.GET, RequestMethod.POST})
-//	public ModelAndView addTask(HttpServletRequest request,
-//								@RequestParam(value = "taskName", required = true, defaultValue = "") String taskName,
-//								@RequestParam(value = "teacherId", required = true, defaultValue = "0") int teacherId,
-//								@RequestParam(value = "documentName", required = false, defaultValue = "") String documentName,
-//								@RequestParam(value = "taskContent", required = true, defaultValue = "") String taskContent,
-//								@RequestParam(value = "limitDate", required = true ) Date limitDate){
-//
-//		String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
-//		String uploadPath = request.getSession().getServletContext().getRealPath(path);
-//		String fullFilePath = uploadPath + "\\" + documentName;
-//
-//
-//		Task task = new Task();
-//		task.setTaskname(taskName);
-//		task.setManagerid(teacherId);
-//		task.setContent(taskContent);
-//		task.setLimitdate(limitDate);
-//		task.setIfcompleted(false);
-//		task.setPublishdate(new Date());
-//		task.setPublisherid(userService.getCurrentUserId());
-//		task.setIfwork(false);
-//		task.setCompletely(0);
-//		task.setScore(0);
-//		task.setAnnexname(documentName);
-//		task.setAnnexpath(fullFilePath);
-//		task.setSpentscore(0);
-//		task.setQualityscore(0);
-//		task.setTimelyscore(0);
-//		task.setSpentscore(0);
-//		task.setCompletelyscore(0);
-//		task.setOverallscore(0);
-//		task.setIfscored(false);
-//		taskService.insert(task);
-//		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/tasklist?teacherId="+teacherId);
-//		return modelAndView;
-//	}
+
 	@RequestMapping(value = "/toadd", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView toAddTask(){
 
