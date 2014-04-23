@@ -27,7 +27,7 @@
         <h2> 对象被占用，无法编辑或删除！</h2>
         <h1>
 
-            <p><a href="#" onclick="window.history.go(-1);">返回</a></p>
+            <p><a href="#" onclick="window.history.go(-2);">返回</a></p>
 
         </h1>
     </li>

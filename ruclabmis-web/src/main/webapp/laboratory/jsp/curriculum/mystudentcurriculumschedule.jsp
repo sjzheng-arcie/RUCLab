@@ -83,7 +83,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">上午</td>
-                                    <td bgcolor="#F7F7F7">一、二节</td>
+                                    <td bgcolor="#F7F7F7">一、二节(7:00-9:00)</td>
                                     <c:forEach items="${curriculumScheduleList}" var="item" begin="0" end="6" >
                                         <td bgcolor="#F7F7F7">${item.curriculum.name}
                                                 ${item.room.name}
@@ -94,7 +94,7 @@
                                 </tr>
                                 <tr height="100" align="center">
 
-                                    <td bgcolor="#F7F7F7">三、四节</td>
+                                    <td bgcolor="#F7F7F7">三、四节(9:00-11:00)</td>
                                     <c:forEach items="${curriculumScheduleList}" var="item" begin="7" end="13" >
                                         <td bgcolor="#F7F7F7">${item.curriculum.name}
                                                 ${item.room.name}
@@ -103,7 +103,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" rowspan="2">下午</td>
-                                    <td bgcolor="#F7F7F7">五、六节</td>
+                                    <td bgcolor="#F7F7F7">五、六节(13:00-15:00)</td>
                                     <c:forEach items="${curriculumScheduleList}" var="item" begin="14" end="20" >
                                         <td bgcolor="#F7F7F7">${item.curriculum.name}
 
@@ -113,7 +113,7 @@
                                 </tr>
                                 <tr height="100" align="center">
 
-                                    <td bgcolor="#F7F7F7">七、八节</td>
+                                    <td bgcolor="#F7F7F7">七、八节(15:00-17:00)</td>
                                     <c:forEach items="${curriculumScheduleList}" var="item" begin="21" end="27" >
                                         <td bgcolor="#F7F7F7">${item.curriculum.name}
                                                 ${item.room.name}
@@ -122,7 +122,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7">晚上</td>
-                                    <td bgcolor="#F7F7F7">九、十节</td>
+                                    <td bgcolor="#F7F7F7">九、十节(19:00-21:00)</td>
                                     <c:forEach items="${curriculumScheduleList}" var="item" begin="28" end="34" >
                                         <td bgcolor="#F7F7F7">${item.curriculum.name}
                                                 ${item.room.name}

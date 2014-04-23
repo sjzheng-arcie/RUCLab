@@ -25,7 +25,7 @@ import java.util.List;
  * Des:
  */
 @Controller
-@RequestMapping(value = "/laboratory/jsp/appointment/laboratory")
+@RequestMapping(value = "/laboratory/jsp/appointment")
 
 public class AppointmentLController {
     @Autowired
@@ -45,7 +45,7 @@ public class AppointmentLController {
     @Autowired
     ClassifService classifService;
 
-    @RequestMapping(value = "/appointmentbaseinfo")
+    @RequestMapping(value = "/laboratory/appointmentbaseinfo")
     public ModelAndView appointmentBaseinfo() {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
@@ -64,15 +64,18 @@ public class AppointmentLController {
         return mav;
     }
 
-    @RequestMapping(value = "/roomstatus", method = RequestMethod.GET)
+    @RequestMapping(value = "/laboratory/roomstatus", method = RequestMethod.GET)
     ModelAndView roomStatus(@RequestParam(required = true,defaultValue = "") String year,
                             @RequestParam(required = false,defaultValue = "") String week,
                             @RequestParam(required = false,defaultValue = "") String wDay,
                             @RequestParam(required = false,defaultValue = "") String section) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(new Date());
-
-        Integer inYear = Integer.parseInt(year);
+		Integer inYear = null;
+		if(year.isEmpty())
+			inYear = calendar.getTime().getYear();
+		else
+            inYear = Integer.parseInt(year);
 
         Byte inWeek;
         if(StringUtils.isNullOrEmpty(week)){
@@ -117,7 +120,7 @@ public class AppointmentLController {
         return mav;
     }
 
-    @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
+    @RequestMapping(value = "/laboratory/toAdd", method = RequestMethod.GET)
     ModelAndView toAdd(@RequestParam(required = true) Integer year,
                        @RequestParam(required = true) Integer week,
                        @RequestParam(required = true) Integer wDay,
@@ -141,7 +144,7 @@ public class AppointmentLController {
         return mav;
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
+    @RequestMapping(value = "/laboratory/add", method = RequestMethod.POST, produces = "application/json")
     public
     @ResponseBody
     Result add(Arrangement arrangement,
@@ -173,7 +176,7 @@ public class AppointmentLController {
         return result;
     }
 
-    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    @RequestMapping(value = "/laboratory/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList( @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                                   @RequestParam(value = "formType", required = false, defaultValue = "") String formType) {
         Subject subject = SecurityUtils.getSubject();
@@ -217,7 +220,7 @@ public class AppointmentLController {
         return mav;
     }
 
-    @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
+    @RequestMapping(value = "/laboratory/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
 
@@ -234,7 +237,7 @@ public class AppointmentLController {
         return mav;
     }
 
-    @RequestMapping(value = "/delete", method = RequestMethod.POST)
+    @RequestMapping(value = "/laboratory/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) {
         for(int id : items){
             int scheduleId = arrangementScheduleService.getSecheduleIdByArrangementId(id);
@@ -245,7 +248,7 @@ public class AppointmentLController {
         return "redirect:/laboratory/jsp/appointment/laboratory/list";
     }
 
-    @RequestMapping(value = "/approve", method = RequestMethod.POST)
+    @RequestMapping(value = "/laboratory/approve", method = RequestMethod.POST)
     public String approve(@RequestParam("items") List<Integer> items) {
         for(int id : items){
             Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
@@ -256,7 +259,7 @@ public class AppointmentLController {
         return "redirect:/laboratory/jsp/appointment/laboratory/list";
     }
 
-    @RequestMapping(value = "/reject", method = RequestMethod.POST)
+    @RequestMapping(value = "/laboratory/reject", method = RequestMethod.POST)
     public String reject(@RequestParam("items") List<Integer> items) {
         for(int id : items){
             Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
@@ -277,7 +280,7 @@ public class AppointmentLController {
 //        return mav;
 //    }
 
-    @RequestMapping(value ="/laboratoryapply",method = RequestMethod.GET)
+    @RequestMapping(value ="/laboratory/laboratoryapply",method = RequestMethod.GET)
     public ModelAndView laboratoryapply(){
         ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/laboratoryapply");
         return mav;
@@ -288,18 +291,18 @@ public class AppointmentLController {
         return mav;
     }
 
-    @RequestMapping(value ="/mydatelist",method = RequestMethod.GET)
+    @RequestMapping(value ="/laboratory/mydatelist",method = RequestMethod.GET)
     public ModelAndView mydatelist(){
         ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/mydatelist");
         return mav;
     }
 
-    @RequestMapping(value ="/appointmentdate",method = RequestMethod.GET)
+    @RequestMapping(value ="/laboratory/appointmentdate",method = RequestMethod.GET)
     public ModelAndView appointdate(){
         ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdate");
         return mav;
     }
-    @RequestMapping(value ="/appointmentdatecontent",method = RequestMethod.GET)
+    @RequestMapping(value ="/laboratory/appointmentdatecontent",method = RequestMethod.GET)
     public ModelAndView appointmentdatecontent(){
         ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/appointmentdatecontent");
         return mav;

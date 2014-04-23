@@ -45,7 +45,7 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -55,7 +55,7 @@ public class ArrangementService {
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
         criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -65,7 +65,7 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -75,7 +75,7 @@ public class ArrangementService {
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
         criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -84,7 +84,7 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
 
@@ -93,7 +93,7 @@ public class ArrangementService {
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
         criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetSTimeIsNull().andMeetETimeIsNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -102,7 +102,7 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
 
@@ -111,7 +111,7 @@ public class ArrangementService {
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
         criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
-        arrangementCriteria.setOrderByClause("id");
+        arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }

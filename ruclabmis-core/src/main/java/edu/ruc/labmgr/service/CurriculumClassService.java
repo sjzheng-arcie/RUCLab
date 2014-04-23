@@ -273,8 +273,11 @@ public class CurriculumClassService {
         if (ids != null && ids.length > 0) {
             for (int i : ids) {
                 classMapper.deleteByPrimaryKey(i);
+				bbsSessionMapper.deleteByPrimaryKey(i);
             }
         }
+
+
     }
 
     public void deleteClassStudent(int vcid, int[] stIds) {

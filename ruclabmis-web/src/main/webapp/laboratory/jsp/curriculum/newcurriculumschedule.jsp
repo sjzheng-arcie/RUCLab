@@ -108,11 +108,11 @@
                                     <td align="right" width="30%">节次：</td>
                                     <td>
                                         <select name="classSection">
-                                            <option value="1">上午一二节</option>
-                                            <option value="2" >上午三四节</option>
-                                            <option value="3">下午五六节</option>
-                                            <option value="4">下午七八节</option>
-                                            <option value="5">晚上九十节</option>
+                                            <option value="1">上午一二节(7:00-9:00)</option>
+                                            <option value="2" >上午三四节(9:00-11:00)</option>
+                                            <option value="3">下午五六节(13:00-15:00)</option>
+                                            <option value="4">下午七八节(15:00-17:00)</option>
+                                            <option value="5">晚上九十节(19:00-21:00)</option>
                                         </select>
                                     </td>
                                 </tr>
