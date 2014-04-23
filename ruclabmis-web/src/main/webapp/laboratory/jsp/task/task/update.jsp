@@ -185,7 +185,7 @@
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                     <span style="color:red;" id="errMsg_task_name"></span>
                                                 </td>
-                                                <td nowrap align="right">任务添加人:</td>
+                                                <td nowrap align="right">任务发起人:</td>
                                                 <td nowrap>
                                                     <input type="text" name="operator" id="operator" onblur="" class="text"
                                                            style="width:154px" maxlength="20" readonly disabled="no"

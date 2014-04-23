@@ -93,7 +93,7 @@
                                         <td nowrap>
                                             ${taskInfo.taskname}
                                         </td>
-                                        <td nowrap align="right">负责人:</td>
+                                        <td nowrap align="right">任务发起人:</td>
                                         <td nowrap>
                                             ${taskInfo.manager.name}
                                         </td>

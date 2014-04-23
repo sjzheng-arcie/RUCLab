@@ -113,7 +113,7 @@
                                                     <input name="taskName" id="taskName" onblur="" class="text"disabled="no"
                                                            style="width:154px" maxlength="20"  value="${taskInfo.taskname}"/>
                                                 </td>
-                                                <td nowrap align="right">任务指派人:</td>
+                                                <td nowrap align="right">任务发起人:</td>
                                                 <td nowrap>
                                                     <input name="operator" id="operator" onblur="" class="text"
                                                            style="width:154px" maxlength="20" readonly disabled="no"
