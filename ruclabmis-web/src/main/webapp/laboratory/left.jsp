@@ -215,6 +215,7 @@
     </div>
 </shiro:hasAnyRoles>
 
+<shiro:hasAnyRoles name="administrators,leader">
     <h1 class="type"><a href="javascript:void(0)">考核管理</a></h1>
 
     <div class="content">
@@ -236,7 +237,7 @@
 
         </ul>
     </div>
-
+</shiro:hasAnyRoles>
 </div>
 <script type="text/javascript">
     var contents = document.getElementsByClassName('content');
