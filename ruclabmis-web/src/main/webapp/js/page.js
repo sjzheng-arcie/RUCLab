@@ -209,8 +209,12 @@ function goPage(pageIndex, maxPage) {
 
 //获得divwidth的宽度
 function getWidth() {
-    document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
-    if (document.body.scrollWidth > document.body.offsetWidth) {
-        document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
+    var  divSet = document.getElementById("divwidth") ;
+    if(!divSet && typeof(divSet)!="undefined" && divSet!=0){
+        document.getElementById("divwidth").style.width = document.body.offsetWidth - 35 + "px";
+        if (document.body.scrollWidth > document.body.offsetWidth) {
+            document.getElementById("divwidth").style.width = document.body.scrollWidth - 35 + "px";
+        }
     }
+
 }
