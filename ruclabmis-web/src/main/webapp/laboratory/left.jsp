@@ -97,7 +97,7 @@
     </div>
 </shiro:hasAnyRoles>
 <shiro:hasAnyRoles name="teacher,lab_admin,equipment_admin,student">
-    <h1 class="type"><a href="javascript:void(0)">实验室预约管理</a></h1>
+    <h1 class="type"><a href="javascript:void(0)">预约管理</a></h1>
 
     <div class="content">
         <table width="100%" border="0" cellspacing="0" cellpadding="0">
@@ -113,30 +113,6 @@
             <li><a href="jsp/appointment/laboratory/list" onfocus="toFocus(this)"
                    target="main">申请中的预约</a></li>
             <li><a href="jsp/appointment/laboratory/list?formType=history" onfocus="toFocus(this)"
-                   target="main">预约结果</a></li>
-            </li>
-
-
-        </ul>
-    </div>
-</shiro:hasAnyRoles>
-<shiro:hasAnyRoles name="teacher,lab_admin,equipment_admin,student">
-    <h1 class="type"><a href="javascript:void(0)">会议室预约管理</a></h1>
-
-    <div class="content">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0">
-            <tr>
-                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
-            </tr>
-        </table>
-        <ul class="MM">
-            <shiro:hasAnyRoles name="teacher,equipment_admin,student">
-                <li><a href="jsp/appointment/meetingroom/frame.jsp" onfocus="toFocus(this)"
-                       target="main">预约申请</a></li>
-            </shiro:hasAnyRoles>
-            <li><a href="jsp/appointment/meetingroom/list" onfocus="toFocus(this)"
-                   target="main">申请中的预约</a></li>
-            <li><a href="jsp/appointment/meetingroom/list?formType=history" onfocus="toFocus(this)"
                    target="main">预约结果</a></li>
             </li>
 

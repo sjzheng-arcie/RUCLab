@@ -485,243 +485,53 @@ public class ArrangementCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTermYearIsNull() {
-            addCriterion("term_year is null");
+        public Criteria andTypeIsNull() {
+            addCriterion("type is null");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearIsNotNull() {
-            addCriterion("term_year is not null");
+        public Criteria andTypeIsNotNull() {
+            addCriterion("type is not null");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearEqualTo(Integer value) {
-            addCriterion("term_year =", value, "termYear");
+        public Criteria andTypeEqualTo(String value) {
+            addCriterion("type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearNotEqualTo(Integer value) {
-            addCriterion("term_year <>", value, "termYear");
+        public Criteria andTypeNotEqualTo(String value) {
+            addCriterion("type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearGreaterThan(Integer value) {
-            addCriterion("term_year >", value, "termYear");
+        public Criteria andTypeGreaterThan(String value) {
+            addCriterion("type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearGreaterThanOrEqualTo(Integer value) {
-            addCriterion("term_year >=", value, "termYear");
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
+            addCriterion("type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearLessThan(Integer value) {
-            addCriterion("term_year <", value, "termYear");
+        public Criteria andTypeLessThan(String value) {
+            addCriterion("type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearLessThanOrEqualTo(Integer value) {
-            addCriterion("term_year <=", value, "termYear");
+        public Criteria andTypeLessThanOrEqualTo(String value) {
+            addCriterion("type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearIn(List<Integer> values) {
-            addCriterion("term_year in", values, "termYear");
+        public Criteria andTypeIn(List<String> values) {
+            addCriterion("type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTermYearNotIn(List<Integer> values) {
-            addCriterion("term_year not in", values, "termYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andTermYearBetween(Integer value1, Integer value2) {
-            addCriterion("term_year between", value1, value2, "termYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andTermYearNotBetween(Integer value1, Integer value2) {
-            addCriterion("term_year not between", value1, value2, "termYear");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIsNull() {
-            addCriterion("week is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIsNotNull() {
-            addCriterion("week is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekEqualTo(Integer value) {
-            addCriterion("week =", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekNotEqualTo(Integer value) {
-            addCriterion("week <>", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekGreaterThan(Integer value) {
-            addCriterion("week >", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekGreaterThanOrEqualTo(Integer value) {
-            addCriterion("week >=", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekLessThan(Integer value) {
-            addCriterion("week <", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekLessThanOrEqualTo(Integer value) {
-            addCriterion("week <=", value, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekIn(List<Integer> values) {
-            addCriterion("week in", values, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekNotIn(List<Integer> values) {
-            addCriterion("week not in", values, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekBetween(Integer value1, Integer value2) {
-            addCriterion("week between", value1, value2, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWeekNotBetween(Integer value1, Integer value2) {
-            addCriterion("week not between", value1, value2, "week");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayIsNull() {
-            addCriterion("wDay is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayIsNotNull() {
-            addCriterion("wDay is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayEqualTo(Integer value) {
-            addCriterion("wDay =", value, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayNotEqualTo(Integer value) {
-            addCriterion("wDay <>", value, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayGreaterThan(Integer value) {
-            addCriterion("wDay >", value, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayGreaterThanOrEqualTo(Integer value) {
-            addCriterion("wDay >=", value, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayLessThan(Integer value) {
-            addCriterion("wDay <", value, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayLessThanOrEqualTo(Integer value) {
-            addCriterion("wDay <=", value, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayIn(List<Integer> values) {
-            addCriterion("wDay in", values, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayNotIn(List<Integer> values) {
-            addCriterion("wDay not in", values, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayBetween(Integer value1, Integer value2) {
-            addCriterion("wDay between", value1, value2, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andWdayNotBetween(Integer value1, Integer value2) {
-            addCriterion("wDay not between", value1, value2, "wday");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionIsNull() {
-            addCriterion("section is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionIsNotNull() {
-            addCriterion("section is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionEqualTo(Integer value) {
-            addCriterion("section =", value, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionNotEqualTo(Integer value) {
-            addCriterion("section <>", value, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionGreaterThan(Integer value) {
-            addCriterion("section >", value, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionGreaterThanOrEqualTo(Integer value) {
-            addCriterion("section >=", value, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionLessThan(Integer value) {
-            addCriterion("section <", value, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionLessThanOrEqualTo(Integer value) {
-            addCriterion("section <=", value, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionIn(List<Integer> values) {
-            addCriterion("section in", values, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionNotIn(List<Integer> values) {
-            addCriterion("section not in", values, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionBetween(Integer value1, Integer value2) {
-            addCriterion("section between", value1, value2, "section");
-            return (Criteria) this;
-        }
-
-        public Criteria andSectionNotBetween(Integer value1, Integer value2) {
-            addCriterion("section not between", value1, value2, "section");
+        public Criteria andTypeNotIn(List<String> values) {
+            addCriterion("type not in", values, "type");
             return (Criteria) this;
         }
 

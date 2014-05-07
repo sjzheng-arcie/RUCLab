@@ -124,11 +124,14 @@
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请人</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
+                                                    <td width="40" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">状态</span></div>
                                                     </td>
-                                                    <td width="100" bgcolor="d3eaef">
+                                                    <td width="160" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请时间</span></div>
+                                                    </td>
+                                                    <td width="100" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">申请类型</span></div>
                                                     </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请描述</span></div>
@@ -151,13 +154,9 @@
                                                         <td>${item.room.name}</td>
                                                         <td>${item.user.name}</td>
                                                         <td>${item.stateClassif.value}</td>
-                                                        <td><fmt:formatDate value="${item.scheduleDate}" pattern="yyyy-MM-dd"/>
-                                                            <c:if test="${item.section==1}">上午一二节</c:if>
-                                                            <c:if test="${item.section==2}">上午三四节</c:if>
-                                                            <c:if test="${item.section==3}">下午五六节</c:if>
-                                                            <c:if test="${item.section==4}">下午七八节</c:if>
-                                                            <c:if test="${item.section==5}">晚上九十节节</c:if>
-                                                        </td>
+                                                        <td><fmt:formatDate value="${item.meetSTime}" pattern="yyyy-MM-dd HH:mm"/>
+                                                         - <fmt:formatDate value="${item.meetETime}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                                        <td>${item.type}</td>
                                                         <td>${item.description}</td>
                                                         <c:if test="${formType=='history'}">
                                                             <td>${item.approval.name}</td>

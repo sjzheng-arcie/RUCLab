@@ -7,10 +7,10 @@
 <head>
     <title></title>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
-    <link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
+    <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
 </head>
 
-<frameset cols="400,*" frameborder="NO" border="1" framespacing="0" name="appointmentframe">
+<frameset cols="350,*" frameborder="NO" border="1" framespacing="0" name="appointmentframe">
     <frame src="/laboratory/jsp/appointment/laboratory/appointmentbaseinfo" name="baseinfoFrame"
            noresize="noresize" marginwidth="0" frameborder="0" scrolling="no" target="statusFrame"/>
     <frame src="/laboratory/jsp/appointment/laboratory/roomstatus" name="statusFrame" noresize="noresize"

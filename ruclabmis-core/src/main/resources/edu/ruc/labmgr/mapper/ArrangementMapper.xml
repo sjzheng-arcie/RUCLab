@@ -8,10 +8,7 @@
         <result column="user_id" property="userId" jdbcType="INTEGER" />
         <result column="description" property="description" jdbcType="VARCHAR" />
         <result column="approval_opinion" property="approvalOpinion" jdbcType="VARCHAR" />
-        <result column="term_year" property="termYear" jdbcType="INTEGER" />
-        <result column="week" property="week" jdbcType="INTEGER" />
-        <result column="wDay" property="wday" jdbcType="INTEGER" />
-        <result column="section" property="section" jdbcType="INTEGER" />
+        <result column="type" property="type" jdbcType="VARCHAR" />
         <result column="room_id" property="roomId" jdbcType="INTEGER" />
         <result column="meet_stime" property="meetSTime" jdbcType="TIMESTAMP"/>
         <result column="meet_etime" property="meetETime" jdbcType="TIMESTAMP"/>
@@ -78,8 +75,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, state, approval_id, user_id, description, approval_opinion, term_year, week, 
-    wDay, section, meet_stime, meet_etime, room_id
+    id, state, approval_id, user_id, description, approval_opinion, type, meet_stime, meet_etime, room_id
   </sql>
 
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" >
@@ -117,12 +113,10 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into arrangement (state, approval_id, user_id,
-        description, approval_opinion, term_year,
-        week, wDay, section, meet_stime, meet_etime, room_id
+        description, approval_opinion, type, meet_stime, meet_etime, room_id
         )
         values (#{state,jdbcType=TINYINT}, #{approvalId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
-        #{description,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{termYear,jdbcType=INTEGER},
-        #{week,jdbcType=INTEGER}, #{wday,jdbcType=INTEGER}, #{section,jdbcType=INTEGER},
+        #{description,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
         #{meetSTime,jdbcType=TIMESTAMP},#{meetETime,jdbcType=TIMESTAMP},#{roomId,jdbcType=INTEGER}
         )
     </insert>
@@ -147,17 +141,8 @@
             <if test="approvalOpinion != null" >
                 approval_opinion,
             </if>
-            <if test="termYear != null" >
-                term_year,
-            </if>
-            <if test="week != null" >
-                week,
-            </if>
-            <if test="wday != null" >
-                wDay,
-            </if>
-            <if test="section != null" >
-                section,
+            <if test="type != null" >
+                type,
             </if>
             <if test="meetSTime != null" >
                 meet_stime,
@@ -185,17 +170,8 @@
             <if test="approvalOpinion != null" >
                 #{approvalOpinion,jdbcType=VARCHAR},
             </if>
-            <if test="termYear != null" >
-                #{termYear,jdbcType=INTEGER},
-            </if>
-            <if test="week != null" >
-                #{week,jdbcType=INTEGER},
-            </if>
-            <if test="wday != null" >
-                #{wday,jdbcType=INTEGER},
-            </if>
-            <if test="section != null" >
-                #{section,jdbcType=INTEGER},
+            <if test="type != null" >
+                #{type,jdbcType=VARCHAR},
             </if>
             <if test="meetSTime != null" >
                 #{meetSTime,jdbcType=TIMESTAMP},
@@ -235,17 +211,8 @@
             <if test="record.approvalOpinion != null" >
                 approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR},
             </if>
-            <if test="record.termYear != null" >
-                term_year = #{record.termYear,jdbcType=INTEGER},
-            </if>
-            <if test="record.week != null" >
-                week = #{record.week,jdbcType=INTEGER},
-            </if>
-            <if test="record.wday != null" >
-                wDay = #{record.wday,jdbcType=INTEGER},
-            </if>
-            <if test="record.section != null" >
-                section = #{record.section,jdbcType=INTEGER},
+            <if test="record.type != null" >
+                type = #{record.type,jdbcType=VARCHAR},
             </if>
             <if test="record.meetSTime != null" >
                 meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
@@ -269,10 +236,7 @@
         user_id = #{record.userId,jdbcType=INTEGER},
         description = #{record.description,jdbcType=VARCHAR},
         approval_opinion = #{record.approvalOpinion,jdbcType=VARCHAR},
-        term_year = #{record.termYear,jdbcType=INTEGER},
-        week = #{record.week,jdbcType=INTEGER},
-        wDay = #{record.wday,jdbcType=INTEGER},
-        section = #{record.section,jdbcType=INTEGER},
+        type = #{record.type,jdbcType=VARCHAR},
         meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
         meet_etime = #{record.meetETime,jdbcType=TIMESTAMP},
         room_id = #{record.roomId,jdbcType=INTEGER}
@@ -298,17 +262,8 @@
             <if test="approvalOpinion != null" >
                 approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
             </if>
-            <if test="termYear != null" >
-                term_year = #{termYear,jdbcType=INTEGER},
-            </if>
-            <if test="week != null" >
-                week = #{week,jdbcType=INTEGER},
-            </if>
-            <if test="wday != null" >
-                wDay = #{wday,jdbcType=INTEGER},
-            </if>
-            <if test="section != null" >
-                section = #{section,jdbcType=INTEGER},
+            <if test="type != null" >
+                type = #{type,jdbcType=VARCHAR},
             </if>
             <if test="meetSTime != null" >
                 meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
@@ -329,10 +284,7 @@
       user_id = #{userId,jdbcType=INTEGER},
       description = #{description,jdbcType=VARCHAR},
       approval_opinion = #{approvalOpinion,jdbcType=VARCHAR},
-      term_year = #{termYear,jdbcType=INTEGER},
-      week = #{week,jdbcType=INTEGER},
-      wDay = #{wday,jdbcType=INTEGER},
-      section = #{section,jdbcType=INTEGER},
+       type = #{type,jdbcType=VARCHAR},
        meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
         meet_etime = #{meetETime,jdbcType=TIMESTAMP},
       room_id = #{roomId,jdbcType=INTEGER}

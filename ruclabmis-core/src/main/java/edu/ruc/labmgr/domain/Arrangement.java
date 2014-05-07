@@ -17,13 +17,7 @@ public class Arrangement {
 
     private String approvalOpinion;
 
-    private Integer termYear;
-
-    private Integer week;
-
-    private Integer wday;
-
-    private Integer section;
+    private String type;
 
     private Integer roomId;
 
@@ -87,36 +81,12 @@ public class Arrangement {
         this.approvalOpinion = approvalOpinion == null ? null : approvalOpinion.trim();
     }
 
-    public Integer getTermYear() {
-        return termYear;
+    public String getType() {
+        return type;
     }
 
-    public void setTermYear(Integer termYear) {
-        this.termYear = termYear;
-    }
-
-    public Integer getWeek() {
-        return week;
-    }
-
-    public void setWeek(Integer week) {
-        this.week = week;
-    }
-
-    public Integer getWday() {
-        return wday;
-    }
-
-    public void setWday(Integer wday) {
-        this.wday = wday;
-    }
-
-    public Integer getSection() {
-        return section;
-    }
-
-    public void setSection(Integer section) {
-        this.section = section;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public Date getScheduleDate() {

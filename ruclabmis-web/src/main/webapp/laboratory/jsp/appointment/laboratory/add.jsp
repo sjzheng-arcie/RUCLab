@@ -20,12 +20,11 @@
         }
 
         $.post("/laboratory/jsp/appointment/laboratory/add", {
-            termYear :$("#termYear").val(),
-            week :$("#week").val(),
-            wday :$("#wday").val(),
-            section :$("#section").val(),
+            startTime :"<fmt:formatDate value="${startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>",
+            endTime :"<fmt:formatDate value="${endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>",
             description :$("#description").val(),
-            roomId :$("#roomId").val()
+            roomId :$("#roomId").val(),
+            type:$("#type").val()
         }, function (data) {
             alert(data.message);
             if (data.success) {
@@ -105,35 +104,6 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">预约日期:</td>
-                                                <td nowrap>
-                                                    <input name="scheduleDate" id="scheduleDate" onblur=""
-                                                           class="text" readonly style="width:154px;color:#aaaaaa"
-                                                    value="<fmt:formatDate value="${scheduleDate}" pattern="yyyy-MM-dd"/>"
-                                                   />
-                                                    <span style="color:red;">*</span>
-                                                    <input name="termYear" id="termYear" type="hidden" value="${year}"/>
-                                                    <input name="week" id="week" type="hidden" value="${week}"/>
-                                                    <input name="wday" id="wday" type="hidden" value="${wDay}"/>
-                                                </td>
-
-                                                <td nowrap align="right">预约时间段:</td>
-                                                <td nowrap>
-                                                    <input name="scheduleSection" id="scheduleSection" onblur=""
-                                                           class="text" readonly style="width:154px;color:#aaaaaa"
-                                                            <c:choose>
-                                                                <c:when test="${section eq 1}"> value="上午一二节"  </c:when>
-                                                                <c:when test="${section eq 2}"> value="上午三四节"  </c:when>
-                                                                <c:when test="${section eq 3}"> value="下午五六节"  </c:when>
-                                                                <c:when test="${section eq 4}"> value="下午七八节"  </c:when>
-                                                                <c:when test="${section eq 5}"> value="晚上九十节"  </c:when>
-                                                            </c:choose>
-                                                            />
-                                                    <input name="section" id="section" type="hidden" value="${section}"/>
-                                                    <span style="color:red;">*</span>
-                                                </td>
-                                            </tr>
-                                            <tr>
                                                 <td nowrap align="right">预约房间:</td>
                                                 <td nowrap>
                                                     <input name="roomId" id="roomId" type="hidden" value="${room.getId()}"/>
@@ -141,7 +111,8 @@
                                                            class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                     <span style="color:red;">*</span>
                                                 </td>
-
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">申请时间:</td>
                                                 <td nowrap>
                                                     <input name="appliceTime" id="appliceTime" onblur=""
@@ -152,12 +123,30 @@
                                                 </td>
                                             </tr>
                                             <tr>
-
                                                 <td nowrap align="right">申请人:</td>
                                                 <td nowrap>
                                                     <input name="user" id="user" value="<shiro:principal/>" onblur=""
                                                            class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                     <span style="color:red;">*</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right">预约时间段:</td>
+                                                <td nowrap>
+                                                    <input name="scheduleSection" id="scheduleSection" onblur=""
+                                                           class="text" readonly style="width:354px;color:#aaaaaa"
+                                                           value="<fmt:formatDate value="${startTime}" pattern="yyyy-MM-dd HH:mm:ss"/> - <fmt:formatDate value="${endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
+                                                            />
+                                                    <span style="color:red;">*</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td width="100"  align="right" >预约类型：</td>
+                                                <td >
+                                                    <select id="type" name="type" style="width: 150px;height: 22px">
+                                                        <option value="实验预约">实验预约</option>
+                                                        <option value="会议预约">会议预约</option>
+                                                    </select>
                                                 </td>
                                             </tr>
                                             <tr>

@@ -1,3 +1,4 @@
+<%@ page import="java.util.Date" %>
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
@@ -73,28 +74,24 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <td nowrap align="right">预约日期:</td>
-                                                <td nowrap>
-                                                    <input name="scheduleDate" id="scheduleDate" onblur=""
-                                                           class="text" readonly style="width:154px;color:#aaaaaa"
-                                                           value="<fmt:formatDate value="${arrangement.scheduleDate}" pattern="yyyy-MM-dd"/>"
-                                                            />
-                                                </td>
+                                                <td  width="100" align="right" >预约日期：</td>
+                                                <td>
+                                                    <c:set var="scrapDateVal"
+                                                           value="<%=new Date()%>"></c:set>
 
-                                                <td nowrap align="right">预约时间段:</td>
-                                                <td nowrap>
-                                                    <input name="scheduleSection" id="scheduleSection" onblur=""
-                                                           class="text" readonly style="width:154px;color:#aaaaaa"
-                                                            <c:choose>
-                                                                <c:when test="${arrangement.section eq 1}"> value="上午一二节"  </c:when>
-                                                                <c:when test="${arrangement.section eq 2}"> value="上午三四节"  </c:when>
-                                                                <c:when test="${arrangement.section eq 3}"> value="下午五六节"  </c:when>
-                                                                <c:when test="${arrangement.section eq 4}"> value="下午七八节"  </c:when>
-                                                                <c:when test="${arrangement.section eq 5}"> value="晚上九十节"  </c:when>
-                                                            </c:choose>
-                                                            />
+                                                    <input name="meetDate" id="meetDate"
+                                                           value="<fmt:formatDate value="${scrapDateVal}" pattern="yyyy-MM-dd"/>" onblur=""
+                                                           class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td width="100"  align="right" >预约时间段：</td>
+                                                <td width="100">
+                                                    <input name="stime" id="stime" value="<fmt:formatDate value="${arrangement.meetSTime}" pattern="HH:mm"/>" onblur=""
+                                                           class="text" readonly style="width:80px;color:#aaaaaa"/> -
+                                                    <input name="etime" id="etime" value="<fmt:formatDate value="${arrangement.meetETime}" pattern="HH:mm"/>" onblur=""
+                                                                        class="text" readonly style="width:80px;color:#aaaaaa"/>
+                                                </td>
                                             <tr>
                                                 <td nowrap align="right">预约房间:</td>
                                                 <td nowrap>
@@ -109,11 +106,18 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td width="100"  align="right" >预约类型：</td>
+                                                <td >
+                                                    <input name="type" id="type" value="${arrangement.type}" onblur=""
+                                                           class="text" readonly style="width:154px;color:#aaaaaa"/>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td align="right"  align="right">申请内容描述：</td>
                                                 <td  colspan="4">
                                                     <textarea name="description" id="description"
-                                                              cols="60" rows="10" disabled
-                                                              style="width: 90%;height: 350">${arrangement.user.getName()}</textarea>
+                                                              cols="60" rows="10"
+                                                              style="width: 90%;height: 350">${arrangement.description}</textarea>
                                                 </td>
                                             </tr>
                                         </table>

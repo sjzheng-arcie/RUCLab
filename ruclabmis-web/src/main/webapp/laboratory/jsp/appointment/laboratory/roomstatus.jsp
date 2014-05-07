@@ -10,10 +10,8 @@
 <script>
     function selectTable(roomIndex) {
         var getStr =  "/laboratory/jsp/appointment/laboratory/toAdd?";
-        getStr +=  "year=" +${year};
-        getStr +=  "&week=" + ${week};
-        getStr +=  "&wDay=" +${wDay};
-        getStr +=  "&section=" +${section};
+        getStr +=  "startTime=" + "${startTime}";
+        getStr +=  "&endTime=" + "${endTime}";
         getStr +=  "&roomId=" +roomIndex;
 
         window.location.href = getStr;
