@@ -13,7 +13,7 @@ public class CurriculumClass {
 
     private String classSn;
 
-    private Integer classYear;
+    private String classYear;
 
     public Integer getId() {
         return id;
@@ -47,11 +47,11 @@ public class CurriculumClass {
         this.classSn = classSn == null ? null : classSn.trim();
     }
 
-    public Integer getClassYear() {
+    public String getClassYear() {
         return classYear;
     }
 
-    public void setClassYear(Integer classYear) {
+    public void setClassYear(String classYear) {
         this.classYear = classYear;
     }
 

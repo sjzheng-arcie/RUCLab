@@ -75,7 +75,7 @@ public class CurriculumClassService {
             c.andClassNameLike("%" + name + "%");
         }
         if (curriculumId != null && curriculumId >0 ) {
-            c.andCurriculumIdEqualTo(curriculumId);
+            c.andIdEqualTo(curriculumId);
         }
         return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
     }
@@ -101,7 +101,7 @@ public class CurriculumClassService {
 
         CurriculumClassCriteria.Criteria c = criteria.or();
         if(curriculumId != null && curriculumId > 0 )
-            c.andCurriculumIdEqualTo(curriculumId);
+            c.andIdEqualTo(curriculumId);
 
         return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
     }

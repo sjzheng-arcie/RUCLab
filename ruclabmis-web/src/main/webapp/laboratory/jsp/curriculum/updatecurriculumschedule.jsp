@@ -79,7 +79,7 @@
                                             <c:forEach items="${curriculumClassList}" var="curriculumClass">
                                                     <option value="${curriculumClass.id}"
                                                             <c:if test="${curriculumSchedule.curriculumId==curriculumClass.id}">selected </c:if> >
-                                                            ${curriculumClass.className}(${curriculumClass.classSn})
+                                                            ${curriculumClass.className}(${curriculumClass.teacherName})
                                                     </option>
                                             </c:forEach>
                                         </select>

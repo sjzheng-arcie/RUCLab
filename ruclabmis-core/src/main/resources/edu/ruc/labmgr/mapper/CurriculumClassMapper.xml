@@ -3,7 +3,6 @@
 <mapper namespace="edu.ruc.labmgr.mapper.CurriculumClassMapper">
     <resultMap id="BaseResultMap" type="edu.ruc.labmgr.domain.CurriculumClass">
         <id column="cc_id" property="id" jdbcType="INTEGER"/>
-        <result column="cc_curriculum_id" property="curriculumId" jdbcType="INTEGER"/>
         <!--<result column="cc_student_id" property="studentId" jdbcType="INTEGER"/>-->
         <!--<result column="cc_usual_performance" property="usualPerformance" jdbcType="SMALLINT"/>-->
         <!--<result column="cc_final_grade" property="finalGrade" jdbcType="SMALLINT"/>-->
@@ -11,7 +10,7 @@
         <result column="cc_class_sn" property="classSn" jdbcType="VARCHAR"/>
         <result column="curriculum_name" property="curriculumName" jdbcType="VARCHAR"/>
         <result column="teacher_name" property="teacherName" jdbcType="VARCHAR"/>
-        <result column="cc_class_year" property="classYear" jdbcType="INTEGER"/>
+        <result column="cc_class_year" property="classYear" jdbcType="VARCHAR"/>
     </resultMap>
     <sql id="Criteria_Where_Clause">
         <where>
@@ -74,7 +73,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    cc.id as cc_id, cc.curriculum_id as cc_curriculum_id,
+    cc.id as cc_id,
     cc.class_name as cc_class_name,cc.class_sn as cc_class_sn, cc.class_year as cc_class_year
   </sql>
     <select id="selectByCriteria" resultMap="BaseResultMap"
@@ -112,10 +111,10 @@
     </select>
     <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer">
         select
-        u.name as teacher_name,
+        u.name as teacher_name,c.name as curriculum_name,
         <include refid="Base_Column_List"/>
         from curriculum_class cc,curriculum c, user u
-        where cc.id = #{id,jdbcType=INTEGER} and cc.curriculum_id = c.id and c.teacher_id = u.id
+        where cc.id = #{id,jdbcType=INTEGER} and cc.id = c.id and c.teacher_id = u.id
     </select>
     <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from curriculum_class
@@ -131,10 +130,10 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into curriculum_class (curriculum_id, class_name, class_sn,
+        insert into curriculum_class ( id, class_name, class_sn,
         class_year)
-        values (#{curriculumId,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{classSn,jdbcType=VARCHAR},
-        #{classYear,jdbcType=TINYINT})
+        values (#{id,jdbcType=INTEGER}, #{className,jdbcType=VARCHAR}, #{classSn,jdbcType=VARCHAR},
+        #{classYear,jdbcType=VARCHAR})
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
@@ -142,10 +141,6 @@
         </selectKey>
         insert into curriculum_class
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="curriculumId != null">
-                curriculum_id,
-            </if>
-
             <if test="className != null">
                 class_name,
             </if>
@@ -157,10 +152,6 @@
             </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides=",">
-            <if test="curriculumId != null">
-                #{curriculumId,jdbcType=INTEGER},
-            </if>
-
             <if test="className != null">
                 #{className,jdbcType=VARCHAR},
             </if>
@@ -199,10 +190,6 @@
             <if test="record.id != null">
                 cc.id = #{record.id,jdbcType=INTEGER},
             </if>
-            <if test="record.curriculumId != null">
-                cc.curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-            </if>
-
             <if test="record.className != null">
                 cc.class_name = #{record.className,jdbcType=VARCHAR},
             </if>
@@ -210,7 +197,7 @@
                 cc.class_sn = #{record.classSn,jdbcType=VARCHAR},
             </if>
             <if test="record.classYear != null">
-                cc.class_year = #{record.classYear,jdbcType=TINYINT},
+                cc.class_year = #{record.classYear,jdbcType=VARCHAR},
             </if>
         </set>
         <if test="_parameter != null">
@@ -220,11 +207,9 @@
     <update id="updateByCriteria" parameterType="map">
         update curriculum_class cc
         set cc.id = #{record.id,jdbcType=INTEGER},
-        cc.curriculum_id = #{record.curriculumId,jdbcType=INTEGER},
-
         cc.class_name = #{record.className,jdbcType=VARCHAR},
         cc.class_sn = #{record.classSn,jdbcType=VARCHAR},
-        cc.class_year = #{record.classYear,jdbcType=TINYINT}
+        cc.class_year = #{record.classYear,jdbcType=VARCHAR}
         <if test="_parameter != null">
             <include refid="Update_By_Criteria_Where_Clause"/>
         </if>
@@ -232,10 +217,6 @@
     <update id="updateByPrimaryKeySelective" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
         update curriculum_class
         <set>
-            <if test="curriculumId != null">
-                curriculum_id = #{curriculumId,jdbcType=INTEGER},
-            </if>
-
             <if test="className != null">
                 class_name = #{className,jdbcType=VARCHAR},
             </if>
@@ -243,17 +224,17 @@
                 class_sn = #{classSn,jdbcType=VARCHAR},
             </if>
             <if test="classYear != null">
-                class_year = #{classYear,jdbcType=TINYINT},
+                class_year = #{classYear,jdbcType=VARCHAR},
             </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
     <update id="updateByPrimaryKey" parameterType="edu.ruc.labmgr.domain.CurriculumClass">
     update curriculum_class
-    set curriculum_id = #{curriculumId,jdbcType=INTEGER},
+    set
       class_name = #{className,jdbcType=VARCHAR},
       class_sn = #{classSn,jdbcType=VARCHAR},
-      class_year = #{classYear,jdbcType=TINYINT}
+      class_year = #{classYear,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.CurriculumClassCriteria"

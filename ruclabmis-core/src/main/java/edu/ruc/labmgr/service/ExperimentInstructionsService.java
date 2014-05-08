@@ -24,7 +24,7 @@ public class ExperimentInstructionsService {
     public PageInfo<ExperimentInstructions> selectListPage(Integer curriculumId,int PageNum,List<Curriculum> curriculums) {
 		List<Integer>  cmIds = new ArrayList<Integer>();
 		ExperimentInstructionsCriteria criteria = new ExperimentInstructionsCriteria();
-		criteria.setOrderByClause("curriculum_id");
+		criteria.setOrderByClause("id");
 		ExperimentInstructionsCriteria.Criteria ec = criteria.createCriteria();
 		if (curriculums!=null && curriculums.size()>0){
 			for (Curriculum cm :curriculums){

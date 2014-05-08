@@ -164,66 +164,6 @@ public class CurriculumClassCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCurriculumIdIsNull() {
-            addCriterion("cc.curriculum_id is null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdIsNotNull() {
-            addCriterion("cc.curriculum_id is not null");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdEqualTo(Integer value) {
-            addCriterion("cc.curriculum_id =", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdNotEqualTo(Integer value) {
-            addCriterion("cc.curriculum_id <>", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdGreaterThan(Integer value) {
-            addCriterion("cc.curriculum_id >", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdGreaterThanOrEqualTo(Integer value) {
-            addCriterion("cc.curriculum_id >=", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdLessThan(Integer value) {
-            addCriterion("cc.curriculum_id <", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdLessThanOrEqualTo(Integer value) {
-            addCriterion("cc.curriculum_id <=", value, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdIn(List<Integer> values) {
-            addCriterion("cc.curriculum_id in", values, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdNotIn(List<Integer> values) {
-            addCriterion("cc.curriculum_id not in", values, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdBetween(Integer value1, Integer value2) {
-            addCriterion("cc.curriculum_id between", value1, value2, "curriculumId");
-            return (Criteria) this;
-        }
-
-        public Criteria andCurriculumIdNotBetween(Integer value1, Integer value2) {
-            addCriterion("cc.curriculum_id not between", value1, value2, "curriculumId");
-            return (Criteria) this;
-        }
-
         public Criteria andClassNameIsNull() {
             addCriterion("cc.class_name is null");
             return (Criteria) this;
@@ -374,52 +314,52 @@ public class CurriculumClassCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andClassYearEqualTo(Byte value) {
+        public Criteria andClassYearEqualTo(String value) {
             addCriterion("cc.class_year =", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearNotEqualTo(Byte value) {
+        public Criteria andClassYearNotEqualTo(String value) {
             addCriterion("cc.class_year <>", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearGreaterThan(Byte value) {
+        public Criteria andClassYearGreaterThan(String value) {
             addCriterion("cc.class_year >", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearGreaterThanOrEqualTo(Byte value) {
+        public Criteria andClassYearGreaterThanOrEqualTo(String value) {
             addCriterion("cc.class_year >=", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearLessThan(Byte value) {
+        public Criteria andClassYearLessThan(String value) {
             addCriterion("cc.class_year <", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearLessThanOrEqualTo(Byte value) {
+        public Criteria andClassYearLessThanOrEqualTo(String value) {
             addCriterion("cc.class_year <=", value, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearIn(List<Byte> values) {
+        public Criteria andClassYearIn(List<String> values) {
             addCriterion("cc.class_year in", values, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearNotIn(List<Byte> values) {
+        public Criteria andClassYearNotIn(List<String> values) {
             addCriterion("cc.class_year not in", values, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearBetween(Byte value1, Byte value2) {
+        public Criteria andClassYearBetween(String value1, String value2) {
             addCriterion("cc.class_year between", value1, value2, "classYear");
             return (Criteria) this;
         }
 
-        public Criteria andClassYearNotBetween(Byte value1, Byte value2) {
+        public Criteria andClassYearNotBetween(String value1, String value2) {
             addCriterion("cc.class_year not between", value1, value2, "classYear");
             return (Criteria) this;
         }
@@ -434,7 +374,7 @@ public class CurriculumClassCriteria {
 		}
         //以下为连表查询
         public Criteria andJoinCurriculum() {
-            addCriterion("cc.curriculum_id = c.id ");
+            addCriterion("cc.id = c.id ");
             return (Criteria) this;
         }
 

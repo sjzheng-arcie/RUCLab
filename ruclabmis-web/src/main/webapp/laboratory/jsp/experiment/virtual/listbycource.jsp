@@ -15,26 +15,26 @@
         function editorClass(vcid) {
             window.location.href = "/experiment/virtual/editClass?vcId=" + vcid;
         }
-        function deleteClasses(id) {
-            var idsStr = "";
-            if (id) {
-                idsStr = id;
-            } else {
-                var ids = new Array();
-                $.each($("input[name='idCheckbox']:checked"), function (idx, data) {
-                    ids.push($(data).val());
-                });
-                idsStr = ids.join(",");
-                console.log(idsStr);
-            }
-            if (idsStr && idsStr.length > 0 && window.confirm("您确定要删除指定的班级吗?")) {
-                $.post("/experiment/virtual/removeClass", {
-                    'ids': idsStr
-                }, function (data) {
-                    alert(data.message);
-                    window.location.href = window.location.href;
-                });
-            }
+        function importClasses(id) {
+//            var idsStr = "";
+//            if (id) {
+//                idsStr = id;
+//            } else {
+//                var ids = new Array();
+//                $.each($("input[name='idCheckbox']:checked"), function (idx, data) {
+//                    ids.push($(data).val());
+//                });
+//                idsStr = ids.join(",");
+//                console.log(idsStr);
+//            }
+//            if (idsStr && idsStr.length > 0 && window.confirm("您确定要删除指定的班级吗?")) {
+//                $.post("/experiment/virtual/removeClass", {
+//                    'ids': idsStr
+//                }, function (data) {
+//                    alert(data.message);
+//                    window.location.href = window.location.href;
+//                });
+//            }
         }
     </script>
 
@@ -113,28 +113,7 @@
                                                                     </tr>
                                                                 </table>
                                                             </td>
-                                                            <td>
-                                                                <div align="right">
-                                                                    <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="/experiment/virtual/showAdd?page=1" class="txt_bt"><img
-                                                                                src="/laboratory/../images/add_min.gif"
-                                                                                width="10" height="10" border="0"/>
-                                                                            <span class="STYLE1">新增</span></a>&nbsp;
-<%--                                                                        <a href="editclass.html"
-                                                                           onclick="toUpdate();"><img
-                                                                                src="/laboratory/../images/edit_min.gif"
-                                                                                width="10" height="10"
-                                                                                border="0"/> <span
-                                                                                class="STYLE1">编辑</span></a>&nbsp;--%>
 
-                                                                        <a href="#" onclick="deleteClasses();" class="txt_bt" ><img
-                                                                                src="/laboratory/../images/del_min.gif"
-                                                                                width="10" height="10"
-                                                                                border="0"/> <span
-                                                                                class="STYLE1">删除</span></a>&nbsp;&nbsp;
-                                                                    </span>
-                                                                </div>
-                                                            </td>
                                                         </tr>
                                                     </table>
                                                 </td>
@@ -195,8 +174,8 @@
                                                             <input type="button" onClick="editorClass(${item.id})"
                                                                    class="button"
                                                                    value="编辑"/>
-                                                            <input type="button" onClick="deleteClasses('${item.id}')"
-                                                                   class="button" value="删除"/>
+                                                            <input type="button" onClick="importClasses('${item.id}')"
+                                                                   class="button" value="导入"/>
                                                         </td>
 
                                                     </tr>

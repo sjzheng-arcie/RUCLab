@@ -42,14 +42,12 @@
                     </table>
                     <ul class="MM">
 
-                        <li><a href="/experiment/virtual/list?page=1" onfocus="toFocus(this)" target="main">虚拟班级</a>
+                        <li><a href="/experiment/virtual/list?page=1" onfocus="toFocus(this)" target="main">班级信息管理</a>
                         </li>
                         <li><a href="jsp/curriculum/curriculumclasslist?page=1" onfocus="toFocus(this)"
-                               target="main">课程信息管理</a></li>
+                               target="main">课表信息管理</a></li>
                         <li><a href="jsp/experiment/experiment/courselist?page=1" onfocus="toFocus(this)" target="main">
                             实验信息管理</a></li>
-
-
                     </ul>
                 </div>
             </div>

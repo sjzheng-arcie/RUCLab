@@ -14,32 +14,7 @@
     <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
     <script>
         var classId = "${vClass.curriculumId}";
-        function createCurriculumOption(target, item) {
-            if (classId && classId == item.id.toString()) {
-                $("<option>").html(item.name).attr('value', item.id).attr('selected', 'selected')
-                        .attr('teacher', item.teacherName).attr('teacherId', item.teacherId).appendTo("#" + target);
-            } else {
-                $("<option>").html(item.name).attr('value', item.id).attr('teacher', item.teacherName)
-                        .attr('teacherId', item.teacherId).appendTo("#" + target);
-            }
-        }
-        function initCurriculumSelect() {
-            $.getJSON("/laboratory/jsp/bas/curriculum/list", {name: ""}, function (data) {
-                $.each(data, function (idx, item) {
-                    createCurriculumOption("curriculumId", item);
-                });
 
-                $("#curriculumId").chosen({
-                    no_results_text: "没有找到!",
-                    disable_search_threshold: 10
-                });
-            });
-
-            $("#curriculumId").on("change", function (evn, params) {
-                var t = $("#curriculumId option:selected").attr('teacher');
-                $("#teacherName").val(t);
-            });
-        }
         function deleteStudents(id) {
             var idStr = "";
             if (id) {
@@ -69,23 +44,20 @@
             if (!validator(document.listForm)) {
                 return;
             }
-            var classId = $("#curriculumId").val(),
+            var classId = $("#vcId").val(),
                     classSn = $("#classSn").val(),
                     className = $("#className").val(),
                     classYear = $("#classYear").val(),
-                    teacherId = $("#curriculum option:selected").attr('teacherId'),
                     vcId = $("#vcId").val();
             $.post("/experiment/virtual/updateClass", {
                 'id': vcId,
                 'classSn': classSn,
                 'className': className,
-                'classYear': classYear,
-                'curriculumId': classId
+                'classYear': classYear
             }, function (data) {
-                alert(data.message);
-                if (data.success) {
+
                     window.location.href = "/experiment/virtual/list?page=1";
-                }
+
             });
         }
         function addStudents(){
@@ -99,7 +71,7 @@
         }
 
         $(document).ready(function () {
-            initCurriculumSelect();
+
         });
     </script>
 
@@ -184,7 +156,7 @@
                                                 <input id="className" name="className" class="text"
                                                        value="${vClass.className}"
                                                        valid="required"
-                                                       errmsg="班级名称不能为空! />
+                                                       errmsg="班级名称不能为空!" />
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 <span style="color:red;" id="errMsg_name"></span>
                                             </td>
@@ -193,14 +165,10 @@
                                         <tr>
                                             <td nowrap align="right">所属课程:</td>
                                             <td nowrap>
-                                                <select id="curriculumId" name="curriculumId"
-                                                        style="width: 152px;height: 22px"
-                                                        data-placeholder="请选择课程...">
-                                                    <option value="-1"></option>
-                                                </select>
+                                                <input id="curriculumName" name="curriculumName" class="text"
+                                                       value="${vClass.curriculumName}" disabled/>
                                                 <span style="color:red;">*</span>&nbsp;&nbsp;
-                                                <span style="color:red;" id="errMsg_curriculum"></span>
-
+                                                <span style="color:red;"id="errMsg_curriculum"></span>
                                             </td>
                                             <td nowrap align="right">任课老师:</td>
                                             <td nowrap>
@@ -214,10 +182,7 @@
                                             <td nowrap align="right">学年:</td>
                                             <td nowrap>
                                                 <input id="classYear" name="classYear" class="text"
-                                                       value="${vClass.classYear}"
-                                                       valid="isNum"
-                                                       errmsg="学年只能为数字!" />
-
+                                                       value="${vClass.classYear}" />
                                             </td>
                                         </tr>
                                     </table>

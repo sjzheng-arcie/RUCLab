@@ -131,6 +131,25 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td nowrap align="right">教学班号:</td>
+                                                <td nowrap>
+                                                    <input name="classSn" id="classSn" value="" onblur=""
+                                                           class="text"
+                                                           style="width:154px" maxlength="20"
+                                                           valid="required"
+                                                           errmsg="教学班号不能为空!"/>
+                                                    <span style="color:red;">*</span>
+                                                </td>
+                                                <td nowrap align="right">教学班名称:</td>
+                                                <td nowrap>
+                                                    <input name="className" id="className" class="text"
+                                                           style="width:154px"
+                                                           valid="required"
+                                                           errmsg="教学班名称不能为空!"/>
+                                                    <span style="color:red;">*</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">课程学时:</td>
                                                 <td nowrap>
                                                     <input name="period" id="period" value="" onblur=""

@@ -85,7 +85,7 @@
                                                 style="width: 252px;height: 22px"
                                                 data-placeholder="选择班级...">
                                             <c:forEach items="${curriculumClassList}" var="curriculumClass">
-                                                    <option value="${curriculumClass.id}">${curriculumClass.className}(${curriculumClass.classSn})</option>
+                                                    <option value="${curriculumClass.id}">${curriculumClass.className}(${curriculumClass.teacherName})</option>
                                             </c:forEach>
                                         </select>
                                     </td>

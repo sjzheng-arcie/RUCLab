@@ -1,9 +1,6 @@
 package edu.ruc.labmgr.web.controller.lab;
 
-import edu.ruc.labmgr.domain.Classif;
-import edu.ruc.labmgr.domain.Curriculum;
-import edu.ruc.labmgr.domain.Major;
-import edu.ruc.labmgr.domain.Teacher;
+import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -24,6 +21,8 @@ import java.util.List;
 public class CurriculumController {
     @Autowired
     private CurriculumService curriculumService;
+    @Autowired
+    private CurriculumClassService curriculumClassService;
     @Autowired
     MajorService serviceMajor;
     @Autowired
@@ -61,35 +60,47 @@ public class CurriculumController {
     public ModelAndView toAdd() {
         ModelAndView mav = new ModelAndView("laboratory/jsp/bas/curriculum/add");
         List<Major> majors = serviceMajor.selectAllMajors();
-        List<Teacher> teacherList = serviceTeacher.getAllTeacherList();
+        List<Teacher> teacherList = serviceTeacher.getRoleTeacherList(Types.Role.TEACHER);
         mav.addObject("teacherList", teacherList);
         mav.addObject("majors", majors);
         return mav;
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public String add(Curriculum curriculum) {
+    public String add(Curriculum curriculum,@RequestParam("classSn") String classSn, @RequestParam("className") String className ) {
         curriculumService.insert(curriculum);
+        CurriculumClass cclass = new CurriculumClass();
+        cclass.setId(curriculum.getId());
+        cclass.setClassSn(classSn);
+        cclass.setClassName(className);
+        curriculumClassService.addCurriculumClass(cclass);
         return "redirect:/laboratory/jsp/bas/curriculum/list";
     }
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
         Curriculum curriculum = curriculumService.selectByPrimaryKey(id);
+        CurriculumClass cclass = curriculumClassService.getVirtualClass(id);
         ModelAndView mav = new ModelAndView("/laboratory/jsp/bas/curriculum/update");
         List<Major> majors = serviceMajor.selectAllMajors();
         List<Classif> examTypes = serviceClassif.getItemsByParentID(Types.ClassifType.EXAM_TYPE.getValue());
-        List<Teacher> teacherList = serviceTeacher.getAllTeacherList();
+        List<Teacher> teacherList = serviceTeacher.getRoleTeacherList(Types.Role.TEACHER);
         mav.addObject("teacherList", teacherList);
         mav.addObject("majors", majors);
         mav.addObject("curriculum", curriculum);
+        mav.addObject("cclass", cclass);
         mav.addObject("examTypes", examTypes);
         return mav;
     }
 
     @RequestMapping(value = "/update", method = RequestMethod.POST)
-    public String update(Curriculum curriculum) {
+    public String update(Curriculum curriculum,@RequestParam("classSn") String classSn, @RequestParam("className") String className ) {
         curriculumService.update(curriculum);
+        CurriculumClass cclass = new CurriculumClass();
+        cclass.setId(curriculum.getId());
+        cclass.setClassSn(classSn);
+        cclass.setClassName(className);
+        curriculumClassService.updateCurriculumClass(cclass);
         return "redirect:/laboratory/jsp/bas/curriculum/list";
     }
 
