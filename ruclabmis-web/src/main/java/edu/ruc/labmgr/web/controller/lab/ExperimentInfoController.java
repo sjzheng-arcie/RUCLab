@@ -77,20 +77,13 @@ public class ExperimentInfoController {
     }
 
     @RequestMapping(value = "/listbycourse", method = RequestMethod.GET)
-    public ModelAndView courseListByCourse(int page, String view, Integer curriculumId) {
+    public ModelAndView courseListByCourse(int page, Integer curriculumId) {
         if(page <= 0 )
             page = 1;
 
         ModelAndView mv = null;
-        if (view == null) {
-            mv = new ModelAndView("laboratory/jsp/experiment/courselist");
-        }else if (view.equals("experiment")) {
-            mv = new ModelAndView("laboratory/jsp/experiment/experiment/listbycourse");
-        }  else if (view.equals("report")) {
-            mv = new ModelAndView("laboratory/jsp/experiment/report/listbycourse");
-        } else if(view.equals("achievement")){
-            mv = new ModelAndView("laboratory/jsp/experiment/achievement/listbycourse");
-        }
+        mv = new ModelAndView("laboratory/jsp/experiment/courselist");
+
         Subject currentUser = SecurityUtils.getSubject();
         int id = userService.getCurrentUserId();
         PageInfo<CurriculumClass> pageInfo = null;
@@ -122,6 +115,21 @@ public class ExperimentInfoController {
         mv.addObject("curriculumName", classService.getVirtualClass(cid).getCurriculumName());
 		if(curriculumClassId!=null)
 			mv.addObject("curriculumClassId",curriculumClassId);
+        return mv;
+    }
+
+    @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView list(@RequestParam int page, Integer cid, @RequestParam(required = false) String curriculumClassId) {
+        ModelAndView mv = null;
+        mv = new ModelAndView("laboratory/jsp/experiment/experiment/list");
+
+        PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
+        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("cid", cid);
+        mv.addObject("curriculumId", cid);
+        mv.addObject("curriculumName", classService.getVirtualClass(cid).getCurriculumName());
+        if(curriculumClassId!=null)
+            mv.addObject("curriculumClassId",curriculumClassId);
         return mv;
     }
 

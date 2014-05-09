@@ -10,7 +10,7 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
         function editorClass(vcid,curricumname,instructName) {
-            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+            window.location.href = "/laboratory/jsp/experiment/experiment/list?cid="+vcid+"&cName="+curricumname+"+&page=1";
         }
         function editorInsturctor(vcid) {
             window.location.href = "/laboratory/jsp/res/instruction/list?searchCurriculum="+vcid;

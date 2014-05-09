@@ -32,7 +32,7 @@
 
     });
     function editorClass(vcid,curricumname,instructName) {
-        window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+        window.location.href = "/laboratory/jsp/experiment/experiment/list?cid="+vcid+"&cName="+curricumname+"+&page=1";
     }
     function editorInsturctor(vcid) {
 
