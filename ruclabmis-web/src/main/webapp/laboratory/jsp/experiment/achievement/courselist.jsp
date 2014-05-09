@@ -17,7 +17,7 @@
             window.location.href = "/experiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
         }
         function editorClass(vcid,curricumname,instructName) {
-            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+            window.location.href = "sutdentexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
         }
     </script>
 

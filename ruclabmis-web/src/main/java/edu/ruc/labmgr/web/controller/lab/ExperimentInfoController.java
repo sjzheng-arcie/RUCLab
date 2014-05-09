@@ -118,6 +118,24 @@ public class ExperimentInfoController {
         return mv;
     }
 
+    @RequestMapping(value = "/sutdentexperimentlist", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView studentExperimentList(@RequestParam int page, Integer cid, String view,@RequestParam(required = false) String curriculumClassId) {
+        ModelAndView mv = null;
+        if (view == null) {
+            mv = new ModelAndView("laboratory/jsp/experiment/experiment/studentexperimentlist");
+        } else if (view.equals("report")) {
+            mv = new ModelAndView("laboratory/jsp/experiment/report/studentexperimentlist");
+        }
+        PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
+        mv.addObject("pageInfo", pageInfo);
+        mv.addObject("cid", cid);
+        mv.addObject("curriculumId", cid);
+        mv.addObject("curriculumName", classService.getVirtualClass(cid).getCurriculumName());
+        if(curriculumClassId!=null)
+            mv.addObject("curriculumClassId",curriculumClassId);
+        return mv;
+    }
+
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView list(@RequestParam int page, Integer cid, @RequestParam(required = false) String curriculumClassId) {
         ModelAndView mv = null;

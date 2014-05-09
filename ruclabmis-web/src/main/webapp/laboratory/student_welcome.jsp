@@ -35,7 +35,7 @@
         window.location.href = "/experiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
     }
     function viewExperiment(vcid,curriculumClassId){
-        window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?cid="+vcid+"&page=1&view=report"+"&curriculumClassId="+curriculumClassId;
+        window.location.href = "/laboratory/jsp/experiment/experiment/sutdentexperimentlist?cid="+vcid+"&page=1&view=report"+"&curriculumClassId="+curriculumClassId;
     }
 
 
