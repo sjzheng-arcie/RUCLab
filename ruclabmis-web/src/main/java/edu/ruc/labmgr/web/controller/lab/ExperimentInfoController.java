@@ -103,6 +103,7 @@ public class ExperimentInfoController {
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("userId",id);
         mv.addObject("curriculumId",curriculumId);
+
         return mv;
     }
 
@@ -117,6 +118,8 @@ public class ExperimentInfoController {
         PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("cid", cid);
+        mv.addObject("curriculumId", cid);
+        mv.addObject("curriculumName", classService.getVirtualClass(cid).getCurriculumName());
 		if(curriculumClassId!=null)
 			mv.addObject("curriculumClassId",curriculumClassId);
         return mv;

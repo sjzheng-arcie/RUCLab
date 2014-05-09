@@ -241,7 +241,7 @@ public class CurriculumClassService {
 	private void addBBSection(int curriculumClassId,CurriculumClass clazz){
 		BbsSession bbsSection = new BbsSession();
 		bbsSection.setId(curriculumClassId);
-		int curricumid = clazz.getCurriculumId();
+		int curricumid = clazz.getId();
 		Curriculum cm = curriculumMapper.selectByPrimaryKey(curricumid);
 		bbsSection.setDescription(cm.getName()+"-"+clazz.getClassName()+"-"+clazz.getClassYear());
 		bbsSection.setReplycount(0);
@@ -386,7 +386,7 @@ public class CurriculumClassService {
 		List<Integer> CurricumIds = new ArrayList<Integer>();
 		List<CurriculumClass> data = getPrivateCurricumClasses(id, role);
 		for(CurriculumClass cc : data){
-			CurricumIds.add(cc.getCurriculumId());
+			CurricumIds.add(cc.getId());
 		}
 		return  CurricumIds;
 
@@ -419,7 +419,7 @@ public class CurriculumClassService {
         if (data == null)
             return data;
         for (CurriculumClass cc : data) {
-            int curricumId = cc.getCurriculumId();
+            int curricumId = cc.getId();
             Curriculum cum = curriculumMapper.selectByPrimaryKey(curricumId);
             int teacheId = cum.getTeacherId();
             User user = userMapper.selectByPrimaryKey(teacheId);

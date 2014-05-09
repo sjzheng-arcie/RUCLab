@@ -82,6 +82,7 @@ public class VirtualClassController {
             pageInfo = classService.getPageClassbyPageNumUseQuery(sn,name,page,id, Types.Role.TEACHER, curriculumId);
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("curriculumId", curriculumId);
+
         return mv;
     }
 
@@ -219,6 +220,8 @@ public class VirtualClassController {
         mv.setViewName(viewName);
         PageInfo<Map<String,?>> pageInfo = classService.getPageClassStudentInfo(vcId,sn,name,null,page);
         mv.addObject("pageInfo",pageInfo);
+        mv.addObject("curriculumId",vcId);
+        mv.addObject("curriculumName",classService.getVirtualClass(vcId).getCurriculumName());
         return mv;
     }
 

@@ -167,13 +167,13 @@ public class CurriculumSheduleController {
 											  @RequestParam(value="classSection",required = true) Byte classSection ){
 
 		CurriculumClass curriculumClass = curriculumClassService.getVirtualClass(curriculumClassId);
-		Curriculum curriculum = curriculumService.getCurriculum(curriculumClass.getCurriculumId());
+		Curriculum curriculum = curriculumService.getCurriculum(curriculumClass.getId());
 		List<CurriculumSchedule> exsitedCurriculumScheduleList= new ArrayList();
 		List<CurriculumSchedule> curriculumScheduleList= new ArrayList();
 		for(Byte i=beginWeek;i<=endWeek;i++){
 			CurriculumSchedule curriculumSchedule = new CurriculumSchedule();
 			curriculumSchedule.setTermYearid(teamYearId);
-			curriculumSchedule.setCurriculumId(curriculumClass.getCurriculumId());
+			curriculumSchedule.setCurriculumId(curriculumClass.getId());
 			curriculumSchedule.setWeekdays(weekDay);
 			curriculumSchedule.setClassId(curriculumClassId);
 			curriculumSchedule.setTeacherid(curriculum.getTeacherId());
@@ -181,7 +181,7 @@ public class CurriculumSheduleController {
 			curriculumSchedule.setWeeknum(i);
 			if(curriculumScheduleService.ifCurriculumScheduleExistd(curriculumSchedule)){
 				curriculumSchedule.setTeacher(teacherService.selectByPrimaryKey(teamYearId));
-				curriculumSchedule.setCurriculum(curriculumService.getCurriculum(curriculumClassService.getVirtualClass(curriculumClassId).getCurriculumId()));
+				curriculumSchedule.setCurriculum(curriculumService.getCurriculum(curriculumClassService.getVirtualClass(curriculumClassId).getId()));
 				curriculumSchedule.setCurriculumClass(curriculumClassService.getVirtualClass(curriculumClassId));
 				curriculumSchedule.setTermYear(schoolCalenderService.getTermYearByPk(teamYearId));
 				exsitedCurriculumScheduleList.add(curriculumSchedule);

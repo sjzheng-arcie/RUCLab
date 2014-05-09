@@ -129,7 +129,7 @@
 
                                                         <shiro:hasRole name="student">
                                                         <td>
-                                                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
+                                                            <input type="button" onClick="editorClass('${item.id}','${item.curriculumName}');"
                                                                    class="button"
                                                                    value="查看所属实验"/>
                                                         </td>

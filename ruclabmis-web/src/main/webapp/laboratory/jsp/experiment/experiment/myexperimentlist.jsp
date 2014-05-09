@@ -6,6 +6,8 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
@@ -33,7 +35,6 @@
 
         }
     </script>
-
 </head>
 
 <body onload="getWidth()" onresize="getWidth()">
@@ -49,11 +50,12 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">个人中心 > 我的实验课程</div>
+                            <div class="titlebt">课程详情 > ${curriculumName} > 课程实验</div>
                         </td>
                     </tr>
                 </table>
             </td>
+
             <td width="16" valign="top" background="../../../../images/mail_rightbg.gif"><img
                     src="../../../../images/nav-right-bg.gif" width="16" height="29"/></td>
         </tr>
@@ -65,6 +67,15 @@
                     <tr>
                         <td valign="top" class="STYLE10">
 
+
+                        <table border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td class="op_act" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/myexperimentlist?cid='+${curriculumId}+'&page=1'">实验信息</td>
+                                <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/res/instruction/courselist?searchCurriculum='+${curriculumId}">实验指导书</td>
+                                <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/myexperimentlist?cid='+${curriculumId}+'&page=1&view=report&curriculumClassId='+${curriculumId}">实验报告</td>
+                                <td class="op_nor" onclick="javascript:location.href='/experiment/virtual/classStudentScore?vcId='+${curriculumId}+'&page=1&view=achievement'">学期成绩评定</td>
+                            </tr>
+                        </table>
 
                                                         <span style="float:right">&nbsp;
                                 <a href="javascript:void(0)" onclick="window.history.go(-1);">

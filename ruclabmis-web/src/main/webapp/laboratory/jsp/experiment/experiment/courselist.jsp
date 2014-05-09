@@ -13,7 +13,6 @@
             window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
         }
         function editorInsturctor(vcid) {
-
             window.location.href = "/laboratory/jsp/res/instruction/list?searchCurriculum="+vcid;
         }
     </script>
@@ -119,10 +118,10 @@
                                                              <td>${item.classYear}</td>
                                                              <td>${item.teacherName}</td>
                                                         <td>
-                                                            <input type="button" onClick="editorInsturctor('${item.curriculumId}')"
+                                                            <input type="button" onClick="editorInsturctor('${item.id}')"
                                                                    class="button"
                                                                    value="查看实验指导书"/>
-                                                            <input type="button" onClick="editorClass('${item.curriculumId}','${item.curriculumName}');"
+                                                            <input type="button" onClick="editorClass('${item.id}','${item.curriculumName}');"
                                                                    class="button"
                                                                    value="查看所属实验"/>
                                                         </td>

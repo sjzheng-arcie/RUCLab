@@ -13,7 +13,7 @@
     <script type="text/javascript" src="/js/autocomplete/jquery-1.9.1.js"></script>
     <script type="text/javascript" src="/js/chosen/chosen.jquery.min.js"></script>
     <script>
-        var classId = "${vClass.curriculumId}";
+        var classId = "${vClass.id}";
 
         function deleteStudents(id) {
             var idStr = "";
@@ -36,7 +36,6 @@
                     }else{
                         alert(data.message);
                     }
-
                 });
             }
         }
@@ -55,9 +54,7 @@
                 'className': className,
                 'classYear': classYear
             }, function (data) {
-
                     window.location.href = "/experiment/virtual/list?page=1";
-
             });
         }
         function addStudents(){

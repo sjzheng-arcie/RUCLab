@@ -59,6 +59,26 @@ public class ExperimentInstructionsController {
         return mav;
     }
 
+    @RequestMapping(value = "/courselist", method = {RequestMethod.GET, RequestMethod.POST})
+    public ModelAndView courseList(@RequestParam(value = "searchCurriculum", required = false) Integer searchCurriculum,
+                                 @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
+        ModelAndView mav = new ModelAndView("laboratory/jsp/res/instruction/courselist");
+        List<Curriculum> curriculumList =null;
+        Subject currentUser = SecurityUtils.getSubject();
+        if (currentUser.hasRole("teacher")){
+            curriculumList =curriculumService.getCurriculum(null,userService.getCurrentUserId(),true);
+        }else{
+            curriculumList=curriculumService.getCurriculum(null,userService.getCurrentUserId(),false);
+        }
+        PageInfo<ExperimentInstructions> pageInfo = experimentInstructionsService.selectListPage(searchCurriculum, page,curriculumList);
+        mav.addObject("pageInfo", pageInfo);
+
+        mav.addObject("curriculumList", curriculumList);
+        mav.addObject("curriculumId", searchCurriculum);
+        mav.addObject("curriculumName", curriculumService.getCurriculum(searchCurriculum).getName());
+        return mav;
+    }
+
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     public ModelAndView toAdd() {
         ModelAndView mav = new ModelAndView("laboratory/jsp/res/instruction/add");

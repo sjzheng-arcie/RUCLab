@@ -4,6 +4,8 @@
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
+    <link href="${pageContext.request.contextPath}/css/skin.css" rel="stylesheet" type="text/css" />
+    <link href="${pageContext.request.contextPath}/css/style.css" rel="stylesheet" type="text/css" />
     <link href="../../../../css/skin.css" rel="stylesheet" type="text/css"/>
     <script type="text/javascript" src="../../../../js/util.js"></script>
     <script type="text/javascript" src="../../../../js/page.js"></script>
@@ -114,7 +116,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验报告管理 > 课程实验</div>
+                            <div class="titlebt"> 课程详情 > ${curriculumName} > 实验报告</div>
                         </td>
                     </tr>
                 </table>
@@ -126,6 +128,14 @@
         <tr>
             <td valign="middle" background="../../../../images/mail_leftbg.gif">&nbsp;</td>
             <td valign="top" bgcolor="#F7F8F9">
+                <table border="0" cellspacing="0" cellpadding="0">
+                    <tr>
+                        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/myexperimentlist?cid='+${curriculumId}+'&page=1'">实验信息</td>
+                        <td class="op_nor" onclick="javascript:location.href='/laboratory/jsp/res/instruction/courselist?searchCurriculum='+${curriculumId}">实验指导书</td>
+                        <td class="op_act" onclick="javascript:location.href='/laboratory/jsp/experiment/experiment/myexperimentlist?cid='+${curriculumId}+'&page=1&view=report&curriculumClassId='+${curriculumId}">实验报告</td>
+                        <td class="op_nor" onclick="javascript:location.href='/experiment/virtual/classStudentScore?vcId='+${curriculumId}+'&page=1&view=achievement'">学期成绩评定</td>
+                    </tr>
+                </table>
                 <table width="100%" border="0" cellpadding="0" cellspacing="1" bgcolor="#F7F8F9">
                     <tr>
                         <td valign="top" class="STYLE10">

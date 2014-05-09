@@ -98,12 +98,7 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
-                                                        <div align="center">
-                                                            <input type="checkbox" name="checkbox" id="checkbox"
-                                                                   onclick="checkAll(this,'listForm','idCheckbox');"/>
-                                                        </div>
-                                                    </td>
+
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">序号</span></div>
                                                     </td>
@@ -130,10 +125,7 @@
 
                                                 <c:forEach items="${pageInfo.data}" var="item" varStatus="st">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td height="20"><input name="idCheckbox" type="checkbox"
-                                                                               value="${item.id}"
-                                                                               onclick="checkOne('listForm', 'idCheckbox')"/>
-                                                        </td>
+
                                                         <td>${st.index+1}</td>
                                                         <td>${item.classSn}</td>
                                                         <td>${item.className}</td>

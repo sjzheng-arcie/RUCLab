@@ -1,6 +1,7 @@
 package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.mapper.BbsSessionMapper;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
@@ -21,6 +22,8 @@ import java.util.List;
 public class CurriculumController {
     @Autowired
     private CurriculumService curriculumService;
+    @Autowired
+    BbsSessionMapper bbsSessionMapper;
     @Autowired
     private CurriculumClassService curriculumClassService;
     @Autowired
@@ -74,6 +77,12 @@ public class CurriculumController {
         cclass.setClassSn(classSn);
         cclass.setClassName(className);
         curriculumClassService.addCurriculumClass(cclass);
+        BbsSession record = new BbsSession();
+        record.setId(curriculum.getId());
+        record.setDescription(curriculum.getName());
+        record.setReplycount(0);
+        record.setTopiccount(0);
+        bbsSessionMapper.insert(record);
         return "redirect:/laboratory/jsp/bas/curriculum/list";
     }
 

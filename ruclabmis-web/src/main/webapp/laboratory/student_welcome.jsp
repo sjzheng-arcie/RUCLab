@@ -97,7 +97,7 @@
                                    class="button" value="查询成绩"/>
                         </td>
                         <td>
-                            <input type="button" onClick="viewExperiment('${item.curriculumId}','${item.id}');"
+                            <input type="button" onClick="viewExperiment('${item.id}','${item.id}');"
                                    class="button" value="查看实验报告"/>
                         </td>
                     </tr>

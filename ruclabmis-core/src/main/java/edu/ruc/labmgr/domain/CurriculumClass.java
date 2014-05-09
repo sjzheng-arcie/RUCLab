@@ -3,8 +3,6 @@ package edu.ruc.labmgr.domain;
 public class CurriculumClass {
     private Integer id;
 
-    private Integer curriculumId;
-
     private String curriculumName;
 
     private String teacherName;
@@ -21,14 +19,6 @@ public class CurriculumClass {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Integer getCurriculumId() {
-        return curriculumId;
-    }
-
-    public void setCurriculumId(Integer curriculumId) {
-        this.curriculumId = curriculumId;
     }
 
     public String getClassName() {

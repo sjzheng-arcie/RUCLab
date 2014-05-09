@@ -10,14 +10,12 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script type="text/javascript">
 
-        function score(vcid){
-            window.location.href = "/courseexperiment/virtual/classStudentScore?vcId="+vcid+"&page=1&view=achievement";
+        function classIndex(vcid){
+            window.location.href = "/laboratory/jsp/experiment/experiment/courseindex?curriculumId=" + vcid;
         }
-        function queryscore(cid,stuId){
-            window.location.href = "/courseexperiment/virtual/scoreStudent?vcId="+cid+"&stuId="+stuId;
-        }
-        function editorClass(vcid,curricumname,instructName) {
-            window.location.href = "myexperimentlist?cid="+vcid+"&cName="+curricumname+"+&page=1";
+
+        function editorClass(vcid) {
+            window.location.href = "/experiment/virtual/editClass?vcId=" + vcid;
         }
     </script>
 
@@ -95,10 +93,13 @@
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
+                                                        <div align="center"><span class="STYLE10">班级编号</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">班级名称</span></div>
                                                     </td>
                                                     <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">班级名称</span></div>
+                                                        <div align="center"><span class="STYLE10">课程名称</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学年</span></div>
@@ -106,15 +107,31 @@
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">任课老师</span></div>
                                                     </td>
+                                                    <td width="150" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">编辑班级</span></div>
+                                                    </td>
 
 
                                                 </tr>
                                                 <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
-                                                        <td> <a href="/laboratory/jsp/experiment/experiment/courseindex?curriculumId=${item.curriculumId}">${item.curriculumName}</a></td>
+                                                        <td>${item.classSn}</td>
                                                         <td>${item.className}</td>
+                                                        <td>${item.curriculumName}</td>
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
+
+                                                        <td>
+
+                                                            <input type="button" onClick="classIndex(${item.id})"
+                                                                   class="button"
+                                                                   value="查看详情"/>
+                                                            <input type="button" onClick="editorClass(${item.id})"
+                                                                   class="button"
+                                                                   value="编辑"/>
+                                                            <input type="button" onClick="importClasses('${item.id}')"
+                                                                   class="button" value="导入"/>
+                                                        </td>
                                                     </tr>
                                                 </c:forEach>
                                                 <tr height="16px"></tr>

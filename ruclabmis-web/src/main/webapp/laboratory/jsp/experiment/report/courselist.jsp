@@ -103,7 +103,7 @@
 
 
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
-                                                        <div align="center"><span class="STYLE10">查看实验</span></div>
+                                                        <div align="center"><span class="STYLE10">查看实验报告</span></div>
                                                     </td>
 
 
@@ -116,7 +116,7 @@
                                                         <td>${item.classYear}</td>
                                                         <td>${item.teacherName}</td>
                                                         <td>
-                                                            <input type="button" onClick="viewExperiment('${item.curriculumId}','${item.id}');"
+                                                            <input type="button" onClick="viewExperiment('${item.id}','${item.id}');"
                                                                    class="button" value="查看实验"/>
                                                         </td>
                                                     </tr>
