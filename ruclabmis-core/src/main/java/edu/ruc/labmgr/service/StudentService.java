@@ -132,4 +132,24 @@ public class StudentService extends UserService {
     public int countAllStudents() {
         return mapperStudent.countByCriteria(null);
     }
+
+    public void saveOrUpdateStudents(List<Student> students) {
+        if (students != null) {
+            for (Student student : students) {
+                String sn = student.getSn();
+                if (StringUtils.isNullOrEmpty(sn))
+                    continue;
+
+                User user = mapperUser.selectUserByLoginSn(sn);
+                if (user != null) {
+                    student.setId(user.getId());
+                    mapperUser.updateByPrimaryKey(student);
+                    mapperStudent.updateByPrimaryKey(student);
+                } else {
+                    mapperUser.insert(student);
+                    mapperStudent.insert(student);
+                }
+            }
+        }
+    }
 }

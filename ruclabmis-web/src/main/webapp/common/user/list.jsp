@@ -115,6 +115,10 @@
                             <img src="../../images/del_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">删除</span>
                         </a>
+                        <a href="/common/user/importTeachers" class="txt_bt">
+                            <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                            <span class="STYLE1">导入</span>
+                        </a>
 	                </span>
                                                                 </div>
                                                             </td>

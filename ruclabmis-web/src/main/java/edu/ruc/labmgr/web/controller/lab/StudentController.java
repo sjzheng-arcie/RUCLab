@@ -4,13 +4,22 @@ import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.service.*;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.List;
+import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 @Controller
 @RequestMapping("/laboratory/jsp/bas/student")
@@ -19,6 +28,9 @@ public class StudentController {
     StudentService serviceStudent;
     @Autowired
     MajorService serviceMajor;
+    @Autowired
+    @Qualifier(value = "singleThreadPool")
+    private ExecutorService singleTreadPool;
 
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
@@ -97,4 +109,32 @@ public class StudentController {
         return "redirect:/laboratory/jsp/bas/student/list";
     }
 
+    @RequestMapping(value = "/importStudents", method = RequestMethod.GET)
+    public ModelAndView importStudents(RedirectAttributes redirectAttributes) {
+        ModelAndView mv = new ModelAndView("/laboratory/jsp/bas/student/importStudents");
+        Map<String, ?> flashMap = redirectAttributes.getFlashAttributes();
+        if (flashMap != null && flashMap.get("error") != null) {
+            mv.addObject("error", flashMap.get("error"));
+        }
+        return mv;
+    }
+
+    @RequestMapping(value = "/importStudents", method = RequestMethod.POST)
+    public String importStudents(boolean clean, MultipartFile file, RedirectAttributes redirectAttributes)
+            throws IOException, ExecutionException, InterruptedException {
+        if (!file.isEmpty()) {
+            String name = file.getOriginalFilename();
+            File local = new File(System.getProperty("java.io.tmpdir") + name);
+            file.transferTo(local);
+            edu.ruc.labmgr.excel.StudentImportTask task = new edu.ruc.labmgr.excel.StudentImportTask(local, clean);
+            Future<Boolean> result = singleTreadPool.submit(task);
+            boolean success = result.get();
+            local.delete();
+            if (success) {
+                return "redirect:/laboratory/jsp/bas/student/list";
+            }
+        }
+        redirectAttributes.addFlashAttribute("error", "数据文件上传错误或数据导入出错!");
+        return "redirect:/laboratory/jsp/bas/student/importStudents";
+    }
 }

@@ -56,6 +56,19 @@ public class TitleService {
         return title;
     }
 
+    public Title selectByName(String name) {
+        TitleCriteria criteria = new TitleCriteria();
+        TitleCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(name))
+            ec.andNameEqualTo(name);
+
+        List<Title> titles = titleMapper.selectByCriteria(criteria);
+        if(titles.size() > 0)
+            return titles.get(0);
+        else
+            return null;
+    }
+
     public List<Title> selectAllTitles() {
         return titleMapper.selectByCriteria(null);
     }

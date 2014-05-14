@@ -3,6 +3,8 @@ package edu.ruc.labmgr.service;
 import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.Organization;
 import edu.ruc.labmgr.domain.OrganizationCriteria;
+import edu.ruc.labmgr.domain.Title;
+import edu.ruc.labmgr.domain.TitleCriteria;
 import edu.ruc.labmgr.mapper.OrganizationMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -39,6 +41,20 @@ public class OrganizationService {
         Organization organization = null;
         organization = organizationMapper.selectByPrimaryKey(id);
         return organization;
+    }
+
+
+    public  Organization selectByName(String name) {
+        OrganizationCriteria criteria = new OrganizationCriteria();
+        OrganizationCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(name))
+            ec.andNameEqualTo(name);
+
+        List<Organization> organizations = organizationMapper.selectByCriteria(criteria);
+        if(organizations.size() > 0)
+            return organizations.get(0);
+        else
+            return null;
     }
 
     public List<Organization> selectAllOrganizations() {

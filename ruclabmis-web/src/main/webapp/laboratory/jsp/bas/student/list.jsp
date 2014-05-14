@@ -97,6 +97,10 @@
                             <img src="../../../../images/del_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">删除</span>
                         </a>
+                           <a href="/laboratory/jsp/bas/student/importStudents" class="txt_bt">
+                               <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                               <span class="STYLE1">导入</span>
+                           </a>
 	                </span>
                                                                 </div>
                                                             </td>
@@ -119,13 +123,13 @@
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学号</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">姓名</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">性别</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">

@@ -98,8 +98,8 @@ public abstract class POIEntityParser<T> {
         int max = sheet.getLastRowNum();
         int min = getDataStartIndex();
         List<T> result = new ArrayList();
-        if (max > min) {
-            for (int i = min; i < max; i++) {
+        if (max >= min) {
+            for (int i = min; i <= max; i++) {
                 Row row = sheet.getRow(i);
                 T t = parseFromRow(row);
                 if(t!=null)

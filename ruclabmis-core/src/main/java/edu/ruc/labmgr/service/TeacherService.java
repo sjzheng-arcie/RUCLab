@@ -176,4 +176,25 @@ public class TeacherService extends UserService {
         return mapperTeacher.countByCriteria(null);
     }
 
+
+    public void saveOrUpdateTeachers(List<Teacher> teachers) {
+        if (teachers != null) {
+            for (Teacher teacher : teachers) {
+                String sn = teacher.getSn();
+                if (StringUtils.isNullOrEmpty(sn))
+                    continue;
+
+                User user = mapperUser.selectUserByLoginSn(sn);
+                if (user != null) {
+                    teacher.setId(user.getId());
+                    mapperUser.updateByPrimaryKey(teacher);
+                    mapperTeacher.updateByPrimaryKey(teacher);
+                } else {
+                    mapperUser.insert(teacher);
+                    mapperTeacher.insert(teacher);
+                }
+            }
+        }
+    }
+
 }

@@ -93,8 +93,6 @@
                                                 <td width="100"  align="right" >预约时间段：</td>
                                                 <td width="100">
                                                     <select id="stime" name="stime" style="width: 60px;height: 22px">
-                                                        <option value="07:00">07:00</option>
-                                                        <option value="07:30">07:30</option>
                                                         <option value="08:00">08:00</option>
                                                         <option value="08:30">08:30</option>
                                                         <option value="09:00">09:00</option>
@@ -117,9 +115,13 @@
                                                         <option value="17:30">17:30</option>
                                                         <option value="18:00">18:00</option>
                                                         <option value="18:30">18:30</option>
+                                                        <option value="18:30">19:00</option>
+                                                        <option value="18:30">19:30</option>
+                                                        <option value="18:30">20:00</option>
+                                                        <option value="18:30">20:30</option>
+                                                        <option value="18:30">21:00</option>
+                                                        <option value="18:30">21:30</option>
                                                     </select> -  <select id="etime" name="etime" style="width: 60px;height: 22px">
-                                                    <option value="07:30">07:30</option>
-                                                    <option value="08:00">08:00</option>
                                                     <option value="08:30">08:30</option>
                                                     <option value="09:00">09:00</option>
                                                     <option value="09:30">09:30</option>
@@ -141,6 +143,13 @@
                                                     <option value="17:30">17:30</option>
                                                     <option value="18:00">18:00</option>
                                                     <option value="18:30">18:30</option>
+                                                    <option value="18:30">19:00</option>
+                                                    <option value="18:30">19:30</option>
+                                                    <option value="18:30">20:00</option>
+                                                    <option value="18:30">20:30</option>
+                                                    <option value="18:30">21:00</option>
+                                                    <option value="18:30">21:30</option>
+                                                    <option value="18:30">22:00</option>
                                                 </select>
                                                 </td>
                                                 </td>
