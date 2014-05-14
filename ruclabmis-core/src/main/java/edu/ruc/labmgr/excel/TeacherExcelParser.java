@@ -31,7 +31,7 @@ public class TeacherExcelParser extends POIEntityParser<Teacher> {
 
             boolean sex = false;
             String strSex = (String) map.get("name");
-            if( strSex == "男")
+            if( strSex == "女")
                 sex = true;
             result.setSex(sex);
 
