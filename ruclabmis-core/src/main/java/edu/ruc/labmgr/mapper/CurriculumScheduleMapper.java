@@ -20,6 +20,7 @@ public interface CurriculumScheduleMapper {
     List<CurriculumSchedule> selectByCriteriaWithRowbounds(CurriculumScheduleCriteria criteria, RowBounds rowBounds);
 
     List<CurriculumSchedule> selectByCriteria(CurriculumScheduleCriteria criteria);
+
 	List<CurriculumSchedule> getAllCurriculumNameList(CurriculumScheduleCriteria criteria);
 
     CurriculumSchedule selectByPrimaryKey(Integer id);
