@@ -15,15 +15,27 @@ public class CurriculumSchedule {
 
     private Integer termYearid;
 
-    private Byte amPm;
-
     private Byte weeknum;
 
     private Byte weekdays;
 
-    private Date meetSTime;
+    private Date meetStime;
 
-    private Date meetETime;
+    private Date meetEtime;
+
+    private Integer sectionBegin;
+
+    private Integer sectionEnd;
+
+	private TermYear termYear;
+
+	private Room room;
+
+	private CurriculumClass curriculumClass;
+
+	private Teacher teacher;
+
+	private  Curriculum curriculum;
 
 	public Room getRoom() {
 		return room;
@@ -65,12 +77,9 @@ public class CurriculumSchedule {
 		this.termYear = termYear;
 	}
 
-	private Room room;
-	private CurriculumClass curriculumClass;
 
-	private Teacher teacher;
-	private Curriculum curriculum;
-	private  TermYear termYear;
+
+
 
     public Integer getId() {
         return id;
@@ -120,14 +129,6 @@ public class CurriculumSchedule {
         this.termYearid = termYearid;
     }
 
-    public Byte getAmPm() {
-        return amPm;
-    }
-
-    public void setAmPm(Byte amPm) {
-        this.amPm = amPm;
-    }
-
     public Byte getWeeknum() {
         return weeknum;
     }
@@ -144,19 +145,35 @@ public class CurriculumSchedule {
         this.weekdays = weekdays;
     }
 
-    public Date getMeetSTime() {
-        return meetSTime;
+    public Date getMeetStime() {
+        return meetStime;
     }
 
-    public void setMeetSTime(Date meetSTime) {
-        this.meetSTime = meetSTime;
+    public void setMeetStime(Date meetStime) {
+        this.meetStime = meetStime;
     }
 
-    public Date getMeetETime() {
-        return meetETime;
+    public Date getMeetEtime() {
+        return meetEtime;
     }
 
-    public void setMeetETime(Date meetETime) {
-        this.meetETime = meetETime;
+    public void setMeetEtime(Date meetEtime) {
+        this.meetEtime = meetEtime;
+    }
+
+    public Integer getSectionBegin() {
+        return sectionBegin;
+    }
+
+    public void setSectionBegin(Integer sectionBegin) {
+        this.sectionBegin = sectionBegin;
+    }
+
+    public Integer getSectionEnd() {
+        return sectionEnd;
+    }
+
+    public void setSectionEnd(Integer sectionEnd) {
+        this.sectionEnd = sectionEnd;
     }
 }
