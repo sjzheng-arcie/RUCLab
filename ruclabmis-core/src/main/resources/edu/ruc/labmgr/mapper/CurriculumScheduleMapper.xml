@@ -344,6 +344,7 @@
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause" />
         </if>
-        group by class_id,teacherId,curriculum_id,term_yearId,weekdays,room_Id
+        group by class_id,teacherId,curriculum_id,term_yearId,weekdays,room_Id,section_begin,section_end
+        order by weekdays
     </select>
 </mapper>

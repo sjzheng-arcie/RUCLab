@@ -146,8 +146,8 @@ public class AppointmentController {
             CurriculumSchedule schedule = new CurriculumSchedule();
             schedule.setTeacherid(userService.getCurrentUserId());
             schedule.setRoomId(roomId);
-            schedule.setMeetSTime(sdf.parse(startTime));
-            schedule.setMeetETime(sdf.parse(endTime));
+            schedule.setMeetStime(sdf.parse(startTime));
+            schedule.setMeetEtime(sdf.parse(endTime));
             curriculumScheduleService.add(schedule);
 
             ArrangementSchedule arrangementSchedule = new ArrangementSchedule();

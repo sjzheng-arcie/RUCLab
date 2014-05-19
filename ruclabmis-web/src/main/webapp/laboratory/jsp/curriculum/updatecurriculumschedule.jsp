@@ -7,6 +7,7 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
+<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
 <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
@@ -29,8 +30,63 @@
         });
     });
     function add(){
-        document.mainForm.action="updatecurriculumschdedule";
+        var a = window.document.getElementById("beginWeek").value;
+        var b = window.document.getElementById("endWeek").value;
+        if(a>b){
+            alert("结束时间不能早于开始时间！");
+            return;
+        }
+        var c = window.document.getElementById("roomId").value;
+        if(c==null|| c==''){
+            alert("请选择房间");
+            return;
+        }
+        document.mainForm.action="updatecurriculumschedule";
         document.mainForm.submit();
+    }
+    function roomDelete(e) {
+        /*var target;
+        if (!e) var e = window.event;
+        if (e.target) target = e.target;
+        else if (e.srcElement) target = e.srcElement;
+        if (target.nodeType == 3)
+            target = target.parentNode ;
+        if (target) {
+            $(target).parent().remove();
+        }
+        var src = target;*/
+
+
+        var src = window.event.srcElement;
+        $(src).parent().next().remove();
+        $(src).parent().remove();
+
+        window.event.stopPropagation();
+        $('#roomName').append(initRoomId());
+
+    }
+    function initRoomId() {
+        return '<span><input type="hidden" id="roomId" name="roomId"  value=\"\"/> </span><br/>';
+    }
+    function toSetLab(){
+        var termYearIdTemp=window.document.getElementById("termYearId").value;
+        var weekDayTemp=window.document.getElementById("weekDay").value;
+        var sectionBeginTemp = window.document.getElementById("sectionBegin").value;
+        var sectionEndTemp = window.document.getElementById("sectionEnd").value;
+
+        window.open("tosetlab?termYearId="+termYearIdTemp+"&curriculumScheduleId=${curriculumSchedule.id}"+"&weekDay="+weekDayTemp+
+                "&sectionBegin="+sectionBeginTemp+"&sectionEnd="+sectionEndTemp, "人员信息",
+                "height=450, width=800, toolbar=no, status=no");
+    }
+    function formatRoomDisplay(roomId,roomName) {
+
+        return '<span>' + roomName+ '<input  type="hidden" id="roomId" name="roomId" value=\"'+roomId+'\" /> <a class="button" href="#" roomId=\"' +roomId+ '\" onclick="roomDelete(event);">删除</a> </span><br/>';
+    }
+
+    function setLab(roomId,roomName){
+        window.document.getElementById('roomName').innerHTML = "";
+        $('#roomName').append(formatRoomDisplay(roomId,roomName));
+
     }
 </script>
 
@@ -54,11 +110,11 @@
                         <div id="zuoxi" style="width: 100%; height: 100%; overflow: auto;background-color: #e3efff;">
 
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
-
+                            <input type="hidden" id="curriculumScheduleId" name="curriculumScheduleId" value="${curriculumSchedule.id}" />
                                 <tr>
                                     <td align="right">学期学年：</td>
                                     <td>
-                                        <select id="termYear" name="termYearId"
+                                        <select id="termYearId" name="termYearId"
                                                 style="width: 252px;height: 22px"
                                                 data-placeholder="选择学年学期...">
                                             <c:forEach items="${termYearList}" var="termYear">
@@ -73,7 +129,7 @@
                                 <tr>
                                     <td align="right">班级：</td>
                                     <td>
-                                        <select id="target" name="curriculumClassId"
+                                        <select id="curriculumClassId" name="curriculumClassId"
                                                 style="width: 252px;height: 22px"
                                                 data-placeholder="选择班级...">
                                             <c:forEach items="${curriculumClassList}" var="curriculumClass">
@@ -88,7 +144,7 @@
                                 <tr>
                                     <td align="right" width="30%">星期：</td>
                                     <td>
-                                        <select name="weekDay">
+                                        <select id="weekDay" name="weekDay">
                                             <option <c:if test="${curriculumSchedule.weekdays==1}" >selected</c:if> value="1">星期一</option>
                                             <option <c:if test="${curriculumSchedule.weekdays==2}" >selected</c:if> value="2">星期二</option>
                                             <option <c:if test="${curriculumSchedule.weekdays==3}" >selected</c:if> value="3">星期三</option>
@@ -102,18 +158,23 @@
                                 <tr>
                                     <td align="right" width="30%">节次：</td>
                                     <td>
-                                        <select name="classSection">
-                                            <option <c:if test="${curriculumSchedule.amPm==1}" >selected</c:if> value="1">上午一二节</option>
-                                            <option  <c:if test="${curriculumSchedule.amPm==2}" >selected</c:if> value="2" >上午三四节</option>
-                                            <option <c:if test="${curriculumSchedule.amPm==3}" >selected</c:if> value="3">下午五六节</option>
-                                            <option <c:if test="${curriculumSchedule.amPm==4}" >selected</c:if> value="4">下午七八节</option>
-                                            <option  <c:if test="${curriculumSchedule.amPm==5}" >selected</c:if> value="5">晚上九十节</option>
+                                        第<select name="sectionBegin"id="sectionBegin" >
+                                        <c:forEach begin="1" end="14" step="1" var="item">
+                                            <option <c:if test="${curriculumSchedule.sectionBegin==item}">selected</c:if> value="${item}">${item}</option>
+                                        </c:forEach>
+                                    </select>
+                                        节 - 第
+                                        <select name="sectionEnd"id="sectionEnd" >
+                                            <c:forEach begin="1" end="14" step="1" var="item">
+                                                <option <c:if test="${curriculumSchedule.sectionEnd==item}">selected</c:if> value="${item}">${item}</option>
+                                            </c:forEach>
                                         </select>
+                                        节
                                     </td>
                                 </tr>
                                 <tr>
                                     <td align="right" width="30%">周次：</td>
-                                    <td width="70%">第<select name="beginWeek">
+                                    <td width="70%">第<select name="weekNum" id="weekNum">
                                         <c:forEach var="temp" begin="1" end="26" step="1">
                                             <option
                                                     <c:if test="${curriculumSchedule.weeknum==temp}" >selected</c:if>
@@ -123,7 +184,15 @@
                                         </c:forEach>
                                     </select>周</td>
                                 </tr>
+                                <tr>
+                                    <td align="right"><input type="button" onclick="toSetLab();" value="添加房间"/></td>
+                                    <td>
+                                        <div name="roomName" id="roomName">
+                                            <span>${curriculumSchedule.room.name}<input type="hidden" id="roomId" name="roomId" value="${curriculumSchedule.roomId}"/><a class="button" href="#" roomId="${curriculumSchedule.roomId}" onclick="roomDelete(event);">删除</a></span><br>
 
+                                        </div>
+                                    </td>
+                                </tr>
                             </table>
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>

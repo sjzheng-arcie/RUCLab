@@ -29,6 +29,12 @@
         document.mainForm.action="setlab?roomId="+roomId;
         document.mainForm.submit();
     }
+
+    function toApply(roomId,roomName) {
+        window.opener.setLab(roomId,roomName);
+        window.close();
+    }
+
 </script>
 <body onload="doOnLoad();"style="background-color: #eef2fb">
 <form name="mainForm" method="POST">
@@ -62,7 +68,7 @@
         <c:forEach items="${listRoomList}" var="roomList">
             <tr>
                 <c:forEach items="${roomList}" var="item">
-                    <td height="110" bgcolor="#aae4ff" onclick="setTheLab('${item.id}');" style="cursor:pointer;">
+                    <td height="110" bgcolor="#aae4ff" onclick="toApply('${item.id}','${item.name}');" style="cursor:pointer;">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"

@@ -74,9 +74,10 @@
                             </table>
                             <table width="100%" border="1" cellpadding="1" cellspacing="0">
                                 <tr height="25">
-                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>我的课表</strong></td>
+                                    <td colspan="9" align="center" bgcolor="#e3efff"><strong>${curriculumScheduleTitle}</strong></td>
                                 </tr>
                                 <tr height="25" align="center">
+
                                     <td width="6.75%" bgcolor="#E3EFFF"></td>
                                     <td width="6.75%" bgcolor="#E3EFFF">节次</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周一</td>
@@ -86,10 +87,11 @@
                                     <td width="12.5%" bgcolor="#E3EFFF">周五</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周六</td>
                                     <td width="12.5%" bgcolor="#E3EFFF">周天</td>
+
                                 </tr>
                                 <tr height="100" align="center">
-                                    <td bgcolor="#F7F7F7" rowspan="2">上午</td>
-                                    <td bgcolor="#F7F7F7">一、二节(7:00-9:00)</td>
+                                    <td bgcolor="#F7F7F7" >上午</td>
+                                    <td bgcolor="#F7F7F7">一、二节(7:00-9:00)三、四节(9:00-11:00)</td>
                                     <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="0" end="6" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">
@@ -100,8 +102,9 @@
                                     </c:forEach>
                                 </tr>
                                 <tr height="100" align="center">
-
-                                    <td bgcolor="#F7F7F7">三、四节(9:00-11:00)</td>
+                                    <td bgcolor="#F7F7F7" >中午</td>
+                                    <td bgcolor="#F7F7F7">五、六节(12:00-13:30)</td>
+                                    <td bgcolor="#F7F7F7"></td>
                                     <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="7" end="13" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">
@@ -112,8 +115,8 @@
                                     </c:forEach>
                                 </tr>
                                 <tr height="100" align="center">
-                                    <td bgcolor="#F7F7F7" rowspan="2">下午</td>
-                                    <td bgcolor="#F7F7F7">五、六节(13:00-15:00)</td>
+                                    <td bgcolor="#F7F7F7" >下午</td>
+                                    <td bgcolor="#F7F7F7">七、八节(14:00-15:30)九、十节(16:00-17:00)</td>
                                     <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="14" end="20" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">
@@ -123,20 +126,11 @@
                                         </td>
                                     </c:forEach>
                                 </tr>
-                                <tr height="100" align="center">
-                                    <td bgcolor="#F7F7F7">七、八节(15:00-17:00)</td>
-                                    <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="21" end="27" >
-                                        <td bgcolor="#F7F7F7">
-                                            <c:forEach items="${str}" var="item">
-                                                ${item}<br/>
-                                            </c:forEach>
-                                        </td>
-                                    </c:forEach>
-                                </tr>
+
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7">晚上</td>
-                                    <td bgcolor="#F7F7F7">九、十节(19:00-21:00)</td>
-                                    <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="28" end="34" >
+                                    <td bgcolor="#F7F7F7">十一至十四节(18:00-21:00)</td>
+                                    <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="21" end="27" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">
                                                 ${item}<br/>

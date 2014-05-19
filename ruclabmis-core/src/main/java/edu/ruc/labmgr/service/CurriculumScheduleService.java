@@ -37,28 +37,41 @@ public class CurriculumScheduleService {
     }
 
     public void update(CurriculumSchedule curriculumSchedule){
-        curriculumScheduleMapper.updateByPrimaryKey(curriculumSchedule);
+        curriculumScheduleMapper.updateByPrimaryKeySelective(curriculumSchedule);
     }
 
     public boolean ifCurriculumScheduleExistd (CurriculumSchedule curriculumSchedule){
         CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
         CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
         CurriculumScheduleCriteria.Criteria criteria1 = curriculumScheduleCriteria.createCriteria();
+		CurriculumScheduleCriteria.Criteria criteria2 = curriculumScheduleCriteria.createCriteria();
 
-        criteria.andAmPmEqualTo(curriculumSchedule.getAmPm());
+      //  criteria.andAmPmEqualTo(curriculumSchedule.getAmPm());
+		criteria.andSectionBeginGreaterThan(curriculumSchedule.getSectionBegin());
+		criteria.andSectionBeginLessThanOrEqualTo(curriculumSchedule.getSectionEnd());
         criteria.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
         criteria.andWeeknumEqualTo(curriculumSchedule.getWeeknum());
         criteria.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
         criteria.andClassIdEqualTo(curriculumSchedule.getClassId());
 
-        criteria1.andAmPmEqualTo(curriculumSchedule.getAmPm());
+       // criteria1.andAmPmEqualTo(curriculumSchedule.getAmPm());
+		criteria1.andSectionEndGreaterThan(curriculumSchedule.getSectionBegin());
+		criteria1.andSectionEndLessThanOrEqualTo(curriculumSchedule.getSectionEnd());
         criteria1.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
         criteria1.andWeeknumEqualTo(curriculumSchedule.getWeeknum());
         criteria1.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
         criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
 
+		criteria2.andSectionBeginLessThanOrEqualTo(curriculumSchedule.getSectionBegin());
+		criteria2.andSectionEndGreaterThanOrEqualTo(curriculumSchedule.getSectionEnd());
+		criteria2.andWeekdaysEqualTo(curriculumSchedule.getWeekdays());
+		criteria2.andWeeknumEqualTo(curriculumSchedule.getWeeknum());
+		criteria2.andTermYearidEqualTo(curriculumSchedule.getTermYearid());
+		criteria2.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
+
         curriculumScheduleCriteria.or(criteria);
         curriculumScheduleCriteria.or(criteria1);
+		curriculumScheduleCriteria.or(criteria2);
 
         boolean flag=false;
         if(curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria).size()>0){
@@ -85,11 +98,13 @@ public class CurriculumScheduleService {
     public List<Integer> getRoomListIdList(CurriculumScheduleCriteria criteria){
         List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleMapper.selectByCriteria(criteria);
         List<Integer> roomIdList=new ArrayList<>();
-        for(int i=0;i<curriculumScheduleList.size();i++){
-            if(curriculumScheduleList.get(i).getRoomId()!=null){
-                roomIdList.add(curriculumScheduleList.get(i).getRoomId());
-            }
-        }
+		if(curriculumScheduleList!=null){
+			for(int i=0;i<curriculumScheduleList.size();i++){
+				if(curriculumScheduleList.get(i).getRoomId()!=null){
+					roomIdList.add(curriculumScheduleList.get(i).getRoomId());
+				}
+			}
+		}
         return roomIdList;
     }
     public List<CurriculumSchedule> getCurriculumScheduleList(CurriculumScheduleCriteria criteria){
@@ -110,13 +125,15 @@ public class CurriculumScheduleService {
         return classList;
     }
 
-    public  List<CurriculumSchedule>  selectSchedulesByTime(int year, Byte week, Byte wDay, Byte section){
+    public  List<CurriculumSchedule>  selectSchedulesByTime(int year, Byte week, Byte wDay, int sectionBegin,int sectionEnd){
         CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
         CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
         criteria.andTermYearidEqualTo(year);
         criteria.andWeeknumEqualTo(week);
         criteria.andWeekdaysEqualTo(wDay);
-        criteria.andAmPmEqualTo(section);
+        //criteria.andAmPmEqualTo(section);
+		criteria.andSectionBeginGreaterThanOrEqualTo(sectionBegin);
+		criteria.andSectionBeginLessThanOrEqualTo(sectionEnd);
 
         List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria);
         return schedules;
@@ -138,14 +155,14 @@ public class CurriculumScheduleService {
         List<Byte> sections = getSectionByTime(startTime, endTime);
         if(sections.size() > 0)
         {
-            criteriaLab.andAmPmIn(sections).andTermYearidIn(yearIds).
+            criteriaLab.andTermYearidIn(yearIds).
                 andWeeknumEqualTo((byte) calendar.get(java.util.Calendar.WEEK_OF_YEAR)).
                 andWeekdaysEqualTo((byte) calendar.get(java.util.Calendar.DAY_OF_WEEK));
         }
 
-        curriculumScheduleCriteria.or().andMeetSTimeBetween(startTime, endTime);
-        curriculumScheduleCriteria.or().andMeetETimeBetween(startTime, endTime);
-        curriculumScheduleCriteria.or().andMeetETimeGreaterThan(endTime).andMeetSTimeLessThan(startTime);
+        curriculumScheduleCriteria.or().andMeetStimeBetween(startTime, endTime);
+        curriculumScheduleCriteria.or().andMeetEtimeBetween(startTime, endTime);
+        curriculumScheduleCriteria.or().andMeetEtimeGreaterThan(endTime).andMeetStimeLessThan(startTime);
 
 
         List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria);
@@ -205,8 +222,8 @@ public class CurriculumScheduleService {
     }
 
     //按时间查询已占用房间编号
-    public  List<Integer> selectOccupiedRoomIds(int year, Byte week, Byte wDay, Byte section){
-        List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay, section);
+    public  List<Integer> selectOccupiedRoomIds(int year, Byte week, Byte wDay, int sectionBegin,int sectionEnd){
+        List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay, sectionBegin,sectionEnd);
 
         List<Integer> retIds = new ArrayList<>();
         for(int i=0;i<schedules.size();i++){
@@ -228,8 +245,8 @@ public class CurriculumScheduleService {
     }
 
     //按时间查询课程
-    public  List<Curriculum> selectCurriculums(int year, Byte week, Byte wDay, Byte section){
-        List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay, section);
+    public  List<Curriculum> selectCurriculums(int year, Byte week, Byte wDay, int sectionBegin,int sectionEnd){
+        List<CurriculumSchedule> schedules =selectSchedulesByTime(year, week, wDay,sectionBegin,sectionEnd);
 
         List<Curriculum> retIds = new ArrayList<>();
         for(int i=0;i<schedules.size();i++){

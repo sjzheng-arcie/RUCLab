@@ -142,10 +142,11 @@
 
                                                 <td width="12.5%" bgcolor="#E3EFFF">班级</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">周次</td>
+                                                <td width="12.5%" bgcolor="#E3EFFF">节次</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">课程</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">教师</td>
 
-                                                <td width="12.5%" bgcolor="#E3EFFF">安排实验室</td>
+                                                <%--<td width="12.5%" bgcolor="#E3EFFF">安排实验室</td>--%>
                                                 <td width="6.75%" bgcolor="#E3EFFF">修改</td>
                                                 <td width="6.75%" bgcolor="#E3EFFF">删除</td>
                                             </tr>
@@ -155,10 +156,11 @@
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.major.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.className}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.weeknum}</td>
+                                                    <td align="center" bgcolor="#F7F7F7">${item.sectionBegin} - ${item.sectionEnd}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
-                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="tosetlab?curriculumScheduleId=${item.id}">点击安排实验室  </a>
-                                                       </td>
+                                                    <%--<td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="tosetlab?curriculumScheduleId=${item.id}">点击安排实验室  </a>--%>
+                                                       <%--</td>--%>
                                                     <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="toupdatecurriculumschedule?curriculumScheduleId=${item.id}">修改  </a>
                                                     </td>
                                                     <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="deleteById?curriculumScheduleId=${item.id}">删除  </a>
