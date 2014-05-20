@@ -198,7 +198,7 @@
                                 <tr>
                                     <td align="center"><input type="button" name="return" value="返回" class="button"
                                                               onclick="window.history.go(-1);"/></td>
-                                    <td align=""><input type="submit" value="保存"onclick="add();"/>
+                                    <td align=""><input type="button" value="保存"onclick="add();"/>
                                     </td>
                                 </tr>
                             </table>

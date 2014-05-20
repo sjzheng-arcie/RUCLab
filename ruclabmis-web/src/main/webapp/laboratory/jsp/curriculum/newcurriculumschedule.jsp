@@ -44,12 +44,12 @@
         var b = window.document.getElementById("endWeek").value;
         if(a>b){
             alert("结束时间不能早于开始时间！");
-            return;
+            return false;
         }
         var c = window.document.getElementById("roomId").value;
         if(c==null|| c==''){
             alert("请选择房间");
-            return;
+            return false;
         }
         document.mainForm.action="addcurriculumschedule";
         document.mainForm.submit();
@@ -185,7 +185,7 @@
                                 <tr>
                                     <td align="center"><input type="button" name="return" value="返回" class="button"
                                                               onclick="window.history.go(-1);"/></td>
-                                    <td align=""><input type="submit" value="保存"onclick="add();"/>
+                                    <td align=""><input type="button" value="保存"onclick="add();"/>
                                     </td>
                                 </tr>
                             </table>
