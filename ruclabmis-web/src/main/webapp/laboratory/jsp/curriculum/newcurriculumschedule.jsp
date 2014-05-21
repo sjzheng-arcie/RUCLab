@@ -80,6 +80,27 @@
        $('#roomName').append(formatRoomDisplay(roomId,roomName));
 
     }
+
+
+    var endSection=[
+        [1,2,3,4],[2,3,4],[3,4],[4],
+        [5,6],[6],
+        [7,8,9,10],[8,9,10],[9,10],[10],
+        [11,12,13,14],[12,13,14],[13,14],[14]
+    ]
+
+    function setSectionEnd(){
+
+        var begin=document.mainForm.sectionBegin;
+        var end=document.mainForm.sectionEnd;
+        end.innerHTML="";
+        var selectEnd=endSection[begin.selectedIndex];
+        for(var i=0;i<selectEnd.length;i++){
+            end[i]=new Option(selectEnd[i],selectEnd[i]);
+        }
+
+    }
+
 </script>
 
 <body onload="doOnLoad();" style="background-color: #eef2fb">
@@ -158,14 +179,14 @@
                                 <tr>
                                     <td align="right" width="30%">节次：</td>
                                     <td>
-                                        第<select name="sectionBegin"id="sectionBegin" >
+                                        第<select name="sectionBegin"id="sectionBegin" onchange="setSectionEnd();">
                                             <c:forEach begin="1" end="14" step="1" var="item">
                                             <option value="${item}">${item}</option>
                                             </c:forEach>
                                         </select>
                                         节 - 第
                                         <select name="sectionEnd"id="sectionEnd" >
-                                            <c:forEach begin="1" end="14" step="1" var="item">
+                                            <c:forEach begin="1" end="4" step="1" var="item">
                                                 <option value="${item}">${item}</option>
                                             </c:forEach>
                                         </select>

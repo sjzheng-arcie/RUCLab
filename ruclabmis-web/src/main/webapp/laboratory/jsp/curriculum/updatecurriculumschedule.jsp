@@ -30,12 +30,14 @@
         });
     });
     function add(){
-        var a = window.document.getElementById("beginWeek").value;
-        var b = window.document.getElementById("endWeek").value;
-        if(a>b){
-            alert("结束时间不能早于开始时间！");
-            return;
-        }
+
+//        var a = window.document.getElementById("beginWeek").value;
+//        var b = window.document.getElementById("endWeek").value;
+//        if(a>b){
+//            alert("结束时间不能早于开始时间！");
+//            return;
+//        }
+       // alert("sssss");
         var c = window.document.getElementById("roomId").value;
         if(c==null|| c==''){
             alert("请选择房间");
@@ -88,6 +90,27 @@
         $('#roomName').append(formatRoomDisplay(roomId,roomName));
 
     }
+
+    var endSection=[
+        [1,2,3,4],[2,3,4],[3,4],[4],
+        [5,6],[6],
+        [7,8,9,10],[8,9,10],[9,10],[10],
+        [11,12,13,14],[12,13,14],[13,14],[14]
+    ]
+
+    function setSectionEnd(){
+
+        var begin=document.mainForm.sectionBegin;
+        var end=document.mainForm.sectionEnd;
+        end.innerHTML="";
+        var selectEnd=endSection[begin.selectedIndex];
+        for(var i=0;i<selectEnd.length;i++){
+            end[i]=new Option(selectEnd[i],selectEnd[i]);
+        }
+
+    }
+
+
 </script>
 
 <body onload="doOnLoad();" style="background-color: #eef2fb">
@@ -158,7 +181,7 @@
                                 <tr>
                                     <td align="right" width="30%">节次：</td>
                                     <td>
-                                        第<select name="sectionBegin"id="sectionBegin" >
+                                        第<select name="sectionBegin"id="sectionBegin" onchange="setSectionEnd();">
                                         <c:forEach begin="1" end="14" step="1" var="item">
                                             <option <c:if test="${curriculumSchedule.sectionBegin==item}">selected</c:if> value="${item}">${item}</option>
                                         </c:forEach>
