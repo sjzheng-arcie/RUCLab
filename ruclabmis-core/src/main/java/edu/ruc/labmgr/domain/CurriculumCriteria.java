@@ -354,6 +354,76 @@ public class CurriculumCriteria {
             return (Criteria) this;
         }
 
+        public Criteria andSnIsNull() {
+            addCriterion("c.sn is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnIsNotNull() {
+            addCriterion("c.sn is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnEqualTo(String value) {
+            addCriterion("c.sn =", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnNotEqualTo(String value) {
+            addCriterion("c.sn <>", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnGreaterThan(String value) {
+            addCriterion("c.sn >", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnGreaterThanOrEqualTo(String value) {
+            addCriterion("c.sn >=", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnLessThan(String value) {
+            addCriterion("c.sn <", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnLessThanOrEqualTo(String value) {
+            addCriterion("c.sn <=", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnLike(String value) {
+            addCriterion("c.sn like", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnNotLike(String value) {
+            addCriterion("c.sn not like", value, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnIn(List<String> values) {
+            addCriterion("c.sn in", values, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnNotIn(List<String> values) {
+            addCriterion("c.sn not in", values, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnBetween(String value1, String value2) {
+            addCriterion("c.sn between", value1, value2, "sn");
+            return (Criteria) this;
+        }
+
+        public Criteria andSnNotBetween(String value1, String value2) {
+            addCriterion("c.sn not between", value1, value2, "sn");
+            return (Criteria) this;
+        }
+
         public Criteria andProfileIsNull() {
             addCriterion("c.profile is null");
             return (Criteria) this;
@@ -494,52 +564,52 @@ public class CurriculumCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andCategoryEqualTo(Integer value) {
+        public Criteria andCategoryEqualTo(String value) {
             addCriterion("c.category =", value, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotEqualTo(Integer value) {
+        public Criteria andCategoryNotEqualTo(String value) {
             addCriterion("c.category <>", value, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryGreaterThan(Integer value) {
+        public Criteria andCategoryGreaterThan(String value) {
             addCriterion("c.category >", value, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryGreaterThanOrEqualTo(Integer value) {
+        public Criteria andCategoryGreaterThanOrEqualTo(String value) {
             addCriterion("c.category >=", value, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryLessThan(Integer value) {
+        public Criteria andCategoryLessThan(String value) {
             addCriterion("c.category <", value, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryLessThanOrEqualTo(Integer value) {
+        public Criteria andCategoryLessThanOrEqualTo(String value) {
             addCriterion("c.category <=", value, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryIn(List<Integer> values) {
+        public Criteria andCategoryIn(List<String> values) {
             addCriterion("c.category in", values, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotIn(List<Integer> values) {
+        public Criteria andCategoryNotIn(List<String> values) {
             addCriterion("c.category not in", values, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryBetween(Integer value1, Integer value2) {
+        public Criteria andCategoryBetween(String value1, String value2) {
             addCriterion("c.category between", value1, value2, "category");
             return (Criteria) this;
         }
 
-        public Criteria andCategoryNotBetween(Integer value1, Integer value2) {
+        public Criteria andCategoryNotBetween(String value1, String value2) {
             addCriterion("c.category not between", value1, value2, "category");
             return (Criteria) this;
         }
@@ -554,52 +624,52 @@ public class CurriculumCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andTypeEqualTo(Integer value) {
+        public Criteria andTypeEqualTo(String value) {
             addCriterion("c.type =", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotEqualTo(Integer value) {
+        public Criteria andTypeNotEqualTo(String value) {
             addCriterion("c.type <>", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThan(Integer value) {
+        public Criteria andTypeGreaterThan(String value) {
             addCriterion("c.type >", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeGreaterThanOrEqualTo(Integer value) {
+        public Criteria andTypeGreaterThanOrEqualTo(String value) {
             addCriterion("c.type >=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThan(Integer value) {
+        public Criteria andTypeLessThan(String value) {
             addCriterion("c.type <", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeLessThanOrEqualTo(Integer value) {
+        public Criteria andTypeLessThanOrEqualTo(String value) {
             addCriterion("c.type <=", value, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeIn(List<Integer> values) {
+        public Criteria andTypeIn(List<String> values) {
             addCriterion("c.type in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotIn(List<Integer> values) {
+        public Criteria andTypeNotIn(List<String> values) {
             addCriterion("c.type not in", values, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeBetween(Integer value1, Integer value2) {
+        public Criteria andTypeBetween(String value1, String value2) {
             addCriterion("c.type between", value1, value2, "type");
             return (Criteria) this;
         }
 
-        public Criteria andTypeNotBetween(Integer value1, Integer value2) {
+        public Criteria andTypeNotBetween(String value1, String value2) {
             addCriterion("c.type not between", value1, value2, "type");
             return (Criteria) this;
         }
@@ -921,11 +991,6 @@ public class CurriculumCriteria {
 
         public Criteria andCommentsNotBetween(String value1, String value2) {
             addCriterion("c.comments not between", value1, value2, "comments");
-            return (Criteria) this;
-        }
-
-        public Criteria andJoinMajor() {
-            addCriterion("c.major_id=m.id");
             return (Criteria) this;
         }
 

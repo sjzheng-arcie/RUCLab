@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.service;
 
+import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.*;
 import edu.ruc.labmgr.mapper.BbsReplyMapper;
 import edu.ruc.labmgr.mapper.BbsSessionMapper;
@@ -146,6 +147,12 @@ public class BbsService {
 		result = bbsTopicMapper.insert(bbsTopic);
 		return result;
 	}
+
+    public int insertSession(BbsSession session){
+        int result = 0;
+        result = bbsSessionMapper.insert(session);
+        return result;
+    }
 	public int insertReply(BbsReply reply,int topicId,int ReplyUserId){
 		int result = 0 ;
 		reply.setReplytime(new Date());
@@ -207,4 +214,19 @@ public class BbsService {
 		return result;
 	}
 
+
+    public void saveOrUpdateBbsSessions(List<BbsSession> bbsSessions) {
+        if (bbsSessions != null) {
+            for (BbsSession bbsSession : bbsSessions) {
+
+                BbsSession session = bbsSessionMapper.selectByPrimaryKey(bbsSession.getId());
+
+                if (session != null && session.getId() != null) {
+                    bbsSessionMapper.updateByPrimaryKey(bbsSession);
+                } else {
+                    bbsSessionMapper.insert(bbsSession);
+                }
+            }
+        }
+    }
 }

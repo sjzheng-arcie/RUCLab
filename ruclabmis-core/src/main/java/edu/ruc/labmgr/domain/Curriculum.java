@@ -13,13 +13,15 @@ public class Curriculum {
 
     private String name;
 
+    private String sn;
+
     private String profile;
 
     private Short grade;
 
-    private Integer category;
+    private String category;
 
-    private Integer type;
+    private String type;
 
     private Short period;
 
@@ -31,13 +33,7 @@ public class Curriculum {
 
     private String comments;
 
-	public Major getMajor() {
-		return major;
-	}
-
-	public void setMajor(Major major) {
-		this.major = major;
-	}
+    private CurriculumClass curriculumClass;
 
 	private Major major;
 
@@ -89,19 +85,19 @@ public class Curriculum {
         this.grade = grade;
     }
 
-    public Integer getCategory() {
+    public String getCategory() {
         return category;
     }
 
-    public void setCategory(Integer category) {
+    public void setCategory(String category) {
         this.category = category;
     }
 
-    public Integer getType() {
+    public String getType() {
         return type;
     }
 
-    public void setType(Integer type) {
+    public void setType(String type) {
         this.type = type;
     }
 
@@ -159,5 +155,29 @@ public class Curriculum {
 
     public void setTeacherName(String teacherName) {
         this.teacherName = teacherName;
+    }
+
+    public String getSn() {
+        return sn;
+    }
+
+    public void setSn(String sn) {
+        this.sn = sn;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
+    }
+
+    public CurriculumClass getCurriculumClass() {
+        return curriculumClass;
+    }
+
+    public void setCurriculumClass(CurriculumClass curriculumClass) {
+        this.curriculumClass = curriculumClass;
     }
 }

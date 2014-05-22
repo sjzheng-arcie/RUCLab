@@ -45,7 +45,7 @@ public class UserService {
         UserCriteria.Criteria ec = criteria.createCriteria();
         ec.andNameEqualTo(name);
         List<User> teachers = mapperUser.selectByCriteria(criteria);
-        if (teachers.size() != 1)
+        if (teachers.size() <= 0)
             return null;
 
         return teachers.get(0).getId();

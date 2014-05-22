@@ -150,15 +150,6 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">课程学时:</td>
-                                                <td nowrap>
-                                                    <input name="period" id="period" value="" onblur=""
-                                                           class="text"
-                                                           style="width:154px" maxlength="20"
-                                                           valid="required|isInt"
-                                                           errmsg="课程学时不能为空!|课程学时只能为数字"/>
-                                                    <span style="color:red;">*</span>
-                                                </td>
                                                 <td nowrap align="right">课程学分:</td>
                                                 <td nowrap>
                                                     <input name="score" id="score" class="text"
@@ -166,6 +157,12 @@
                                                            valid="isInt"
                                                            errmsg="课程学分不能为空!|课程学分只能为数字"/>
                                                     <span style="color:red;">*</span>
+                                                </td>
+                                                <td nowrap align="right">课程学时:</td>
+                                                <td nowrap>
+                                                    <input name="period" id="period" value="" onblur=""
+                                                           class="text"
+                                                           style="width:154px" maxlength="20"/>
                                                 </td>
                                             </tr>
                                             <tr>

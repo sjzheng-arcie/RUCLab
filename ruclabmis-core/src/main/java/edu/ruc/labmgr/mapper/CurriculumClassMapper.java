@@ -27,6 +27,8 @@ public interface CurriculumClassMapper {
 
 	List<CurriculumClass> selectByCriteriaAndClsStudent(CurriculumClassCriteria criteria);
 
+    Integer selectIdBySn(@Param("sn") String sn);
+
     CurriculumClass selectByPrimaryKey(Integer id);
 
     int updateByCriteriaSelective(@Param("record") CurriculumClass record, @Param("criteria") CurriculumClassCriteria criteria);

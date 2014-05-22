@@ -1,17 +1,19 @@
 package edu.ruc.labmgr.service;
 
 import com.mysql.jdbc.StringUtils;
-import edu.ruc.labmgr.domain.Curriculum;
-import edu.ruc.labmgr.domain.CurriculumCriteria;
-import edu.ruc.labmgr.domain.Experiment;
-import edu.ruc.labmgr.domain.ExperimentCriteria;
+import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.mapper.BbsSessionMapper;
+import edu.ruc.labmgr.mapper.CurriculumClassMapper;
 import edu.ruc.labmgr.mapper.CurriculumMapper;
 import edu.ruc.labmgr.mapper.ExperimentMapper;
+import edu.ruc.labmgr.utils.SysUtil;
+import edu.ruc.labmgr.utils.Types;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -27,21 +29,27 @@ public class CurriculumService {
     private CurriculumMapper curriculumMapper;
 
     @Autowired
+    private CurriculumClassMapper curriculumClassMapper;
+
+    @Autowired
+    private BbsSessionMapper bbsSessionMapper;
+
+    @Autowired
     private ExperimentMapper experimentMapper;
 
     public List<Curriculum> getCurriculum(String name,int teacherId,boolean ifteacher) {
         CurriculumCriteria criteria = new CurriculumCriteria();
 
         if (!StringUtils.isNullOrEmpty(name)) {
-			if(ifteacher)
-            	criteria.or().andNameLike(name).andJoinMajor().andJoinTeacher().andTeacherIdEqualTo(teacherId);
-			else
-				criteria.or().andNameLike(name).andJoinMajor().andJoinTeacher();
+            if(ifteacher)
+                criteria.or().andNameLike(name).andJoinTeacher().andTeacherIdEqualTo(teacherId);
+            else
+                criteria.or().andNameLike(name).andJoinTeacher();
         } else {
-			if (ifteacher)
-            	criteria.or().andJoinMajor().andJoinTeacher().andTeacherIdEqualTo(teacherId);
-			else
-				criteria.or().andJoinMajor().andJoinTeacher();
+            if (ifteacher)
+                criteria.or().andJoinTeacher().andTeacherIdEqualTo(teacherId);
+            else
+                criteria.or().andJoinTeacher();
         }
         return curriculumMapper.selectByCriteria(criteria);
     }
@@ -71,7 +79,7 @@ public class CurriculumService {
         if (majorId != null)
             ec.andMajorIdEqualTo(majorId);
 
-        ec.andJoinMajor().andJoinTeacher();
+        ec.andJoinTeacher();
         return getCurriculumByCriteria(PageNum, criteria);
     }
 
@@ -106,7 +114,7 @@ public class CurriculumService {
         CurriculumCriteria criteria = new CurriculumCriteria();
         criteria.setOrderByClause("c_major_id");
         CurriculumCriteria.Criteria ec = criteria.createCriteria();
-        ec.andJoinMajor().andJoinTeacher();
+        ec.andJoinTeacher();
 
         return curriculumMapper.selectByCriteria(criteria);
     }
@@ -118,7 +126,7 @@ public class CurriculumService {
         CurriculumCriteria criteria = new CurriculumCriteria();
         criteria.setOrderByClause("c_name");
         CurriculumCriteria.Criteria ec = criteria.createCriteria();
-        ec.andJoinMajor().andJoinTeacher();
+        ec.andJoinTeacher();
         ec.andIdIn(ids);
 
         return curriculumMapper.selectByCriteria(criteria);
@@ -129,4 +137,52 @@ public class CurriculumService {
             curriculumMapper.deleteByPrimaryKey(id);
         }
     }
+
+    public void saveOrUpdateCurriculum(List<Curriculum> curriculums) {
+        if (curriculums != null) {
+            for (Curriculum curriculum : curriculums) {
+                String sn = curriculum.getSn();
+                if (StringUtils.isNullOrEmpty(sn))
+                    continue;
+
+                curriculum.setExamType(Types.ExamType.EXAMINE.getValue());
+
+                Integer id = curriculumMapper.selectIdBySn(sn);
+
+                if (id != null && id > 0) {
+                    curriculum.setId(id);
+                    curriculumMapper.updateByPrimaryKey(curriculum);
+                } else {
+                    curriculumMapper.insert(curriculum);
+                }
+
+
+                CurriculumClass curriculumClass = curriculum.getCurriculumClass();
+                curriculumClass.setId(curriculum.getId());
+                String classSn = curriculumClass.getClassSn();
+                if (StringUtils.isNullOrEmpty(sn))
+                    continue;
+                CurriculumClass classRrecord = curriculumClassMapper.selectByPrimaryKey(curriculumClass.getId());
+                if (classRrecord != null && classRrecord.getId() != null) {
+                    curriculumClassMapper.updateByPrimaryKey(curriculumClass);
+                } else {
+                    curriculumClassMapper.insert(curriculumClass);
+                }
+
+                BbsSession session = new BbsSession();
+                session.setId(curriculum.getId());
+                BbsSession sessionRecord = bbsSessionMapper.selectByPrimaryKey(session.getId());
+                if (sessionRecord != null && sessionRecord.getId() != null) {
+                    bbsSessionMapper.updateByPrimaryKey(session);
+                } else {
+                    session.setDescription(curriculum.getName());
+                    session.setReplycount(0);
+                    session.setTopiccount(0);
+                    bbsSessionMapper.insert(session);
+                }
+
+            }
+        }
+    }
+
 }

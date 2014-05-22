@@ -427,4 +427,24 @@ public class CurriculumClassService {
         }
         return data;
     }
+
+
+    public void saveOrUpdateCurriculumClasses(List<CurriculumClass> curriculumClasses) {
+        if (curriculumClasses != null) {
+            for (CurriculumClass curriculumClass : curriculumClasses) {
+                String sn = curriculumClass.getClassSn();
+                if (com.mysql.jdbc.StringUtils.isNullOrEmpty(sn))
+                    continue;
+
+                Integer id = curriculumClassMapper.selectIdBySn(sn);
+
+                if (id != null && id > 0) {
+                    curriculumClass.setId(id);
+                    curriculumClassMapper.updateByPrimaryKey(curriculumClass);
+                } else {
+                    curriculumClassMapper.insert(curriculumClass);
+                }
+            }
+        }
+    }
 }

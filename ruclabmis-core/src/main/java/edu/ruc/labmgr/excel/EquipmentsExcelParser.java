@@ -42,7 +42,7 @@ public class EquipmentsExcelParser extends POIEntityParser<Equipment> {
             }
 
             String holderName = (String) map.get("holderName");
-            if(!StringUtils.isNullOrEmpty(fundingSubjectName))
+            if(!StringUtils.isNullOrEmpty(holderName))
             {
                 UserService serviceUser = SysUtil.getBean("userService", UserService.class);
                 Integer holderId = serviceUser.getUserIdByName(holderName);

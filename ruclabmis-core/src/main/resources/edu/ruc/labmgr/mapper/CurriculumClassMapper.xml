@@ -270,4 +270,10 @@
             order by ${orderByClause}
         </if>
     </select>
+
+
+    <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
+      SELECT id FROM curriculum_class WHERE sn = #{sn}
+  </select>
+
 </mapper>

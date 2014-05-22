@@ -25,7 +25,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验室管理 > 课程信息管理</div>
+                            <div class="titlebt">基础信息管理 > 课程信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -87,7 +87,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="#" class="txt_bt">
+                                                                        <a href="/laboratory/jsp/bas/curriculum/importCurriculums" class="txt_bt">
                                                                             <img src="../../../../images/database_import_.gif"
                                                                                  width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">导入课程</span>
