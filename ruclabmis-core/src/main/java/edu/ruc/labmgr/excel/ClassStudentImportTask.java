@@ -1,6 +1,9 @@
 package edu.ruc.labmgr.excel;
 
+import edu.ruc.labmgr.domain.ClassStudent;
 import edu.ruc.labmgr.domain.Curriculum;
+import edu.ruc.labmgr.domain.Student;
+import edu.ruc.labmgr.service.CurriculumClassService;
 import edu.ruc.labmgr.service.CurriculumService;
 import edu.ruc.labmgr.utils.SysUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -13,14 +16,16 @@ import java.io.InputStream;
 import java.util.List;
 import java.util.concurrent.Callable;
 
-public class CurriculumClassImportTask implements Callable<Boolean> {
+public class ClassStudentImportTask implements Callable<Boolean> {
 
     private File excelFile;
     private boolean clean;
+    private Integer vcId;
 
-    public CurriculumClassImportTask(File excelFile, boolean clean) {
+    public ClassStudentImportTask(File excelFile, boolean clean,Integer vcId) {
         this.excelFile = excelFile;
         this.clean = clean;
+        this.vcId = vcId;
     }
 
     @Override
@@ -34,10 +39,11 @@ public class CurriculumClassImportTask implements Callable<Boolean> {
             } else {
                 wb = new XSSFWorkbook(is);
             }
-            CurriculumExcelParser parser = new CurriculumExcelParser();
-            List<Curriculum> curriculums = parser.parseFromWorkBook(wb);
-            CurriculumService curriculumService = SysUtil.getBean("curriculumService", CurriculumService.class);
-            curriculumService.saveOrUpdateCurriculum(curriculums);
+           ClassStudentExcelParser parser = new ClassStudentExcelParser();
+            List<ClassStudent> students = parser.parseFromWorkBook(wb);
+            CurriculumClassService curriculumClassService = SysUtil.getBean("curriculumClassService",CurriculumClassService.class);
+
+            curriculumClassService.addStudentToClassBySn(this.vcId, students);
 
 
             return true;

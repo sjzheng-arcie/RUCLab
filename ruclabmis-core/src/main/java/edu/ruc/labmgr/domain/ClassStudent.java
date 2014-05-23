@@ -11,6 +11,8 @@ public class ClassStudent {
 
     private Short finalGrade;
 
+    private Major major;
+
     public Integer getId() {
         return id;
     }
@@ -49,5 +51,17 @@ public class ClassStudent {
 
     public void setFinalGrade(Short finalGrade) {
         this.finalGrade = finalGrade;
+    }
+
+    public void setStudentId(Integer studentId) {
+        this.studentId = studentId;
+    }
+
+    public Major getMajor() {
+        return major;
+    }
+
+    public void setMajor(Major major) {
+        this.major = major;
     }
 }

@@ -424,16 +424,6 @@ public class ClassStudentCriteria {
             return (Criteria) this;
         }
 
-        public Criteria andStudentMajorEqualTo(String major) {
-            addCriterion("m.name =", major, "m.name");
-            return (Criteria) this;
-        }
-
-        public Criteria andStudentMajorLike(String major) {
-            addCriterion("m.name like", major, "m.name");
-            return (Criteria) this;
-        }
-
         public Criteria andStudentNotInClass(int vcId){
             addCriterion("st.id not in (select cs.student_id from class_student cs where cs.class_id ="+vcId+")");
             return (Criteria) this;
@@ -449,10 +439,6 @@ public class ClassStudentCriteria {
 			return (Criteria) this;
 		}
 
-		public Criteria andJoinMajor() {
-			addCriterion("u.major_id = m.id");
-			return (Criteria) this;
-		}
     }
 
     public static class Criteria extends GeneratedCriteria {

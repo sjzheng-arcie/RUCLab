@@ -38,6 +38,8 @@ public interface ClassStudentMapper {
 
     ClassStudent selectByPrimaryKey(Integer id);
 
+    Integer selectIdBySn(String sn);
+
     int updateByCriteriaSelective(@Param("record") ClassStudent record, @Param("criteria") ClassStudentCriteria criteria);
 
     int updateByCriteria(@Param("record") ClassStudent record, @Param("criteria") ClassStudentCriteria criteria);

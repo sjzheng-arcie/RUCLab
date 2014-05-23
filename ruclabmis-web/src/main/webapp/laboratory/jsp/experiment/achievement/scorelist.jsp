@@ -116,7 +116,7 @@
                                                     <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学号</span></div>
                                                     </td>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">学生姓名</span></div>
                                                     </td>
 

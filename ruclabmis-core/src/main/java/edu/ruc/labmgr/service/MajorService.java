@@ -63,5 +63,12 @@ public class MajorService {
             majorMapper.deleteByPrimaryKey(id);
         }
     }
-
+    public List<Major> selectByName(String name) {
+        MajorCriteria criteria = new MajorCriteria();
+        MajorCriteria.Criteria ec = criteria.createCriteria();
+        if (!StringUtils.isNullOrEmpty(name))
+            ec.andNameLike("%" + name + "%");
+        List<Major> data = majorMapper.selectByCriteria(criteria);
+        return data;
+    }
 }

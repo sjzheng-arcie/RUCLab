@@ -13,6 +13,9 @@
         function editorClass(vcid) {
             window.location.href = "/experiment/virtual/editClass?vcId=" + vcid;
         }
+        function importClasses(vcid) {
+            window.location.href = "/laboratory/jsp/experiment/experiment/importCurriculumClass?vcId=" + vcid;
+        }
 
     </script>
 
@@ -30,7 +33,7 @@
                        id="table2">
                     <tr>
                         <td height="31">
-                            <div class="titlebt">实验教学管理 > 虚拟班级</div>
+                            <div class="titlebt">实验教学管理 > 班级信息管理</div>
                         </td>
                     </tr>
                 </table>
@@ -79,7 +82,7 @@
                                                                         </td>
                                                                         <td width="94%" valign="bottom"><span
                                                                                 class="STYLE1"
-                                                                                style="white-space:nowrap">虚拟班级列表</span>
+                                                                                style="white-space:nowrap">班级信息列表</span>
                                                                         </td>
                                                                     </tr>
                                                                 </table>

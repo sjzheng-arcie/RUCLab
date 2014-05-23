@@ -17,6 +17,10 @@
         function editorClass(vcid) {
             window.location.href = "/experiment/virtual/editClass?vcId=" + vcid;
         }
+
+        function importClass(vcid) {
+            window.location.href = "/laboratory/jsp/experiment/experiment/importCurriculumClass?vcId=" + vcid;
+        }
     </script>
 
 </head>
@@ -129,7 +133,7 @@
                                                             <input type="button" onClick="editorClass(${item.id})"
                                                                    class="button"
                                                                    value="编辑"/>
-                                                            <input type="button" onClick="importClasses('${item.id}')"
+                                                            <input type="button" onClick="importClass('${item.id}')"
                                                                    class="button" value="导入"/>
                                                         </td>
                                                     </tr>

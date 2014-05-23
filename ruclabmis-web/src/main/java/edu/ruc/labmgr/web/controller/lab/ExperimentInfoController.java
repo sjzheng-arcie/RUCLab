@@ -14,6 +14,7 @@ import edu.ruc.labmgr.web.controller.Result;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -33,6 +34,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 
 /**
  * User: sjzheng
@@ -51,6 +55,9 @@ public class ExperimentInfoController {
     private CurriculumService curriculumService;
     @Autowired
     private ExperimentService experimentService;
+    @Autowired
+    @Qualifier(value = "singleThreadPool")
+    private ExecutorService singleTreadPool;
 
     @RequestMapping(value = "/courselist", method = RequestMethod.GET)
     public ModelAndView courseList(@RequestParam int page, String view) {
@@ -367,5 +374,35 @@ public class ExperimentInfoController {
                 e.printStackTrace();
             }
         }
+    }
+
+    @RequestMapping(value = "/importCurriculumClass", method = RequestMethod.GET)
+    public ModelAndView importCurriculums(Integer vcId, RedirectAttributes redirectAttributes) {
+        ModelAndView mv = new ModelAndView("/laboratory/jsp/experiment/importCurriculumClass");
+        Map<String, ?> flashMap = redirectAttributes.getFlashAttributes();
+        if (flashMap != null && flashMap.get("error") != null) {
+            mv.addObject("error", flashMap.get("error"));
+        }
+        mv.addObject("vcId", vcId);
+        return mv;
+    }
+
+    @RequestMapping(value = "/importCurriculumClass", method = RequestMethod.POST)
+    public String importCurriculums(Integer vcId, boolean clean, MultipartFile file, RedirectAttributes redirectAttributes)
+            throws IOException, ExecutionException, InterruptedException {
+        if (!file.isEmpty()) {
+            String name = file.getOriginalFilename();
+            File local = new File(System.getProperty("java.io.tmpdir") + name);
+            file.transferTo(local);
+            edu.ruc.labmgr.excel.ClassStudentImportTask task = new edu.ruc.labmgr.excel.ClassStudentImportTask(local, clean, vcId);
+            Future<Boolean> result = singleTreadPool.submit(task);
+            boolean success = result.get();
+            local.delete();
+            if (success) {
+                return "redirect:/experiment/virtual/editClass?vcId=" + vcId;
+            }
+        }
+        redirectAttributes.addFlashAttribute("error", "数据文件上传错误或数据导入出错!");
+        return "redirect:/laboratory/jsp/experiment/experiment/importCurriculumClass";
     }
 }

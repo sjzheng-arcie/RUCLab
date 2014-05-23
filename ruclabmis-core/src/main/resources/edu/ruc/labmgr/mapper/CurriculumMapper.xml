@@ -92,7 +92,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-       u.name as c_teacher_name
+       ,u.name as c_teacher_name
         from curriculum c,user u
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>

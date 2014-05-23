@@ -102,7 +102,7 @@ public class VirtualClassController {
     public ModelAndView editClass(int vcId, String sn, String name, String major) {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/editclass");
         CurriculumClass vClass = classService.getVirtualClass(vcId);
-        List<Student> students = classService.getClassStudents(vcId, sn, name, major);
+        List<Student> students = classService.getClassStudents(vcId, sn, name);
         mv.addObject("vClass", vClass);
         mv.addObject("students", students);
         return mv;
@@ -110,7 +110,7 @@ public class VirtualClassController {
     @RequestMapping(value = "/editClassAddStudent", method = {RequestMethod.GET,RequestMethod.POST})
     public ModelAndView editClassAddStudent(int vcId, String sn, String name, String major,int pageNum){
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/studentlist");
-        PageInfo<Student> pageInfo = classService.getStudentsNotInClass(vcId,sn,name,major,pageNum);
+        PageInfo<Student> pageInfo = classService.getStudentsNotInClass(vcId,sn,name,pageNum);
         mv.addObject("pageInfo",pageInfo);
         mv.addObject("vcId",vcId);
         return mv;
@@ -218,7 +218,7 @@ public class VirtualClassController {
         String viewName = "laboratory/jsp/experiment/achievement/scorelist";
         ModelAndView mv = new ModelAndView();
         mv.setViewName(viewName);
-        PageInfo<Map<String,?>> pageInfo = classService.getPageClassStudentInfo(vcId,sn,name,null,page);
+        PageInfo<Map<String,?>> pageInfo = classService.getPageClassStudentInfo(vcId,sn,name,page);
         mv.addObject("pageInfo",pageInfo);
         mv.addObject("curriculumId",vcId);
         mv.addObject("curriculumName",classService.getVirtualClass(vcId).getCurriculumName());
