@@ -22,7 +22,7 @@ public interface CurriculumMapper {
 
     List<Curriculum> selectByCriteria(CurriculumCriteria criteria);
 
-    Integer selectIdBySn(@Param("sn") String sn);
+    Integer selectIdBySn(@Param("curriculumSn") String curriculumSn, @Param("classSn") String classSn);
 
     Curriculum selectByPrimaryKey(Integer id);
 

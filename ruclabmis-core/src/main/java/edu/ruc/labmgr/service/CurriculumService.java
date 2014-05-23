@@ -147,7 +147,7 @@ public class CurriculumService {
 
                 curriculum.setExamType(Types.ExamType.EXAMINE.getValue());
 
-                Integer id = curriculumMapper.selectIdBySn(sn);
+                Integer id = curriculumMapper.selectIdBySn(sn, curriculum.getCurriculumClass().getClassSn());
 
                 if (id != null && id > 0) {
                     curriculum.setId(id);
@@ -170,7 +170,7 @@ public class CurriculumService {
                 }
 
                 BbsSession session = new BbsSession();
-                session.setId(curriculum.getId());
+                session.setId(curriculumClass.getId());
                 BbsSession sessionRecord = bbsSessionMapper.selectByPrimaryKey(session.getId());
                 if (sessionRecord != null && sessionRecord.getId() != null) {
                     bbsSessionMapper.updateByPrimaryKey(session);

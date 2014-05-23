@@ -19,7 +19,7 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
     public Curriculum mapToEntity(Map<String, Object> map) {
         Curriculum result = new Curriculum();
 
-        Object sn_temp = map.get("curriculum_sn");
+        Object sn_temp = map.get("class_sn");
         if(sn_temp == null)
             return null;
         if(StringUtils.isNullOrEmpty(sn_temp.toString()))
@@ -27,7 +27,7 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
 
         try
         {
-            result.setSn(cellDoubleToString(sn_temp));
+            result.setSn(cellDoubleToString( map.get("curriculum_sn")));
             result.setName((String) map.get("curriculum_name"));
             result.setScore(cellDoubleToShort(map.get("score")));
             result.setCategory((String) map.get("category"));
@@ -45,7 +45,7 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
 
             CurriculumClass curriculumClass = new CurriculumClass();
             curriculumClass.setClassSn(cellDoubleToString(sn_temp));
-            curriculumClass.setClassName((String) map.get("curriculum_name"));
+            curriculumClass.setClassName((String) map.get("class_name"));
 
             String year = (String) map.get("year");
             String term = (String) map.get("term");

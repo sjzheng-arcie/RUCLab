@@ -92,7 +92,7 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-       ,u.name as c_teacher_name
+        ,u.name as c_teacher_name
         from curriculum c,user u
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
@@ -378,6 +378,6 @@
 
 
     <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
-      SELECT id FROM curriculum WHERE sn = #{sn}
+      SELECT c.id FROM curriculum c,curriculum_class cc WHERE c.Sn = #{curriculumSn} and cc.class_sn=#{classSn} and c.id=cc.id
   </select>
 </mapper>
