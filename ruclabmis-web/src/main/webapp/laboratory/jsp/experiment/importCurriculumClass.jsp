@@ -93,7 +93,7 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
-                                                <input name="vcId" value="${vcId}"/>
+                                                <input type="hidden" name="vcId" value="${vcId}"/>
                                                 <td nowrap align="right">选择文件:</td>
                                                 <td nowrap>
                                                     <input type="file" name="file" id="file" accept="application/excel,
