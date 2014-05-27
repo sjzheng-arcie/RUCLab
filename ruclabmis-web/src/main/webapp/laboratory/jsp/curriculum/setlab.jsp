@@ -23,21 +23,40 @@
 <script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
+<script type="text/javascript" src="../../../js/page.js"></script>
+<link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
+
+
 
 <script>
+
+    $(document).ready(function () {
+        $("#roomId").chosen({
+            no_results_text: "没有找到"
+        });
+
+    });
     function setTheLab(roomId){
         document.mainForm.action="setlab?roomId="+roomId;
         document.mainForm.submit();
-    }
+    };
 
     function toApply(roomId,roomName) {
         window.opener.setLab(roomId,roomName);
         window.close();
-    }
+    };
+
+    function searchRoom(){
+
+        document.mainForm.action="toSearchroombyId";
+        document.mainForm.submit();
+    };
 
 </script>
 <body onload="doOnLoad();"style="background-color: #eef2fb">
-<form name="mainForm" method="POST">
+<form name="mainForm" method="post">
 <table width="100%" height="100%" border="0" cellspacing="10" cellpadding="0">
 <tr>
 <td valign="top" height="100%">
@@ -53,14 +72,21 @@
 </tr>
 <tr>
 <td valign="top" height="490">
-<div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; display: none;">
+<div id="zuoxi" style="width: 100%; height: 100%; overflow: auto; background-color: #e3efff">
 <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr bgcolor="#E3EFFF">
-        <td width="20%">楼栋:<input type="text"></td>
-        <td width="20%">房间:<input type="text"></td>
-        <td width="20%"><input type="button" value="搜索"></td>
-        <td width="20%"></td>
-        <td width="20%"></td>
+
+        <td >房间:
+            <select id="roomId" name="roomId"
+                    style="width: 200px;height: 22px"
+                    data-placeholder="选择房间...">
+                <c:forEach items="${roomList}" var="room">
+                    <option  value="${room.id}">${room.name}</option>
+                </c:forEach>
+            </select>
+        </td>
+        <td ><input type="button" value="搜索" onclick="searchRoom();"></td>
+
     </tr>
 </table>
     <input type="hidden" name="curriculumScheduleId" value="${curriculumSchedule.id}">
@@ -68,7 +94,7 @@
         <c:forEach items="${listRoomList}" var="roomList">
             <tr>
                 <c:forEach items="${roomList}" var="item">
-                    <td height="110" bgcolor="#aae4ff" onclick="toApply('${item.id}','${item.name}');" style="cursor:pointer;">
+                    <td height="110" width="25%" bgcolor="#aae4ff" onclick="toApply('${item.id}','${item.name}');" style="cursor:hand;width: 25%;">
                         <table width="100%" border="0" cellspacing="0" cellpadding="0">
                             <tr>
                                 <td width="40%" align="center"><img src="/images/door_open.png" width="64"
@@ -87,7 +113,7 @@
 </table>
 </div>
 <div id="parentId"
-     style="position: relative; top: 0px; left: 0px; width: 100%; height: 100%; aborder: #B5CDE4 1px solid;"></div>
+     style="position: relative; top: 0px; left: 0px; width: 100%; height: 100%; border: #B5CDE4 1px solid;"></div>
 <script>var dhxLayout, dhxToolbar, dhxTree, editor;
 function doOnLoad() {
     dhxLayout = new dhtmlXLayoutObject("parentId", "1C");

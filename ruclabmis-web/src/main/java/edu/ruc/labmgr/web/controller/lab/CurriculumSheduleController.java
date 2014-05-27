@@ -296,9 +296,36 @@ public class CurriculumSheduleController {
 		mav.addObject("roomList",roomList);
 		mav.addObject("listRoomList",listRoomList);
 		mav.addObject("curriculumScheduleList",curriculumScheduleList);
+		mav.addObject("roomList",roomList);
 		//mav.addObject("curriculumSchedule",curriculumSchedule);
 		return mav;
 	}
+
+	@RequestMapping(value = "/toSearchroombyId", method = {RequestMethod.GET,RequestMethod.POST})
+	public ModelAndView toSearchroombyId(
+										@RequestParam(value="roomId",required = true) int roomId){
+
+
+		//List<Integer> roomIdList=new ArrayList<>();
+		//roomIdList.add(roomId);
+		List<Room> roomList= new ArrayList<>();
+		roomList.add(roomService.getRoomById(roomId));
+
+		List<List<Room>> listRoomList=new ArrayList<List<Room>>();
+		for(int i=0;i<roomList.size()/4;i++){
+			listRoomList.add(i,roomList.subList(i*4,i*4+4));
+		}
+		listRoomList.add(listRoomList.size(),roomList.subList(listRoomList.size()*4,roomList.size()));
+		List<CurriculumSchedule> curriculumScheduleList=curriculumScheduleService.getCurriculumScheduleList();
+		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/setlab");
+		mav.addObject("roomList",roomList);
+		mav.addObject("listRoomList",listRoomList);
+		mav.addObject("curriculumScheduleList",curriculumScheduleList);
+		mav.addObject("roomList",roomList);
+		//mav.addObject("curriculumSchedule",curriculumSchedule);
+		return mav;
+	}
+
 	@RequestMapping(value = "/tosetlab", method = {RequestMethod.GET,RequestMethod.POST})
 	public ModelAndView roomschedule(@RequestParam(value="curriculumScheduleId",required = true) int curriculumScheduleId,
 			@RequestParam(value="termYearId",required = true) int termYearId,

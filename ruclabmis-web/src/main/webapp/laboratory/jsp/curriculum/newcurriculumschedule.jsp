@@ -7,38 +7,44 @@
     <meta http-equiv="Content-type" content="text/html;charset=UTF-8">
     <title></title>
 </head>
-<link href="../../../css/skin.css" rel="stylesheet" type="text/css"/>
-<link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
 <link href="/css/style.css" rel="stylesheet" type="text/css"/>
 <script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcommon.js"></script>
 <script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxcontainer.js"></script>
-
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.css">
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxLayout/codebase/skins/dhtmlxlayout_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxLayout/codebase/dhtmlxlayout.js"></script>
-
 <link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxToolbar/codebase/skins/dhtmlxtoolbar_dhx_skyblue.css">
 <script src="/dhtmlx/dhtmlxToolbar/codebase/dhtmlxtoolbar.js"></script>
-<script type="text/javascript" src="${pageContext.request.contextPath}/js/valid.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxTree/codebase/dhtmlxtree.css">
+<script src="/dhtmlx/dhtmlxTree/codebase/dhtmlxtree.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.css">
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxGrid/codebase/skins/dhtmlxgrid_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgrid.js"></script>
+<script src="/dhtmlx/dhtmlxGrid/codebase/dhtmlxgridcell.js"></script>
+<link rel="stylesheet" type="text/css" href="/dhtmlx/dhtmlxEditor/codebase/skins/dhtmlxeditor_dhx_skyblue.css">
+<script src="/dhtmlx/dhtmlxEditor/codebase/dhtmlxeditor.js"></script>
+<script type="text/javascript" src="../../../js/page.js"></script>
+<link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/js/chosen/chosen.jquery.min.js"></script>
 
 <script>
+    $(document).ready(function () {
+        $("#curriculumClassId").chosen({
+            no_results_text: "没有找到"
+        });
+        $("#termYearId").chosen({
+            no_results_text: "没有找到"
+        });
+    });
     function roomDelete() {
         var src = window.event.srcElement;
         $(src).parent().next().remove();
         $(src).parent().remove();
         window.event.stopPropagation();
         $('#roomName').append(initRoomId());
-    }
-    $(document).ready(function () {
-        $("#target").chosen({
-            no_results_text: "没有找到"
-        });
-        $("#termYear").chosen({
-            no_results_text: "没有找到"
-        });
-    });
+    };
+
     function add(){
         var a = window.document.getElementById("beginWeek").value;
         var b = window.document.getElementById("endWeek").value;
@@ -53,7 +59,7 @@
         }
         document.mainForm.action="addcurriculumschedule";
         document.mainForm.submit();
-    }
+    };
     function toSetLab(){
         var termYearIdTemp=window.document.getElementById("termYearId").value;
         var curriculumClassIdTemp=window.document.getElementById("curriculumClassId").value;
@@ -66,20 +72,20 @@
         window.open("toselectlab?termYearId="+termYearIdTemp+"&curriculumClassId="+curriculumClassIdTemp+"&weekDay="+weekDayTemp+
                 "&beginWeek="+beginWeekTemp+"&endWeek="+endWeekTemp+"&sectionBegin="+sectionBeginTemp+"&sectionEnd="+sectionEndTemp, "人员信息",
                 "height=450, width=800, toolbar=no, status=no");
-    }
+    };
     function formatRoomDisplay(roomId,roomName) {
 
         return '<span>' + roomName+ '<input type="hidden" id="roomId" name="roomId" value=\"'+roomId+'\" /> <a class="button" href="#" roomId=\"' +roomId+ '\" onclick="roomDelete(event);">删除</a> </span><br/>';
-    }
+    };
     function initRoomId() {
 
         return '<span><input type="hidden" id="roomId" name="roomId"  value=\"\"/> </span><br/>';
-    }
+    };
     function setLab(roomId,roomName){
         window.document.getElementById('roomName').innerHTML = "";
        $('#roomName').append(formatRoomDisplay(roomId,roomName));
 
-    }
+    };
 
 
     var endSection=[
@@ -88,7 +94,7 @@
         [7,8,9,10],[8,9,10],[9,10],[10],
         [11,12,13,14],[12,13,14],[13,14],[14]
     ]
-
+;
     function setSectionEnd(){
 
         var begin=document.mainForm.sectionBegin;
@@ -100,7 +106,7 @@
         }
 
     }
-
+;
 </script>
 
 <body onload="doOnLoad();" style="background-color: #eef2fb">
@@ -204,9 +210,11 @@
                             </table>
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
-                                    <td align="center"><input type="button" name="return" value="返回" class="button"
-                                                              onclick="window.history.go(-1);"/></td>
-                                    <td align=""><input type="button" value="保存"onclick="add();"/>
+                                    <td align="right"></td>
+                                    <td align="center">
+                                        <input type="button" name="return" value="返回"
+                                               onclick="window.history.go(-1);"/>
+                                        <input type="button" value="保存"onclick="add();"/>
                                     </td>
                                 </tr>
                             </table>

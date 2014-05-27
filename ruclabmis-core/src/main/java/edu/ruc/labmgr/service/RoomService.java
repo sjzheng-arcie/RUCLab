@@ -42,6 +42,7 @@ public class RoomService {
 	public List<Room> getAllRoomListByIdList(List<Integer> roomIdList){
 		RoomCriteria roomCriteria= new RoomCriteria();
 		RoomCriteria.Criteria criteria= roomCriteria.createCriteria();
+		//criteria.andTypeEqualTo(true);
 		if(roomIdList.size()!=0){
 			criteria.andIdNotIn(roomIdList);
 		}

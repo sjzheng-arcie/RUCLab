@@ -73,9 +73,9 @@
                                     <td>
                                         <table width="100%" border="0" style="background-color:#E3EFFF;"   cellpadding="0" cellspacing="0">
                                             <tr height="25">
-                                                <td width="20px" bgcolor="#E3EFFF" >学年：
+                                                <td  bgcolor="#E3EFFF" >学年：
                                                     <select id="termYear" name="termYearId"
-                                                            style="width: 200px;height: 22px"
+                                                            style="width: 140px;height: 22px"
                                                             data-placeholder="选择学年学期...">
                                                         <option></option>
                                                         <c:forEach items="${termYearList}" var="termYear">
@@ -83,25 +83,25 @@
                                                             <option value="${termYear.id}">${termYear.name}(${termYear.year}年)</option>
                                                         </c:forEach>
                                                     </select></td>
-                                                <td width="40px" bgcolor="#E3EFFF" >周次：
+                                                <td  bgcolor="#E3EFFF" >周次：
                                                     <select name="weekNum">
                                                         <option></option>
                                                         <c:forEach var="temp" begin="1" end="26" step="1">
                                                             <option value="${temp}">${temp}</option>
                                                         </c:forEach>
                                                     </select></td>
-                                                <td width="20px" bgcolor="#E3EFFF" >老师：
+                                                <td  bgcolor="#E3EFFF" >老师：
                                                     <select id="teacherId" name="teacherId"
-                                                            style="width: 200px;height: 22px"
+                                                            style="width: 140px;height: 22px"
                                                             data-placeholder="老师...">
                                                         <option></option>
                                                         <c:forEach items="${teacherList}" var="teacher">
                                                             <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
                                                         </c:forEach>
                                                     </select></td>
-                                                <td width="20px" bgcolor="#E3EFFF" >房间：
+                                                <td  bgcolor="#E3EFFF" >房间：
                                                     <select id="roomId" name="roomId"
-                                                            style="width: 200px;height: 22px"
+                                                            style="width: 180px;height: 22px"
                                                             data-placeholder="房间...">
                                                         <option></option>
                                                         <c:forEach items="${roomList}" var="room">
@@ -118,7 +118,7 @@
                                                         </c:forEach>
                                                     </select>
                                                 </td>
-                                                <td width="20px" bgcolor="#E3EFFF" >班级：
+                                                <td  bgcolor="#E3EFFF" >班级：
                                                     <select id="curriculumClassId" name="curriculumClassId"
                                                             style="width: 200px;height: 22px"
                                                             data-placeholder="选择班级...">
