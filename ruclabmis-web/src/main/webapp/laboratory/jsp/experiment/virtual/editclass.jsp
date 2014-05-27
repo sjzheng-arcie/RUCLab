@@ -246,10 +246,6 @@
                         <span style="white-space:nowrap">&nbsp;&nbsp;名称:<input type="text" name="name" id="name"
                                                                                value="" style="width:100px;"/></span>
 
-                        <span style="white-space:nowrap">&nbsp;&nbsp;所属专业:<input type="text" name="major"
-                                                                                 id="major" value=""
-                                                                                 style="width:100px;"/></span>
-
                         <span style="white-space:nowrap">&nbsp;&nbsp;<a href="javascript:void(0);" style="cursor:hand"  class="txt_bt"
                                                                         onclick="toFind('listForm')"><img
                                 src="/laboratory/../images/zoom.png" width="15" height="15" border="0"/> 查询</a></span>
@@ -318,7 +314,7 @@
                                                     <td>${st.index+1}</td>
                                                     <td>${item.sn}</td>
                                                     <td>${item.name}</td>
-                                                    <td>${item.majorName}</td>
+                                                    <td>${item.major.name}</td>
                                                     <td><fmt:formatDate value="${item.admissionDate}"
                                                                         pattern="yyyy-MM-dd"/></td>
                                                     <td>${item.originPlace}</td>

@@ -30,10 +30,10 @@ public class CurriculumClassService {
     CurriculumMapper curriculumMapper;
     @Autowired
     UserMapper userMapper;
-	@Autowired
-	BbsSessionMapper bbsSessionMapper;
-	@Autowired
-	CurriculumClassMapper curriculumClassMapper;
+    @Autowired
+    BbsSessionMapper bbsSessionMapper;
+    @Autowired
+    CurriculumClassMapper curriculumClassMapper;
 
     /**
      * 获得分页的虚拟班级列表
@@ -54,17 +54,17 @@ public class CurriculumClassService {
         }
         return getPageClassByCriteria(pageNum, criteria);
     }
-	public PageInfo<CurriculumClass> getPageClassbyPageNumUseQuery(String sn,String name,int pageNum, int id, Types.Role role) {
-		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
-		CurriculumClassCriteria.Criteria c = criteria.or();
-		if (!StringUtils.isEmpty(sn)) {
-			c.andClassSnLike("%" + sn + "%");
-		}
-		if (!StringUtils.isEmpty(name)) {
-			c.andClassNameLike("%" + name + "%");
-		}
-		return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
-	}
+    public PageInfo<CurriculumClass> getPageClassbyPageNumUseQuery(String sn,String name,int pageNum, int id, Types.Role role) {
+        CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+        CurriculumClassCriteria.Criteria c = criteria.or();
+        if (!StringUtils.isEmpty(sn)) {
+            c.andClassSnLike("%" + sn + "%");
+        }
+        if (!StringUtils.isEmpty(name)) {
+            c.andClassNameLike("%" + name + "%");
+        }
+        return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
+    }
     public PageInfo<CurriculumClass> getPageClassbyPageNumUseQuery(String sn,String name,int pageNum, int id, Types.Role role, Integer curriculumId) {
         CurriculumClassCriteria criteria = new CurriculumClassCriteria();
         CurriculumClassCriteria.Criteria c = criteria.or();
@@ -79,12 +79,12 @@ public class CurriculumClassService {
         }
         return getPageClassByCriteriaAndUid(pageNum, criteria, id, role);
     }
-	public List<CurriculumClass> getAllCurriculumClass() {
-		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
-		CurriculumClassCriteria.Criteria c = criteria.or();
-		c.andJoinCurriculum().andJoinUser();
-		return curriculumClassMapper.selectByCriteria(criteria);
-	}
+    public List<CurriculumClass> getAllCurriculumClass() {
+        CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+        CurriculumClassCriteria.Criteria c = criteria.or();
+        c.andJoinCurriculum().andJoinUser();
+        return curriculumClassMapper.selectByCriteria(criteria);
+    }
     /**
      * @param id
      * @return
@@ -110,16 +110,15 @@ public class CurriculumClassService {
         return classMapper.selectByPrimaryKey(cid);
     }
 
-    public List<Student> getClassStudents(int cid, String sn, String name, String major) {
+    public List<Student> getClassStudents(int cid, String sn, String name) {
         ClassStudentCriteria criteria = new ClassStudentCriteria();
         ClassStudentCriteria.Criteria c = criteria.or();
-        c.andJoinUser().andJoinStudent().andJoinMajor().andClassIdEqualTo(cid);
+        c.andJoinUser().andJoinStudent().andClassIdEqualTo(cid);
         if (StringUtils.isNotEmpty(sn))
             c.andStudentSnLike("%" + sn + "%");
         if (StringUtils.isNotEmpty(name))
             c.andStudentNameLike("%" + name + "%");
-        if (StringUtils.isNotEmpty(major))
-            c.andStudentMajorLike("%" + major + "%");
+
         return classStudentMapper.selectByCriteriaWithStudent(criteria);
     }
 
@@ -130,16 +129,15 @@ public class CurriculumClassService {
         return (list!=null && list.size()>0) ? list.get(0) : null;
     }
 
-    public PageInfo<Student> getPageClassStudent(int cid, String sn, String name, String major,int pageNum){
+    public PageInfo<Student> getPageClassStudent(int cid, String sn, String name,int pageNum){
         ClassStudentCriteria criteria = new ClassStudentCriteria();
         ClassStudentCriteria.Criteria c = criteria.or();
-        c.andJoinUser().andJoinStudent().andJoinMajor().andClassIdEqualTo(cid);
+        c.andJoinUser().andJoinStudent().andClassIdEqualTo(cid);
         if (StringUtils.isNotEmpty(sn))
             c.andStudentSnLike("%" + sn + "%");
         if (StringUtils.isNotEmpty(name))
             c.andStudentNameLike("%" + name + "%");
-        if (StringUtils.isNotEmpty(major))
-            c.andStudentMajorLike("%" + major + "%");
+
         int totalCount = classStudentMapper.countByCriteria(criteria);
         PageInfo<Student> page = new PageInfo<>(totalCount,-1,pageNum);
         List<Student> data = classStudentMapper.selectByCriteriaWithStudentWithRowbounds(criteria,
@@ -148,14 +146,13 @@ public class CurriculumClassService {
         return page;
     }
 
-    public PageInfo<Map<String,?>> getPageClassStudentInfo(int cid, String sn, String name, String major,int pageNum){
+    public PageInfo<Map<String,?>> getPageClassStudentInfo(int cid, String sn, String name,int pageNum){
         Map<String,Object> param = new HashMap<>();
         if (sn!=null)
             param.put("sn","%"+sn+"%");
         if (name!=null)
             param.put("name","%"+name+"%");
-        if (major!=null)
-            param.put("major","%"+major+"%");
+
         param.put("cid",cid);
         int totalCount = classStudentMapper.countClassStudentInfo(param);
         PageInfo<Map<String,?>> page = new PageInfo<>(totalCount,-1,pageNum);
@@ -171,20 +168,18 @@ public class CurriculumClassService {
      * @param cid
      * @param sn
      * @param name
-     * @param major
      * @param pageNum
      * @return
      */
-    public PageInfo<Student> getStudentsNotInClass(int cid, String sn, String name, String major, int pageNum) {
+    public PageInfo<Student> getStudentsNotInClass(int cid, String sn, String name, int pageNum) {
         ClassStudentCriteria criteria = new ClassStudentCriteria();
         ClassStudentCriteria.Criteria c = criteria.or();
-        c.andJoinStudent().andJoinMajor().andStudentNotInClass(cid);
+        c.andJoinStudent().andStudentNotInClass(cid);
         if (StringUtils.isNotEmpty(sn))
             c.andStudentSnLike("%" + sn + "%");
         if (StringUtils.isNotEmpty(name))
             c.andStudentNameLike("%" + name + "%");
-        if (StringUtils.isNotEmpty(major))
-            c.andStudentMajorLike("%" + major + "%");
+
         int totalCount = classStudentMapper.countStudentNotInClass(criteria);
         PageInfo<Student> result = new PageInfo<>(totalCount, -1, pageNum);
         List<Student> students = classStudentMapper.selectStudentNotInClassWithRowbounds(criteria,
@@ -222,33 +217,36 @@ public class CurriculumClassService {
             }
         }
 
-		addBBSection(cid,clazz);
+        addBBSection(cid,clazz);
 
     }
 
     public void updateClassStudentScore(ClassStudent classStudent){
-       if (classStudent.getId()!=null){
-           classStudentMapper.updateByPrimaryKeySelective(classStudent);
-       }
+        if (classStudent.getId()!=null){
+            classStudentMapper.updateByPrimaryKeySelective(classStudent);
+        }
     }
 
-	/**
-	 * 创建班级的时候添加版块
-	 * @param curriculumClassId
-	 * @param clazz
-	 * @auhtor zsj
-	 */
-	private void addBBSection(int curriculumClassId,CurriculumClass clazz){
-		BbsSession bbsSection = new BbsSession();
-		bbsSection.setId(curriculumClassId);
-		int curricumid = clazz.getId();
-		Curriculum cm = curriculumMapper.selectByPrimaryKey(curricumid);
-		bbsSection.setDescription(cm.getName()+"-"+clazz.getClassName()+"-"+clazz.getClassYear());
-		bbsSection.setReplycount(0);
-		bbsSection.setTopiccount(0);
-		bbsSessionMapper.insert(bbsSection);
-	}
+    /**
+     * 创建班级的时候添加版块
+     * @param curriculumClassId
+     * @param clazz
+     * @auhtor zsj
+     */
+    private void addBBSection(int curriculumClassId,CurriculumClass clazz){
+        BbsSession bbsSection = new BbsSession();
+        bbsSection.setId(curriculumClassId);
+        int curricumid = clazz.getId();
+        Curriculum cm = curriculumMapper.selectByPrimaryKey(curricumid);
+        bbsSection.setDescription(cm.getName()+"-"+clazz.getClassName()+"-"+clazz.getClassYear());
+        bbsSection.setReplycount(0);
+        bbsSection.setTopiccount(0);
+        bbsSessionMapper.insert(bbsSection);
+    }
 
+    public Integer getStudentIdBySn(String sn){
+        return  classStudentMapper.selectIdBySn(sn);
+    }
     /**
      * 添加学生到已有的班级
      * @param vcId
@@ -263,6 +261,30 @@ public class CurriculumClassService {
         }
     }
 
+
+    /**
+     * 添加学生到已有的班级
+     * @param vcId
+     * @param stIds
+     */
+    public void addStudentToClassBySn(int vcId,List<ClassStudent> students){
+        for (ClassStudent student : students) {
+
+
+            ClassStudentCriteria criteria = new ClassStudentCriteria();
+            ClassStudentCriteria.Criteria ec = criteria.createCriteria();
+            ec.andClassIdEqualTo(vcId).andStudentIdEqualTo(student.getStudentId());
+
+            if(classStudentMapper.countByCriteria(criteria) <= 0 )
+            {
+                ClassStudent cs = new ClassStudent();
+                cs.setClassId(vcId);
+                cs.setStudendId(student.getStudentId());
+                classStudentMapper.insertSelective(cs);
+            }
+        }
+    }
+
     public void updateCurriculumClass(CurriculumClass clazz) {
         if (clazz.getId() != null) {
             classMapper.updateByPrimaryKey(clazz);
@@ -273,7 +295,7 @@ public class CurriculumClassService {
         if (ids != null && ids.length > 0) {
             for (int i : ids) {
                 classMapper.deleteByPrimaryKey(i);
-				bbsSessionMapper.deleteByPrimaryKey(i);
+                bbsSessionMapper.deleteByPrimaryKey(i);
             }
         }
 
@@ -314,106 +336,106 @@ public class CurriculumClassService {
 
         CurriculumClassCriteria.Criteria c = criteria.getOredCriteria().get(0);
 
-		List<CurriculumClass> data= new ArrayList<>();
+        List<CurriculumClass> data= new ArrayList<>();
         if (role == Types.Role.STUDENT) {
             c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
-			int totalCount = classMapper.countByCriteriaByJoinIncludeCS(criteria);
-			PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
-			 data = classMapper.selectByCriteriaAndClsStudentWithRowbounds(criteria,
-					new RowBounds(p.getCurrentResult(), p.getPageSize()));
-			p.setData(ChangeNameFromStuToTea(data));
-			return p;
+            int totalCount = classMapper.countByCriteriaByJoinIncludeCS(criteria);
+            PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+            data = classMapper.selectByCriteriaAndClsStudentWithRowbounds(criteria,
+                    new RowBounds(p.getCurrentResult(), p.getPageSize()));
+            p.setData(ChangeNameFromStuToTea(data));
+            return p;
 
         } else if (role == Types.Role.ADMIN) {
             c.andJoinCurriculum().andJoinUser();
-			int totalCount = classMapper.countByCriteriaJoinNotIncludeCS(criteria);
-			PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
-			 data = classMapper.selectByCriteriaWithRowbounds(criteria,
-					new RowBounds(p.getCurrentResult(), p.getPageSize()));
-			p.setData(data);
-			return p;
+            int totalCount = classMapper.countByCriteriaJoinNotIncludeCS(criteria);
+            PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+            data = classMapper.selectByCriteriaWithRowbounds(criteria,
+                    new RowBounds(p.getCurrentResult(), p.getPageSize()));
+            p.setData(data);
+            return p;
 
         } else {
-          //  c.andJoinCurriculum().andJoinClassStudent().andJoinUser().andUserIdEqual(id);
-			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
-			int totalCount = classMapper.countByCriteriaJoinNotIncludeCS(criteria);
-			PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
-			 data = classMapper.selectByCriteriaWithRowbounds(criteria,
-					new RowBounds(p.getCurrentResult(), p.getPageSize()));
-			p.setData(data);
-			return p;
+            //  c.andJoinCurriculum().andJoinClassStudent().andJoinUser().andUserIdEqual(id);
+            c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+            int totalCount = classMapper.countByCriteriaJoinNotIncludeCS(criteria);
+            PageInfo<CurriculumClass> p = new PageInfo<>(totalCount, -1, pageNum);
+            data = classMapper.selectByCriteriaWithRowbounds(criteria,
+                    new RowBounds(p.getCurrentResult(), p.getPageSize()));
+            p.setData(data);
+            return p;
         }
 
     }
-	public List<CurriculumClass> getPrivateCurricumClasses(int id, Types.Role role){
-		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
-		CurriculumClassCriteria.Criteria c = criteria.or();
-		List<CurriculumClass> data = new ArrayList<CurriculumClass>();
+    public List<CurriculumClass> getPrivateCurricumClasses(int id, Types.Role role){
+        CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+        CurriculumClassCriteria.Criteria c = criteria.or();
+        List<CurriculumClass> data = new ArrayList<CurriculumClass>();
 
-		if (role == Types.Role.STUDENT) {
-			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
-			data =classMapper.selectByCriteriaAndClsStudent(criteria);
+        if (role == Types.Role.STUDENT) {
+            c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
+            data =classMapper.selectByCriteriaAndClsStudent(criteria);
 
-		} else if (role == Types.Role.ADMIN) {
-			c.andJoinCurriculum().andJoinUser();
-			data =classMapper.selectByCriteria(criteria);
+        } else if (role == Types.Role.ADMIN) {
+            c.andJoinCurriculum().andJoinUser();
+            data =classMapper.selectByCriteria(criteria);
 
-		} else {
-			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
-			data =classMapper.selectByCriteria(criteria);
+        } else {
+            c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+            data =classMapper.selectByCriteria(criteria);
 
-		}
-		return  data;
-	}
-	public List<Integer> getPrivateSessionIds(int id, Types.Role role){
-		List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
-		List<Integer> sessionIds = new ArrayList<Integer>();
-		for(CurriculumClass cc : data){
-			sessionIds.add(cc.getId());
-		}
-		return sessionIds;
-	}
-	public List<Integer> getPrivateCurricumClassIds(int id, Types.Role role){
-		List<Integer> CurricumIds = new ArrayList<Integer>();
-		List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
-		for(CurriculumClass cc : data){
-			CurricumIds.add(cc.getId());
-		}
-		return  CurricumIds;
+        }
+        return  data;
+    }
+    public List<Integer> getPrivateSessionIds(int id, Types.Role role){
+        List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
+        List<Integer> sessionIds = new ArrayList<Integer>();
+        for(CurriculumClass cc : data){
+            sessionIds.add(cc.getId());
+        }
+        return sessionIds;
+    }
+    public List<Integer> getPrivateCurricumClassIds(int id, Types.Role role){
+        List<Integer> CurricumIds = new ArrayList<Integer>();
+        List<CurriculumClass> data = getPrivateCurricumClasses(id,role);
+        for(CurriculumClass cc : data){
+            CurricumIds.add(cc.getId());
+        }
+        return  CurricumIds;
 
-	}
-	public List<Integer> getPrivateCurricumIds(int id, Types.Role role){
-		List<Integer> CurricumIds = new ArrayList<Integer>();
-		List<CurriculumClass> data = getPrivateCurricumClasses(id, role);
-		for(CurriculumClass cc : data){
-			CurricumIds.add(cc.getId());
-		}
-		return  CurricumIds;
+    }
+    public List<Integer> getPrivateCurricumIds(int id, Types.Role role){
+        List<Integer> CurricumIds = new ArrayList<Integer>();
+        List<CurriculumClass> data = getPrivateCurricumClasses(id, role);
+        for(CurriculumClass cc : data){
+            CurricumIds.add(cc.getId());
+        }
+        return  CurricumIds;
 
-	}
-	public List<CurriculumClass> getClassByCriteriaUserIdAndRole(int id, Types.Role role) {
-		CurriculumClassCriteria criteria = new CurriculumClassCriteria();
-		CurriculumClassCriteria.Criteria c = criteria.or();
-		List<CurriculumClass> data = new ArrayList<CurriculumClass>();
-		if (role == Types.Role.STUDENT) {
-			c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
-			data =classMapper.selectByCriteriaAndClsStudent(criteria);
+    }
+    public List<CurriculumClass> getClassByCriteriaUserIdAndRole(int id, Types.Role role) {
+        CurriculumClassCriteria criteria = new CurriculumClassCriteria();
+        CurriculumClassCriteria.Criteria c = criteria.or();
+        List<CurriculumClass> data = new ArrayList<CurriculumClass>();
+        if (role == Types.Role.STUDENT) {
+            c.andJoinCurriculum().andJoinClassStudent().andStudentIdEqual(id).andJoinCsUser();
+            data =classMapper.selectByCriteriaAndClsStudent(criteria);
 
-		} else if (role == Types.Role.ADMIN) {
-			c.andJoinCurriculum().andJoinUser();
-			 data =classMapper.selectByCriteria(criteria);
+        } else if (role == Types.Role.ADMIN) {
+            c.andJoinCurriculum().andJoinUser();
+            data =classMapper.selectByCriteria(criteria);
 
-		} else {
-			c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
-			data =classMapper.selectByCriteria(criteria);
+        } else {
+            c.andJoinCurriculum().andJoinUser().andUserIdEqual(id);
+            data =classMapper.selectByCriteria(criteria);
 
-		}
+        }
 
-		if (role == Types.Role.STUDENT)
-			ChangeNameFromStuToTea(data);
+        if (role == Types.Role.STUDENT)
+            ChangeNameFromStuToTea(data);
 
-		return data;
-	}
+        return data;
+    }
 
     private List<CurriculumClass> ChangeNameFromStuToTea(List<CurriculumClass> data) {
         if (data == null)
@@ -426,5 +448,25 @@ public class CurriculumClassService {
             cc.setTeacherName(user.getName());
         }
         return data;
+    }
+
+
+    public void saveOrUpdateCurriculumClasses(List<CurriculumClass> curriculumClasses) {
+        if (curriculumClasses != null) {
+            for (CurriculumClass curriculumClass : curriculumClasses) {
+                String sn = curriculumClass.getClassSn();
+                if (com.mysql.jdbc.StringUtils.isNullOrEmpty(sn))
+                    continue;
+
+                Integer id = curriculumClassMapper.selectIdBySn(sn);
+
+                if (id != null && id > 0) {
+                    curriculumClass.setId(id);
+                    curriculumClassMapper.updateByPrimaryKey(curriculumClass);
+                } else {
+                    curriculumClassMapper.insert(curriculumClass);
+                }
+            }
+        }
     }
 }

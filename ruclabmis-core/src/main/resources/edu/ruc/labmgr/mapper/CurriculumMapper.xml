@@ -6,10 +6,11 @@
         <result column="c_major_id" property="majorId" jdbcType="INTEGER"/>
         <result column="c_teacher_id" property="teacherId" jdbcType="INTEGER"/>
         <result column="c_name" property="name" jdbcType="VARCHAR"/>
+        <result column="c_sn" property="sn" jdbcType="VARCHAR"/>
         <result column="c_profile" property="profile" jdbcType="VARCHAR"/>
         <result column="c_grade" property="grade" jdbcType="SMALLINT"/>
-        <result column="c_category" property="category" jdbcType="INTEGER"/>
-        <result column="c_type" property="type" jdbcType="INTEGER"/>
+        <result column="c_category" property="category" jdbcType="VARCHAR"/>
+        <result column="c_type" property="type" jdbcType="VARCHAR"/>
         <result column="c_period" property="period" jdbcType="SMALLINT"/>
         <result column="c_score" property="score" jdbcType="SMALLINT"/>
         <result column="c_exam_type" property="examType" jdbcType="INTEGER"/>
@@ -80,7 +81,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List">
-    c.id as c_id, c.major_id as c_major_id, c.teacher_id as c_teacher_id, c.name as c_name, 
+    c.id as c_id, c.major_id as c_major_id, c.teacher_id as c_teacher_id, c.name as c_name,  c.sn as c_sn,
     c.profile as c_profile, c.grade as c_grade, c.category as c_category, c.type as c_type, 
     c.period as c_period, c.score as c_score, c.exam_type as c_exam_type, c.bibliography as c_bibliography, 
     c.comments as c_comments
@@ -91,8 +92,8 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        ,m.name as c_major_name,u.name as c_teacher_name
-        from curriculum c,major m,user u
+        ,u.name as c_teacher_name
+        from curriculum c,user u
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -120,14 +121,14 @@
         <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER">
             SELECT LAST_INSERT_ID()
         </selectKey>
-        insert into curriculum (major_id, teacher_id, name,
+        insert into curriculum (major_id, teacher_id, name,sn,
         profile, grade, category,
         type, period, score,
         exam_type, bibliography, comments
         )
-        values (#{majorId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},
-        #{profile,jdbcType=VARCHAR}, #{grade,jdbcType=SMALLINT}, #{category,jdbcType=INTEGER},
-        #{type,jdbcType=INTEGER}, #{period,jdbcType=SMALLINT}, #{score,jdbcType=SMALLINT},
+        values (#{majorId,jdbcType=INTEGER}, #{teacherId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR},#{sn,jdbcType=VARCHAR},
+        #{profile,jdbcType=VARCHAR}, #{grade,jdbcType=SMALLINT}, #{category,jdbcType=VARCHAR},
+        #{type,jdbcType=VARCHAR}, #{period,jdbcType=SMALLINT}, #{score,jdbcType=SMALLINT},
         #{examType,jdbcType=INTEGER}, #{bibliography,jdbcType=VARCHAR}, #{comments,jdbcType=VARCHAR}
         )
     </insert>
@@ -145,6 +146,9 @@
             </if>
             <if test="name != null">
                 name,
+            </if>
+            <if test="sn != null">
+                sn,
             </if>
             <if test="profile != null">
                 profile,
@@ -184,6 +188,9 @@
             <if test="name != null">
                 #{name,jdbcType=VARCHAR},
             </if>
+            <if test="sn != null">
+                #{sn,jdbcType=VARCHAR},
+            </if>
             <if test="profile != null">
                 #{profile,jdbcType=VARCHAR},
             </if>
@@ -191,10 +198,10 @@
                 #{grade,jdbcType=SMALLINT},
             </if>
             <if test="category != null">
-                #{category,jdbcType=INTEGER},
+                #{category,jdbcType=VARCHAR},
             </if>
             <if test="type != null">
-                #{type,jdbcType=INTEGER},
+                #{type,jdbcType=VARCHAR},
             </if>
             <if test="period != null">
                 #{period,jdbcType=SMALLINT},
@@ -215,7 +222,7 @@
     </insert>
     <select id="countByCriteria" parameterType="edu.ruc.labmgr.domain.CurriculumCriteria"
             resultType="java.lang.Integer">
-        select count(c.id) from curriculum c,major m,user u
+        select count(c.id) from curriculum c,user u
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -235,6 +242,9 @@
             <if test="record.name != null">
                 c.name = #{record.name,jdbcType=VARCHAR},
             </if>
+            <if test="record.sn != null">
+                c.sn = #{record.sn,jdbcType=VARCHAR},
+            </if>
             <if test="record.profile != null">
                 c.profile = #{record.profile,jdbcType=VARCHAR},
             </if>
@@ -242,10 +252,10 @@
                 c.grade = #{record.grade,jdbcType=SMALLINT},
             </if>
             <if test="record.category != null">
-                c.category = #{record.category,jdbcType=INTEGER},
+                c.category = #{record.category,jdbcType=VARCHAR},
             </if>
             <if test="record.type != null">
-                c.type = #{record.type,jdbcType=INTEGER},
+                c.type = #{record.type,jdbcType=VARCHAR},
             </if>
             <if test="record.period != null">
                 c.period = #{record.period,jdbcType=SMALLINT},
@@ -273,10 +283,11 @@
         c.major_id = #{record.majorId,jdbcType=INTEGER},
         c.teacher_id = #{record.teacherId,jdbcType=INTEGER},
         c.name = #{record.name,jdbcType=VARCHAR},
+        c.sn = #{record.sn,jdbcType=VARCHAR},
         c.profile = #{record.profile,jdbcType=VARCHAR},
         c.grade = #{record.grade,jdbcType=SMALLINT},
-        c.category = #{record.category,jdbcType=INTEGER},
-        c.type = #{record.type,jdbcType=INTEGER},
+        c.category = #{record.category,jdbcType=VARCHAR},
+        c.type = #{record.type,jdbcType=VARCHAR},
         c.period = #{record.period,jdbcType=SMALLINT},
         c.score = #{record.score,jdbcType=SMALLINT},
         c.exam_type = #{record.examType,jdbcType=INTEGER},
@@ -298,6 +309,9 @@
             <if test="name != null">
                 name = #{name,jdbcType=VARCHAR},
             </if>
+            <if test="sn != null">
+                sn = #{sn,jdbcType=VARCHAR},
+            </if>
             <if test="profile != null">
                 profile = #{profile,jdbcType=VARCHAR},
             </if>
@@ -305,10 +319,10 @@
                 grade = #{grade,jdbcType=SMALLINT},
             </if>
             <if test="category != null">
-                category = #{category,jdbcType=INTEGER},
+                category = #{category,jdbcType=VARCHAR},
             </if>
             <if test="type != null">
-                type = #{type,jdbcType=INTEGER},
+                type = #{type,jdbcType=VARCHAR},
             </if>
             <if test="period != null">
                 period = #{period,jdbcType=SMALLINT},
@@ -333,10 +347,11 @@
     set major_id = #{majorId,jdbcType=INTEGER},
       teacher_id = #{teacherId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
+       sn = #{sn,jdbcType=VARCHAR},
       profile = #{profile,jdbcType=VARCHAR},
       grade = #{grade,jdbcType=SMALLINT},
-      category = #{category,jdbcType=INTEGER},
-      type = #{type,jdbcType=INTEGER},
+      category = #{category,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
       period = #{period,jdbcType=SMALLINT},
       score = #{score,jdbcType=SMALLINT},
       exam_type = #{examType,jdbcType=INTEGER},
@@ -351,8 +366,8 @@
             distinct
         </if>
         <include refid="Base_Column_List"/>
-        ,m.name as c_major_name,u.name as c_teacher_name
-        from curriculum c,major m,user u
+        ,u.name as c_teacher_name
+        from curriculum c,user u
         <if test="_parameter != null">
             <include refid="Criteria_Where_Clause"/>
         </if>
@@ -360,4 +375,9 @@
             order by ${orderByClause}
         </if>
     </select>
+
+
+    <select id="selectIdBySn" parameterType="String" resultType="java.lang.Integer">
+      SELECT c.id FROM curriculum c,curriculum_class cc WHERE c.Sn = #{curriculumSn} and cc.class_sn=#{classSn} and c.id=cc.id
+  </select>
 </mapper>
