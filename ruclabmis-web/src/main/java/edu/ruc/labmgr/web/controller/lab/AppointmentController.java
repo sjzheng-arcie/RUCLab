@@ -57,6 +57,10 @@ public class AppointmentController {
         Integer currYear =   calendar.get(Calendar.YEAR);
         Integer currWeek =   calendar.get(Calendar.WEEK_OF_YEAR);
         Integer currDay =   calendar.get(Calendar.DAY_OF_WEEK);
+        if(currDay==1)
+            currDay=7;
+        else if(currDay>1 && currDay<=7)
+            currDay=currDay-1;
 
         List<TermYear> years = yearService.getAllTermYearList();
 

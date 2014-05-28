@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 
@@ -52,16 +54,22 @@ public class TermYearService {
         return null;
     }
 
-    public List<Integer> getIdByYear(Integer year){
+    public TermYear getTermYearByTime(Date time){
+
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        calendar.setTime(new Date());
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(time);
+
+        Integer year = cal.get(java.util.Calendar.YEAR);
+
         TermYearCriteria yearCriteria = new TermYearCriteria();
         TermYearCriteria.Criteria ec = yearCriteria.createCriteria();
         ec.andYearEqualTo(year);
+        ec.andBegindateLessThanOrEqualTo(time);
         List<TermYear> years = mapper.selectByCriteria(yearCriteria);
-        List<Integer> retVals = new ArrayList<Integer>();
-        for(TermYear termYear : years)
-        {
-            retVals.add(termYear.getId());
-        }
-        return retVals;
+        TermYear retVal = years.get(0);
+
+        return retVal;
     }
 }
