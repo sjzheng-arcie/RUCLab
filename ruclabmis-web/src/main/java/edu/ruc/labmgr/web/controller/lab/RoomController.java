@@ -1,6 +1,7 @@
 package edu.ruc.labmgr.web.controller.lab;
 
 import edu.ruc.labmgr.domain.*;
+import edu.ruc.labmgr.service.CurriculumScheduleService;
 import edu.ruc.labmgr.service.DeskService;
 import edu.ruc.labmgr.service.LaboratoryRoomService;
 import edu.ruc.labmgr.service.RoomService;
@@ -29,6 +30,9 @@ public class RoomController {
 	private DeskService deskService;
 	@Autowired
 	private LaboratoryRoomService laboratoryRoomService;
+	@Autowired
+	CurriculumScheduleService curriculumScheduleService;
+
 
 	@RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView list(@RequestParam(required = false,defaultValue = "") String roomName,
@@ -66,12 +70,25 @@ public class RoomController {
 		String mdl="redirect:/laboratory/jsp/lab/house/list";
 		return mdl;
 	}
-	@RequestMapping(value="/delete",method=RequestMethod.GET)
-	public String add(@RequestParam int id){
-		LaboratoryRoomCriteria laboratoryRoomCriteria = new LaboratoryRoomCriteria();
-		LaboratoryRoomCriteria.Criteria criteria= laboratoryRoomCriteria.createCriteria();
-		criteria.andLaboratoryRoomIdEqualTo(id);
-		laboratoryRoomService.deleteByCriteria(laboratoryRoomCriteria);
+	@RequestMapping(value="/delete",method=RequestMethod.POST)
+	public String delete(@RequestParam int[] items){
+		for(int id:items){
+//			LaboratoryRoomCriteria laboratoryRoomCriteria = new LaboratoryRoomCriteria();
+//			LaboratoryRoomCriteria.Criteria criteria= laboratoryRoomCriteria.createCriteria();
+//			criteria.andLaboratoryRoomIdEqualTo(id);
+//
+//
+//			laboratoryRoomService.deleteByCriteria(laboratoryRoomCriteria);
+			roomService.deleteById(id);
+		}
+		String mdl="redirect:/laboratory/jsp/lab/house/list";
+		return mdl;
+	}
+	@RequestMapping(value="/todelete",method=RequestMethod.GET)
+	public String todelete(@RequestParam int id){
+
+
+
 		roomService.deleteById(id);
 		String mdl="redirect:/laboratory/jsp/lab/house/list";
 		return mdl;

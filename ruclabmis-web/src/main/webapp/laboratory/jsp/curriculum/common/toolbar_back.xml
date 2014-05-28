@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+<toolbar>
+    <item id="sep1" type="separator"/>
+    <item id="back" type="button" img="redo.gif" imgdis="redo_dis.gif" text="返回"/>
+    <item id="sep2" type="separator"/>
+
+</toolbar>

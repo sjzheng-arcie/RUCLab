@@ -46,10 +46,10 @@
     };
 
     function add(){
-        var a = window.document.getElementById("beginWeek").value;
-        var b = window.document.getElementById("endWeek").value;
-        if(a>b){
-            alert("结束时间不能早于开始时间！");
+        var a = Number(document.getElementsByName("beginWeek"));
+        var b =Number(document.getElementsByName("endWeek"));
+        if(a >b){
+            alert("结束周次不能早于开始周次！");
             return false;
         }
         var c = window.document.getElementById("roomId").value;
@@ -224,6 +224,19 @@
                         <script>var dhxLayout, dhxToolbar, dhxTree, editor;
                         function doOnLoad() {
                             dhxLayout = new dhtmlXLayoutObject("parentId", "1c");
+                            dhxToolbar = dhxLayout.attachToolbar();
+                            dhxToolbar.setIconsPath("${pageContext.request.contextPath}/dhtmlx/dhtmlxToolbar/samples/common/imgs/");
+                            dhxToolbar.loadXML("common/toolbar_back.xml?" + new Date().getTime());
+                            dhxToolbar.setAlign("right");
+                            dhxToolbar.attachEvent("onClick", function (id) {
+                                switch (id) {
+                                    case 'back' :
+                                        window.location.href = 'curriculumclasslist?page=1';
+                                        break;
+                                    default:
+                                        alert("Button " + id + " was clicked!")
+                                }
+                            });
                             dhxLayout.cells("a").setText("创建课表信息");
                             dhxLayout.cells("a").attachObject("zuoxi");
                         }</script>

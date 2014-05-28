@@ -11,7 +11,7 @@
         function deleteClasses(id) {
             if(window.confirm("确实要删除该房间吗？该房间将会从实验室中移除。")){
                 if(window.confirm("删除该实房间将会删除该房间内的工作台！")){
-                    window.location.href="/laboratory/jsp/lab/house/delete?id="+id;
+                    window.location.href="/laboratory/jsp/lab/house/todelete?id="+id;
                 }
             }
         }
@@ -84,7 +84,7 @@
                                                                 <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                 <span class="STYLE1">新增</span>
                                                             </a>&nbsp;
-                                                            <a href="#" onclick="toDelete();" class="txt_bt">
+                                                            <a href="#" onclick="toDelete('listForm','idcheckbox');" class="txt_bt">
                                                                 <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                 <span class="STYLE1">删除</span>
                                                             </a>&nbsp;

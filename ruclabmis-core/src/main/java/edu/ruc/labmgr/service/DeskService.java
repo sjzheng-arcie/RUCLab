@@ -35,6 +35,9 @@ public class DeskService {
 		deskMapper.deleteByPrimaryKey(id);
 	}
 
+	public void deleteByCriteria(DeskCriteria deskCriteria){
+		deskMapper.deleteByCriteria(deskCriteria);
+	}
 	public PageInfo<Desk> selectListPage(DeskCriteria criteria, int pageNum) {
 		int totalCount = deskMapper.countByCriteria(criteria);
 		PageInfo<Desk> page = new PageInfo<>(totalCount, -1, pageNum);

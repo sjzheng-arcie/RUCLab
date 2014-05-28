@@ -1,5 +1,6 @@
 package edu.ruc.labmgr.service;
 
+import edu.ruc.labmgr.domain.DeskCriteria;
 import edu.ruc.labmgr.domain.Laboratory;
 import edu.ruc.labmgr.domain.LaboratoryRoomCriteria;
 import edu.ruc.labmgr.domain.LaboratoryRoomKey;
@@ -23,6 +24,8 @@ import java.util.List;
 public class LaboratoryRoomService {
 	@Autowired
 	LaboratoryRoomMapper laboratoryRoomMapper;
+	@Autowired
+	DeskService deskService;
 	public List<LaboratoryRoomKey> getLaboratoryByCriteria(LaboratoryRoomCriteria criteria){
 		List<LaboratoryRoomKey>  laboratoryRoomKeyList= laboratoryRoomMapper.selectByCriteria(criteria);
 		return laboratoryRoomKeyList;
@@ -51,6 +54,13 @@ public class LaboratoryRoomService {
 		return  allRoomIdList;
 	}
 	public void deleteByCriteria(LaboratoryRoomCriteria criteria){
+		List<LaboratoryRoomKey> list=laboratoryRoomMapper.selectByCriteria(criteria);
+		for(LaboratoryRoomKey laboratoryRoomKey:list){
+			DeskCriteria deskCriteria = new DeskCriteria();
+			DeskCriteria.Criteria criteria1= deskCriteria.createCriteria();
+			criteria1.andLaboratoryRoomIdEqualTo(laboratoryRoomKey.getLaboratoryRoomId());
+			deskService.deleteByCriteria(deskCriteria);
+		}
 		laboratoryRoomMapper.deleteByCriteria(criteria);
 	}
 	public PageInfo<LaboratoryRoomKey> selectListPage(LaboratoryRoomCriteria criteria, int pageNum) {

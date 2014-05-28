@@ -28,6 +28,10 @@ public class CurriculumScheduleService {
         curriculumScheduleMapper.deleteByPrimaryKey(id);
     }
 
+	public void deleteByCriteria(CurriculumScheduleCriteria curriculumScheduleCriteria){
+		curriculumScheduleMapper.deleteByCriteria(curriculumScheduleCriteria);
+	}
+
     public void add(CurriculumSchedule curriculumSchedule){
         curriculumScheduleMapper.insert(curriculumSchedule);
     }

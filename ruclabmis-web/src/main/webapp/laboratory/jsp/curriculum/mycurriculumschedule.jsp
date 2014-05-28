@@ -91,7 +91,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" >上午</td>
-                                    <td bgcolor="#F7F7F7">一、二节(7:00-9:00)三、四节(9:00-11:00)</td>
+                                    <td bgcolor="#F7F7F7">一、二节(8:00-9:30)三、四节(10:00-11:30)</td>
                                     <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="0" end="6" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">
@@ -116,7 +116,7 @@
                                 </tr>
                                 <tr height="100" align="center">
                                     <td bgcolor="#F7F7F7" >下午</td>
-                                    <td bgcolor="#F7F7F7">七、八节(14:00-15:30)九、十节(16:00-17:00)</td>
+                                    <td bgcolor="#F7F7F7">七、八节(14:00-15:30)九、十节(16:00-17:30)</td>
                                     <c:forEach items="${strCurriculumScheduleListStr}" var="str" begin="14" end="20" >
                                         <td bgcolor="#F7F7F7">
                                             <c:forEach items="${str}" var="item">

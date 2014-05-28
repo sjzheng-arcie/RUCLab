@@ -1,7 +1,11 @@
 package edu.ruc.labmgr.service;
 
+import edu.ruc.labmgr.domain.CurriculumScheduleCriteria;
+import edu.ruc.labmgr.domain.LaboratoryRoomCriteria;
 import edu.ruc.labmgr.domain.Room;
 import edu.ruc.labmgr.domain.RoomCriteria;
+import edu.ruc.labmgr.mapper.CurriculumScheduleMapper;
+import edu.ruc.labmgr.mapper.LaboratoryRoomMapper;
 import edu.ruc.labmgr.mapper.RoomMapper;
 import edu.ruc.labmgr.utils.page.PageInfo;
 import org.apache.ibatis.session.RowBounds;
@@ -17,11 +21,27 @@ public class RoomService {
 
     @Autowired
     private RoomMapper mapper;
+	@Autowired
+	CurriculumScheduleService curriculumScheduleService;
+	@Autowired
+	LaboratoryRoomService laboratoryRoomService;
 
    	public Room getRoomById(int id){
 		Room room= mapper.selectByPrimaryKey(id);
 		return room;
 	}
+	public boolean ifNameExisted(String roomName){
+		RoomCriteria  roomCriteria= new RoomCriteria();
+		RoomCriteria.Criteria criteria= roomCriteria.createCriteria();
+		criteria.andNameEqualTo(roomName);
+		List<Room> roomList= mapper.selectByCriteria(roomCriteria);
+		if(roomList!=null&&roomList.size()>0){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
 	public void insertRoom(Room room){
 		mapper.insert(room);
 	}
@@ -29,6 +49,16 @@ public class RoomService {
 		mapper.updateByPrimaryKey(room);
 	}
 	public void deleteById(int id){
+		LaboratoryRoomCriteria laboratoryRoomCriteria = new LaboratoryRoomCriteria();
+		LaboratoryRoomCriteria.Criteria criteria= laboratoryRoomCriteria.createCriteria();
+		criteria.andLaboratoryRoomIdEqualTo(id);
+		laboratoryRoomService.deleteByCriteria(laboratoryRoomCriteria);
+
+		CurriculumScheduleCriteria curriculumScheduleCriteria= new CurriculumScheduleCriteria();
+		CurriculumScheduleCriteria.Criteria criteria1= curriculumScheduleCriteria.createCriteria();
+		criteria1.andRoomIdEqualTo(id);
+		curriculumScheduleService.deleteByCriteria(curriculumScheduleCriteria);
+
 		mapper.deleteByPrimaryKey(id);
 	}
 	public PageInfo<Room> selectListPage(RoomCriteria criteria, int pageNum) {

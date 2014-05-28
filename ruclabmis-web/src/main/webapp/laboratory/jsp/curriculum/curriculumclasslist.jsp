@@ -10,6 +10,7 @@
     <title></title>
 
 </head>
+<link href="/css/style.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="../../../js/page.js"></script>
 <link href="${pageContext.request.contextPath}/js/chosen/chosen.min.css" rel="stylesheet" type="text/css"/>
 <script type="text/javascript" src="${pageContext.request.contextPath}/js/autocomplete/jquery-1.9.1.js"></script>
@@ -124,7 +125,7 @@
                                                             data-placeholder="选择班级...">
                                                         <option></option>
                                                         <c:forEach items="${curriculumClassList}" var="curriculumClass">
-                                                            <option value="${curriculumClass.id}">${curriculumClass.className}(${curriculumClass.classSn})</option>
+                                                            <option value="${curriculumClass.id}">${curriculumClass.className}(${curriculumClass.teacherName})</option>
                                                         </c:forEach>
                                                     </select></td>
                                                 <td width="20px" bgcolor="#E3EFFF" >
@@ -133,37 +134,38 @@
                                         </table>
                                         <table width="100%" border="1" cellpadding="" cellspacing="0" style="bgcolor:#E3EFFF;font-size:25px;">
                                             <tr height="40">
-                                                <td colspan="9" align="center" bgcolor="#e3efff"><strong>课表内容信息一览</strong></td>
+                                                <td colspan="10" align="center" bgcolor="#e3efff"><strong>课表内容信息一览</strong></td>
                                             </tr>
                                             <tr align="center" height="40">
                                                 <td width="12.5%" bgcolor="#E3EFFF">学年</td>
-
-                                                <td width="12.5%" bgcolor="#E3EFFF">专业</td>
-
                                                 <td width="12.5%" bgcolor="#E3EFFF">班级</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">周次</td>
-                                                <td width="12.5%" bgcolor="#E3EFFF">节次</td>
+                                                <td width="6.25%" bgcolor="#E3EFFF">星期</td>
+
+                                                <td width="6.25%" bgcolor="#E3EFFF">节次</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">课程</td>
                                                 <td width="12.5%" bgcolor="#E3EFFF">教师</td>
+                                                <td width="12.5%" bgcolor="#E3EFFF">地点</td>
 
                                                 <%--<td width="12.5%" bgcolor="#E3EFFF">安排实验室</td>--%>
-                                                <td width="6.75%" bgcolor="#E3EFFF">修改</td>
-                                                <td width="6.75%" bgcolor="#E3EFFF">删除</td>
+                                                <td width="6.25%" bgcolor="#E3EFFF">修改</td>
+                                                <td width="6.25%" bgcolor="#E3EFFF">删除</td>
                                             </tr>
                                             <c:forEach items="${pageInfo.data}" var="item">
                                                 <tr>
                                                     <td align="center" bgcolor="#F7F7F7">${item.termYear.name}(${item.termYear.year})</td>
-                                                    <td align="center" bgcolor="#F7F7F7">${item.curriculum.major.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.className}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.weeknum}</td>
+                                                    <td align="center" bgcolor="#F7F7F7">${item.weekdays}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.sectionBegin} - ${item.sectionEnd}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
+                                                    <td align="center" bgcolor="#F7F7F7">${item.room.name}</td>
                                                     <%--<td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="tosetlab?curriculumScheduleId=${item.id}">点击安排实验室  </a>--%>
                                                        <%--</td>--%>
-                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="toupdatecurriculumschedule?curriculumScheduleId=${item.id}">修改  </a>
+                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a class="button" href="toupdatecurriculumschedule?curriculumScheduleId=${item.id}">修改  </a>
                                                     </td>
-                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="deleteById?curriculumScheduleId=${item.id}">删除  </a>
+                                                    <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a class="button" href="deleteById?curriculumScheduleId=${item.id}">删除  </a>
                                                     </td>
                                                                                        </tr>
                                             </c:forEach>
