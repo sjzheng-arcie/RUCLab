@@ -678,7 +678,12 @@ public class CurriculumSheduleController {
 				CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
 				CurriculumScheduleCriteria.Criteria criteria= curriculumScheduleCriteria.createCriteria();
 				if (userService.getCurrentUser().getRole().getName().equals("student")){
-					criteria.andClassIdIn(curriculumScheduleService.getClassIdListByStudentId(userService.getCurrentUserId()));
+					if(curriculumScheduleService.getClassIdListByStudentId(userService.getCurrentUserId())!=null&&curriculumScheduleService.getClassIdListByStudentId(userService.getCurrentUserId()).size()>0){
+						criteria.andClassIdIn(curriculumScheduleService.getClassIdListByStudentId(userService.getCurrentUserId()));
+					}else{
+						criteria.andClassIdIsNull();
+					}
+
 				}else if (userService.getCurrentUser().getRole().getName().equals("teacher")){
 					criteria.andTeacheridEqualTo(userService.getCurrentUserId());
 				}
@@ -688,7 +693,7 @@ public class CurriculumSheduleController {
 
 				//criteria.andAmPmEqualTo((byte)(i+1));
 				criteria.andWeekdaysEqualTo((byte)(j+1));
-				if(curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria).size()!=0){
+				if(curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria)!=null){
 					List<CurriculumSchedule> curriculumScheduleLists= curriculumScheduleService.getCurriculumScheduleListGroupByWeek(curriculumScheduleCriteria);
 					for(int k=0;k<curriculumScheduleLists.size();k++){
 						CurriculumSchedule curriculumSchedule = curriculumScheduleLists.get(k);

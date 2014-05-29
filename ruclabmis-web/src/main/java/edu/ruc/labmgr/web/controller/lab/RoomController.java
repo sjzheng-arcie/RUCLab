@@ -100,6 +100,7 @@ public class RoomController {
 		mdl.addObject("roomInfo",room);
 		return mdl;
 	}
+
 	@RequestMapping(value="/update",method=RequestMethod.POST)
 	public String update(@RequestParam int roomId,
 						 @RequestParam String roomName,
