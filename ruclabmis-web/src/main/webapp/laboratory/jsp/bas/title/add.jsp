@@ -123,7 +123,7 @@
                                                onclick="reset();"/>
 
                                         <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);return false;"/>
+                                               onclick="window.history.go(-1);return false"/>
                                     </td>
                                 </tr>
                             </table>

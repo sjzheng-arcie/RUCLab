@@ -161,7 +161,7 @@
                             <table width="100%" border="0" cellspacing="0" cellpadding="0">
                                 <tr>
                                     <td colspan="4" align="center" >
-                                        <a href="#" onclick="seekStatus()">
+                                        <a href="javascript:;" onclick="seekStatus()">
                                             <img src="../../../../images/back.gif" width="20" height="15" border="0"/>
                                             <span class="txt_bt">查看房间占用</span>
                                         </a>

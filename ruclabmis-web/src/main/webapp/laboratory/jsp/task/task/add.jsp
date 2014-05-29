@@ -62,7 +62,7 @@
 
         function formatUserDisplay(userId,userName) {
 
-            return '<span>' + userName+ ' <a href="#" class="button" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
+            return '<span>' + userName+ ' <a href="javascript:;" class="button" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
         }
         function uploadFile(){
             var file = document.getElementById("file").value;

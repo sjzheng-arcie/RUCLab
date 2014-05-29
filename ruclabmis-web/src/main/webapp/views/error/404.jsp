@@ -13,6 +13,6 @@
 <body>
 <h2>404 您访问的页面不存在</h2>
 
-<p><a href="#" onclick="window.history.go(-1);">返回</a></p>
+<p><a href="javascript:;" onclick="window.history.go(-1);">返回</a></p>
 </body>
 </html>

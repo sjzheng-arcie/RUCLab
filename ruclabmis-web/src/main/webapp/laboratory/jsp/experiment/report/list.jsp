@@ -114,7 +114,7 @@
                                                             <td>
                                                                 <div align="right">
                                                                     <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="#" onclick="saveSore();"><img
+                                                                        <a href="javascript:;" onclick="saveSore();"><img
                                                                                 src="../../../../images/add_min.gif"
                                                                                 width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">保存</span></a>&nbsp;

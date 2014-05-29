@@ -73,17 +73,17 @@
                                                         <td>
                                                             <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="/laboratory/jsp/bas/calendar/toAdd"><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
+                                                                    <a href="/laboratory/jsp/bas/calendar/toAdd" class="txt_bt" ><img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">新增</span></a>&nbsp;
-                                                                     <a href="#" onclick="toDelete('listForm', 'idcheckbox');"><img src="../../../../images/del_min.gif" width="10"
+                                                                     <a href="javascript:;" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt"><img src="../../../../images/del_min.gif" width="10"
                                                                                                            height="10"
                                                                                                            border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
-     <%--                                                               <a href="#" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10"
+     <%--                                                               <a href="javascript:;" onclick="toHouseDy();"><img src="../../../../images/del_min.gif" width="10"
                                                                                                             height="10"
                                                                                                             border="0"/> <span class="STYLE1">导入</span></a>&nbsp;&nbsp;
-                                                                    <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10"
+                                                                    <a href="javascript:;" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10"
                                                                                                              height="10" border="0"/> <span class="STYLE1">导出</span></a>&nbsp;&nbsp;
-                                           <a href="#" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
+                                           <a href="javascript:;" onclick="toRoom();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                                  border="0"/> <span class="STYLE1">打印</span></a>&nbsp;&nbsp;--%>
                                                                 </span>
                                                             </div>

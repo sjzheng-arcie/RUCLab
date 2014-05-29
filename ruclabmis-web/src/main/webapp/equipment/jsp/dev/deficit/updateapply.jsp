@@ -70,7 +70,7 @@
                             </td>
                             <td>
                                 <div align="right">
-                                    <a href="#" onclick="window.print()" class="txt_bt">
+                                    <a href="javascript:;" onclick="window.print()" class="txt_bt">
                                         <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                         <span class="STYLE1">打印</span></a>
                                 </div>

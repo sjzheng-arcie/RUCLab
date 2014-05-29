@@ -84,7 +84,7 @@
                                                                             <img src="../../../../images/add_min.gif" width="10" height="10"border="0"/>
                                                                             <span class="STYLE1">添加</span>
                                                                         </a>&nbsp;
-                                                                         <a href="#" onclick="toDelete();">
+                                                                         <a href="javascript:;" onclick="toDelete();">
                                                                              <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                                                              <span class="STYLE1">删除</span>
                                                                          </a>&nbsp;&nbsp;

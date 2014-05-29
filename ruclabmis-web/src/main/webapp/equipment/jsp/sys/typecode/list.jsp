@@ -82,9 +82,9 @@
 						<a href="/equipment/jsp/sys/typecode/toAdd" class="txt_bt"><img src="../../../../images/add_min.gif" width="10"
                                                                          height="10" border="0"/>
                             <span class="STYLE1">新增</span></a>
-      					<%--<a href="#" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../../images/edit_min.gif" width="10" height="10"--%>
+      					<%--<a href="javascript:;" onclick="toUpdate('listForm', 'idcheckbox');"><img src="../../../../images/edit_min.gif" width="10" height="10"--%>
                                                                <%--border="0"/> <span class="STYLE1">修改</span></a>--%>
-      					<a href="#" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt"><img
+      					<a href="javascript:;" onclick="toDelete('listForm', 'idcheckbox');" class="txt_bt"><img
                                 src="../../../../images/del_min.gif" width="10" height="10"
                                 border="0"/> <span class="STYLE1">删除</span></a>
 

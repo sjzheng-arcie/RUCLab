@@ -139,7 +139,7 @@
                                 <img src="../../../../images/edit_min.gif" width="10"
                                      height="10" border="0"/>
                             </a></td>
-                            <td><a href="#" onclick="deleteClasses('${item.id}');">
+                            <td><a href="javascript:;" onclick="deleteClasses('${item.id}');">
                                 <img src="../../../../images/del_min.gif" width="10"
                                      height="10" border="0"/>
                             </a></td>

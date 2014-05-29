@@ -161,11 +161,11 @@
                                                                 <shiro:hasAnyRoles name="administrator,teacher">
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="#" onclick="toMaintain();" class="txt_bt" ><img
+                                                                    <a href="javascript:;" onclick="toMaintain();" class="txt_bt" ><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">维护</span></a>&nbsp;
-                                                                    <a href="#" onclick="toPublic();" class="txt_bt" ><img
+                                                                    <a href="javascript:;" onclick="toPublic();" class="txt_bt" ><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;
@@ -244,7 +244,7 @@
                                                         <td>
                                                             <c:choose>
                                                                 <c:when test="${item.needReport}">
-                                                                <a href="#" onclick="viewReport('${item.id}','${item.needReport}');"  >查看</c:when>
+                                                                <a href="javascript:;" onclick="viewReport('${item.id}','${item.needReport}');"  >查看</c:when>
                                                                 <c:otherwise>--</c:otherwise>
                                                             </c:choose>
                                                         </a></td>

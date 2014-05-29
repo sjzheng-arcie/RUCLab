@@ -830,7 +830,7 @@ if (typeof(SyntaxHighlighter) == 'undefined') var SyntaxHighlighter = function (
              * @return {String}                    Returns HTML markup.
              */
             getButtonHtml: function (highlighter, commandName, label) {
-                return '<span><a href="#" class="toolbar_item'
+                return '<span><a href="javascript:;" class="toolbar_item'
                     + ' command_' + commandName
                     + ' ' + commandName
                     + '">' + label + '</a></span>'

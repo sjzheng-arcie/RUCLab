@@ -116,7 +116,7 @@
                                 <td>
                                     <div align="right">
                                          <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="#" onclick="toApply('listForm','idcheckbox');"><img
+                                                                        <a href="javascript:;" onclick="toApply('listForm','idcheckbox');"><img
                                                                                 src="${pageContext.request.contextPath}/assets/imgs/apply.gif"
                                                                                 width="10" height="10" border="0"/>
                                                                             <span class="STYLE1">添加</span></a>&nbsp;

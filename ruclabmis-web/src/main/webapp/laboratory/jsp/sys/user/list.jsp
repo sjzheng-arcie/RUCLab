@@ -82,7 +82,7 @@
                                                             <td>
                                                                 <div align="right">
 	            	<span class="STYLE1" style="white-space:nowrap">
-						<a href="#" onclick="toUpdatePassword('listForm', 'idcheckbox'); return false">
+						<a href="javascript:;" onclick="toUpdatePassword('listForm', 'idcheckbox'); return false">
                             <img src="../../../../images/set2.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">修改密码</span>
                         </a>&nbsp;
@@ -90,11 +90,11 @@
                             <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                             <span class="STYLE1">新增</span>
                         </a>&nbsp;
-                        <a href="#" onclick="toUpdate('listForm', 'idcheckbox'); return false">
+                        <a href="javascript:;" onclick="toUpdate('listForm', 'idcheckbox'); return false">
                             <img src="../../../../images/edit_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">修改</span>
                         </a>&nbsp;
-      					<a href="#" onclick="toDelete('listForm', 'idcheckbox'); return false">
+      					<a href="javascript:;" onclick="toDelete('listForm', 'idcheckbox'); return false">
                             <img src="../../../../images/del_min.gif" width="10" height="10"
                                  border="0"/> <span class="STYLE1">删除</span>
                         </a>&nbsp;&nbsp;

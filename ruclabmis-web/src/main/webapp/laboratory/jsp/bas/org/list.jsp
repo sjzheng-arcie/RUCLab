@@ -92,7 +92,7 @@
                                                         <td >${item.sn}</td>
                                                         <td ><a href="toUpdate?id=${item.id}">${item.name}</a></td>
                                                         <td >${item.director}</td>
-                                                        <td><a href="#" onclick="ifdelte('${item.id}')">
+                                                        <td><a href="javascript:;" onclick="ifdelte('${item.id}')">
                                                             <img src="../../../../images/del_min.gif" width="10"
                                                                  height="10" border="0"/>
                                                         </a></td>

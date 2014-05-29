@@ -152,7 +152,7 @@
                                                         <td height="20">${item.taskname}</td>
                                                         <td height="20"><fmt:formatDate value="${item.limitdate}"/></td>
                                                         <td height="20">${item.content}</td>
-                                                        <td height="20"><a href="#" onclick="downloadFile(${item.id})">${item.annexname}</a></td>
+                                                        <td height="20"><a href="javascript:;" onclick="downloadFile(${item.id})">${item.annexname}</a></td>
                                                         <td height="20">${item.completion}</td>
                                                         <td height="20">${item.completely}%</td>
                                                         <td height="20">

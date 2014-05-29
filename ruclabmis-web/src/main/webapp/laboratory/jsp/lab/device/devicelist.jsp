@@ -94,7 +94,7 @@
                                                                                    <span class="STYLE1">新增</span></a>&nbsp;</span>
 
                                                                      <span class="STYLE1" style="white-space:nowrap">
-                                                                        <a href="#" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
+                                                                        <a href="javascript:;" onclick="toDelete();"><img src="../../../../images/del_min.gif" width="10"
                                                                                                                height="10"
                                                                                                                border="0"/> <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
                                                                     </span>

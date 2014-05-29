@@ -78,9 +78,9 @@
                                                                      border="0"/> <span class="STYLE1">盘亏</span></a>
                   <a href="/equipCheck/importRealCheck" class="txt_bt"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                              border="0"/> <span class="STYLE1">导入</span></a>
-<%--                  <a href="#" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
+<%--                  <a href="javascript:;" onclick="toHouseLay();"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                            border="0"/> <span class="STYLE1">导出</span></a>--%>
-                  <a href="#" onclick="toPrint();" class="txt_bt"><img src="../../../../images/del_min.gif" width="10" height="10"
+                  <a href="javascript:;" onclick="toPrint();" class="txt_bt"><img src="../../../../images/del_min.gif" width="10" height="10"
                                                         border="0"/> <span class="STYLE1">打印</span></a>
 	              </span>
                                                                 </div>

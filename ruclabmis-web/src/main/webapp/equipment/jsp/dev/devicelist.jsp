@@ -168,11 +168,11 @@
                                           <img src="../../../../images/add_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">添加设备</span>
                                       </a>
-                                      <a href="#" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false" class="txt_bt">
+                                      <a href="javascript:;" onclick="toDeleteEquipments('listForm', 'idcheckbox'); return false" class="txt_bt">
                                           <img src="../../../../images/del_min.gif" width="10" height="10"
                                                border="0"/> <span class="STYLE1">删除</span>
                                       </a>
-                                      <a href="#" onclick="window.print()" class="txt_bt">
+                                      <a href="javascript:;" onclick="window.print()" class="txt_bt">
                                           <img src="../../../../images/del_min.gif" width="10" height="10" border="0"/>
                                           <span class="STYLE1">打印</span>
                                       </a>
