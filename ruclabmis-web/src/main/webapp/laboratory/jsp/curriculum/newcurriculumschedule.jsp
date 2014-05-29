@@ -44,7 +44,9 @@
         window.event.stopPropagation();
         $('#roomName').append(initRoomId());
     };
-
+    function toReturn(){
+        window.location.href = "curriculumclasslist?page=1";
+    }
     function add(){
         var a = Number(document.getElementsByName("beginWeek"));
         var b =Number(document.getElementsByName("endWeek"));
@@ -210,10 +212,11 @@
                             </table>
                             <table width="100%" border="0" cellpadding="1" cellspacing="1" style="margin-top:20px">
                                 <tr>
-                                    <td align="right"></td>
                                     <td align="center">
                                         <input type="button" name="return" value="返回"
-                                               onclick="window.history.go(-1);"/>
+                                               onclick="toReturn();"/>
+                                    </td>
+                                    <td align="left">
                                         <input type="button" value="保存"onclick="add();"/>
                                     </td>
                                 </tr>

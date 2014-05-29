@@ -14,7 +14,9 @@
         document.mainForm.action = "add";
         document.mainForm.submit();
     }
-
+    function toReturn(){
+        window.location.href = "list";
+    }
 </script>
 </head>
 <body>
@@ -119,7 +121,7 @@
                                         <input type="reset" name="reset" value="重置" class="button"
                                                onclick="reset();"/>
                                         <input type="button" name="return" value="返回" class="button"
-                                               onclick="window.history.go(-1);"/>
+                                               onclick="toReturn();"/>
                                     </td>
                                 </tr>
                             </table>
