@@ -50,58 +50,66 @@
                                         <div style="width:100%; height:380px; overflow:scroll;">
                                             <table border="0" bgcolor="#E3E9EE"
                                                    style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;">
-                                                <c:forEach var="row" begin="0" end="${rooms.size()%4==0?rooms.size()/4-1:rooms.size()/4}">
-                                                    <tr>
-                                                        <c:forEach var="col" begin="1" end="4">
-                                                            <c:if test="${row*4+col <= rooms.size()}">
-                                                                <c:set var="currRoom" value="${rooms.get(row*4+col-1)}" />
-                                                                <c:set var="index" value="-1" />
-                                                                <c:forEach var="roomId" items="${occupiedRoomIds}" varStatus="status">
-                                                                    <c:if test="${roomId eq currRoom.getId()}">
-                                                                        <c:set var="index" value="${status.index}" />
+                                                <c:choose>
+                                                    <c:when test= "${rooms.size()==0}">
+                                                        当前没有可用的房间信息
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <c:forEach var="row" begin="0" end="${rooms.size()%4==0?rooms.size()/4-1:rooms.size()/4}">
+                                                            <tr>
+                                                                <c:forEach var="col" begin="1" end="4">
+                                                                    <c:if test="${row*4+col <= rooms.size()}">
+                                                                        <c:set var="currRoom" value="${rooms.get(row*4+col-1)}" />
+                                                                        <c:set var="index" value="-1" />
+                                                                        <c:forEach var="roomId" items="${occupiedRoomIds}" varStatus="status">
+                                                                            <c:if test="${roomId eq currRoom.getId()}">
+                                                                                <c:set var="index" value="${status.index}" />
+                                                                            </c:if>
+                                                                        </c:forEach>
+
+                                                                        <c:choose>
+                                                                            <c:when test="${index >= 0}">
+                                                                                <td height="110" bgcolor="#aae4ff">
+                                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                        <tr>
+                                                                                            <td width="40%" align="center">
+                                                                                                <img src="/images/door.png" width="64" height="64" style="cursor:pointer;"
+                                                                                                     onclick="javascript:alert('当前教室已被占用!')"/><br/>
+                                                                                                <span class="title">${currRoom.getName()}</span>
+                                                                                            </td>
+                                                                                            <td> 已占用<br/>
+                                                                                                    ${schedules.get(index).getCurriculum().getName()}<br/>
+                                                                                                    ${schedules.get(index).getTeacher().getName()}<br/>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </c:when>
+                                                                            <c:otherwise>
+                                                                                <td width="25%" height="110" bgcolor="#e4ffaa">
+                                                                                    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                                                                        <tr>
+                                                                                            <td width="40%" align="center">
+                                                                                                <img src="/images/door_open.png" width="64" height="64"  style="cursor:pointer;"
+                                                                                                     onclick="selectTable(${currRoom.getId()})"/><br/>
+                                                                                                <span class="title">${currRoom.getName()}</span>
+                                                                                            </td>
+                                                                                            <td>
+                                                                                                <p>空闲<br/> <br/> <br/> <br/>
+                                                                                                </p>
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </table>
+                                                                                </td>
+                                                                            </c:otherwise>
+                                                                        </c:choose>
                                                                     </c:if>
                                                                 </c:forEach>
-
-                                                                <c:choose>
-                                                                    <c:when test="${index >= 0}">
-                                                                        <td height="110" bgcolor="#aae4ff">
-                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                                                <tr>
-                                                                                    <td width="40%" align="center">
-                                                                                        <img src="/images/door.png" width="64" height="64" style="cursor:pointer;"
-                                                                                             onclick="javascript:alert('当前教室已被占用!')"/><br/>
-                                                                                        <span class="title">${currRoom.getName()}</span>
-                                                                                    </td>
-                                                                                    <td> 已占用<br/>
-                                                                                            ${schedules.get(index).getCurriculum().getName()}<br/>
-                                                                                            ${schedules.get(index).getTeacher().getName()}<br/>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </c:when>
-                                                                    <c:otherwise>
-                                                                        <td width="25%" height="110" bgcolor="#e4ffaa">
-                                                                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-                                                                                <tr>
-                                                                                    <td width="40%" align="center">
-                                                                                        <img src="/images/door_open.png" width="64" height="64"  style="cursor:pointer;"
-                                                                                             onclick="selectTable(${currRoom.getId()})"/><br/>
-                                                                                        <span class="title">${currRoom.getName()}</span>
-                                                                                    </td>
-                                                                                    <td>
-                                                                                        <p>空闲<br/> <br/> <br/> <br/>
-                                                                                        </p>
-                                                                                    </td>
-                                                                                </tr>
-                                                                            </table>
-                                                                        </td>
-                                                                    </c:otherwise>
-                                                                </c:choose>
-                                                            </c:if>
+                                                            </tr>
                                                         </c:forEach>
-                                                    </tr>
-                                                </c:forEach>
+
+                                                    </c:otherwise>
+                                                </c:choose>
                                             </table>
                                         </div>
                                     </td>
