@@ -355,7 +355,7 @@ public class TaskController {
 		return modelAndView;
 	}
 
-	@RequestMapping(value = "/mytasklist", method = (RequestMethod.POST))
+	@RequestMapping(value = "/mytasklist", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView getMyTaskList(@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
 								@RequestParam(value="ifCompleted", required = false,defaultValue = "3") int ifCompleted,
 								@RequestParam(value = "page", required = false, defaultValue = "1") int page){
