@@ -459,6 +459,7 @@ public class CurriculumSheduleController {
 						criteria1.andCurriculumIdEqualTo(curriculumSchedule.getCurriculumId());
 						criteria1.andSectionBeginEqualTo(curriculumSchedule.getSectionBegin());
 						criteria1.andSectionEndEqualTo(curriculumSchedule.getSectionEnd());
+						criteria1.andCurriculumIdIsNotNull().andMeetEtimeIsNull().andSectionBeginIsNotNull().andSectionBeginNotEqualTo(0);
 						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
 						int tempBegin=0;
 						if(tempList.size()==1){
@@ -736,6 +737,7 @@ public class CurriculumSheduleController {
 							criteria1.andTeacheridEqualTo(curriculumSchedule.getTeacherid());
 						if(curriculumSchedule.getCurriculumId()!=null)
 							criteria1.andCurriculumIdEqualTo(curriculumSchedule.getCurriculumId());
+						criteria1.andCurriculumIdIsNotNull().andMeetEtimeIsNull().andSectionBeginIsNotNull().andSectionBeginNotEqualTo(0);
 						List<CurriculumSchedule> tempList=curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria1);
 						int tempBegin=0;
 						if(tempList.size()==1){
@@ -756,7 +758,8 @@ public class CurriculumSheduleController {
 							for(int m=1;m<tempList.size();m++){
 								String tempString=new String();
 								if(tempList.get(m).getWeeknum()-tempList.get(m-1).getWeeknum()!=1&&m!=tempList.size()){
-									tempString=tempList.get(0).getCurriculum().getName()+"<br>"+tempList.get(0).getTeacher().getName()+"<br>";
+									tempString=tempList.get(0).getCurriculum().getName()+"<br>";
+									tempString=tempString+tempList.get(0).getTeacher().getName()+"<br>";
 									if(tempList.get(0).getRoom()!=null){
 										tempString=tempString+tempList.get(0).getRoom().getName()+"<br>";
 									}else{
