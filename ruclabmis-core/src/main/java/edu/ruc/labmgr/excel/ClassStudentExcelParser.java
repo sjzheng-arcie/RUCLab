@@ -4,10 +4,7 @@ import com.mysql.jdbc.StringUtils;
 import edu.ruc.labmgr.domain.ClassStudent;
 import edu.ruc.labmgr.service.CurriculumClassService;
 import edu.ruc.labmgr.utils.SysUtil;
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.Row;
-import org.apache.poi.ss.usermodel.Sheet;
-import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.*;
 
 import java.util.Map;
 
@@ -50,8 +47,8 @@ public class ClassStudentExcelParser extends POIEntityParser<ClassStudent> {
         Sheet sheet = workbook.getSheetAt(0);
         Row row = sheet.getRow(3);
         Cell c = row.getCell(2);
-        double val = c.getNumericCellValue();
-        long result = Double.valueOf(val).longValue();
+		String sss = c.getRichStringCellValue().getString();
+        long result  = Long.parseLong(sss);
         return "" + result;
     }
 
