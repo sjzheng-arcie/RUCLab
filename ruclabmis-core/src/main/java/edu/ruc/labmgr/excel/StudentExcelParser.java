@@ -28,7 +28,9 @@ public class StudentExcelParser extends POIEntityParser<Student> {
             String strSex = (String) map.get("name");
             if( strSex == "女")
                 sex = true;
-            result.setSex(sex);
+			else if (strSex=="男")
+				sex = false;
+	        result.setSex(sex);
 
             //默认密码666666
             result.setPassword("f379eaf3c831b04de153469d1bec345e");

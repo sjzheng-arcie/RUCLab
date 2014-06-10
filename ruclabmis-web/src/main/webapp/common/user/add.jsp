@@ -87,8 +87,8 @@
                                                 <td nowrap>
                                                     <input name="sn" id="sn" onblur="" class="text"
                                                            style="width:154px" maxlength="20"
-                                                           valid="required|isAccount"
-                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"
+                                                           valid="required"
+                                                           errmsg="用户账号不能为空!"
                                                            value=""/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
@@ -179,7 +179,7 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="comment" id="comment" maxlength="490"></textarea>
+                                                    <textarea name="comment" id="comment" maxlength="490"  style="resize:none" ></textarea>
                                                 </td>
                                             </tr>
                                         </table>

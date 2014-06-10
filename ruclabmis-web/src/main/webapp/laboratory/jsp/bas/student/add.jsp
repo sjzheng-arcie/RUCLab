@@ -157,8 +157,8 @@
                                                     </select>
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
-                                                <td nowrap align="left" colspan="3">
-                                                    <textarea name="comment" id="comment" maxlength="500"></textarea>
+                                                <td nowrap align="left" colspan="6">
+                                                    <textarea name="comment" id="comment" maxlength="500" style="resize:none" ></textarea>
                                                 </td>
                                             </tr>
                                         </table>

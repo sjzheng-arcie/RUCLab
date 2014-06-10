@@ -30,7 +30,7 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
             result.setSn(cellDoubleToString( map.get("curriculum_sn")));
             result.setName((String) map.get("curriculum_name"));
             result.setScore(cellDoubleToShort(map.get("score")));
-            result.setCategory((String) map.get("category"));
+            result.setCategory(cellDoubleToShort(map.get("category"))+"");
             result.setType((String) map.get("type"));
 
             String teacherName = (String) map.get("teacher");
@@ -71,8 +71,15 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
     private Short cellDoubleToShort(Object value) {
         if (value == null)
             return null;
+		String temp = value.toString();
+		if(temp.isEmpty())
+			return null;
         if (value instanceof Double) {
-            Short result = Short.valueOf(value.toString()).shortValue();
+			if(temp.indexOf(".")>-1){
+				int flag = temp.indexOf(".");
+				temp = temp.substring(0,flag);
+			}
+            Short result = Short.valueOf(temp).shortValue();
             return result;
 
         }
@@ -83,6 +90,9 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
     private String cellDoubleToString(Object value) {
         if (value == null)
             return null;
+		String temp = value.toString();
+		if(temp.isEmpty())
+			return null;
         if (value instanceof Double) {
             long result = Double.valueOf(value.toString()).longValue();
             return "" + result;
@@ -95,7 +105,9 @@ public class CurriculumExcelParser extends POIEntityParser<Curriculum> {
     private Date cellStringToDate(Object value) {
         if (value == null)
             return null;
-
+		String temp = value.toString();
+		if(temp.isEmpty())
+			return null;
         if (value instanceof String) {
             String str = value.toString();
             if(str.matches("[0-9]{4}\\.[0-9]{2}"))

@@ -172,7 +172,7 @@
                                                 </td>
                                                 <td nowrap align="right">备注：</td>
                                                 <td nowrap align="left">
-                                                    <textarea name="comments" id="comments"></textarea>
+                                                    <textarea name="comments" id="comments"  style="resize:none"></textarea>
                                                 </td>
                                             </tr>
                                         </table>

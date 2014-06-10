@@ -86,8 +86,8 @@
                                                 <td nowrap>
                                                     <input name="sn" id="sn" class="text" style="width:154px"
                                                            maxlength="20"
-                                                           valid="required|isAccount"
-                                                           errmsg="用户账号不能为空!|账号只能以字母开头，以字母数字下划线组成，最小4位"
+                                                           valid="required"
+                                                           errmsg="用户账号不能为空!"
                                                            value="${teacher.sn}"/>
                                                     <span style="color:red;">*</span>&nbsp;&nbsp;
                                                 </td>
