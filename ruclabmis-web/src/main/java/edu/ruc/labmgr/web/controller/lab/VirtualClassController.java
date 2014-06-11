@@ -108,9 +108,10 @@ public class VirtualClassController {
         return mv;
     }
     @RequestMapping(value = "/editClassAddStudent", method = {RequestMethod.GET,RequestMethod.POST})
-    public ModelAndView editClassAddStudent(int vcId, String sn, String name, String major,int pageNum){
+    public ModelAndView editClassAddStudent(int vcId, String sn, String name, String major,
+											@RequestParam(required = false,defaultValue = "1")int page){
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/virtual/studentlist");
-        PageInfo<Student> pageInfo = classService.getStudentsNotInClass(vcId,sn,name,pageNum);
+        PageInfo<Student> pageInfo = classService.getStudentsNotInClass(vcId,sn,name,page);
         mv.addObject("pageInfo",pageInfo);
         mv.addObject("vcId",vcId);
         return mv;

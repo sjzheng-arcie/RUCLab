@@ -59,7 +59,7 @@
         }
         function addStudents(){
             var vcId = $("#vcId").val();
-            window.open("/experiment/virtual/editClassAddStudent?vcId="+vcId+"&pageNum=1", "学生信息",
+            window.open("/experiment/virtual/editClassAddStudent?vcId="+vcId, "学生信息",
                     "height=400, width=800, toolbar=no, status=no");
         }
 
@@ -275,16 +275,16 @@
                                         <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                cellspacing="1" bgcolor="#a8c7ce">
                                             <tr>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
+                                                <td width="20" height="20" bgcolor="d3eaef" class="STYLE10">
                                                     <div align="center">
                                                         <input type="checkbox" name="checkbox" id="checkbox"
                                                                onclick="checkAll(this,'listForm','stCheckbox');"/>
                                                     </div>
                                                 </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <td width="20" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">序号</span></div>
                                                 </td>
-                                                <td width="40" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                     <div align="center"><span class="STYLE10">学号</span></div>
                                                 </td>
                                                 <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
