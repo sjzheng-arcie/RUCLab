@@ -78,7 +78,7 @@
                                                     <select id="termYear" name="termYearId"
                                                             style="width: 140px;height: 22px"
                                                             data-placeholder="选择学年学期...">
-                                                        <option></option>
+                                                        <option value="">全部</option>
                                                         <c:forEach items="${termYearList}" var="termYear">
 
                                                             <option value="${termYear.id}"  <c:if test="${termYearIdFlag==termYear.id}">selected </c:if>  >${termYear.name}(${termYear.year}年)</option>
@@ -86,7 +86,7 @@
                                                     </select></td>
                                                 <td  bgcolor="#E3EFFF" >周次：
                                                     <select name="weekNum">
-                                                        <option></option>
+                                                        <option value="">全部</option>
                                                         <c:forEach var="temp" begin="1" end="26" step="1">
                                                             <option value="${temp}" <c:if test="${weekNumFlag==temp}">selected </c:if> >${temp}</option>
                                                         </c:forEach>
@@ -95,7 +95,7 @@
                                                     <select id="teacherId" name="teacherId"
                                                             style="width: 140px;height: 22px"
                                                             data-placeholder="老师...">
-                                                        <option></option>
+                                                        <option value="">全部</option>
                                                         <c:forEach items="${teacherList}" var="teacher">
                                                             <option value="${teacher.id}" <c:if test="${teacherIdFlag==teacher.id}">selected </c:if>  >${teacher.name}(${teacher.sn})</option>
                                                         </c:forEach>
@@ -104,7 +104,7 @@
                                                     <select id="roomId" name="roomId"
                                                             style="width: 180px;height: 22px"
                                                             data-placeholder="房间...">
-                                                        <option></option>
+                                                        <option value="">全部</option>
                                                         <c:forEach items="${roomList}" var="room">
                                                             <option value="${room.id}" <c:if test="${roomIdFlag==room.id}">selected </c:if> >${room.name}(${room.description})
                                                                 <%--<c:choose>--%>
@@ -123,7 +123,7 @@
                                                     <select id="curriculumClassId" name="curriculumClassId"
                                                             style="width: 200px;height: 22px"
                                                             data-placeholder="选择班级...">
-                                                        <option></option>
+                                                        <option value="">全部</option>
                                                         <c:forEach items="${curriculumClassList}" var="curriculumClass">
                                                             <option value="${curriculumClass.id}" <c:if test="${curriculumClassIdFlag==curriculumClass.id}">selected </c:if> >${curriculumClass.className}(${curriculumClass.teacherName})</option>
                                                         </c:forEach>
