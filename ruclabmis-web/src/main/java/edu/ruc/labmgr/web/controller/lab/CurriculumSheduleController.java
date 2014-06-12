@@ -59,10 +59,12 @@ public class CurriculumSheduleController {
 		List<Room> roomList = roomService.getAllRoomList();
 		CurriculumScheduleCriteria scheduleCriteria = new CurriculumScheduleCriteria();
 		CurriculumScheduleCriteria.Criteria sCriteria = scheduleCriteria.createCriteria();
+
 		List<CurriculumSchedule> curriculumScheduleList= curriculumScheduleService.getCurriculumScheduleListGroupByWeek(scheduleCriteria);
 
 		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
 		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
+		criteria.andCurriculumIdIsNotNull().andMeetEtimeIsNull().andSectionBeginIsNotNull().andSectionBeginNotEqualTo(0);
 		PageInfo<CurriculumSchedule>pageInfo=curriculumScheduleService.selectListPage(curriculumScheduleCriteria,page);
 		ModelAndView mav = new ModelAndView("/laboratory/jsp/curriculum/curriculumclasslist");
 		mav.addObject("pageInfo",pageInfo);
@@ -98,6 +100,7 @@ public class CurriculumSheduleController {
 			criteria.andTermYearidEqualTo(termYearId);
 		if(weekNum!=-1)
 			criteria.andWeeknumEqualTo(weekNum);
+		criteria.andCurriculumIdIsNotNull().andMeetEtimeIsNull().andSectionBeginIsNotNull().andSectionBeginNotEqualTo(0);
 		//if(ampmNum!=-1)
 		//	criteria.andAmPmEqualTo(ampmNum);
 		PageInfo<CurriculumSchedule>pageInfo=curriculumScheduleService.selectListPage(curriculumScheduleCriteria,page);
@@ -107,6 +110,14 @@ public class CurriculumSheduleController {
 		mav.addObject("termYearList",termYearList);
 		mav.addObject("teacherList",teacherList);
 		mav.addObject("roomList",roomList);
+
+		mav.addObject("roomIdFlag",roomId);
+		mav.addObject("teacherIdFlag",teacherId);
+		mav.addObject("curriculumClassIdFlag",classId);
+		mav.addObject("weekNumFlag",weekNum);
+		mav.addObject("termYearIdFlag",termYearId);
+
+
 		return mav;
 	}
 	@RequestMapping(value = "/newcurriculumschedule", method = {RequestMethod.GET,RequestMethod.POST})
@@ -697,7 +708,6 @@ public class CurriculumSheduleController {
 				CurriculumScheduleCriteria.Criteria criteria= curriculumScheduleCriteria.createCriteria();
 				criteria.andTeacheridEqualTo(teacherId);
 				criteria.andTermYearidEqualTo(termYearId);
-			//	criteria.andAmPmEqualTo((byte)(i+1));
 				criteria.andWeekdaysEqualTo((byte)(j+1));
 				if(curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria).size()!=0){
 					curriculumScheduleListList.add(i*7+j,curriculumScheduleService.getCurriculumScheduleList(curriculumScheduleCriteria));

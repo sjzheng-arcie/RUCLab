@@ -81,14 +81,14 @@
                                                         <option></option>
                                                         <c:forEach items="${termYearList}" var="termYear">
 
-                                                            <option value="${termYear.id}">${termYear.name}(${termYear.year}年)</option>
+                                                            <option value="${termYear.id}"  <c:if test="${termYearIdFlag==termYear.id}">selected </c:if>  >${termYear.name}(${termYear.year}年)</option>
                                                         </c:forEach>
                                                     </select></td>
                                                 <td  bgcolor="#E3EFFF" >周次：
                                                     <select name="weekNum">
                                                         <option></option>
                                                         <c:forEach var="temp" begin="1" end="26" step="1">
-                                                            <option value="${temp}">${temp}</option>
+                                                            <option value="${temp}" <c:if test="${weekNumFlag==temp}">selected </c:if> >${temp}</option>
                                                         </c:forEach>
                                                     </select></td>
                                                 <td  bgcolor="#E3EFFF" >老师：
@@ -97,7 +97,7 @@
                                                             data-placeholder="老师...">
                                                         <option></option>
                                                         <c:forEach items="${teacherList}" var="teacher">
-                                                            <option value="${teacher.id}">${teacher.name}(${teacher.sn})</option>
+                                                            <option value="${teacher.id}" <c:if test="${teacherIdFlag==teacher.id}">selected </c:if>  >${teacher.name}(${teacher.sn})</option>
                                                         </c:forEach>
                                                     </select></td>
                                                 <td  bgcolor="#E3EFFF" >房间：
@@ -106,7 +106,7 @@
                                                             data-placeholder="房间...">
                                                         <option></option>
                                                         <c:forEach items="${roomList}" var="room">
-                                                            <option value="${room.id}">${room.name}(${room.description})
+                                                            <option value="${room.id}" <c:if test="${roomIdFlag==room.id}">selected </c:if> >${room.name}(${room.description})
                                                                 <%--<c:choose>--%>
                                                                 <%--<c:when test="${room.type==true}">--%>
                                                                     <%--(实验室)--%>
@@ -125,7 +125,7 @@
                                                             data-placeholder="选择班级...">
                                                         <option></option>
                                                         <c:forEach items="${curriculumClassList}" var="curriculumClass">
-                                                            <option value="${curriculumClass.id}">${curriculumClass.className}(${curriculumClass.teacherName})</option>
+                                                            <option value="${curriculumClass.id}" <c:if test="${curriculumClassIdFlag==curriculumClass.id}">selected </c:if> >${curriculumClass.className}(${curriculumClass.teacherName})</option>
                                                         </c:forEach>
                                                     </select></td>
                                                 <td width="20px" bgcolor="#E3EFFF" >
