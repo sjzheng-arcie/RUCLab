@@ -161,8 +161,7 @@
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculum.name}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.curriculumClass.teacherName}</td>
                                                     <td align="center" bgcolor="#F7F7F7">${item.room.name}</td>
-                                                    <%--<td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a href="tosetlab?curriculumScheduleId=${item.id}">点击安排实验室  </a>--%>
-                                                       <%--</td>--%>
+
                                                     <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a class="button" href="toupdatecurriculumschedule?curriculumScheduleId=${item.id}">修改  </a>
                                                     </td>
                                                     <td align="center" bgcolor="#F7F7F7" style="cursor:hand" ><a class="button" href="deleteById?curriculumScheduleId=${item.id}">删除  </a>
