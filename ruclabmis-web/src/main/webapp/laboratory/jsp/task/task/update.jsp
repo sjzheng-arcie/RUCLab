@@ -195,7 +195,18 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right" >添加任务成员：</td>
+                                                <td nowrap align="right" >任务类型：</td>
+                                                <td nowrap  align="left" colspan="3">
+                                                    <select name="taskTypeId" id="taskTypeId">
+                                                        <c:forEach items="${taskTypeList}" var="item">
+                                                            <option value="${item.id}" <c:if test="${taskInfo.type==item.id}">selected</c:if>   >${item.typeName}</option>
+                                                        </c:forEach>
+
+                                                    </select>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td nowrap align="right" >任务成员：</td>
                                                 <td nowrap  align="left" colspan="3">
                                                     <input type="button" name="aa" value="添加任务成员" onclick="toAddCharger();" />
                                                 </td>

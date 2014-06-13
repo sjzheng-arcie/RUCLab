@@ -188,7 +188,17 @@
                                 </c:choose>
 
                             </td>
-                            <td><a href="/laboratory/jsp/task/taskscore/teacherscorelist?taskId=${item.task.id}" class="button"> 评分列表</a></td>
+                            <td>
+
+                                <c:choose>
+                                    <c:when test="${item.task.ifcompleted==true}">
+                                        <a href="/laboratory/jsp/task/taskscore/teacherscorelist?taskId=${item.task.id}" class="button"> 评分列表</a>
+                                    </c:when>
+                                    <c:otherwise>
+                                        尚未完成
+                                    </c:otherwise>
+                                </c:choose>
+                               </td>
                             <td><a href="/laboratory/jsp/task/task/toupdate?taskId=${item.task.id}">
                                 <img src="../../../../images/edit_min.gif" width="10"
                                      height="10" border="0"/>

@@ -17,7 +17,7 @@
             document.listForm.submit();
         }
         function back(){
-            document.location.href="/laboratory/jsp/task/task/tasklist?taskId=${taskInfo.id}";
+            document.location.href="/laboratory/jsp/task/task/list?taskId=${taskInfo.id}";
         }
     </script>
 

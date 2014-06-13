@@ -313,6 +313,7 @@ public class TaskController {
 		modelAndView.addObject("teacherInfo",teacher);
 		modelAndView.addObject("taskInfo",task);
 		modelAndView.addObject("taskChargerList",taskChargerList);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return modelAndView;
 	}
 	@RequestMapping(value = "/update", method = ( RequestMethod.POST))
@@ -321,6 +322,7 @@ public class TaskController {
 								@RequestParam(value = "taskId", required = true ) int taskId,
 								@RequestParam(value = "documentName", required = false, defaultValue = "") String documentName,
 								@RequestParam(value = "taskContent", required = false) String taskContent,
+								@RequestParam(value = "taskTypeId", required = false) int taskTypeId,
 								@RequestParam(value = "limitDate", required = false ) Date limitDate,
 								int[] userIdList){
 		String path = "/WEB-INF/upload_task/" + userService.getCurrentUser().getSn();
@@ -340,6 +342,9 @@ public class TaskController {
 		if(documentName!=null){
 			task.setAnnexname(documentName);
 			task.setAnnexpath(fullFilePath);
+		}
+		if(taskTypeId!=0){
+			task.setType(taskTypeId);
 		}
 		taskChargerService.deleteByTaskId(taskId);
 		for(int id:userIdList){

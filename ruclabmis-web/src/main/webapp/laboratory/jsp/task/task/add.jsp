@@ -46,9 +46,7 @@
                 var src = window.event.srcElement;
                 var userId = src.getAttribute("userId");
 
-                alert(userId);
                 var index = $.inArray(userId,$("body").data('userIdlistBody'));
-                alert(index);
                 if(index>=0){
                     $("body").data('userIdlistBody').splice(index,1);
                 }
