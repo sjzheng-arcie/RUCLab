@@ -185,8 +185,6 @@ public class TaskScoreController {
 		Task task = taskService.getTaskById(taskId);
 		User user = userService.getCurrentUser();
 
-//		Taskscore taskscore= new Taskscore();
-//		taskscore=taskScoreService.getTasckScoreById()
 		ModelAndView modelAndView = new ModelAndView("/laboratory/jsp/task/taskscore/score");
 		modelAndView.addObject("taskInfo",task);
 		modelAndView.addObject("userInfo",user);
