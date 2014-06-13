@@ -56,15 +56,26 @@ public class TaskScoreController {
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria =taskCriteria.createCriteria();
 		criteria.andIfworkEqualTo(false);
+		criteria.andIfscoredEqualTo(false);
+		criteria.andIfcompletedEqualTo(true);
 		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
-		List<Teacher> managerList= teacherService.getAllTeacherList();
+		criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
+		criteria.andIdNotIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
+
+
+
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/taskscorelist");
 		modelAndView.addObject("pageInfo",pageInfo);
+		List<Teacher> managerList= teacherService.getAllTeacherList();
 		modelAndView.addObject("managerList",managerList);
 		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return modelAndView;
 	}
+
+
+
+
 	@RequestMapping(value = "/taskscorelist", method = ( RequestMethod.POST))
 	public ModelAndView getScoreList(@RequestParam(value="taskName", required = false,defaultValue = "") String taskName,
 									 @RequestParam(value="typeId", required = true,defaultValue = "0") int typeId,
@@ -75,6 +86,7 @@ public class TaskScoreController {
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria =taskCriteria.createCriteria();
 		criteria.andIfworkEqualTo(false);
+		criteria.andIfcompletedEqualTo(true);
 		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
 		if(taskName!=null){
 		criteria.andTasknameLike("%"+taskName+"%");
@@ -92,6 +104,9 @@ public class TaskScoreController {
 		if(typeId!=0){
 			criteria.andTypeEqualTo(typeId);
 		}
+		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
+		criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
+		criteria.andIdNotIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
 		List<Teacher> managerList= teacherService.getAllTeacherList();
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 
@@ -102,11 +117,76 @@ public class TaskScoreController {
 //		modelAndView.addObject("taskScoreList",taskScoreList);
 		return modelAndView;
 	}
+
+	@RequestMapping(value = "/mytaskscorelist", method = (RequestMethod.GET))
+	public ModelAndView getMyScoreList(@RequestParam(value = "page", required = false, defaultValue = "1") int page){
+
+		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria =taskscoreCriteria.createCriteria();
+		criteria.andMarkeridEqualTo(userService.getCurrentUserId());
+
+		//criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
+		PageInfo<Taskscore> pageInfo =taskScoreService.selectListPage(taskscoreCriteria, page);
+
+
+
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/mytaskscorelist");
+		modelAndView.addObject("pageInfo",pageInfo);
+		List<Teacher> managerList= teacherService.getAllTeacherList();
+		modelAndView.addObject("managerList",managerList);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
+		return modelAndView;
+	}
+	@RequestMapping(value = "/mytaskscorelist", method = (RequestMethod.POST))
+	public ModelAndView getMyScoreListPost(@RequestParam(value = "page", required = false, defaultValue = "1") int page){
+
+		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria =taskscoreCriteria.createCriteria();
+		criteria.andMarkeridEqualTo(userService.getCurrentUserId());
+		PageInfo<Taskscore> pageInfo =taskScoreService.selectListPage(taskscoreCriteria, page);
+
+
+
+		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/mytaskscorelist");
+		modelAndView.addObject("pageInfo",pageInfo);
+		List<Teacher> managerList= teacherService.getAllTeacherList();
+		modelAndView.addObject("managerList",managerList);
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
+		return modelAndView;
+	}
+	//	@RequestMapping(value = "/mytaskscorelist", method = (RequestMethod.GET))
+//	public ModelAndView getMyScoreList(@RequestParam(value = "page", required = false, defaultValue = "1") int page){
+//
+//		TaskCriteria taskCriteria = new TaskCriteria();
+//		TaskCriteria.Criteria criteria =taskCriteria.createCriteria();
+//		criteria.andIfworkEqualTo(false);
+//		criteria.andIfscoredEqualTo(false);
+//		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
+//		//criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
+//		criteria.andIdIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
+//		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
+//
+//
+//
+//		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/taskscore/taskscorelist");
+//		modelAndView.addObject("pageInfo",pageInfo);
+//		List<Teacher> managerList= teacherService.getAllTeacherList();
+//		modelAndView.addObject("managerList",managerList);
+//		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
+//		return modelAndView;
+//	}
+
+
+
+
+
 	@RequestMapping(value = "/toscore", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView toScore(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId){
 		Task task = taskService.getTaskById(taskId);
 		User user = userService.getCurrentUser();
 
+//		Taskscore taskscore= new Taskscore();
+//		taskscore=taskScoreService.getTasckScoreById()
 		ModelAndView modelAndView = new ModelAndView("/laboratory/jsp/task/taskscore/score");
 		modelAndView.addObject("taskInfo",task);
 		modelAndView.addObject("userInfo",user);
@@ -115,37 +195,42 @@ public class TaskScoreController {
 	}
 
 	@RequestMapping(value = "/torescore", method = (RequestMethod.GET))
-	public ModelAndView toRescore(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId){
-		Task task = taskService.getTaskById(taskId);
+	public ModelAndView toRescore(@RequestParam(value="taskScoreId", required = true,defaultValue = "0") int taskScoreId){
+
 		User user = userService.getCurrentUser();
 
-		Taskscore taskScoreInfo= taskScoreService.getListByMarkerAndTask(taskId,user.getId());
+
+		//Taskscore taskScoreInfo= taskScoreService.getListByMarkerAndTask(taskId,user.getId());
+		Taskscore taskscore= new Taskscore();
+		taskscore=taskScoreService.getTasckScoreById(taskScoreId);
+		Task task = taskService.getTaskById(taskscore.getTaskid());
 		ModelAndView modelAndView = new ModelAndView("/laboratory/jsp/task/taskscore/rescore");
+
 		modelAndView.addObject("taskInfo",task);
 		modelAndView.addObject("userInfo",user);
-		modelAndView.addObject("taskScoreInfo",taskScoreInfo);
-		modelAndView.addObject("taskChargerList",taskChargerService.getTaskChargerByTaskId(taskId));
+		modelAndView.addObject("taskScoreInfo",taskscore);
+		modelAndView.addObject("taskChargerList",taskChargerService.getTaskChargerByTaskId(taskscore.getTaskid()));
 		return  modelAndView;
 	}
-	@RequestMapping(value = "/rescore", method = (RequestMethod.POST))
-	public ModelAndView reScore(@RequestParam(value="taskScoreId", required = true,defaultValue = "0") int taskScoreId,
-							  @RequestParam(value="completelyScore", required = true,defaultValue = "0") int completelyScore,
-							  @RequestParam(value="spentScore", required = true,defaultValue = "0") int spentScore,
-							  @RequestParam(value="timelyScore", required = true,defaultValue = "0") int timelyScore,
-							  @RequestParam(value="qualityScore", required = true,defaultValue = "0") int qualityScore,
-							  @RequestParam(value="totalScore", required = true,defaultValue = "0") int totalScore){
-
-		Taskscore taskscore = taskScoreService.getTasckScoreById(taskScoreId);
-		taskscore.setCompletelyscore(completelyScore);
-		taskscore.setOverallscore(totalScore);
-		taskscore.setQualityscore(qualityScore);
-		taskscore.setSpentscore(spentScore);
-		taskscore.setTimelyscore(timelyScore);
-
-		taskScoreService.update(taskscore);
-		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/taskscore/taskscorelist");
-		return  modelAndView;
-	}
+//	@RequestMapping(value = "/rescore", method = (RequestMethod.POST))
+//	public ModelAndView reScore(@RequestParam(value="taskScoreId", required = true,defaultValue = "0") int taskScoreId,
+//							  @RequestParam(value="completelyScore", required = true,defaultValue = "0") int completelyScore,
+//							  @RequestParam(value="spentScore", required = true,defaultValue = "0") int spentScore,
+//							  @RequestParam(value="timelyScore", required = true,defaultValue = "0") int timelyScore,
+//							  @RequestParam(value="qualityScore", required = true,defaultValue = "0") int qualityScore,
+//							  @RequestParam(value="totalScore", required = true,defaultValue = "0") int totalScore){
+//
+//		Taskscore taskscore = taskScoreService.getTasckScoreById(taskScoreId);
+//		taskscore.setCompletelyscore(completelyScore);
+//		taskscore.setOverallscore(totalScore);
+//		taskscore.setQualityscore(qualityScore);
+//		taskscore.setSpentscore(spentScore);
+//		taskscore.setTimelyscore(timelyScore);
+//
+//		taskScoreService.update(taskscore);
+//		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/taskscore/taskscorelist");
+//		return  modelAndView;
+//	}
 	@RequestMapping(value = "/score", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView Score(@RequestParam(value="taskId", required = true,defaultValue = "0") int taskId,
 							  @RequestParam(value="completelyScore", required = true,defaultValue = "0") int completelyScore,

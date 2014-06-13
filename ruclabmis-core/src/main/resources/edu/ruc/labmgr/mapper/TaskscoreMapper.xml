@@ -11,6 +11,7 @@
     <result column="qualityscore" jdbcType="INTEGER" property="qualityscore" />
     <result column="spentscore" jdbcType="INTEGER" property="spentscore" />
       <association column="markerId" javaType="User" property="manager" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
+      <association column="taskId" javaType="Task" property="task" select="edu.ruc.labmgr.mapper.TaskMapper.selectByPrimaryKey" />
   </resultMap>
   <sql id="Criteria_Where_Clause">
     <where>

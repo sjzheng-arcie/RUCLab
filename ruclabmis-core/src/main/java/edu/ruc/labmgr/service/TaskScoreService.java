@@ -10,6 +10,7 @@ import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -52,12 +53,25 @@ public class TaskScoreService {
 		Taskscore taskscore = taskscoreMapper.selectByPrimaryKey(id);
 		return taskscore;
 	}
+
+
 	public List<Taskscore> getListByMarkerId(int id){
 		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
 		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
 		criteria.andMarkeridEqualTo(id);
 		List<Taskscore> taskscoreList= taskscoreMapper.selectByCriteria(taskscoreCriteria);
 		return  taskscoreList;
+	}
+	public List<Integer> getTaskIdListByMarkerId(int id){
+		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();
+		TaskscoreCriteria.Criteria criteria = taskscoreCriteria.createCriteria();
+		criteria.andMarkeridEqualTo(id);
+		List<Taskscore> taskscoreList= taskscoreMapper.selectByCriteria(taskscoreCriteria);
+		List<Integer> taskIdList=new ArrayList<>();
+		for(Taskscore taskscore:taskscoreList){
+			taskIdList.add(taskscore.getTaskid());
+		}
+		return  taskIdList;
 	}
 	public Taskscore getListByMarkerAndTask(int taskId,int markerId){
 		TaskscoreCriteria taskscoreCriteria= new TaskscoreCriteria();

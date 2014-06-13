@@ -91,21 +91,21 @@
                                     <tr height="" bgcolor="#ffffff">
                                         <td nowrap align="right">任务名称:</td>
                                         <td nowrap>
-                                            ${taskInfo.taskname}
+                                            ${taskScoreInfo.task.taskname}
                                         </td>
                                         <td nowrap align="right">任务发起人:</td>
                                         <td nowrap>
-                                            ${taskInfo.manager.name}
+                                            ${taskScoreInfo.manager.name}
                                         </td>
                                     </tr>
                                     <tr bgcolor="#ffffff">
                                         <td nowrap align="right">截止时间:</td>
                                         <td nowrap>
-                                            <fmt:formatDate value="${taskInfo.limitdate}"/>
+                                            <fmt:formatDate value="${taskScoreInfo.task.limitdate}"/>
                                         </td>
                                         <td nowrap align="right">完成时间时间:</td>
                                         <td nowrap>
-                                            <fmt:formatDate value="${taskInfo.finishdate}"/>
+                                            <fmt:formatDate value="${taskScoreInfo.task.finishdate}"/>
                                         </td>
                                     </tr>
                                     <tr bgcolor="#ffffff">
@@ -120,12 +120,12 @@
                                         <%--<fmt:formatDate value="${taskInfo.finishdate}"/>--%>
                                         <%--</td>--%>
                                     </tr>
-                                    <c:if test="${taskInfo.ifscored==true}">
+                                    <c:if test="${taskScoreInfo.task.ifscored==true}">
                                         <tr bgcolor="#ffffff">
                                             <td nowrap align="right">整体评分:</td>
                                             <td nowrap colspan="3">
 
-                                                    ${taskInfo.overallscore}
+                                                    ${taskScoreInfo.task.overallscore}
 
                                             </td>
                                                 <%--<td nowrap align="right">完成时间时间:</td>--%>
@@ -137,19 +137,19 @@
                                     <tr bgcolor="#ffffff">
                                         <td nowrap align="right">完成度:</td>
                                         <td nowrap colspan="3">
-                                            ${taskInfo.completely}%
+                                            ${taskScoreInfo.task.completely}%
                                         </td>
                                     </tr>
                                     <tr bgcolor="#ffffff">
                                         <td nowrap align="right">任务内容:</td>
                                         <td colspan="3">
-                                            ${taskInfo.content}
+                                            ${taskScoreInfo.task.content}
                                         </td>
                                     </tr>
                                     <tr bgcolor="#ffffff">
                                         <td nowrap align="right">备注:</td>
                                         <td colspan="3">
-                                            ${taskInfo.completion}
+                                            ${taskScoreInfo.task.completion}
                                         </td>
                                     </tr>
                                 </table>
@@ -274,9 +274,10 @@
                     <table width="100%" border="0" cellspacing="0" cellpadding="0">
                         <tr>
                             <td align="center">
-                                <c:if test="${taskInfo.ifscored!=true}">
-                                <input type="button" name="Submit" value="保存" class="button" onclick="save();"/>
-                                </c:if>
+                                <%--用来控制是不是能在领导打分之前重新打分--%>
+                                <%--<c:if test="${taskInfo.ifscored!=true}">--%>
+                                <%--<input type="button" name="Submit" value="保存" class="button" onclick="save();"/>--%>
+                                <%--</c:if>--%>
                                 <input type="button" name="return" value="返回" class="button"
                                        onclick="window.history.go(-1);"/>
                             </td>

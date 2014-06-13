@@ -8,6 +8,8 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.session.RowBounds;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -46,6 +48,16 @@ public class TaskChargerService {
 		TaskChargerCriteria taskChargerCriteria= new TaskChargerCriteria();
 		taskChargerCriteria.createCriteria().andTaskidEqualTo(id);
 		return taskChargerMapper.selectByExample(taskChargerCriteria);
+
+	}
+	public List<Integer> getTaskIdListByChagerId(int id){
+		TaskChargerCriteria taskChargerCriteria= new TaskChargerCriteria();
+		taskChargerCriteria.createCriteria().andChargeridEqualTo(id);
+		List<Integer> taskIdList=new ArrayList();
+		for(TaskCharger taskCharger:taskChargerMapper.selectByExample(taskChargerCriteria)){
+			taskIdList.add(taskCharger.getTaskid());
+		}
+		return taskIdList;
 
 	}
 	public PageInfo<TaskCharger> selectListPage(String taskName,int chargerId,int type,int ifCompleted,int ifScored, int pageNum) {

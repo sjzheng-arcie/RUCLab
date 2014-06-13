@@ -134,7 +134,9 @@
             </li>
             <li><a href="jsp/task/work/myworklist" onfocus="toFocus(this)" target="main">我的工作</a>
             </li>
-            <li><a href="jsp/task/taskscore/taskscorelist" onfocus="toFocus(this)" target="main">任务评分</a>
+            <li><a href="jsp/task/taskscore/taskscorelist" onfocus="toFocus(this)" target="main">待评分任务</a>
+            </li>
+            <li><a href="jsp/task/taskscore/mytaskscorelist" onfocus="toFocus(this)" target="main">我的评分</a>
             </li>
 
         </ul>
