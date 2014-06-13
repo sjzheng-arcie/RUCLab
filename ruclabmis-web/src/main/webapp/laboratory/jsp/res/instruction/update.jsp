@@ -167,9 +167,7 @@
                                                 <td colspan="3">
                                                     <textarea name="purpose" style="width:90%;height:30px"
                                                               valid="required"
-                                                              errmsg="实验目的不能为空!">
-                                                        ${instruction.purpose}
-                                                    </textarea>
+                                                              errmsg="实验目的不能为空!">${instruction.purpose}</textarea>
                                                     <span style="color:red;"> *</span>
                                                 </td>
                                             </tr>
@@ -177,9 +175,7 @@
                                                 <td nowrap align="right">实验说明:</td>
                                                 <td colspan="3">
                                                     <textarea name="explanation" style="width:90%;height:60px"  valid="required"
-                                                              errmsg="实验说明不能为空!">
-                                                        ${instruction.explanation}
-                                                    </textarea>
+                                                              errmsg="实验说明不能为空!">${instruction.explanation}</textarea>
                                                     <span style="color:red;"> *</span>
                                                 </td>
                                             </tr>

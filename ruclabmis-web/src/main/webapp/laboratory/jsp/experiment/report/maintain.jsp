@@ -24,7 +24,7 @@
                 content:$("#content").val()
             },function(data){
                 if(data.success){
-                    window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid=${cur.id}&view=report";
+                    window.location.href = "/laboratory/jsp/experiment/experiment/myexperimentlist?page=1&cid=${cur.id}&view=report&curriculumClassId="+"${curriculumClassId}";
                 }else{
                     alert(data.message);
                 }

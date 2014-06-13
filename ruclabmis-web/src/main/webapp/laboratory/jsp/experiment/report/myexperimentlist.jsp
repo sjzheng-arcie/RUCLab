@@ -21,12 +21,13 @@
             var cid = ${cid};
             var sel = $("input[name='idcheckbox']:checked :first").val();
             if(sel){
-               window.location.href = "/laboratory/jsp/experiment/experiment/editExpRep?cid="+cid+"&eid="+sel;
+               window.location.href = "/laboratory/jsp/experiment/experiment/editExpRep?curriculumClassId="+"${curriculumClassId}&cid="+cid+"&eid="+sel;
             }else{
                 alert("请选择要维护的实验!");
             }
         }
         function toPublic(){
+            alert('in');
             var ids = new Array();
             $.map($("input[name='idcheckbox']:checked"),function(data){
                 ids.push($(data).val());
@@ -168,11 +169,11 @@
                                                                 <shiro:hasAnyRoles name="administrator,teacher">
                                                                 <div align="right">
                                                                 <span class="STYLE1" style="white-space:nowrap">
-                                                                    <a href="javascript:;" onclick="toMaintain();" class="txt_bt" ><img
+                                                                    <a href="javascript:void(0);" onclick="toMaintain();" class="txt_bt" ><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">维护</span></a>&nbsp;
-                                                                    <a href="javascript:;" onclick="toPublic();" class="txt_bt" ><img
+                                                                    <a href="javascript:void(0);" onclick="toPublic();" class="txt_bt" ><img
                                                                             src="../../../../images/edit_min.gif"
                                                                             width="10" height="10" border="0"/>
                                                                         <span class="STYLE1">发布</span></a>&nbsp;

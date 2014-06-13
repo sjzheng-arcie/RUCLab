@@ -13,9 +13,11 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
+import java.net.URLEncoder;
 import java.util.Date;
 import java.util.List;
 
@@ -72,27 +74,44 @@ public class TaskController {
 //	}
 
 	@RequestMapping(value="/downloadFile",method=RequestMethod.GET)
-	public void downloadFile(@RequestParam("id") Integer id, HttpServletResponse response) throws Exception{
+	public void downloadFile(@RequestParam("id") Integer id, HttpServletResponse response,HttpServletRequest request) throws Exception{
 		Task task = taskService.getTaskById(id);
 		String path = task.getAnnexpath();
-
-		response.setHeader("content-type", "text/html;charset=UTF-8");
-		response.setContentType("multipart/form-data");
-		String strName = new String(task.getAnnexname().getBytes("GB2312"), "ISO_8859_1");
-
-		String header = "attachment;fileName="+ strName;
-		response.setHeader("Content-Disposition", header);
-
+		String fileName = task.getAnnexname();
 		File file = new File(path);
-		System.out.println(file.getAbsolutePath());
-		InputStream inputStream=new FileInputStream(file);
-		OutputStream os=response.getOutputStream();
-		byte[] b=new byte[2048];
-		int length;
-		while((length=inputStream.read(b))>0){
-			os.write(b,0,length);
+
+		response.setContentType("text/html;charset=utf-8");
+		// 完美解决IE浏览器下载中文乱码的问题,兼容IE,Firefox,Chorme
+		String agent = request.getHeader("User-Agent");
+		boolean isMSIE = (agent != null && agent.indexOf("MSIE") != -1);
+		String fileName1 = null;
+		if (isMSIE) {
+			fileName1 = URLEncoder.encode(fileName, "UTF-8");
+		} else {
+			fileName1 = new String(fileName.getBytes("UTF-8"),
+					"ISO-8859-1");
 		}
-		inputStream.close();
+
+		try {
+			long fileLength = file.length();
+			response.addHeader("Content-Length", "" + fileLength);
+			response.setContentType("application/octet-stream;charset=UTF-8");
+			// response.setContentType("application/x-msdownload;");
+			response.setHeader("Content-disposition", "attachment; filename="
+					+ fileName1);
+			response.setHeader("Content-Length", String.valueOf(fileLength));
+
+			InputStream inputStream = new FileInputStream(file);
+			OutputStream os = response.getOutputStream();
+			byte[] data = new byte[2048];
+			int length;
+			while ((length = inputStream.read(data)) > 0) {
+				os.write(data, 0, length);}
+			inputStream.close();
+			os.close();
+		} catch (IOException e) {
+			throw new ServletException(e.getMessage(), e);
+		}
 
 	}
 	@RequestMapping(value = "/delete", method = (RequestMethod.GET))

@@ -66,7 +66,9 @@ public class ExamItemPoolService {
     }
 
     public void generateDocument(String filePath, List<Integer> listSubjectId) throws IOException {
-        if(listSubjectId.size() <= 0)
+		String CHARSET = "gbk";//编码格式
+
+		if(listSubjectId.size() <= 0)
             return;
 
         File file = new File(filePath);
@@ -74,14 +76,21 @@ public class ExamItemPoolService {
             file.getParentFile().mkdirs();
         }
         String content = "";
+		String header = "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" \n" +
+				"xmlns:o=\"urn:schemas-microsoft-com:office:office\" \n" +
+				"xmlns:w=\"urn:schemas-microsoft-com:office:word\" \n" +
+				"xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" \n" +
+				"xmlns=\"http://www.w3.org/TR/REC-html40\">";
+		content+=header;
         for(int id : listSubjectId)
         {
             ExamItemPool subject = selectByPrimaryKey(id);
             content += subject.getSubstance();
             content += "\r\n";
         }
-
-        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file), "utf-8"));
+		String end = "</html>";
+		content+=end;
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file),CHARSET));
         bw.write(content);
         bw.newLine();
         bw.close();

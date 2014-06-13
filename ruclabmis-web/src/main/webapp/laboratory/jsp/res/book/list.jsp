@@ -125,34 +125,34 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
+                                                    <td width="5%" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
                                                         </div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="20%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">资源名称</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="10%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">所属课程</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="5%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">上传人</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="10%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">上传时间</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="15%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">附件</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="15%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">资源描述</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="5%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">下载权限</span></div>
                                                     </td>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="15%" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">操作</span></div>
                                                     </td>
                                                 </tr>
