@@ -72,8 +72,9 @@
                 idList[i]=tempUserId;
                 nameList[i]=tempUserName;
                 $('#userShowArea').append(formatUserDisplay(tempUserId,tempUserName));
+                $("body").data('userIdlistBody').push(tempUserId);
             }
-            $("body").data('userIdlistBody').push(idList);
+
         }
         function formatUserDisplay(userId,userName) {
 
