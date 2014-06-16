@@ -51,11 +51,15 @@ public class ExaminationController {
 						realdatas.add(ce);
 					}
 				}
-				pageInfo.setData(realdatas);
+				PageInfo<CurriculumExamination>  trimPageInfo = new PageInfo<CurriculumExamination>(realdatas.size(),-1,page);
+				trimPageInfo.setData(realdatas);
+				mav.addObject("pageInfo", trimPageInfo);
 			}
+		}else{
+			mav.addObject("pageInfo", pageInfo);
 		}
 
-        mav.addObject("pageInfo", pageInfo);
+
 
         return mav;
 

@@ -24,10 +24,12 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.net.URLDecoder;
+import java.net.URLEncoder;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -87,7 +89,6 @@ public class ExperimentInfoController {
     public ModelAndView courseListByCourse(int page, Integer curriculumId) {
         if(page <= 0 )
             page = 1;
-
         ModelAndView mv = null;
         mv = new ModelAndView("laboratory/jsp/experiment/courselist");
 
@@ -239,12 +240,12 @@ public class ExperimentInfoController {
     }
 
     @RequestMapping(value = "/downloadTemplate", method = {RequestMethod.POST})
-    public void downloadTemplate(Integer eid, HttpServletResponse resp) {
+    public void downloadTemplate(Integer eid, HttpServletResponse resp,HttpServletRequest request)throws Exception {
         Experiment exp = experimentService.getExperiment(eid);
         if (exp != null) {
             String path = exp.getTemplatePath();
-            String fileName = path.substring(path.indexOf("_") + 1);
-            download(path,fileName,resp);
+            String fileName = path.substring(path.lastIndexOf("\\") + 1);
+            download(path,fileName,resp,request);
         }
     }
 
@@ -258,12 +259,14 @@ public class ExperimentInfoController {
     }
 
     @RequestMapping(value = {"/editExpRep"}, method = RequestMethod.GET)
-    public ModelAndView experimentDetailForReport(Integer cid, Integer eid) {
+    public ModelAndView experimentDetailForReport(Integer cid, Integer eid,@RequestParam(required = false) String curriculumClassId) {
         ModelAndView mv = new ModelAndView("laboratory/jsp/experiment/report/maintain");
         Experiment e = experimentService.getExperiment(eid);
         Curriculum c = curriculumService.getCurriculum(cid);
         mv.addObject("exp", e);
         mv.addObject("cur", c);
+		if(curriculumClassId!=null)
+			mv.addObject("curriculumClassId",curriculumClassId);
         return mv;
     }
 
@@ -343,37 +346,51 @@ public class ExperimentInfoController {
         return r;
     }
     @RequestMapping(value = "/downloadStuExpReport",method = RequestMethod.POST)
-    public void downloadStudentExpReport(int eid,int stuId,HttpServletResponse resp){
+    public void downloadStudentExpReport(int eid,int stuId,HttpServletResponse resp,HttpServletRequest request)throws Exception{
          ExperimentDetail detail = experimentService.getStudentExpDetail(eid,stuId);
          if (detail!=null){
              String path = detail.getReportPath();
              String fileName = path.substring(path.indexOf("_") + 1);
-             download(path,fileName,resp);
+             download(path,fileName,resp,request);
          }
     }
 
-    private void download(String path,String fileName,HttpServletResponse resp){
+    private void download(String path,String fileName,HttpServletResponse response,HttpServletRequest request)throws Exception{
         Path fp = Paths.get(path);
-        if (Files.exists(fp)) {
-            //String fileName = path.substring(path.indexOf("_") + 1);
-            resp.setHeader("content-type", "text/html;charset=UTF-8");
-            resp.setContentType("multipart/form-data");
-            String header = "attachment;fileName=\"" + fileName + "\"";
-            resp.setHeader("Content-Disposition", header);
+		File file = new File(path);
 
-            byte[] buffer = new byte[1024];
-            int read = 0;
-            try (FileInputStream fis = new FileInputStream(new File(path));
-                 InputStream is = new BufferedInputStream(fis);
-                 OutputStream os = resp.getOutputStream();) {
-                while ((read = is.read(buffer)) > 0) {
-                    os.write(buffer, 0, read);
-                }
-                os.flush();
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-        }
+		response.setContentType("text/html;charset=utf-8");
+		// 完美解决IE浏览器下载中文乱码的问题,兼容IE,Firefox,Chorme
+		String agent = request.getHeader("User-Agent");
+		boolean isMSIE = (agent != null && agent.indexOf("MSIE") != -1);
+		String fileName1 = null;
+		if (isMSIE) {
+			fileName1 = URLEncoder.encode(fileName, "UTF-8");
+		} else {
+			fileName1 = new String(fileName.getBytes("UTF-8"),
+					"ISO-8859-1");
+		}
+
+		try {
+			long fileLength = file.length();
+			response.addHeader("Content-Length", "" + fileLength);
+			response.setContentType("application/octet-stream;charset=UTF-8");
+			// response.setContentType("application/x-msdownload;");
+			response.setHeader("Content-disposition", "attachment; filename="
+					+ fileName1);
+			response.setHeader("Content-Length", String.valueOf(fileLength));
+
+			InputStream inputStream = new FileInputStream(file);
+			OutputStream os = response.getOutputStream();
+			byte[] data = new byte[2048];
+			int length;
+			while ((length = inputStream.read(data)) > 0) {
+				os.write(data, 0, length);}
+			inputStream.close();
+			os.close();
+		} catch (IOException e) {
+			throw new ServletException(e.getMessage(), e);
+		}
     }
 
     @RequestMapping(value = "/importCurriculumClass", method = RequestMethod.GET)

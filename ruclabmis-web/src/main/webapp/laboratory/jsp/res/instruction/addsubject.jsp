@@ -127,7 +127,7 @@
                                                     </td>
                                                 </tr>
 
-                                                <c:forEach items="${subjects}" var="item">
+                                                <c:forEach items="${pageInfo.data}" var="item">
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td height="20"><input name="idcheckbox" type="checkbox"
                                                                                value="${item.id}" onclick="checkOne('listForm', 'idcheckbox')"/>
@@ -150,6 +150,7 @@
                                                onclick="addSubjectDocument();"/>
                                     </td>
                                 </tr>
+                                <%@include file="../../common/pagetable.jsp" %>
                             </table>
                         </td>
                     </tr>
