@@ -27,7 +27,6 @@
             }
         }
         function toPublic(){
-            alert('in');
             var ids = new Array();
             $.map($("input[name='idcheckbox']:checked"),function(data){
                 ids.push($(data).val());
