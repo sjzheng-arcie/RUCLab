@@ -37,30 +37,58 @@
                 idList[i]=tempUserId;
                 nameList[i]=tempUserName;
                 $('#userShowArea').append(formatUserDisplay(tempUserId,tempUserName));
+                $("body").data('userIdlistBody').push(tempUserId);
             }
-            $("body").data('userIdlistBody').push(idList);
+          // (idList);
 
         }
 
-            function userDelete() {
+            function userDelete(e) {
                 var src = window.event.srcElement;
+
+//                var target;
+//                if (!e) var e = window.event;
+//                if (e.target) target = e.target;
+//                else if (e.srcElement) target = e.srcElement;
+//                if (target.nodeType == 3)
+//                    target = target.parentNode ;
+//                if (target) {
+//                    $(target).parent().remove();
+//                }
+//                var src = target;
+
+
                 var userId = src.getAttribute("userId");
 
-                alert(userId);
+              //  alert(userId);
 
-                var temp=$("body").data('userIdlistBody');
-                var index = $.inArray(userId,temp);
+              //  $("body").data('userIdlistBody');
+//                var i=0;
+//                var temp=-1;
+//                var ar = $("body").data('userIdlistBody');
+               // alert(ar);
+              //  for(i=0;i<ar.length;i++){
+              //      alert(userId);
+                //    alert(ar[i]);
+                 //   if(userId===ar[i]){
+                     //   alert("hello");
+//                        temp=i;
+//                        break;
+//                    }
+//                }
+                var index = $.inArray(userId,$("body").data('userIdlistBody'));
 
-                alert(index);
+            //    alert(temp);
 
                 if(index>=0){
-                    alert("sssss");
+                  //  alert("sssss");
                     $("body").data('userIdlistBody').splice(index,1);
                 }
 
                 $(src).parent().next().remove();
                 $(src).parent().remove();
 
+               alert($("body").data('userIdlistBody'));
                 window.event.stopPropagation();
 
             }
@@ -68,7 +96,7 @@
 
         function formatUserDisplay(userId,userName) {
 
-            return '<span>' + userName+ ' <a href="javascript:;" class="button" userId=\"' +userId+ '\" onclick="userDelete()">删除</a> </span><br/>';
+            return '<span>' + userName+ ' <a href="javascript:;" class="button" userId=\"' +userId+ '\" onclick="userDelete(event)">删除</a> </span><br/>';
         }
         function uploadFile(){
             var file = document.getElementById("file").value;
@@ -104,7 +132,7 @@
         $(document).ready(function () {
             $('body').data('filelist', new Array());
 
-            $('body').data('userIdlistBody', new Array());
+            $('body').data('userIdlistBody',new Array());
 
             init();
         });
