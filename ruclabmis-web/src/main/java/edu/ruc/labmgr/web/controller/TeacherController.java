@@ -48,6 +48,7 @@ public class TeacherController {
                                  @RequestParam(value = "searchName", required = false, defaultValue = "") String name,
                                  @RequestParam(value = "searchMajor", required = false, defaultValue = "") Integer major,
                                  @RequestParam(value = "searchOrg", required = false, defaultValue = "") Integer org,
+
                                  @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
         ModelAndView result = new ModelAndView();
         result.setViewName("/common/user/list");

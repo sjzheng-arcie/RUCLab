@@ -21,7 +21,7 @@
 
 
         function toAddCharger(){
-            window.open("/laboratory/jsp/task/task/userlist?page=1&projectId=${projectId}", "人员信息",
+            window.open("/laboratory/jsp/task/task/userlist?page=1&userIdList="+$('body').data('userIdlistBody').join(","), "人员信息",
                     "height=450, width=1000, toolbar=no, status=no");
         }
         function setUser(selectedUser) {
@@ -46,8 +46,15 @@
                 var src = window.event.srcElement;
                 var userId = src.getAttribute("userId");
 
-                var index = $.inArray(userId,$("body").data('userIdlistBody'));
+                alert(userId);
+
+                var temp=$("body").data('userIdlistBody');
+                var index = $.inArray(userId,temp);
+
+                alert(index);
+
                 if(index>=0){
+                    alert("sssss");
                     $("body").data('userIdlistBody').splice(index,1);
                 }
 
@@ -57,6 +64,7 @@
                 window.event.stopPropagation();
 
             }
+
 
         function formatUserDisplay(userId,userName) {
 
@@ -97,6 +105,7 @@
             $('body').data('filelist', new Array());
 
             $('body').data('userIdlistBody', new Array());
+
             init();
         });
     </script>

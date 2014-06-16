@@ -69,6 +69,50 @@ public class TeacherService extends UserService {
 
         return getPageTeacherByCriteria(pageNum, teacherCriteriaCriteria);
     }
+	public PageInfo<Teacher> selectTeacherListPage(String sn, String name, Integer major, Integer org,int[] userIdList, int pageNum) {
+		UserCriteria userCriteria = new UserCriteria();
+		UserCriteria.Criteria ecu = userCriteria.createCriteria();
+		if (!StringUtils.isNullOrEmpty(sn))
+			ecu.andSnLike("%" + sn + "%");
+		if (!StringUtils.isNullOrEmpty(name))
+			ecu.andNameLike("%" + name + "%");
+		if (major != null && major > 0)
+			ecu.andMajorIdEqualTo(major);
+
+		List<User> users = mapperUser.selectByCriteria(userCriteria);
+		List<Integer> teacherIds = new ArrayList<Integer>();
+		for (User user : users) {
+
+			teacherIds.add(user.getId());
+		}
+
+		List<Integer> userIdListTemp= new ArrayList<>();
+		for(int i:userIdList){
+			if(!userIdListTemp.contains(i)){
+				userIdListTemp.add(i);
+			}
+
+		}
+		TeacherCriteria teacherCriteriaCriteria = new TeacherCriteria();
+		teacherCriteriaCriteria.setOrderByClause("id");
+		TeacherCriteria.Criteria ect = teacherCriteriaCriteria.createCriteria();
+		if(userIdListTemp!=null&&userIdListTemp.size()>0){
+			ect.andIdNotIn(userIdListTemp);
+		}
+		if(teacherIds.size()>0)
+			ect.andIdIn(teacherIds);
+		else{
+			int totalCount = 0;
+			PageInfo<Teacher> page = new PageInfo<>(0, -1, pageNum);
+			List<Teacher> data = new ArrayList<>();
+			page.setData(data);
+			return  page;
+		}
+		if (org != null && org >= 0)
+			ect.andOrganizationIdEqualTo(org);
+
+		return getPageTeacherByCriteria(pageNum, teacherCriteriaCriteria);
+	}
 
     private PageInfo<Teacher> getPageTeacherByCriteria(int pageNum, TeacherCriteria criteria) {
 			int totalCount = mapperTeacher.countByCriteria(criteria);

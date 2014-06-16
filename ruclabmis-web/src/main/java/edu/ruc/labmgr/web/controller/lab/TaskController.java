@@ -463,14 +463,15 @@ public class TaskController {
 								 @RequestParam(value = "searchName", required = false, defaultValue = "") String name,
 								 @RequestParam(value = "searchMajor", required = false, defaultValue = "") Integer major,
 								 @RequestParam(value = "searchOrg", required = false, defaultValue = "") Integer org,
+								 int[] userIdList,
 								 @RequestParam(value = "page", required = false, defaultValue = "1") int page) {
-
 		ModelAndView result = new ModelAndView();
 		result.setViewName("/laboratory/jsp/task/task/userlist");
 		List<Major> majors = serviceMajor.selectAllMajors();
 		List<Organization> organizations = serviceOrganization.selectAllOrganizations();
 
-		PageInfo<Teacher> pageInfo = serviceTeacher.selectListPage(sn, name, major, org, page);
+		PageInfo<Teacher> pageInfo = serviceTeacher.selectTeacherListPage(sn, name, major, org,userIdList, page);
+
 
 		result.addObject("pageInfo", pageInfo);
 		result.addObject("majors", majors);
