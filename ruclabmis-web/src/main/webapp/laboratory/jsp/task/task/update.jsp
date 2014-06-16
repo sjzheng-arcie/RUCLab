@@ -64,6 +64,7 @@
             userIdNameList=selectedUser.toString().split(',');
             var idList=new Array();
             var nameList=new Array();
+
             var i=0;
             for(i=0;i<userIdNameList.length;i++){
                 var tempUser=userIdNameList[i].toString();
