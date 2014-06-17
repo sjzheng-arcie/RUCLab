@@ -89,7 +89,6 @@
             if(index>=0){
                 $("body").data('userIdlistBody').splice(index,1);
             }
-
             $(src).parent().next().remove();
             $(src).parent().remove();
 

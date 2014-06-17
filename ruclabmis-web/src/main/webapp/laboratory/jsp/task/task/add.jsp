@@ -44,44 +44,14 @@
         }
 
             function userDelete(e) {
+
                 var src = window.event.srcElement;
 
-//                var target;
-//                if (!e) var e = window.event;
-//                if (e.target) target = e.target;
-//                else if (e.srcElement) target = e.srcElement;
-//                if (target.nodeType == 3)
-//                    target = target.parentNode ;
-//                if (target) {
-//                    $(target).parent().remove();
-//                }
-//                var src = target;
-
-
                 var userId = src.getAttribute("userId");
-
-              //  alert(userId);
-
-              //  $("body").data('userIdlistBody');
-//                var i=0;
-//                var temp=-1;
-//                var ar = $("body").data('userIdlistBody');
-               // alert(ar);
-              //  for(i=0;i<ar.length;i++){
-              //      alert(userId);
-                //    alert(ar[i]);
-                 //   if(userId===ar[i]){
-                     //   alert("hello");
-//                        temp=i;
-//                        break;
-//                    }
-//                }
                 var index = $.inArray(userId,$("body").data('userIdlistBody'));
 
-            //    alert(temp);
 
                 if(index>=0){
-                  //  alert("sssss");
                     $("body").data('userIdlistBody').splice(index,1);
                 }
 
