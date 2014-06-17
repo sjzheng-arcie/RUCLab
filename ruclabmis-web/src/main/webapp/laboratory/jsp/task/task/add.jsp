@@ -58,7 +58,7 @@
                 $(src).parent().next().remove();
                 $(src).parent().remove();
 
-               alert($("body").data('userIdlistBody'));
+               //alert($("body").data('userIdlistBody'));
                 window.event.stopPropagation();
 
             }
