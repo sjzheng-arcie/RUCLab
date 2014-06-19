@@ -59,8 +59,12 @@ public class TaskScoreController {
 		criteria.andIfscoredEqualTo(false);
 		criteria.andIfcompletedEqualTo(true);
 		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
-		criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
-		criteria.andIdNotIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
+		List<Integer> makerIdList = taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId());
+		if(makerIdList!=null && makerIdList.size()>0)
+			criteria.andIdNotIn(makerIdList);
+		List<Integer> chargerIdList = taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId());
+		if(chargerIdList!=null && chargerIdList.size()>0)
+			criteria.andIdNotIn(chargerIdList);
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 
 
@@ -105,8 +109,12 @@ public class TaskScoreController {
 			criteria.andTypeEqualTo(typeId);
 		}
 		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
-		criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
-		criteria.andIdNotIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
+		List<Integer> makerIdList = taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId());
+		if(makerIdList!=null && makerIdList.size()>0)
+			criteria.andIdNotIn(makerIdList);
+		List<Integer> chargerIdList = taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId());
+		if(chargerIdList!=null && chargerIdList.size()>0)
+			criteria.andIdNotIn(chargerIdList);
 		List<Teacher> managerList= teacherService.getAllTeacherList();
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 
