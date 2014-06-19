@@ -218,9 +218,7 @@
         from task t,task_charger tc
         where
         tc.taskId=t.id
-        <if test="chargerId != 0">
             and tc.chargerId= #{chargerId}
-        </if>
         <if test="type != 0">
             and t.type=#{type}
         </if>
@@ -242,9 +240,8 @@
         from task t,task_charger tc
         where
         tc.taskId=t.id
-        <if test="chargerId != 0">
-            and tc.chargerId= #{chargerId}
-        </if>
+        and tc.chargerId= ${chargerId}
+
         <if test="type != 0">
             and t.type=#{type}
         </if>
