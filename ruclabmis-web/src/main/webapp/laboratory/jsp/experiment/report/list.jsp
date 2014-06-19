@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 
 <html>
 <head>
@@ -16,11 +18,11 @@
                  try{
                      var id = parseInt($(data).attr("id").substring(6)),
                          score = parseInt($(data).val());
-                     if(!(isNaN(score)) && score>=0 && score<=150){
+                     if(!(isNaN(score)) && score>=0 && score<=100){
                          arr.push(id);
                          arr.push(score);
                      }else{
-                         alert("学生实验分数应为数字，并在0-200之间!");
+                         alert("学生实验分数应为数字，并在0-100之间!");
                      }
                  }catch (e){
                      alert("请为学生的分数填入正确的数字!");
@@ -53,6 +55,15 @@
          }
          function download(eid,stuId){
              downloadFile("/laboratory/jsp/experiment/experiment/downloadStuExpReport",{eid:eid,stuId:stuId});
+         }
+         function splitReportName(realpath){
+             if(realpath==null)
+                return;
+             var flag = realpath.lastIndexOf("\\");
+             if(flag!=-1){
+                realpath.substring(flag+1);
+                return realpath;
+             }
          }
     </script>
 
@@ -141,6 +152,9 @@
                                                         <div align="center"><span class="STYLE10">姓名</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                        <div align="center"><span class="STYLE10">实验报告名称</span></div>
+                                                    </td>
+                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
                                                     <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
@@ -153,6 +167,14 @@
                                                     <tr bgcolor="#ffffff" align="center" class="STYLE19">
                                                         <td>${item.sn}</td>
                                                         <td>${item.name}</td>
+                                                        <td>
+                                                           <c:if test="${item.report_path!=null}">
+                                                                   <c:set var="filename" value="${item.report_path}"/>
+                                                                   <c:set value="${fn:split(filename, '\\\\')}" var="str1" />
+                                                                   ${str1[fn:length(str1)-1]}
+                                                           </c:if>
+
+
                                                         <td><input type="button" class="button" onclick="download(${item.experiment_id},${item.class_student_id})" value="查看"/></td>
                                                         <td><input type="text" id="score_${item.id}" value="${item.score}" style="width: 80px"></td>
                                                     </tr>

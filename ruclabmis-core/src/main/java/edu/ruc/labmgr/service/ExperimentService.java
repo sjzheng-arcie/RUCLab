@@ -106,13 +106,21 @@ public class ExperimentService {
      * @param pageNum
      * @return
      */
-    public PageInfo<Experiment> getCurriculumExperiment(int cid, int pageNum) {
+    public PageInfo<Experiment> getCurriculumExperiment(int cid, int pageNum,Integer stuId) {
         ExperimentCriteria criteria = new ExperimentCriteria();
         criteria.or().andCurriculumIdEqualTo(cid);
         int totalCount = experimentMapper.countByCriteria(criteria);
         PageInfo<Experiment> page = new PageInfo<>(totalCount, -1, pageNum);
         List<Experiment> data = experimentMapper.selectByCriteriaWithRowbounds(criteria,
                 new RowBounds(page.getCurrentResult(), page.getPageSize()));
+		if(stuId!=null &&  data!=null && data.size()>0){
+			for(Experiment experiment : data){
+				List<Map<String ,?>> details = expDetailMapper.selectExperimentDetailByStuId(experiment.getId(),stuId);
+				if(details!=null && details.size()>0){
+					experiment.setExperimentDetail(details.get(0));
+				}
+			}
+		}
         page.setData(data);
         return page;
     }

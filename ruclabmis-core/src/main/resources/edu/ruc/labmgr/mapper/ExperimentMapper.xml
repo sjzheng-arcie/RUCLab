@@ -10,6 +10,9 @@
     <result column="need_report" property="needReport" jdbcType="BIT" />
     <result column="report_deadline" property="reportDeadline" jdbcType="DATE" />
     <result column="template_path" property="templatePath" jdbcType="VARCHAR" />
+
+      <association property="experimentDetail" column="id" javaType="ExperimentDetail"
+                   select="edu.ruc.labmgr.mapper.ExperimentDetailMapper.selectByPrimaryKey"/>
   </resultMap>
   <sql id="Criteria_Where_Clause" >
     <where >

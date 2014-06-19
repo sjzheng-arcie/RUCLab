@@ -76,11 +76,8 @@
                                             <tr>
                                                 <td  width="100" align="right" >预约日期：</td>
                                                 <td>
-                                                    <c:set var="scrapDateVal"
-                                                           value="<%=new Date()%>"></c:set>
-
                                                     <input name="meetDate" id="meetDate"
-                                                           value="<fmt:formatDate value="${scrapDateVal}" pattern="yyyy-MM-dd"/>" onblur=""
+                                                           value="<fmt:formatDate value="${arrangement.meetSTime}" pattern="yyyy-MM-dd"/>" onblur=""
                                                            class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                 </td>
                                             </tr>

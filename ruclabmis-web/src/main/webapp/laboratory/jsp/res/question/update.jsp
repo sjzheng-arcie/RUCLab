@@ -81,7 +81,7 @@
                                                bgcolor="#E3E9EE">
                                             <input name="id" id="id" type="hidden" value="${examItemPool.id}">
                                             <tr>
-                                                <td  align="right" width="30%">考试题名称:</td>
+                                                <td  nowrap align="right" >考试题名称:</td>
                                                 <td >
                                                     <input name="name" id="name" value="${examItemPool.name}" onblur="" class="text"
                                                            style="width:300px"/>
@@ -89,7 +89,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td  align="right">考试题难度:</td>
+                                                <td  nowrap align="right">考试题难度:</td>
                                                 <td  >
                                                     <select id="difficulty" name="difficulty" style="width: 80px">
                                                         <option value="1" <c:if test="${examItemPool.difficulty == 1}">selected</c:if> >难</option>
@@ -100,7 +100,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td  align="right">考试题类型:</td>
+                                                <td  nowrap align="right">考试题类型:</td>
                                                 <td  >
                                                     <select id="itemType" name="itemType" style="width: 80px">
                                                         <option value="1" <c:if test="${examItemPool.itemType == 1}">selected</c:if> >单选</option>
@@ -113,7 +113,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td  align="right">考试题内容:</td>
+                                                <td nowrap align="right">考试题内容:</td>
                                                 <td  align="left" colspan="3">
                                                     <div id="innerId">
                                                         <span>
@@ -132,7 +132,7 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td  align="right">考试题答案:</td>
+                                                <td nowrap align="right">考试题答案:</td>
                                                 <td  align="left" colspan="3">
                                                     <div>
                                                         <span>

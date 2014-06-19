@@ -116,7 +116,16 @@ public class ExperimentInfoController {
         } else if (view.equals("report")) {
             mv = new ModelAndView("laboratory/jsp/experiment/report/myexperimentlist");
         }
-        PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
+		PageInfo<Experiment> pageInfo = null;
+		String role = userService.getCurrentUserRole().getName();
+		if(role.equals("student")){
+			int stuId = userService.getCurrentUserId();
+			pageInfo = experimentService.getCurriculumExperiment(cid, page,stuId);
+
+		}else{
+			pageInfo = experimentService.getCurriculumExperiment(cid, page,null);
+
+		}
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("cid", cid);
         mv.addObject("curriculumId", cid);
@@ -134,7 +143,16 @@ public class ExperimentInfoController {
         } else if (view.equals("report")) {
             mv = new ModelAndView("laboratory/jsp/experiment/report/studentexperimentlist");
         }
-        PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
+		PageInfo<Experiment> pageInfo = null;
+		String role = userService.getCurrentUserRole().getName();
+		if(role.equals("student")){
+			int stuId = userService.getCurrentUserId();
+			pageInfo = experimentService.getCurriculumExperiment(cid, page,stuId);
+
+		}else{
+			pageInfo = experimentService.getCurriculumExperiment(cid, page,null);
+
+		}
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("cid", cid);
         mv.addObject("curriculumId", cid);
@@ -148,8 +166,16 @@ public class ExperimentInfoController {
     public ModelAndView list(@RequestParam int page, Integer cid, @RequestParam(required = false) String curriculumClassId) {
         ModelAndView mv = null;
         mv = new ModelAndView("laboratory/jsp/experiment/experiment/list");
+		PageInfo<Experiment> pageInfo = null;
+		String role = userService.getCurrentUserRole().getName();
+		if(role.equals("student")){
+			int stuId = userService.getCurrentUserId();
+			pageInfo = experimentService.getCurriculumExperiment(cid, page,stuId);
 
-        PageInfo<Experiment> pageInfo = experimentService.getCurriculumExperiment(cid, page);
+		}else{
+			pageInfo = experimentService.getCurriculumExperiment(cid, page,null);
+
+		}
         mv.addObject("pageInfo", pageInfo);
         mv.addObject("cid", cid);
         mv.addObject("curriculumId", cid);

@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+
 <%@ taglib prefix="shiro" uri="http://shiro.apache.org/tags" %>
 <html>
 <head>
@@ -57,7 +59,6 @@
         function insertReportToDb(cid){
             if(cid!=null){
                 var reportpath = document.getElementById("uploadmyreport").value;
-                alert(reportpath);
                 window.location.href="studentUploadExpDetail?eid="+cid+"&path="+reportpath;
             }
         }
@@ -76,8 +77,6 @@
                 dataType:'json',                   //服务器返回的格式,可以是json或xml等
                success:function(data){        //服务器响应成功时的处理函数
                   //  $("#documentName").val($("#file").val());
-                   $("#documentName").val(data.message);
-
 
                    $.post("studentUploadExpDetail",{
                        'eid':cid,
@@ -87,10 +86,10 @@
                      },function (result) {
                       if (result.success) {
                            alert(result.message);
+                          window.location.href="sutdentexperimentlist?cid="+curriculumId+"&page=1&view=report"+"&curriculumClassId="+curriculumClassId;
                        }
                    });
-                    /*window.location.href="studentUploadExpDetail?eid="+cid+"&filename="+data.message+"&curriculumClassId="+curriculumClassId
-                                +"&curriculumId="+curriculumId;*/
+                    /**/
 
                 },
                 error:function(data, status, e){ //服务器响应失败时的处理函数
@@ -186,7 +185,7 @@
                                             <table width="100%" class="table" id="table1" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
-                                                    <td width="40" height="20" bgcolor="d3eaef" class="STYLE10">
+                                                    <td width="20" height="20" bgcolor="d3eaef" class="STYLE10">
                                                         <div align="center">
                                                             <input type="checkbox" name="checkbox" id="checkbox"
                                                                    onclick="checkAll(this,'listForm', 'idcheckbox');"/>
@@ -199,19 +198,21 @@
                                                         <div align="center"><span class="STYLE10">发布状态</span></div>
                                                     </td>
 
-                                                    <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="30" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">是否需要提交报告</span></div>
                                                     </td>
-                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">提交期限</span></div>
                                                     </td>
                                                     <shiro:hasRole name="student">
-
-                                                    <td width="60" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="50" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                            <div align="center"><span class="STYLE10">是否已经提交</span></div>
+                                                     </td>
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告名称</span></div>
                                                     </td>
                                                     </shiro:hasRole>
-                                                    <td width="100" height="20" bgcolor="d3eaef" class="STYLE6">
+                                                    <td width="80" height="20" bgcolor="d3eaef" class="STYLE6">
                                                         <div align="center"><span class="STYLE10">实验报告</span></div>
                                                     </td>
 
@@ -236,8 +237,31 @@
                                                                             pattern="yyyy-MM-dd"></fmt:formatDate></td>
 
                                                         <shiro:hasRole name="student">
-                                                            <td><input id="documentName" name="documentName" readonly="true"
-                                                                       value=""/></td>
+                                                            <c:choose>
+
+                                                            <c:when test="${item.experimentDetail!=null}">
+                                                                <td>已提交</td>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <td>未提交</td>
+                                                            </c:otherwise>
+
+                                                            </c:choose>
+
+                                                                <c:choose>
+                                                                    <c:when test="${item.experimentDetail!=null}">
+                                                                        <c:if test="${item.experimentDetail.report_path!=null}">
+                                                                            <c:set var="filename" value="${item.experimentDetail.report_path}"/>
+                                                                            <c:set value="${fn:split(filename, '\\\\')}" var="str1" />
+                                                                            <td>${str1[fn:length(str1)-1]}</td>
+                                                                        </c:if>
+
+                                                                    </c:when>
+                                                                    <c:otherwise>
+                                                                        <td></td>
+                                                                    </c:otherwise>
+                                                                </c:choose>
+
                                                         </shiro:hasRole>
 
                                          <shiro:hasAnyRoles name="adminstrators,teacher">

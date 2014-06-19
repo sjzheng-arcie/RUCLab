@@ -39,7 +39,7 @@
 </DIV>
 <DIV>
     <DIV>
-        <FORM name="updateForm" onsubmit="return check()" action="post" method="POST">
+        <FORM name="updateForm"  action="post" method="POST">
             <INPUT type="hidden" name="topicId" value="${bbsTopic.id}"/>
             <DIV class="t">
                 <TABLE cellSpacing="0" cellPadding="0" align="center">
@@ -49,7 +49,8 @@
                     <TR class="tr3">
                         <TH width="20%"><B>标题</B></TH>
                         <TH><INPUT class="input" style="PADDING-LEFT: 2px; FONT: 14px Tahoma" tabIndex="1" size="60"
-                                   name="title" value = "${bbsTopic.title}"> </TH>
+                                   name="title" value = "${bbsTopic.title}" valid="required"
+                                   errmsg="标题不能为空!" > </TH>
                     </TR>
                     <TR class="tr3">
                         <TH vAlign=top>
@@ -59,7 +60,8 @@
                             <div id="innerId">
                                                 <span><textarea id="contents" style="WIDTH: 500px; height: 300px"
                                                                 name="contents" rows="20" cols="90"
-                                                                tabIndex="2" >${bbsTopic.contents} </textarea></span>
+                                                                tabIndex="2"  valid="required"
+                                                                errmsg="帖子内容不能为空!" >${bbsTopic.contents} </textarea></span>
                                 <script type="text/javascript"
                                         src="../../js/ueditor/ueditor.config.js"></script>
 

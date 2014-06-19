@@ -1,6 +1,7 @@
 package edu.ruc.labmgr.domain;
 
 import java.util.Date;
+import java.util.Map;
 
 public class Experiment {
     private Integer id;
@@ -19,6 +20,15 @@ public class Experiment {
 
     private String templatePath;
 
+	public Map<String, ?> getExperimentDetail() {
+		return ExperimentDetail;
+	}
+
+	public void setExperimentDetail(Map<String, ?> experimentDetail) {
+		ExperimentDetail = experimentDetail;
+	}
+
+	private Map<String,?> ExperimentDetail;
     public Integer getId() {
         return id;
     }

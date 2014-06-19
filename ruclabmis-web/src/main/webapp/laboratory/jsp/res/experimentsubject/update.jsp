@@ -81,7 +81,7 @@
                                                bgcolor="#E3E9EE">
                                             <input name="id" id="id" type="hidden" value="${experimentSubject.id}">
                                             <tr>
-                                                <td align="right">实验题名称:</td>
+                                                <td nowrap align="right">实验题名称:</td>
                                                 <td nowrap>
                                                     <input name="name" id="name" value="${experimentSubject.name}" onblur=""
                                                            class="text" style="width:154px" maxlength="20"/>
@@ -89,7 +89,7 @@
                                                 </td>
                                             <tr>
                                             <tr>
-                                                <td align="right">实验题内容:</td>
+                                                <td nowrap align="right">实验题内容:</td>
                                                 <td align="left">
                                                     <div id="innerId">
                                                         <span>

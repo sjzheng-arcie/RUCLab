@@ -93,8 +93,8 @@
                                                             </td>
                                                             <td>
                                                                 <div align="right">
-                                                                    <shiro:hasAnyRoles name="administrators,teacher">
-                                                                        <span class="STYLE1" style="white-space:nowrap">
+                                                               <span class="STYLE1" style="white-space:nowrap">
+                                                       <shiro:hasAnyRoles name="administrators,teacher">
                                                                             <a href="add?cid=${cid}&cName=${cName}" class="txt_bt" ><img
                                                                                     src="../../../../images/add_min.gif"
                                                                                     width="10" height="10" border="0"/>
@@ -104,7 +104,11 @@
                                                                                     width="10" height="10" border="0"/>
                                                                                 <span class="STYLE1">删除</span></a>&nbsp;&nbsp;
 
-                                                                    </shiro:hasAnyRoles>
+                                                           </shiro:hasAnyRoles>
+                                                               <a href="javascript:;" onclick="window.history.go(-1);" class="txt_bt"><img
+                                                                       src="../../../../images/del_min.gif"
+                                                                       width="10" height="10" border="0"/>
+                                                                   <span class="STYLE1">返回</span></a>   &nbsp;&nbsp;
                                                                 </span>
                                                                 </div>
                                                             </td>
