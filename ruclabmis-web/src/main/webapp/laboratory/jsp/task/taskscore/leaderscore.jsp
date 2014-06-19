@@ -238,6 +238,7 @@
                                         <td nowrap>
                                             <input name="totalScore" id="totalScore" onblur="" class="text"
                                                    valid="underHundred"
+
                                                    errmsg="整体评分必须是0~100的正整数！"
                                                    style="width:154px" maxlength="20" value="${taskScoreInfo.overallscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;

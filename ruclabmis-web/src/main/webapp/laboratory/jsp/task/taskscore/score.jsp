@@ -254,6 +254,7 @@
                                             <span style="color:red;" id="errMsg_manager_sname"></span>
                                         </td>
                                     </tr>
+
                                 </table>
                             </td>
                         </tr>
