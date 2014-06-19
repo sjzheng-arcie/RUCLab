@@ -75,13 +75,13 @@
                         </select>
                     </span>
 
-                            <span style="white-space:nowrap">&nbsp;&nbsp; 是否已完成:
-                            <select name="ifCompleted">
-                                <option value="3"></option>
-                                <option value="1">已完成</option>
-                                <option value="0">未完成</option>
-                            </select>
-                            </span>
+                            <%--<span style="white-space:nowrap">&nbsp;&nbsp; 是否已完成:--%>
+                            <%--<select name="ifCompleted">--%>
+                                <%--<option value="3"></option>--%>
+                                <%--<option value="1">已完成</option>--%>
+                                <%--<option value="0">未完成</option>--%>
+                            <%--</select>--%>
+                            <%--</span>--%>
                             <span style="white-space:nowrap">&nbsp;&nbsp;  <a href="javascript:void(0)" onclick="toFind('listForm');" class="txt_bt">
                                 <img src="../../../../images/zoom.png" width="15" height="15" border="0"/> 查询
                             </a></span>

@@ -175,6 +175,7 @@ function validator(frm) {
                 case 'isChinese':
                 case 'isUrl':
                 case 'isDate':
+                case 'underHundred':
                 case 'isTime':
                     fv.checkReg(formElements[i], RegExps[curValidType], curErrorMsg);
                     break;
@@ -232,3 +233,4 @@ RegExps.isEnglishChinese = /^[A-Za-z\u0391-\uFFE5]+$/i;
 RegExps.isTableName = /^[a-z]\w*$/i;
 RegExps.isSymbols = /^[\w\u0391-\uFFE5]+$/i;
 RegExps.isNum = /^\d+$/i;
+RegExps.underHundred=/^(0|[0-9][0-9]?|100)$/;

@@ -58,13 +58,14 @@ public class TaskScoreController {
 		criteria.andIfworkEqualTo(false);
 		criteria.andIfscoredEqualTo(false);
 		criteria.andIfcompletedEqualTo(true);
-		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
-		List<Integer> makerIdList = taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId());
-		if(makerIdList!=null && makerIdList.size()>0)
-			criteria.andIdNotIn(makerIdList);
-		List<Integer> chargerIdList = taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId());
-		if(chargerIdList!=null && chargerIdList.size()>0)
-			criteria.andIdNotIn(chargerIdList);
+		//criteria.andManageridNotEqualTo(userService.getCurrentUserId());
+		if(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId())!=null&&taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()).size()>0){
+			criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
+		}
+
+		if(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId())!=null&&taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()).size()>0){
+			criteria.andIdNotIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
+		}
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 
 
@@ -90,31 +91,33 @@ public class TaskScoreController {
 		TaskCriteria taskCriteria = new TaskCriteria();
 		TaskCriteria.Criteria criteria =taskCriteria.createCriteria();
 		criteria.andIfworkEqualTo(false);
+		criteria.andIfscoredEqualTo(false);
 		criteria.andIfcompletedEqualTo(true);
-		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
+		//criteria.andManageridNotEqualTo(userService.getCurrentUserId());
 		if(taskName!=null){
 		criteria.andTasknameLike("%"+taskName+"%");
 		}
-		if(managerId!=0){
-			criteria.andManageridEqualTo(managerId);
-		}
-		if(ifCompleted==1){
-			criteria.andIfcompletedEqualTo(true);
-		}else if(ifCompleted==0){
-			criteria.andIfcompletedEqualTo(false);
-		}else{
-
-		}
+//		if(managerId!=0){
+//			criteria.andManageridEqualTo(managerId);
+//		}
+//		if(ifCompleted==1){
+//			criteria.andIfcompletedEqualTo(true);
+//		}else if(ifCompleted==0){
+ 	//		criteria.andIfcompletedEqualTo(true);
+//		}else{
+//
+//		}
 		if(typeId!=0){
 			criteria.andTypeEqualTo(typeId);
 		}
-		criteria.andManageridNotEqualTo(userService.getCurrentUserId());
-		List<Integer> makerIdList = taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId());
-		if(makerIdList!=null && makerIdList.size()>0)
-			criteria.andIdNotIn(makerIdList);
-		List<Integer> chargerIdList = taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId());
-		if(chargerIdList!=null && chargerIdList.size()>0)
-			criteria.andIdNotIn(chargerIdList);
+	//	criteria.andManageridNotEqualTo(userService.getCurrentUserId());
+		if(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId())!=null&&taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()).size()>0){
+			criteria.andIdNotIn(taskScoreService.getTaskIdListByMarkerId(userService.getCurrentUserId()));
+		}
+
+		if(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId())!=null&&taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()).size()>0){
+			criteria.andIdNotIn(taskChargerService.getTaskIdListByChagerId(userService.getCurrentUserId()));
+		}
 		List<Teacher> managerList= teacherService.getAllTeacherList();
 		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, page);
 

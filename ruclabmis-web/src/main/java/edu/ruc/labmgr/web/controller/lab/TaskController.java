@@ -189,6 +189,7 @@ public class TaskController {
 		PageInfo<TaskCharger> taskChargerPageInfo= taskChargerService.selectListPage("%"+taskName+"%",chargerId,typeId,ifCompleted,ifScored,page);
 		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/task/list");
 		modelAndView.addObject("pageInfo",taskChargerPageInfo);
+		modelAndView.addObject("teacherInfo",serviceTeacher.selectByPrimaryKey(chargerId));
 		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
 		return  modelAndView;
 	}
@@ -311,6 +312,69 @@ public class TaskController {
 	}
 
 
+	@RequestMapping(value = "/toaddones", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView toAddTaskForOnes(int teacherId){
+
+		Teacher teacher=serviceTeacher.selectByPrimaryKey(teacherId);
+		ModelAndView modelAndView = new ModelAndView("/laboratory/jsp/task/task/addforones");
+		modelAndView.addObject("taskTypeList",taskTypeService.getTaskTypeList());
+		modelAndView.addObject("teacherId",teacherId);
+		modelAndView.addObject("teacherInfo",teacher);
+		return modelAndView;
+	}
+
+	@RequestMapping(value = "/addones", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView addTaskForOnes(HttpServletRequest request,
+								@RequestParam(value = "taskName", required = true, defaultValue = "") String taskName,
+								@RequestParam(value = "documentName", required = false, defaultValue = "") String documentName,
+								@RequestParam(value = "taskContent", required = true, defaultValue = "") String taskContent,
+								@RequestParam(value = "limitDate", required = true ) Date limitDate,
+								@RequestParam(value = "typeId", required = true,defaultValue = "0") int typeId ,
+								int teacherId){
+
+		String path = "/WEB-INF/upload/" + userService.getCurrentUser().getSn();
+		String uploadPath = request.getSession().getServletContext().getRealPath(path);
+		String fullFilePath = uploadPath + "\\" + documentName;
+
+
+
+		Task task = new Task();
+		task.setTaskname(taskName);
+		task.setManagerid(userService.getCurrentUserId());
+		task.setContent(taskContent);
+		task.setLimitdate(limitDate);
+		task.setIfcompleted(false);
+		task.setPublishdate(new Date());
+		task.setType(typeId);
+		task.setPublisherid(userService.getCurrentUserId());
+		task.setIfwork(false);
+		task.setCompletely(0);
+		task.setScore(0);
+		task.setAnnexname(documentName);
+		task.setAnnexpath(fullFilePath);
+		task.setSpentscore(0);
+		task.setQualityscore(0);
+		task.setTimelyscore(0);
+		task.setSpentscore(0);
+		task.setCompletelyscore(0);
+		task.setOverallscore(0);
+		task.setIfscored(false);
+		taskService.insert(task);
+
+
+			TaskCharger taskCharger= new TaskCharger();
+			taskCharger.setChargerid(teacherId);
+			taskCharger.setTaskid(task.getId());
+			taskCharger.setScore(0);
+			taskChargerService.insert(taskCharger);
+
+
+
+		ModelAndView modelAndView = new ModelAndView("redirect:/laboratory/jsp/task/task/oneslist?teacherId="+teacherId);
+		return modelAndView;
+	}
+
+
 
 
 	@RequestMapping(value = "/toupdate", method = (RequestMethod.GET))
@@ -404,22 +468,6 @@ public class TaskController {
 		modelAndView.addObject("teacherInfo",teacherInfo);
 		return modelAndView;
 	}
-//	@RequestMapping(value = "/mytasklist", method = (RequestMethod.GET))
-//	public ModelAndView getMyTaskList(){
-//
-//		User user = userService.getCurrentUser();
-//		TaskCriteria taskCriteria = new TaskCriteria();
-//		TaskCriteria.Criteria criteria=taskCriteria.createCriteria();
-//		taskCriteria.setOrderByClause("publishdate desc");
-//		criteria.andManageridEqualTo(user.getId());
-//		criteria.andIfworkEqualTo(false);
-//		Teacher teacherInfo= serviceTeacher.selectByPrimaryKey(user.getId());
-//		PageInfo<Task> pageInfo =taskService.selectListPage(taskCriteria, 1);
-//		ModelAndView modelAndView= new ModelAndView("/laboratory/jsp/task/mytask/mytasklist");
-//		modelAndView.addObject("pageInfo",pageInfo);
-//		modelAndView.addObject("teacherInfo",teacherInfo);
-//		return modelAndView;
-//	}
 	@RequestMapping(value = "/mytask", method = {RequestMethod.GET, RequestMethod.POST})
 	public ModelAndView toMyTask(@RequestParam(value = "taskId", required = false, defaultValue = "") int taskId) {
 
