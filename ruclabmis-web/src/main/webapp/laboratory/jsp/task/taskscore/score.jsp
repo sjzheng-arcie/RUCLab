@@ -14,7 +14,6 @@
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
     <script>
     function save(){
-        alert("jjjjjj");
         if (!validator(document.listForm)) {
             return;
         }
