@@ -195,8 +195,8 @@
                                         <td nowrap align="right">完成度评分:</td>
                                         <td nowrap>
                                             <input name="completelyScore" id="completelyScore" onblur="" class="text"
-                                                   valid="isNum"
-                                                   errmsg="完成度评分必须是正整数！"
+                                                   valid="underHundred"
+                                                   errmsg="完成度评分必须是0~100的正整数！"
                                                    style="width:154px" maxlength="20" value="${taskScoreInfo.completelyscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
@@ -204,8 +204,8 @@
                                         <td nowrap align="right">即时度评分:</td>
                                         <td nowrap>
                                             <input name="timelyScore" id="timelyScore" onblur="" class="text"
-                                                   valid="isNum"
-                                                   errmsg="即时度评分必须是正整数！"
+                                                   valid="underHundred"
+                                                   errmsg="即时度评分必须是0~100的正整数！"
                                                    style="width:154px" maxlength="20" value="${taskScoreInfo.timelyscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                         </td>
@@ -214,8 +214,8 @@
                                         <td nowrap align="right">完成质量评分:</td>
                                         <td nowrap>
                                             <input name="qualityScore" id="qualityScore" onblur="" class="text"
-                                                   valid="isNum"
-                                                   errmsg="质量评分必须是正整数！"
+                                                   valid="underHundred"
+                                                   errmsg="质量评分必须是0~100的正整数！"
                                                    style="width:154px" maxlength="20" value="${taskScoreInfo.qualityscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
@@ -224,8 +224,8 @@
                                         <td nowrap align="right">花费资源评分:</td>
                                         <td nowrap>
                                             <input name="spentScore" id="spentScore" onblur="" class="text"
-                                                   valid="isNum"
-                                                   errmsg="花费资源评分必须是正整数！"
+                                                   valid="underHundred"
+                                                   errmsg="花费资源评分必须是0~100的正整数！"
                                                    style="width:154px" maxlength="20" value="${taskScoreInfo.spentscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span>
@@ -236,8 +236,9 @@
 
                                         <td nowrap align="right">任务整体评分:</td>
                                         <td nowrap>
-                                            <input name="totalScore" id="totalScore" onblur="" class="text" valid="isNum"
-                                                   errmsg="整体评分必须是正整数！"
+                                            <input name="totalScore" id="totalScore" onblur="" class="text"
+                                                   valid="underHundred"
+                                                   errmsg="整体评分必须是0~100的正整数！"
                                                    style="width:154px" maxlength="20" value="${taskScoreInfo.overallscore}" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_total_score"></span>

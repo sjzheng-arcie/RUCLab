@@ -196,8 +196,8 @@
                                         <td nowrap align="right">完成度评分:</td>
                                         <td nowrap>
                                             <input name="completelyScore" id="completelyScore" onblur="" class="text"
-                                                   valid="isNum|underHundred"
-                                                   errmsg="完成度评分必须是正整数!|完成度评分范围1~100!"
+                                                   valid="underHundred"
+                                                   errmsg="完成度评分必须是1~100的正整数!"
                                                    style="width:154px" maxlength="20" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
@@ -205,8 +205,8 @@
                                         <td nowrap align="right">即时度评分:</td>
                                         <td nowrap>
                                             <input name="timelyScore" id="timelyScore" onblur="" class="text"
-                                                   valid="isNum|underHundred"
-                                                   errmsg="即时度评分必须是正整数！|即时度评分范围1~100!"
+                                                   valid="underHundred"
+                                                   errmsg="即时度评分必须是1~100的正整数！"
                                                    style="width:154px" maxlength="20"  />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                         </td>
@@ -215,8 +215,8 @@
                                         <td nowrap align="right">完成质量评分:</td>
                                         <td nowrap>
                                             <input name="qualityScore" id="qualityScore" onblur="" class="text"
-                                                   valid="isNum|underHundred"
-                                                   errmsg="质量评分必须是正整数！|完成质量评分范围1~100！"
+                                                   valid="underHundred"
+                                                   errmsg="质量评分必须是1~100的正整数！"
                                                    style="width:154px" maxlength="20"  />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
 
@@ -225,8 +225,8 @@
                                         <td nowrap align="right">花费资源评分:</td>
                                         <td nowrap>
                                             <input name="spentScore" id="spentScore" onblur="" class="text"
-                                                   valid="isNum|underHundred"
-                                                   errmsg="花费资源评分必须是正整数！!花费资源评分范围1~100"
+                                                   valid="underHundred"
+                                                   errmsg="花费资源评分必须是1~100的正整数！"
                                                    style="width:154px" maxlength="20" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_us_sname"></span>
@@ -238,8 +238,8 @@
                                         <td nowrap align="right">任务整体评分:</td>
                                         <td nowrap>
                                             <input name="totalScore" id="totalScore" onblur="" class="text"
-                                                   valid="isNum|underHundred"
-                                                   errmsg="整体评分必须是正整数！|任务整体评分范围1~100"
+                                                   valid="underHundred"
+                                                   errmsg="整体评分必须是1~100的正整数！"
                                                    style="width:154px" maxlength="20" />
                                             <span style="color:red;">*</span>&nbsp;&nbsp;
                                             <span style="color:red;" id="errMsg_total_score"></span>
