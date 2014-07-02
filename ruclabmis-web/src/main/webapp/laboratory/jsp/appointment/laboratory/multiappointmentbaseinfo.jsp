@@ -72,9 +72,9 @@
     function changeWeekNum(){
 
         var obj=document.getElementById("termYearId");
-        var beginWeek=obj.options[obj.selectedIndex].beginFlag;
-        var endWeek=obj.options[obj.selectedIndex].endFlag;
-        alert(endWeek);
+        var beginWeek=$("#termYearId").find("option:selected").attr("beginFlag");
+        var endWeek=$("#termYearId").find("option:selected").attr("endFlag");
+
         var begin=" 第<select  id ='beginWeek'  name='beginWeek'>";
         var end=" 第<select  id ='endWeek'  name='endWeek'>";
         var item="";
@@ -86,8 +86,9 @@
 
         begin=begin+item;
         end=end+item;
-        document.beginDiv.innerHTML=begin;
-        document.endDiv.innerHTML=end;
+        document.getElementById("beginDiv").innerHTML=begin;
+
+        document.getElementById("endDiv").innerHTML=end;
 
 
     }
@@ -130,7 +131,7 @@
                                                 <td>
                                                     <select id="termYearId" name="termYearId"
                                                             style="width: 140px;height: 22px" valid="required" errmsg="请选择学年学期!"
-                                                            <%--onchange="changeWeekNum();"--%>
+                                                            onchange="changeWeekNum();"
                                                             data-placeholder="选择学年学期...">
                                                         <c:forEach items="${termYearList}" var="termYear">
                                                             <option   value="${termYear.id}" beginFlag="${termYear.startweek}" endFlag="${termYear.endweek}">${termYear.name}(${termYear.year}年)</option>
