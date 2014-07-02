@@ -428,6 +428,18 @@ public class AppointmentController {
         return mav;
     }
 
+	@RequestMapping(value = "/toMultiUpdate", method = RequestMethod.GET)
+	public ModelAndView toMultiUpdate(@RequestParam("id") int id) {
+		Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
+		CurriculumSchedule curriculumSchedule= arrangementScheduleService.getSecheduleInfoByArrangementId(arrangement.getId());
+		arrangement.setBeginWeek(curriculumSchedule.getSectionBegin());
+		arrangement.setEndWeek(curriculumSchedule.getSectionEnd());
+		arrangement.setWeekDay(curriculumSchedule.getWeekdays());
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multidetail");
+		mav.addObject("arrangement", arrangement);
+		return mav;
+	}
+
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) {
         for(int id : items){

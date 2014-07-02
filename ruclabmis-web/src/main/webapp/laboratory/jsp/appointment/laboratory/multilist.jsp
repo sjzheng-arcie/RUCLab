@@ -159,7 +159,7 @@
                                                                                    onclick="checkOne('listForm', 'idcheckbox')"/>
                                                             </td>
                                                         </c:if>
-                                                        <td><a href="toUpdate?id=${item.id}">${item.id}</a></td>
+                                                        <td><a href="toMultiUpdate?id=${item.id}">${item.id}</a></td>
                                                         <td>${item.room.name}</td>
                                                         <td>${item.user.name}</td>
                                                         <td>${item.phoneNum}</td>
