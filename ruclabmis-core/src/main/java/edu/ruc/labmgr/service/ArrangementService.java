@@ -68,7 +68,7 @@ public class ArrangementService {
     public  PageInfo<Arrangement> pageAllCurrArrangMeetings(int pageNum) {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
-        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull().andTypeNotEqualTo("多次实验室预约").andTypeNotEqualTo("多次会议室预约");
         arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
@@ -89,7 +89,7 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
-        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        criteria.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull().andTypeNotEqualTo("多次实验室预约").andTypeNotEqualTo("多次会议室预约");
         arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
@@ -129,7 +129,7 @@ public class ArrangementService {
     public  PageInfo<Arrangement> pageAllHistoryArrangMeetings(int pageNum) {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
-        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull().andTypeNotEqualTo("多次实验室预约").andTypeNotEqualTo("多次会议室预约");
         arrangementCriteria.setOrderByClause("id desc");
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
     }
@@ -152,7 +152,7 @@ public class ArrangementService {
         ArrangementCriteria arrangementCriteria = new ArrangementCriteria();
         ArrangementCriteria.Criteria criteria = arrangementCriteria.createCriteria();
         criteria.andUserIdEqualTo(userId);
-        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull();
+        criteria.andStateNotEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull().andTypeNotEqualTo("多次实验室预约").andTypeNotEqualTo("多次会议室预约");
         arrangementCriteria.setOrderByClause("id desc");
 
         return getPageArrangementByCriteria(pageNum, arrangementCriteria);
