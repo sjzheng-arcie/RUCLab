@@ -470,9 +470,20 @@ public class AppointmentController {
             arrangement.setApprovalId(userService.getCurrentUserId());
             arrangementService.update(arrangement);
 
-            int scheduleId = arrangementScheduleService.getSecheduleIdByArrangementId(id);
-            arrangementScheduleService.delete(id, scheduleId);
-            curriculumScheduleService.deleteById(scheduleId);
+           // int scheduleId = arrangementScheduleService.getSecheduleIdByArrangementId(id);
+
+
+			List<Integer> idList= arrangementScheduleService.getSecheduleIdListByArrangementId(id);
+			if(idList!=null&&idList.size()>0){
+				CurriculumScheduleCriteria curriculumScheduleCriteria= new CurriculumScheduleCriteria();
+				curriculumScheduleCriteria.createCriteria().andIdIn(idList);
+				curriculumScheduleService.deleteByCriteria(curriculumScheduleCriteria);
+			}
+
+			arrangementScheduleService.delete(id);
+
+
+           // curriculumScheduleService.deleteById(scheduleId);
         }
         return "redirect:/laboratory/jsp/appointment/laboratory/list";
     }

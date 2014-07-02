@@ -32,7 +32,12 @@ public class ArrangementScheduleService {
         criteria.andCurriculumsheduleIdEqualTo(scheduleId);
         return mapper.deleteByCriteria(arrangementScheduleCriteria);
     }
-
+	public int delete(int arrangementId){
+		ArrangementScheduleCriteria arrangementScheduleCriteria = new ArrangementScheduleCriteria();
+		ArrangementScheduleCriteria.Criteria criteria = arrangementScheduleCriteria.createCriteria();
+		criteria.andArrangementIdEqualTo(arrangementId);
+		return mapper.deleteByCriteria(arrangementScheduleCriteria);
+	}
     public Integer getSecheduleIdByArrangementId(Integer arrangementId){
         ArrangementScheduleCriteria arrangementScheduleCriteria = new ArrangementScheduleCriteria();
         ArrangementScheduleCriteria.Criteria criteria = arrangementScheduleCriteria.createCriteria();
