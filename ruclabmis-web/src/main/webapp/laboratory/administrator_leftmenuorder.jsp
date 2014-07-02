@@ -49,6 +49,9 @@
                             <li><a href="jsp/appointment/laboratory/list?formType=history" onfocus="toFocus(this)"
                                    target="main">预约结果</a></li>
                             </li>
+                            <li><a href="jsp/appointment/laboratory/multilist?formType=history" onfocus="toFocus(this)"
+                                   target="main">多次预约结果</a></li>
+                            </li>
                         </ul>
                     </div>
 
