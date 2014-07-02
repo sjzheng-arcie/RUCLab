@@ -12,6 +12,7 @@
         <result column="room_id" property="roomId" jdbcType="INTEGER" />
         <result column="meet_stime" property="meetSTime" jdbcType="TIMESTAMP"/>
         <result column="meet_etime" property="meetETime" jdbcType="TIMESTAMP"/>
+        <result column="phone_num" property="phoneNum" jdbcType="VARCHAR" />
         <association column="room_id" javaType="Room" property="room" select="edu.ruc.labmgr.mapper.RoomMapper.selectByPrimaryKey" />
         <association column="user_id" javaType="User" property="user" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
         <association column="approval_id" javaType="User" property="approval" select="edu.ruc.labmgr.mapper.UserMapper.selectByPrimaryKey" />
@@ -75,7 +76,7 @@
         </where>
     </sql>
     <sql id="Base_Column_List" >
-    id, state, approval_id, user_id, description, approval_opinion, type, meet_stime, meet_etime, room_id
+    id, state, approval_id, user_id, description, approval_opinion, type, meet_stime, meet_etime, room_id,phone_num
   </sql>
 
     <select id="selectByCriteria" resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" >
@@ -113,11 +114,11 @@
             SELECT LAST_INSERT_ID()
         </selectKey>
         insert into arrangement (state, approval_id, user_id,
-        description, approval_opinion, type, meet_stime, meet_etime, room_id
+        description, approval_opinion, type, meet_stime, meet_etime, room_id,phone_num
         )
         values (#{state,jdbcType=TINYINT}, #{approvalId,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER},
         #{description,jdbcType=VARCHAR}, #{approvalOpinion,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR},
-        #{meetSTime,jdbcType=TIMESTAMP},#{meetETime,jdbcType=TIMESTAMP},#{roomId,jdbcType=INTEGER}
+        #{meetSTime,jdbcType=TIMESTAMP},#{meetETime,jdbcType=TIMESTAMP},#{roomId,jdbcType=INTEGER},#{phoneNum,jdbcType=VARCHAR}
         )
     </insert>
     <insert id="insertSelective" parameterType="edu.ruc.labmgr.domain.Arrangement" >
@@ -153,6 +154,9 @@
             <if test="roomId != null" >
                 room_id,
             </if>
+            <if test="phoneNum != null" >
+                phone_num,
+            </if>
         </trim>
         <trim prefix="values (" suffix=")" suffixOverrides="," >
             <if test="state != null" >
@@ -181,6 +185,9 @@
             </if>
             <if test="roomId != null" >
                 #{roomId,jdbcType=INTEGER},
+            </if>
+            <if test="phoneNum != null" >
+                #{phoneNum,jdbcType=VARCHAR},
             </if>
         </trim>
     </insert>
@@ -223,6 +230,9 @@
             <if test="record.roomId != null" >
                 room_id = #{record.roomId,jdbcType=INTEGER},
             </if>
+            <if test="record.phoneNum != null" >
+                phone_num = #{record.phoneNum,jdbcType=VARCHAR},
+            </if>
         </set>
         <if test="_parameter != null" >
             <include refid="Update_By_Criteria_Where_Clause" />
@@ -239,7 +249,8 @@
         type = #{record.type,jdbcType=VARCHAR},
         meet_stime = #{record.meetSTime,jdbcType=TIMESTAMP},
         meet_etime = #{record.meetETime,jdbcType=TIMESTAMP},
-        room_id = #{record.roomId,jdbcType=INTEGER}
+        room_id = #{record.roomId,jdbcType=INTEGER},
+        phone_num = #{record.phoneNum,jdbcType=VARCHAR},
         <if test="_parameter != null" >
             <include refid="Update_By_Criteria_Where_Clause" />
         </if>
@@ -274,6 +285,9 @@
             <if test="roomId != null" >
                 room_id = #{roomId,jdbcType=INTEGER},
             </if>
+            <if test="phoneNum != null" >
+                phone_num = #{phoneNum,jdbcType=VARCHAR},
+            </if>
         </set>
         where id = #{id,jdbcType=INTEGER}
     </update>
@@ -287,7 +301,8 @@
        type = #{type,jdbcType=VARCHAR},
        meet_stime = #{meetSTime,jdbcType=TIMESTAMP},
         meet_etime = #{meetETime,jdbcType=TIMESTAMP},
-      room_id = #{roomId,jdbcType=INTEGER}
+      room_id = #{roomId,jdbcType=INTEGER},
+      phone_num= #{phoneNum,jdbcType=VARCHAR}
     where id = #{id,jdbcType=INTEGER}
   </update>
     <select resultMap="BaseResultMap" parameterType="edu.ruc.labmgr.domain.ArrangementCriteria" id="selectByCriteriaWithRowbounds" >

@@ -347,4 +347,16 @@
         group by class_id,teacherId,curriculum_id,term_yearId,weekdays,room_Id,section_begin,section_end
         order by weekdays
     </select>
+
+    <select id="getCurriculumList" parameterType="edu.ruc.labmgr.domain.CurriculumScheduleCriteria" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List" />
+        from curriculum_schedule
+        <if test="_parameter != null">
+            <include refid="Criteria_Where_Clause" />
+        </if>
+        group by teacherId,room_Id,section_begin,section_end,meet_stime,meet_etime
+        order by weekdays
+    </select>
+
 </mapper>

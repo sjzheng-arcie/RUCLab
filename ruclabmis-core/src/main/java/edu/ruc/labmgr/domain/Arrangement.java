@@ -33,6 +33,54 @@ public class Arrangement {
 
     private User approval;
 
+	public String getPhoneNum() {
+		return phoneNum;
+	}
+
+	public void setPhoneNum(String phoneNum) {
+		this.phoneNum = phoneNum;
+	}
+
+	private String phoneNum;
+
+
+	//下面的额三项用来存储多次预订的部分信息
+
+	public byte getWeekDay() {
+		return weekDay;
+	}
+
+	public void setWeekDay(byte weekDay) {
+		this.weekDay = weekDay;
+	}
+
+	private byte weekDay;
+
+	private int beginWeek;
+
+	private int endWeek;
+
+
+
+	public int getBeginWeek() {
+		return beginWeek;
+	}
+
+	public void setBeginWeek(int beginWeek) {
+		this.beginWeek = beginWeek;
+	}
+
+	public int getEndWeek() {
+		return endWeek;
+	}
+
+	public void setEndWeek(int endWeek) {
+		this.endWeek = endWeek;
+	}
+
+
+
+
     public Integer getId() {
         return id;
     }

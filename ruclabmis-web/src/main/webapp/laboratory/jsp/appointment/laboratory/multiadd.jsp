@@ -15,21 +15,25 @@
 
 <script>
     function save() {
+
         if (!validator(document.mainForm)) {
             return;
         }
 
-        $.post("/laboratory/jsp/appointment/laboratory/add", {
+        $.post("/laboratory/jsp/appointment/laboratory/multiadd", {
             startTime :"<fmt:formatDate value="${startTime}" pattern="yyyy-MM-dd HH:mm:ss"/>",
             endTime :"<fmt:formatDate value="${endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>",
             description :$("#description").val(),
-            phoneNum :$("#phoneNum").val(),
             roomId :$("#roomId").val(),
-            type:$("#type").val()
+            phoneNum :$("#phoneNum").val(),
+            beginWeek :${beginWeek},
+            endWeek :${endWeek},
+            weekDay :${weekDay},
+            type:"${appointmentType}"
         }, function (data) {
             alert(data.message);
             if (data.success) {
-                parent.location.href = "/laboratory/jsp/appointment/laboratory/list";
+                parent.location.href = "/laboratory/jsp/appointment/laboratory/multilist";
             }
         });
     }
@@ -113,16 +117,7 @@
                                                     <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
-                                            <tr>
-                                                <td nowrap align="right">申请时间:</td>
-                                                <td nowrap>
-                                                    <input name="appliceTime" id="appliceTime" onblur=""
-                                                           class="text" readonly style="width:154px;color:#aaaaaa"
-                                                           value="<fmt:formatDate value="${now}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-                                                            />
-                                                    <span style="color:red;">*</span>
-                                                </td>
-                                            </tr>
+
                                             <tr>
                                                 <td nowrap align="right">申请人:</td>
                                                 <td nowrap>
@@ -132,24 +127,42 @@
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td nowrap align="right">预约时间段:</td>
+                                                <td nowrap align="right">周次:</td>
                                                 <td nowrap>
-                                                    <input name="scheduleSection" id="scheduleSection" onblur=""
-                                                           class="text" readonly style="width:354px;color:#aaaaaa"
-                                                           value="<fmt:formatDate value="${startTime}" pattern="yyyy-MM-dd HH:mm:ss"/> - <fmt:formatDate value="${endTime}" pattern="yyyy-MM-dd HH:mm:ss"/>"
-                                                            />
+                                                    <input name="week" id="week" value="${beginWeek}-${endWeek}" onblur=""
+                                                           class="text" readonly style="width:154px;color:#aaaaaa"/>
+                                                    <span style="color:red;">*</span>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td nowrap align="right">星期:</td>
+                                                <td nowrap>
+                                                    <input name="weekDay" id="weekDay"
+                                                           <c:if test="${weekDay==1}">value="星期一"</c:if>
+                                                           <c:if test="${weekDay==2}">value="星期二"</c:if>
+                                                           <c:if test="${weekDay==3}">value="星期三"</c:if>
+                                                           <c:if test="${weekDay==4}">value="星期四"</c:if>
+                                                           <c:if test="${weekDay==5}">value="星期五"</c:if>
+                                                           <c:if test="${weekDay==6}">value="星期六"</c:if>
+                                                           <c:if test="${weekDay==7}">value="星期天"</c:if>
+
+                                                           onblur=""
+                                                           class="text" readonly style="width:154px;color:#aaaaaa"/>
                                                     <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <td width="100"  align="right" >预约类型：</td>
-                                                <td >
-                                                    <select id="type" name="type" style="width: 150px;height: 22px">
-                                                        <option value="实验预约">实验预约</option>
-                                                        <option value="会议预约">会议预约</option>
-                                                    </select>
+                                                <td nowrap align="right">预约时间段:</td>
+                                                <td nowrap>
+                                                    <input name="scheduleSection" id="scheduleSection" onblur=""
+                                                           class="text" readonly style="width:354px;color:#aaaaaa"
+                                                           value="<fmt:formatDate value="${startTime}" pattern="HH:mm:ss"/> - <fmt:formatDate value="${endTime}" pattern="HH:mm:ss"/>"
+                                                            />
+                                                    <span style="color:red;">*</span>
                                                 </td>
                                             </tr>
+
                                             <tr>
                                                 <td nowrap align="right">联系电话:</td>
                                                 <td nowrap>
@@ -161,8 +174,8 @@
                                             <tr>
                                                 <td align="right"  align="right">申请内容描述：</td>
                                                 <td  colspan="4">
-                                                    <textarea name="description" id="description" valid="required" errmsg="请输入申请内容！"
-                                                             cols="60" rows="10"
+                                                    <textarea name="description" id="description"
+                                                             cols="60" rows="10" valid="required" errmsg="请填写申请信息"
                                                               style="width: 90%;height: 350"></textarea> <span style="color:red;">*</span>
                                                 </td>
                                             </tr>

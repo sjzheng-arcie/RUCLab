@@ -48,7 +48,8 @@ public class AppointmentController {
     UserService userService;
     @Autowired
     ClassifService classifService;
-
+	@Autowired
+	TermYearService termYearService;
     @RequestMapping(value = "/appointmentbaseinfo")
     public ModelAndView appointmentBaseinfo() {
         Calendar calendar = Calendar.getInstance();
@@ -71,6 +72,28 @@ public class AppointmentController {
         mav.addObject("years", years);
         return mav;
     }
+	@RequestMapping(value = "/multiappointmentbaseinfo")
+	public ModelAndView multiAppointmentBaseinfo() {
+		Calendar calendar = Calendar.getInstance();
+		calendar.setTime(new Date());
+
+		Integer currYear =   calendar.get(Calendar.YEAR);
+		Integer currWeek =   calendar.get(Calendar.WEEK_OF_YEAR);
+		Integer currDay =   calendar.get(Calendar.DAY_OF_WEEK);
+		if(currDay==1)
+			currDay=7;
+		else if(currDay>1 && currDay<=7)
+			currDay=currDay-1;
+
+		List<TermYear> termYearList = yearService.getAllTermYearList();
+
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multiappointmentbaseinfo");
+		mav.addObject("currYear", currYear);
+		mav.addObject("currWeek", currWeek);
+		mav.addObject("currDay", currDay);
+		mav.addObject("termYearList", termYearList);
+		return mav;
+	}
 
     @RequestMapping(value = "/roomstatus", method = RequestMethod.GET)
     ModelAndView roomStatus(@RequestParam(required = false,defaultValue = "") Date meetDate,
@@ -114,6 +137,69 @@ public class AppointmentController {
         return mav;
     }
 
+
+	@RequestMapping(value = "/multiroomstatus", method = RequestMethod.GET)
+	ModelAndView multiRoomStatus(
+								 @RequestParam(required = false,defaultValue = "") int termYearId,
+								 @RequestParam(required = false,defaultValue = "") byte weekDay,
+								 @RequestParam(required = false,defaultValue = "") int beginWeek,
+								 @RequestParam(required = false,defaultValue = "") int endWeek,
+								 @RequestParam(required = false,defaultValue = "") String appointmentType,
+							@RequestParam(required = false,defaultValue = "") String stime,
+							@RequestParam(required = false,defaultValue = "") String etime) {
+
+			Date meetDate =termYearService.getDateByWeekTermId(termYearId,beginWeek,weekDay);
+		if(StringUtils.isNullOrEmpty(stime))
+			stime = "07:00";
+		if(StringUtils.isNullOrEmpty(etime))
+			etime = "07:30";
+
+		Calendar calStart = Calendar.getInstance();
+		calStart.setTime(meetDate);
+		int hour, minute;
+		hour = Integer.parseInt(stime.split(":")[0]);
+		minute = Integer.parseInt(stime.split(":")[1]);
+		calStart.set(Calendar.HOUR, hour);
+		calStart.set(Calendar.MINUTE, minute);
+
+		Calendar calEnd = Calendar.getInstance();
+		calEnd.setTime(meetDate);
+		hour =  Integer.parseInt(etime.split(":")[0]);
+		minute = Integer.parseInt(etime.split(":")[1]);
+		calEnd.set(Calendar.HOUR, hour);
+		calEnd.set(Calendar.MINUTE, minute);
+
+
+		List<CurriculumSchedule> schedules = curriculumScheduleService.selectSchedulesByTimeMulti(calStart.getTime(), calEnd.getTime(),
+				termYearId,beginWeek,endWeek,weekDay,appointmentType);
+
+		List<Integer> occupiedRoomIds = curriculumScheduleService.selectMultiOccupiedRoomIds(calStart.getTime(), calEnd.getTime(),
+				termYearId,beginWeek,endWeek,weekDay,appointmentType);
+
+		RoomCriteria roomCriteria= new RoomCriteria();
+
+		if(appointmentType.equals("multiLaboratory")){
+			roomCriteria.createCriteria().andTypeEqualTo(true);
+		}else if(appointmentType.equals("multiMeeting")){
+			roomCriteria.createCriteria().andTypeEqualTo(false);
+		}
+		List<Room> rooms = roomService.getAllRoomListByCriteria(roomCriteria);
+
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multiroomstatus");
+		mav.addObject("rooms", rooms);
+		mav.addObject("occupiedRoomIds", occupiedRoomIds);
+		mav.addObject("schedules", schedules);
+		mav.addObject("beginWeek",beginWeek);
+		mav.addObject("endWeek",endWeek);
+		mav.addObject("weekDay",weekDay);
+		mav.addObject("termYearId",termYearId);
+		mav.addObject("startTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calStart.getTime()));
+		mav.addObject("endTime", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calEnd.getTime()));
+		mav.addObject("appointmentType",appointmentType);
+		mav.addObject("weekDay",weekDay);
+		return mav;
+	}
+
     @RequestMapping(value = "/toAdd", method = RequestMethod.GET)
     ModelAndView toAdd(@RequestParam(required = false,defaultValue = "") Date startTime,
                        @RequestParam(required = false,defaultValue = "") Date endTime,
@@ -128,6 +214,28 @@ public class AppointmentController {
 
         return mav;
     }
+	@RequestMapping(value = "/toMultiAdd", method = RequestMethod.GET)
+	ModelAndView toMultiAdd(@RequestParam(required = false,defaultValue = "") Date startTime,
+					   @RequestParam(required = false,defaultValue = "") Date endTime,
+					   @RequestParam(required = false,defaultValue = "") byte weekDay,
+					   @RequestParam(required = false,defaultValue = "") int beginWeek,
+					   @RequestParam(required = false,defaultValue = "") int endWeek,
+					   @RequestParam(required = false,defaultValue = "") String appointmentType,
+					   @RequestParam(required = true) Integer roomId) {
+
+		Room room = roomService.getRoomById(roomId);
+
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multiadd");
+		mav.addObject("room", room);
+		mav.addObject("startTime", startTime );
+		mav.addObject("endTime",  endTime );
+		mav.addObject("weekDay", weekDay);
+		mav.addObject("beginWeek", beginWeek );
+		mav.addObject("endWeek",  endWeek );
+		mav.addObject("appointmentType",appointmentType);
+
+		return mav;
+	}
 
     @RequestMapping(value = "/add", method = RequestMethod.POST, produces = "application/json")
     public
@@ -135,6 +243,7 @@ public class AppointmentController {
     Result add(Arrangement arrangement,
                @RequestParam(required = true) String startTime,
                @RequestParam(required = true) String endTime,
+			   @RequestParam(required = true) String phoneNum,
                @RequestParam(required = true) Integer roomId,
                @RequestParam(required = true) String type) {
         Result result = null;
@@ -145,6 +254,7 @@ public class AppointmentController {
             arrangement.setMeetSTime(sdf.parse(startTime));
             arrangement.setMeetETime(sdf.parse(endTime));
             arrangement.setType(type);
+			arrangement.setPhoneNum(phoneNum);
             arrangementService.insert(arrangement);
 
             CurriculumSchedule schedule = new CurriculumSchedule();
@@ -165,6 +275,62 @@ public class AppointmentController {
         }
         return result;
     }
+	//添加多次预订的记录
+	@RequestMapping(value = "/multiadd", method = RequestMethod.POST, produces = "application/json")
+	public
+	@ResponseBody
+	Result multiAdd(Arrangement arrangement,
+			   @RequestParam(required = true) String startTime,
+			   @RequestParam(required = true) String endTime,
+			   @RequestParam(required = true) int beginWeek,
+			   @RequestParam(required = true) int endWeek,
+			   @RequestParam(required = true) byte weekDay,
+			   @RequestParam(required = false) String phoneNum,
+			   @RequestParam(required = true) Integer roomId,
+			   @RequestParam(required = true) String type) {
+		Result result = null;
+
+		try {
+			arrangement.setUserId(userService.getCurrentUserId());
+			arrangement.setState((byte) Types.ApplyState.WAITING.getValue());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			arrangement.setMeetSTime(sdf.parse(startTime));
+			arrangement.setMeetETime(sdf.parse(endTime));
+			if(type.equals("multiLaboratory")){
+				arrangement.setType("多次实验室预约");
+			}else{
+				arrangement.setType("多次会议室预约");
+			}
+
+			arrangement.setPhoneNum(phoneNum);
+			arrangementService.insert(arrangement);
+
+			for(int i=beginWeek;i<=endWeek;i++){
+
+				CurriculumSchedule schedule = new CurriculumSchedule();
+				schedule.setTeacherid(userService.getCurrentUserId());
+				schedule.setRoomId(roomId);
+				schedule.setMeetStime(sdf.parse(startTime));
+				schedule.setMeetEtime(sdf.parse(endTime));
+				schedule.setSectionBegin(beginWeek);
+				schedule.setSectionEnd(endWeek);
+				schedule.setWeeknum((byte) i);
+				schedule.setWeekdays(weekDay);
+				curriculumScheduleService.add(schedule);
+
+				ArrangementSchedule arrangementSchedule = new ArrangementSchedule();
+				arrangementSchedule.setArrangementId(arrangement.getId());
+				arrangementSchedule.setCurriculumsheduleId(schedule.getId());
+				arrangementScheduleService.insert(arrangementSchedule);
+
+			}
+
+			result = new Result(true, "预约成功!");
+		} catch (Exception e) {
+			result = new Result(false, "预约失败!\r\n" + e.toString());
+		}
+		return result;
+	}
 
     @RequestMapping(value = "/list", method = {RequestMethod.GET, RequestMethod.POST})
     public ModelAndView pageList( @RequestParam(value = "page", required = false, defaultValue = "1") int page,
@@ -209,6 +375,49 @@ public class AppointmentController {
         mav.addObject("formType", formType);
         return mav;
     }
+	@RequestMapping(value = "/multilist", method = {RequestMethod.GET, RequestMethod.POST})
+	public ModelAndView multiPageList( @RequestParam(value = "page", required = false, defaultValue = "1") int page,
+								  @RequestParam(value = "formType", required = false, defaultValue = "") String formType) {
+		Subject subject = SecurityUtils.getSubject();
+		PageInfo<Arrangement> pageInfo = null;
+		if (subject.hasRole(Types.Role.ADMIN.getName()) || subject.hasRole(Types.Role.LAB_ADMIN.getName()) ) {
+			if(formType.equalsIgnoreCase("history")){
+				//管理员历史
+				pageInfo = arrangementService.multiAllHistoryArrangMeetings(page);
+			}
+			else{
+				//管理员查看所有
+				pageInfo = arrangementService.multiAllCurrArrangMeetings(page);
+			}
+		}
+		else{
+			if(formType.equalsIgnoreCase("history")){
+				//用户历史
+				pageInfo = arrangementService.multiHistoryArrangMeetingsByUser(page, userService.getCurrentUserId());
+			}
+			else{
+				//用户申请中
+				pageInfo = arrangementService.multiCurrArrangMeetingsByUser(page, userService.getCurrentUserId());
+			}
+		}
+
+		for(Arrangement arrangement : pageInfo.getData()){
+//            Calendar calendar = Calendar.getInstance();
+//            TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
+//            calendar.setWeekDate(termYear.getYear(), arrangement.getWeek(), arrangement.getWday());
+//            Date scheduleDate = calendar.getTime();
+//
+//            arrangement.setScheduleDate(scheduleDate);
+
+			Classif stateClassif = classifService.getClassifItem(arrangement.getState());
+			arrangement.setStateClassif(stateClassif);
+
+		}
+		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multilist");
+		mav.addObject("pageInfo", pageInfo);
+		mav.addObject("formType", formType);
+		return mav;
+	}
 
     @RequestMapping(value = "/toUpdate", method = RequestMethod.GET)
     public ModelAndView toUpdate(@RequestParam("id") int id) {
