@@ -178,6 +178,7 @@ public class ArrangementService {
         return page;
     }
 
+
 	private PageInfo<Arrangement> getMulttiPageArrangementByCriteria(int pageNum, ArrangementCriteria criteria) {
 		int totalCount = arrangementMapper.countByCriteria(criteria);
 		PageInfo<Arrangement> page = new PageInfo<>(totalCount, -1, pageNum);

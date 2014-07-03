@@ -401,6 +401,7 @@ public class AppointmentController {
 			}
 		}
 
+
 		for(Arrangement arrangement : pageInfo.getData()){
 //            Calendar calendar = Calendar.getInstance();
 //            TermYear termYear = yearService.getTermYearById(arrangement.getTermYear());
