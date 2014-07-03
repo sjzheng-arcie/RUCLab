@@ -245,6 +245,8 @@ public class CurriculumClassService {
     }
 
     public Integer getStudentIdBySn(String sn){
+		if(sn==null)
+			return null;
         return  classStudentMapper.selectIdBySn(sn);
     }
     /**

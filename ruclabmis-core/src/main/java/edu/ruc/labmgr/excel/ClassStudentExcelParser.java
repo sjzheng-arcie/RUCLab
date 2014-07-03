@@ -24,7 +24,8 @@ public class ClassStudentExcelParser extends POIEntityParser<ClassStudent> {
         {
             CurriculumClassService curriculumClassService = SysUtil.getBean("curriculumClassService", CurriculumClassService.class);
             Integer id =  curriculumClassService.getStudentIdBySn(cellDoubleToString(sn_temp));
-            result.setStudendId(id);
+            if(id!=null)
+				result.setStudendId(id);
 
             return result;
         }
