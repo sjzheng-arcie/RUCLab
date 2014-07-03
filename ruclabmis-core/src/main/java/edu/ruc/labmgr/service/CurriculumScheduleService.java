@@ -142,7 +142,7 @@ public class CurriculumScheduleService {
         List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria);
         return schedules;
     }
-
+	//按时间查询已经存在的课程记录
     public  List<CurriculumSchedule>  selectSchedulesByTime(Date startTime, Date endTime){
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -190,7 +190,65 @@ public class CurriculumScheduleService {
         return schedules;
     }
 
-    private List<Integer> getSectionByTime(Date startTime, Date endTime){
+//multi
+//按时间查询已经存在的课程记录
+public  List<CurriculumSchedule>  selectSchedulesByTimeMulti(Date startTime, Date endTime,int termId,int beginWeek,int endWeek,byte weekDay,String appointmentType){
+
+	java.util.Calendar calendar = java.util.Calendar.getInstance();
+	calendar.setTime(new Date());
+	Calendar cal = Calendar.getInstance();
+	cal.setTime(startTime);
+
+	int week = cal.get(Calendar.WEEK_OF_YEAR);
+	Integer year = cal.get(Calendar.YEAR);
+
+	TermYear termYear = yearService.getTermYearById(termId);
+
+	List<CurriculumSchedule> totalList= new ArrayList<>();
+	for(int i=0;i<=endWeek-beginWeek;i++){
+		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
+
+			startTime.setTime(startTime.getTime()+86400000*(7*i));
+			endTime.setTime(endTime.getTime()+86400000*(7*i));
+			List<Integer> sections = getSectionByTime(startTime, endTime);
+			if(sections.size() > 0)
+			{
+//				Calendar calStartDate = Calendar.getInstance();
+//				calStartDate.setTime(termYear.getBegindate());
+//				int startWeek = calStartDate.get(Calendar.WEEK_OF_YEAR);
+//
+//				byte deltWeek = (byte)(week-startWeek);
+//
+//				int startWeekDay = cal.get(cal.DAY_OF_WEEK);
+//				if(startWeekDay==1)
+//					startWeekDay=7;
+//				else if(startWeekDay>1 && startWeekDay<=7)
+//					startWeekDay=startWeekDay-1;
+
+
+				curriculumScheduleCriteria.or().andTermYearidEqualTo(termYear.getId()).
+						andWeeknumEqualTo((byte)i).andWeekdaysEqualTo((byte) weekDay).andSectionBeginBetween(sections.get(0), sections.get(1));
+				curriculumScheduleCriteria.or().andTermYearidEqualTo(termYear.getId()).
+						andWeeknumEqualTo((byte)i).andWeekdaysEqualTo((byte) weekDay).andSectionEndBetween(sections.get(0), sections.get(1));
+				curriculumScheduleCriteria.or().andTermYearidEqualTo(termYear.getId()).
+						andWeeknumEqualTo((byte)i).andWeekdaysEqualTo((byte) weekDay).andSectionBeginLessThanOrEqualTo(sections.get(0)).andSectionEndGreaterThanOrEqualTo(sections.get(1));
+			}
+
+			curriculumScheduleCriteria.or().andMeetStimeBetween(startTime, endTime);
+			curriculumScheduleCriteria.or().andMeetEtimeBetween(startTime, endTime);
+			curriculumScheduleCriteria.or().andMeetEtimeGreaterThanOrEqualTo(endTime).andMeetStimeLessThanOrEqualTo(startTime);
+
+			List<CurriculumSchedule> schedules = curriculumScheduleMapper.selectByCriteria(curriculumScheduleCriteria);
+			totalList.addAll(schedules);
+	}
+	return totalList;
+}
+
+
+
+
+	private List<Integer> getSectionByTime(Date startTime, Date endTime){
         List<Integer> sections = new ArrayList<Integer>();
         Calendar calStart = Calendar.getInstance();
         calStart.setTime(startTime);
@@ -346,6 +404,17 @@ public class CurriculumScheduleService {
         }
         return retIds;
     }
+
+	//multi
+	//按时间查询已占用房间编号
+	public  List<Integer> selectMultiOccupiedRoomIds(Date startTime, Date endTime,int termId,int beginWeek,int endWeek,byte weekDay,String appointmentType){
+		List<CurriculumSchedule> schedules =selectSchedulesByTimeMulti(startTime,endTime,termId,beginWeek,endWeek,weekDay,appointmentType);
+		List<Integer> retIds = new ArrayList<>();
+		for(int i=0;i<schedules.size();i++){
+			retIds.add(i,schedules.get(i).getRoomId());
+		}
+		return retIds;
+	}
 
     //按时间查询课程
     public  List<Curriculum> selectCurriculums(int year, Byte week, Byte wDay, int sectionBegin,int sectionEnd){

@@ -133,6 +133,12 @@
                                                     <td width="160" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请时间</span></div>
                                                     </td>
+                                                    <td width="60" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">周次</span></div>
+                                                    </td>
+                                                    <td width="60" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">星期</span></div>
+                                                    </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请类型</span></div>
                                                     </td>
@@ -153,13 +159,22 @@
                                                                                    onclick="checkOne('listForm', 'idcheckbox')"/>
                                                             </td>
                                                         </c:if>
-                                                        <td><a href="toUpdate?id=${item.id}">${item.id}</a></td>
+                                                        <td><a href="toMultiUpdate?id=${item.id}">${item.id}</a></td>
                                                         <td>${item.room.name}</td>
                                                         <td>${item.user.name}</td>
                                                         <td>${item.phoneNum}</td>
                                                         <td>${item.stateClassif.value}</td>
-                                                        <td><fmt:formatDate value="${item.meetSTime}" pattern="yyyy-MM-dd HH:mm"/>
-                                                         - <fmt:formatDate value="${item.meetETime}" pattern="yyyy-MM-dd HH:mm"/></td>
+                                                        <td><fmt:formatDate value="${item.meetSTime}" pattern=" HH:mm"/>
+                                                         - <fmt:formatDate value="${item.meetETime}" pattern=" HH:mm"/></td>
+                                                        <td>${item.beginWeek}-${item.endWeek}</td>
+                                                        <td>
+                                                            <c:if test="${item.weekDay==1}">一</c:if>
+                                                            <c:if test="${item.weekDay==2}">二</c:if>
+                                                            <c:if test="${item.weekDay==3}">三</c:if>
+                                                            <c:if test="${item.weekDay==4}">四</c:if>
+                                                            <c:if test="${item.weekDay==5}">五</c:if>
+                                                            <c:if test="${item.weekDay==6}">六</c:if>
+                                                            <c:if test="${item.weekDay==7}">天</c:if></td>
                                                         <td>${item.type}</td>
                                                         <td>${item.description}</td>
                                                         <c:if test="${formType=='history'}">

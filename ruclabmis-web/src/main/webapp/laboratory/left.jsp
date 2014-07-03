@@ -109,11 +109,18 @@
             <shiro:hasAnyRoles name="teacher,equipment_admin,student">
                 <li><a href="jsp/appointment/laboratory/frame.jsp" onfocus="toFocus(this)"
                        target="main">预约申请</a></li>
+                <li><a href="jsp/appointment/laboratory/multiframe.jsp" onfocus="toFocus(this)"
+                       target="main">多次预约申请</a></li>
             </shiro:hasAnyRoles>
             <li><a href="jsp/appointment/laboratory/list" onfocus="toFocus(this)"
                    target="main">申请中的预约</a></li>
+            <li><a href="jsp/appointment/laboratory/multilist" onfocus="toFocus(this)"
+                   target="main">申请中的多次预约</a></li>
             <li><a href="jsp/appointment/laboratory/list?formType=history" onfocus="toFocus(this)"
                    target="main">预约结果</a></li>
+            </li>
+            <li><a href="jsp/appointment/laboratory/multilist?formType=history" onfocus="toFocus(this)"
+                   target="main">多次预约结果</a></li>
             </li>
 
 

@@ -83,4 +83,8 @@ public class RoomService {
         roomCriteria.setOrderByClause("id, type, name");
 		return mapper.selectByCriteria(roomCriteria);
 	}
+	public List<Room> getAllRoomListByCriteria(RoomCriteria roomCriteria){
+		roomCriteria.setOrderByClause("id, type, name");
+		return mapper.selectByCriteria(roomCriteria);
+	}
 }

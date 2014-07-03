@@ -72,4 +72,15 @@ public class TermYearService {
 
         return retVal;
     }
+
+	public Date getDateByWeekTermId(int termId,int weekNum,byte weekDay){
+
+		TermYear termYear= mapper.selectByPrimaryKey(termId);
+		Date date= termYear.getBegindate();
+		date.setTime(date.getTime()+86400000*(7*weekNum+weekDay));
+		return date;
+
+	}
+
+
 }
