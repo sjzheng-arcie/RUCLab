@@ -139,6 +139,9 @@
                                                     <td width="60" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">星期</span></div>
                                                     </td>
+                                                    <td width="60" bgcolor="d3eaef">
+                                                        <div align="center"><span class="STYLE10">学期</span></div>
+                                                    </td>
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">申请类型</span></div>
                                                     </td>
@@ -175,6 +178,7 @@
                                                             <c:if test="${item.weekDay==5}">五</c:if>
                                                             <c:if test="${item.weekDay==6}">六</c:if>
                                                             <c:if test="${item.weekDay==7}">天</c:if></td>
+                                                        <td>${item.termYear.name}</td>
                                                         <td>${item.type}</td>
                                                         <td>${item.description}</td>
                                                         <c:if test="${formType=='history'}">

@@ -29,6 +29,7 @@
             beginWeek :${beginWeek},
             endWeek :${endWeek},
             weekDay :${weekDay},
+            termYearId :${termYearId},
             type:"${appointmentType}"
         }, function (data) {
             alert(data.message);

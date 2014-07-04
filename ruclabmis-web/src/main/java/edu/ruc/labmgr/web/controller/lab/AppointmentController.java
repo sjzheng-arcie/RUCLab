@@ -148,7 +148,8 @@ public class AppointmentController {
 							@RequestParam(required = false,defaultValue = "") String stime,
 							@RequestParam(required = false,defaultValue = "") String etime) {
 
-			Date meetDate =termYearService.getDateByWeekTermId(termYearId,beginWeek,weekDay);
+			Date meetDate =termYearService.getTermYearById(termYearId).getBegindate();
+		//Date endDate =termYearService.getDateByWeekTermId(termYearId,endWeek,weekDay);
 		if(StringUtils.isNullOrEmpty(stime))
 			stime = "07:00";
 		if(StringUtils.isNullOrEmpty(etime))
@@ -220,6 +221,7 @@ public class AppointmentController {
 					   @RequestParam(required = false,defaultValue = "") byte weekDay,
 					   @RequestParam(required = false,defaultValue = "") int beginWeek,
 					   @RequestParam(required = false,defaultValue = "") int endWeek,
+					   @RequestParam(required = false,defaultValue = "") int termYearId,
 					   @RequestParam(required = false,defaultValue = "") String appointmentType,
 					   @RequestParam(required = true) Integer roomId) {
 
@@ -232,6 +234,7 @@ public class AppointmentController {
 		mav.addObject("weekDay", weekDay);
 		mav.addObject("beginWeek", beginWeek );
 		mav.addObject("endWeek",  endWeek );
+		mav.addObject("termYearId",  termYearId);
 		mav.addObject("appointmentType",appointmentType);
 
 		return mav;
@@ -287,6 +290,7 @@ public class AppointmentController {
 			   @RequestParam(required = true) byte weekDay,
 			   @RequestParam(required = false) String phoneNum,
 			   @RequestParam(required = true) Integer roomId,
+			   @RequestParam(required = true) Integer termYearId,
 			   @RequestParam(required = true) String type) {
 		Result result = null;
 
@@ -294,8 +298,18 @@ public class AppointmentController {
 			arrangement.setUserId(userService.getCurrentUserId());
 			arrangement.setState((byte) Types.ApplyState.WAITING.getValue());
 			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date beginDate=sdf.parse(startTime);
+			Date endDate=sdf.parse(endTime);
+			Date startTimeDate=sdf.parse(startTime);
+			Date endTimeDate=sdf.parse(endTime);
+
 			arrangement.setMeetSTime(sdf.parse(startTime));
 			arrangement.setMeetETime(sdf.parse(endTime));
+			arrangement.setBeginWeek(beginWeek);
+			arrangement.setEndWeek(endWeek);
+			arrangement.setWeekDay(weekDay);
+			arrangement.setTermId(termYearId);
+			//arrangement.setTermId(termId);
 			if(type.equals("multiLaboratory")){
 				arrangement.setType("多次实验室预约");
 			}else{
@@ -307,13 +321,16 @@ public class AppointmentController {
 
 			for(int i=beginWeek;i<=endWeek;i++){
 
+				//startTime.setTime(startTime.getTime()+86400000*(7*(i-1)+weekDay-1));
 				CurriculumSchedule schedule = new CurriculumSchedule();
 				schedule.setTeacherid(userService.getCurrentUserId());
 				schedule.setRoomId(roomId);
-				schedule.setMeetStime(sdf.parse(startTime));
-				schedule.setMeetEtime(sdf.parse(endTime));
-				schedule.setSectionBegin(beginWeek);
-				schedule.setSectionEnd(endWeek);
+				beginDate.setTime(startTimeDate.getTime()+(long)86400000*(7*(i-1)+weekDay-1));
+				endDate.setTime(endTimeDate.getTime()+(long)86400000*(7*(i-1)+weekDay-1));
+				schedule.setMeetStime(beginDate);
+				schedule.setMeetEtime(endDate);
+				//schedule.setSectionBegin(beginWeek);
+				//schedule.setSectionEnd(endWeek);
 				schedule.setWeeknum((byte) i);
 				schedule.setWeekdays(weekDay);
 				curriculumScheduleService.add(schedule);
@@ -412,6 +429,7 @@ public class AppointmentController {
 
 			Classif stateClassif = classifService.getClassifItem(arrangement.getState());
 			arrangement.setStateClassif(stateClassif);
+			arrangement.setTermName(termYearService.getTermYearByTime(arrangement.getMeetSTime()).getName());
 
 		}
 		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multilist");
@@ -475,13 +493,14 @@ public class AppointmentController {
 
 
 			List<Integer> idList= arrangementScheduleService.getSecheduleIdListByArrangementId(id);
+			arrangementScheduleService.delete(id);
 			if(idList!=null&&idList.size()>0){
 				CurriculumScheduleCriteria curriculumScheduleCriteria= new CurriculumScheduleCriteria();
 				curriculumScheduleCriteria.createCriteria().andIdIn(idList);
 				curriculumScheduleService.deleteByCriteria(curriculumScheduleCriteria);
 			}
 
-			arrangementScheduleService.delete(id);
+
 
 
            // curriculumScheduleService.deleteById(scheduleId);

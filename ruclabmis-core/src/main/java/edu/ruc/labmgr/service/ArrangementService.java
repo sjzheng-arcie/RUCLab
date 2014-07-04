@@ -81,6 +81,7 @@ public class ArrangementService {
 		criteria01.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull().andTypeEqualTo("多次实验室预约");
 		criteria02.andStateEqualTo((byte) Types.ApplyState.WAITING.getValue()).andMeetETimeIsNotNull().andMeetSTimeIsNotNull().andTypeEqualTo("多次会议室预约");
 		arrangementCriteria.or(criteria02);
+		arrangementCriteria.setOrderByClause("id desc");
 
 		return getMulttiPageArrangementByCriteria(pageNum, arrangementCriteria);
 	}
@@ -184,17 +185,7 @@ public class ArrangementService {
 		PageInfo<Arrangement> page = new PageInfo<>(totalCount, -1, pageNum);
 		List<Arrangement> data = arrangementMapper.selectByCriteriaWithRowbounds(criteria,
 				new RowBounds(page.getCurrentResult(), page.getPageSize()));
-
-		List<Arrangement> newData= new ArrayList<>();
-
-		for(Arrangement arrangement:data){
-			CurriculumSchedule curriculumSchedule= arrangementScheduleService.getSecheduleInfoByArrangementId(arrangement.getId());
-			arrangement.setBeginWeek(curriculumSchedule.getSectionBegin());
-			arrangement.setEndWeek(curriculumSchedule.getSectionEnd());
-			arrangement.setWeekDay(curriculumSchedule.getWeekdays());
-			newData.add(arrangement);
-		}
-		page.setData(newData);
+		page.setData(data);
 		return page;
 	}
     public void delete(Integer id) {

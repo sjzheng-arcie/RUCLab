@@ -205,12 +205,12 @@ public  List<CurriculumSchedule>  selectSchedulesByTimeMulti(Date startTime, Dat
 	TermYear termYear = yearService.getTermYearById(termId);
 
 	List<CurriculumSchedule> totalList= new ArrayList<>();
-	for(int i=0;i<=endWeek-beginWeek;i++){
+	for(int i=beginWeek;i<=endWeek;i++){
 		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
 		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
 
-			startTime.setTime(startTime.getTime()+86400000*(7*i));
-			endTime.setTime(endTime.getTime()+86400000*(7*i));
+			startTime.setTime(startTime.getTime()+(long)86400000*(7*(i-1)+weekDay-1));
+			endTime.setTime(endTime.getTime()+(long)86400000*(7*(i-1)+weekDay-1));
 			List<Integer> sections = getSectionByTime(startTime, endTime);
 			if(sections.size() > 0)
 			{

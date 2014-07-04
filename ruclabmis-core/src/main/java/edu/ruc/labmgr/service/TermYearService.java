@@ -68,8 +68,10 @@ public class TermYearService {
         ec.andYearEqualTo(year);
         ec.andBegindateLessThanOrEqualTo(time);
         List<TermYear> years = mapper.selectByCriteria(yearCriteria);
-        TermYear retVal = years.get(0);
-
+		TermYear retVal = new TermYear();
+		if(years!=null&&years.size()>0){
+			retVal=years.get(0);
+		}
         return retVal;
     }
 
@@ -77,7 +79,7 @@ public class TermYearService {
 
 		TermYear termYear= mapper.selectByPrimaryKey(termId);
 		Date date= termYear.getBegindate();
-		date.setTime(date.getTime()+86400000*(7*weekNum+weekDay));
+		date.setTime(date.getTime()+86400000*(7*(weekNum-1)+weekDay-1));
 		return date;
 
 	}

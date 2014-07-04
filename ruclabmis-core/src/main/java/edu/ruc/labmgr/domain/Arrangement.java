@@ -3,35 +3,55 @@ package edu.ruc.labmgr.domain;
 import java.util.Date;
 
 public class Arrangement {
-    private Integer id;
+	private Integer id;
 
-    private Byte state;
+	private Byte state;
 
-    private Classif stateClassif;
+	private Classif stateClassif;
 
-    private Integer approvalId;
+	private Integer approvalId;
 
-    private Integer userId;
+	private Integer userId;
 
-    private String description;
+	private String description;
 
-    private String approvalOpinion;
+	private String approvalOpinion;
 
-    private String type;
+	private String type;
 
-    private Integer roomId;
+	private Integer roomId;
 
-    private Date scheduleDate;
+	private Date scheduleDate;
 
-    private Date meetSTime;
+	private Date meetSTime;
 
-    private Date meetETime;
+	private Date meetETime;
 
-    private Room room;
+	private Room room;
 
-    private User user;
+	private User user;
 
-    private User approval;
+	private User approval;
+
+	public TermYear getTermYear() {
+		return termYear;
+	}
+
+	public void setTermYear(TermYear termYear) {
+		this.termYear = termYear;
+	}
+
+	private TermYear termYear;
+
+	public String getTermName() {
+		return termName;
+	}
+
+	public void setTermName(String termName) {
+		this.termName = termName;
+	}
+
+	private String termName;
 
 	public String getPhoneNum() {
 		return phoneNum;
@@ -60,6 +80,15 @@ public class Arrangement {
 
 	private int endWeek;
 
+	public int getTermId() {
+		return termId;
+	}
+
+	public void setTermId(int termId) {
+		this.termId = termId;
+	}
+
+	private int termId;
 
 
 	public int getBeginWeek() {
@@ -79,125 +108,123 @@ public class Arrangement {
 	}
 
 
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Integer getId() {
-        return id;
-    }
+	public Byte getState() {
+		return state;
+	}
 
-    public void setId(Integer id) {
-        this.id = id;
-    }
+	public void setState(Byte state) {
+		this.state = state;
+	}
 
-    public Byte getState() {
-        return state;
-    }
+	public Integer getApprovalId() {
+		return approvalId;
+	}
 
-    public void setState(Byte state) {
-        this.state = state;
-    }
+	public void setApprovalId(Integer approvalId) {
+		this.approvalId = approvalId;
+	}
 
-    public Integer getApprovalId() {
-        return approvalId;
-    }
+	public Integer getUserId() {
+		return userId;
+	}
 
-    public void setApprovalId(Integer approvalId) {
-        this.approvalId = approvalId;
-    }
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
 
-    public Integer getUserId() {
-        return userId;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    public void setUserId(Integer userId) {
-        this.userId = userId;
-    }
+	public void setDescription(String description) {
+		this.description = description == null ? null : description.trim();
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public String getApprovalOpinion() {
+		return approvalOpinion;
+	}
 
-    public void setDescription(String description) {
-        this.description = description == null ? null : description.trim();
-    }
+	public void setApprovalOpinion(String approvalOpinion) {
+		this.approvalOpinion = approvalOpinion == null ? null : approvalOpinion.trim();
+	}
 
-    public String getApprovalOpinion() {
-        return approvalOpinion;
-    }
+	public String getType() {
+		return type;
+	}
 
-    public void setApprovalOpinion(String approvalOpinion) {
-        this.approvalOpinion = approvalOpinion == null ? null : approvalOpinion.trim();
-    }
+	public void setType(String type) {
+		this.type = type;
+	}
 
-    public String getType() {
-        return type;
-    }
+	public Date getScheduleDate() {
+		return scheduleDate;
+	}
 
-    public void setType(String type) {
-        this.type = type;
-    }
+	public void setScheduleDate(Date scheduleDate) {
+		this.scheduleDate = scheduleDate;
+	}
 
-    public Date getScheduleDate() {
-        return scheduleDate;
-    }
+	public Classif getStateClassif() {
+		return stateClassif;
+	}
 
-    public void setScheduleDate(Date scheduleDate) {
-        this.scheduleDate = scheduleDate;
-    }
+	public void setStateClassif(Classif stateClassif) {
+		this.stateClassif = stateClassif;
+	}
 
-    public Classif getStateClassif() {
-        return stateClassif;
-    }
+	public Integer getRoomId() {
+		return roomId;
+	}
 
-    public void setStateClassif(Classif stateClassif) {
-        this.stateClassif = stateClassif;
-    }
+	public void setRoomId(Integer roomId) {
+		this.roomId = roomId;
+	}
 
-    public Integer getRoomId() {
-        return roomId;
-    }
+	public Room getRoom() {
+		return room;
+	}
 
-    public void setRoomId(Integer roomId) {
-        this.roomId = roomId;
-    }
+	public void setRoom(Room room) {
+		this.room = room;
+	}
 
-    public Room getRoom() {
-        return room;
-    }
+	public User getUser() {
+		return user;
+	}
 
-    public void setRoom(Room room) {
-        this.room = room;
-    }
+	public void setUser(User user) {
+		this.user = user;
+	}
 
-    public User getUser() {
-        return user;
-    }
+	public User getApproval() {
+		return approval;
+	}
 
-    public void setUser(User user) {
-        this.user = user;
-    }
+	public void setApproval(User approval) {
+		this.approval = approval;
+	}
 
-    public User getApproval() {
-        return approval;
-    }
+	public Date getMeetSTime() {
+		return meetSTime;
+	}
 
-    public void setApproval(User approval) {
-        this.approval = approval;
-    }
+	public void setMeetSTime(Date meetSTime) {
+		this.meetSTime = meetSTime;
+	}
 
-    public Date getMeetSTime() {
-        return meetSTime;
-    }
+	public Date getMeetETime() {
+		return meetETime;
+	}
 
-    public void setMeetSTime(Date meetSTime) {
-        this.meetSTime = meetSTime;
-    }
-
-    public Date getMeetETime() {
-        return meetETime;
-    }
-
-    public void setMeetETime(Date meetETime) {
-        this.meetETime = meetETime;
-    }
+	public void setMeetETime(Date meetETime) {
+		this.meetETime = meetETime;
+	}
 }
