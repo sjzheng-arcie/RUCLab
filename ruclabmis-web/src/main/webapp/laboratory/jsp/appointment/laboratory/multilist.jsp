@@ -104,7 +104,7 @@
                                 <tr>
                                     <td>
                                         <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
-                                            <table width="100%" class="table" id="table1" border="0" cellpadding="0"
+                                            <table width="100%" class="table" id="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
                                                     <c:if test="${formType!='history'}">
@@ -127,7 +127,7 @@
                                                     <td width="100" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">联系电话</span></div>
                                                     </td>
-                                                    <td width="40" bgcolor="d3eaef">
+                                                    <td width="80" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">状态</span></div>
                                                     </td>
                                                     <td width="160" bgcolor="d3eaef">

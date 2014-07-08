@@ -451,9 +451,9 @@ public class AppointmentController {
 	public ModelAndView toMultiUpdate(@RequestParam("id") int id) {
 		Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
 		CurriculumSchedule curriculumSchedule= arrangementScheduleService.getSecheduleInfoByArrangementId(arrangement.getId());
-		arrangement.setBeginWeek(curriculumSchedule.getSectionBegin());
-		arrangement.setEndWeek(curriculumSchedule.getSectionEnd());
-		arrangement.setWeekDay(curriculumSchedule.getWeekdays());
+		//arrangement.setBeginWeek(curriculumSchedule.getSectionBegin());
+		//arrangement.setEndWeek(curriculumSchedule.getSectionEnd());
+		//arrangement.setWeekDay(curriculumSchedule.getWeekdays());
 		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multidetail");
 		mav.addObject("arrangement", arrangement);
 		return mav;
