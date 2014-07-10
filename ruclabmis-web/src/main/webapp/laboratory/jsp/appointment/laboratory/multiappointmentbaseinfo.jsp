@@ -60,7 +60,7 @@
 
         getStr +=  "&termYearId=" + document.getElementById('termYearId').value;
 
-        parent.statusFrame.location = getStr;
+        parent.multistatusFrame.location = getStr;
     }
         $(document).ready(function () {
 
@@ -92,8 +92,31 @@
 
 
     }
+    function changeWeekNumFlag(){
+
+
+        var beginWeek='${beginWeekFlag}';
+        var endWeek='${endWeekFlag}';
+
+        var begin=" 第<select  id ='beginWeek'  name='beginWeek'>";
+        var end=" 第<select  id ='endWeek'  name='endWeek'>";
+        var item="";
+        var i=0;
+        for(i=beginWeek;i<=endWeek;i++){
+            item=item+  "<option value='"+i+"'>"+i+"</option>";
+        }
+        item=item+"周";
+
+        begin=begin+item;
+        end=end+item;
+        document.getElementById("beginDiv").innerHTML=begin;
+
+        document.getElementById("endDiv").innerHTML=end;
+
+
+    }
 </script>
-<body onload="seekStatus()">
+<body onload="seekStatus();changeWeekNumFlag();">
 <form name="mainForm" method="post">
     <table style="width:100%" border="0" cellpadding="0" cellspacing="0">
         <tr>

@@ -128,6 +128,14 @@
                                                 </td>
                                             </tr>
                                             <tr>
+                                                <td nowrap align="right"> 学期:</td>
+                                                <td nowrap>
+                                                    <input name="term" id="term" value="${termYear.name}" onblur=""
+                                                           class="text" readonly style="width:154px;color:#aaaaaa"/>
+                                                    <span style="color:red;">*</span>
+                                                </td>
+                                            </tr>
+                                            <tr>
                                                 <td nowrap align="right">周次:</td>
                                                 <td nowrap>
                                                     <input name="week" id="week" value="${beginWeek}-${endWeek}" onblur=""

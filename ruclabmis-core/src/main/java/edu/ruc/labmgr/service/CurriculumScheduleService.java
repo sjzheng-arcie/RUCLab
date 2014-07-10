@@ -202,7 +202,7 @@ public  List<CurriculumSchedule>  selectSchedulesByTimeMulti(Date startTime, Dat
 	int week = cal.get(Calendar.WEEK_OF_YEAR);
 	Integer year = cal.get(Calendar.YEAR);
 
-	TermYear termYear = yearService.getTermYearById(termId);
+
 
 	List<CurriculumSchedule> totalList= new ArrayList<>();
 	for(int i=beginWeek;i<=endWeek;i++){
@@ -214,24 +214,12 @@ public  List<CurriculumSchedule>  selectSchedulesByTimeMulti(Date startTime, Dat
 			List<Integer> sections = getSectionByTime(startTime, endTime);
 			if(sections.size() > 0)
 			{
-//				Calendar calStartDate = Calendar.getInstance();
-//				calStartDate.setTime(termYear.getBegindate());
-//				int startWeek = calStartDate.get(Calendar.WEEK_OF_YEAR);
-//
-//				byte deltWeek = (byte)(week-startWeek);
-//
-//				int startWeekDay = cal.get(cal.DAY_OF_WEEK);
-//				if(startWeekDay==1)
-//					startWeekDay=7;
-//				else if(startWeekDay>1 && startWeekDay<=7)
-//					startWeekDay=startWeekDay-1;
 
-
-				curriculumScheduleCriteria.or().andTermYearidEqualTo(termYear.getId()).
+				curriculumScheduleCriteria.or().andTermYearidEqualTo(termId).
 						andWeeknumEqualTo((byte)i).andWeekdaysEqualTo((byte) weekDay).andSectionBeginBetween(sections.get(0), sections.get(1));
-				curriculumScheduleCriteria.or().andTermYearidEqualTo(termYear.getId()).
+				curriculumScheduleCriteria.or().andTermYearidEqualTo(termId).
 						andWeeknumEqualTo((byte)i).andWeekdaysEqualTo((byte) weekDay).andSectionEndBetween(sections.get(0), sections.get(1));
-				curriculumScheduleCriteria.or().andTermYearidEqualTo(termYear.getId()).
+				curriculumScheduleCriteria.or().andTermYearidEqualTo(termId).
 						andWeeknumEqualTo((byte)i).andWeekdaysEqualTo((byte) weekDay).andSectionBeginLessThanOrEqualTo(sections.get(0)).andSectionEndGreaterThanOrEqualTo(sections.get(1));
 			}
 

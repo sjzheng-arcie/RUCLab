@@ -91,6 +91,10 @@ public class AppointmentController {
 		mav.addObject("currYear", currYear);
 		mav.addObject("currWeek", currWeek);
 		mav.addObject("currDay", currDay);
+		if(termYearList!=null&&termYearList.size()>0){
+			mav.addObject("beginWeekFlag", termYearList.get(0).getStartweek());
+			mav.addObject("endWeekFlag", termYearList.get(0).getEndweek());
+		}
 		mav.addObject("termYearList", termYearList);
 		return mav;
 	}
@@ -140,15 +144,22 @@ public class AppointmentController {
 
 	@RequestMapping(value = "/multiroomstatus", method = RequestMethod.GET)
 	ModelAndView multiRoomStatus(
-								 @RequestParam(required = false,defaultValue = "") int termYearId,
-								 @RequestParam(required = false,defaultValue = "") byte weekDay,
-								 @RequestParam(required = false,defaultValue = "") int beginWeek,
-								 @RequestParam(required = false,defaultValue = "") int endWeek,
+								 @RequestParam(required = false,defaultValue = "0") int termYearId,
+								 @RequestParam(required = false,defaultValue = "0") byte weekDay,
+								 @RequestParam(required = false,defaultValue = "0") int beginWeek,
+								 @RequestParam(required = false,defaultValue = "0") int endWeek,
 								 @RequestParam(required = false,defaultValue = "") String appointmentType,
-							@RequestParam(required = false,defaultValue = "") String stime,
-							@RequestParam(required = false,defaultValue = "") String etime) {
+								 @RequestParam(required = false,defaultValue = "") String stime,
+								 @RequestParam(required = false,defaultValue = "") String etime) {
+		Date meetDate =new Date();
 
-			Date meetDate =termYearService.getTermYearById(termYearId).getBegindate();
+		if(termYearId!=0){
+			meetDate =termYearService.getTermYearById(termYearId).getBegindate();
+		}else{
+			meetDate=termYearService.getTermYearByTime(new Date()).getBegindate();
+
+		}
+
 		//Date endDate =termYearService.getDateByWeekTermId(termYearId,endWeek,weekDay);
 		if(StringUtils.isNullOrEmpty(stime))
 			stime = "07:00";
@@ -235,6 +246,9 @@ public class AppointmentController {
 		mav.addObject("beginWeek", beginWeek );
 		mav.addObject("endWeek",  endWeek );
 		mav.addObject("termYearId",  termYearId);
+		if(termYearId!=0){
+			mav.addObject("termYear",termYearService.getTermYearById(termYearId));
+		}
 		mav.addObject("appointmentType",appointmentType);
 
 		return mav;
@@ -450,10 +464,7 @@ public class AppointmentController {
 	@RequestMapping(value = "/toMultiUpdate", method = RequestMethod.GET)
 	public ModelAndView toMultiUpdate(@RequestParam("id") int id) {
 		Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
-		CurriculumSchedule curriculumSchedule= arrangementScheduleService.getSecheduleInfoByArrangementId(arrangement.getId());
-		//arrangement.setBeginWeek(curriculumSchedule.getSectionBegin());
-		//arrangement.setEndWeek(curriculumSchedule.getSectionEnd());
-		//arrangement.setWeekDay(curriculumSchedule.getWeekdays());
+		//CurriculumSchedule curriculumSchedule= arrangementScheduleService.getSecheduleInfoByArrangementId(arrangement.getId());
 		ModelAndView mav = new ModelAndView("laboratory/jsp/appointment/laboratory/multidetail");
 		mav.addObject("arrangement", arrangement);
 		return mav;
@@ -478,7 +489,12 @@ public class AppointmentController {
             arrangement.setApprovalId(userService.getCurrentUserId());
             arrangementService.update(arrangement);
         }
-        return "redirect:/laboratory/jsp/appointment/laboratory/list";
+		String url="redirect:/laboratory/jsp/appointment/laboratory/list";
+		Arrangement arrangement = arrangementService.selectByPrimaryKey(items.get(0));
+		if(arrangement.getType().equals("多次实验室预约")||arrangement.getType().equals("多次会议室预约")){
+			url="redirect:/laboratory/jsp/appointment/laboratory/multilist";
+		}
+        return url;
     }
 
     @RequestMapping(value = "/reject", method = RequestMethod.POST)
@@ -505,8 +521,39 @@ public class AppointmentController {
 
            // curriculumScheduleService.deleteById(scheduleId);
         }
-        return "redirect:/laboratory/jsp/appointment/laboratory/list";
+		String url="redirect:/laboratory/jsp/appointment/laboratory/list";
+		Arrangement arrangement = arrangementService.selectByPrimaryKey(items.get(0));
+		if(arrangement.getType().equals("多次实验室预约")||arrangement.getType().equals("多次会议室预约")){
+			url="redirect:/laboratory/jsp/appointment/laboratory/multilist";
+		}
+		return url;
     }
+//	@RequestMapping(value = "/multireject", method = RequestMethod.POST)
+//	public String multireject(@RequestParam("items") List<Integer> items) {
+//		for(int id : items){
+//			Arrangement arrangement = arrangementService.selectByPrimaryKey(id);
+//			arrangement.setState((byte)Types.ApplyState.REJECT.getValue());
+//			arrangement.setApprovalId(userService.getCurrentUserId());
+//			arrangementService.update(arrangement);
+//
+//			// int scheduleId = arrangementScheduleService.getSecheduleIdByArrangementId(id);
+//
+//
+//			List<Integer> idList= arrangementScheduleService.getSecheduleIdListByArrangementId(id);
+//			arrangementScheduleService.delete(id);
+//			if(idList!=null&&idList.size()>0){
+//				CurriculumScheduleCriteria curriculumScheduleCriteria= new CurriculumScheduleCriteria();
+//				curriculumScheduleCriteria.createCriteria().andIdIn(idList);
+//				curriculumScheduleService.deleteByCriteria(curriculumScheduleCriteria);
+//			}
+//
+//
+//
+//
+//			// curriculumScheduleService.deleteById(scheduleId);
+//		}
+//		return "redirect:/laboratory/jsp/appointment/laboratory/multilist";
+//	}
 
 //    @RequestMapping(value = "/appointmentbaseinfo")
 //    public ModelAndView appointmentBaseInfo() {

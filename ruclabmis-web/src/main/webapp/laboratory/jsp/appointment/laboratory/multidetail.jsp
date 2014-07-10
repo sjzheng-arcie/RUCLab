@@ -74,6 +74,10 @@
                                                style="width:100%;height:100%;font-size:12px;font-family: Verdana, Arial, Helvetica, sans-serif;"
                                                bgcolor="#E3E9EE">
                                             <tr>
+                                                <td  width="100" align="right" >学期：</td>
+                                                <td>
+                                                    <input name="termYear" id="termYear"value="${arrangement.termYear.name}"  class="text" readonly style="width:154px;color:#aaaaaa"/>
+                                                </td>
                                                 <td  width="100" align="right" >预约日期：</td>
                                                 <td>
                                                     <input name="meetDate" id="meetDate"
@@ -89,6 +93,7 @@
                                                     <input name="etime" id="etime" value="<fmt:formatDate value="${arrangement.meetETime}" pattern="HH:mm"/>" onblur=""
                                                                         class="text" readonly style="width:80px;color:#aaaaaa"/>
                                                 </td>
+                                            </tr>
                                             <tr>
                                                 <td nowrap align="right">星期:</td>
                                                 <td nowrap>

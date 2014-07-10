@@ -103,7 +103,7 @@
                                 </tr>
                                 <tr>
                                     <td>
-                                        <div id="divwidth" style="overflow:auto;overflow-y:hidden;">
+                                        <div id="divwidth" style="overflow:auto;overflow-y:auto;">
                                             <table width="100%" class="table" id="table" border="0" cellpadding="0"
                                                    cellspacing="1" bgcolor="#a8c7ce">
                                                 <tr>
@@ -131,7 +131,7 @@
                                                         <div align="center"><span class="STYLE10">状态</span></div>
                                                     </td>
                                                     <td width="160" bgcolor="d3eaef">
-                                                        <div align="center"><span class="STYLE10">申请时间</span></div>
+                                                        <div align="center"><span class="STYLE10">预约时间</span></div>
                                                     </td>
                                                     <td width="60" bgcolor="d3eaef">
                                                         <div align="center"><span class="STYLE10">周次</span></div>

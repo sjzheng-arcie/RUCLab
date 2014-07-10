@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -39,6 +40,8 @@ public class CurriculumSheduleController {
 	RoomService roomService;
 	@Autowired
 	TeacherService teacherService;
+	@Autowired
+	TermYearService termYearService;
 
 
 	@RequestMapping(value = "/toDelete", method = RequestMethod.POST)
@@ -235,6 +238,8 @@ public class CurriculumSheduleController {
 										@RequestParam(value="sectionBegin",required = true) int sectionBegin,
 										@RequestParam(value="sectionEnd",required = true) int sectionEnd){
 
+		Date meetDate=termYearService.getTermYearById(termYearId).getBegindate();
+
 		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
 		CurriculumScheduleCriteria.Criteria criteria=curriculumScheduleCriteria.createCriteria();
 		criteria.andSectionBeginGreaterThanOrEqualTo(sectionBegin);
@@ -243,6 +248,32 @@ public class CurriculumSheduleController {
 		criteria.andWeekdaysLessThanOrEqualTo(endWeek);
 		criteria.andWeeknumEqualTo(weekDay);
 		criteria.andTermYearidEqualTo(termYearId);
+
+		Date startTimeDate=new Date();
+		startTimeDate.setTime(meetDate.getTime());
+		startTimeDate.setHours(getTimeBySectionBegin(sectionBegin).getHours());
+		startTimeDate.setMinutes(getTimeBySectionBegin(sectionBegin).getMinutes());
+		Date endTimeDate=new Date();
+		endTimeDate.setTime(meetDate.getTime());
+		endTimeDate.setHours(getTimeBySectionEnd(sectionEnd).getHours());
+		endTimeDate.setMinutes(getTimeBySectionEnd(sectionEnd).getMinutes());
+
+		for(int i=beginWeek;i<=endWeek;i++){
+
+			Date beginDate=new Date();
+			beginDate.setTime(startTimeDate.getTime()+(long)86400000*(7*(i-1)+weekDay-1));
+			Date endDate=new Date();
+			endDate.setTime(endTimeDate.getTime()+(long)86400000*(7*(i-1)+weekDay-1));
+
+
+			curriculumScheduleCriteria.or().andMeetStimeBetween(beginDate, endDate);
+			curriculumScheduleCriteria.or().andMeetEtimeBetween(beginDate, endDate);
+			curriculumScheduleCriteria.or().andMeetEtimeGreaterThanOrEqualTo(endDate).andMeetStimeLessThanOrEqualTo(beginDate);
+
+		}
+
+
+
 		List<Integer> roomIdList=curriculumScheduleService.getRoomListIdList(curriculumScheduleCriteria);
 		List<Room> roomList= roomService.getAllRoomListByIdList(roomIdList);
 		List<List<Room>> listRoomList=new ArrayList<List<Room>>();
@@ -723,6 +754,106 @@ public class CurriculumSheduleController {
 		mav.addObject("termYearList",termYearList);
 		mav.addObject("teacherList",teacherList);
 		return mav;
+	}
+
+	public Date getTimeBySectionBegin(int sectionBegin){
+		Date date= new Date();
+		date.setSeconds(0);
+		if(sectionBegin==1){
+			date.setHours(8);
+			date.setMinutes(0);
+		}else if(sectionBegin==2){
+			date.setHours(8);
+			date.setMinutes(50);
+		}else if(sectionBegin==3){
+			date.setHours(10);
+			date.setMinutes(0);
+		}else if(sectionBegin==4){
+			date.setHours(10);
+			date.setMinutes(50);
+		}else if(sectionBegin==5){
+			date.setHours(12);
+			date.setMinutes(0);
+		}else if(sectionBegin==6){
+			date.setHours(12);
+			date.setMinutes(50);
+		}else if(sectionBegin==7){
+			date.setHours(14);
+			date.setMinutes(0);
+		}else if(sectionBegin==8){
+			date.setHours(14);
+			date.setMinutes(50);
+		}else if(sectionBegin==9){
+			date.setHours(16);
+			date.setMinutes(0);
+		}else if(sectionBegin==10){
+			date.setHours(16);
+			date.setMinutes(50);
+		}else if(sectionBegin==11){
+			date.setHours(18);
+			date.setMinutes(0);
+		}else if(sectionBegin==12){
+			date.setHours(18);
+			date.setMinutes(50);
+		}else if(sectionBegin==13){
+			date.setHours(19);
+			date.setMinutes(30);
+		}else if(sectionBegin==14){
+			date.setHours(20);
+			date.setMinutes(20);
+		}
+		return  date;
+
+	}
+
+
+	public Date getTimeBySectionEnd(int sectionEnd){
+		Date date= new Date();
+		date.setSeconds(0);
+		if(sectionEnd==1){
+			date.setHours(8);
+			date.setMinutes(30);
+		}else if(sectionEnd==2){
+			date.setHours(9);
+			date.setMinutes(30);
+		}else if(sectionEnd==3){
+			date.setHours(10);
+			date.setMinutes(40);
+		}else if(sectionEnd==4){
+			date.setHours(11);
+			date.setMinutes(30);
+		}else if(sectionEnd==5){
+			date.setHours(12);
+			date.setMinutes(40);
+		}else if(sectionEnd==6){
+			date.setHours(13);
+			date.setMinutes(30);
+		}else if(sectionEnd==7){
+			date.setHours(14);
+			date.setMinutes(40);
+		}else if(sectionEnd==8){
+			date.setHours(13);
+			date.setMinutes(30);
+		}else if(sectionEnd==9){
+			date.setHours(16);
+			date.setMinutes(40);
+		}else if(sectionEnd==10){
+			date.setHours(17);
+			date.setMinutes(30);
+		}else if(sectionEnd==11){
+			date.setHours(18);
+			date.setMinutes(40);
+		}else if(sectionEnd==12){
+			date.setHours(19);
+			date.setMinutes(30);
+		}else if(sectionEnd==13){
+			date.setHours(20);
+			date.setMinutes(20);
+		}else if(sectionEnd==14){
+			date.setHours(21);
+			date.setMinutes(00);
+		}
+		return  date;
 	}
 }
 

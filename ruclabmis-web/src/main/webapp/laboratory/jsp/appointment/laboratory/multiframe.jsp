@@ -11,9 +11,9 @@
 </head>
 
 <frameset cols="350,*" frameborder="NO" border="1" framespacing="0" name="appointmentframe">
-    <frame src="/laboratory/jsp/appointment/laboratory/multiappointmentbaseinfo" name="baseinfoFrame"
-           noresize="noresize" marginwidth="0" frameborder="0" scrolling="no" target="statusFrame"/>
-    <frame src="/laboratory/jsp/appointment/laboratory/roomstatus" name="statusFrame" noresize="noresize"
+    <frame src="/laboratory/jsp/appointment/laboratory/multiappointmentbaseinfo" name="multibaseinfoFrame"
+           noresize="noresize" marginwidth="0" frameborder="0" scrolling="no" target="multistatusFrame"/>
+    <frame src="/laboratory/jsp/appointment/laboratory/multiroomstatus" name="multistatusFrame" noresize="noresize"
            marginwidth="0" marginheight="0" frameborder="0" scrolling="no"/>
 </frameset>
 

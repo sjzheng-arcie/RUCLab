@@ -40,20 +40,32 @@
                         <ul class="MM">
                             <li><a href="jsp/appointment/laboratory/frame.jsp" onfocus="toFocus(this)"
                                    target="main">预约申请</a></li>
-                            <li><a href="jsp/appointment/laboratory/multiframe.jsp" onfocus="toFocus(this)"
-                                   target="main">多次预约申请</a></li>
                             <li><a href="jsp/appointment/laboratory/list" onfocus="toFocus(this)"
                                    target="main">申请中的预约</a></li>
-                            <li><a href="jsp/appointment/laboratory/multilist" onfocus="toFocus(this)"
-                                   target="main">申请中的多人预约</a></li>
                             <li><a href="jsp/appointment/laboratory/list?formType=history" onfocus="toFocus(this)"
                                    target="main">预约结果</a></li>
                             </li>
+
+                        </ul>
+                    </div>
+                    <h1 class="type"><a href="javascript:void(0)">多次预约管理</a></h1>
+                    <div class="content">
+                        <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <tr>
+                                <td><img src="../images/menu_topline.gif" width="182" height="5"/></td>
+                            </tr>
+                        </table>
+                        <ul class="MM">
+                            <li><a href="jsp/appointment/laboratory/multiframe.jsp" onfocus="toFocus(this)"
+                                   target="main">多次预约申请</a></li>
+                            <li><a href="jsp/appointment/laboratory/multilist" onfocus="toFocus(this)"
+                                   target="main">申请中的多人预约</a></li>
                             <li><a href="jsp/appointment/laboratory/multilist?formType=history" onfocus="toFocus(this)"
                                    target="main">多次预约结果</a></li>
                             </li>
                         </ul>
                     </div>
+
 
                 </shiro:hasAnyRoles>
             </div>
