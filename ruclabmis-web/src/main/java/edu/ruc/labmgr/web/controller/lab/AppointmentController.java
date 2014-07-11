@@ -473,14 +473,24 @@ public class AppointmentController {
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public String delete(@RequestParam("items") List<Integer> items) {
         for(int id : items){
-            int scheduleId = arrangementScheduleService.getSecheduleIdByArrangementId(id);
-            arrangementScheduleService.delete(id, scheduleId);
-            curriculumScheduleService.deleteById(scheduleId);
+			List<Integer>scheduleIdList = arrangementScheduleService.getSecheduleIdListByArrangementId(id);
+			arrangementScheduleService.delete(id);
+			curriculumScheduleService.deleteByIdList(scheduleIdList);
             arrangementService.delete(id);
         }
         return "redirect:/laboratory/jsp/appointment/laboratory/list";
     }
 
+	@RequestMapping(value = "/multidelete", method = RequestMethod.POST)
+	public String multidelete(@RequestParam("items") List<Integer> items) {
+		for(int id : items){
+			List<Integer>scheduleIdList = arrangementScheduleService.getSecheduleIdListByArrangementId(id);
+			arrangementScheduleService.delete(id);
+			curriculumScheduleService.deleteByIdList(scheduleIdList);
+			arrangementService.delete(id);
+		}
+		return "redirect:/laboratory/jsp/appointment/laboratory/list";
+	}
     @RequestMapping(value = "/approve", method = RequestMethod.POST)
     public String approve(@RequestParam("items") List<Integer> items) {
         for(int id : items){

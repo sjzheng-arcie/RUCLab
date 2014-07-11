@@ -27,7 +27,12 @@ public class CurriculumScheduleService {
     public void deleteById(int id){
         curriculumScheduleMapper.deleteByPrimaryKey(id);
     }
-
+	public void deleteByIdList(List<Integer> idList){
+		CurriculumScheduleCriteria curriculumScheduleCriteria = new CurriculumScheduleCriteria();
+		CurriculumScheduleCriteria.Criteria criteria = curriculumScheduleCriteria.createCriteria();
+		criteria.andIdIn(idList);
+		curriculumScheduleMapper.deleteByCriteria(curriculumScheduleCriteria);
+	}
 	public void deleteByCriteria(CurriculumScheduleCriteria curriculumScheduleCriteria){
 		curriculumScheduleMapper.deleteByCriteria(curriculumScheduleCriteria);
 	}
